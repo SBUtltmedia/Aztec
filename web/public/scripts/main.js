@@ -61,6 +61,18 @@ function saveMessage(messageText) {
     console.error('Error writing new message to Firebase Database', error);
   });
 }
+function saveTest() {
+  // Add a new message entry to the Firebase database.
+  return firebase.firestore().collection('messages').add({
+   foo:"bar",
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+}
+
+
+
 
 // Loads chat messages history and listens for upcoming ones.
 function loadMessages() {
