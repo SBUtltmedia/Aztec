@@ -1,4 +1,4 @@
 .DS_Store
-Aztec/vendor
-Aztec/client_secrets.json
+**/vendor
+**/crendentials.json
 
