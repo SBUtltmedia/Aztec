@@ -1,0 +1,8 @@
+email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email
+"https://www.googleapis.com/auth/userinfo.email"
+
+tweego -f   sugarcube-2 -d -o aztec.twee .\userData\Aztec.html
+tweego -f   sugarcube-2  -o .\userData\Aztec.html aztec.twee
+
+for i in {1..10}; do for j in  Spaniards Aztecs Tlaxcalans;do   convert-gravity center -background none  -size 500x500  xc:none pointsize 42 label:$j $i -flatten    "/mnt/z/$j_$i.png" ;done; done
+%s/\(^.*\/\(.*\)\.mp3\)/<<cacheaudio "\2" "\1">>/g

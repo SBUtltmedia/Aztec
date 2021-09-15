@@ -1,0 +1,4 @@
+name: aztec
+recipe: lamp
+config:
+  webroot: .
