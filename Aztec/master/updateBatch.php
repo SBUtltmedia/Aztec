@@ -5,7 +5,7 @@ require "util.php";
 
 $sheetName     = "Game States";
 $testData      = $_POST;
-$spreadsheetId = "1vkRW7B33edqK_tlkcMFeVsaZowG_7PnjAwBkb2LN9n8";
+$spreadsheetId = "1TSv87oLukKBAgcEEto0HXrgsGmTbb3MAD6hUATlaGek";
 $group         = new Group();
 $util          = new Util();
 $line          = $group->group + 1;

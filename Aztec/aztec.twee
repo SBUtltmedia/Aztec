@@ -6,7 +6,7 @@ Spanish Aztec War Ver 1.0
 {
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
-	"format-version": "2.33.4",
+	"format-version": "2.3",
 	"start": "The Library",
 	"tag-colors": {
 		"Breaks": "blue",
@@ -25,7 +25,7 @@ Spanish Aztec War Ver 1.0
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 @import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
 @import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
-@import url("https://apps.tlt.stonybrook.edu/Aztec/master/style.css");
+@import url("style.css");
 
 
 :: Story JavaScript [script]
@@ -38,7 +38,7 @@ window.gameData={
 "currentPassage":"Loyalty Check",
 }
 
-var server="https://apps.tlt.stonybrook.edu/Aztec/master/"
+var server="./"
 
 importScripts(
 	`${server}script.js`,

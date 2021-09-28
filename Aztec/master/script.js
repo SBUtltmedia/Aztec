@@ -1,45 +1,22 @@
 var gameVars;
 var lastStats=[];
 $(document).ready(function () {
-
-    var isOnline = new RegExp('apps\.tlt\.stonybrook\.edu').test(window.location.href);
-    
-    if (isOnline) {
-        online();
-
-    } else {
-        offline();
-
-    }
+console.log("hello");
+  
+    if (email == "") {
+        //   window.location = "login"
+   
+       }
+       $.get("roles.php", loadRole);
+   
 
 });
 
-function showVars() {
 
     
-}
-
-function offline() {
-    var vars = window.gameData;
-    
-    for (key in vars) {
-        
-        SugarCube.State.setVar("$" + key, vars[key]);
-    }
-
-
-    SugarCube.Engine.play(vars["currentPassage"])
-    fade($("body"), 1);
-}
-
 
 function online() {
-
-    if (email == "") {
-     //   window.location = "login"
-
-    }
-    $.get("roles.php", loadRole);
+ 
 
 }
 
