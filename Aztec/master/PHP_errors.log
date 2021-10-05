@@ -1,0 +1,40 @@
+[05-Oct-2021 13:21:46 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:21:46 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:21:46 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:21:47 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:21:48 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
+[05-Oct-2021 13:21:55 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:21:55 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:21:55 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:21:56 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:21:58 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
+[05-Oct-2021 13:22:21 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:22:21 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:22:21 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:22:22 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:22:22 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
+[05-Oct-2021 13:23:42 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:23:42 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:23:42 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:23:43 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:23:44 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
+[05-Oct-2021 13:24:55 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:24:55 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:24:55 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:24:56 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:24:57 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
+[05-Oct-2021 13:26:28 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:26:28 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:26:28 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:26:29 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:26:29 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
+[05-Oct-2021 13:29:17 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:29:17 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:29:17 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:29:18 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:29:19 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
+[05-Oct-2021 13:30:38 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:30:38 America/New_York] PHP Warning:  array_keys() expects parameter 1 to be array, bool given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:30:38 America/New_York] PHP Warning:  fputcsv() expects parameter 2 to be array, null given in /app/Aztec/master/util.php on line 12
+[05-Oct-2021 13:30:39 America/New_York] PHP Notice:  Undefined offset: 1 in /app/Aztec/master/group.php on line 12
+[05-Oct-2021 13:30:39 America/New_York] PHP Notice:  Undefined index:  in /app/Aztec/master/gameState.php on line 10
