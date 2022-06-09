@@ -1,36 +1,54 @@
-import { exec, execSync } from 'child_process';
+// NOTE: This file only pushes files to Heroku that have already been committed. Uncommitted changes won't be pushed to Heroku.
+
+import { execSync } from 'child_process';
 import { createRequire } from "module";
-import { config, exit } from 'process';
+import { exit } from 'process';
 const require = createRequire(import.meta.url);
-const configArray = require('./loginDiscord/configHerokuInstances.json');
+const configObj = require('./loginDiscord/config.json')
 
+// Checks command line arguments for app name
+const app = process.argv[2];
+if (!app) {
+    console.log("Name argument required. Usage: node .\\createHerokuInstances.js name");
+    exit(0);
+}
 
-let herokuInstances = 5
+let herokuInstances = configObj.channelconf.length;
+
+// Loop through instances given in config JSON file and push them all to Heroku
 for (let i = 1; i <= herokuInstances; i++) {
-    let configVars = configArray.shift();
-    
-    // Deploy Application
+    let clientId = configObj.channelconf[i-1].clientId;
+    let configVars = {...configObj.channelconf[i-1], ...configObj.serverconf};  // Combine channelconf and serverconf
+
+    // Commands: Destroy current app -> Create new app -> Set buildpack to node -> Set Procfile -> Push to Heroku
     let commands = [
-        `heroku apps:destroy -a aztec-${i} --confirm aztec-${i}`,
-        `heroku create -a aztec-${i} --buildpack heroku/nodejs`, 
-        `heroku buildpacks:add -a aztec-${i} heroku-community/multi-procfile`,
-        `heroku config:set -a aztec-${i} PROCFILE=Procfile`, 
-        `git push https://git.heroku.com/aztec-${i}.git HEAD:master`
+        `heroku apps:destroy -a ${app}-${i} --confirm ${app}-${i}`,
+        `heroku create -a ${app}-${i} --buildpack heroku/nodejs`, 
+        `heroku buildpacks:add -a ${app}-${i} heroku-community/multi-procfile`,
+        `heroku config:set -a ${app}-${i} PROCFILE=Procfile`, 
+        `git add .`,
+        `git commit -m "Automated update to Heroku/Github"`,
+        `git push https://git.heroku.com/${app}-${i}.git HEAD:master`
     ]
     
-    let redirectURL = configVars['redirectURL'];
-    configVars['redirectURL'] = redirectURL.replace("http%3A%2F%2Flocalhost%3A53134", encodeURIComponent(`https://aztec-${i}.herokuapp.com/`)).replace(/&/g, '"&"');
-    
+    // Add custom config variables
+    let redirectURL = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(`https://${app}-${i}.herokuapp.com`)}&response_type=code&scope=identify%20guilds.members.read%20guilds`.replace(/&/g, '"&"');
+    console.log({redirectURL});
+    configVars['redirectURL'] = redirectURL;
+    configVars['herokuURL'] = `https://${app}-${i}.herokuapp.com`;
+    configVars['appIndex'] = i;
+
     // Set config variables on Heroku
     for (let key of Object.keys(configVars)) {
-        let command = `heroku config:set -a aztec-${i} ${key}=${configVars[key]}`;
+        let command = `heroku config:set -a ${app}-${i} ${key}=${configVars[key]}`;
         commands.push(command);
     }
 
     // Execute commands
     for (let command of commands) {
         try {
-            execSync(command, console.log);
+            console.log(command);
+            // execSync(command, console.log);
         } catch(err) {}
     }
 }

@@ -1,22 +1,20 @@
-import fetch from 'node-fetch'
-import path from 'path'
 import fs from 'fs'
 import webstack from '../Webstack.js'
 import '../tweeGaze.js'
-import { fileURLToPath } from 'url';
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-const { clientId, clientSecret, twinePath, port } = require('./config.json')
+const configObj = require('./config.json');
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const { port, twinePath } = configObj.serverconf;
 
+// Gets environment variables from Heroku. Otherwise, get them locally from the config file.
 const PORT = process.env.PORT || port
+const TWINE_PATH = process.env.twinePath || twinePath;
+
 const { app } = new webstack(PORT).get();
-
 const htmlTemplate = 'login/index.html';
-const TWINE_PATH = 'Twine/demo.html';
 
+// Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
 	const userData = query;
 

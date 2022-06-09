@@ -5,43 +5,52 @@ import webstack from '../Webstack.js';
 import '../tweeGaze.js';
 import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
+import DiscordBot from '../discordBot.js';
 const require = createRequire(import.meta.url);
 
+// ** DISCORD JS **
+const DISC_CLIENT_ID = '983373819030945812'
+const DISC_GUILD_ID = '968922771692339291'
+const TOKEN = "OTgzMzczODE5MDMwOTQ1ODEy.GnYxai.3TstaPNT11QVx0SY6y-u1mYQYxzNW9LwXgXmug"
+
+// let discordBot = new DiscordBot(DISC_CLIENT_ID, DISC_GUILD_ID, TOKEN)
+// ** END OF DISCORD JS **
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
 let config_path = 'config.json'
 
+// Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead)
 if (fs.existsSync(__dirname + "/" + config_path)) {
-	var { clientId, clientSecret, twinePath, port, redirectURL, herokuURL, guildId } = require('./' + config_path);
+	const confObj = require('./' + config_path);
+	var { clientId, clientSecret, guildId } = confObj.channelconf[0];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
+	var { twinePath, port } = confObj.serverconf;
 }
 
-const CLIENT_ID = process.env.clientId || clientId
-const CLIENT_SECRET = process.env.clientSecret || clientSecret
-const TWINE_PATH = process.env.twinePath || twinePath
-const REDIRECTURL = process.env.redirectURL || redirectURL
-const PORT = process.env.PORT || port
-const HEROKU_URL = process.env.herokuURL || herokuURL
-const GUILD_ID = process.env.guildId || guildId
+// Gets environment variables from Heroku. Otherwise, get them locally from the config file.
+const CLIENT_ID = process.env.clientId || clientId;
+const CLIENT_SECRET = process.env.clientSecret || clientSecret;
+const TWINE_PATH = process.env.twinePath || twinePath;
+const PORT = process.env.PORT || port;
+const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
+const GUILD_ID = process.env.guildId || guildId;
+const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
 
 const { app } = new webstack(PORT).get();
 const htmlTemplate = './views/index.html'
 
-function returnTwine(userData, response) {
-	let userDataScriptTag =  `
-	<script> let userData=${userData} </script>
-	`
-	let file = TWINE_PATH
-	let fileContents = fs.readFileSync(file)
-	return response.send(`${fileContents} ${userDataScriptTag}`);
-}
+app.get('/discordbot', async ({ query }, response) => {
+	discordBot.sendNotif(query.channel, query.message)
+})
 
+
+	// Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
-	console.log({query});
+	// console.log({query});
 	const { code, state, test, nick } = query;
 	let userDataJSON;
 
+	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
 		let nickname = "Cuauhtémoc"
 		let id = "229035280496197642"
@@ -55,6 +64,7 @@ app.get('/', async ({ query }, response) => {
 		return returnTwine(userDataJSON, response);
 	}
 
+	// Redirects through Discord API
 	if (code) {
 		try {
 			const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
@@ -85,7 +95,6 @@ app.get('/', async ({ query }, response) => {
 			
 			const userResultJson = await userResult.json();
 			let userData = JSON.stringify(userResultJson);
-			console.log({userData})
 			
 			const guildResult = await fetch(`https://discord.com/api/users/@me/guilds/${GUILD_ID}/member`, {
 				headers: {
@@ -93,15 +102,8 @@ app.get('/', async ({ query }, response) => {
 				},
 			});
 			const guildResultJson = await guildResult.json();
-			
 			const userDataJSON = JSON.stringify({...guildResultJson, ...userResultJson});
 			
-
-			// if (userResultJson.message) {
-			// 	return returnTwine(userDataJSON, response);
-			// 	// return response.send(JSON.stringify(combineData));
-			// 	// file = path.join(__dirname, 'index.html')
-			// }
 
 			return returnTwine(userDataJSON, response);
 			
@@ -113,6 +115,15 @@ app.get('/', async ({ query }, response) => {
 	}
 	loadHome(response);
 });
+
+function returnTwine(userData, response) {
+	let userDataScriptTag =  `
+	<script> let userData=${userData} </script>
+	`
+	let file = TWINE_PATH
+	let fileContents = fs.readFileSync(file)
+	return response.send(`${fileContents} ${userDataScriptTag}`);
+}
 
 function loadHome(response) {
 	let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
