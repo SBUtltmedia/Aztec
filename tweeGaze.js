@@ -14,7 +14,7 @@ gaze('Twine/*.*', function (err, watcher) {
 
     // Get all watched files 
     var watched = this.watched();
-    console.log(watched)
+    // console.log(watched)
     
     // On file changed 
     this.on('changed', function (filepath) {

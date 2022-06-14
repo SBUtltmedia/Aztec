@@ -8,10 +8,11 @@ const { Routes } = require('discord-api-types/v9');
 var XMLHttpRequest = require('xhr2');
 
 class DiscordBot {
-    constructor(clientId, guildId, token) {
+    constructor(clientId, guildId, token, channels) {
         this.clientId = clientId;
         this.guildId = guildId;
         this.token = token;
+        this.channels = channels;
         this.init();
     }
     
@@ -62,10 +63,28 @@ class DiscordBot {
     sendNotif(channel, message) {
         console.log({channel, message});
         
+        for (const ch of this.channels)
+            if (ch.name === channel) {
+                var channelURL = ch.url;            
+                break;
+            }
+        
+        // Don't send message if no channel URL is found
+        if (!channelURL)
+            return;
+
         const content = message;
-        const channelURL = "https://discord.com/api/webhooks/984149235006066690/DvDM2pyHeVPSOZl58rVy7KWS7aNh_ur6fNB0XEg3gMYJwKWncCT1LLPQE3Cr_D2nFJnA";
-        const username = 'Spanish Messenger';
-        const avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        let username, avatar_url;
+        
+
+        if (channel === "aztecs") {
+            username = 'Aztec Messenger';
+            avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        }
+        if (channel === "spanish") {
+            username = 'Spanish Messenger';
+            avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        }
 
         const request = new XMLHttpRequest();
         request.open("POST", channelURL)
