@@ -7,25 +7,29 @@ import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 import DiscordBot from '../discordBot.js';
 const require = createRequire(import.meta.url);
-
-// ** DISCORD JS **
-const DISC_CLIENT_ID = '983373819030945812'
-const DISC_GUILD_ID = '968922771692339291'
-const TOKEN = "OTgzMzczODE5MDMwOTQ1ODEy.GnYxai.3TstaPNT11QVx0SY6y-u1mYQYxzNW9LwXgXmug"
-
-// let discordBot = new DiscordBot(DISC_CLIENT_ID, DISC_GUILD_ID, TOKEN)
-// ** END OF DISCORD JS **
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-let config_path = 'config.json'
+let config_path = '../config.json'
 
-// Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead)
+// Destructure config.json variables (Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead))
 if (fs.existsSync(__dirname + "/" + config_path)) {
 	const confObj = require('./' + config_path);
 	var { clientId, clientSecret, guildId } = confObj.channelconf[0];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
 	var { twinePath, port } = confObj.serverconf;
+	var { discClientId, discGuildId, discToken} = confObj.discconf;
+	var discChannels = confObj.discchannels;
 }
+
+// Initialize Discord Bot
+const DISC_CLIENT_ID = process.env.discClientId || discClientId;
+const DISC_GUILD_ID = process.env.discGuildId || discGuildId;
+const TOKEN = process.env.discToken || discToken;
+
+let discordBot = new DiscordBot(DISC_CLIENT_ID, DISC_GUILD_ID, TOKEN, discChannels)
+
 
 // Gets environment variables from Heroku. Otherwise, get them locally from the config file.
 const CLIENT_ID = process.env.clientId || clientId;
@@ -39,8 +43,10 @@ const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/a
 const { app } = new webstack(PORT).get();
 const htmlTemplate = './views/index.html'
 
-app.get('/discordbot', async ({ query }, response) => {
-	discordBot.sendNotif(query.channel, query.message)
+app.post('/discordbot', urlencodedParser, function(req, res) {
+	console.log(req.body);
+	res.send({});
+	discordBot.sendNotif(req.body.channel, req.body.message)
 })
 
 
