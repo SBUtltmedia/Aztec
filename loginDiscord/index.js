@@ -19,10 +19,14 @@ if (fs.existsSync(__dirname + "/" + config_path)) {
 	const confObj = require('./' + config_path);
 	var { clientId, clientSecret, guildId } = confObj.channelconf[0];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
 	var { twinePath, port } = confObj.serverconf;
-	var discChannels = confObj.channelconf[0].discchannels;
+	var spanishChannel = confObj.channelconf[0].spanishChannel;
+	var aztecChannel = confObj.channelconf[0].aztecChannel;
 }
 
-let discordBot = new DiscordBot(discChannels)
+const SPANISH_CHANNEL = process.env.spanishChannel || spanishChannel;
+const AZTEC_CHANNEL = process.env.aztecChannel || aztecChannel;
+
+let discordBot = new DiscordBot(SPANISH_CHANNEL, AZTEC_CHANNEL);
 
 // Gets environment variables from Heroku. Otherwise, get them locally from the config file.
 const CLIENT_ID = process.env.clientId || clientId;
