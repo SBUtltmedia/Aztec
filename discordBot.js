@@ -3,37 +3,29 @@ const require = createRequire(import.meta.url);
 var XMLHttpRequest = require('xhr2');
 
 class DiscordBot {
-    constructor(channels) {
-        this.channels = channels;
+    constructor(spanishChannel, aztecChannel) {
+        this.spanishChannel = spanishChannel;
+        this.aztecChannel = aztecChannel;
     }
 
     // Sends notification to a specific channel 
     sendNotif(channel, message) {
-        // Find channel URL for the requested channel name
-        for (const ch of this.channels)
-            if (ch.name === channel) {
-                var channelURL = ch.url;            
-                break;
-            }
-        
-        // Don't send message if no channel URL is found
-        if (!channelURL)
-            return;
-
         const content = message;
-        let username, avatar_url;
+        let username, avatar_url, channelURL;
 
         if (channel === "aztecs") {
             username = 'Aztec Messenger';
             avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+            channelURL = this.aztecChannel;
         }
         if (channel === "spanish") {
             username = 'Spanish Messenger';
             avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+            channelURL = this.spanishChannel;
         }
 
         const request = new XMLHttpRequest();
-        request.open("POST", channelURL)
+        request.open("POST", channelURL);
         request.setRequestHeader('Content-type', 'application/json');
         const params = {
             username,
