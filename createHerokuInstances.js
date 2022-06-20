@@ -13,7 +13,8 @@ if (!app) {
     exit(0);
 }
 
-let herokuInstances = configObj.channelconf.length;
+// let herokuInstances = configObj.channelconf.length;
+let herokuInstances = 1;
 
 // Loop through instances given in config JSON file and push them all to Heroku
 for (let i = 1; i <= herokuInstances; i++) {
