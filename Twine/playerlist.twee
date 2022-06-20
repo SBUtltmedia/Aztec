@@ -149,13 +149,13 @@ $(document).one(":passagestart", () => {
 	}
 <</script>>
 
-:: PassageHeader {"position":"138,11","size":"100,100"}
+/* :: PassageHeader {"position":"138,11","size":"100,100"}
 <<liveblock>>
 <<set _currentTime=new Date()>>
-<<set $users[$userId].lastSeen=_currentTime.getTime()>>
+<<set $users[$userId].lastSeen=_currentTime.getTime()>> */
 
 /* Player list */
-Active Players
+/* Active Players
 <br>
 <<for _i, _name range $users>>
     <<if new Date(_currentTime.getTime()-$lastSeenDelay) < _name.lastSeen>>
@@ -165,7 +165,7 @@ Active Players
 	<</if>>
 <</for>>
 <br>
-<</liveblock>>
+<</liveblock>> */
 
 
 :: Wishing Wells {"position":"350,100","size":"100,100"}
@@ -206,8 +206,8 @@ $chat
 <br>
 <</liveblock>>
 
-<input type="text" id="chatinput"/>
+/* <input type="text" id="chatinput"/>
 <button onclick='updateChat()'>
 	Update Chat
-</button>
+</button> */
 /* <span style="white-space: pre-line" id="chat"></span> */
