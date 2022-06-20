@@ -1,4 +1,5 @@
 loginDiscord/config.json
+*.off
 node_modules
 tests.js
 config.json
