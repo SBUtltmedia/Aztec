@@ -1,18 +1,5 @@
 var gameVars;
 var lastStats=[];
-$(document).ready(function () {
-    // if (email == "") {
-    //     //   window.location = "login"
-   
-    //    }
-    // $.get("roles.php", loadRole);
-});
-
-
-function online() {
- 
-}
-
 
 function init() {
     // $('#passages').html($('#passages').html().replace(/<br><br>/gm, ""));
@@ -155,8 +142,8 @@ function showStats() {
             }
         }
 
-        // let twineVar = SugarCube.State.variables.faction[faction].strength
-        let twineVar = 7
+        let twineVar = SugarCube.State.variables[`${faction}_strength`];
+        // let twineVar = 7
         if(twineVar) { 
             let statString = `${faction}: ${twineVar} `;
         
@@ -174,7 +161,7 @@ function showStats() {
                     "id": "factionStrengthLabel",
                     "html": statString
                 }))
-            setFactionStrength(twineVar)
+            setFactionStrength(twineVar)  // set back to twineVar
         }
     }
 }
@@ -183,10 +170,14 @@ function showStats() {
 function setFactionStrength(rawValue) {
     var maxValue=14;
     var value=rawValue/maxValue*100;
-    var gradientMask= `linear-gradient(90deg, black 0%, black ${value}%, transparent ${Math.min(100,value+10)}%)`
-    $("#factionStrengthBar").css({
-        "-webkit-mask-image":gradientMask,"mask-image":gradientMask
-    })
+    console.log({value, rawValue});
+
+    setTimeout(() => {
+        var gradientMask= `linear-gradient(90deg, black 0%, black ${value}%, transparent ${Math.min(100,value+10)}%)`;
+        $("#factionStrengthBar").css({
+            "-webkit-mask-image":gradientMask,"mask-image":gradientMask
+        })
+    }, 1000)
 }
 
 function makeRoleStats(statsIn) {
@@ -197,8 +188,10 @@ function makeRoleStats(statsIn) {
     var output = "";
 
     SugarCube.State.variables.roles[role]["stats"] = statsIn;
+
     Object.keys(statsIn).forEach((stat) => {
             val = parseInt(statsIn[stat]);
+            SugarCube.State.variables[`${role}_${stat}`] = val;
             output += `${stat}: ${val}\n`;
         } 
     )
@@ -221,22 +214,6 @@ function changeStats(rolePlay,newStats){
     });
 }
 
-function loadRole(data) {
-    //  var email = SugarCube.State.getVar("$email");
-    var roles = $.csv.toObjects(data);
-    
-    var role = "Player"
-    var foundRole = roles.find((item) => item.email == email)
-
-    if (foundRole) {
-        role = foundRole.role
-    }
-
-    SugarCube.State.setVar("$roles", roles);
-    SugarCube.State.setVar("$role", role);
-
-    $.get("roleInfo.php", (data) => loadRoleInfo(data, role))
-}
 
 
 function loadRoleInfo(data, role) {
