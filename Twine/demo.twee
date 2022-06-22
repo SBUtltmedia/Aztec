@@ -7,7 +7,7 @@ Wishing Wells
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.30.0",
-	"start": "Wishing Wells",
+	"start": "Codepen",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -113,11 +113,14 @@ $(document).one(":passageend", () => {
 :: Codepen {"position":"350,101","size":"100,100"}
 <div class='maincontainer'>
 	<div class='leftchild'>
-		Welcome to Þeyr! (You can pronounce it as "Theyr") <br> <br>
+		Welcome to Þeyr! (Pronounced "Theyr") <br> <br>
 		Þeyr is an extension to Twine SugarCube that allows you to create real-time multiplayer stories. 
-		This works by sharing all SugarCube variables between the connected players. If one variable changes, all players instances will be updated and kept in sync. <br><br>
+		This works by sharing all SugarCube variables between the connected players. If one variable changes, all players' instances will be updated and kept in sync. <br><br>
 
-		The only variable this doesn't apply to is <code>userId</code> which is a unique Id that identifies a particular client. <br><br>
+		When variables change, the game is updated instantly through the use of liveblock. <code>&lt;&lt;liveblock&gt;&gt;</code> tags allow updates to appear on screen without refreshing the passage.
+		Make sure to place <code>&lt;&lt;liveblock&gt;&gt;</code> tags around sections with variables that will be updated by other players. (See the example on the right) <br><br>
+
+		The only variable that isn't shared to all other players is <code>userId</code> which is a unique Id that identifies your player. <br><br>
 
 		Here's your <code>userId</code>: $userId <br><br>
 
@@ -125,7 +128,19 @@ $(document).one(":passageend", () => {
 		This entry contains all variables unique to that player. This allows Þeyr to keep track of variables pertaining to specific players, such as how many coins they've collected or what items they have. <br><br>
 
 		Change the textbox below to edit Theyr code:
-		<textarea id='codepen'> Your userId is: &dollar;userId </textarea> 
+		<textarea id='codepen'>Your userId is: &dollar;userId
+			&#10;&#10;&lt;&lt;liveblock&gt;&gt;
+			&#10;Liveblock: 
+			&#10;You have &dollar;tiger_coins coins
+			&#10;&lt;&lt;/liveblock&gt;&gt;
+
+			&#10;&#10;No Liveblock: 
+			&#10;You have &dollar;tiger_coins coins
+
+			&#10;&#10;&lt;&lt;button "Add to Coins"&gt;&gt;
+			&#10;&lt;&lt;set &dollar;tiger_coins++&gt;&gt;
+			&#10;&lt;&lt;/button&gt;&gt;
+		</textarea> 
 		/* <div id="codepen" contenteditable="true">
 			&dollar;userId
 		</div> */
@@ -134,9 +149,7 @@ $(document).one(":passageend", () => {
 	</div>
 	
 	<div class='rightchild'>
-		<div class='resultsbox' id='codepen_wiki'>
-			
-		</div>
+		<div class='resultsbox' id='codepen_wiki' />
 	</div>
 </div>
 
