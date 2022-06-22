@@ -41,7 +41,6 @@ const { app } = new webstack(PORT).get();
 const htmlTemplate = './views/index.html'
 
 app.post('/discordbot', urlencodedParser, function(req, res) {
-	console.log(req.body);
 	res.send({});
 	discordBot.sendNotif(req.body.channel, req.body.message)
 })
