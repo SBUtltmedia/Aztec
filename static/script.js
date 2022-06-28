@@ -61,22 +61,7 @@ $(document).on(':passagestart', (ev) => {
 
 
 /* JavaScript code */
-function checkDif() {
-    var dif = {};
-    var deleteVars=["role","faction","roles","roleInfo","isLeader","character"]
-    var sugarVars = Object.assign({}, SugarCube.State.variables);
-    deleteVars.forEach((item)=> delete sugarVars[item] )
 
-    for (i in sugarVars) {
-        if (sugarVars[i] != gameVars[i])
-            dif[i] = JSON.stringify(sugarVars[i]);
-    }
-
-    gameVars = Object.assign({}, sugarVars);
-    if (!$.isEmptyObject(dif)) {
-        $.post("updateBatch.php", dif);
-    }
-}
 
 function showMap(){
     var map = $('#map')
@@ -115,8 +100,9 @@ function showStats() {
     })
 
     let userId = SugarCube.State.variables.userId
-    if (SugarCube.State.variables.roles[role]) {
-        let twineStats = SugarCube.State.variables.roles[role].stats
+    let twineStats = SugarCube.State.variables.users[userId].stats
+
+
 
         if (twineStats) {
             Object.keys(stats).forEach((stat,idx) => {
@@ -163,7 +149,7 @@ function showStats() {
                 }))
             setFactionStrength(twineVar)  // set back to twineVar
         }
-    }
+    
 }
 
 
@@ -172,12 +158,10 @@ function setFactionStrength(rawValue) {
     var value=rawValue/maxValue*100;
     console.log({value, rawValue});
 
-    setTimeout(() => {
+
         var gradientMask= `linear-gradient(90deg, black 0%, black ${value}%, transparent ${Math.min(100,value+10)}%)`;
-        $("#factionStrengthBar").css({
-            "-webkit-mask-image":gradientMask,"mask-image":gradientMask
-        })
-    }, 1000)
+        $("#factionStrengthBar").attr("style",`-webkit-mask-image:${gradientMask};mask-image:${gradientMask}`)
+   
 }
 
 function makeRoleStats(statsIn) {
@@ -187,11 +171,11 @@ function makeRoleStats(statsIn) {
     let user = SugarCube.State.variables.users[userId]
     var output = "";
 
-    SugarCube.State.variables.roles[role]["stats"] = statsIn;
+    user["stats"] = statsIn;
 
     Object.keys(statsIn).forEach((stat) => {
             val = parseInt(statsIn[stat]);
-            SugarCube.State.variables[`${role}_${stat}`] = val;
+           // SugarCube.State.variables[`${role}_${stat}`] = val;
             output += `${stat}: ${val}\n`;
         } 
     )
@@ -207,6 +191,8 @@ function getRandomInt(max) {
 }
 
 function changeStats(rolePlay,newStats){
+    let curerentUser = Object.keys(SugarCube.State.variables.users).find(user=>user.role==rolePlay)
+
     let roleStats = SugarCube.State.variables.roles[rolePlay].stats
 
     Object.keys(roleStats).forEach((stat, idx) => {
@@ -216,50 +202,8 @@ function changeStats(rolePlay,newStats){
 
 
 
-function loadRoleInfo(data, role) {
-    var roleInfo = $.csv.toObjects(data);
-    var faction = "Observer";
-    var isLeader = false;
-    var character = "Observer"
-    var foundRoleInfo = roleInfo.find((item) => item.Role == role)
-    if (foundRoleInfo) {
-        faction = foundRoleInfo.Faction;
-        isLeader = foundRoleInfo.isLeader.toLowerCase();
-        character = foundRoleInfo.Character
-    }
-    
-    SugarCube.State.setVar("$roleInfo", roleInfo);
-    SugarCube.State.setVar("$faction", faction);
-    SugarCube.State.setVar("$isLeader", isLeader);
-    SugarCube.State.setVar("$character", character);
-    $.get("gameState.php", loadGameData);
-}
 
 
-function loadGameData(data) {
-    var vars = $.csv.toObjects(data)[0];
-    gameVars = vars;
-
-    for (key in vars) {
-        var val = parseInt(vars[key]);
-        if (!val) {
-            val = vars[key]
-        }
-
-        try {
-            val = JSON.parse(val);
-        } 
-        catch {}
-        SugarCube.State.setVar("$" + key, val||0);
-    }
-
-    let { role } = getUser();
-    var currentPassage = SugarCube.State.getVar(`$${role}_currentPassage`) || vars["currentPassage"];
-    console.log("Current Passage is: ", currentPassage)
-
-    SugarCube.Engine.play(currentPassage)
-    init();
-}
 
 // Returns the role of the current player
 function getUser() {
@@ -269,12 +213,3 @@ function getUser() {
     return user;
 }
 
-function updateChat() {
-    const userId = Window.SugarCubeState.variables.userId;
-    const username = Window.SugarCubeState.variables.users[userId].username;
-    let currentText = Window.SugarCubeState.variables.chat;
-    const newText = document.getElementById('chatinput').value;
-    Window.SugarCubeState.setVar('$chat', currentText + '\n' + `${username}: ${newText}`);
-	// document.getElementById('chat').innerHTML = Window.SugarCubeState.variables.chat;
-}
- 
