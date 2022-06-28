@@ -132,7 +132,7 @@ function showStats() {
         // let twineVar = 7
         if(twineVar) { 
             let statString = `${faction}: ${twineVar} `;
-        
+        if(!$('#factionStrength').length){
             $('#story')
                 .append($('<div/>', 
                     {
@@ -145,8 +145,10 @@ function showStats() {
                     }))
                 ).append($('<div/>', {
                     "id": "factionStrengthLabel",
-                    "html": statString
+                   // "html": statString
                 }))
+            }
+            $("#factionStrengthLabel").html(statString);
             setFactionStrength(twineVar)  // set back to twineVar
         }
     
@@ -159,8 +161,10 @@ function setFactionStrength(rawValue) {
     console.log({value, rawValue});
 
 
-        var gradientMask= `linear-gradient(90deg, black 0%, black ${value}%, transparent ${Math.min(100,value+10)}%)`;
-        $("#factionStrengthBar").attr("style",`-webkit-mask-image:${gradientMask};mask-image:${gradientMask}`)
+        let gradientMask= `linear-gradient(90deg, black 0%, black ${Math.floor(value)}%, transparent ${Math.min(100,value+10)}%)`;
+        let  maskStyle=`-webkit-mask-image:${gradientMask};mask-image:${gradientMask};`;
+        console.log(maskStyle)
+        $("#factionStrengthBar").attr("style",maskStyle)
    
 }
 
