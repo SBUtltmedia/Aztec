@@ -117,23 +117,32 @@ importScripts([
 // Run when passage starts 
 $(document).one(":passagestart", () => {
 	console.log("LOAD #1: PASSAGE START");
-    let usersCheck = State.variables.users || {};
+	let userId=parseInt(userData.id);
+	let userIdLocalStorage=localStorage.getItem('userId');
+	if(userIdLocalStorage && !location.search.includes("test=")){
+	userId=userIdLocalStorage;
+	}
+	else{
+	localStorage.setItem('userId', userId);
+	}
+ 	let usersCheck = State.variables.users || {};
 	State.variables.users = usersCheck;
 	let users = State.variables.users;
 
 
     // If client does not exist in Users, add them
-    if (!(userData.id in users)) {
-        users[userData.id] = {};
+    if (!(userId in users)) {
+		console.log("UserId not in Users")
+        users[userId] = {};
         // users[userData.id].username = userData.nick 	// Should this be username instead of nick?
     }  
 
-	// Sets userId in State and LocalStorage
-    localStorage.setItem('userId', userData.id);
-    State.variables.userId = userData.id;
+	// Sets userId in State 
+   
+    State.variables.userId = userId;
 
 	//* Theyr Callback Code *//
-	let user = users[userData.id];
+	let user = users[userId];
 
 	// Get Name From Discord
 	let discName = userData.nick || "Unknown";
@@ -222,6 +231,15 @@ $(document).one(":passagestart", () => {
 
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
+<<for _i, _name range $users>>
+	<<if  _name.role=="Cuauhtemoc">>
+	<<set _CuauhtemocId=_i>>
+		<<set $users[_CuauhtemocId]["stats"]["strength"]+=2>>
+	<</if>>
+	<</for>>
+<<print JSON.stringify(Object.entries($users))>>
+
+
 <<theyr>>
 Name not recognized. Make sure the spelling on your character's name matches your role. <br>
 <u> Roles: </u> <br>

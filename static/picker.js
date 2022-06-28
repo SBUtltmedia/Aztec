@@ -49,7 +49,7 @@ function statPickerInit() {
     var user = SugarCube.State.getVar("$users")[userId];
     var role = user["role"];
 
-    let stats = SugarCube.State.variables.roles[role]["stats"];
+    let stats = SugarCube.State.variables.users[userId]["stats"];
     if (stats) {
         setTimeout(toggleHide,1000);
         return "";

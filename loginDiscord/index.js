@@ -36,7 +36,7 @@ const PORT = process.env.PORT || port;
 const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
 const GUILD_ID = process.env.guildId || guildId;
 const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
-
+let refreshTokens={};
 const { app } = new webstack(PORT).get();
 const htmlTemplate = './views/index.html'
 
@@ -55,10 +55,10 @@ app.get('/', async ({ query }, response) => {
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
 		let nickname = "Cuauhtémoc"
-		let id = "229035280496197642"
+		let id = 229035280496197642
 		if (nick) {
 			nickname = nick
-			id = generateId()
+			id =parseInt(encode(nick), 16);
 		}	
 		
 		userDataJSON = JSON.stringify({"id":id,"nick":nickname, "faction": "Aztecs", "avatar":null,"discriminator":"2739","public_flags":0,"flags":0,"banner":null,"banner_color":null,
@@ -68,23 +68,36 @@ app.get('/', async ({ query }, response) => {
 
 	// Redirects through Discord API
 	if (code) {
+	
+		let payload ={
+			client_id: CLIENT_ID,
+			client_secret: CLIENT_SECRET,
+			code,
+			grant_type: 'authorization_code',
+			redirect_uri: HEROKU_URL,
+			scope: 'identify',
+		};
+		if(refreshTokens[state]){
+
+			payload={...payload,...{grant_type:'refresh_token',refresh_token: refreshTokens[state].refresh_token}}
+delete payload.code
+		}
 		try {
 			const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
 				method: 'POST',
-				body: new URLSearchParams({
-					client_id: CLIENT_ID,
-					client_secret: CLIENT_SECRET,
-					code,
-					grant_type: 'authorization_code',
-					redirect_uri: HEROKU_URL,
-					scope: 'identify',
-				}),
+				body: new URLSearchParams(payload),
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
 				},
 			});
 
 			const oauthData = await oauthResult.json();
+			console.log(oauthData)
+			if (oauthData.refresh_token){
+				refreshTokens[state]=oauthData;
+
+			}
+
 			if (oauthData.error) {
 				// console.log({oauthData});
 				// response.send(JSON.stringify(oauthData));
@@ -99,7 +112,7 @@ app.get('/', async ({ query }, response) => {
 			
 			const userResultJson = await userResult.json();
 			let userData = JSON.stringify(userResultJson);
-			
+		
 			const guildResult = await fetch(`https://discord.com/api/users/@me/guilds/${GUILD_ID}/member`, {
 				headers: {
 					authorization: `${oauthData.token_type} ${oauthData.access_token}`,
