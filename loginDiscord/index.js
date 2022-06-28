@@ -7,7 +7,8 @@ import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 import DiscordBot from '../discordBot.js';
 const require = createRequire(import.meta.url);
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const hex = require('string-hex')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const __filename = fileURLToPath(import.meta.url)
@@ -58,7 +59,7 @@ app.get('/', async ({ query }, response) => {
 		let id = 229035280496197642
 		if (nick) {
 			nickname = nick
-			id =parseInt(encode(nick), 16);
+			id =parseInt(hex(nick), 16);
 		}	
 		
 		userDataJSON = JSON.stringify({"id":id,"nick":nickname, "faction": "Aztecs", "avatar":null,"discriminator":"2739","public_flags":0,"flags":0,"banner":null,"banner_color":null,
