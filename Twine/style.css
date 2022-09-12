@@ -1,3 +1,7 @@
+.error-view>.error{
+    color: white;
+}
+
 input:disabled {
   color: black;
   opacity: 1;

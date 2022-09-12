@@ -242,7 +242,7 @@ $(document).one(":passagestart", () => {
 
 <<theyr>>
 Name not recognized. Make sure the spelling on your character's name matches your role. <br>
-<u> Roles: </u> <br>
+<u> Roles </u> <br>
 Mariana <br>
 Alvarado <br>
 Aguilar <br> 
