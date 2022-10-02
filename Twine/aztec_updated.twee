@@ -1,5 +1,5 @@
 :: StoryTitle
-Spanish Aztec War Ver 1.0
+Spanish Aztec War Ver 1.0.1
 
 
 :: StoryData
@@ -225,8 +225,9 @@ $(document).one(":passagestart", () => {
  <<run showStats()>>
 <<run setBackground()>>
 
+$userId
 <<set _currentTime=new Date()>>
-/* <<set $users[$userId].lastSeen=_currentTime.getTime()>>  */
+<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 <</theyr>>
 
 
