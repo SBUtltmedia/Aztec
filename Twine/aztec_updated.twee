@@ -91,11 +91,9 @@ importScripts([
 
 
 
-:: StoryInit {"position":"22,135","size":"100,100"}
-<<theyr>>
-/* <<set $lastSeenDelay=60 * 5000>> */
-/* <<print $users[$userId]['role']>> */
 
+:: StoryInit {"position":"22,135","size":"100,100"}
+/* <<set $lastSeenDelay=60 * 5000>> */
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
 <!-- <<masteraudio volume 0>> -->
@@ -207,17 +205,23 @@ importScripts([
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
+<<print $users[$userId]["role"]>>
+<<print $users[$userId]["faction"]>>
+<<print $users[$userId]["character"]>>
+<<print $users[$userId]["isLeader"]>>
+
 /* <<audio ":all" stop>> */
 <!-- <<masteraudio mute>> -->
-
+<<script>>
+console.log(userData)
+<</script>>
 <<masteraudio unmute>>
  <<run showMap()>>
  <<run showStats()>>
 <<run setBackground()>>
 
-$userId
 <<set _currentTime=new Date()>>
-<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
+/* <<set $users[$userId].lastSeen=_currentTime.getTime()>>   */
 <</theyr>>
 
 
