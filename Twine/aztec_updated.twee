@@ -48,30 +48,6 @@ importScripts([
 	"https://code.jquery.com/ui/1.12.1/jquery-ui.js"	
 ])
 	.then(function() {
-		waitForData.then(() => {
-			console.log("LOAD #3: THEN FUNCTION CALLED");
-			let userId = State.variables.userId;
-			let role = State.variables['users'][userId]['role'];
-			let currentPassage = State.variables[`${role}_currentPassage`];
-			console.log({userId, role, currentPassage})
-
-			// Play Unrecognized Passage if role is undefined
-			if (role === undefined) {
-				Engine.play("Name Not Recognized");
-			}
-
-			// Start where you left off
-			else if (currentPassage) {
-				Engine.play(currentPassage);
-			}
-
-			// Reload passage if it's your first time connecting
-			else {
-				Engine.show();
-			}
-			
-			$("body").css({opacity:1})
-    	});	
 	}
 );
 
@@ -114,91 +90,6 @@ importScripts([
 })();
 
 
-// Run when passage starts 
-$(document).one(":passagestart", () => {
-	console.log("LOAD #1: PASSAGE START");
-	let userId=parseInt(userData.id);
-	let userIdLocalStorage=localStorage.getItem('userId');
-	if(userIdLocalStorage && !location.search.includes("test=")){
-	userId=userIdLocalStorage;
-	}
-	else{
-	localStorage.setItem('userId', userId);
-	}
- 	let usersCheck = State.variables.users || {};
-	State.variables.users = usersCheck;
-	let users = State.variables.users;
-
-
-    // If client does not exist in Users, add them
-    if (!(userId in users)) {
-		console.log("UserId not in Users")
-        users[userId] = {};
-        // users[userData.id].username = userData.nick 	// Should this be username instead of nick?
-    }  
-
-	// Sets userId in State 
-   
-    State.variables.userId = userId;
-
-	//* Theyr Callback Code *//
-	let user = users[userId];
-
-	// Get Name From Discord
-	let discName = userData.nick || "Unknown";
-	discName = discName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");	// Replaces special characters
-	console.log("DISCNAME IS", discName);
-
-	// Initialize variables (Syntax: [sv.VarName, initValue] )
-	let sv = State.variables;
-	let initVars = [
-		["Start", 15],
-		["Quest_Points_A", 0]
-	]
-	for (const v of initVars) {
-		if (sv[v[0]] === undefined) {
-			sv[v[0]] = v[1];
-		}
-	}
-
-	const roles = [{"faction": "Spaniards", "role": "Mariana", "Character": "Doña Mariana/Malinche", "isLeader": "FALSE"},
-		{"faction": "Spaniards", "role": "Alvarado", "Character": "Pedro de Alvarado", "isLeader": "FALSE"},
-		{"faction": "Spaniards", "role": "Aguilar", "Character": "Gerónimo de Aguilar", "isLeader": "FALSE"},
-		{"faction": "Spaniards", "role": "Garrido", "Character": "Juan Garrido", "isLeader": "FALSE"},
-		{"faction": "Spaniards", "role": "Olid", "Character": "Cristóbal de Olid", "isLeader": "FALSE"},
-		{"faction": "Aztecs", "role": "Moctezuma", "Character": "Moctezuma", "isLeader": "TRUE"},
-		{"faction": "Aztecs", "role": "Tlacaelel", "Character": "Tlacaelel Xocoyotl (aka Tlacaelel the Younger)", "isLeader": "FALSE"},
-		{"faction": "Aztecs", "role": "Cuauhtemoc", "Character": "Cuauhtémoc", "isLeader": "FALSE"},
-		{"faction": "Aztecs", "role": "Aztec_Priest", "Character": "Aztec Priest", "isLeader": "FALSE"},
-		{"faction": "Aztecs", "role": "Cacamatzin", "Character": "Cacamatzín", "isLeader": "FALSE"},
-		{"faction": "Aztecs", "role": "Pochteca", "Character": "Pochteca", "isLeader": "FALSE"},
-		{"faction": "Tlaxcalans", "role": "Xicotencatl_Elder", "Character": "Xicotencatl the Elder", "isLeader": "TRUE"},
-		{"faction": "Tlaxcalans", "role": "Xicotencatl_Younger", "Character": "Xicotencatl the Younger", "isLeader": "FALSE"},
-		{"faction": "Tlaxcalans", "role": "Maxixcatl", "Character": "Maxixcatl", "isLeader": "FALSE"}]
-	// State.setVar("roles", roles);
-
-	// Get role info for the player
-	let roleInfo = roles.find((item) => {
-		return item.role.toLowerCase().replace(/[^a-z0-9]/gi, '') === discName.toLowerCase().replace(/[^a-z0-9]/gi, '')
-	})
-	console.log('role info', roleInfo)
-	
-	// Set role in the user variable
-	if (roleInfo) {
-		user['role'] = roleInfo.role
-	}
-
-	// Initialize roles
-	if (!State.variables.roles) {
-		State.variables.roles = {
-			"Mariana": {}, "Alvarado": {}, "Aguilar": {}, "Garrido": {}, "Olid": {}, "Moctezuma": {}, "Tlacaelel": {}, "Cuauhtemoc": {}, 
-			"Aztec_Priest": {}, "Cacamatzin": {}, "Pochteca": {}, "Xicotencatl_Elder": {}, "Xicotencatl_Younger": {}, "Maxixcatl": {}
-		}
-	}
-
-	user = Object.assign(user, roleInfo);
-});
-
 
 :: StoryInit {"position":"22,135","size":"100,100"}
 <<theyr>>
@@ -208,12 +99,111 @@ $(document).one(":passagestart", () => {
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
 <!-- <<masteraudio volume 0>> -->
+<<script>>
+	State.setVar("$userId", userData.id)
+	State.setVar("_role", userData.nick)
+<</script>>
+
+<<set _roles = {
+  "Mariana": {
+    "faction": "Spaniards",
+    "Character": "Doña Mariana/Malinche",
+    "isLeader": "FALSE"
+  },
+  "Alvarado": {
+    "faction": "Spaniards",
+    "Character": "Pedro de Alvarado",    
+    "isLeader": "FALSE"
+  },
+  "Aguilar": {
+    "faction": "Spaniards",
+    "Character": "Gerónimo de Aguilar",  
+    "isLeader": "FALSE"
+  },
+  "Garrido": {
+    "faction": "Spaniards",
+    "Character": "Juan Garrido",
+    "isLeader": "FALSE"
+  },
+  "Olid": {
+    "faction": "Spaniards",
+    "Character": "Cristóbal de Olid",
+    "isLeader": "FALSE"
+  },
+  "Moctezuma": {
+    "faction": "Aztecs",
+    "Character": "Moctezuma",
+    "isLeader": "TRUE"
+  },
+  "Tlacaelel": {
+    "faction": "Aztecs",
+    "Character": "Tlacaelel Xocoyotl (aka Tlacaelel the Younger)",
+    "isLeader": "FALSE"
+  },
+  "Cuauhtemoc": {
+    "faction": "Aztecs",
+    "Character": "Cuauhtémoc",
+    "isLeader": "FALSE"
+  },
+  "Aztec_Priest": {
+    "faction": "Aztecs",
+    "Character": "Aztec Priest",
+    "isLeader": "FALSE"
+  },
+  "Cacamatzin": {
+    "faction": "Aztecs",
+    "Character": "Cacamatzín",
+    "isLeader": "FALSE"
+  },
+  "Pochteca": {
+    "faction": "Aztecs",
+    "Character": "Pochteca",
+    "isLeader": "FALSE"
+  },
+  "Xicotencatl_Elder": {
+    "faction": "Tlaxcalans",
+    "Character": "Xicotencatl the Elder",
+    "isLeader": "TRUE"
+  },
+  "Xicotencatl_Younger": {
+    "faction": "Tlaxcalans",
+    "Character": "Xicotencatl the Younger",
+    "isLeader": "FALSE"
+  },
+  "Maxixcatl": {
+    "faction": "Tlaxcalans",
+    "Character": "Maxixcatl",
+    "isLeader": "FALSE"
+  }
+}
+		>>
+
+<<if ndef $users>>
+<<set $users = {}>>
+<</if>>
 
 
 
+<<if ndef $users[$userId]>>
+<<set $users[$userId] = {}>>
+<<set $users[$userId]["role"] = _role>>
+<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
+<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["character"]>>
+<<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
+<</if>>
 
-<</theyr>>
+<<set _currentPassage = $users[$userId]["currentPassage"]>>
 
+
+<<script>>
+	var passage = State.getVar("_currentPassage");
+	if(passage){
+		Engine.play(passage)
+	}else{
+		Engine.show();
+	}
+	$("body").css({opacity:1})
+<</script>>
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
@@ -232,13 +222,12 @@ $userId
 
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
-<<for _i, _name range $users>>
+/* <<for _i, _name range $users>>
 	<<if  _name.role=="Cuauhtemoc">>
 	<<set _CuauhtemocId=_i>>
 		<<set $users[_CuauhtemocId]["stats"]["strength"]+=2>>
 	<</if>>
-	<</for>>
-<<print JSON.stringify(Object.entries($users))>>
+	<</for>> */
 
 
 <<theyr>>

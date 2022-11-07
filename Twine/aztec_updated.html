@@ -123,30 +123,6 @@ importScripts([
 	"https://code.jquery.com/ui/1.12.1/jquery-ui.js"	
 ])
 	.then(function() {
-		waitForData.then(() => {
-			console.log("LOAD #3: THEN FUNCTION CALLED");
-			let userId = State.variables.userId;
-			let role = State.variables['users'][userId]['role'];
-			let currentPassage = State.variables[`${role}_currentPassage`];
-			console.log({userId, role, currentPassage})
-
-			// Play Unrecognized Passage if role is undefined
-			if (role === undefined) {
-				Engine.play("Name Not Recognized");
-			}
-
-			// Start where you left off
-			else if (currentPassage) {
-				Engine.play(currentPassage);
-			}
-
-			// Reload passage if it's your first time connecting
-			else {
-				Engine.show();
-			}
-			
-			$("body").css({opacity:1})
-    	});	
 	}
 );
 
@@ -186,6 +162,7 @@ importScripts([
 			}
 		}
 	});
+<<<<<<< Updated upstream
 })();
 
 
@@ -280,6 +257,121 @@ $(document).one(":passagestart", () => {
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
 
+=======
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+&lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
+&lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
+&lt;&lt;script&gt;&gt;
+	State.setVar(&quot;$userId&quot;, userData.id)
+	State.setVar(&quot;_role&quot;, userData.nick)
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;set _roles = {
+  &quot;Mariana&quot;: {
+    &quot;faction&quot;: &quot;Spaniards&quot;,
+    &quot;Character&quot;: &quot;Doña Mariana/Malinche&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Alvarado&quot;: {
+    &quot;faction&quot;: &quot;Spaniards&quot;,
+    &quot;Character&quot;: &quot;Pedro de Alvarado&quot;,    
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Aguilar&quot;: {
+    &quot;faction&quot;: &quot;Spaniards&quot;,
+    &quot;Character&quot;: &quot;Gerónimo de Aguilar&quot;,  
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Garrido&quot;: {
+    &quot;faction&quot;: &quot;Spaniards&quot;,
+    &quot;Character&quot;: &quot;Juan Garrido&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Olid&quot;: {
+    &quot;faction&quot;: &quot;Spaniards&quot;,
+    &quot;Character&quot;: &quot;Cristóbal de Olid&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Moctezuma&quot;: {
+    &quot;faction&quot;: &quot;Aztecs&quot;,
+    &quot;Character&quot;: &quot;Moctezuma&quot;,
+    &quot;isLeader&quot;: &quot;TRUE&quot;
+  },
+  &quot;Tlacaelel&quot;: {
+    &quot;faction&quot;: &quot;Aztecs&quot;,
+    &quot;Character&quot;: &quot;Tlacaelel Xocoyotl (aka Tlacaelel the Younger)&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Cuauhtemoc&quot;: {
+    &quot;faction&quot;: &quot;Aztecs&quot;,
+    &quot;Character&quot;: &quot;Cuauhtémoc&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Aztec_Priest&quot;: {
+    &quot;faction&quot;: &quot;Aztecs&quot;,
+    &quot;Character&quot;: &quot;Aztec Priest&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Cacamatzin&quot;: {
+    &quot;faction&quot;: &quot;Aztecs&quot;,
+    &quot;Character&quot;: &quot;Cacamatzín&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Pochteca&quot;: {
+    &quot;faction&quot;: &quot;Aztecs&quot;,
+    &quot;Character&quot;: &quot;Pochteca&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Xicotencatl_Elder&quot;: {
+    &quot;faction&quot;: &quot;Tlaxcalans&quot;,
+    &quot;Character&quot;: &quot;Xicotencatl the Elder&quot;,
+    &quot;isLeader&quot;: &quot;TRUE&quot;
+  },
+  &quot;Xicotencatl_Younger&quot;: {
+    &quot;faction&quot;: &quot;Tlaxcalans&quot;,
+    &quot;Character&quot;: &quot;Xicotencatl the Younger&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Maxixcatl&quot;: {
+    &quot;faction&quot;: &quot;Tlaxcalans&quot;,
+    &quot;Character&quot;: &quot;Maxixcatl&quot;,
+    &quot;isLeader&quot;: &quot;FALSE&quot;
+  }
+}
+		&gt;&gt;
+
+&lt;&lt;if ndef $users&gt;&gt;
+&lt;&lt;set $users = {}&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+
+&lt;&lt;if ndef $users[$userId]&gt;&gt;
+&lt;&lt;set $users[$userId] = {}&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;character&quot;]&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;isLeader&quot;]&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+/* &lt;&lt;set _currentPassage = $users[$userId][&quot;currentPassage&quot;]&gt;&gt; */
+
+
+&lt;&lt;script&gt;&gt;
+	var passage = State.getVar(&quot;_currentPassage&quot;);
+	if(passage){
+		Engine.play(passage)
+	}else{
+		Engine.show();
+	}
+	$(&quot;body&quot;).css({opacity:1})
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;print $users[$userId][&quot;role&quot;]&gt;&gt;
+&lt;&lt;print $users[$userId][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
+&lt;&lt;print $users[$userId][&quot;isLeader&quot;]&gt;&gt;
+>>>>>>> Stashed changes
 
 
 
@@ -294,14 +386,23 @@ $(document).one(":passagestart", () => {
 
 $userId
 &lt;&lt;set _currentTime=new Date()&gt;&gt;
+<<<<<<< Updated upstream
 &lt;&lt;set $users[$userId].lastSeen=_currentTime.getTime()&gt;&gt;  
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Name Not Recognized" tags="" position="350,100" size="100,100">&lt;&lt;for _i, _name range $users&gt;&gt;
+=======
+/* &lt;&lt;set $users[$userId].lastSeen=_currentTime.getTime()&gt;&gt;   */
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Name Not Recognized" tags="" position="350,100" size="100,100">/* &lt;&lt;for _i, _name range $users&gt;&gt;
+>>>>>>> Stashed changes
 	&lt;&lt;if  _name.role==&quot;Cuauhtemoc&quot;&gt;&gt;
 	&lt;&lt;set _CuauhtemocId=_i&gt;&gt;
 		&lt;&lt;set $users[_CuauhtemocId][&quot;stats&quot;][&quot;strength&quot;]+=2&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
+<<<<<<< Updated upstream
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;print JSON.stringify(Object.entries($users))&gt;&gt;
+=======
+	&lt;&lt;/for&gt;&gt; */
+>>>>>>> Stashed changes
 
 
 &lt;&lt;theyr&gt;&gt;
