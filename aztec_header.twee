@@ -177,7 +177,8 @@ $(document).one(":passagestart", () => {
 
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
-Name not recognized. Make sure the spelling on your character's name matches your role. <br>
+$users[userId]
+ame not recognized. Make sure the spelling on your character's name matches your role. <br>
 <u> Roles: </u> <br>
 Mariana <br>
 Alvarado <br>

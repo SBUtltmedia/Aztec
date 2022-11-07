@@ -25,9 +25,11 @@ socket.on('new connection', (state) => {
 
     // If server's state doesn't have your id yet, set it with this client's state
     let userId = Window.SugarCubeState.variables.userId
+    /*
     if (state.users[userId] === undefined || JSON.stringify(state.users[userId]) === '{}') {
         state.users[userId] = Window.SugarCubeState.variables.users[userId];
     }
+    */
 
     store.dispatch({type: 'UPDATEGAME', payload: state, connecting: true})
     store.dispatch({type: 'UPDATESTORE', payload: state, connecting: true})
