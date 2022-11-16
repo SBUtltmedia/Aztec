@@ -1,6 +1,6 @@
-var socket ;;
+var socket;
 
-var store 
+var store;
 var stateReceived = false;
 let lockInfo={};
 let deferred;
@@ -55,11 +55,7 @@ socket.on('difference', (state) => {
 
 function reducer(state, action){
     
-    // Checks for undefined to prevent feedback loop. Skips undefined check if connecting to the game (updates game as soon as client joins)
-    // if(state === undefined && action.connecting !== undefined) {
-    //     console.log("State is undefined")
-    //     return {...state, ...Window.SugarCubeState.variables}
-    // }
+
 
     switch(action.type){
         case 'UPDATESTORE':
@@ -69,9 +65,6 @@ function reducer(state, action){
                 socket.emit('difference', {...state, ...action.payload})
             }
             $(document).trigger(":liveupdate");
-            // if (!action.self && !action.connecting && lastUpdate < new Date() - 1000) {
-            //     reloadPassage();
-            // }
             return _.cloneDeep(Window.SugarCubeState.variables)
         case 'UPDATEGAME':
             console.log('Updating Game', action.payload);
@@ -83,9 +76,7 @@ function reducer(state, action){
     }
 }
 
-setInterval(update, 100)    // Check for differences and send a socket event to the server with your current state if differences are found 
-
-// If differences between SugarCube state and store detected, update your store and the other clients
+setInterval(update, 100)    
 function update() {
     if(!_.isEqual(Window.SugarCubeState.variables, store.getState())){
         let diff = difference(Window.SugarCubeState.variables, store.getState());
@@ -94,7 +85,7 @@ function update() {
     }
 }
 
-// Finds the difference between 2 different objects (Used to compare SugarCube State and Store)
+
 function difference(object, base) {
 	function changes(object, base) {
 		return _.transform(object, function(result, value, key) {
