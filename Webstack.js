@@ -36,6 +36,9 @@ class Webstack {
 	}
 	
 	initIO() {
+		io.on("connect_error", (err) => {
+			console.log(`connect_error due to ${err.message}`);
+		  });
 		io.on('connection', (socket) => {
 			let gstate = this.serverStore.getState();
 

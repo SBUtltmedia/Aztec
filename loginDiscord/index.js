@@ -55,15 +55,9 @@ app.get('/', async ({ query }, response) => {
 
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
-		let nickname = "Cuauhtemoc"
-		let id = 229035280496197642
-		if (nick) {
-			nickname = nick
-			id =parseInt(hex(nick), 16);
-		}	
-		
-		userDataJSON = JSON.stringify({"id":id,"nick":nickname, "faction": "Aztecs", "avatar":null,"discriminator":"2739","public_flags":0,"flags":0,"banner":null,"banner_color":null,
-		"accent_color":null,"locale":"en-US","mfa_enabled":false});
+	
+		userDataJSON = "{}"
+
 		return returnTwine(userDataJSON, response);
 	}
 

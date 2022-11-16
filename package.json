@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "nodemon loginDiscord/",
-    "dev": "nodemon login/",
-    "discord": "nodemon loginDiscord/",
+    "start": "npx nodemon loginDiscord/",
+    "dev": "npx nodemon login/",
+    "discord": "npx nodemon loginDiscord/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -25,7 +25,7 @@
     "node-fetch": "^3.2.0",
     "nodemon": "^2.0.15",
     "redux": "^4.1.2",
-    "socket.io": "^4.3.1",
+    "socket.io": "^4",
     "string-hex": "^1.0.0",
     "twine-utils": "^2.0.0",
     "xhr2": "^0.2.1"
