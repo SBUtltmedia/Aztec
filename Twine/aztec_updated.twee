@@ -90,15 +90,21 @@ importScripts([
 })();
 
 
-
-
 :: StoryInit {"position":"22,135","size":"100,100"}
 /* <<set $lastSeenDelay=60 * 5000>> */
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
 <!-- <<masteraudio volume 0>> -->
 <<script>>
+	const loc = location.search
+	const searchParams = new URLSearchParams(loc);
+	if(searchParams.get('test') === "true"){
+		userData = {id : 12312312321313,
+					username: "testAccount",
+					nick: "Cuauhtemoc"}
+	}  
 	State.setVar("$userId", userData.id)
+	State.setVar("_username", userData.username)
 	State.setVar("_role", userData.nick)
 <</script>>
 
@@ -183,8 +189,12 @@ importScripts([
 
 
 <<if ndef $users[$userId]>>
+<<script>>
+console.log("creating folder")
+<</script>>
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
+<<set $users[$userId]["username"] = _username>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["character"]>>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
@@ -203,12 +213,16 @@ importScripts([
 	$("body").css({opacity:1})
 <</script>>
 
+
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
-<<print $users[$userId]["role"]>>
+<<>>
+
+<<set $users[$userId]["passage"] = passage()>>
+<<print $userId>>
 <<print $users[$userId]["faction"]>>
 <<print $users[$userId]["character"]>>
-<<print $users[$userId]["isLeader"]>>
+<<print $users[$userId]["username"]>>
 
 /* <<audio ":all" stop>> */
 <!-- <<masteraudio mute>> -->
@@ -221,7 +235,7 @@ console.log(userData)
 <<run setBackground()>>
 
 <<set _currentTime=new Date()>>
-/* <<set $users[$userId].lastSeen=_currentTime.getTime()>>   */
+<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 <</theyr>>
 
 
