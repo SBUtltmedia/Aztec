@@ -55,7 +55,7 @@ app.get('/', async ({ query }, response) => {
 
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
-		let nickname = "Cuauhtémoc"
+		let nickname = "Cuauhtemoc"
 		let id = 229035280496197642
 		if (nick) {
 			nickname = nick
