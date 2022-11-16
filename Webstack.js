@@ -46,22 +46,20 @@ class Webstack {
 			socket.once('new user', (id) => {
 				console.log("SERVER RECEIVES NEW USER:", id);
 
-				// If server has global state, send it to the user
+			
 				if (typeof gstate !== 'undefined') {
 					io.to(id).emit('new connection', gstate)
 				}
 
-				// If server does not have the global state, retrieve it from the database and send it to the user
+			
 				else {
 					console.log("Retrieving state from mongo", database.getData())
 					io.to(id).emit('new connection', database.getData())
-					// retrieveMongoState().then((mongoState) => {
-					// 	io.to(id).emit('new connection', mongoState.state)
-					// })
+			
 				}
 			})
 
-			// Difference found in SugarCube State, update all clients and MongoDB
+	
 			socket.on('difference', (state) => {
 				delete state['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
 				this.serverStore.dispatch({
@@ -71,7 +69,7 @@ class Webstack {
 				socket.broadcast.emit('difference', state)
 
 				database.setData(state) // Updates the database
-				// updateMongoState(state)
+		
 			})
 		});
 	}
