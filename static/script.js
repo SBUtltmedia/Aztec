@@ -48,14 +48,14 @@ function fade(el, destination) {
 
 
 $(document).on(':passagestart', (ev) => {
-    let { role, faction } = getUser();
-    var passage = $(ev.content).data("passage");
-    var passageLength= Math.sqrt( SugarCube.Story.get(passage).text.length);
-    var fs=`${Math.log(passageLength)}rem`;
+    // let { role, faction } = getUser();
+    // var passage = $(ev.content).data("passage");
+    // var passageLength= Math.sqrt( SugarCube.Story.get(passage).text.length);
+    // var fs=`${Math.log(passageLength)}rem`;
     
-    console.log("Passage length:", passageLength)
-    //$('#passages').css({"font-size":fs})
-    SugarCube.State.setVar(`$${role}_currentPassage`, passage);
+    // console.log("Passage length:", passageLength)
+    // //$('#passages').css({"font-size":fs})
+    // SugarCube.State.setVar(`$${role}_currentPassage`, passage);
     fade($("#passages"), 1);
 })
 

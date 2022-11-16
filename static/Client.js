@@ -1,18 +1,30 @@
-var socket = io();
-var store = Redux.createStore(reducer);
-var stateReceived = false;
+var socket ;;
 
+var store 
+var stateReceived = false;
+let lockInfo={};
 let deferred;
 let waitForData = new Promise((resolve, reject) => {
     deferred = {resolve: resolve, reject: reject};
 });
 
 // User connects, asks server for game state
+
+function setLockInfo(lockId,callback)
+{
+    lockInfo={lockId,callback}  
+ 
+};
+function initTheyr(){
+    socket= io();
+    store = Redux.createStore(reducer);
+// Receive state from server upon connecting, then update all other clients that you've connected
 socket.on('connect', () => {
     socket.emit('new user', socket.id);
+    console.log(lockInfo)
+    lockInfo.callback(lockInfo.lockId)
 })
 
-// Receive state from server upon connecting, then update all other clients that you've connected
 socket.on('new connection', (state) => {
     console.log("LOAD #2: RECEIEVE STATE");
     console.log("Connecting state:", state)
@@ -23,19 +35,14 @@ socket.on('new connection', (state) => {
         state = Window.SugarCubeState.variables
     }
 
-    // If server's state doesn't have your id yet, set it with this client's state
-    let userId = Window.SugarCubeState.variables.userId
-    /*
-    if (state.users[userId] === undefined || JSON.stringify(state.users[userId]) === '{}') {
-        state.users[userId] = Window.SugarCubeState.variables.users[userId];
-    }
-    */
+
 
     store.dispatch({type: 'UPDATEGAME', payload: state, connecting: true})
     store.dispatch({type: 'UPDATESTORE', payload: state, connecting: true})
     stateReceived = true;
 
     deferred.resolve("");
+
 });
 
 // Incoming difference, update your state and store
@@ -107,6 +114,8 @@ function difference(object, base) {
 // Updates client's SugarCube State when state changes are received from the server
 function updateSugarCubeState(new_state) {
     for (const [key, value] of Object.entries(new_state)) {
+        console.log({key,value})
         Window.SugarCubeState.variables[key] = value
     }
+}
 }

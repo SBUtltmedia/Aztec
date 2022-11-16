@@ -142,8 +142,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         }
     }
 
-    // let jsonFS = new JSONFS();
-    // jsonFS.wipeData();
+    let jsonFS = new JSONFS();
+     jsonFS.wipeData();
     // jsonFS.setJSON(testData);
     console.log(JSON.stringify(jsonFS.getJSON()));
 }
