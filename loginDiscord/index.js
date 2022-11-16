@@ -14,7 +14,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 let config_path = '../config.json'
-
+const htmlTemplate = './loginDiscord/index.html'
 // Destructure config.json variables (Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead))
 if (fs.existsSync(__dirname + "/" + config_path)) {
 	const confObj = require('./' + config_path);
@@ -39,7 +39,7 @@ const GUILD_ID = process.env.guildId || guildId;
 const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
 let refreshTokens={};
 const { app } = new webstack(PORT).get();
-const htmlTemplate = './views/index.html'
+
 
 app.post('/discordbot', urlencodedParser, function(req, res) {
 	res.send({});
