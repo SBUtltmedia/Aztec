@@ -270,10 +270,11 @@ console.log(State.getVar(&quot;$userId&quot;))
 &lt;&lt;/script&gt;&gt;
 
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;players&quot;] = {}&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;faction&quot;]&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;character&quot;]&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;Character&quot;]&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;isLeader&quot;]&gt;&gt;
 
 &lt;&lt;/if&gt;&gt;
@@ -294,11 +295,18 @@ console.log(State.getVar(&quot;$userId&quot;))
 console.log(&quot;res&quot;,State.getVar(&quot;$users&quot;))
 &lt;&lt;/script&gt;&gt;
 
+&lt;&lt;for _id, _data range $users&gt;&gt;
+	&lt;&lt;if ndef $users[$userId][&quot;players&quot;][_data[&quot;faction&quot;]]&gt;&gt;
+		&lt;&lt;set $users[$userId][&quot;players&quot;][_data[&quot;faction&quot;]] = {}&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;set $users[$userId][&quot;players&quot;][_data[&quot;faction&quot;]][id] = {}&gt;&gt;
+&lt;&lt;/for&gt;&gt; 
+
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = passage()&gt;&gt;
-&lt;&lt;print $userId&gt;&gt;
-&lt;&lt;print $users[$userId][&quot;faction&quot;]&gt;&gt;
+/* &lt;&lt;print $userId&gt;&gt;
+&lt;&lt;print $users[$userId][&quot;faction&quot;]&gt;&gt; */
 &lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
-&lt;&lt;print $users[$userId][&quot;username&quot;]&gt;&gt;
+/* &lt;&lt;print $users[$userId][&quot;username&quot;]&gt;&gt; */
 
 /* &lt;&lt;audio &quot;:all&quot; stop&gt;&gt; */
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
