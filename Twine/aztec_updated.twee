@@ -6,7 +6,7 @@ Spanish Aztec War Ver 1.0.1
 {
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
-	"format-version": "2.30.0",
+	"format-version": "2.37.0-alpha.5",
 	"start": "The Library",
 	"tag-colors": {
 		"Breaks": "blue",
@@ -201,10 +201,11 @@ console.log(State.getVar("$userId"))
 <</script>>
 
 <<set $users[$userId] = {}>>
+<<set $users[$userId]["players"] = {}>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
-<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["character"]>>
+<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["Character"]>>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
 
 <</if>>
@@ -229,11 +230,18 @@ console.log(State.getVar("$userId"))
 console.log("res",State.getVar("$users"))
 <</script>>
 
+<<for _id, _data range $users>>
+	<<if ndef $users[$userId]["players"][_data["faction"]]>>
+		<<set $users[$userId]["players"][_data["faction"]] = {}>>
+	<</if>>
+	<<set $users[$userId]["players"][_data["faction"]][id] = {}>>
+<</for>> 
+
 <<set $users[$userId]["passage"] = passage()>>
-<<print $userId>>
-<<print $users[$userId]["faction"]>>
+/* <<print $userId>>
+<<print $users[$userId]["faction"]>> */
 <<print $users[$userId]["character"]>>
-<<print $users[$userId]["username"]>>
+/* <<print $users[$userId]["username"]>> */
 
 /* <<audio ":all" stop>> */
 <!-- <<masteraudio mute>> -->
