@@ -103,6 +103,8 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 @import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
 @import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
 @import url("Twine/style.css");</style><script role="script" id="twine-user-script" type="text/twine-javascript">Save.clear()
+
+Config.saves.autoload = false;
 Config.passages.nobr = true;
 Window.SugarCubeState = State;
 
@@ -123,6 +125,7 @@ importScripts([
 	]	
 )
 	.then(function() {
+	sessionStorage.clear();
 	setLockInfo(lockId,LoadScreen.unlock);
 	initTheyr()
 	}

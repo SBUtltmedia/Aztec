@@ -1,6 +1,6 @@
 var socket;
 
-var store;
+var store ={};
 var stateReceived = false;
 let lockInfo={};
 let deferred;
@@ -17,7 +17,7 @@ function setLockInfo(lockId,callback)
 };
 function initTheyr(){
     socket= io();
-    store = Redux.createStore(reducer);
+    store ={}
 // Receive state from server upon connecting, then update all other clients that you've connected
 socket.on('connect', () => {
     socket.emit('new user', socket.id);
@@ -29,60 +29,69 @@ socket.on('new connection', (state) => {
     console.log("LOAD #2: RECEIEVE STATE");
     console.log("Connecting state:", state)
     console.log("Current State:", Window.SugarCubeState.variables)
-
+    let combinedState= _.merge(state,Window.SugarCubeState.variables)
+    console.log(combinedState)
+    store=combinedState;
     // If the server's state is empty, set with this client's state
-    if (_.isEqual(state, {})) {
-        state = Window.SugarCubeState.variables
-    }
+    updateSugarCubeState(combinedState);
+    $(document).trigger(":liveupdate");
+    socket.emit('difference',store)
 
-
-
-    store.dispatch({type: 'UPDATEGAME', payload: state, connecting: true})
-    store.dispatch({type: 'UPDATESTORE', payload: state, connecting: true})
-    stateReceived = true;
-
-    deferred.resolve("");
 
 });
 
 // Incoming difference, update your state and store
 socket.on('difference', (state) => {
-    console.log("Difference received from the server")
-    store.dispatch({type: 'UPDATEGAME', payload:state})
-    store.dispatch({type: 'UPDATESTORE', payload: state, noUpdate: true})
+    store = state
+    updateSugarCubeState(state) 
+
+    $(document).trigger(":liveupdate");
 })
 
 
-function reducer(state, action){
+// function reducer(state, action){
     
 
 
-    switch(action.type){
-        case 'UPDATESTORE':
-            console.log('Updating Store and Other Clients', action.payload)
-            if (!action.noUpdate) {
-                console.log("Difference emitted")
-                socket.emit('difference', {...state, ...action.payload})
-            }
-            $(document).trigger(":liveupdate");
-            return _.cloneDeep(Window.SugarCubeState.variables)
-        case 'UPDATEGAME':
-            console.log('Updating Game', action.payload);
-            updateSugarCubeState(action.payload);
-            $(document).trigger(":liveupdate");
-            return
-        default:
-            return state
-    }
-}
+//     switch(action.type){
+//         case 'UPDATESTORE':
+//             console.log('Updating Store and Other Clients', action.payload)
+//             if (!action.noUpdate) {
+//                 console.log("Difference emitted")
+//                 socket.emit('difference', {...state, ...action.payload})
+//             }
+//             $(document).trigger(":liveupdate");
+//             return _.cloneDeep(Window.SugarCubeState.variables)
+//         case 'UPDATEGAME':
+//             console.log('Updating Game', action.payload);
+//             updateSugarCubeState(action.payload);
+//             $(document).trigger(":liveupdate");
+//             return
+//         default:
+//             return state
+//     }
+// }
 
 setInterval(update, 100)    
 function update() {
-    if(!_.isEqual(Window.SugarCubeState.variables, store.getState())){
-        let diff = difference(Window.SugarCubeState.variables, store.getState());
+
+    var tempVars={...Window.SugarCubeState.variables}
+    delete tempVars['userId'] 
+    // console.log(tempVars)
+
+    if(Object.keys(difference(tempVars, store)).length){
+        let diff = difference(tempVars, store);
         console.log('diff detected', diff)
-        store.dispatch({type: 'UPDATESTORE', payload: diff, self: true});
+        store=_.merge( store,tempVars)
+        console.log('diff detected', diff,store)
+        updateSugarCubeState(store)
+        socket.emit('difference',store)
+        $(document).trigger(":liveupdate");
+
     }
+
+
+ 
 }
 
 

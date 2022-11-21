@@ -30,6 +30,8 @@ Spanish Aztec War Ver 1.0.1
 
 :: Story JavaScript [script]
 Save.clear()
+
+Config.saves.autoload = false;
 Config.passages.nobr = true;
 Window.SugarCubeState = State;
 
@@ -50,6 +52,7 @@ importScripts([
 	]	
 )
 	.then(function() {
+	sessionStorage.clear();
 	setLockInfo(lockId,LoadScreen.unlock);
 	initTheyr()
 	}
