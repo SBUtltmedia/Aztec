@@ -3,7 +3,7 @@ import webstack from '../Webstack.js'
 import '../tweeGaze.js'
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
-const configObj = require('./config.json');
+const configObj = require('../config.json');
 
 const { port, twinePath } = configObj.serverconf;
 
