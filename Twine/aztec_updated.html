@@ -167,7 +167,11 @@ importScripts([
 			}
 		}
 	});
+<<<<<<< HEAD
 })();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+=======
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+>>>>>>> d0ecb7a7ab932766d103e8d77d5a314f897b14e8
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -264,10 +268,14 @@ importScripts([
 &lt;&lt;set $users = {}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;&lt;if ndef $playerList&gt;&gt;
+&lt;&lt;set $playerList = {}&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 
 
 &lt;&lt;if ndef $users[$userId]&gt;&gt;
-&lt;&lt;script&gt;&gt;
+&lt;&lt;script&gt;&gt;	
 console.log(State.getVar(&quot;$userId&quot;))
 
 &lt;&lt;/script&gt;&gt;
@@ -276,7 +284,7 @@ console.log(State.getVar(&quot;$userId&quot;))
 &lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;faction&quot;]&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;character&quot;]&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;Character&quot;]&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;isLeader&quot;]&gt;&gt;
 
 &lt;&lt;/if&gt;&gt;
@@ -297,11 +305,19 @@ console.log(State.getVar(&quot;$userId&quot;))
 console.log(&quot;res&quot;,State.getVar(&quot;$users&quot;))
 &lt;&lt;/script&gt;&gt;
 
+&lt;&lt;for _id, _data range $users&gt;&gt;
+	&lt;&lt;if ndef $playerList[_data[&quot;faction&quot;]]&gt;&gt;
+		&lt;&lt;set $playerList[_data[&quot;faction&quot;]] = {}&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;set $playerList[_data[&quot;faction&quot;]][_id] = _data[&quot;lastSeen&quot;]&gt;&gt;
+	&lt;&lt;print _id&gt;&gt;
+&lt;&lt;/for&gt;&gt; 
+
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = passage()&gt;&gt;
-&lt;&lt;print $userId&gt;&gt;
-&lt;&lt;print $users[$userId][&quot;faction&quot;]&gt;&gt;
+/* &lt;&lt;print $userId&gt;&gt;
+&lt;&lt;print $users[$userId][&quot;faction&quot;]&gt;&gt; */
 &lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
-&lt;&lt;print $users[$userId][&quot;username&quot;]&gt;&gt;
+/* &lt;&lt;print $users[$userId][&quot;username&quot;]&gt;&gt; */
 
 /* &lt;&lt;audio &quot;:all&quot; stop&gt;&gt; */
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
