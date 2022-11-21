@@ -1,92 +1,98 @@
 .error-view>.error{
-    color: white;
+  color: white;
 }
 
 input:disabled {
-  color: black;
-  opacity: 1;
+color: black;
+opacity: 1;
 }
 
 body {
-  /* filter: blur(1.5rem); */
-  background-color: rgb(0, 0, 0);
-  color: rgb(65, 24, 6);
-  font-family: 'Myriad Pro', sans-serif;
-  font-size: 2.5rem;
-  opacity: 0;
-  font-weight: 400;
+/* filter: blur(1.5rem); */
+background-color: rgb(0, 0, 0);
+color: rgb(65, 24, 6);
+font-family: 'Myriad Pro', sans-serif;
+font-size: 2.5rem;
+opacity: 0;
+font-weight: 400;
 }
 
 .blur{
-  animation-duration: .2s;
-  animation-name: blur;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
+animation-duration: .2s;
+animation-name: blur;
+animation-fill-mode: forwards;
+animation-timing-function: ease-in-out;
 }
-
+#lastSeen_Box{
+border: 1px solid black;
+position: absolute;
+width: 10%;
+height: 10%;
+float: right;
+}
 @keyframes blur {
-  0%{
-    filter: blur(1.5rem);
-  }
-  30% {
-    filter: blur(.5rem);
-  }
-  50% {
-    filter: blur(1rem);
-  }
-  100% {
-    filter: blur(0px);
-  }
+0%{
+  filter: blur(1.5rem);
+}
+30% {
+  filter: blur(.5rem);
+}
+50% {
+  filter: blur(1rem);
+}
+100% {
+  filter: blur(0px);
+}
 }
 
 .link-internal,a {
-  font-size: 3rem;
-  text-decoration: underline;
-  color: rgb(65, 24, 6);
+font-size: 3rem;
+text-decoration: underline;
+color: rgb(65, 24, 6);
 }
 
 .link-internal:hover,a:hover {
-  color: rgb(75, 34, 16);
+color: rgb(75, 34, 16);
 }
 
 body::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
 body::-webkit-scrollbar {
-  width: .1em;
+width: .1em;
 }
 
 button {
-  background-color:rgb(65, 24, 6);;
-  outline: 1px solid slategrey;
+background-color:rgb(65, 24, 6);;
+outline: 1px solid slategrey;
 }
 
 .stat {
-  width:33%;
-  height:100%;
-  display:block;
-  background-size: 100%;
+width:33%;
+height:100%;
+display:block;
+background-size: 100%;
 }
 
 .hide {
-  display: none !important;
+display: none !important;
 }
 
 [disabled] {
-  pointer-events: none;
-  opacity: 0.3;
+pointer-events: none;
+opacity: 0.3;
 }
 
 #map{
-  position:absolute;
-  top:30%;
+position:absolute;
+top:30%;
 }
 
 #map, #factionStrength, #factionStrengthLabel {
-  width:30%;
-  left:60%;
-  position:absolute;
+width:30%;
+left:60%;
+position:absolute;
 }
 
 #factionStrengthLabel {
@@ -97,117 +103,117 @@ text-align: center;
 }
 
 .nice-number {
-  margin: .5rem;
+margin: .5rem;
 }
 
 .show {
-  display: block;
+display: block;
 }
 
 .voteVal {
-  display: inline-block;
-  width:3rem;
+display: inline-block;
+width:3rem;
 }
 
 #displayStats {
-  top: 9%;
-  left: 58%;
-  display: flex;
-  width:35%;
-  height:17%;
-  position: absolute;
+top: 9%;
+left: 58%;
+display: flex;
+width:35%;
+height:17%;
+position: absolute;
 }
 
 #factionStrength {
-  margin:0;
-  padding:0;
-  top: 78%;
+margin:0;
+padding:0;
+top: 78%;
 
-  border:.2rem solid rgb(58, 57, 0);
-  position: absolute;         
- 
-  height: 5%;     
+border:.2rem solid rgb(58, 57, 0);
+position: absolute;         
+
+height: 5%;     
 }
 
 #factionStrengthBar {
-  position: absolute;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(90deg,#7a2301 0%,#3a4e01  50%, #4a6403 100%);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left:0;
-  top:0;
-  margin:0;
-  padding:0;
-  border:0; 
-  opacity: .8; 
+position: absolute;
+background: rgb(2, 0, 36);
+background: linear-gradient(90deg,#7a2301 0%,#3a4e01  50%, #4a6403 100%);
+position: absolute;
+width: 100%;
+height: 100%;
+left:0;
+top:0;
+margin:0;
+padding:0;
+border:0; 
+opacity: .8; 
 }
 
 #stats {
-  display: flex;
-  box-sizing: border-box;
-  font-size:2rem;
+display: flex;
+box-sizing: border-box;
+font-size:2rem;
 }
 
 #ui-bar {
-  display: none;
+display: none;
 }
 
 #story {
-  margin-left: 0;
-  position: absolute;
-  /* background-image: url('images/1 Cortes Arrives in Veracruz.jpg'), url('images/Borders/Spaniards.png'); */
+margin-left: 0;
+position: absolute;
+/* background-image: url('images/1 Cortes Arrives in Veracruz.jpg'), url('images/Borders/Spaniards.png'); */
 
-  /* background-position: 30% 70%,0 0; */
-  background-size: 100%;
-  background-repeat: no-repeat;
-  /* border-radius:10%;
-   border-color:#999999;
-   border-width:3rem;
-    border-style: solid; */
-  margin: 0 !important;
+/* background-position: 30% 70%,0 0; */
+background-size: 100%;
+background-repeat: no-repeat;
+/* border-radius:10%;
+ border-color:#999999;
+ border-width:3rem;
+  border-style: solid; */
+margin: 0 !important;
 }
 
 textarea {
-  color: black;
+color: black;
 }
 
 #passages {
-  /* border-radius: 2%;1
-  border-color: green;
-  border-width: .1rem;
-  border-style: solid;
-  background-color: rgba(255, 255, 255, .8); */
+/* border-radius: 2%;1
+border-color: green;
+border-width: .1rem;
+border-style: solid;
+background-color: rgba(255, 255, 255, .8); */
 
-  height: 82%;
-  width: 50%;
-  max-width: 89% !important;
-  top: 9%;
-  left: 7%;
-  position: absolute;
-  overflow: hidden;
+height: 82%;
+width: 50%;
+max-width: 89%;
+top: 9%;
+left: 7%;
+position: absolute;
+overflow: hidden;
 }
 
 .passage::-webkit-scrollbar {
-  display: none;
+display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .passage {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
 }
 
 .passage {
-  position: absolute;
-  height: 98%;
-  margin: 2%;
-  overflow-y: scroll !important;
+position: absolute;
+height: 98%;
+margin: 2%;
+overflow-y: scroll !important;
 }
 
 textarea:hover {
-  background-color: white;
+background-color: white;
 }
 
 input:not(:disabled):focus,
@@ -216,74 +222,237 @@ select:not(:disabled):focus,
 select:not(:disabled):hover,
 textarea:not(:disabled):focus,
 textarea:not(:disabled):hover {
-  background-color: white;
-  border-color: #eee;
+background-color: white;
+border-color: #eee;
 
 }
 
 input,
 select,
 textarea {
-  color: black;
+color: black;
 }
 
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-REGULAR.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: normal;
+font-weight: 400;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-REGULAR.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-COND.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: normal;
+font-weight: 400;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-COND.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-CONDIT.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: italic;
+font-weight: 400;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-CONDIT.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MyriadPro-Light.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: normal;
+font-weight: 300;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MyriadPro-Light.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-SEMIBOLD.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: normal;
+font-weight: 600;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-SEMIBOLD.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: italic;
-  font-weight: 600;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-SEMIBOLDIT.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: italic;
+font-weight: 600;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-SEMIBOLDIT.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLDCOND.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: normal;
+font-weight: 700;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLDCOND.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLD.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: normal;
+font-weight: 700;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLD.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLDIT.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: italic;
+font-weight: 700;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLDIT.woff') format('woff');
 }
 @font-face {
-  font-family: 'Myriad Pro';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLDCONDIT.woff') format('woff');
+font-family: 'Myriad Pro';
+font-style: italic;
+font-weight: 700;
+src: local('Myriad Pro'), url('https://fonts.cdnfonts.com/s/492/MYRIADPRO-BOLDCONDIT.woff') format('woff');
+}
+
+#root {
+background-image: url(./images/Home/blankBackGround.png);
+background-size: cover;
+font-family: "Roboto", sans-serif;
+position: absolute;
+width: 100%;
+left: 0%;
+height: 100%;
+top: 0%;
+display: grid;
+grid-template-columns: 89% 11%;
+grid-template-rows: 89% 11%;
+max-width: 100%;
+max-height: 100%;
+}
+
+.nav_bar {
+grid-column: 1 / 3;
+grid-row: 2 / 3;
+background-color: #f0dcb4;
+color: black;
+text-align: center;
+font-size: 38pt;
+padding-top: 4px;
+}
+
+.nav_container {
+display: inline-block;
+margin: 20px;
+margin-left: 70px;
+margin-right: 70px;
+}
+
+.menu_text {
+font-size: 20px;
+font-weight: bold;
+}
+
+#home_button {
+display: inline-block;
+font-size: 32px;
+padding: 4px;
+margin: 40px;
+margin-right: 50px;
+margin-left: 50px;
+}
+
+#story_button {
+display: inline-block;
+font-size: 32px;
+padding: 4px;
+margin: 40px;
+margin-right: 50px;
+margin-left: 50px;
+}
+
+#chat_button {
+display: inline-block;
+font-size: 32px;
+padding: 4px;
+margin: 40px;
+margin-right: 50px;
+margin-left: 50px;
+}
+
+.page_content {
+background-image: url(./images/Home/book.png);
+background-size: 70%;
+background-position: center center;
+background-repeat: no-repeat;
+grid-column: 1 / 2;
+grid-row: 1 / 2;
+border-radius: 10px;
+}
+
+.last_seen_box {
+background-color: #63503e;
+border-radius: 10px;
+grid-column: 2 / 3;
+grid-row: 1 / 2;
+color: #fff;
+display: flex;
+flex-direction: column;
+}
+
+.general_online {
+padding-top: 10px;
+padding-bottom: 10px;
+
+font-size: 24px;
+border-top: 1px solid #fff;
+border-bottom: 1px solid #fff;
+padding-left: 20px;
+}
+
+.user_image {
+width: 12%;
+float: center;
+display: inline-block;
+padding: 10px 0px 5px 20px;
+}
+
+.user_info {
+display: inline-block;
+padding-left: 10px;
+}
+
+.party_num {
+margin-top: 10px;
+margin-bottom: 10px;
+font-size: 20px;
+padding-left: 20px;
+}
+
+.user_name {
+margin-bottom: 5px;
+}
+
+.user_id {
+margin-top: 5px;
+font-size: 12px;
+color: #dac8ac;
+}
+
+.user_box {
+margin: 10px;
+}
+
+.cuser_image {
+width: 25%;
+display: inline-block;
+margin-top: 10px;
+padding-left: 5px;
+}
+.cuser_info {
+display: inline-block;
+margin: 10px;
+}
+.cuser_name {
+font-size: 24px;
+margin-bottom: 5px;
+}
+
+.cuser_id {
+margin-top: 0px;
+font-size: 12px;
+color: #fff;
+}
+
+.home, #passage-home{
+position: absolute!important;
+left: 0!important;
+top: 0!important;
+margin: 0px!important;
+width: 100% !important;
+max-width: 100% !important;
+height: 100% !important;
+overflow : hidden !important;
+}
+.home{
+width: 200% !important;
 }

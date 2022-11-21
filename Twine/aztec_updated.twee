@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.30.0",
-	"start": "The Library",
+	"start": "Home",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -107,9 +107,9 @@ importScripts([
 	const searchParams = new URLSearchParams(loc);
 	if(searchParams.get('test')){
 	console.log("Test user");
-		userData = {id : 1231231232131,
+		userData = {id : 123123123213,
 					username: "testAccount",
-					nick: "Cuauhtemoc"}
+					nick: "Mariana"}
 	}  
 	State.setVar("$userId", userData.id)
 	State.setVar("_username", userData.username)
@@ -252,6 +252,158 @@ console.log(userData)
 <<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 <</theyr>>
 
+
+:: Home {"position":"350,100","size":"100,100"}
+<script>
+$("#passages").addClass("home")
+
+</script>
+
+<noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div id="root">
+        <div class="page_content"></div>
+        <div class="last_seen_box">
+          <div class="user_box">
+            <img
+              class="cuser_image"
+              src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+              alt="pfp"
+            />
+            <div class="user_info">
+              <p class="cuser_name">Aztec_Preist</p>
+              <p class="cuser_id">#jin6000</p>
+            </div>
+          </div>
+          <div class="general_online">General(12/15)</div>
+          <div class="online_users_box">
+            <div class="party_box">
+              <div class="party_num">Aztecs -- (4/6)</div>
+              /* <div class="party_user">
+                <img
+                  class="user_image"
+                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+                  alt="pfp"
+                />
+                <div class="user_info">
+                  <p class="user_name">Aztec_Preist</p>
+                  <p class="user_id">#jin6000</p>
+                </div>
+              </div>
+              <div class="party_user">
+                <img
+                  class="user_image"
+                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+                  alt="pfp"
+                />
+                <div class="user_info">
+                  <p class="user_name">Cacamatzin</p>
+                  <p class="user_id">#jin6000</p>
+                </div>
+              </div> */
+
+			<<for _i, _name range $users>>
+			<<set _userId=_i>>
+			
+				<<if  _name.faction=="Aztecs">>
+				              <div class="party_user">
+                <img
+                  class="user_image"
+                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+                  alt="pfp"
+                />
+                <div class="user_info">
+                  <p class="user_name"><<print $users[_userId]["role"]>></p>
+                  <p class="user_id">#jin6000</p>
+                </div>
+					
+				<</if>>
+				<</for>>
+
+            </div>
+            <div class="party_box">
+              <div class="party_num">TLAXCOLONS -- (3/3)</div>
+              <div class="party_user">
+                <img
+                  class="user_image"
+                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+                  alt="pfp"
+                />
+                <div class="user_info">
+                  <p class="user_name">Cacamatzin</p>
+                  <p class="user_id">#jin6000</p>
+                </div>
+              </div>
+            </div>
+            <div class="party_box">
+              <div class="party_num">SPANISH -- (5/6)</div>
+              <div class="party_user">
+                <img
+                  class="user_image"
+                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+                  alt="pfp"
+                />
+                <div class="user_info">
+                  <p class="user_name">Maxixcatl</p>
+                  <p class="user_id">#jin6000</p>
+                </div>
+              </div>
+              <div class="party_user">
+                <img
+                  class="user_image"
+                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+                  alt="pfp"
+                />
+                <div class="user_info">
+                  <p class="user_name">Aguilar</p>
+                  <p class="user_id">#jin6000</p>
+                </div>
+              </div>
+            </div>
+            <div class="party_box">
+              <div class="party_num">OFFLINE -- (3/15)</div>
+              <div class="party_user">
+                <img
+                  class="user_image"
+                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
+                  alt="pfp"
+                />
+                <div class="user_info">
+                  <p class="user_name">Maxixcatl</p>
+                  <p class="user_id">#jin6000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav_bar">
+          <div class="nav_container">
+            <img
+              class="menu_button"
+              src="http://localhost:53134/Twine/images/Home/Home.svg"
+              alt="home"
+            />
+            <div class="menu_text">Home</div>
+          </div>
+          <div class="nav_container">
+            <img
+              class="menu_button"
+              src="http://localhost:53134/Twine/images/Home/Story.svg"
+              alt="story"
+            />
+            <div class="menu_text">Story</div>
+          </div>
+          <div class="nav_container">
+            <img
+              class="menu_button"
+              src="http://localhost:53134/Twine/images/Home/Chat.svg"
+              alt="chat"
+            />
+            <div class="menu_text">Chat</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
 /* <<for _i, _name range $users>>
