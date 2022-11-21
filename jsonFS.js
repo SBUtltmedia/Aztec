@@ -31,7 +31,7 @@ class JSONFS {
                 file = file.slice(1, file.length - 1)
 
             if (fs.statSync(filePath).isDirectory()) {
-                container[file] = this.getJSON(filePath + path.sep)
+                container[file] = this.getJSON(filePath + path.sep);
                 // console.log(file, container[file])
             } else {
                 let fileContents = fs.readFileSync(filePath, {
@@ -51,6 +51,8 @@ class JSONFS {
         if (isArray) {
             container = Object.values(container)
         }
+        console.log ("\n new thing :")
+        console.log(container);
         return container;
     }
 
