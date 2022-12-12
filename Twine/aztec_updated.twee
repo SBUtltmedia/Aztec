@@ -6,13 +6,8 @@ Spanish Aztec War Ver 1.0.1
 {
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
-<<<<<<< HEAD
-	"format-version": "2.30.0",
-	"start": "Home",
-=======
 	"format-version": "2.37.0-alpha.5",
 	"start": "The Library",
->>>>>>> d0ecb7a7ab932766d103e8d77d5a314f897b14e8
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -35,8 +30,6 @@ Spanish Aztec War Ver 1.0.1
 
 :: Story JavaScript [script]
 Save.clear()
-
-Config.saves.autoload = false;
 Config.passages.nobr = true;
 Window.SugarCubeState = State;
 
@@ -57,7 +50,6 @@ importScripts([
 	]	
 )
 	.then(function() {
-	sessionStorage.clear();
 	setLockInfo(lockId,LoadScreen.unlock);
 	initTheyr()
 	}
@@ -87,6 +79,24 @@ importScripts([
 		}
 	});
 
+	// Macro.add(['userlist'], {
+	// 	tags: null,
+	// 	handler: function handler() {
+	// 		try {
+	// 			let users = State.getVar("$users");
+	// 			let userlist = {};
+	// 			for(user in users){
+	// 				if(user["lastSeen"]){
+	// 					userlist[user["faction"]] = user.key(); 
+	// 				}
+	// 			}
+				
+	// 		} catch (e) {
+	// 			return e;
+	// 		}
+	// 	}
+	// });
+
 	Macro.add(['discord'], {
 		tags: null,
 		handler: function handler() {
@@ -112,9 +122,9 @@ importScripts([
 	const searchParams = new URLSearchParams(loc);
 	if(searchParams.get('test')){
 	console.log("Test user");
-		userData = {id : 123123123213,
+		userData = {id : 1231231232131,
 					username: "testAccount",
-					nick: "Mariana"}
+					nick: "Cuauhtemoc"}
 	}  
 	State.setVar("$userId", userData.id)
 	State.setVar("_username", userData.username)
@@ -200,16 +210,15 @@ importScripts([
 <<set $users = {}>>
 <</if>>
 
-<<if ndef $playerList>>
-<<set $playerList = {}>>
+<<if ndef $lookup>>
+<<set $lookup = {}>>
 <</if>>
-
 
 
 <<if ndef $users[$userId]>>
 <<script>>	
 console.log(State.getVar("$userId"))
-
+console.log(State.getVar("$users[$userId]["role"]"))
 <</script>>
 
 <<set $users[$userId] = {}>>
@@ -218,11 +227,11 @@ console.log(State.getVar("$userId"))
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["Character"]>>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
-
+<<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
 <<set _currentPassage = $users[$userId]["currentPassage"]>>
-
+<<discord spanish>> test <</discord>>
 
 <<script>>
 	var passage = State.getVar("_currentPassage");
@@ -241,13 +250,24 @@ console.log(State.getVar("$userId"))
 console.log("res",State.getVar("$users"))
 <</script>>
 
-<<for _id, _data range $users>>
-	<<if ndef $playerList[_data["faction"]]>>
-		<<set $playerList[_data["faction"]] = {}>>
+/* <<set _userlist = {}>> */
+
+/* <<for _id, _data range $users>>
+	/* <<if new Date().getTime() - _data[lastSeen] < 100>>> */
+
+		/* <<if ndef _userlist[_data["faction"]]>>
+			<<set _userlist[_data["faction"]] = {}>>
+		<</if>>
+		<<set _userlist[_data["faction"]][_id] = _data["lastSeen"]>> */
+	/* <</if>> */
+	
+	/* <<if $users[_id]["character"] == "Aztec Priest">>
+		<<set _aztec_priest_id = _id>>
 	<</if>>
-	<<set $playerList[_data["faction"]][_id] = _data["lastSeen"]>>
-	<<print _id>>
-<</for>> 
+<</for>>  */
+/* <<set $users[_aztec_priest_id]["testing"] = "testing">>
+<<print $users[_aztec_priest_id]["testing"]>> */ 
+/* <<print _userlist>> */
 
 <<set $users[$userId]["passage"] = passage()>>
 /* <<print $userId>>
@@ -269,158 +289,6 @@ console.log(userData)
 <<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 <</theyr>>
 
-
-:: Home {"position":"350,100","size":"100,100"}
-<script>
-$("#passages").addClass("home")
-
-</script>
-
-<noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-      <div id="root">
-        <div class="page_content"></div>
-        <div class="last_seen_box">
-          <div class="user_box">
-            <img
-              class="cuser_image"
-              src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-              alt="pfp"
-            />
-            <div class="user_info">
-              <p class="cuser_name">Aztec_Preist</p>
-              <p class="cuser_id">#jin6000</p>
-            </div>
-          </div>
-          <div class="general_online">General(12/15)</div>
-          <div class="online_users_box">
-            <div class="party_box">
-              <div class="party_num">Aztecs -- (4/6)</div>
-              /* <div class="party_user">
-                <img
-                  class="user_image"
-                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-                  alt="pfp"
-                />
-                <div class="user_info">
-                  <p class="user_name">Aztec_Preist</p>
-                  <p class="user_id">#jin6000</p>
-                </div>
-              </div>
-              <div class="party_user">
-                <img
-                  class="user_image"
-                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-                  alt="pfp"
-                />
-                <div class="user_info">
-                  <p class="user_name">Cacamatzin</p>
-                  <p class="user_id">#jin6000</p>
-                </div>
-              </div> */
-
-			<<for _i, _name range $users>>
-			<<set _userId=_i>>
-			
-				<<if  _name.faction=="Aztecs">>
-				              <div class="party_user">
-                <img
-                  class="user_image"
-                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-                  alt="pfp"
-                />
-                <div class="user_info">
-                  <p class="user_name"><<print $users[_userId]["role"]>></p>
-                  <p class="user_id">#jin6000</p>
-                </div>
-					
-				<</if>>
-				<</for>>
-
-            </div>
-            <div class="party_box">
-              <div class="party_num">TLAXCOLONS -- (3/3)</div>
-              <div class="party_user">
-                <img
-                  class="user_image"
-                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-                  alt="pfp"
-                />
-                <div class="user_info">
-                  <p class="user_name">Cacamatzin</p>
-                  <p class="user_id">#jin6000</p>
-                </div>
-              </div>
-            </div>
-            <div class="party_box">
-              <div class="party_num">SPANISH -- (5/6)</div>
-              <div class="party_user">
-                <img
-                  class="user_image"
-                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-                  alt="pfp"
-                />
-                <div class="user_info">
-                  <p class="user_name">Maxixcatl</p>
-                  <p class="user_id">#jin6000</p>
-                </div>
-              </div>
-              <div class="party_user">
-                <img
-                  class="user_image"
-                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-                  alt="pfp"
-                />
-                <div class="user_info">
-                  <p class="user_name">Aguilar</p>
-                  <p class="user_id">#jin6000</p>
-                </div>
-              </div>
-            </div>
-            <div class="party_box">
-              <div class="party_num">OFFLINE -- (3/15)</div>
-              <div class="party_user">
-                <img
-                  class="user_image"
-                  src="http://localhost:53134/Twine/images/Home/Ellipse.svg"
-                  alt="pfp"
-                />
-                <div class="user_info">
-                  <p class="user_name">Maxixcatl</p>
-                  <p class="user_id">#jin6000</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="nav_bar">
-          <div class="nav_container">
-            <img
-              class="menu_button"
-              src="http://localhost:53134/Twine/images/Home/Home.svg"
-              alt="home"
-            />
-            <div class="menu_text">Home</div>
-          </div>
-          <div class="nav_container">
-            <img
-              class="menu_button"
-              src="http://localhost:53134/Twine/images/Home/Story.svg"
-              alt="story"
-            />
-            <div class="menu_text">Story</div>
-          </div>
-          <div class="nav_container">
-            <img
-              class="menu_button"
-              src="http://localhost:53134/Twine/images/Home/Chat.svg"
-              alt="chat"
-            />
-            <div class="menu_text">Chat</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
 /* <<for _i, _name range $users>>
@@ -2988,6 +2856,7 @@ Vote is 2
 		<<print _name.Character>>
 		<<print _name.lastSeen>>
 		<br>
+		
 	<</if>>
 <</for>> */
 It's seven weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>

@@ -51,8 +51,8 @@ class JSONFS {
         if (isArray) {
             container = Object.values(container)
         }
-        console.log ("\n new thing :")
-        console.log(container);
+        // console.log ("\n new thing :")
+        // console.log(container);
         return container;
     }
 
