@@ -79,23 +79,20 @@ importScripts([
 		}
 	});
 
-	// Macro.add(['userlist'], {
-	// 	tags: null,
-	// 	handler: function handler() {
-	// 		try {
-	// 			let users = State.getVar("$users");
-	// 			let userlist = {};
-	// 			for(user in users){
-	// 				if(user["lastSeen"]){
-	// 					userlist[user["faction"]] = user.key(); 
-	// 				}
-	// 			}
+	Macro.add(['userlist'], {
+		tags: null,
+		handler: function handler() {
+			try {
+				const Discord = require('discord.js');
+				const client = new Discord.Client();
+				const list = client.guilds.cache.get("myServerID"); 
+				list.members.cache.forEach(member => console.log(member.user.username)); 
 				
-	// 		} catch (e) {
-	// 			return e;
-	// 		}
-	// 	}
-	// });
+			} catch (e) {
+				return e;
+			}
+		}
+	});
 
 	Macro.add(['discord'], {
 		tags: null,
@@ -214,6 +211,40 @@ importScripts([
 <<set $lookup = {}>>
 <</if>>
 
+<<if ndef $factions>>
+	<<set $factions = {
+		"Aztecs": {"stats": {
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
+			}
+		},
+
+		"Spaniards": {"stats": {
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
+			}
+		},
+
+		"Tlaxcalans": {"stats": {
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
+			}
+		},
+	}>>
+<</if>>
+
+
+<<if ndef $leaders>>
+<<set $flags = {}>>
+<</if>>
+
+<<if ndef $flags>>
+<<set $flags = {}>>
+<</if>>
+
 
 <<if ndef $users[$userId]>>
 <<script>>	
@@ -246,9 +277,6 @@ console.log(State.getVar("$users[$userId]["role"]"))
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
-<<script>>
-console.log("res",State.getVar("$users"))
-<</script>>
 
 /* <<set _userlist = {}>> */
 
@@ -261,18 +289,11 @@ console.log("res",State.getVar("$users"))
 		<<set _userlist[_data["faction"]][_id] = _data["lastSeen"]>> */
 	/* <</if>> */
 	
-	/* <<if $users[_id]["character"] == "Aztec Priest">>
-		<<set _aztec_priest_id = _id>>
-	<</if>>
-<</for>>  */
-/* <<set $users[_aztec_priest_id]["testing"] = "testing">>
-<<print $users[_aztec_priest_id]["testing"]>> */ 
-/* <<print _userlist>> */
 
 <<set $users[$userId]["passage"] = passage()>>
 /* <<print $userId>>
 <<print $users[$userId]["faction"]>> */
-<<print $users[$userId]["character"]>>
+/* <<print $users[$userId]["character"]>> */
 /* <<print $users[$userId]["username"]>> */
 
 /* <<audio ":all" stop>> */
@@ -301,6 +322,7 @@ console.log(userData)
 
 <<theyr>>
 Name not recognized. Make sure the spelling on your character's name matches your role. <br>
+
 <u> Roles </u> <br>
 Mariana <br>
 Alvarado <br>
@@ -667,7 +689,7 @@ You attack the Mexica, hoping to catch them off guard. But, like always, the bat
 <br>
 You hope you don't regret this decision later!<br>
 <br>
-It's time to <<link "return to Tlaxcala" "The Spaniards Head Inland">><<set $Tlaxcalans_strength-=1>><<set $Tlaxcalans_currentMap=1>><</link>> and regroup.<br>
+It's time to <<link "return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=1>><<set $Tlaxcalans_currentMap=1>><</link>> and regroup.<br>
 <br>
 <</switch>>
 
@@ -811,10 +833,10 @@ Your faction's starting strength is: <<print $Spaniards_strength >>
 <</if>>
 
 <<if $users[$userId]["faction"] is "Tlaxcalans">>
-<<if  ndef  $Tlaxcalans_strength >>
-<<set $Tlaxcalans_strength=random(10,15)>>
+<<if  ndef  $factions["Tlaxcalans"]["stats"]["Strength"] >>
+<<set $factions["Tlaxcalans"]["stats"]["Strength"]=random(10,15)>>
 <</if>>
-Your faction's starting strength is: <<print $Tlaxcalans_strength >>
+Your faction's starting strength is: <<print $factions["Tlaxcalans"]["stats"]["Strength"] >>
 <</if>>
 
 Now let's [[learn about your role|The Library]]!
@@ -2867,7 +2889,7 @@ The door sticks as you try to open it, but you can tell it's not locked. You giv
 <br>
 You unload your books and make yourself comfortable--maybe a little too comfortable. You get to work on your assignment, but within a matter of minutes your eyes get heavy. You struggle to stay awake but it's impossible to focus. Maybe a ten-minute nap will help. You tell yourself that if you just get it out of your system, you'll be good to go for the rest of the night. You close your eyes and quickly slip into a deep sleep. <br>
 <br>
-Suddenly, <<link "you're startled by a loud noise" "Character Identification">><<set $Spaniards_currentMap=1>><<set $Spaniards_strength = 7>><<set $Tlaxcalans_currentMap=1>><<set $Tlaxcalans_strength = 7>><<set $Aztecs_currentMap=1>><<set $Aztecs_strength = 1>><</link>>!<br>
+Suddenly, <<link "you're startled by a loud noise" "Character Identification">><<set $Spaniards_currentMap=1>><<set $Spaniards_strength = 7>><<set $Tlaxcalans_currentMap=1>><<set $factions["Tlaxcalans"]["stats"]["Strength"] = 7>><<set $Aztecs_currentMap=1>><<set $Aztecs_strength = 1>><</link>>!<br>
 <br>
 
 
@@ -3067,7 +3089,7 @@ This is the [[end of your quest|End of Quest]].<br>
 Congratulations! You have beaten the Mexica and you may claim Quetzalcoatl's heart, which will increase your teams's strength by 5!<br>
 <br>
 
-<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<set $T_Q_Heart to "yes">><<set $Tlaxcalans_strength+=5>><</link>><br>
+<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<set $T_Q_Heart to "yes">><<set $factions["Tlaxcalans"]["stats"]["Strength"]+=5>><</link>><br>
 <br>
 
 <<elseif $Quest_Leader_T is $users[$userId]["role"] and $A_Q_Heart is "yes">>
@@ -5366,7 +5388,7 @@ You will carry on to the city, allied with the Spaniards, and <<link "hope to de
 <br>
 You will send a messenger to Tenochtitlán to negotiate an alliance, <<link "you just don't trust the Spaniards" "On the Causeway">><<set $Tlax_Cause="neg">><<set $Causeway = $Causeway + 1>><</link>>. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.<br>
 <br>
-You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<set $Tlax_Cause="flee">><<set $Causeway = $Causeway + 1>><<set $Tlaxcalans_strength-=5>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
+You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<set $Tlax_Cause="flee">><<set $Causeway = $Causeway + 1>><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=5>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
 <br>
 You will honor an existing but secret alliance with the Aztecs and <<link "enter the city as their friends" "On the Causeway">><<set $Tlax_Cause="allies">><<set $Causeway = $Causeway + 1>><</link>>.<br>
 
@@ -6276,7 +6298,7 @@ Garrido's entry is:  <<print "$Ga_TG">><br>
 <br>
 The Tlaxcalan's Insider's Guide is:  <<print "$Tl_IG">><br>
 <br>
-Do they <<link "PASS" "After the Feast">><<set $Tlaxcalans_strength+=3>><</link>> or <<link "FAIL" "After the Feast">><<set $Tlaxcalans_strength-=3>><</link>>?<br>
+Do they <<link "PASS" "After the Feast">><<set $factions["Tlaxcalans"]["stats"]["Strength"]+=3>><</link>> or <<link "FAIL" "After the Feast">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=3>><</link>>?<br>
 <br>
 <<case "Spaniards">>
 
@@ -8872,7 +8894,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <<case "Tlaxcalans">>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs Versus Spaniards and Tlaxcalans">><<set  
-$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br> 
 <<else>>
 You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards and Tlaxcalans]].<br>
@@ -9022,7 +9044,7 @@ You watch as <<print $Span_Leader>> raises his sword and [[strikes the final blo
 <<case "Tlaxcalans">>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Spaniards Versus Tlaxcalans">><<set  
-$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br> 
 <<else>>
 You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Spaniards Versus Tlaxcalans]].<br>
@@ -9449,7 +9471,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <<case "Tlaxcalans">>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs Versus Tlaxcalans">><<set  
-$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br> 
 <<else>>
 You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Tlaxcalans]].<br>
@@ -9564,7 +9586,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <<case "Tlaxcalans">>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs Versus Tlaxcalans 2">><<set  
-$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br> 
 <<else>>
 You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Tlaxcalans 2]].<br>
@@ -10031,7 +10053,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <<case "Tlaxcalans">>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs Versus Tlaxcalans 3">><<set  
-$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br> 
 <<else>>
 You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Tlaxcalans 3]].<br>
@@ -10209,7 +10231,7 @@ You watch as <<print $Span_Leader>> raises his sword and [[strikes the final blo
 <<case "Tlaxcalans">>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Spaniards Versus Tlaxcalans 2">><<set  
-$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br> 
 <<else>>
 You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Spaniards Versus Tlaxcalans 2]].<br>
@@ -10396,7 +10418,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <<case "Tlaxcalans">>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs and Tlaxcalans versus Spaniards">><<set  
-$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+$Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br> 
 <<else>>
 You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs and Tlaxcalans versus Spaniards]].<br>
@@ -11421,7 +11443,7 @@ Set Final Totals<br>
 <br>
 
 
-<<link "Set the Final Tlaxcalan Points" "test equations outcome">><<set $Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$Tlaxcalans_strength+$Final_Tlaxcalan_Players>><</link>>. <br>
+<<link "Set the Final Tlaxcalan Points" "test equations outcome">><<set $Final_Tlaxcalan_Players=$Xicotencatl_Elder_Strength+$Xicotencatl_Elder_Loyalty+$Xicotencatl_Elder_Wisdom+$Xicotencatl_Younger_Strength+$Xicotencatl_Younger_Loyalty+$Xicotencatl_Younger_Wisdom+$Maxixcatl_Strength+$Maxixcatl_Loyalty+$Maxixcatl_Wisdom>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br>
 
 
@@ -11459,7 +11481,7 @@ Leader <<print $Span_Leader>>   Strength <<print $Spaniards_strength>> <br>
 Aztecs<br>  
 Leader <<print $Aztec_Leader>>   Strength <<print $Aztecs_strength>> <br>
 Tlaxcalans<br>
-Leader <<print $Tlax_Leader>>   Strength <<print $Tlaxcalans_strength>> <br>
+Leader <<print $Tlax_Leader>>   Strength <<print $factions["Tlaxcalans"]["stats"]["Strength"]>> <br>
 <br>
 <b>Player Location and Stats </b><br>
 <br>
