@@ -48,12 +48,13 @@ class Webstack {
 
 			
 				if (typeof gstate !== 'undefined') {
+					// console.log(JSON.stringify(gstate))
 					io.to(id).emit('new connection', gstate)
 				}
 
 			
 				else {
-					console.log("Retrieving state from mongo", database.getData())
+					console.log("Retrieving state from JSONFS", database.getData())
 					io.to(id).emit('new connection', database.getData())
 			
 				}
@@ -61,13 +62,14 @@ class Webstack {
 
 	
 			socket.on('difference', (state) => {
+				console.log(state)
 				delete state['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
 				this.serverStore.dispatch({
 					type: 'UPDATE',
 					payload: state
 				})
 				socket.broadcast.emit('difference', state)
-
+				
 				database.setData(state) // Updates the database
 		
 			})
