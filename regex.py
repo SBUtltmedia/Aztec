@@ -18,7 +18,7 @@ replacements = []
 
 for i in ["Aztecs", "Tlaxcalans", "Spaniards"]:
     for j in ["Loyalty", "Strength", "Wisdom"]:
-        replacements.append({'regex': f'{i}_{j}', 'replace' : f'factions[{i}]["stats"][{j}]'})
+        replacements.append({'regex': f'{i}_{j}', 'replace' : f'factions["{i}"]["stats"]["{j}"]'})
 
 for i in ["Marina","Alvarado","Aguilar","Garrido","Olid","Moctezuma","Tlacaelel","Cuauhtemoc","Aztec_Priest","Cacamatzin","Pochteca","Xicotencatl_Elder","Xicotencatl_Younger","Maxixcatl", "Cortes"]:
     for j in ["Loyalty", "Strength", "Wisdom"]:

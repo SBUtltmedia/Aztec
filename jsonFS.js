@@ -59,12 +59,13 @@ class JSONFS {
     setJSON(jsonObj, passedObject = "") {
         if (jsonObj !== null && (this.dataType(jsonObj) == "object" || this.dataType(jsonObj) == "array")) {
             if (JSON.stringify(jsonObj) === '{}') {
-                this.setKeyPair("{}", "", passedObject);
-            }
+                // this.setKeyPair("{}", "", passedObject);
+            }else{
             
-            Object.entries(jsonObj).forEach(([key, value]) => {
-                this.setKeyPair(key, value, passedObject);
-            });
+                Object.entries(jsonObj).forEach(([key, value]) => {
+                    this.setKeyPair(key, value, passedObject);
+                });
+            }
         }
     }
 
@@ -144,8 +145,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         }
     }
 
-    // let jsonFS = new JSONFS();
-    //  jsonFS.wipeData();
+    let jsonFS = new JSONFS();
+     jsonFS.wipeData();
     // jsonFS.setJSON(testData);
     console.log(JSON.stringify(jsonFS.getJSON()));
 }
