@@ -331,9 +331,6 @@ _factionUsers[faction]=  $users.find((_user)=>_user.faction==faction)
 
 /* <<audio ":all" stop>> */
 <!-- <<masteraudio mute>> -->
-<<script>>
-console.log(userData)
-<</script>>
 <<masteraudio unmute>>
  <<run showMap()>>
  <<run showStats()>>
