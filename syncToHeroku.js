@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 
-let herokuInstances = 2;
+let herokuInstances = 4;
 
 let commands = [
     `git add .`,
