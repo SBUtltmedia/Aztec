@@ -356,23 +356,23 @@ Since arriving at the coast of Veracruz, you've been visited by emissaries from 
 <br>
 <</if>>
 
-<<if $Gifts is "Attack">>
+<<if $flags["gifts"] is "Attack">>
 
 One day, you hear rumors of a [[delegation approaching|Attack On a Beach in Veracruz]].<br>
 <br>
-<<elseif $Gifts is "No">>
+<<elseif $flags["gifts"] is "No">>
 
 One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: No Gifts]].<br>
 <br>
-<<elseif $Gifts is "Yes">>
+<<elseif $flags["gifts"] is "Yes">>
 
 One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: Gifts]].<br>
 <br>
-<<elseif $Gifts is "Talk">>
+<<elseif $flags["gifts"] is "Talk">>
 
 You wonder what the next day will bring. Return here to find out.<br>
 <br>
-<<elseif ndef $Gifts or $Gifts eq "">>
+<<elseif ndef $flags["gifts"] or $flags["gifts"] eq "">>
 
 You wonder what the next day will bring. Return here to find out.<br>
 <br>
@@ -2128,13 +2128,13 @@ Tlacaelel, you lead the delegation on a long and dangerous journey to the coast.
 <br>
 You must decide how you will proceed if you find the strange men you seek. Choose from the following options:<br>
 <br>
-1.  You trust Moctezuma's instincts and will follow his instructions. You will <<link "offer the gifts" "On a Beach in Veracruz: Gifts">><<set $Gifts="Yes">><</link>> and gather as much information as you can about the pale men and their intentions.<br>
+1.  You trust Moctezuma's instincts and will follow his instructions. You will <<link "offer the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>> and gather as much information as you can about the pale men and their intentions.<br>
 <br>
-2. You agree with Moctezuma's decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will <<link "not offer the gifts" "On a Beach in Veracruz: No Gifts">><<set $Gifts="No">><</link>>.<br>
+2. You agree with Moctezuma's decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will <<link "not offer the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>>.<br>
 <br>
-3.  You disagree with Moctezuma's plan. You are wary of the strangers and believe the smartest move is to catch them off guard with <<link "an immediate attack" "Attack On a Beach in Veracruz">><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<set $Gifts="Attack">><</link>>.<br>
+3.  You disagree with Moctezuma's plan. You are wary of the strangers and believe the smartest move is to catch them off guard with <<link "an immediate attack" "Attack On a Beach in Veracruz">><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<set $flags["gifts"]="Attack">><</link>>.<br>
  <br>
-4.  You are wary of making a hasty decision and <<link "seek the counsel of your men" "Discuss these options with your men">><<set $Gifts="Talk">><</link>>.<br>
+4.  You are wary of making a hasty decision and <<link "seek the counsel of your men" "Discuss these options with your men">><<set $flags["gifts"]="Talk">><</link>>.<br>
 <br>
 <<case "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
 
@@ -2142,19 +2142,19 @@ You have been ordered by Moctezuma to make the long and dangerous journey to the
 <br>
 As Moctezuma's second in command and the highest ranking among you, it is up to Tlacaelel Xocoyotl to decide how you will proceed if you encounter these strangers. <br>
 <br>
-<<if $Gifts is "Attack">>
+<<if $flags["gifts"] is "Attack">>
 
 Tlacaelel Xocoyotl disagrees with Moctezuma's plan and prepares you for an attack. He is wary of the strangers and believes the course of action is to catch them off guard. These pale men will surely be overwhelmed by a [[show of Aztec force|Attack On a Beach in Veracruz]].<br>
 <br>
-<<elseif $Gifts is "No">>
+<<elseif $flags["gifts"] is "No">>
 
 Tlacaelel Xocoyotl questions Moctezuma's decision to offer gifts.  You will approach the strangers and inquire about their intentions, but you will not offer the gifts. You [[approach the strangers|On a Beach in Veracruz: No Gifts]] with empty hands and nervous hearts.<br>
 <br>
-<<elseif $Gifts is "Yes">>
+<<elseif $flags["gifts"] is "Yes">>
 
 Tlacaelel Xocoyotl instructs you to follow Moctezuma's directions. You will offer the gifts and gather as much information as you can about the pale men and their intentions. You [[approach the strangers|On a Beach in Veracruz: Gifts]] with the gifts Moctezuma provided you with.<br>
 <br>
-<<elseif $Gifts is "Talk">>
+<<elseif $flags["gifts"] is "Talk">>
 
 Tlacaelel Xocoyotl has a difficult decision to make and has decided to seek your counsel. Go to your faction discussion board and decide on the best course of action. You will need to decide from among the following options:<br>
 <br>
@@ -2166,7 +2166,7 @@ Tlacaelel Xocoyotl has a difficult decision to make and has decided to seek your
 <br>
 After you have come to a conclusion on the discussion board, you may [[proceed|Discuss these options with your men]].<br>
 <br>
-<<elseif $Gifts eq "" or ndef $Gifts>>
+<<elseif $flags["gifts"] eq "" or ndef $flags["gifts"]>>
 
 You anxiously await his instructions, wondering what lies ahead.<br>
 <br>
@@ -2279,39 +2279,39 @@ You will continue to observe these developments closely as you consider your nex
 <<theyr>>
 You have discussed these options with your men, and together you have decided you will:<br>
 <br>
-1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $Gifts="Attack">><</link>>.<br>
+1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $flags["gifts"]="Attack">><</link>>.<br>
 <br>
-2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $Gifts="No">><</link>><br>
+2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>><br>
 <br>
-3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $Gifts="Yes">><</link>><br>
+3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>><br>
 <br>
 
 <<switch $users[$userId]["role"]>>
 <<case "Tlacaelel">>
 You have discussed these options with your men, and together you have decided you will:<br>
 <br>
-1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $Gifts="Attack">><</link>>.<br>
+1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $flags["gifts"]="Attack">><</link>>.<br>
 <br>
-2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $Gifts="No">><</link>><br>
+2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>><br>
 <br>
- 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $Gifts="Yes">><</link>><br>
+ 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>><br>
 <br>
 <<case "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
 
-<<if $Gifts is "Attack">>
+<<if $flags["gifts"] is "Attack">>
 
 You have discussed it and together decided you will attack. You are wary of the strangers and believes the course of action is to catch them off guard. These pale men will surely be overwhelmed by a [[show of Aztec force|Attack On a Beach in Veracruz]].<br>
 <br>
 
-<<elseif $Gifts is "No">>
+<<elseif $flags["gifts"] is "No">>
 You have discussed it and together decided you question Moctezuma's decision to offer gifts.  You will approach the strangers and inquire about their intentions, but you will not offer the gifts. You [[approach the strangers|On a Beach in Veracruz: No Gifts]] with empty hands and nervous hearts.<br>
 <br>
 
-<<elseif $Gifts is "Yes">>
+<<elseif $flags["gifts"] is "Yes">>
 You have discussed it and together decided to follow Moctezuma's directions. You will offer the gifts and gather as much information as you can about the pale men and their intentions. You [[approach the strangers|On a Beach in Veracruz: Gifts]] with the gifts Moctezuma provided you with.<br>
 <br>
 
-<<elseif $Gifts eq "" or ndef $Gifts>>
+<<elseif $flags["gifts"] eq "" or ndef $flags["gifts"]>>
 Tlacaelel has not yet entered your decision.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -2756,22 +2756,22 @@ Your guards have seen Aztec spies running to and from the coast. Clearly [[thing
 <<theyr>>
 You disguise yourselves as Huastec traders, and you head to the coast of Veracruz.  There, you observe the meeting of the Mexica and the bearded strangers from afar.<br>
 <br>
-<<if $Gifts is "Attack">>
+<<if $flags["gifts"] is "Attack">>
 [[You watch your enemies the Mexica attack|Attack On a Beach in Veracruz]] the strangers.<br>
 <br>
-<<elseif $Gifts is "No">>
+<<elseif $flags["gifts"] is "No">>
 
 [[You watch an awkward and uncomfortable meeting|On a Beach in Veracruz: No Gifts]] between your enemies and the strangers.<br>
 <br>
-<<elseif $Gifts is "Yes">>
+<<elseif $flags["gifts"] is "Yes">>
 
 [[You watch a friendly meeting|On a Beach in Veracruz: Gifts]] between your enemies and the strangers.<br>
 <br>
-<<elseif $Gifts is "Talk">>
+<<elseif $flags["gifts"] is "Talk">>
 
 All is quiet on the coast.  But keep watch, you sense something will happen.<br>
 <br>
-<<elseif $Gifts eq "" or ndef $Gifts>>
+<<elseif $flags["gifts"] eq "" or ndef $flags["gifts"]>>
 
 All is quiet on the coast.  But keep watch, you sense something will happen.<br>
 <br>
@@ -11584,8 +11584,8 @@ Tlaxcalan Omens is currently set to:  <<print $Tl_Omens>>.<br>
 Has the hold been cleared? <b><<if $Tl_Omens eq "" or ndef $Tl_Omens>> No <<else>> Yes<</if>></b><br>
 
 <b>Aztecs meet the Spaniards:</b> <i>This holds players until the Aztecs decide how to approach the Spaniards on the beach, with gifts, emptyhanded, or aggressively.</i><br>
-Gifts is currently set to:  <<print $Gifts>>.<br>
-Has the hold been cleared? <b><<if $Gifts eq "" or ndef $Gifts>> No <<else>> Yes<</if>></b><br>
+Gifts is currently set to:  <<print $flags["gifts"]>>.<br>
+Has the hold been cleared? <b><<if $flags["gifts"] eq "" or ndef $flags["gifts"]>> No <<else>> Yes<</if>></b><br>
 
 <b>The Mutiny:</b> <i>Tallies the number of votes that have been cast and whether for or against the Mutiny. Players are held until all 5 Spaniards have voted on whether or not to mutiny.</i><br>
 Mutiny Status: <<print $Mutiny>>. <i>If the total is greater than 3, there is a mutiny and a new leader.  If the total is less than -6, the leader of the mutiny chickened out. Otherwise, gameplay continues with the current leader in place.</i>
