@@ -173,7 +173,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -343,15 +343,15 @@ importScripts([
 
 &lt;&lt;set _userlist = []&gt;&gt;
 &lt;&lt;set _factionUsers = {}&gt;&gt;
-
-&lt;&lt;for _faction range Object.keys($factions)&gt;&gt;
-	&lt;&lt;set _factionUsers[_faction] = []&gt;&gt;
-	&lt;&lt;set _factionUsers[&quot;offline&quot;] = []&gt;&gt;
-&lt;&lt;/for&gt;&gt;
+&lt;&lt;set _factionUsers[&quot;offline&quot;] = []&gt;&gt;
 
 &lt;&lt;for _id, _data range $users&gt;&gt;
-	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 10000&gt;&gt;
-		&lt;&lt;set _faction = _data[&quot;faction&quot;]&gt;&gt;
+	&lt;&lt;set _faction = _data[&quot;faction&quot;]&gt;&gt;
+	&lt;&lt;if ndef _factionUsers[_faction]&gt;&gt;
+		&lt;&lt;set _factionUsers[_faction] = []&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 1000000&gt;&gt;
 		&lt;&lt;set _factionUsers[_faction].push(_id)&gt;&gt;
 	&lt;&lt;else&gt;&gt;
 		&lt;&lt;set _factionUsers[&quot;offline&quot;].push(_id)&gt;&gt;
@@ -363,7 +363,7 @@ importScripts([
 		&lt;&lt;set _userlist.push(_id)&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/for&gt;&gt;
-&lt;&lt;print JSON.stringify(_userlist)&gt;&gt;
+&lt;&lt;print JSON.stringify(_factionUsers)&gt;&gt;
 /* Object.keys(factions).forEach(faction=&gt;{
 	
 _factionUsers[faction]=  $users.find((_user)=&gt;_user.faction==faction)
@@ -396,9 +396,6 @@ _factionUsers[faction]=  $users.find((_user)=&gt;_user.faction==faction)
 
 /* &lt;&lt;audio &quot;:all&quot; stop&gt;&gt; */
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
-&lt;&lt;script&gt;&gt;
-console.log(userData)
-&lt;&lt;/script&gt;&gt;
 &lt;&lt;masteraudio unmute&gt;&gt;
  &lt;&lt;run showMap()&gt;&gt;
  &lt;&lt;run showStats()&gt;&gt;
@@ -1336,7 +1333,7 @@ Use the counter below to develop your character. You have 20 points, which you m
  &lt;div id=&quot;statsPicker&quot;&gt;&lt;/div&gt;&lt;br&gt;
  &lt;&lt;print statPickerInit()&gt;&gt;&lt;br&gt;
 &lt;div  class=&quot;show&quot;&gt;&lt;br&gt;
-You need to assign points to your character to continue. &lt;br&gt;d
+You need to assign points to your character to continue. &lt;br&gt;
 &lt;/div&gt;
 
 &lt;div class=&quot;hide&quot;&gt;
