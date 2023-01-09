@@ -5,13 +5,25 @@
 import sys
 import re
 
-replacements = [{'regex': '\$role', 'replace': '$users[$userId]["role"]'},
-                {'regex': '\$faction', 'replace': '$users[$userId]["faction"]'},
-                {'regex': '<<run[ ]*counter\(([^,]*),"([^"]*)"\)', 'replace': r'<<set $\2 = $\2 + \1'},
-                {'regex': '<<run[ ]*changeStats\(([^,]*),"([^"]*)"\)', 'replace': r'<<set $\2 = $\2 + \1'},
-                {'regex': '(\$\w+)_sum', 'replace': r'\1'},
-                {'regex': 'images\/', 'replace': 'Twine/images/'}
-                ]
+# replacements = [{'regex': '\$role', 'replace': '$users[$userId]["role"]'},
+#                 {'regex': '\$faction', 'replace': '$users[$userId]["faction"]'},
+#                 {'regex': '<<run[ ]*counter\(([^,]*),"([^"]*)"\)', 'replace': r'<<set $\2 = $\2 + \1'},
+#                 {'regex': '<<run[ ]*changeStats\(([^,]*),"([^"]*)"\)', 'replace': r'<<set $\2 = $\2 + \1'},
+#                 {'regex': '(\$\w+)_sum', 'replace': r'\1'},
+#                 {'regex': 'images\/', 'replace': 'Twine/images/'}
+#                 ]
+
+replacements = []
+
+
+for i in ["Aztecs", "Tlaxcalans", "Spaniards"]:
+    for j in ["Loyalty", "Strength", "Wisdom"]:
+        replacements.append({'regex': f'{i}_{j}', 'replace' : f'factions["{i}"]["stats"]["{j}"]'})
+
+for i in ["Marina","Alvarado","Aguilar","Garrido","Olid","Moctezuma","Tlacaelel","Cuauhtemoc","Aztec_Priest","Cacamatzin","Pochteca","Xicotencatl_Elder","Xicotencatl_Younger","Maxixcatl", "Cortes"]:
+    for j in ["Loyalty", "Strength", "Wisdom"]:
+        replacements.append({'regex': f'{i}_{j}', 'replace' : f'users[$lookup["{i}"]]["stats"]["{j}"]'})
+        
 # Opens file
 twee_in_file = open(sys.argv[1], encoding="utf-8")
 new_twee = twee_in_file.read()

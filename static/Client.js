@@ -26,6 +26,7 @@ socket.on('connect', () => {
 })
 
 socket.on('new connection', (state) => {
+    localStorage.clear();
     console.log("LOAD #2: RECEIEVE STATE");
     console.log("Connecting state:", state)
     console.log("Current State:", Window.SugarCubeState.variables)

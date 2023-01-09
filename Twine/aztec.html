@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <title>Spanish Aztec War Ver 1.0.1</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-$faction['Aztecs']['stats']['Loyalty']
 <!--
 
 SugarCube (v2.37.0-alpha.5): A free (gratis and libre) story format.
@@ -180,7 +179,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -200,9 +199,9 @@ importScripts([
 &lt;&lt;/script&gt;&gt;
 
 &lt;&lt;set _roles = {
-  &quot;Mariana&quot;: {
+  &quot;Marina&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
-    &quot;Character&quot;: &quot;Doña Mariana/Malinche&quot;,
+    &quot;Character&quot;: &quot;Doña Marina/Malinche&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Alvarado&quot;: {
@@ -224,6 +223,11 @@ importScripts([
     &quot;faction&quot;: &quot;Spaniards&quot;,
     &quot;Character&quot;: &quot;Cristóbal de Olid&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
+  },
+  &quot;Cortes&quot;: {
+    &quot;faction&quot;: &quot;Spaniards&quot;,
+    &quot;Character&quot;: &quot;Hernán Cortés&quot;,
+    &quot;isLeader&quot;: &quot;TRUE&quot;
   },
   &quot;Moctezuma&quot;: {
     &quot;faction&quot;: &quot;Aztecs&quot;,
@@ -386,7 +390,7 @@ console.log(userData)
 Name not recognized. Make sure the spelling on your character&#39;s name matches your role. &lt;br&gt;
 
 &lt;u&gt; Roles &lt;/u&gt; &lt;br&gt;
-Mariana &lt;br&gt;
+Marina &lt;br&gt;
 Alvarado &lt;br&gt;
 Aguilar &lt;br&gt; 
 Garrido &lt;br&gt;
@@ -409,23 +413,23 @@ Since arriving at the coast of Veracruz, you&#39;ve been visited by emissaries f
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $Gifts is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
 
 One day, you hear rumors of a [[delegation approaching|Attack On a Beach in Veracruz]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
 
 One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: No Gifts]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
 
 One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: Gifts]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;Talk&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Talk&quot;&gt;&gt;
 
 You wonder what the next day will bring. Return here to find out.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif ndef $Gifts or $Gifts eq &quot;&quot;&gt;&gt;
+&lt;&lt;elseif ndef $flags[&quot;gifts&quot;] or $flags[&quot;gifts&quot;] eq &quot;&quot;&gt;&gt;
 
 You wonder what the next day will bring. Return here to find out.&lt;br&gt;
 &lt;br&gt;
@@ -678,14 +682,14 @@ You &lt;&lt;link &quot;head back to Tlaxcala&quot; &quot;The Spaniards Head Inla
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 The Tlaxcalans have decided to take the offensive and launch an attack! They made their move, but it was too soon and they were ill prepared to confront your weapons. The battle ends in a draw, but you have been weakened and must remain wary of these new foes. &lt;br&gt;
 &lt;br&gt;
-You regroup and &lt;&lt;link &quot;settle into your basecamp&quot; &quot;The Spaniards Head Inland&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt; for the night.&lt;br&gt;
+You regroup and &lt;&lt;link &quot;settle into your basecamp&quot; &quot;The Spaniards Head Inland&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt; for the night.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
 You attack the foreigners, but you&#39;ve moved too soon! You cannot overpower the strangers with their powerful weapons. The battle ends in a draw, but your side has been weakened and you have put the Spaniards on high alert.  &lt;br&gt;
 &lt;br&gt;
 Hopefully, this doesn&#39;t leave you vulnerable down the road! If only you had been more patient!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Return to Tlaxcala&quot; &quot;The Spaniards Head Inland&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt; and regroup.&lt;br&gt;
+&lt;&lt;link &quot;Return to Tlaxcala&quot; &quot;The Spaniards Head Inland&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt; and regroup.&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;/switch&gt;&gt;
@@ -696,7 +700,7 @@ Hopefully, this doesn&#39;t leave you vulnerable down the road! If only you had 
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 As you make your way toward home, you think back on your encounter with the strangers. It seems likely they will head for the city, but how will Moctezuma respond? You discuss this among yourselves, contemplating the best strategy.&lt;br&gt;
 &lt;br&gt;
-Suddenly, you find yourselves under attack by a band of Tlaxcalan warriors. You manage to fight them off and the battle ends in a draw, as it so often does. Nonetheless, you have been weakened by this attack and remain on guard &lt;&lt;link &quot;the rest of the way home&quot; &quot;Aztecs Return to Tenochtitlan to report&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength-=1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+Suddenly, you find yourselves under attack by a band of Tlaxcalan warriors. You manage to fight them off and the battle ends in a draw, as it so often does. Nonetheless, you have been weakened by this attack and remain on guard &lt;&lt;link &quot;the rest of the way home&quot; &quot;Aztecs Return to Tenochtitlan to report&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength-=1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
 You attack the Mexica, hoping to catch them off guard. But, like always, the battle ends in a draw.  Both sides have been weakened and you have increased hostilities between your groups, as the strangers on the shore prepare to head inland.  &lt;br&gt;
@@ -815,19 +819,19 @@ You are bold and noble Spaniards! You have set forth into the unknown to claim n
 
 &lt;&lt;if $users[$userId][&quot;faction&quot;] is &quot;Aztecs&quot;&gt;&gt;
 is Aztec
-&lt;&lt;if ndef $Aztecs_strength or $Aztecs_strength eq &quot;&quot;&gt;&gt;
+&lt;&lt;if ndef $Aztecs_Strength or $Aztecs_Strength eq &quot;&quot;&gt;&gt;
 Aztec Strength Undefined
-&lt;&lt;set $Aztecs_strength=random(10,15)&gt;&gt;
+&lt;&lt;set $Aztecs_Strength=random(10,15)&gt;&gt;
  
 &lt;&lt;/if&gt;&gt;
-Your faction&#39;s starting strength is: &lt;&lt;print $Aztecs_strength &gt;&gt;
+Your faction&#39;s starting strength is: &lt;&lt;print $Aztecs_Strength &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $users[$userId][&quot;faction&quot;] is &quot;Spaniards&quot;&gt;&gt;
-&lt;&lt;if ndef $Spaniards_strength  &gt;&gt;
-&lt;&lt;set $Spaniards_strength=random(10,15)&gt;&gt;
+&lt;&lt;if ndef $Spaniards_Strength  &gt;&gt;
+&lt;&lt;set $Spaniards_Strength=random(10,15)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-Your faction&#39;s starting strength is: &lt;&lt;print $Spaniards_strength &gt;&gt;
+Your faction&#39;s starting strength is: &lt;&lt;print $Spaniards_Strength &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $users[$userId][&quot;faction&quot;] is &quot;Tlaxcalans&quot;&gt;&gt;
@@ -1905,13 +1909,13 @@ Tlacaelel, you lead the delegation on a long and dangerous journey to the coast.
 &lt;br&gt;
 You must decide how you will proceed if you find the strange men you seek. Choose from the following options:&lt;br&gt;
 &lt;br&gt;
-1.  You trust Moctezuma&#39;s instincts and will follow his instructions. You will &lt;&lt;link &quot;offer the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and gather as much information as you can about the pale men and their intentions.&lt;br&gt;
+1.  You trust Moctezuma&#39;s instincts and will follow his instructions. You will &lt;&lt;link &quot;offer the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and gather as much information as you can about the pale men and their intentions.&lt;br&gt;
 &lt;br&gt;
-2. You agree with Moctezuma&#39;s decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will &lt;&lt;link &quot;not offer the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+2. You agree with Moctezuma&#39;s decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will &lt;&lt;link &quot;not offer the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-3.  You disagree with Moctezuma&#39;s plan. You are wary of the strangers and believe the smartest move is to catch them off guard with &lt;&lt;link &quot;an immediate attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;run changeStats(&quot;Tlacaelel&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cuauhtemoc&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cacamatzin&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Pochteca&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;set $Gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+3.  You disagree with Moctezuma&#39;s plan. You are wary of the strangers and believe the smartest move is to catch them off guard with &lt;&lt;link &quot;an immediate attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;run changeStats(&quot;Tlacaelel&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cuauhtemoc&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cacamatzin&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Pochteca&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
  &lt;br&gt;
-4.  You are wary of making a hasty decision and &lt;&lt;link &quot;seek the counsel of your men&quot; &quot;Discuss these options with your men&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;Talk&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+4.  You are wary of making a hasty decision and &lt;&lt;link &quot;seek the counsel of your men&quot; &quot;Discuss these options with your men&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Talk&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
 
@@ -1919,19 +1923,19 @@ You have been ordered by Moctezuma to make the long and dangerous journey to the
 &lt;br&gt;
 As Moctezuma&#39;s second in command and the highest ranking among you, it is up to Tlacaelel Xocoyotl to decide how you will proceed if you encounter these strangers. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Gifts is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl disagrees with Moctezuma&#39;s plan and prepares you for an attack. He is wary of the strangers and believes the course of action is to catch them off guard. These pale men will surely be overwhelmed by a [[show of Aztec force|Attack On a Beach in Veracruz]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl questions Moctezuma&#39;s decision to offer gifts.  You will approach the strangers and inquire about their intentions, but you will not offer the gifts. You [[approach the strangers|On a Beach in Veracruz: No Gifts]] with empty hands and nervous hearts.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl instructs you to follow Moctezuma&#39;s directions. You will offer the gifts and gather as much information as you can about the pale men and their intentions. You [[approach the strangers|On a Beach in Veracruz: Gifts]] with the gifts Moctezuma provided you with.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;Talk&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Talk&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl has a difficult decision to make and has decided to seek your counsel. Go to your faction discussion board and decide on the best course of action. You will need to decide from among the following options:&lt;br&gt;
 &lt;br&gt;
@@ -1943,7 +1947,7 @@ Tlacaelel Xocoyotl has a difficult decision to make and has decided to seek your
 &lt;br&gt;
 After you have come to a conclusion on the discussion board, you may [[proceed|Discuss these options with your men]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts eq &quot;&quot; or ndef $Gifts&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt;
 
 You anxiously await his instructions, wondering what lies ahead.&lt;br&gt;
 &lt;br&gt;
@@ -2048,39 +2052,39 @@ You will continue to observe these developments closely as you consider your nex
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="Discuss these options with your men" tags="Done Breaks" position="1212,1048" size="100,100">&lt;&lt;theyr&gt;&gt;
 You have discussed these options with your men, and together you have decided you will:&lt;br&gt;
 &lt;br&gt;
-1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
 You have discussed these options with your men, and together you have decided you will:&lt;br&gt;
 &lt;br&gt;
-1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
- 3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $Gifts=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+ 3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
 
-&lt;&lt;if $Gifts is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
 
 You have discussed it and together decided you will attack. You are wary of the strangers and believes the course of action is to catch them off guard. These pale men will surely be overwhelmed by a [[show of Aztec force|Attack On a Beach in Veracruz]].&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Gifts is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
 You have discussed it and together decided you question Moctezuma&#39;s decision to offer gifts.  You will approach the strangers and inquire about their intentions, but you will not offer the gifts. You [[approach the strangers|On a Beach in Veracruz: No Gifts]] with empty hands and nervous hearts.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Gifts is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
 You have discussed it and together decided to follow Moctezuma&#39;s directions. You will offer the gifts and gather as much information as you can about the pale men and their intentions. You [[approach the strangers|On a Beach in Veracruz: Gifts]] with the gifts Moctezuma provided you with.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Gifts eq &quot;&quot; or ndef $Gifts&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt;
 Tlacaelel has not yet entered your decision.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
@@ -2469,22 +2473,22 @@ Your guards have seen Aztec spies running to and from the coast. Clearly [[thing
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="Tlaxcala sends spies to Veracruz" tags="Done Breaks" position="1453,1135" size="100,100">&lt;&lt;theyr&gt;&gt;
 You disguise yourselves as Huastec traders, and you head to the coast of Veracruz.  There, you observe the meeting of the Mexica and the bearded strangers from afar.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Gifts is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
 [[You watch your enemies the Mexica attack|Attack On a Beach in Veracruz]] the strangers.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
 
 [[You watch an awkward and uncomfortable meeting|On a Beach in Veracruz: No Gifts]] between your enemies and the strangers.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
 
 [[You watch a friendly meeting|On a Beach in Veracruz: Gifts]] between your enemies and the strangers.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts is &quot;Talk&quot;&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Talk&quot;&gt;&gt;
 
 All is quiet on the coast.  But keep watch, you sense something will happen.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Gifts eq &quot;&quot; or ndef $Gifts&gt;&gt;
+&lt;&lt;elseif $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt;
 
 All is quiet on the coast.  But keep watch, you sense something will happen.&lt;br&gt;
 &lt;br&gt;
@@ -2583,7 +2587,7 @@ Vote is 2
 		
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt; */
-It&#39;s seven weeks into the semester and you&#39;re already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it&#39;s due tomorrow! The only way you&#39;re going to get everything done is to pull an all-nighter. There&#39;s no way you&#39;ll be able to stay awake at home; your bed is there and it&#39;s just too tempting. So you head to the library. &lt;br&gt;
+It&#39;s eight weeks into the semester and you&#39;re already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it&#39;s due tomorrow! The only way you&#39;re going to get everything done is to pull an all-nighter. There&#39;s no way you&#39;ll be able to stay awake at home; your bed is there and it&#39;s just too tempting. So you head to the library. &lt;br&gt;
 &lt;br&gt;
 It&#39;s 7 pm and the library is more crowded than usual. It looks like you&#39;re not the only one with a mountain of work to do this week! There&#39;s no way you&#39;ll be able to focus in the midst of so many people. Maybe the top floor is quieter. You head upstairs towards the study carrels, but they&#39;re all taken. It&#39;s dead quiet up here, but there&#39;s nowhere to work. You begin wandering down unfamiliar hallways, poking your head into all the different rooms, but none of them work. You&#39;re beginning to get frustrated when you notice a door you&#39;ve never seen before. It&#39;s tucked into an alcove in the very back corner of the building. You decide to check this one last spot before you give up and join the masses downstairs. &lt;br&gt;
 &lt;br&gt;
@@ -2591,7 +2595,7 @@ The door sticks as you try to open it, but you can tell it&#39;s not locked. You
 &lt;br&gt;
 You unload your books and make yourself comfortable--maybe a little too comfortable. You get to work on your assignment, but within a matter of minutes your eyes get heavy. You struggle to stay awake but it&#39;s impossible to focus. Maybe a ten-minute nap will help. You tell yourself that if you just get it out of your system, you&#39;ll be good to go for the rest of the night. You close your eyes and quickly slip into a deep sleep. &lt;br&gt;
 &lt;br&gt;
-Suddenly, &lt;&lt;link &quot;you&#39;re startled by a loud noise&quot; &quot;Character Identification&quot;&gt;&gt;&lt;&lt;set $Spaniards_currentMap=1&gt;&gt;&lt;&lt;set $Spaniards_strength = 7&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=1&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;] = 7&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1&gt;&gt;&lt;&lt;set $Aztecs_strength = 1&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
+Suddenly, &lt;&lt;link &quot;you&#39;re startled by a loud noise&quot; &quot;Character Identification&quot;&gt;&gt;&lt;&lt;set $Spaniards_currentMap=1&gt;&gt;&lt;&lt;set $Spaniards_Strength = 7&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=1&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;] = 7&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;] = 7&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
 &lt;br&gt;
 
 
@@ -2746,7 +2750,7 @@ You&#39;ve made it to Cholula!&lt;br&gt;
 Congratulations! You have beaten the Tlaxcalans and you may claim Quetzalcoatl&#39;s heart, which will increase your teams&#39;s strength by 5!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;link &quot;Claim Quetzalcoatl&#39;s Heart&quot; &quot;End of Quest&quot;&gt;&gt;&lt;&lt;set $A_Q_Heart to &quot;yes&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;link &quot;Claim Quetzalcoatl&#39;s Heart&quot; &quot;End of Quest&quot;&gt;&gt;&lt;&lt;set $A_Q_Heart to &quot;yes&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Quest_Leader_A is $users[$userId][&quot;role&quot;] and $T_Q_Heart is &quot;yes&quot;&gt;&gt;
@@ -3607,11 +3611,11 @@ You wait while your fellow counselors cast their vote.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Moc is 5&gt;&gt;&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Moc is 5&gt;&gt;&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Tla is 5&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Tla is 5&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Cua is 5&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Cua is 5&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
 
 &lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Moc &gt;=3&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;
 
@@ -4166,7 +4170,7 @@ You try to sleep, but your nerves are frayed and you anxiously listen for any no
 &lt;br&gt;
 You finally drift into a fitful sleep in the early hours of the morning, only to be awakened by the most terrifying sounds! You hear drums, screaming, and the unmistakable sound of thousands of men bearing down upon you. You sneak out your sleeping quarters and find a place to hide, watching events as they unfold.&lt;br&gt;
 &lt;br&gt;
-Fortunately for your Spanish friends, their Tlaxcalan allies have come to their defense. They fight their way out of the city, barely escaping with your lives. Facing the prospect of being enslaved by the Aztecs, &lt;&lt;link &quot;you join them as they flee&quot; &quot;Into the Mountain Pass&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=5&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+Fortunately for your Spanish friends, their Tlaxcalan allies have come to their defense. They fight their way out of the city, barely escaping with your lives. Facing the prospect of being enslaved by the Aztecs, &lt;&lt;link &quot;you join them as they flee&quot; &quot;Into the Mountain Pass&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=5&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Mal_Share is &quot;No&quot; and $users[$userId][&quot;role&quot;] isnot &quot;Marina&quot;&gt;&gt;
@@ -4185,9 +4189,9 @@ A mysterious woman has informed you that the Aztecs have laid a trap in Cholula.
 &lt;br&gt;
 Go to the Spanish discussion board and decide what you will do next. You have two options:&lt;br&gt;
 &lt;br&gt;
-Do you remain quiet, &lt;&lt;link &quot;concealing this knowledge from your hosts and waiting to see what unfolds&quot; &quot;Cholulans Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Do you remain quiet, &lt;&lt;link &quot;concealing this knowledge from your hosts and waiting to see what unfolds&quot; &quot;Cholulans Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Mal_Span is &quot;Yes&quot; and $users[$userId][&quot;role&quot;] isnot $Span_Leader&gt;&gt;
@@ -4261,31 +4265,31 @@ When everyone has voted, you will deliver the news to &lt;&lt;print $Span_Leader
 You have chosen a leader. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if $Sp_Ld_Cor &gt;= $Sp_Ld_Alv and $Sp_Ld_Cor &gt;= $Sp_Ld_Agu and $Sp_Ld_Cor &gt;= $Sp_Ld_Gar and $Sp_Ld_Cor &gt;= $Sp_Ld_Olid and $Sp_Ld_Cor is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Cor &gt;= $Sp_Ld_Alv and $Sp_Ld_Cor &gt;= $Sp_Ld_Agu and $Sp_Ld_Cor &gt;= $Sp_Ld_Gar and $Sp_Ld_Cor &gt;= $Sp_Ld_Olid and $Sp_Ld_Cor isnot 5&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Alv &gt;=$Sp_Ld_Cor and $Sp_Ld_Alv &gt;=$Sp_Ld_Agu and $Sp_Ld_Alv &gt;=$Sp_Ld_Gar and $Sp_Ld_Alv &gt;=$Sp_Ld_Olid and $Sp_Ld_Alv is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Alv &gt;=$Sp_Ld_Cor and $Sp_Ld_Alv &gt;=$Sp_Ld_Agu and $Sp_Ld_Alv &gt;=$Sp_Ld_Gar and $Sp_Ld_Alv &gt;=$Sp_Ld_Olid and $Sp_Ld_Alv isnot 5&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Agu &gt;=$Sp_Ld_Cor and $Sp_Ld_Agu &gt;=$Sp_Ld_Alv and $Sp_Ld_Agu &gt;=$Sp_Ld_Gar and $Sp_Ld_Agu &gt;=$Sp_Ld_Olid and $Sp_Ld_Agu is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Agu &gt;=$Sp_Ld_Cor and $Sp_Ld_Agu &gt;=$Sp_Ld_Alv and $Sp_Ld_Agu &gt;=$Sp_Ld_Gar and $Sp_Ld_Agu &gt;=$Sp_Ld_Olid and $Sp_Ld_Agu isnot 5&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Gar &gt;=$Sp_Ld_Cor and $Sp_Ld_Gar &gt;=$Sp_Ld_Alv and $Sp_Ld_Gar &gt;=$Sp_Ld_Agu and $Sp_Ld_Gar &gt;=$Sp_Ld_Olid and $Sp_Ld_Gar is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Gar &gt;=$Sp_Ld_Cor and $Sp_Ld_Gar &gt;=$Sp_Ld_Alv and $Sp_Ld_Gar &gt;=$Sp_Ld_Agu and $Sp_Ld_Gar &gt;=$Sp_Ld_Olid and $Sp_Ld_Gar isnot 5&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Olid &gt;=$Sp_Ld_Cor and $Sp_Ld_Olid &gt;=$Sp_Ld_Alv and $Sp_Ld_Olid &gt;=$Sp_Ld_Agu and $Sp_Ld_Olid &gt;=$Sp_Ld_Gar and $Sp_Ld_Olid is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Sp_Ld_Olid &gt;=$Sp_Ld_Cor and $Sp_Ld_Olid &gt;=$Sp_Ld_Alv and $Sp_Ld_Olid &gt;=$Sp_Ld_Agu and $Sp_Ld_Olid &gt;=$Sp_Ld_Gar and $Sp_Ld_Olid isnot 5&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -4456,7 +4460,7 @@ Go to the Spanish discussion board and decide what you will do next. You have tw
 &lt;br&gt;
 Do you remain quiet,&lt;&lt;link &quot;concealing this knowledge from your hosts and waiting to see what unfolds&quot; &quot;Cholulans Don&#39;t Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Mal_Span is &quot;Yes&quot; and $users[$userId][&quot;role&quot;] isnot $Span_Leader&gt;&gt;
@@ -5150,7 +5154,7 @@ When everyone has voted, you will deliver the news to &lt;&lt;print $Aztec_Leade
 
 &lt;&lt;if $Az_Ld_Moc &gt;=$Az_Ld_Tla and $Az_Ld_Moc &gt;=$Az_Ld_Cua and $Az_Ld_Moc &gt;=$Az_Ld_Cac&gt;&gt;
 &lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
-The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The council has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5158,7 +5162,7 @@ The council has made a decision.  Continue to the next page to find out &lt;&lt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Az_Ld_Tla &gt;=$Az_Ld_Moc and $Az_Ld_Tla &gt;=$Az_Ld_Cua and $Az_Ld_Tla &gt;=$Az_Ld_Cac&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;
 &lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
-The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The council has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5166,7 +5170,7 @@ The council has made a decision.  Continue to the next page to find out &lt;&lt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Az_Ld_Cua &gt;=$Az_Ld_Moc and $Az_Ld_Cua &gt;=$Az_Ld_Tla and $Az_Ld_Cua &gt;=$Az_Ld_Cac&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;
 &lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
-The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The council has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5174,7 +5178,7 @@ The council has made a decision.  Continue to the next page to find out &lt;&lt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Az_Ld_Cac &gt;=$Az_Ld_Moc and $Az_Ld_Cac &gt;=$Az_Ld_Tla and $Az_Ld_Cac &gt;=$Az_Ld_Cua&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;
 &lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
-The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The council has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5830,7 +5834,7 @@ When everyone has voted, you will find out who will lead you now.&lt;br&gt;
 &lt;&lt;if $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno&gt;=$Sp_Ld_Oli_Teno&gt;&gt;
 
 &lt;&lt;if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Marina&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Marina&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Marina&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5838,7 +5842,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Oli_Teno&gt;&gt;
 &lt;&lt;if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5846,7 +5850,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Alv and $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Oli_Teno&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;
 &lt;&lt;if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5854,7 +5858,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Alv and $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Oli_Teno&gt;&gt;
 &lt;&lt;if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5862,7 +5866,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Alv and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Gar_Teno &gt;&gt;
 &lt;&lt;if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -5960,7 +5964,7 @@ You wait until midnight to launch your attack, hoping to catch the enemy forces 
 &lt;br&gt;
 Fortunately for you, these men are no fools. They have heard tales of the great Mexica city and the riches found there. Hundreds of them choose to join you. You have just quadrupled your forces. This could not have gone better.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;As you prepare for the journey back to Tenochtitlán&quot; &quot;Cortes Returns Victorious&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=3&gt;&gt;&lt;&lt;/link&gt;&gt;you take possession of Narváez&#39; cannons, and your team&#39;s strength increases significantly. Your Tlaxcalan friends are returning home and will take them for safekeeping.&lt;br&gt;
+&lt;&lt;link &quot;As you prepare for the journey back to Tenochtitlán&quot; &quot;Cortes Returns Victorious&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=3&gt;&gt;&lt;&lt;/link&gt;&gt;you take possession of Narváez&#39; cannons, and your team&#39;s strength increases significantly. Your Tlaxcalan friends are returning home and will take them for safekeeping.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have received word that the enemy camp lies just ahead. The time has come to face yet another force of Spaniards in battle.&lt;br&gt;
@@ -6922,7 +6926,7 @@ You have cast your vote, but others are less decisive. You wait for the rest of 
 
 &lt;&lt;if $MocRiot_Moc &gt;=$MocRiot_Tla and $MocRiot_Moc &gt;=$MocRiot_Cua and $MocRiot_Moc &gt;=$MocRiot_Cac and $MocRiot_Moc &gt;=$MocRiot_AzP and $MocRiot_Moc &gt;=$MocRiot_Poc&gt;&gt;
 &lt;&lt;if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5&gt;&gt;
-The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -6930,7 +6934,7 @@ The votes have been cast, click through to find out who your &lt;&lt;link &quot;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $MocRiot_Tla &gt;=$MocRiot_Moc and $MocRiot_Tla &gt;=$MocRiot_Cua and $MocRiot_Tla &gt;=$MocRiot_Cac and $MocRiot_Tla &gt;=$MocRiot_AzP and $MocRiot_Tla &gt;=$MocRiot_Poc&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;
 &lt;&lt;if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5&gt;&gt;
-The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -6938,7 +6942,7 @@ The votes have been cast, click through to find out who your &lt;&lt;link &quot;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $MocRiot_Cua &gt;=$MocRiot_Moc and $MocRiot_Cua &gt;=$MocRiot_Tla and $MocRiot_Cua &gt;=$MocRiot_Cac and $MocRiot_Cua &gt;=$MocRiot_AzP and $MocRiot_Cua &gt;=$MocRiot_Poc&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;
 &lt;&lt;if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5&gt;&gt;
-The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -6946,7 +6950,7 @@ The votes have been cast, click through to find out who your &lt;&lt;link &quot;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $MocRiot_Cac &gt;=$MocRiot_Moc and $MocRiot_Cac &gt;=$MocRiot_Tla and $MocRiot_Cac &gt;=$MocRiot_Cua and $MocRiot_Cac &gt;=$MocRiot_AzP and $MocRiot_Cac &gt;=$MocRiot_Poc&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;
 &lt;&lt;if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5&gt;&gt;
- The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+ The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -6954,7 +6958,7 @@ The votes have been cast, click through to find out who your &lt;&lt;link &quot;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $MocRiot_AzP &gt;=$MocRiot_Moc and $MocRiot_AzP &gt;=$MocRiot_Tla and $MocRiot_AzP &gt;=$MocRiot_Cua and $MocRiot_AzP &gt;=$MocRiot_Cac and $MocRiot_AzP &gt;=$MocRiot_Poc&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Aztec_Priest&quot;&gt;&gt;
 &lt;&lt;if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5&gt;&gt;
- The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Aztec_Priest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+ The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Aztec_Priest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Aztec Priest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -6962,7 +6966,7 @@ The votes have been cast, click through to find out who your &lt;&lt;link &quot;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $MocRiot_Poc &gt;=$MocRiot_Moc and $MocRiot_Poc &gt;=$MocRiot_Tla and $MocRiot_Poc &gt;=$MocRiot_Cua and $MocRiot_Poc &gt;=$MocRiot_Cac and $MocRiot_Poc &gt;=$MocRiot_AzP&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Pochteca&quot;&gt;&gt;
 &lt;&lt;if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5&gt;&gt;
- The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Pochteca&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+ The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength+=1&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Pochteca&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The votes have been cast, click through to find out who your &lt;&lt;link &quot;next leader is&quot; &quot;After the Riot Leader&quot;&gt;&gt;&lt;&lt;set $New_Aztec_Leader=&quot;Pochteca&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -7214,7 +7218,7 @@ The time has come for you to make your escape. As you gather your final supplies
 &lt;br&gt;
 As quietly as any army that has gone before, you make your way out of the palace through the eerie darkness towards the last remaining causeway. It is all for naught, however! You have been spotted and you watch the lake that surrounds you fill with canoes. Mexica warriors descend upon you from all sides! As you approach the first break in the causeway, your men put down the portable bridge and you are able to cross, but others are not so lucky. The bridge collapses under the weight of so many men and you carry bits of wood in a feeble attempt to cross the next break in the causeway. Chaos surrounds you as men and horses plummet into the depths of Lake Texcoco.&lt;br&gt;
 &lt;br&gt;
-Somehow, you make it out alive, but not all are so lucky. You scramble your way to shore and run for your life, desperate to &lt;br&gt;&lt;&lt;link &quot;escape the carnage that lays behind you&quot; &quot;Spaniards Decide Whether to Retreat to Tlaxcala&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength*=.5&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+Somehow, you make it out alive, but not all are so lucky. You scramble your way to shore and run for your life, desperate to &lt;br&gt;&lt;&lt;link &quot;escape the carnage that lays behind you&quot; &quot;Spaniards Decide Whether to Retreat to Tlaxcala&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength*=.5&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The time has come for you to make your escape. As you gather your final supplies, you thank God for the spy who kept you informed about the Mexica&#39;s many preparations for battle. You know that only one causeway to the mainland remains and that parts have been destroyed, leaving it impassible. When you learned this, your men gathered wood and built a portable bridge, which you now take with you. &lt;br&gt;
@@ -7329,7 +7333,7 @@ You are waiting for &lt;&lt;print $Span_Leader&gt;&gt; to do something.&lt;br&gt
 A calm settles over the city, [[and you wonder what the Spaniards will do next|Spaniards Fight the Aztecs Alone]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $NT_Fight eq&quot;No&quot;&gt;&gt;
-A calm settles over the city, but strange things &lt;&lt;link &quot;are unfolding in Tenochtitlan&quot; &quot;Smallpox in Tenochtitlán&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength*=.5&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+A calm settles over the city, but strange things &lt;&lt;link &quot;are unfolding in Tenochtitlan&quot; &quot;Smallpox in Tenochtitlán&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength*=.5&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -7439,7 +7443,7 @@ Once you have discussed this turn of events, you may proceed to learn the [[outc
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards]].&lt;br&gt;
@@ -7447,7 +7451,7 @@ You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes t
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards]].&lt;br&gt;
@@ -7994,7 +7998,7 @@ The enemy exits the mountain pass. You can barely believe your eyes as they make
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards and Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards and Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards and Tlaxcalans]].&lt;br&gt;
@@ -8002,7 +8006,7 @@ You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes t
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards and Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards and Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards and Tlaxcalans]].&lt;br&gt;
@@ -8128,7 +8132,7 @@ By the time it is done, Tlaxcala is a ruin and it seems that no-one has any rema
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Spaniards Versus Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Spaniards Versus Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes the final blow|Battle Outcome Spaniards Versus Tlaxcalans]].&lt;br&gt;
@@ -8248,7 +8252,7 @@ The battle is like nothing you&#39;ve seen before. The stakes are high and this 
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 2&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 2&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards 2]].&lt;br&gt;
@@ -8256,7 +8260,7 @@ You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes t
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 2&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 2&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards 2]].&lt;br&gt;
@@ -8508,7 +8512,7 @@ You launch your attack but much to your surprise, your two sides are as evenly m
 
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Tlaxcalans]].&lt;br&gt;
@@ -8603,7 +8607,7 @@ You gather your wits and your weapons, facing off once more against your hated e
 
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Tlaxcalans 2&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Tlaxcalans 2&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Tlaxcalans 2]].&lt;br&gt;
@@ -8711,7 +8715,7 @@ The battle is like nothing you&#39;ve seen before. The stakes are high and this 
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards 3]].&lt;br&gt;
@@ -8719,7 +8723,7 @@ You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes t
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards 3]].&lt;br&gt;
@@ -9014,7 +9018,7 @@ You launch your attack but much to your surprise, your two sides are as evenly m
 
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Tlaxcalans 3&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Tlaxcalans 3&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Tlaxcalans 3]].&lt;br&gt;
@@ -9163,7 +9167,7 @@ You launch your attack but much to your surprise, your two sides are evenly matc
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Spaniards Versus Tlaxcalans 2&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Spaniards Versus Tlaxcalans 2&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes the final blow|Battle Outcome Spaniards Versus Tlaxcalans 2]].&lt;br&gt;
@@ -9310,7 +9314,7 @@ The battle is like nothing you&#39;ve seen before. The stakes are high and this 
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs and Tlaxcalans versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs and Tlaxcalans versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes the final blow|Battle Outcome Aztecs and Tlaxcalans versus Spaniards]].&lt;br&gt;
@@ -9318,7 +9322,7 @@ You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes t
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
-You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs and Tlaxcalans versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs and Tlaxcalans versus Spaniards&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [[strikes the final blow|Aztecs and Tlaxcalans versus Spaniards]].&lt;br&gt;
@@ -9653,13 +9657,13 @@ Congratulations! You have freed Aguilar from his long captivity! &lt;&lt;link &q
 
 &lt;b&gt;Where did the gossip come from?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The land of Chuup&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The land of Chuup&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Their friend Náats&#39; Amal&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Their friend Náats&#39; Amal&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The great coastal city of Tulum&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The great coastal city of Tulum&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The priest in the temple&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The priest in the temple&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Aguilar_1 is &quot;Yes&quot;&gt;&gt;
 You have answered Question 1. The gossip came from the great coastal city of Tulum.&lt;br&gt;
@@ -9669,13 +9673,13 @@ You have answered Question 1. The gossip came from the great coastal city of Tul
 &lt;&lt;if $Aguilar_2 is &quot;No&quot; or $Aguilar_2 eq &quot;&quot; or ndef $Aguilar_2&gt;&gt;
 &lt;b&gt;What did the Maya see?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;A long line of men on horseback&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;A long line of men on horseback&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;A House Floating on the Water filled with men&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;A House Floating on the Water filled with men&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;A rowdy group of strangers in the market&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;A rowdy group of strangers in the market&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Messengers from the Aztec Emperor&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Messengers from the Aztec Emperor&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have answered Question 2. The Maya saw a house floating on water filled with men.&lt;br&gt;
@@ -9685,13 +9689,13 @@ You have answered Question 2. The Maya saw a house floating on water filled with
 &lt;&lt;if $Aguilar_3 is &quot;No&quot; or $Aguilar_3 eq &quot;&quot; or ndef $Aguilar_3&gt;&gt;
 &lt;b&gt;How did the interaction between the groups go?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers fired rocks into the sea and fled&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=2&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers fired rocks into the sea and fled&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=2&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers came ashore and asked for food&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers came ashore and asked for food&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers came ashore and attacked&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers came ashore and attacked&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers were carried away by a giant caiman&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers were carried away by a giant caiman&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have answered Question 3. The strangers fired rocks into the sea and fled.&lt;br&gt;
@@ -10002,13 +10006,13 @@ Congratulations! You have recruited Marina! &lt;&lt;link &quot;You may now conti
 &lt;&lt;elseif $Malinche_1 is &quot;No&quot; or ndef $Malinche_1 or $Malinche_1 eq &quot;&quot;&gt;&gt;
 &lt;b&gt;Why has power shifted in the land of the mountains?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Cholula has changed alliances&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Cholula has changed alliances&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Tlaxcala and Cholula fought a battle against the Mexica&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Tlaxcala and Cholula fought a battle against the Mexica&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The Mexica and the Cholulans fought a battle against Tlaxcala&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The Mexica and the Cholulans fought a battle against Tlaxcala&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Tlaxcala invaded Cholula, angering the Mexica&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Tlaxcala invaded Cholula, angering the Mexica&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have answered Question 1 correctly. Power has shifted in the land of the mountains because Choulula has changed alliances.&lt;br&gt;
@@ -10018,13 +10022,13 @@ You have answered Question 1 correctly. Power has shifted in the land of the mou
 &lt;&lt;if $Malinche_2 is &quot;No&quot; or ndef $Malinche_2 or $Malinche_2 eq &quot;&quot;&gt;&gt;
 &lt;b&gt;Why is the trader worried?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;He can no longer trade with Cholula&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;He can no longer trade with Cholula&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;He fears the war will spill over into Maya territory&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;He fears the war will spill over into Maya territory&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;He fears the Aztecs will soon conquer Maya territory&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;He fears the Aztecs will soon conquer Maya territory&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;He fears he will lose his supply of cacao&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;He fears he will lose his supply of cacao&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have answered Question 2 correctly. The trader fears that the Aztecs will soon conquor Maya territory.&lt;br&gt;
@@ -10034,13 +10038,13 @@ You have answered Question 2 correctly. The trader fears that the Aztecs will so
 &lt;&lt;if $Malinche_3 is &quot;No&quot; or ndef $Malinche_3 or $Malinche_3 eq &quot;&quot;&gt;&gt;
 &lt;b&gt;Given this information, who might make a valuable ally for the Spanish?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Tlaxcala&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=2&gt;&gt;&lt;&lt;set $Malinche_3=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Tlaxcala&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=2&gt;&gt;&lt;&lt;set $Malinche_3=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Cholula&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Cholula&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Both&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Both&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Neither&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Neither&quot; &quot;Malinche Answers&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have answered Question 3 correctly. Tlaxcala might make a valuable ally.&lt;br&gt;
@@ -10269,11 +10273,11 @@ You reach the end or your journey up the coast, landing at a site that you decid
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="305" name="test equations" tags="" position="475,3850" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;print $Aztecs_strength&gt;&gt;&lt;br&gt;
+&lt;&lt;print $Aztecs_Strength&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 cut Aztec Strength in half&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Halve Aztec Strength&quot; &quot;test equations outcome&quot;&gt;&gt;&lt;&lt;set $Aztecs_strength*=.5&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+&lt;&lt;link &quot;Halve Aztec Strength&quot; &quot;test equations outcome&quot;&gt;&gt;&lt;&lt;set $Aztecs_Strength*=.5&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 Set Final Totals&lt;br&gt;
 &lt;br&gt;
@@ -10281,7 +10285,7 @@ Set Final Totals&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;print $Final_Aztec_Players&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;print $Aztecs_strength&gt;&gt;&lt;br&gt;
+&lt;&lt;print $Aztecs_Strength&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;print $Moctezuma_Loyalty&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -10290,10 +10294,10 @@ Set Final Totals&lt;br&gt;
 &lt;&lt;print $Moctezuma_Wisdom&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;link &quot;Set the Final Aztec Points&quot; &quot;test equations outcome&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+&lt;&lt;link &quot;Set the Final Aztec Points&quot; &quot;test equations outcome&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$Moctezuma_Strength+$Moctezuma_Loyalty+$Moctezuma_Wisdom+$Tlacaelel_Strength+$Tlacaelel_Loyalty+$Tlacaelel_Wisdom+$Cuauhtemoc_Strength+$Cuauhtemoc_Loyalty+$Cuauhtemoc_Wisdom+$Cacamatzin_Strength+$Cacamatzin_Loyalty+$Cacamatzin_Wisdom+$Aztec_Priest_Strength+$Aztec_Priest_Loyalty+$Aztec_Priest_Wisdom+$Pochteca_Strength+$Pochteca_Loyalty+$Pochteca_Wisdom&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$Aztecs_Strength+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;link &quot;Set the Final Spanish Points&quot; &quot;test equations outcome&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+&lt;&lt;link &quot;Set the Final Spanish Points&quot; &quot;test equations outcome&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$Cortes_Strength+$Cortes_Loyalty+$Cortes_Wisdom+$Alvarado_Strength+$Alvarado_Loyalty+$Alvarado_Wisdom+$Aguilar_Strength+$Aguilar_Loyalty+$Aguilar_Wisdom+$Marina_Strength+$Marina_Loyalty+$Marina_Wisdom+$Garrido_Strength+$Garrido_Loyalty+$Garrido_Wisdom+$Olid_Strength+$Olid_Loyalty+$Olid_Wisdom&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$Spaniards_Strength+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 
 
@@ -10302,7 +10306,7 @@ Set Final Totals&lt;br&gt;
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="306" name="test equations outcome" tags="" position="600,3850" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;print $Aztecs_strength&gt;&gt;&lt;br&gt;
+&lt;&lt;print $Aztecs_Strength&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;print $Final_Aztec_Points&gt;&gt;&lt;br&gt;
@@ -10323,9 +10327,9 @@ Set Final Totals&lt;br&gt;
 &lt;br&gt;
 &lt;b&gt;Current Team Leader and Strength&lt;/b&gt;&lt;br&gt;
 Spaniards&lt;br&gt;
-Leader &lt;&lt;print $Span_Leader&gt;&gt;   Strength &lt;&lt;print $Spaniards_strength&gt;&gt; &lt;br&gt;
+Leader &lt;&lt;print $Span_Leader&gt;&gt;   Strength &lt;&lt;print $Spaniards_Strength&gt;&gt; &lt;br&gt;
 Aztecs&lt;br&gt;  
-Leader &lt;&lt;print $Aztec_Leader&gt;&gt;   Strength &lt;&lt;print $Aztecs_strength&gt;&gt; &lt;br&gt;
+Leader &lt;&lt;print $Aztec_Leader&gt;&gt;   Strength &lt;&lt;print $Aztecs_Strength&gt;&gt; &lt;br&gt;
 Tlaxcalans&lt;br&gt;
 Leader &lt;&lt;print $Tlax_Leader&gt;&gt;   Strength &lt;&lt;print $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt; &lt;br&gt;
 &lt;br&gt;
@@ -10367,7 +10371,7 @@ Location: &lt;&lt;print $Cacamatzin_currentPassage&gt;&gt;&lt;br&gt;
 Strength: &lt;&lt;print $Cacamatzin_Strength&gt;&gt;   Wisdom: &lt;&lt;print $Cacamatzin_Wisdom&gt;&gt;   Loyalty: &lt;&lt;print $Cacamatzin_Loyalty&gt;&gt;&lt;br&gt;
 Aztec_Priest&lt;br&gt;
 Location: &lt;&lt;print $Aztec_Priest_currentPassage&gt;&gt;&lt;br&gt;
-Strength: &lt;&lt;print $Aztec_Priest_Strength&gt;&gt;   Wisdom: &lt;&lt;print $Aztec_Priest_Wisdom&gt;&gt;   Loyalty: &lt;&lt;print $Aztec_Priest_Loyalty&gt;&gt;&lt;br&gt;
+Strength: &lt;&lt;print $users[$lookup[&quot;Aztec_Priest&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;   Wisdom: &lt;&lt;print $Aztec_Priest_Wisdom&gt;&gt;   Loyalty: &lt;&lt;print $Aztec_Priest_Loyalty&gt;&gt;&lt;br&gt;
 Pochteca&lt;br&gt;
 Location: &lt;&lt;print $Pochteca_currentPassage&gt;&gt;&lt;br&gt;
 Strength: &lt;&lt;print $Pochteca_Strength&gt;&gt;   Wisdom: &lt;&lt;print $Pochteca_Wisdom&gt;&gt;   Loyalty: &lt;&lt;print $Pochteca_Loyalty&gt;&gt;&lt;br&gt;
@@ -10421,8 +10425,8 @@ Tlaxcalan Omens is currently set to:  &lt;&lt;print $Tl_Omens&gt;&gt;.&lt;br&gt;
 Has the hold been cleared? &lt;b&gt;&lt;&lt;if $Tl_Omens eq &quot;&quot; or ndef $Tl_Omens&gt;&gt; No &lt;&lt;else&gt;&gt; Yes&lt;&lt;/if&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
 &lt;b&gt;Aztecs meet the Spaniards:&lt;/b&gt; &lt;i&gt;This holds players until the Aztecs decide how to approach the Spaniards on the beach, with gifts, emptyhanded, or aggressively.&lt;/i&gt;&lt;br&gt;
-Gifts is currently set to:  &lt;&lt;print $Gifts&gt;&gt;.&lt;br&gt;
-Has the hold been cleared? &lt;b&gt;&lt;&lt;if $Gifts eq &quot;&quot; or ndef $Gifts&gt;&gt; No &lt;&lt;else&gt;&gt; Yes&lt;&lt;/if&gt;&gt;&lt;/b&gt;&lt;br&gt;
+Gifts is currently set to:  &lt;&lt;print $flags[&quot;gifts&quot;]&gt;&gt;.&lt;br&gt;
+Has the hold been cleared? &lt;b&gt;&lt;&lt;if $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt; No &lt;&lt;else&gt;&gt; Yes&lt;&lt;/if&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
 &lt;b&gt;The Mutiny:&lt;/b&gt; &lt;i&gt;Tallies the number of votes that have been cast and whether for or against the Mutiny. Players are held until all 5 Spaniards have voted on whether or not to mutiny.&lt;/i&gt;&lt;br&gt;
 Mutiny Status: &lt;&lt;print $Mutiny&gt;&gt;. &lt;i&gt;If the total is greater than 3, there is a mutiny and a new leader.  If the total is less than -6, the leader of the mutiny chickened out. Otherwise, gameplay continues with the current leader in place.&lt;/i&gt;
@@ -10572,7 +10576,7 @@ When everyone has voted, you will deliver the news to &lt;&lt;print $Span_Leader
 
 &lt;&lt;if $Sp_Ld_Cor &gt;=$Sp_Ld_Alv and $Sp_Ld_Cor &gt;=$Sp_Ld_Agu and $Sp_Ld_Cor &gt;=$Sp_Ld_Gar&gt;&gt;
 &lt;&lt;if $Sp_Ld_Cor is 5 or $Sp_Ld_Alv is 5 or $Sp_Ld_Agu is 5 or $Sp_Ld_Gar is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -10580,7 +10584,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Sp_Ld_Alv &gt;=$Sp_Ld_Cor and $Sp_Ld_Alv &gt;=$Sp_Ld_Agu and $Sp_Ld_Alv &gt;=$Sp_Ld_Gar&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;
 &lt;&lt;if $Sp_Ld_Cor is 5 or $Sp_Ld_Alv is 5 or $Sp_Ld_Agu is 5 or $Sp_Ld_Gar is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -10588,7 +10592,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Sp_Ld_Agu &gt;=$Sp_Ld_Cor and $Sp_Ld_Agu &gt;=$Sp_Ld_Alv and $Sp_Ld_Agu &gt;=$Sp_Ld_Gar&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;
 &lt;&lt;if $Sp_Ld_Cor is 5 or $Sp_Ld_Alv is 5 or $Sp_Ld_Agu is 5 or $Sp_Ld_Gar is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
@@ -10596,7 +10600,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Sp_Ld_Gar &gt;=$Sp_Ld_Cor and $Sp_Ld_Gar &gt;=$Sp_Ld_Alv and $Sp_Ld_Gar &gt;=$Sp_Ld_Agu&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;
 &lt;&lt;if $Sp_Ld_Cor is 5 or $Sp_Ld_Alv is 5 or $Sp_Ld_Agu is 5 or $Sp_Ld_Gar is 5&gt;&gt;
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Spaniards_Strength+=3&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Generic New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;

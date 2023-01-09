@@ -31,7 +31,7 @@ class JSONFS {
                 file = file.slice(1, file.length - 1)
 
             if (fs.statSync(filePath).isDirectory()) {
-                container[file] = this.getJSON(filePath + path.sep)
+                container[file] = this.getJSON(filePath + path.sep);
                 // console.log(file, container[file])
             } else {
                 let fileContents = fs.readFileSync(filePath, {
@@ -51,18 +51,21 @@ class JSONFS {
         if (isArray) {
             container = Object.values(container)
         }
+        // console.log ("\n new thing :")
+        // console.log(container);
         return container;
     }
 
     setJSON(jsonObj, passedObject = "") {
         if (jsonObj !== null && (this.dataType(jsonObj) == "object" || this.dataType(jsonObj) == "array")) {
             if (JSON.stringify(jsonObj) === '{}') {
-                this.setKeyPair("{}", "", passedObject);
-            }
+                // this.setKeyPair("{}", "", passedObject);
+            }else{
             
-            Object.entries(jsonObj).forEach(([key, value]) => {
-                this.setKeyPair(key, value, passedObject);
-            });
+                Object.entries(jsonObj).forEach(([key, value]) => {
+                    this.setKeyPair(key, value, passedObject);
+                });
+            }
         }
     }
 

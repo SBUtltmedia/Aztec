@@ -3,9 +3,10 @@ const require = createRequire(import.meta.url);
 var XMLHttpRequest = require('xhr2');
 
 class DiscordBot {
+    //Webhook URLs need to be defined in env vars (config vars in heroku). get them at discord dev browser 
     constructor(spanishChannel, aztecChannel) {
-        this.spanishChannel = spanishChannel;
-        this.aztecChannel = aztecChannel;
+        this.spanishChannel = spanishChannel;  
+        this.aztecChannel = aztecChannel;      
     }
 
     // Sends notification to a specific channel 

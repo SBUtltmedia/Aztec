@@ -1,0 +1,86 @@
+<body></body>
+<script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+<script>
+    let roles = {
+        "Marina": {
+        "faction": "Spaniards",
+        "Character": "Doña Marina/Malinche",
+        "isLeader": "FALSE"
+        },
+        "Alvarado": {
+        "faction": "Spaniards",
+        "Character": "Pedro de Alvarado",    
+        "isLeader": "FALSE"
+        },
+        "Aguilar": {
+        "faction": "Spaniards",
+        "Character": "Gerónimo de Aguilar",  
+        "isLeader": "FALSE"
+        },
+        "Garrido": {
+        "faction": "Spaniards",
+        "Character": "Juan Garrido",
+        "isLeader": "FALSE"
+        },
+        "Olid": {
+        "faction": "Spaniards",
+        "Character": "Cristóbal de Olid",
+        "isLeader": "FALSE"
+        },
+        "Cortes": {
+        "faction": "Spaniards",
+        "Character": "Hernán Cortés",
+        "isLeader": "TRUE"
+        },
+        "Moctezuma": {
+        "faction": "Aztecs",
+        "Character": "Moctezuma",
+        "isLeader": "TRUE"
+        },
+        "Tlacaelel": {
+        "faction": "Aztecs",
+        "Character": "Tlacaelel Xocoyotl (aka Tlacaelel the Younger)",
+        "isLeader": "FALSE"
+        },
+        "Cuauhtemoc": {
+        "faction": "Aztecs",
+        "Character": "Cuauhtémoc",
+        "isLeader": "FALSE"
+        },
+        "Aztec_Priest": {
+        "faction": "Aztecs",
+        "Character": "Aztec Priest",
+        "isLeader": "FALSE"
+        },
+        "Cacamatzin": {
+        "faction": "Aztecs",
+        "Character": "Cacamatzín",
+        "isLeader": "FALSE"
+        },
+        "Pochteca": {
+        "faction": "Aztecs",
+        "Character": "Pochteca",
+        "isLeader": "FALSE"
+        },
+        "Xicotencatl_Elder": {
+        "faction": "Tlaxcalans",
+        "Character": "Xicotencatl the Elder",
+        "isLeader": "TRUE"
+        },
+        "Xicotencatl_Younger": {
+        "faction": "Tlaxcalans",
+        "Character": "Xicotencatl the Younger",
+        "isLeader": "FALSE"
+        },
+        "Maxixcatl": {
+        "faction": "Tlaxcalans",
+        "Character": "Maxixcatl",
+        "isLeader": "FALSE"
+        }
+    }
+    Object.keys(roles).forEach((role, index) => {
+        $("body").append($("<a/>", {"href": `http://localhost:53134/?test=true&id=${index}&nick=${role}&username=test}`, "html":role}))
+        $("body").append($("<br/>"))
+    })
+</script>
+
