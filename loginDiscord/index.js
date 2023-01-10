@@ -130,7 +130,9 @@ delete payload.code
 
 function returnTwine(userData, response) {
 	let userDataScriptTag =  `
-	<script> let userData=${userData} </script>
+	<script>
+	sessionStorage.clear(); 
+	let userData=${userData} </script>
 	`
 	let file = TWINE_PATH
 	let fileContents = fs.readFileSync(file)

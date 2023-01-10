@@ -14,7 +14,7 @@ function setLockInfo(lockId,callback)
 {
     lockInfo={lockId,callback}  
  
-};
+}
 function initTheyr(){
     socket= io();
     store ={}
@@ -31,7 +31,7 @@ socket.on('new connection', (state) => {
     console.log("Connecting state:", state)
     console.log("Current State:", Window.SugarCubeState.variables)
     let combinedState= _.merge(state,Window.SugarCubeState.variables)
-    console.log(combinedState)
+    console.log("Combined State", combinedState)
     store=combinedState;
     // If the server's state is empty, set with this client's state
     updateSugarCubeState(combinedState);
@@ -115,7 +115,7 @@ function difference(object, base) {
 // Updates client's SugarCube State when state changes are received from the server
 function updateSugarCubeState(new_state) {
     for (const [key, value] of Object.entries(new_state)) {
-        console.log({key,value})
+        // console.log({key,value})
         Window.SugarCubeState.variables[key] = value
     }
 }
