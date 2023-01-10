@@ -86,7 +86,6 @@ importScripts([
 				const Discord = require('discord.js');
 				const client = new Discord.Client();
 				const list = client.guilds.cache.get("myServerID"); 
-				list.members.cache.forEach(member => console.log(member.user.username)); 
 				
 			} catch (e) {
 				return e;
@@ -123,9 +122,10 @@ importScripts([
 					username: "testAccount",
 					nick: "Cuauhtemoc"}
 	}  
-	State.setVar("$userId", userData.id)
-	State.setVar("_username", userData.username)
-	State.setVar("_role", userData.nick)
+	State.setVar("$userId", searchParams.get('id') || userData.id)
+	State.setVar("_username", searchParams.get('username') || userData.username)
+	State.setVar("_role", searchParams.get('nick') || userData.nick)
+	State.setVar("_passage", searchParams.get('passage') || "The Library")
 
 <</script>>
 
@@ -252,27 +252,34 @@ importScripts([
 
 
 <<if ndef $users[$userId]>>
-<<script>>	
-console.log(State.getVar("$userId"))
-console.log(State.getVar("$users[$userId]["role"]"))
+<<script>>
+	console.log("fuckin");
 <</script>>
-
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["Character"]>>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
+<<set $users[$userId]["passage"] = _passage>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
-<<set _currentPassage = $users[$userId]["currentPassage"]>>
-<<discord spanish>> test <</discord>>
+/* Act 1 Scene 1 */
+/* //To Mutiny or Not */
+/* <<set _currentPassage = "Act 1 Scene 1">> */
+<<set _currentPassage = $users[$userId]["passage"]>>
+/* <<discord spanish>> test <</discord>> */
+
 
 <<script>>
-	var passage = State.getVar("_currentPassage");
-	if(passage){
-		Engine.play(passage)
+	var passage = State.getVar("$users")[State.getVar("$userId")]["passage"];
+	console.log(State.getVar("_passage") || passage);
+	if(State.getVar("_passage") || passage){
+		setTimeout(() => {
+			Engine.play(State.getVar("_passage") || passage)
+		}, 100);
+
 	}else{
 		Engine.show();
 	}
@@ -282,8 +289,6 @@ console.log(State.getVar("$users[$userId]["role"]"))
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
-
-<<<<<<< HEAD
 <<set _userlist = []>>
 <<set _factionUsers = {}>>
 <<set _factionUsers["offline"] = []>>
@@ -308,21 +313,9 @@ console.log(State.getVar("$users[$userId]["role"]"))
 <</for>>
 <<print JSON.stringify(_factionUsers)>>
 /* Object.keys(factions).forEach(faction=>{
-=======
-/* <<set _userlist = {}>> */
-
-/* <<for _id, _data range $users>>
-	/* <<if new Date().getTime() - _data[lastSeen] < 100>>> */
-
-		/* <<if ndef _userlist[_data["faction"]]>>
-			<<set _userlist[_data["faction"]] = {}>>
-		<</if>>
-		<<set _userlist[_data["faction"]][_id] = _data["lastSeen"]>> */
-	/* <</if>> */
->>>>>>> 36a9b53bc4b665744b180c47131d63cca32c359b
 	
 
-<<set $users[$userId]["passage"] = passage()>>
+<<set $users[$userId]["passage"] = passage()>> 
 /* <<print $userId>>
 <<print $users[$userId]["faction"]>> */
 /* <<print $users[$userId]["character"]>> */
@@ -331,13 +324,14 @@ console.log(State.getVar("$users[$userId]["role"]"))
 /* <<audio ":all" stop>> */
 <!-- <<masteraudio mute>> -->
 <<script>>
-console.log(userData)
+console.log({userData})
 <</script>>
 <<masteraudio unmute>>
  <<run showMap()>>
  <<run showStats()>>
 <<run setBackground()>>
 
+<<set $users[$userId]["passage"] = passage()>> 
 <<set _currentTime=new Date()>>
 <<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 <</theyr>>
@@ -413,6 +407,9 @@ You wonder what the next day will bring. Return here to find out.<br>
 
 :: To Mutiny or Not [Done Breaks] {"position":"225,1584","size":"100,100"}
 <<theyr>>
+
+testing testing 
+
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
 After your encounter with the Mexica, the mood amongst your men has shifted. There is excitement about the riches that may well lie inland, but there is also a clear current of unease. You have heard whispers that the men have doubts about your leadership and that one of your crew may be even be planning a mutiny. <br>
