@@ -123,8 +123,8 @@ importScripts([
 	]	
 )
 	.then(function() {
-	setLockInfo(lockId,LoadScreen.unlock);
-	initTheyr()
+	// setLockInfo(lockId,LoadScreen.unlock);
+	initTheyr({lockId,callback:LoadScreen.unlock})
 	}
 );
 
@@ -188,14 +188,12 @@ importScripts([
 
 	if(searchParams.get(&#39;test&#39;)){
 		console.log(&quot;Test user&quot;);
-		userData = {id : 1231231232131,
-					username: &quot;testAccount&quot;,
-					nick: &quot;Cuauhtemoc&quot;}
-		State.setVar(&quot;_passage&quot;, searchParams.get(&#39;passage&#39;) || &quot;The Library&quot;)
+		// userData = {id : 1231231232131,
+		// 			username: &quot;testAccount&quot;,
+		// 			nick: &quot;Cuauhtemoc&quot;}
 	}  
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.username)
-	State.setVar(&quot;_passage&quot;, userData.jsonfsState.users[State.getVar(&quot;$userId&quot;)].passage)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.nick)
 
 &lt;&lt;/script&gt;&gt;
@@ -322,7 +320,6 @@ importScripts([
 &lt;&lt;set $flags = {}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-
 &lt;&lt;if ndef $users[$userId]&gt;&gt;
 &lt;&lt;script&gt;&gt;
 	console.log(&quot;problemo&quot;);
@@ -333,13 +330,11 @@ importScripts([
 &lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;Character&quot;]&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]][&quot;isLeader&quot;]&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;passage&quot;] = &quot;The Library&quot;&gt;&gt;
 &lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 
 &lt;&lt;else&gt;&gt;
 &lt;&lt;set $users[$userId] = userData.jsonfsState.users[$userId]&gt;&gt;
-&lt;&lt;script&gt;&gt;
-	console.log(State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)])
-&lt;&lt;/script&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 /* Act 1 Scene 1 */
@@ -350,21 +345,30 @@ importScripts([
 
 
 &lt;&lt;script&gt;&gt;
-	var passage = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;passage&quot;];
-	var role = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;role&quot;];
-	// if(!(role in State.getVar(&quot;_roles&quot;))){
-	// 	Engline.play(&quot;Name Not Recognized&quot;)
-	// }else{
+	const loc = location.search
+	const searchParams = new URLSearchParams(loc);
 
-	if((State.getVar(&quot;_passage&quot;) || passage)){
+	if(searchParams.get(&#39;test&#39;)){
+		console.log(&quot;Test user&quot;);
+		State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
+	}  
+
+
+	var passage = State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;)
+	var role = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;role&quot;];
+	if(!(role in State.getVar(&quot;_roles&quot;))){
+		Engine.play(&quot;Name Not Recognized&quot;)
+	}else{
+
+	if((passage)){
 		setTimeout(() =&gt; {
-			Engine.play(State.getVar(&quot;_passage&quot;) || passage)
+			Engine.play(passage)
 		}, 100);
 
 	}else{
 		Engine.show();
 	}
-	// }
+	}
 	$(&quot;body&quot;).css({opacity:1})
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;theyr&gt;&gt;
 

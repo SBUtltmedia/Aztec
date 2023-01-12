@@ -10,12 +10,13 @@ let waitForData = new Promise((resolve, reject) => {
 
 // User connects, asks server for game state
 
-function setLockInfo(lockId,callback)
-{
-    lockInfo={lockId,callback}  
+// function setLockInfo(lockId,callback)
+// {
+//     lockInfo={lockId,callback}  
  
-}
-function initTheyr(){
+// }
+
+function initTheyr(lockInfo, callback){
     updateSugarCubeState(userData.jsonfsState);
     socket= io();
     store ={}
