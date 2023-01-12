@@ -4,6 +4,8 @@
 
 import sys
 import re
+import json
+
 
 # replacements = [{'regex': '\$role', 'replace': '$users[$userId]["role"]'},
 #                 {'regex': '\$faction', 'replace': '$users[$userId]["faction"]'},
@@ -13,67 +15,67 @@ import re
 #                 {'regex': 'images\/', 'replace': 'Twine/images/'}
 #                 ]
 
-replacements = []
+# replacements = []
 
 
-for i in ["Aztecs", "Tlaxcalans", "Spaniards"]:
-    for j in ["Loyalty", "Strength", "Wisdom"]:
-        replacements.append({'regex': f'{i}_{j}', 'replace' : f'factions["{i}"]["stats"]["{j}"]'})
+# for i in ["Aztecs", "Tlaxcalans", "Spaniards"]:
+#     for j in ["Loyalty", "Strength", "Wisdom"]:
+#         replacements.append({'regex': f'{i}_{j}', 'replace' : f'factions["{i}"]["stats"]["{j}"]'})
 
-for i in ["Marina","Alvarado","Aguilar","Garrido","Olid","Moctezuma","Tlacaelel","Cuauhtemoc","Aztec_Priest","Cacamatzin","Pochteca","Xicotencatl_Elder","Xicotencatl_Younger","Maxixcatl", "Cortes"]:
-    for j in ["Loyalty", "Strength", "Wisdom"]:
-        replacements.append({'regex': f'{i}_{j}', 'replace' : f'users[$lookup["{i}"]]["stats"]["{j}"]'})
+# for i in ["Marina","Alvarado","Aguilar","Garrido","Olid","Moctezuma","Tlacaelel","Cuauhtemoc","Aztec_Priest","Cacamatzin","Pochteca","Xicotencatl_Elder","Xicotencatl_Younger","Maxixcatl", "Cortes"]:
+#     for j in ["Loyalty", "Strength", "Wisdom"]:
+#         replacements.append({'regex': f'{i}_{j}', 'replace' : f'users[$lookup["{i}"]]["stats"]["{j}"]'})
         
 # Opens file
 twee_in_file = open(sys.argv[1], encoding="utf-8")
 new_twee = twee_in_file.read()
 
 # Removes any <<theyr>> or <</theyr>> tags
-tags_to_remove = ['<<theyr>>', '<</theyr>>']
-for tag in tags_to_remove:
-    new_twee = new_twee.replace(tag, "")
+# tags_to_remove = ['<<theyr>>', '<</theyr>>']
+# for tag in tags_to_remove:
+#     new_twee = new_twee.replace(tag, "")
 
 
-# Iterates through replacement array and makes replacements
-for replacement in replacements:
-    new_twee = re.sub(replacement['regex'], replacement['replace'], new_twee)
+# # Iterates through replacement array and makes replacements
+# for replacement in replacements:
+#     new_twee = re.sub(replacement['regex'], replacement['replace'], new_twee)
 
 
-# Replaces the header
-header_in_file = open(sys.argv[2], encoding="utf-8")
-twee_header = header_in_file.read()
+# # Replaces the header
+# header_in_file = open(sys.argv[2], encoding="utf-8")
+# twee_header = header_in_file.read()
 
-regex = re.compile('(:: Story Stylesheet).*(:: Act 1 Scene 1.*?\n)', re.DOTALL)
-new_twee = regex.sub(twee_header, new_twee)
+# regex = re.compile('(:: Story Stylesheet).*(:: Act 1 Scene 1.*?\n)', re.DOTALL)
+# new_twee = regex.sub(twee_header, new_twee)
 
 
-## LIVEBLOCK TAGS ##
-whitelist = ["Character Identification"]
+# ## LIVEBLOCK TAGS ##
+# whitelist = ["Character Identification"]
 
-# Whitelist all passages with textboxes in them
-expression = r'(:: ([^\n]+) {"position".*?}.*?)(?:(?=::)|(?=\Z))'
-m = re.findall(expression, new_twee, re.DOTALL)
-for match in m:
-    if "<<textbox " in match[0]:
-        passage = match[1]
-        passage = passage.replace('[Done Breaks]', '')
-        passage = passage.replace('[Done]', '')
-        whitelist.append(passage)
+# # Whitelist all passages with textboxes in them
+# expression = r'(:: ([^\n]+) {"position".*?}.*?)(?:(?=::)|(?=\Z))'
+# m = re.findall(expression, new_twee, re.DOTALL)
+# for match in m:
+#     if "<<textbox " in match[0]:
+#         passage = match[1]
+#         passage = passage.replace('[Done Breaks]', '')
+#         passage = passage.replace('[Done]', '')
+#         whitelist.append(passage)
 
 # Add liveblock to all passages
-expression = r'(:: .*?{"position".*?})'
-output = re.sub(expression, r'<</theyr>>\n\n\1\n<<theyr>>', new_twee, flags=re.DOTALL)
-
+expression = r'(:: [^{]*)'
+output = re.findall(expression, new_twee, flags=re.DOTALL)
+print(json.dumps(output))
 # Find whitelisted passages and remove their liveblocks
-for item in whitelist:
-    expression = r'(:: ' + item + r'.*?{"position".*?)\n<<theyr>>(.*?)<</theyr>>\n\n'
-    output = re.sub(expression, r'\1\2', output, flags=re.DOTALL)
-new_twee = output
+# for item in whitelist:
+#     expression = r'(:: ' + item + r'.*?{"position".*?)\n<<theyr>>(.*?)<</theyr>>\n\n'
+#     output = re.sub(expression, r'\1\2', output, flags=re.DOTALL)
+# new_twee = output
 
 
-# Remove first <</theyr>> and append <</theyr>> to the end (fixes edge cases)
-new_twee = new_twee.replace("<</theyr>>", "", 1)
-new_twee += "<</theyr>>"
+# # Remove first <</theyr>> and append <</theyr>> to the end (fixes edge cases)
+# new_twee = new_twee.replace("<</theyr>>", "", 1)
+# new_twee += "<</theyr>>"
 
 
 # Write to output file 
