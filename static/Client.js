@@ -14,8 +14,9 @@ function setLockInfo(lockId,callback)
 {
     lockInfo={lockId,callback}  
  
-};
+}
 function initTheyr(){
+    updateSugarCubeState(userData.jsonfsState);
     socket= io();
     store ={}
 // Receive state from server upon connecting, then update all other clients that you've connected
@@ -26,17 +27,16 @@ socket.on('connect', () => {
 })
 
 socket.on('new connection', (state) => {
-    localStorage.clear();
-    console.log("LOAD #2: RECEIEVE STATE");
-    console.log("Connecting state:", state)
-    console.log("Current State:", Window.SugarCubeState.variables)
-    let combinedState= _.merge(state,Window.SugarCubeState.variables)
-    console.log(combinedState)
-    store=combinedState;
-    // If the server's state is empty, set with this client's state
-    updateSugarCubeState(combinedState);
+    // console.log("LOAD #2: RECEIEVE STATE");
+    // console.log("Connecting state:", state)
+    // console.log("Current State:", Window.SugarCubeState.variables)
+    // // let combinedState= _.merge(state,Window.SugarCubeState.variables)
+    // console.log("Combined State", combinedState)
+    // store=combinedState;
+    // // If the server's state is empty, set with this client's state
+    // updateSugarCubeState(combinedState);
     $(document).trigger(":liveupdate");
-    socket.emit('difference',store)
+    // socket.emit('difference',store)
 
 
 });
@@ -115,7 +115,7 @@ function difference(object, base) {
 // Updates client's SugarCube State when state changes are received from the server
 function updateSugarCubeState(new_state) {
     for (const [key, value] of Object.entries(new_state)) {
-        console.log({key,value})
+        // console.log({key,value})
         Window.SugarCubeState.variables[key] = value
     }
 }

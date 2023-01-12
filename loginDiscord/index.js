@@ -38,7 +38,8 @@ const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
 const GUILD_ID = process.env.guildId || guildId;
 const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
 let refreshTokens={};
-const { app } = new webstack(PORT).get();
+const webstackInstance = new webstack(PORT);
+const { app } = webstackInstance.get();
 
 
 app.post('/discordbot', urlencodedParser, function(req, res) {
@@ -114,7 +115,7 @@ delete payload.code
 				},
 			});
 			const guildResultJson = await guildResult.json();
-			const userDataJSON = JSON.stringify({...guildResultJson, ...userResultJson});
+			const userDataJSON = JSON.stringify({jsonfsState: webstackInstance.state, ...guildResultJson, ...userResultJson});
 			
 
 			return returnTwine(userDataJSON, response);
@@ -130,7 +131,9 @@ delete payload.code
 
 function returnTwine(userData, response) {
 	let userDataScriptTag =  `
-	<script> let userData=${userData} </script>
+	<script>
+	sessionStorage.clear(); 
+	let userData=${userData} </script>
 	`
 	let file = TWINE_PATH
 	let fileContents = fs.readFileSync(file)
