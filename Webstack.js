@@ -16,6 +16,7 @@ class Webstack {
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
+		this.state=database.getData()
 	}
 
 	get() {

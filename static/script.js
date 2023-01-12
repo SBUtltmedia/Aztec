@@ -50,10 +50,10 @@ function fade(el, destination) {
 $(document).on(':passagestart', (ev) => {
 
     let { role, faction } = getUser();
-    console.log(role);
-    console.log(faction);
+    // console.log(role);
+    // console.log(faction);
     let id = SugarCube.State.getVar(`$lookup`)[role];
-    console.log(id);
+    // console.log(id);
     // SugarCube.State.variables["users"][id]["passage"] = $(ev.content).data("passage");
     // var passage = $(ev.content).data("passage");
     // var passageLength= Math.sqrt( SugarCube.Story.get(passage).text.length);
