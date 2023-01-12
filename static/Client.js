@@ -15,7 +15,7 @@ function setLockInfo(lockId,callback)
     lockInfo={lockId,callback}  
  
 }
-function initTheyr(){
+function initTheyr(lockInfo){
     updateSugarCubeState(userData.jsonfsState);
     socket= io();
     store ={}
