@@ -119,14 +119,12 @@ importScripts([
 
 	if(searchParams.get('test')){
 		console.log("Test user");
-		userData = {id : 1231231232131,
-					username: "testAccount",
-					nick: "Cuauhtemoc"}
-		State.setVar("_passage", searchParams.get('passage') || "The Library")
+		// userData = {id : 1231231232131,
+		// 			username: "testAccount",
+		// 			nick: "Cuauhtemoc"}
 	}  
 	State.setVar("$userId", searchParams.get('id') || userData.id)
 	State.setVar("_username", searchParams.get('username') || userData.username)
-	State.setVar("_passage", userData.jsonfsState.users[State.getVar("$userId")].passage)
 	State.setVar("_role", searchParams.get('nick') || userData.nick)
 
 <</script>>
@@ -253,7 +251,6 @@ importScripts([
 <<set $flags = {}>>
 <</if>>
 
-
 <<if ndef $users[$userId]>>
 <<script>>
 	console.log("problemo");
@@ -264,13 +261,11 @@ importScripts([
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["Character"]>>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
+<<set $users[$userId]["passage"] = "The Library">>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 
 <<else>>
 <<set $users[$userId] = userData.jsonfsState.users[$userId]>>
-<<script>>
-	console.log(State.getVar("$users")[State.getVar("$userId")])
-<</script>>
 <</if>>
 
 /* Act 1 Scene 1 */
@@ -281,21 +276,30 @@ importScripts([
 
 
 <<script>>
-	var passage = State.getVar("$users")[State.getVar("$userId")]["passage"];
-	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
-	// if(!(role in State.getVar("_roles"))){
-	// 	Engline.play("Name Not Recognized")
-	// }else{
+	const loc = location.search
+	const searchParams = new URLSearchParams(loc);
 
-	if((State.getVar("_passage") || passage)){
+	if(searchParams.get('test')){
+		console.log("Test user");
+		State.setVar("$users[$userId]['passage']", searchParams.get('passage'))
+	}  
+
+
+	var passage = State.getVar("$users[$userId]['passage']")
+	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
+	if(!(role in State.getVar("_roles"))){
+		Engine.play("Name Not Recognized")
+	}else{
+
+	if((passage)){
 		setTimeout(() => {
-			Engine.play(State.getVar("_passage") || passage)
+			Engine.play(passage)
 		}, 100);
 
 	}else{
 		Engine.show();
 	}
-	// }
+	}
 	$("body").css({opacity:1})
 <</script>>
 

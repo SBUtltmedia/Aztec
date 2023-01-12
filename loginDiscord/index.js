@@ -57,7 +57,7 @@ app.get('/', async ({ query }, response) => {
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
 	
-		userDataJSON = "{}"
+		userDataJSON = JSON.stringify({jsonfsState: webstackInstance.state})
 
 		return returnTwine(userDataJSON, response);
 	}
