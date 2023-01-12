@@ -14,9 +14,8 @@ let waitForData = new Promise((resolve, reject) => {
 // {
 //     lockInfo={lockId,callback}  
  
-// }
-
-function initTheyr(lockInfo, callback){
+}
+function initTheyr(lockInfo){
     updateSugarCubeState(userData.jsonfsState);
     socket= io();
     store ={}
