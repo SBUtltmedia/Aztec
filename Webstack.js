@@ -16,6 +16,7 @@ class Webstack {
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
+		this.state=database.getData()
 	}
 
 	get() {
@@ -62,7 +63,7 @@ class Webstack {
 
 	
 			socket.on('difference', (state) => {
-				console.log(state)
+				// console.log(state)
 				delete state['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
 				this.serverStore.dispatch({
 					type: 'UPDATE',
