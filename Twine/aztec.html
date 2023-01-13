@@ -124,6 +124,7 @@ importScripts([
 )
 	.then(function() {
 	// setLockInfo(lockId,LoadScreen.unlock);
+	console.log("runnining init")
 	initTheyr({lockId,callback:LoadScreen.unlock})
 	}
 );
@@ -178,7 +179,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -195,6 +196,7 @@ importScripts([
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.nick)
+	console.log(&quot;jsonstate:&quot;, userData.jsonfsState)
 
 &lt;&lt;/script&gt;&gt;
 
@@ -334,7 +336,7 @@ importScripts([
 &lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 
 &lt;&lt;else&gt;&gt;
-&lt;&lt;set $users[$userId] = userData.jsonfsState.users[$userId]&gt;&gt;
+/* &lt;&lt;set $users[$userId] = userData.jsonfsState.users[$userId]&gt;&gt; */
 &lt;&lt;/if&gt;&gt;
 
 /* Act 1 Scene 1 */
@@ -350,7 +352,7 @@ importScripts([
 
 	if(searchParams.get(&#39;test&#39;)){
 		console.log(&quot;Test user&quot;);
-		State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
+		if(searchParams.has(&#39;passage&#39;))State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
 	}  
 
 
@@ -362,10 +364,12 @@ importScripts([
 
 	if((passage)){
 		setTimeout(() =&gt; {
+			console.log(&quot;playing passage&quot;)
 			Engine.play(passage)
 		}, 100);
 
 	}else{
+		console.log(&quot;no passage&quot;)
 		Engine.show();
 	}
 	}
@@ -473,7 +477,7 @@ importScripts([
 		&lt;&lt;set _userlist.push(_id)&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/for&gt;&gt;
-&lt;&lt;print JSON.stringify(_factionUsers)&gt;&gt;
+
 /* Object.keys(factions).forEach(faction=&gt;{
 	
 
@@ -492,24 +496,6 @@ importScripts([
 
 &lt;&lt;if passage() != Config.passages.start&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = passage()&gt;&gt; 
-
-&lt;&lt;else&gt;&gt;
-/* &lt;&lt;script&gt;&gt;
-	var passage = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;passage&quot;];
-	var role = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;role&quot;];
-	console.log(State.getVar(&quot;_passage&quot;));
-	if((State.getVar(&quot;_passage&quot;) || passage)){
-		if(!(State.getVar(&quot;_passage&quot;) == &quot;The Library&quot; || passage == &quot;The Library&quot;)){
-		setTimeout(() =&gt; {
-			Engine.play(State.getVar(&quot;_passage&quot;) || passage);
-		}, 100);
-		}
-
-	}else{
-		Engine.show();
-	}
-	$(&quot;body&quot;).css({opacity:1})
-	&lt;&lt;/script&gt;&gt; */
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;set _currentTime=new Date()&gt;&gt;
