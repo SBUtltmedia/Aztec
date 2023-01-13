@@ -1,3 +1,5 @@
+
+
 var socket;
 
 var store ={};
@@ -16,6 +18,7 @@ let waitForData = new Promise((resolve, reject) => {
  
 
 function initTheyr(lockInfo){
+    
     updateSugarCubeState(userData.jsonfsState);
     socket= io();
     store ={}

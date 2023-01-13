@@ -51,7 +51,6 @@ importScripts([
 )
 	.then(function() {
 	// setLockInfo(lockId,LoadScreen.unlock);
-	console.log("runnining init")
 	initTheyr({lockId,callback:LoadScreen.unlock})
 	}
 );

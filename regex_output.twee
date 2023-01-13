@@ -51,6 +51,7 @@ importScripts([
 )
 	.then(function() {
 	// setLockInfo(lockId,LoadScreen.unlock);
+	console.log("runnining init")
 	initTheyr({lockId,callback:LoadScreen.unlock})
 	}
 );
@@ -119,15 +120,14 @@ importScripts([
 
 	if(searchParams.get('test')){
 		console.log("Test user");
-		userData = {id : 1231231232131,
-					username: "testAccount",
-					nick: "Cuauhtemoc"}
-		State.setVar("_passage", searchParams.get('passage') || "The Library")
+		// userData = {id : 1231231232131,
+		// 			username: "testAccount",
+		// 			nick: "Cuauhtemoc"}
 	}  
 	State.setVar("$userId", searchParams.get('id') || userData.id)
 	State.setVar("_username", searchParams.get('username') || userData.username)
-	State.setVar("_passage", userData.jsonfsState.users[State.getVar("$userId")].passage)
 	State.setVar("_role", searchParams.get('nick') || userData.nick)
+	console.log("jsonstate:", userData.jsonfsState)
 
 <</script>>
 
@@ -253,7 +253,6 @@ importScripts([
 <<set $flags = {}>>
 <</if>>
 
-
 <<if ndef $users[$userId]>>
 <<script>>
 	console.log("problemo");
@@ -264,10 +263,11 @@ importScripts([
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["Character"]>>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
+<<set $users[$userId]["passage"] = "The Library">>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 
 <<else>>
-<<set $users[$userId] = userData.jsonfsState.users[$userId]>>
+/* <<set $users[$userId] = userData.jsonfsState.users[$userId]>> */
 <</if>>
 
 /* Act 1 Scene 1 */
@@ -278,21 +278,32 @@ importScripts([
 
 
 <<script>>
-	var passage = State.getVar("$users")[State.getVar("$userId")]["passage"];
-	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
-	// if(!(role in State.getVar("_roles"))){
-	// 	Engline.play("Name Not Recognized")
-	// }else{
+	const loc = location.search
+	const searchParams = new URLSearchParams(loc);
 
-	if((State.getVar("_passage") || passage)){
+	if(searchParams.get('test')){
+		console.log("Test user");
+		if(searchParams.has('passage'))State.setVar("$users[$userId]['passage']", searchParams.get('passage'))
+	}  
+
+
+	var passage = State.getVar("$users[$userId]['passage']")
+	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
+	if(!(role in State.getVar("_roles"))){
+		Engine.play("Name Not Recognized")
+	}else{
+
+	if((passage)){
 		setTimeout(() => {
-			Engine.play(State.getVar("_passage") || passage)
+			console.log("playing passage")
+			Engine.play(passage)
 		}, 100);
 
 	}else{
+		console.log("no passage")
 		Engine.show();
 	}
-	// }
+	}
 	$("body").css({opacity:1})
 <</script>>
 
@@ -401,7 +412,7 @@ importScripts([
 		<<set _userlist.push(_id)>>
 	<</for>>
 <</for>>
-<<print JSON.stringify(_factionUsers)>>
+
 /* Object.keys(factions).forEach(faction=>{
 	
 
@@ -420,24 +431,6 @@ importScripts([
 
 <<if passage() != Config.passages.start>>
 <<set $users[$userId]["passage"] = passage()>> 
-
-<<else>>
-/* <<script>>
-	var passage = State.getVar("$users")[State.getVar("$userId")]["passage"];
-	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
-	console.log(State.getVar("_passage"));
-	if((State.getVar("_passage") || passage)){
-		if(!(State.getVar("_passage") == "The Library" || passage == "The Library")){
-		setTimeout(() => {
-			Engine.play(State.getVar("_passage") || passage);
-		}, 100);
-		}
-
-	}else{
-		Engine.show();
-	}
-	$("body").css({opacity:1})
-	<</script>> */
 <</if>>
 
 <<set _currentTime=new Date()>>
