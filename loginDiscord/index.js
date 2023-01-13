@@ -53,7 +53,7 @@ app.get('/', async ({ query }, response) => {
 	// console.log({query});
 	const { code, state, test, nick } = query;
 	let userDataJSON;
-
+	webstackInstance.update();
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
 	

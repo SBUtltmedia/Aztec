@@ -14,7 +14,7 @@ let waitForData = new Promise((resolve, reject) => {
 // {
 //     lockInfo={lockId,callback}  
  
-}
+
 function initTheyr(lockInfo){
     updateSugarCubeState(userData.jsonfsState);
     socket= io();
@@ -30,11 +30,11 @@ socket.on('new connection', (state) => {
     // console.log("LOAD #2: RECEIEVE STATE");
     // console.log("Connecting state:", state)
     // console.log("Current State:", Window.SugarCubeState.variables)
-    // // let combinedState= _.merge(state,Window.SugarCubeState.variables)
-    // console.log("Combined State", combinedState)
-    // store=combinedState;
-    // // If the server's state is empty, set with this client's state
-    // updateSugarCubeState(combinedState);
+    let combinedState= _.merge(state,Window.SugarCubeState.variables)
+    console.log("Combined State", combinedState)
+    store=combinedState;
+    // If the server's state is empty, set with this client's state
+    updateSugarCubeState(combinedState);
     $(document).trigger(":liveupdate");
     // socket.emit('difference',store)
 
