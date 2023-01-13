@@ -51,7 +51,6 @@ importScripts([
 )
 	.then(function() {
 	// setLockInfo(lockId,LoadScreen.unlock);
-	console.log("runnining init")
 	initTheyr({lockId,callback:LoadScreen.unlock})
 	}
 );
@@ -274,7 +273,7 @@ importScripts([
 /* //To Mutiny or Not */
 /* <<set _currentPassage = "Act 1 Scene 1">> */
 <<set _currentPassage = $users[$userId]["passage"]>>
-/* <<discord spanish>> test <</discord>> */
+<<discord aztecspanish>> test <</discord>>
 
 
 <<script>>
