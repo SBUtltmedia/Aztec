@@ -3057,6 +3057,7 @@ As you close the door of the weird little room behind you, you know <<link "you'
 <<if ndef $Quest_Points_A >>
 <<set$Quest_Points_A=0 >>
 <</if>>
+Your team has accumulated <<print $Quest_Points_A>> points. <br>
 <<link "Increase Quest Points" "Scavenger Hunt Hub">><<set $Quest_Points_A += 1>><</link>>
 Click each of the following glyphs to visit key sites around the Aztec Empire. Once you have read the clue and figured out your location, your quest leader must enter the name of the place into the text box provided. When you have obtained enough resources to survive your journey, you will be given the location of Quetzalcoatl's heart. <br>
 <br>
