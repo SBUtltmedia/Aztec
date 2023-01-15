@@ -27,7 +27,6 @@ importScripts([
 	'/socket.io/socket.io.js',
 	'https://unpkg.com/redux@latest/dist/redux.min.js',
 	'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
-	`${urlPrefix}script.js`,
 	`${urlPrefix}resize.js`,
 	`${urlPrefix}picker.js`,
 	`${urlPrefix}Client.js`,
