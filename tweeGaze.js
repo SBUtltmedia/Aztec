@@ -49,7 +49,6 @@ gaze('Twine/*.*', function (err, watcher) {
                     `${modulePath}redux.min.js`,
                     `${modulePath}Client.js`,
                     `${modulePath}lodash.min.js`,
-                    // `${modulePath}script.js`,
                     // `${modulePath}resize.js`,
                     // `${modulePath}picker.js`,
                 ]
