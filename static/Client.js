@@ -146,11 +146,16 @@ function showStats() {
             }
         }
 
-        let twineVar = SugarCube.State.variables[`${faction}_strength`];
+        // let twineVar = SugarCube.State.variables[`${faction}_strength`];
+        let factions=SugarCube.State.variables['factions']
+
+      let twineVar =  factions[faction]['stats']['Strength'];
         // let twineVar = 7
+        console.log("here",twineVar)
         if(twineVar) { 
             let statString = `${faction}: ${twineVar} `;
         if(!$('#factionStrength').length){
+
             $('#story')
                 .append($('<div/>', 
                     {
