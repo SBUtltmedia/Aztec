@@ -354,7 +354,7 @@ importScripts([
 
 	if(searchParams.get(&#39;test&#39;)){
 		console.log(&quot;Test user&quot;);
-		if(searchParams.has(&#39;passage&#39;))State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
+		if(searchParams.has(&#39;passage&#39;) &amp;&amp; encodeURI(searchParams.get(&#39;passage&#39;)) !== &quot;-Continue where you left off-&quot;)State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
 	}  
 
 
