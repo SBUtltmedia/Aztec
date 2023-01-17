@@ -9,6 +9,584 @@ import DiscordBot from '../discordBot.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
+
+const myVars = [{
+	"varName": "currentPassage",
+	"value": 0
+}, {
+	"varName": "Tlaxcalans_currentMap",
+	"value": 0
+}, {
+	"varName": "Aztecs_currentMap",
+	"value": 0
+}, {
+	"varName": "Start_ctr",
+	"value": 0
+}, {
+	"varName": "Start_sum",
+	"value": 0
+}, {
+	"varName": "Xicotencatl_Elder_currentPassage",
+	"value": 0
+}, {
+	"varName": "Tlax_Leader",
+	"value": 0
+}, {
+	"varName": "Quest_Leader_T",
+	"value": 0
+}, {
+	"varName": "T_Q_Heart",
+	"value": 0
+}, {
+	"varName": "Cuauhtemoc_currentPassage",
+	"value": 0
+}, {
+	"varName": "Maxixcatl_currentPassage",
+	"value": 0
+}, {
+	"varName": "Moctezuma_currentPassage",
+	"value": 0
+}, {
+	"varName": "Pochteca_currentPassage",
+	"value": 0
+}, {
+	"varName": "Tlacaelel_currentPassage",
+	"value": 0
+}, {
+	"varName": "Alvarado_currentPassage",
+	"value": 0
+}, {
+	"varName": "Aztec_Leader",
+	"value": 0
+}, {
+	"varName": "Quest_Leader_A",
+	"value": 0
+}, {
+	"varName": "A_Q_Heart",
+	"value": 0
+}, {
+	"varName": "Span_Leader",
+	"value": 0
+}, {
+	"varName": "Cuba_Voted_ctr",
+	"value": 0
+}, {
+	"varName": "Cuba_Voted_sum",
+	"value": 0
+}, {
+	"varName": "Xochimilco_Ans_A",
+	"value": 0
+}, {
+	"varName": "Malinalco_Ans_A",
+	"value": 0
+}, {
+	"varName": "Azcapotzalco_Ans_A",
+	"value": 0
+}, {
+	"varName": "Tlatelolco_Ans_A",
+	"value": 0
+}, {
+	"varName": "Cuauhnahuac_Ans_A",
+	"value": 0
+}, {
+	"varName": "Chapultepec_Ans_A",
+	"value": 0
+}, {
+	"varName": "Quest_Points_A_ctr",
+	"value": 0
+}, {
+	"varName": "Quest_Points_A_sum",
+	"value": 0
+}, {
+	"varName": "Mal_Story",
+	"value": 0
+}, {
+	"varName": "Xochimilco_Ans_T",
+	"value": 0
+}, {
+	"varName": "Quest_Points_T_ctr",
+	"value": 0
+}, {
+	"varName": "Quest_Points_T_sum",
+	"value": 0
+}, {
+	"varName": "Malinalco_Ans_T",
+	"value": 0
+}, {
+	"varName": "Chapultepec_Ans_T",
+	"value": 0
+}, {
+	"varName": "Cuauhnahuac_Ans_T",
+	"value": 0
+}, {
+	"varName": "Tlatelolco_Ans_T",
+	"value": 0
+}, {
+	"varName": "Azcapotzalco_Ans_T",
+	"value": 0
+}, {
+	"varName": "Cac_Statement",
+	"value": 0
+}, {
+	"varName": "Cuauh_Statement",
+	"value": 0
+}, {
+	"varName": "Tlac_Statement",
+	"value": 0
+}, {
+	"varName": "Moc_Proc",
+	"value": 0
+}, {
+	"varName": "Poch_Statement",
+	"value": 0
+}, {
+	"varName": "AzPr_Statement",
+	"value": 0
+}, {
+	"varName": "MocMut_Moc_ctr",
+	"value": 0
+}, {
+	"varName": "MocMut_Moc_sum",
+	"value": 0
+}, {
+	"varName": "Moc_Mut_Vote_ctr",
+	"value": 0
+}, {
+	"varName": "Moc_Mut_Vote_sum",
+	"value": 0
+}, {
+	"varName": "Moc_Mut_Tla_ctr",
+	"value": 0
+}, {
+	"varName": "Moc_Mut_AzP_sum",
+	"value": 0
+}, {
+	"varName": "MocMut_Cua_ctr",
+	"value": 0
+}, {
+	"varName": "MocMut_Cua_sum",
+	"value": 0
+}, {
+	"varName": "MocMut_Tla_ctr",
+	"value": 0
+}, {
+	"varName": "MocMut_Tla_sum",
+	"value": 0
+}, {
+	"varName": "Cholula_Attack",
+	"value": 0
+}, {
+	"varName": "XY_Statement",
+	"value": 0
+}, {
+	"varName": "XE_Statement",
+	"value": 0
+}, {
+	"varName": "Max_Statement",
+	"value": 0
+}, {
+	"varName": "TL_St_Voted_ctr",
+	"value": 0
+}, {
+	"varName": "TL_St_Voted_sum",
+	"value": 0
+}, {
+	"varName": "Tl_Attacks_Pu",
+	"value": 0
+}, {
+	"varName": "Mal_Boy",
+	"value": 0
+}, {
+	"varName": "Mal_Share",
+	"value": 0
+}, {
+	"varName": "Letter",
+	"value": 0
+}, {
+	"varName": "Mal_Span",
+	"value": 0
+}, {
+	"varName": "Gifts",
+	"value": 0
+}, {
+	"varName": "L_Received",
+	"value": 0
+}, {
+	"varName": "Mutiny_ctr",
+	"value": 0
+}, {
+	"varName": "Mutiny_sum",
+	"value": 0
+}, {
+	"varName": "Mutiny_Voted_ctr",
+	"value": 0
+}, {
+	"varName": "Mutiny_Voted_sum",
+	"value": 0
+}, {
+	"varName": "Tlaloc_currentPassage",
+	"value": 0
+}, {
+	"varName": "Spaniards_currentMap",
+	"value": 0
+}, {
+	"varName": "Tl_Omens",
+	"value": 0
+}, {
+	"varName": "TL_Attacks",
+	"value": 0
+}, {
+	"varName": "Olid_Let_Hm",
+	"value": 0
+}, {
+	"varName": "Cortes_Let_Hm",
+	"value": 0
+}, {
+	"varName": "Alvarado_Let_Hm",
+	"value": 0
+}, {
+	"varName": "Garrido_Let_Hm",
+	"value": 0
+}, {
+	"varName": "Causeway_ctr",
+	"value": 0
+}, {
+	"varName": "Causeway_sum",
+	"value": 0
+}, {
+	"varName": "Marina_Let_Hm",
+	"value": 0
+}, {
+	"varName": "Aguilar_Let_Hm",
+	"value": 0
+}, {
+	"varName": "Omens",
+	"value": 0
+}, {
+	"varName": "Tlax_Cause",
+	"value": 0
+}, {
+	"varName": "Tl_IG",
+	"value": 0
+}, {
+	"varName": "Feast_ctr",
+	"value": 0
+}, {
+	"varName": "Feast_sum",
+	"value": 0
+}, {
+	"varName": "Al_TG",
+	"value": 0
+}, {
+	"varName": "Ga_TG",
+	"value": 0
+}, {
+	"varName": "Co_TG",
+	"value": 0
+}, {
+	"varName": "Ol_TG",
+	"value": 0
+}, {
+	"varName": "Ma_TG",
+	"value": 0
+}, {
+	"varName": "Ag_TG",
+	"value": 0
+}, {
+	"varName": "Tlc_Rec",
+	"value": 0
+}, {
+	"varName": "Cu_Rec",
+	"value": 0
+}, {
+	"varName": "Ca_Rec",
+	"value": 0
+}, {
+	"varName": "AP_Rec",
+	"value": 0
+}, {
+	"varName": "Moc_Rec",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Tla_ctr",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Tla_sum",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Vote_ctr",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Vote_sum",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Cua_ctr",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Cua_sum",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Moc_ctr",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Moc_sum",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Cac_ctr",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Cac_sum",
+	"value": 0
+}, {
+	"varName": "Moctezuma_Loyalty_ctr",
+	"value": 0
+}, {
+	"varName": "Moctezuma_Loyalty_sum",
+	"value": 0
+}, {
+	"varName": "Moctezuma_Wisdom_ctr",
+	"value": 0
+}, {
+	"varName": "Moctezuma_Wisdom_sum",
+	"value": 0
+}, {
+	"varName": "Aztec_Mut",
+	"value": 0
+}, {
+	"varName": "Span_Cho_Att",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Agu_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Agu_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Vote_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Vote_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Cor_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Cor_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Alv_Teno_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Alv_Teno_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Mar_Teno_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Agu_Teno_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Gar_Teno_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Oli_Teno_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Vote_Teno_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Vote_Teno_sum",
+	"value": 0
+}, {
+	"varName": "Tlax_Alliance",
+	"value": 0
+}, {
+	"varName": "Cortes_Dead",
+	"value": 0
+}, {
+	"varName": "Riot_ctr",
+	"value": 0
+}, {
+	"varName": "Riot_sum",
+	"value": 0
+}, {
+	"varName": "Riot_Vote_ctr",
+	"value": 0
+}, {
+	"varName": "Riot_Vote_sum",
+	"value": 0
+}, {
+	"varName": "Az_Ld_Dead",
+	"value": 0
+}, {
+	"varName": "Hostage",
+	"value": 0
+}, {
+	"varName": "Moc_Riot_Vote_ctr",
+	"value": 0
+}, {
+	"varName": "Moc_Riot_Vote_sum",
+	"value": 0
+}, {
+	"varName": "MocRiot_Moc_ctr",
+	"value": 0
+}, {
+	"varName": "MocRiot_Moc_sum",
+	"value": 0
+}, {
+	"varName": "MocRiot_Poc_ctr",
+	"value": 0
+}, {
+	"varName": "MocRiot_Poc_sum",
+	"value": 0
+}, {
+	"varName": "MocRiot_Tla_ctr",
+	"value": 0
+}, {
+	"varName": "MocRiot_Tla_sum",
+	"value": 0
+}, {
+	"varName": "MocRiot_Cac_ctr",
+	"value": 0
+}, {
+	"varName": "MocRiot_Cac_sum",
+	"value": 0
+}, {
+	"varName": "MocRiot_Cua_sum",
+	"value": 0
+}, {
+	"varName": "MocRiot_AzP_sum",
+	"value": 0
+}, {
+	"varName": "MocRiot_AzP",
+	"value": 0
+}, {
+	"varName": "MocRiot_Cua",
+	"value": 0
+}, {
+	"varName": "New_Aztec_Leader",
+	"value": 0
+}, {
+	"varName": "Hostage_Exch",
+	"value": 0
+}, {
+	"varName": "Final_Aztec_Players",
+	"value": 0
+}, {
+	"varName": "Final_Aztec_Points",
+	"value": 0
+}, {
+	"varName": "Final_Spanish_Players",
+	"value": 0
+}, {
+	"varName": "Final_Spanish_Points",
+	"value": 0
+}, {
+	"varName": "Final_Tlaxcalan_Players",
+	"value": 0
+}, {
+	"varName": "Final_Tlaxcalan_Points",
+	"value": 0
+}, {
+	"varName": "Final_Span_Tlax_Points",
+	"value": 0
+}, {
+	"varName": "Aguilar_Free",
+	"value": 0
+}, {
+	"varName": "Marina_Free",
+	"value": 0
+}, {
+	"varName": "Aguilar_1",
+	"value": 0
+}, {
+	"varName": "Malinche_Free",
+	"value": 0
+}, {
+	"varName": "Aguilar_2",
+	"value": 0
+}, {
+	"varName": "Aguilar_3",
+	"value": 0
+}, {
+	"varName": "Malinche_1",
+	"value": 0
+}, {
+	"varName": "Malinche_2",
+	"value": 0
+}, {
+	"varName": "Malinche_3",
+	"value": 0
+}, {
+	"varName": "Mut_Cor_ctr",
+	"value": 0
+}, {
+	"varName": "Mut_Cor_sum",
+	"value": 0
+}, {
+	"varName": "Mut_Olid_ctr",
+	"value": 0
+}, {
+	"varName": "Mut_Olid_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Oli_Teno_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Mar_Teno_ctr",
+	"value": 0
+}, {
+	"varName": "MocRiot_Cua_ctr",
+	"value": 0
+}, {
+	"varName": "MocRiot_AzP_ctr",
+	"value": 0
+}, {
+	"varName": "NT_Fight",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Alv_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Olid_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Gar_sum",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Alv_sum",
+	"value": 0
+}, {
+	"varName": "cause",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Agu_Teno_ctr",
+	"value": 0
+}, {
+	"varName": "Sp_Ld_Gar_Teno_ctr",
+	"value": 0
+}, {
+	"varName": "Noche",
+	"value": 0
+}, {
+	"varName": "Tlax_Bat",
+	"value": 0
+}, {
+	"varName": "Tlax_Final_Dec",
+	"value": 0
+}, {
+	"varName": "Sp_Peace",
+	"value": 0
+}, {
+	"varName": "Az_Peace",
+	"value": 0
+}, {
+	"varName": "Tl_Peace",
+	"value": 0
+}, {
+	"varName": "Tlax_Az_Peace",
+	"value": 0
+}]
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const __filename = fileURLToPath(import.meta.url)
@@ -49,18 +627,18 @@ const PORT = process.env.PORT || port;
 const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
 const GUILD_ID = process.env.guildId || guildId;
 const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
-let refreshTokens={};
+let refreshTokens = {};
 const webstackInstance = new webstack(PORT);
 const { app } = webstackInstance.get();
 
 
-app.post('/discordbot', urlencodedParser, function(req, res) {
+app.post('/discordbot', urlencodedParser, function (req, res) {
 	res.send({});
 	discordBot.sendNotif(req.body.channel, req.body.message)
 })
 
 
-	// Listen for requests to the homepage
+// Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
 	// console.log({query});
 	const { code, state, test, nick } = query;
@@ -68,16 +646,16 @@ app.get('/', async ({ query }, response) => {
 	webstackInstance.update();
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
-	
-		userDataJSON = JSON.stringify({jsonfsState: webstackInstance.state})
 
-		return returnTwine(userDataJSON, response);
+		userDataJSON = JSON.stringify({ jsonfsState: webstackInstance.state })
+
+		return makeUserDataJSON(userDataJSON, response);
 	}
 
 	// Redirects through Discord API
 	if (code) {
-	
-		let payload ={
+
+		let payload = {
 			client_id: CLIENT_ID,
 			client_secret: CLIENT_SECRET,
 			code,
@@ -85,10 +663,10 @@ app.get('/', async ({ query }, response) => {
 			redirect_uri: HEROKU_URL,
 			scope: 'identify',
 		};
-		if(refreshTokens[state]){
+		if (refreshTokens[state]) {
 
-			payload={...payload,...{grant_type:'refresh_token',refresh_token: refreshTokens[state].refresh_token}}
-delete payload.code
+			payload = { ...payload, ...{ grant_type: 'refresh_token', refresh_token: refreshTokens[state].refresh_token } }
+			delete payload.code
 		}
 		try {
 			const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
@@ -101,8 +679,8 @@ delete payload.code
 
 			const oauthData = await oauthResult.json();
 			console.log(oauthData)
-			if (oauthData.refresh_token){
-				refreshTokens[state]=oauthData;
+			if (oauthData.refresh_token) {
+				refreshTokens[state] = oauthData;
 
 			}
 
@@ -111,27 +689,28 @@ delete payload.code
 				// response.send(JSON.stringify(oauthData));
 				return loadHome(response);
 			}
-			
+
 			const userResult = await fetch('https://discord.com/api/users/@me', {
 				headers: {
 					authorization: `${oauthData.token_type} ${oauthData.access_token}`,
 				},
 			});
-			
+
 			const userResultJson = await userResult.json();
 			let userData = JSON.stringify(userResultJson);
-		
+
 			const guildResult = await fetch(`https://discord.com/api/users/@me/guilds/${GUILD_ID}/member`, {
 				headers: {
 					authorization: `${oauthData.token_type} ${oauthData.access_token}`,
 				},
 			});
 			const guildResultJson = await guildResult.json();
-			const userDataJSON = JSON.stringify({jsonfsState: webstackInstance.state, ...guildResultJson, ...userResultJson});
-			
 
-			return returnTwine(userDataJSON, response);
-			
+			return makeUserDataJSON( { jsonfsState: webstackInstance.state, ...guildResultJson, ...userResultJson },response);
+
+
+			//return returnTwine(userDataJSON, response);
+
 		} catch (error) {
 			// NOTE: An unauthorized token will not throw an error;
 			// it will return a 401 Unauthorized response in the try block above
@@ -140,9 +719,591 @@ delete payload.code
 	}
 	loadHome(response);
 });
+function makeUserDataJSON(myObject,response){
+	const myVars = [{
+		"varName": "currentPassage",
+		"value": 0
+	}, {
+		"varName": "Tlaxcalans_currentMap",
+		"value": 0
+	}, {
+		"varName": "Aztecs_currentMap",
+		"value": 0
+	}, {
+		"varName": "Start_ctr",
+		"value": 0
+	}, {
+		"varName": "Start_sum",
+		"value": 0
+	}, {
+		"varName": "Xicotencatl_Elder_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Tlax_Leader",
+		"value": 0
+	}, {
+		"varName": "Quest_Leader_T",
+		"value": 0
+	}, {
+		"varName": "T_Q_Heart",
+		"value": 0
+	}, {
+		"varName": "Cuauhtemoc_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Maxixcatl_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Moctezuma_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Pochteca_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Tlacaelel_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Alvarado_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Aztec_Leader",
+		"value": 0
+	}, {
+		"varName": "Quest_Leader_A",
+		"value": 0
+	}, {
+		"varName": "A_Q_Heart",
+		"value": 0
+	}, {
+		"varName": "Span_Leader",
+		"value": 0
+	}, {
+		"varName": "Cuba_Voted_ctr",
+		"value": 0
+	}, {
+		"varName": "Cuba_Voted_sum",
+		"value": 0
+	}, {
+		"varName": "Xochimilco_Ans_A",
+		"value": 0
+	}, {
+		"varName": "Malinalco_Ans_A",
+		"value": 0
+	}, {
+		"varName": "Azcapotzalco_Ans_A",
+		"value": 0
+	}, {
+		"varName": "Tlatelolco_Ans_A",
+		"value": 0
+	}, {
+		"varName": "Cuauhnahuac_Ans_A",
+		"value": 0
+	}, {
+		"varName": "Chapultepec_Ans_A",
+		"value": 0
+	}, {
+		"varName": "Quest_Points_A_ctr",
+		"value": 0
+	}, {
+		"varName": "Quest_Points_A_sum",
+		"value": 0
+	}, {
+		"varName": "Mal_Story",
+		"value": 0
+	}, {
+		"varName": "Xochimilco_Ans_T",
+		"value": 0
+	}, {
+		"varName": "Quest_Points_T_ctr",
+		"value": 0
+	}, {
+		"varName": "Quest_Points_T_sum",
+		"value": 0
+	}, {
+		"varName": "Malinalco_Ans_T",
+		"value": 0
+	}, {
+		"varName": "Chapultepec_Ans_T",
+		"value": 0
+	}, {
+		"varName": "Cuauhnahuac_Ans_T",
+		"value": 0
+	}, {
+		"varName": "Tlatelolco_Ans_T",
+		"value": 0
+	}, {
+		"varName": "Azcapotzalco_Ans_T",
+		"value": 0
+	}, {
+		"varName": "Cac_Statement",
+		"value": 0
+	}, {
+		"varName": "Cuauh_Statement",
+		"value": 0
+	}, {
+		"varName": "Tlac_Statement",
+		"value": 0
+	}, {
+		"varName": "Moc_Proc",
+		"value": 0
+	}, {
+		"varName": "Poch_Statement",
+		"value": 0
+	}, {
+		"varName": "AzPr_Statement",
+		"value": 0
+	}, {
+		"varName": "MocMut_Moc_ctr",
+		"value": 0
+	}, {
+		"varName": "MocMut_Moc_sum",
+		"value": 0
+	}, {
+		"varName": "Moc_Mut_Vote_ctr",
+		"value": 0
+	}, {
+		"varName": "Moc_Mut_Vote_sum",
+		"value": 0
+	}, {
+		"varName": "Moc_Mut_Tla_ctr",
+		"value": 0
+	}, {
+		"varName": "Moc_Mut_AzP_sum",
+		"value": 0
+	}, {
+		"varName": "MocMut_Cua_ctr",
+		"value": 0
+	}, {
+		"varName": "MocMut_Cua_sum",
+		"value": 0
+	}, {
+		"varName": "MocMut_Tla_ctr",
+		"value": 0
+	}, {
+		"varName": "MocMut_Tla_sum",
+		"value": 0
+	}, {
+		"varName": "Cholula_Attack",
+		"value": 0
+	}, {
+		"varName": "XY_Statement",
+		"value": 0
+	}, {
+		"varName": "XE_Statement",
+		"value": 0
+	}, {
+		"varName": "Max_Statement",
+		"value": 0
+	}, {
+		"varName": "TL_St_Voted_ctr",
+		"value": 0
+	}, {
+		"varName": "TL_St_Voted_sum",
+		"value": 0
+	}, {
+		"varName": "Tl_Attacks_Pu",
+		"value": 0
+	}, {
+		"varName": "Mal_Boy",
+		"value": 0
+	}, {
+		"varName": "Mal_Share",
+		"value": 0
+	}, {
+		"varName": "Letter",
+		"value": 0
+	}, {
+		"varName": "Mal_Span",
+		"value": 0
+	}, {
+		"varName": "Gifts",
+		"value": 0
+	}, {
+		"varName": "L_Received",
+		"value": 0
+	}, {
+		"varName": "Mutiny_ctr",
+		"value": 0
+	}, {
+		"varName": "Mutiny_sum",
+		"value": 0
+	}, {
+		"varName": "Mutiny_Voted_ctr",
+		"value": 0
+	}, {
+		"varName": "Mutiny_Voted_sum",
+		"value": 0
+	}, {
+		"varName": "Tlaloc_currentPassage",
+		"value": 0
+	}, {
+		"varName": "Spaniards_currentMap",
+		"value": 0
+	}, {
+		"varName": "Tl_Omens",
+		"value": 0
+	}, {
+		"varName": "TL_Attacks",
+		"value": 0
+	}, {
+		"varName": "Olid_Let_Hm",
+		"value": 0
+	}, {
+		"varName": "Cortes_Let_Hm",
+		"value": 0
+	}, {
+		"varName": "Alvarado_Let_Hm",
+		"value": 0
+	}, {
+		"varName": "Garrido_Let_Hm",
+		"value": 0
+	}, {
+		"varName": "Causeway_ctr",
+		"value": 0
+	}, {
+		"varName": "Causeway_sum",
+		"value": 0
+	}, {
+		"varName": "Marina_Let_Hm",
+		"value": 0
+	}, {
+		"varName": "Aguilar_Let_Hm",
+		"value": 0
+	}, {
+		"varName": "Omens",
+		"value": 0
+	}, {
+		"varName": "Tlax_Cause",
+		"value": 0
+	}, {
+		"varName": "Tl_IG",
+		"value": 0
+	}, {
+		"varName": "Feast_ctr",
+		"value": 0
+	}, {
+		"varName": "Feast_sum",
+		"value": 0
+	}, {
+		"varName": "Al_TG",
+		"value": 0
+	}, {
+		"varName": "Ga_TG",
+		"value": 0
+	}, {
+		"varName": "Co_TG",
+		"value": 0
+	}, {
+		"varName": "Ol_TG",
+		"value": 0
+	}, {
+		"varName": "Ma_TG",
+		"value": 0
+	}, {
+		"varName": "Ag_TG",
+		"value": 0
+	}, {
+		"varName": "Tlc_Rec",
+		"value": 0
+	}, {
+		"varName": "Cu_Rec",
+		"value": 0
+	}, {
+		"varName": "Ca_Rec",
+		"value": 0
+	}, {
+		"varName": "AP_Rec",
+		"value": 0
+	}, {
+		"varName": "Moc_Rec",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Tla_ctr",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Tla_sum",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Vote_ctr",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Vote_sum",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Cua_ctr",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Cua_sum",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Moc_ctr",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Moc_sum",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Cac_ctr",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Cac_sum",
+		"value": 0
+	}, {
+		"varName": "Moctezuma_Loyalty_ctr",
+		"value": 0
+	}, {
+		"varName": "Moctezuma_Loyalty_sum",
+		"value": 0
+	}, {
+		"varName": "Moctezuma_Wisdom_ctr",
+		"value": 0
+	}, {
+		"varName": "Moctezuma_Wisdom_sum",
+		"value": 0
+	}, {
+		"varName": "Aztec_Mut",
+		"value": 0
+	}, {
+		"varName": "Span_Cho_Att",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Agu_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Agu_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Vote_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Vote_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Cor_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Cor_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Alv_Teno_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Alv_Teno_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Mar_Teno_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Agu_Teno_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Gar_Teno_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Oli_Teno_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Vote_Teno_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Vote_Teno_sum",
+		"value": 0
+	}, {
+		"varName": "Tlax_Alliance",
+		"value": 0
+	}, {
+		"varName": "Cortes_Dead",
+		"value": 0
+	}, {
+		"varName": "Riot_ctr",
+		"value": 0
+	}, {
+		"varName": "Riot_sum",
+		"value": 0
+	}, {
+		"varName": "Riot_Vote_ctr",
+		"value": 0
+	}, {
+		"varName": "Riot_Vote_sum",
+		"value": 0
+	}, {
+		"varName": "Az_Ld_Dead",
+		"value": 0
+	}, {
+		"varName": "Hostage",
+		"value": 0
+	}, {
+		"varName": "Moc_Riot_Vote_ctr",
+		"value": 0
+	}, {
+		"varName": "Moc_Riot_Vote_sum",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Moc_ctr",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Moc_sum",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Poc_ctr",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Poc_sum",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Tla_ctr",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Tla_sum",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Cac_ctr",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Cac_sum",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Cua_sum",
+		"value": 0
+	}, {
+		"varName": "MocRiot_AzP_sum",
+		"value": 0
+	}, {
+		"varName": "MocRiot_AzP",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Cua",
+		"value": 0
+	}, {
+		"varName": "New_Aztec_Leader",
+		"value": 0
+	}, {
+		"varName": "Hostage_Exch",
+		"value": 0
+	}, {
+		"varName": "Final_Aztec_Players",
+		"value": 0
+	}, {
+		"varName": "Final_Aztec_Points",
+		"value": 0
+	}, {
+		"varName": "Final_Spanish_Players",
+		"value": 0
+	}, {
+		"varName": "Final_Spanish_Points",
+		"value": 0
+	}, {
+		"varName": "Final_Tlaxcalan_Players",
+		"value": 0
+	}, {
+		"varName": "Final_Tlaxcalan_Points",
+		"value": 0
+	}, {
+		"varName": "Final_Span_Tlax_Points",
+		"value": 0
+	}, {
+		"varName": "Aguilar_Free",
+		"value": 0
+	}, {
+		"varName": "Marina_Free",
+		"value": 0
+	}, {
+		"varName": "Aguilar_1",
+		"value": 0
+	}, {
+		"varName": "Malinche_Free",
+		"value": 0
+	}, {
+		"varName": "Aguilar_2",
+		"value": 0
+	}, {
+		"varName": "Aguilar_3",
+		"value": 0
+	}, {
+		"varName": "Malinche_1",
+		"value": 0
+	}, {
+		"varName": "Malinche_2",
+		"value": 0
+	}, {
+		"varName": "Malinche_3",
+		"value": 0
+	}, {
+		"varName": "Mut_Cor_ctr",
+		"value": 0
+	}, {
+		"varName": "Mut_Cor_sum",
+		"value": 0
+	}, {
+		"varName": "Mut_Olid_ctr",
+		"value": 0
+	}, {
+		"varName": "Mut_Olid_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Oli_Teno_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Mar_Teno_ctr",
+		"value": 0
+	}, {
+		"varName": "MocRiot_Cua_ctr",
+		"value": 0
+	}, {
+		"varName": "MocRiot_AzP_ctr",
+		"value": 0
+	}, {
+		"varName": "NT_Fight",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Alv_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Olid_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Gar_sum",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Alv_sum",
+		"value": 0
+	}, {
+		"varName": "cause",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Agu_Teno_ctr",
+		"value": 0
+	}, {
+		"varName": "Sp_Ld_Gar_Teno_ctr",
+		"value": 0
+	}, {
+		"varName": "Noche",
+		"value": 0
+	}, {
+		"varName": "Tlax_Bat",
+		"value": 0
+	}, {
+		"varName": "Tlax_Final_Dec",
+		"value": 0
+	}, {
+		"varName": "Sp_Peace",
+		"value": 0
+	}, {
+		"varName": "Az_Peace",
+		"value": 0
+	}, {
+		"varName": "Tl_Peace",
+		"value": 0
+	}, {
+		"varName": "Tlax_Az_Peace",
+		"value": 0
+	}]
+	let combined= Object.assign({}, myVars,myObject)
+	return returnTwine(combined,response )
+
+}
 
 function returnTwine(userData, response) {
-	let userDataScriptTag =  `
+	let userDataScriptTag = `
 	<script>
 	sessionStorage.clear(); 
 	let userData=${userData} </script>
