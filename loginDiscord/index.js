@@ -26,6 +26,8 @@ if (fs.existsSync(__dirname + "/" + config_path)) {
 	var aztecTlax = confObj.channelconf[0].aztecTlax;
 	var aztecSpan = confObj.channelconf[0].aztecSpan;
 	var spanTlax = confObj.channelconf[0].spanTlax;
+	var general = confObj.channelconf[0].general;
+	var omen = confObj.channelconf[0].omen;
 }
 
 const SPANISH_CHANNEL = process.env.spanishChannel || spanishChannel;
@@ -34,8 +36,10 @@ const TLAX_CHANNEL = process.env.tlaxChannel || tlaxChannel;
 const AZTEC_TLAX = process.env.aztecTlax || aztecTlax;
 const AZTEC_SPAN = process.env.aztecSpan || aztecSpan;
 const SPAN_TLAX = process.env.spanTlax || spanTlax;
+const GENERAL = process.env.general || general;
+const OMEN = process.env.omen || omen;
 
-let discordBot = new DiscordBot(SPANISH_CHANNEL, AZTEC_CHANNEL, TLAX_CHANNEL, AZTEC_TLAX, AZTEC_SPAN, SPAN_TLAX);
+let discordBot = new DiscordBot(SPANISH_CHANNEL, AZTEC_CHANNEL, TLAX_CHANNEL, AZTEC_TLAX, AZTEC_SPAN, SPAN_TLAX, GENERAL, OMEN);
 
 // Gets environment variables from Heroku. Otherwise, get them locally from the config file.
 const CLIENT_ID = process.env.clientId || clientId;
