@@ -19,6 +19,10 @@ class Webstack {
 		this.state=database.getData()
 	}
 
+	update(){
+		this.state= database.getData();
+	}
+
 	get() {
 		return {
 			app
@@ -49,7 +53,7 @@ class Webstack {
 
 			
 				if (typeof gstate !== 'undefined') {
-					// console.log(JSON.stringify(gstate))
+					console.log("gstate", JSON.stringify(gstate))
 					io.to(id).emit('new connection', gstate)
 				}
 
