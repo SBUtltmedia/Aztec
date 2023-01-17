@@ -3073,11 +3073,21 @@ Click each of the following glyphs to visit key sites around the Aztec Empire. O
 <br>
 Remember: You must enter the proper Nahuatl name and you must use the correct spelling! The text box will remain available until you enter the correct response.<br>
 <br>
+/* <<print  JSON.stringify($users)>> */
+
+<<if $users[$userId]["faction"] == "Spaniards">>
+testing
+
+<</if>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 
+<<print  $users[$userId]["faction"]>>
+
 <<if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq "" or $Xochimilco_Ans_A isnot "xochimilco">> 
-	
+
+<<print  $users[$userId]["faction"]>>
+
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]<br>
 <br>
 <<elseif $Xochimilco_Ans_A is "xochimilco">>

@@ -95,7 +95,11 @@
         $("body").append($("<div/>", {"css":{'cursor':'pointer'}, 'data-role':`${role}`, "html":role}).on("click", function(){
             let pickedRole = ($(this).data("role"))
             let passage = ($("#passage").val())
+            if(passage == "-Continue where you left off-"){
+                location.assign(`/?test=true&id=${index}&nick=${pickedRole}&username=test`)
+            }else{
             location.assign(`/?test=true&id=${index}&nick=${pickedRole}&username=test&passage=${passage}`)
+            }
         }))
         
         $("body").append($("<br/>"))
