@@ -135,19 +135,12 @@ class JSONFS {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
     let testData = {
-        "title": "test2",
-        "array": ["Tim"],
-        "users": {
-            "123456789": {
-                "name": "Paul",
-                "coins": 23
-            }
-        }
+        ".gitignore": "!.gitignore",
     }
 
     let jsonFS = new JSONFS();
      jsonFS.wipeData();
-    // jsonFS.setJSON(testData);
+    jsonFS.setJSON(testData);
     // console.log(JSON.stringify(jsonFS.getJSON()));
 }
 
