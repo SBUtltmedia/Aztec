@@ -221,6 +221,11 @@ importScripts([
 <<set $lookup = {}>>
 <</if>>
 
+<<if ndef $Start>>
+<<set $Start = 0>>
+<</if>>
+
+
 <<if ndef $factions>>
 	<<set $factions = {
 		"Aztecs": {"stats": {
@@ -3073,12 +3078,7 @@ Click each of the following glyphs to visit key sites around the Aztec Empire. O
 <br>
 Remember: You must enter the proper Nahuatl name and you must use the correct spelling! The text box will remain available until you enter the correct response.<br>
 <br>
-/* <<print  JSON.stringify($users)>> */
 
-<<if $users[$userId]["faction"] == "Spaniards">>
-testing
-
-<</if>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 
