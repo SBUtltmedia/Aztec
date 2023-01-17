@@ -63,7 +63,7 @@ new_twee = twee_in_file.read()
 #         whitelist.append(passage)
 
 # Add liveblock to all passages
-expression = r'(:: [^{]*)'
+expression = r'^+'
 
 output = re.findall(expression, new_twee, flags=re.DOTALL)
 print(json.dumps(output))
