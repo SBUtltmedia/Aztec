@@ -151,7 +151,7 @@ function showStats() {
 
       let twineVar =  factions[faction]['stats']['Strength'];
         // let twineVar = 7
-        console.log("here",twineVar)
+        //console.log("here",twineVar)
         if(twineVar) { 
             let statString = `${faction}: ${twineVar} `;
         if(!$('#factionStrength').length){
@@ -181,7 +181,7 @@ function showStats() {
 function setFactionStrength(rawValue) {
     var maxValue=14;
     var value=rawValue/maxValue*100;
-    console.log({value, rawValue});
+    //console.log({value, rawValue});
 
 
         let gradientMask= `linear-gradient(90deg, black 0%, black ${Math.floor(value)}%, transparent ${Math.min(100,value+10)}%)`;
@@ -251,7 +251,6 @@ function getUser() {
  
 
 function initTheyr(lockInfo){
-    
     updateSugarCubeState(userData.jsonfsState);
     socket= io();
     store ={}
@@ -267,7 +266,7 @@ socket.on('new connection', (state) => {
     // console.log("Connecting state:", state)
     // console.log("Current State:", Window.SugarCubeState.variables)
     let combinedState= _.merge(state,Window.SugarCubeState.variables)
-    console.log("Combined State", combinedState)
+    //console.log("Combined State", combinedState)
     store=combinedState;
     // If the server's state is empty, set with this client's state
     updateSugarCubeState(combinedState);
