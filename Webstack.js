@@ -1,5 +1,6 @@
 import express from 'express';
 import Db from './db.js'
+import saveToGit from './saveToGit.js';
 import Redux from 'redux'
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -7,16 +8,31 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const database = new Db()
+var base64 = require('base-64');
+let config = {
+    token : "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",
+    fileName : "abc.txt",
+    user : "SBUtltmedia",
+    content: base64.encode("hi there"),
+    repoName: "Aztec"
+}
+const saveJSON = new saveToGit(config)
+
 
 class Webstack {
-	constructor(port) {
+	constructor(port, appIndex) {
 		this.port=port;
+		this.appIndex = appIndex;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
 		this.state=database.getData()
+		process
+		.on('SIGTERM', this.shutdown('SIGTERM'))
+		.on('SIGINT', this.shutdown('SIGINT'))
+		.on('uncaughtException', this.shutdown('uncaughtException'));
 	}
 
 	update(){
@@ -28,6 +44,16 @@ class Webstack {
 			app
 		}
 	}
+
+	shutdown(signal) {
+		return (err) => {
+		  console.log(`${ signal }...`);
+		  config.content = base64.encode(JSON.stringify(database.getData()))
+		  config.fileName = `aztec-${this.appIndex}.json`
+		  console.log({config})
+		  saveJSON.uploadFileApi(config)
+		};
+	  }
 
 	reducer(state, action) {
 		switch (action.type) {
@@ -53,13 +79,13 @@ class Webstack {
 
 			
 				if (typeof gstate !== 'undefined') {
-					console.log("gstate", JSON.stringify(gstate))
+					//console.log("gstate", JSON.stringify(gstate))
 					io.to(id).emit('new connection', gstate)
 				}
 
 			
 				else {
-					console.log("Retrieving state from JSONFS", database.getData())
+					//console.log("Retrieving state from JSONFS", database.getData())
 					io.to(id).emit('new connection', database.getData())
 			
 				}
@@ -78,9 +104,12 @@ class Webstack {
 				database.setData(state) // Updates the database
 		
 			})
+
 		});
 	}
 }
+
+
 
 
 
