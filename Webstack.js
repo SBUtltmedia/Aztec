@@ -9,18 +9,13 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const database = new Db()
 var base64 = require('base-64');
-let config = {
-    token : "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",
-    fileName : "abc.txt",
-    user : "SBUtltmedia",
-    content: base64.encode("hi there"),
-    repoName: "Aztec"
-}
-const saveJSON = new saveToGit(config)
+
+
 
 
 class Webstack {
-	constructor(port, appIndex) {
+	constructor(port, appIndex,config) {
+		this.saveJSON = new saveToGit(config)
 		this.port=port;
 		this.appIndex = appIndex;
 		app.use("/static", express.static('./static/'));
