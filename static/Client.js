@@ -266,7 +266,7 @@ function initTheyr(lockInfo) {
 
 
 
-    setInterval(update, 1000)
+    setInterval(update, 100)
 
     function update() {
 
