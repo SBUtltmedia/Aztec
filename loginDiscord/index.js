@@ -71,7 +71,7 @@ app.get('/', async ({ query }, response) => {
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
 
-		userDataJSON = JSON.stringify({ jsonfsState: webstackInstance.state })
+		userDataJSON =  {jsonfsState: webstackInstance.state }
 
 		return makeUserDataJSON(userDataJSON, response);
 	}
@@ -143,8 +143,8 @@ app.get('/', async ({ query }, response) => {
 	}
 	loadHome(response);
 });
-function makeUserDataJSON(myObject,response){
-	const myVars = {
+function makeUserDataJSON(jsonFS_Object,response){
+	const initVars = {
 		"currentPassage": 0,
 		"Tlaxcalans_currentMap": 0,
 		"Aztecs_currentMap": 0,
@@ -338,8 +338,8 @@ function makeUserDataJSON(myObject,response){
 		"Tl_Peace": 0,
 		"Tlax_Az_Peace": 0
 	}
-	let combined= Object.assign({}, myVars,myObject)
-	return returnTwine(combined,response )
+    jsonFS_Object.jsonfsState= Object.assign({}, initVars,jsonFS_Object.jsonfsState)
+	return returnTwine(jsonFS_Object,response )
 
 }
 
