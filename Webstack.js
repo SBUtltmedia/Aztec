@@ -29,10 +29,12 @@ class Webstack {
 		this.initIO();
 		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
 		this.state=database.getData()
-		process
-		.on('SIGTERM', this.shutdown('SIGTERM'))
-		.on('SIGINT', this.shutdown('SIGINT'))
-		.on('uncaughtException', this.shutdown('uncaughtException'));
+		if (process.env.PORT){
+			process
+				.on('SIGTERM', this.shutdown('SIGTERM'))
+				.on('SIGINT', this.shutdown('SIGINT'))
+				.on('uncaughtException', this.shutdown('uncaughtException'));
+			}
 	}
 
 	update(){
@@ -47,14 +49,18 @@ class Webstack {
 
 	shutdown(signal) {
 		return (err) => {
-		  console.log(`${ signal }...`);
+	
 		  config.content = base64.encode(JSON.stringify(database.getData()))
 		  config.fileName = `aztec-${this.appIndex}.json`
-		  console.log({config})
+		 
 		  saveJSON.uploadFileApi(config)
+		  setTimeout(() => {
+			console.log('...waited 5s, exiting.');
+			process.exit(err ? 1 : 0);
+		  }, 15000).unref();
+		 }
 		};
-	  }
-
+	  
 	reducer(state, action) {
 		switch (action.type) {
 			case 'UPDATE':
