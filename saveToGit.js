@@ -5,13 +5,6 @@ const require = createRequire(import.meta.url);
 var axios = require('axios');
 var fs = require('fs');
 var base64 = require('base-64');
-let config = {
-    token : "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",
-    fileName : "abc.txt",
-    user : "SBUtltmedia",
-    content: base64.encode("hi there"),
-    repoName: "Aztec"
-}
 
 class saveToGit{
     constructor(config) {

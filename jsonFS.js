@@ -44,6 +44,7 @@ class JSONFS {
                 }
 
                 else {
+                
                     container[file] = JSON.parse(fileContents); // Converts data back to its original type from String
                 }
             }

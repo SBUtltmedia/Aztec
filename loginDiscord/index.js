@@ -14,13 +14,14 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-let config_path = '../config.json'
+let config_path = '../config.json';
+let  confObj;
 const htmlTemplate = './loginDiscord/index.html'
 // Destructure config.json variables (Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead))
 if (fs.existsSync(__dirname + "/" + config_path)) {
-	const confObj = require('./' + config_path);
+	confObj = require('./' + config_path);
+	if(confObj.channelconf.length){
 	var { clientId, clientSecret, guildId } = confObj.channelconf[0];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
-	var { twinePath, port } = confObj.serverconf;
 	var spanishChannel = confObj.channelconf[0].spanishChannel;
 	var aztecChannel = confObj.channelconf[0].aztecChannel;
 	var tlaxChannel = confObj.channelconf[0].tlaxChannel;
@@ -29,6 +30,8 @@ if (fs.existsSync(__dirname + "/" + config_path)) {
 	var spanTlax = confObj.channelconf[0].spanTlax;
 	var general = confObj.channelconf[0].general;
 	var omen = confObj.channelconf[0].omen;
+}
+	var { twinePath, port } = confObj.serverconf;
 }
 
 const SPANISH_CHANNEL = process.env.spanishChannel || spanishChannel;
@@ -52,7 +55,7 @@ const GUILD_ID = process.env.guildId || guildId;
 const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
 let refreshTokens = {};
 const appID = process.env.appID || 1
-const webstackInstance = new webstack(PORT, appID);
+const webstackInstance = new webstack(PORT, appID,confObj.serverconf);
 const { app } = webstackInstance.get();
 
 
@@ -121,7 +124,6 @@ app.get('/', async ({ query }, response) => {
 			});
 
 			const userResultJson = await userResult.json();
-			let userData = JSON.stringify(userResultJson);
 
 			const guildResult = await fetch(`https://discord.com/api/users/@me/guilds/${GUILD_ID}/member`, {
 				headers: {
@@ -130,7 +132,7 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
-			return makeUserDataJSON( { jsonfsState: webstackInstance.state, ...guildResultJson, ...userResultJson },response);
+			return makeUserDataJSON( { jsonfsState: webstackInstance.state, authData:{...guildResultJson, ...userResultJson} },response);
 
 
 			//return returnTwine(userDataJSON, response);
@@ -143,7 +145,7 @@ app.get('/', async ({ query }, response) => {
 	}
 	loadHome(response);
 });
-function makeUserDataJSON(jsonFS_Object,response){
+function makeUserDataJSON(initObject,response){
 	const initVars = {
 		"currentPassage": 0,
 		"Tlaxcalans_currentMap": 0,
@@ -338,8 +340,8 @@ function makeUserDataJSON(jsonFS_Object,response){
 		"Tl_Peace": 0,
 		"Tlax_Az_Peace": 0
 	}
-    jsonFS_Object.jsonfsState= Object.assign({}, initVars,jsonFS_Object.jsonfsState)
-	return returnTwine(jsonFS_Object,response )
+   initObject.jsonfsState= Object.assign({}, initVars, initObject.jsonfsState)
+	return returnTwine(initObject,response )
 
 }
 
