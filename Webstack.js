@@ -30,6 +30,7 @@ class Webstack {
 		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
 		this.state=database.getData()
 		if (process.env.PORT){
+			console.log("port exists")
 			process
 				.on('SIGTERM', this.shutdown('SIGTERM'))
 				.on('SIGINT', this.shutdown('SIGINT'))
