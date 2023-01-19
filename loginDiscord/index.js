@@ -6,9 +6,14 @@ import '../tweeGaze.js';
 import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 import DiscordBot from '../discordBot.js';
+import { RichPresenceAssets } from 'discord.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
+if(!process.env?.port){
+	require('dotenv').config()
+}
+console.log(process.env.S3_BUCKET)
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
