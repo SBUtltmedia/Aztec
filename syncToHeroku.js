@@ -1,5 +1,11 @@
 import { execSync } from 'child_process';
+import { exit } from 'process';
 
+const app = process.argv[2];
+if (!app) {
+    console.log(`Name argument required. Usage: node ${process.argv[1]} name`);
+    exit(0);
+}
 let herokuInstances = 4;
 
 let commands = [
