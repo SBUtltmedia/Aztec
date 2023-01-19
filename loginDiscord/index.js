@@ -13,8 +13,6 @@ const hex = require('string-hex')
 if(!process.env?.port){
 	require('dotenv').config()
 }
-console.log(process.env.S3_BUCKET)
-
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const __filename = fileURLToPath(import.meta.url)
@@ -60,7 +58,7 @@ const GUILD_ID = process.env.guildId || guildId;
 const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
 let refreshTokens = {};
 const appID = process.env.appID || 1
-const webstackInstance = new webstack(PORT, appID, process.env.githubtoken || confObj?.serverconf);
+const webstackInstance = new webstack(PORT, appID, process.env.serverconf || confObj?.serverconf);
 const { app } = webstackInstance.get();
 
 

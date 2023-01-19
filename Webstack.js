@@ -15,9 +15,12 @@ var base64 = require('base-64');
 
 class Webstack {
 	constructor(port, appIndex,config) {
-		this.saveJSON = new saveToGit(config)
+		config.content = base64.encode(JSON.stringify(database.getData()))
+		config.fileName = `aztec-${appIndex}.json`
+		this.saveJSON = new saveToGit({content: base64.encode(JSON.stringify(database.getData())), 
+									fileName: `aztec-${appIndex}.json`,
+									...config})
 		this.port=port;
-		this.appIndex = appIndex;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
 		this.serverStore = Redux.createStore(this.reducer);
@@ -45,11 +48,8 @@ class Webstack {
 
 	shutdown(signal) {
 		return (err) => {
-	
-		  config.content = base64.encode(JSON.stringify(database.getData()))
-		  config.fileName = `aztec-${this.appIndex}.json`
 		 
-		  saveJSON.uploadFileApi(config)
+		  this.saveJSON.uploadFileApi()
 		  setTimeout(() => {
 			console.log('...waited 5s, exiting.');
 			process.exit(err ? 1 : 0);

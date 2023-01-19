@@ -9,42 +9,44 @@ var base64 = require('base-64');
 class saveToGit{
     constructor(config) {
         this.config = config
+        console.log(config)
 	}
 
-    uploadFileApi(config) {
-        var config1 = {
+    uploadFileApi() {
+        let config = this.config
+        var configGetFile = {
             method: 'get',
             url: `https://api.github.com/repos/${config.user}/${config.repoName}/contents/${config.fileName}`,
             headers: {
-                'Authorization': `Bearer ${config.token}`,
+                'Authorization': `Bearer ${config.githubtoken}`,
                 'Content-Type': 'application/json'
             }
         };
 
         let sha = ""
-        axios(config1)
+        axios(configGetFile)
             .then(function (response) {
-                console.log(response.data.sha);
+                // console.log(response.data.sha);
                 sha = response.data.sha
                 var data = JSON.stringify({
                     "message": "txt file",
                     "content": `${config.content}`,
                     "sha": sha,
                 });
-                var config2 = {
+                var configPutFile = {
                     method: 'put',
-                    url: `https://api.github.com/repos/${config.user}/${config.repoName}/contents/${config.fileName}`,
+                    url: `https://api.github.com/repos/${config.githubuser}/${config.githubrepo}/contents/${config.fileName}`,
                     headers: {
-                        'Authorization': `Bearer ${config.token}`,
+                        'Authorization': `Bearer ${config.githubtoken}`,
                         'Content-Type': 'application/json',
 
                     },
                     message: "Commit message",
                     data: data,
                 };
-                axios(config2)
+                axios(configPutFile)
                     .then(function (response) {
-                        console.log(JSON.stringify(response.data));
+                        // console.log(JSON.stringify(response.data));
                     })
                     .catch(function (error) {
                         console.log(error);
