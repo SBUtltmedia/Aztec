@@ -14,7 +14,7 @@ let commands = [
 ]
 
 for (let i = 1; i <= herokuInstances; i++) {
-    commands.push(`git push -f https://git.heroku.com/cipd-${i}.git HEAD:master`);
+    commands.push(`git push -f https://git.heroku.com/${app}-${i}.git HEAD:master`);
 
     for (let command of commands) {
         try {
