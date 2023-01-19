@@ -113,7 +113,7 @@ importScripts([
 <!-- <<masteraudio volume 0>> -->
 <<script>>
 	const loc = location.search
-	console.log( userData.authData.id)
+	// console.log( userData.authData.id)
 	const searchParams = new URLSearchParams(loc);
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
@@ -255,9 +255,9 @@ importScripts([
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
-<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]["faction"]>>
-<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]["Character"]>>
-<<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]["isLeader"]>>
+<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
+<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
+<<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = "The Library">>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 
@@ -291,9 +291,7 @@ importScripts([
 
 	var passage = State.getVar("$users[$userId]['passage']")
 	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
-	if(!(role in State.getVar("_roles"))){
-		Engine.play("Name Not Recognized")
-	}else{
+	if(!(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
 		setTimeout(() => {
@@ -305,14 +303,12 @@ importScripts([
 		console.log("no passage")
 		Engine.show();
 	}
-	}
 	$("body").css({opacity:1})
 <</script>>
 
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
-Aztecs Strength <<print $factions["Aztecs"]["stats"]["Strength"]>> Spaniards Strength <<print $factions["Spaniards"]["stats"]["Strength"]>> Tlaxcalans Strength <<print $factions["Tlaxcalans"]["stats"]["Strength"]>><br>
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",
@@ -428,9 +424,10 @@ Aztecs Strength <<print $factions["Aztecs"]["stats"]["Strength"]>> Spaniards Str
 <!-- <<masteraudio mute>> -->
 <<masteraudio unmute>>
  <<run showMap()>>
- <<run showStats()>>
 <<run setBackground()>>
-
+<<if passage() !=  "Name Not Recognized">>
+ <<run showStats()>>
+<</if>>
 <<if passage() != Config.passages.start>>
 <<set $users[$userId]["passage"] = passage()>> 
 <</if>>
@@ -510,8 +507,6 @@ You wonder what the next day will bring. Return here to find out.<br>
 
 :: To Mutiny or Not [Done Breaks] {"position":"225,1584","size":"100,100"}
 <<theyr>>
-
-testing testing 
 
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>

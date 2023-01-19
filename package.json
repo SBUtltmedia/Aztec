@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "@discordjs/rest": "^0.5.0",
-    "axios": "^1.2.2",
+    "axios": "^1.2.3",
     "base-64": "^1.0.0",
     "body-parser": "^1.20.0",
     "discord.js": "^13.12.0",

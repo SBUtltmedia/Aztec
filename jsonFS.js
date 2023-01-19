@@ -37,7 +37,7 @@ class JSONFS {
                 let fileContents = fs.readFileSync(filePath, {
                     encoding: 'utf8',
                     flag: 'r'
-                });
+                }) || 0;
 
                 if (file === '{}') {
                     container = {};
