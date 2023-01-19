@@ -113,7 +113,6 @@ importScripts([
 <!-- <<masteraudio volume 0>> -->
 <<script>>
 	const loc = location.search
-	console.log( userData.authData.id)
 	const searchParams = new URLSearchParams(loc);
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
