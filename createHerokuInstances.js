@@ -43,13 +43,15 @@ for (let i = 1; i <= herokuInstances; i++) {
     for (let key of Object.keys(configVars)) {
         let command = `heroku config:set -a ${app}-${i} ${key}=${configVars[key]}`;
         commands.push(command);
+       // console.log `${key}=${configVars[key]}`;
     }
+console.log(configVars)
 
     // Execute commands
     for (let command of commands) {
         try {
             //console.log(command);
-            execSync(command, console.log);
+           execSync(command, console.log);
         } catch(err) {}
     }
 }
