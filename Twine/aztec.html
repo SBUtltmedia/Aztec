@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -5956,7 +5956,10 @@ Option 5: &lt;&lt;link &quot;Olid&quot; &quot;Tenochtitlan Spanish Leadership Re
 &lt;&lt;if $Sp_Ld_Vote_Teno isnot 5&gt;&gt;
 When everyone has voted, you will find out who will lead you now.&lt;br&gt;
 &lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
+&lt;br&gt;
+You are waiting for the rest of your team to vote.&lt;br&gt;
+&lt;br&gt;
 
 &lt;&lt;else&gt;&gt;
 
@@ -6497,14 +6500,14 @@ Once you have discussed the present situation, [[you may move forward|Aztec Lead
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="207" name="Aztec Leader gives a speech" tags="" position="725,2600" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="207" name="Aztec Leader Gives a Speech" tags="" position="725,2600" size="100,100">&lt;&lt;theyr&gt;&gt;
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 After days of eerie quiet, the Mexica resume their assault on the palace. You are hungry and outnumbered. Desperate to bring the siege to an end so you can make your escape, you decide to deploy the best weapon you have at your disposal: &lt;&lt;print $Aztec_Leader&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 You take him to the roof of the palace and demand that he bring a stop to the assault. &lt;&lt;print $Aztec_Leader&gt;&gt; steps to the edge of the roof and the volley of rocks and arrows comes to a halt. He speaks to his people, pleading with them to put down their weapons. They are no match for your weapons, he tells them, and this can only end in tragedy. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Riot_Vote isnot 5&gt;&gt;
+&lt;&lt;if $Riot_Vote_sum &lt; 4&gt;&gt;
 You observe warily, trying to gauge the crowd&#39;s response.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
@@ -6512,10 +6515,10 @@ You observe warily, trying to gauge the crowd&#39;s response.&lt;br&gt;
 You are waiting for the Aztecs to do something.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-&lt;&lt;if $Riot &gt;0&gt;&gt;
+&lt;&lt;if $Riot_sum &gt;= 0&gt;&gt;
 You observe warily, trying to gauge [[the crowd&#39;s response|Aztecs Riot]]! &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Riot &lt;0&gt;&gt;
+&lt;&lt;elseif $Riot_sum &lt; 0&gt;&gt;
 You observe warily, trying to gauge [[the crowd&#39;s response|Aztec Mob Recedes]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
@@ -6526,7 +6529,7 @@ After days of eerie quiet, your people resume their assault on the palace. The S
 &lt;br&gt;
 They take you to the roof of the palace and demand that you bring a stop to the assault. As you step to the edge of the roof, the volley of rocks and arrows comes to a halt. You speak to your people, pleading with them to put down their weapons. They are no match for the Spanish weapons, you tell them. This can only end in tragedy. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Riot_Vote isnot 5&gt;&gt;
+&lt;&lt;if $Riot_Vote_sum &lt; 4&gt;&gt;
 You observe the crowd warily and await their response.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
@@ -6534,10 +6537,10 @@ You observe the crowd warily and await their response.&lt;br&gt;
 You are waiting for the Aztecs to do something.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-&lt;&lt;if $Riot &gt;0&gt;&gt;
+&lt;&lt;if $Riot_sum &gt;=0&gt;&gt;
 You observe the crowd warily and [[await their response|Aztecs Riot]]. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Riot &lt;0&gt;&gt;
+&lt;&lt;elseif $Riot_sum &lt;0&gt;&gt;
 You observe the crowd warily and [[await their response|Aztec Mob Recedes]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
@@ -6559,7 +6562,7 @@ Option 2: Oppose &lt;&lt;print $Aztec_Leader&gt;&gt;, who is clearly weak and no
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
-&lt;&lt;if $Riot_Vote isnot 5&gt;&gt;
+&lt;&lt;if $Riot_Vote_sum &lt; 4&gt;&gt;
 You wonder what is happening in Tenochtitlan.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
@@ -6567,10 +6570,10 @@ You wonder what is happening in Tenochtitlan.&lt;br&gt;
 You are waiting for the Aztecs to do something.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-&lt;&lt;if $Riot &gt;0&gt;&gt;
+&lt;&lt;if $Riot_sum &gt;0&gt;&gt;
 You wonder what is [[happening in Tenochtitlan|Aztecs Riot]]! &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Riot &lt;0&gt;&gt;
+&lt;&lt;elseif $Riot_sum &lt;0&gt;&gt;
 You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
