@@ -692,7 +692,7 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 
 :: Cortes' Men leave Santiago [Done] {"position":"563,296","size":"100,100"}
 <<theyr>>
-<<if $Start <=4>>
+<<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -829,7 +829,7 @@ It's time to <<link "return to Tlaxcala" "The Spaniards Head Inland">><<set $fac
 
 :: Cortes Leaves Santiago [Done] {"position":"763,292","size":"100,100"}
 <<theyr>>
-<<if $Start <=4>>
+<<if $Start <=10>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
@@ -992,7 +992,7 @@ When you have finished discussing and strategizing, [[enter the city of Tlaxcala
 
 :: The Aztec Legend of Quetzalcoatl {"position":"1225,225","size":"100,100"}
 <<theyr>>
-<<if $Start <=11>>
+<<if $Start <=10>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
@@ -1012,7 +1012,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 
 :: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"1179,220","size":"100,100"}
 <<theyr>>
-<<if $Start <=11>>
+<<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -1118,7 +1118,7 @@ Prepare yourself, the Spaniards are [[entering your city|Tlaxcalans Negotiate Pe
 
 :: Aguilar Among the Maya [Done] {"position":"319,168","size":"100,100"}
 <<theyr>>
-<<if $Start <=4>>
+<<if $Start <=10>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
@@ -1213,7 +1213,7 @@ You <<link "don't trust her" "Spaniards and Marina Talk">><<run changeStats("Mar
 
 :: Marina in Slavery [Done] {"position":"54,289","size":"100,100"}
 <<theyr>>
-<<if $Start <=4>>
+<<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -3059,7 +3059,7 @@ As you close the door of the weird little room behind you, you know <<link "you'
 <<set$Quest_Points_A=0 >>
 <</if>>
 Your team has accumulated <<print $Quest_Points_A>> points. <br>
-<<link "Increase Quest Points" "Scavenger Hunt Hub">><<set $Quest_Points_A += 1>><</link>>
+<br>
 Click each of the following glyphs to visit key sites around the Aztec Empire. Once you have read the clue and figured out your location, your quest leader must enter the name of the place into the text box provided. When you have obtained enough resources to survive your journey, you will be given the location of Quetzalcoatl's heart. <br>
 <br>
 Remember: You must enter the proper Nahuatl name and you must use the correct spelling! The text box will remain available until you enter the correct response.<br>
@@ -3067,12 +3067,7 @@ Remember: You must enter the proper Nahuatl name and you must use the correct sp
 
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
-
-<<print  $users[$userId]["faction"]>>
-
 <<if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq "" or $Xochimilco_Ans_A isnot "xochimilco">> 
-
-<<print  $users[$userId]["faction"]>>
 
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]<br>
 <br>
@@ -3180,7 +3175,6 @@ You cannot yet travel to Cholula, continue your quest to gather all the items ne
 <br>
 <</if>>
 <</switch>>
-
 
 <</theyr>>
 
