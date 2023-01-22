@@ -34,7 +34,7 @@ if (fs.existsSync(__dirname + "/" + config_path)) {
 	var general = confObj.channelconf[0].general;
 	var omen = confObj.channelconf[0].omen;
 }
-	var { twinePath, port } = confObj.serverconf;
+	var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
 }
 
 const SPANISH_CHANNEL = process.env.spanishChannel || spanishChannel;
@@ -56,9 +56,14 @@ const PORT = process.env.PORT || port;
 const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
 const GUILD_ID = process.env.guildId || guildId;
 const REDIRECTURL = process.env.redirectURL || `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
+const GITHUBTOKEN = process.env.githubToken || githubToken
+const GITHUBUSER = process.env.githubUser || githubUser
+const GITHUBREPO = process.env.githubRepo || githubRepo
+const CONFIG = {"port": PORT, "twinePath":TWINE_PATH, "githubToken":GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo" : GITHUBREPO}
+
 let refreshTokens = {};
 const appID = process.env.appID || 1
-const webstackInstance = new webstack(PORT, appID, process.env.serverconf || confObj?.serverconf);
+const webstackInstance = new webstack(PORT, appID, CONFIG);
 const { app } = webstackInstance.get();
 
 
