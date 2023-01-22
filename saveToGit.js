@@ -9,16 +9,16 @@ var base64 = require('base-64');
 class saveToGit{
     constructor(config) {
         this.config = config
-        console.log(config)
+        console.log("config is:", config)
 	}
 
     uploadFileApi() {
         let config = this.config
         var configGetFile = {
             method: 'get',
-            url: `https://api.github.com/repos/${config.user}/${config.repoName}/contents/${config.fileName}`,
+            url: `https://api.github.com/repos/${config.githubUser}/${config.githubRepo}/contents/${config.fileName}`,
             headers: {
-                'Authorization': `Bearer ${config.githubtoken}`,
+                'Authorization': `Bearer ${config.githubToken}`,
                 'Content-Type': 'application/json'
             }
         };
@@ -35,9 +35,9 @@ class saveToGit{
                 });
                 var configPutFile = {
                     method: 'put',
-                    url: `https://api.github.com/repos/${config.githubuser}/${config.githubrepo}/contents/${config.fileName}`,
+                    url: `https://api.github.com/repos/${config.githubUser}/${config.githubRepo}/contents/${config.fileName}`,
                     headers: {
-                        'Authorization': `Bearer ${config.githubtoken}`,
+                        'Authorization': `Bearer ${config.githubToken}`,
                         'Content-Type': 'application/json',
 
                     },
