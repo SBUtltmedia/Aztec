@@ -101,7 +101,10 @@ importScripts([
 
 
 :: StoryInit {"position":"22,135","size":"100,100"}
+<<if ndef $users >>
 
+<<set $users={}>>
+<</if>>
 
 <<set _searchParams = new URLSearchParams(location.search) >>
 
