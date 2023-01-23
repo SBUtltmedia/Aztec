@@ -290,7 +290,7 @@ importScripts([
 
 	var passage = State.getVar("$users[$userId]['passage']")
 	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
-	if(!(role in State.getVar("_roles"))) passage = "Name Not Recognized"
+	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
 		setTimeout(() => {
