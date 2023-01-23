@@ -201,11 +201,26 @@ importScripts([
 		>>
 
 <<if ndef $users>>
-<<set $users = {}>>
+<<set $users = {
+	"test" : {
+		"stats" : {
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
+		},
+		"character" : "test",
+		"faction" : "test",
+		"isLeader" : "no",
+		"lastSeen" : 0,
+		"passage" : "Name Not Recognized",
+		"role" : "test",
+		"username" : "test"
+	}
+}>>
 <</if>>
 
 <<if ndef $lookup>>
-<<set $lookup = {}>>
+<<set $lookup = {"Marina" : "test","Alvarado" : "test","Aguilar" : "test","Garrido" : "test","Olid" : "test","Cortes" : "test","Moctezuma" : "test","Tlacaelel" : "test","Cuauhtemoc" : "test","Aztec_Priest" : "test","Cacamatzin" : "test","Pochteca" : "test","Xicotencatl_Elder" : "test","Xicotencatl_Younger" : "test","Maxixcatl" : "test"}>>
 <</if>>
 
 <<if ndef $Start>>
@@ -11574,7 +11589,7 @@ Set Final Totals<br>
 <br>
 
 
-<<link "Set the Final Tlaxcalan Points" "test equations outcome">><<set $Final_Tlaxcalan_Players=$users[$lookup["Xicotencatl_Elder"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"]+$users[$lookup["users[$lookup["Maxixcatl"]]["stats"]["Strength"]+$Maxixcatl"]]["stats"]["Loyalty"]+$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
+<<link "Set the Final Tlaxcalan Points" "test equations outcome">><<set $Final_Tlaxcalan_Players=$users[$lookup["Xicotencatl_Elder"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"]+$users[$lookup["Maxixcatl"]]["stats"]["Strength"]+$users[$lookup["Maxixcatl"]]["stats"]["Loyalty"]+$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
 <br>
 
 
