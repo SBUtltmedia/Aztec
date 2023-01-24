@@ -55,7 +55,9 @@ const TWINE_PATH = process.env.twinePath || twinePath;
 const PORT = process.env.PORT || port;
 const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
 const GUILD_ID = process.env.guildId || guildId;
-const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=identify%20guilds.members.read%20guilds`;
+// const scope = "identify guilds.members.read guilds"
+const scope = "identify"
+const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=${encodeURIComponent(scope)}`;
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
@@ -223,7 +225,7 @@ function makeUserDataJSON(initObject,response){
 		"Gifts": 0,
 		"L_Received": 0,
 		"Mutiny_ctr": 0,
-		"Mutiny_sum": 0,
+		"Mutiny_sum": 0,	
 		"Mutiny_Voted": 0,
 		"Mut_Cor": 0,
 		"Mut_Olid": 0,
