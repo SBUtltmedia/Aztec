@@ -101,8 +101,11 @@ importScripts([
 
 
 :: StoryInit {"position":"22,135","size":"100,100"}
-<<if ndef $users >>
+<<if ndef $lookup>>
+<<set $lookup={}>>
+<</if>>
 
+<<if ndef $users >>
 <<set $users={}>>
 <</if>>
 
@@ -114,9 +117,13 @@ importScripts([
 <<if ndef $users[$userId]>>
 
 <<set $users[$userId] = {}>>
+
 <<set $users[$userId]["nick"]=_searchParams.get('nick') || userData.authData.nick>>
+<<set $lookup[$users[$userId]["nick"]] = {}>>
 <<set $users[$userId]["username"]= _searchParams.get('username') || userData.authData.username>>
-<<set $lookup[$users[$userId]["nick"]] = _nick>>
+
+
+<<set $lookup[$users[$userId]["nick"]] = $userId>
 
 <</if>>
 
