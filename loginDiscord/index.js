@@ -55,8 +55,8 @@ const TWINE_PATH = process.env.twinePath || twinePath;
 const PORT = process.env.PORT || port;
 const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
 const GUILD_ID = process.env.guildId || guildId;
-// const scope = "identify guilds.members.read guilds"
-const scope = "identify"
+const scope = "identify guilds.members.read guilds"
+//const scope = "identify"
 const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=${encodeURIComponent(scope)}`;
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
