@@ -6,7 +6,7 @@ if (!app) {
     console.log(`Name argument required. Usage: node ${process.argv[1]} name`);
     exit(0);
 }
-let herokuInstances = 4;
+let herokuInstances = 1;
 
 let commands = [
     `git add .`,
