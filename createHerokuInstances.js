@@ -9,15 +9,17 @@ const configObj = require('./config.json')
 // Checks command line arguments for app name
 const app = process.argv[2];
 if (!app) {
-    console.log("Name argument required. Usage: node .\\createHerokuInstances.js name");
+    console.log("Name argument required. Usage: node .\\createHerokuInstances.js name startingAppId endingAppId");
     exit(0);
 }
 
+let startingAppId = process.argv[3] || 1;
+let endingAppId = process.argv[4] || 1;
 // let herokuInstances = configObj.channelconf.length;
-let herokuInstances = 4;
+
 
 // Loop through instances given in config JSON file and push them all to Heroku
-for (let i = 1; i <= herokuInstances; i++) {
+for (let i = startingAppId ; i <=  endingAppId; i++) {
     let clientId = configObj.channelconf[i-1].clientId;
     let configVars = {...configObj.channelconf[i-1], ...configObj.serverconf};  // Combine channelconf and serverconf
 
