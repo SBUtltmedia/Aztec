@@ -201,8 +201,11 @@ importScripts([
 		>>
 
 <<if ndef $users>>
-<<set $users = {
-	"test" : {
+<<set $users = {}>>
+<</if>>
+
+<<if ndef $users["test"]>>
+<<set $users["test"] = {
 		"stats" : {
 			"Loyalty" : 0,
 			"Strength" : 0,
@@ -215,13 +218,19 @@ importScripts([
 		"passage" : "Name Not Recognized",
 		"role" : "test",
 		"username" : "test"
-	}
-}>>
+	}>>
 <</if>>
 
 <<if ndef $lookup>>
-<<set $lookup = {"Marina" : "test","Alvarado" : "test","Aguilar" : "test","Garrido" : "test","Olid" : "test","Cortes" : "test","Moctezuma" : "test","Tlacaelel" : "test","Cuauhtemoc" : "test","Aztec_Priest" : "test","Cacamatzin" : "test","Pochteca" : "test","Xicotencatl_Elder" : "test","Xicotencatl_Younger" : "test","Maxixcatl" : "test"}>>
+/* <<set $lookup = {"Marina" : "test","Alvarado" : "test","Aguilar" : "test","Garrido" : "test","Olid" : "test","Cortes" : "test","Moctezuma" : "test","Tlacaelel" : "test","Cuauhtemoc" : "test","Aztec_Priest" : "test","Cacamatzin" : "test","Pochteca" : "test","Xicotencatl_Elder" : "test","Xicotencatl_Younger" : "test","Maxixcatl" : "test"}>> */
+	<<set $lookup = {}>>
 <</if>>
+
+<<for _user in Object.keys(_roles)>>
+	<<if not _user in $lookup>>
+		<<set $lookup[_user] = "test">>
+	<</if>>
+<</for>>
 
 <<if ndef $Start>>
 <<set $Start = 0>>
