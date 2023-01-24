@@ -10,7 +10,7 @@ import { RichPresenceAssets } from 'discord.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
-if(!process.env?.port){
+if (!process.env?.port) {
 	require('dotenv').config()
 }
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -18,22 +18,22 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 let config_path = '../config.json';
-let  confObj;
+let confObj;
 const htmlTemplate = './loginDiscord/index.html'
 // Destructure config.json variables (Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead))
 if (fs.existsSync(__dirname + "/" + config_path)) {
 	confObj = require('./' + config_path);
-	if(confObj.channelconf.length){
-	var { clientId, clientSecret, guildId } = confObj.channelconf[0];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
-	var spanishChannel = confObj.channelconf[0].spanishChannel;
-	var aztecChannel = confObj.channelconf[0].aztecChannel;
-	var tlaxChannel = confObj.channelconf[0].tlaxChannel;
-	var aztecTlax = confObj.channelconf[0].aztecTlax;
-	var aztecSpan = confObj.channelconf[0].aztecSpan;
-	var spanTlax = confObj.channelconf[0].spanTlax;
-	var general = confObj.channelconf[0].general;
-	var omen = confObj.channelconf[0].omen;
-}
+	if (confObj.channelconf.length) {
+		var { clientId, clientSecret, guildId } = confObj.channelconf[0];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
+		var spanishChannel = confObj.channelconf[0].spanishChannel;
+		var aztecChannel = confObj.channelconf[0].aztecChannel;
+		var tlaxChannel = confObj.channelconf[0].tlaxChannel;
+		var aztecTlax = confObj.channelconf[0].aztecTlax;
+		var aztecSpan = confObj.channelconf[0].aztecSpan;
+		var spanTlax = confObj.channelconf[0].spanTlax;
+		var general = confObj.channelconf[0].general;
+		var omen = confObj.channelconf[0].omen;
+	}
 	var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
 }
 
@@ -61,7 +61,7 @@ const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
-const CONFIG = {"port": PORT, "twinePath":TWINE_PATH, "githubToken":GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo" : GITHUBREPO}
+const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO }
 
 let refreshTokens = {};
 const appID = process.env.appID || 1
@@ -84,7 +84,7 @@ app.get('/', async ({ query }, response) => {
 	// If using http://localhost:53134/?test=true use userDataJSON from this file
 	if (test) {
 
-		userDataJSON =  {jsonfsState: webstackInstance.state }
+		userDataJSON = { jsonfsState: webstackInstance.state }
 
 		return makeUserDataJSON(userDataJSON, response);
 	}
@@ -142,7 +142,7 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
-			return makeUserDataJSON( { jsonfsState: webstackInstance.state, authData:{...guildResultJson, ...userResultJson} },response);
+			return makeUserDataJSON({ jsonfsState: webstackInstance.state, authData: { ...guildResultJson, ...userResultJson } }, response);
 
 
 			//return returnTwine(userDataJSON, response);
@@ -155,7 +155,7 @@ app.get('/', async ({ query }, response) => {
 	}
 	loadHome(response);
 });
-function makeUserDataJSON(initObject,response){
+function makeUserDataJSON(initObject, response) {
 	const initVars = {
 		"currentPassage": 0,
 		"Tlaxcalans_currentMap": 0,
@@ -225,7 +225,7 @@ function makeUserDataJSON(initObject,response){
 		"Gifts": 0,
 		"L_Received": 0,
 		"Mutiny_ctr": 0,
-		"Mutiny_sum": 0,	
+		"Mutiny_sum": 0,
 		"Mutiny_Voted": 0,
 		"Mut_Cor": 0,
 		"Mut_Olid": 0,
@@ -353,8 +353,8 @@ function makeUserDataJSON(initObject,response){
 		"Tl_Peace": 0,
 		"Tlax_Az_Peace": 0
 	}
-   initObject.jsonfsState= Object.assign({}, initVars, initObject.jsonfsState)
-	return returnTwine(initObject,response )
+	initObject.jsonfsState = Object.assign({}, initVars, initObject.jsonfsState)
+	return returnTwine(initObject, response)
 
 }
 
