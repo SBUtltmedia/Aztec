@@ -1,3 +1,6 @@
+//quick node program to change .env to .env_back or vice versa. Use for testing process.env
+//run by typing: 'node toggleEnv.js' in terminal
+
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url';
