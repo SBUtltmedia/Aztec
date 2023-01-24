@@ -2,5 +2,5 @@
 	"channelconf": [
 
 	],
-	"serverconf": {"port": 53134, "twinePath":"Twine/aztec.html"}
+	"serverconf": {"port": 53134, "twinePath":"Twine/demo.html"}
 }
