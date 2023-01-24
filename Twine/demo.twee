@@ -123,7 +123,7 @@ importScripts([
 <<set $users[$userId]["username"]= _searchParams.get('username') || userData.authData.username>>
 
 
-<<set $lookup[$users[$userId]["nick"]] = $userId>
+<<set $lookup[$users[$userId]["nick"]] = $userId>>
 
 <</if>>
 
