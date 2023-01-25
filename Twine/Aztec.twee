@@ -226,8 +226,8 @@ importScripts([
 	<<set $lookup = {}>>
 <</if>>
 
-<<for _user in Object.keys(_roles)>>
-	<<if not _user in $lookup>>
+<<for _user in range Object.keys(_roles)>>
+	<<if not _user in range $lookup>>
 		<<set $lookup[_user] = "test">>
 	<</if>>
 <</for>>
