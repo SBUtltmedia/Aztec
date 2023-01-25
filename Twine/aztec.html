@@ -270,8 +270,11 @@ importScripts([
 		&gt;&gt;
 
 &lt;&lt;if ndef $users&gt;&gt;
-&lt;&lt;set $users = {
-	&quot;test&quot; : {
+&lt;&lt;set $users = {}&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $users[&quot;test&quot;]&gt;&gt;
+&lt;&lt;set $users[&quot;test&quot;] = {
 		&quot;stats&quot; : {
 			&quot;Loyalty&quot; : 0,
 			&quot;Strength&quot; : 0,
@@ -284,13 +287,23 @@ importScripts([
 		&quot;passage&quot; : &quot;Name Not Recognized&quot;,
 		&quot;role&quot; : &quot;test&quot;,
 		&quot;username&quot; : &quot;test&quot;
-	}
-}&gt;&gt;
+	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if ndef $lookup&gt;&gt;
-&lt;&lt;set $lookup = {&quot;Marina&quot; : &quot;test&quot;,&quot;Alvarado&quot; : &quot;test&quot;,&quot;Aguilar&quot; : &quot;test&quot;,&quot;Garrido&quot; : &quot;test&quot;,&quot;Olid&quot; : &quot;test&quot;,&quot;Cortes&quot; : &quot;test&quot;,&quot;Moctezuma&quot; : &quot;test&quot;,&quot;Tlacaelel&quot; : &quot;test&quot;,&quot;Cuauhtemoc&quot; : &quot;test&quot;,&quot;Aztec_Priest&quot; : &quot;test&quot;,&quot;Cacamatzin&quot; : &quot;test&quot;,&quot;Pochteca&quot; : &quot;test&quot;,&quot;Xicotencatl_Elder&quot; : &quot;test&quot;,&quot;Xicotencatl_Younger&quot; : &quot;test&quot;,&quot;Maxixcatl&quot; : &quot;test&quot;}&gt;&gt;
+/* &lt;&lt;set $lookup = {&quot;Marina&quot; : &quot;test&quot;,&quot;Alvarado&quot; : &quot;test&quot;,&quot;Aguilar&quot; : &quot;test&quot;,&quot;Garrido&quot; : &quot;test&quot;,&quot;Olid&quot; : &quot;test&quot;,&quot;Cortes&quot; : &quot;test&quot;,&quot;Moctezuma&quot; : &quot;test&quot;,&quot;Tlacaelel&quot; : &quot;test&quot;,&quot;Cuauhtemoc&quot; : &quot;test&quot;,&quot;Aztec_Priest&quot; : &quot;test&quot;,&quot;Cacamatzin&quot; : &quot;test&quot;,&quot;Pochteca&quot; : &quot;test&quot;,&quot;Xicotencatl_Elder&quot; : &quot;test&quot;,&quot;Xicotencatl_Younger&quot; : &quot;test&quot;,&quot;Maxixcatl&quot; : &quot;test&quot;}&gt;&gt; */
+	&lt;&lt;set $lookup = {}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+/* &lt;&lt;for _i, _data range _factionUsers&gt;&gt; */
+
+&lt;&lt;for _user, _data  range _roles&gt;&gt;
+	&lt;&lt;script&gt;&gt;
+		console.log(State.getVar(&quot;$lookup&quot;))
+	&lt;&lt;/script&gt;&gt;
+	&lt;&lt;if not (Object.keys($lookup)).includes(_user)&gt;&gt;
+		&lt;&lt;set $lookup[_user] = &quot;test&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/for&gt;&gt;
 
 &lt;&lt;if ndef $Start&gt;&gt;
 &lt;&lt;set $Start = 0&gt;&gt;

@@ -225,9 +225,13 @@ importScripts([
 /* <<set $lookup = {"Marina" : "test","Alvarado" : "test","Aguilar" : "test","Garrido" : "test","Olid" : "test","Cortes" : "test","Moctezuma" : "test","Tlacaelel" : "test","Cuauhtemoc" : "test","Aztec_Priest" : "test","Cacamatzin" : "test","Pochteca" : "test","Xicotencatl_Elder" : "test","Xicotencatl_Younger" : "test","Maxixcatl" : "test"}>> */
 	<<set $lookup = {}>>
 <</if>>
+/* <<for _i, _data range _factionUsers>> */
 
-<<for _user in range Object.keys(_roles)>>
-	<<if not _user in range $lookup>>
+<<for _user, _data  range _roles>>
+	<<script>>
+		console.log(State.getVar("$lookup"))
+	<</script>>
+	<<if not (Object.keys($lookup)).includes(_user)>>
 		<<set $lookup[_user] = "test">>
 	<</if>>
 <</for>>
