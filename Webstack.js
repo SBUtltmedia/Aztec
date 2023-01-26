@@ -20,6 +20,7 @@ class Webstack {
 		this.saveJSON = new saveToGit({content: base64.encode(JSON.stringify(database.getData())), 
 									fileName: `aztec-${appIndex}.json`,
 									...config})
+		//I'm not sure if this actually saves to GIT because we don't call the function.
 		this.port=port;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));

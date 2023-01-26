@@ -8,24 +8,20 @@ var base64 = require('base-64');
 
 class getFromGit{
     constructor(config) {
-        this.config = {
-            token : "//",
-            fileName : "aztec-2.json",
-            user : "SBUtltmedia",
-            repoName: "Aztec"
-        }
+        this.config = config
+        console.log("Getting from git. Config is", config)
 	}
 
-    retrieveFileAPI(config) {
-        var config1 = {
+    retrieveFileAPI() {
+        var configGetFile = {
             method: 'get',
-            url: `https://api.github.com/repos/${this.config.user}/${this.config.repoName}/contents/${this.config.fileName}`,
+            url: `https://api.github.com/repos/${this.config.githubUser}/${this.config.githubRepo}/contents/${this.config.fileName}`,
             headers: {
                 'Authorization': `Bearer ${this.config.token}`,
                 'Content-Type': 'application/json'
             }
         };
-        axios(config1)
+        axios(configGetFile)
             .then(function (response) {
                 console.log(base64.decode(response.data.content))
             })
@@ -35,6 +31,5 @@ class getFromGit{
 
     }
 }
-let temp = new getFromGit()
-temp.retrieveFileAPI()
+
 export default getFromGit
