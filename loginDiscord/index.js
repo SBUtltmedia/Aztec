@@ -61,10 +61,10 @@ const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
-const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO }
+const appID = process.env.appID || 1
+const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName" : `aztec-${appID}.json`}
 
 let refreshTokens = {};
-const appID = process.env.appID || 1
 const webstackInstance = new webstack(PORT, appID, CONFIG);
 const { app } = webstackInstance.get();
 

@@ -1,15 +1,18 @@
 import JSONFS from './jsonFS.js'
+import saveToGit from './saveToGit.js';
 
 class Db {
     constructor(data) {
         this.data = data
         this.jsonFs = new JSONFS();
     }
-
+    getDataFromGit(config){
+        let data = new saveToGit(config).retrieveFileAPI()
+    }
     // Returns the data within the database
     getData() {
         let jsondata = this.jsonFs.getJSON()
-        // console.log(jsondata)
+        console.log(jsondata)
         return this.jsonFs.getJSON()
     }
 
