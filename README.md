@@ -2,6 +2,7 @@
   <img src="https://res.cloudinary.com/dsry3cnco/image/upload/v1642440780/theyr_logo_axzsjz.png" alt="Theyr Logo"/>
 </p>
 
+NOTE these instructions are out of date, new ones to follow. 
 # Theyr (Twine Multiplayer Package)
 Theyr provides a development environment that allows anyone to create multiplayer <a href="https://twinery.org/">Twine</a> applications using the <a href="http://www.motoslave.net/sugarcube/2/">SugarCube</a> story format.
 
