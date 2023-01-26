@@ -197,13 +197,21 @@ function getRandomInt(max) {
 }
 
 function changeStats(rolePlay, newStats) {
-    let curerentUser = Object.keys(Window.SugarCubeState.variables.users).find(user => user.role == rolePlay)
-
-    let roleStats = curerentUser.stats
-
+    let usersObj= Window.SugarCubeState.variables.users;
+    let currentUserId = Object.keys(usersObj).find(userId => usersObj[userId].role == rolePlay)
+    if(currentUserId == undefined){
+        currentUserId = "test"
+    }
+    console.log("user:" , currentUserId)
+    let currentUser =usersObj[currentUserId]
+    let roleStats = currentUser.stats
     Object.keys(roleStats).forEach((stat, idx) => {
+        console.log( roleStats[stat])
         roleStats[stat] = parseInt(newStats[stat]) + parseInt(roleStats[stat])
+        console.log(newStats[stat])
     });
+    Window.SugarCubeState.variables.users[currentUserId]["stats"] =roleStats;
+    console.log(currentUser)
 }
 
 

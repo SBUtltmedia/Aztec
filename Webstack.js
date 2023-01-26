@@ -48,7 +48,7 @@ class Webstack {
 
 	shutdown(signal) {
 		return (err) => {
-		 
+		 console.log('doing stuff')
 		  this.saveJSON.uploadFileApi()
 		  setTimeout(() => {
 			console.log('...waited 5s, exiting.');
