@@ -1,6 +1,6 @@
 import express from 'express';
 import Db from './db.js'
-import saveToGit from './saveToGit.js';
+import gitApiIO from './gitApiIO.js';
 import Redux from 'redux'
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -17,9 +17,10 @@ class Webstack {
 	constructor(port, appIndex,config) {
 		config.content = base64.encode(JSON.stringify(database.getData()))
 		config.fileName = `aztec-${appIndex}.json`
-		this.saveJSON = new saveToGit({content: base64.encode(JSON.stringify(database.getData())), 
+		this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(database.getData())), 
 									fileName: `aztec-${appIndex}.json`,
 									...config})
+
 		//I'm not sure if this actually saves to GIT because we don't call the function.
 		this.port=port;
 		app.use("/static", express.static('./static/'));
@@ -50,11 +51,10 @@ class Webstack {
 	shutdown(signal) {
 		return (err) => {
 		 console.log('doing stuff')
-		  this.saveJSON.uploadFileApi()
-		  setTimeout(() => {
-			console.log('...waited 5s, exiting.');
-			process.exit(err ? 1 : 0);
-		  }, 15000).unref();
+		  this.saveJSON.uploadFileApi().then(
+			() => {
+				process.exit(err ? 1 : 0);
+			})
 		 }
 		};
 	  

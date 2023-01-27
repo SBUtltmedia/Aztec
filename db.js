@@ -1,5 +1,5 @@
 import JSONFS from './jsonFS.js'
-import saveToGit from './saveToGit.js';
+import gitApiIO from './gitApiIO.js';
 
 class Db {
     constructor(data) {
@@ -7,7 +7,7 @@ class Db {
         this.jsonFs = new JSONFS();
     }
     getDataFromGit(config){
-        let data = new saveToGit(config).retrieveFileAPI()
+        let data = new gitApiIO(config).retrieveFileAPI()
     }
     // Returns the data within the database
     getData() {
