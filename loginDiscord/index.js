@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 import DiscordBot from '../discordBot.js';
 import { RichPresenceAssets } from 'discord.js';
+import gitApiIO from '../gitApiIO.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
@@ -61,7 +62,7 @@ const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
-const appID = process.env.appID || 1
+const appID = process.env.appID || 2
 const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName" : `aztec-${appID}.json`}
 
 let refreshTokens = {};
@@ -373,7 +374,12 @@ function loadHome(response) {
 	let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
 	let indexHtml = htmlContents.replace("%redirectURL%", REDIRECTURL)
 
-	response.send(indexHtml);
+	
+	new gitApiIO(CONFIG).retrieveFileAPI().then( (gameData) => {
+			console.log("Game data from GIT", gameData)
+			response.send(indexHtml);
+		}
+	)
 }
 
 // Generates a random ID

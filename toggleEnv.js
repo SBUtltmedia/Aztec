@@ -6,7 +6,7 @@ import path from 'path'
 import { fileURLToPath } from 'url';
 
 const env = `./.env` 
-const envBack = `./env_back` 
+const envBack = `./.env_back` 
 
 if(fs.existsSync(env)){
     fs.renameSync(env, envBack)
