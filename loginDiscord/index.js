@@ -63,7 +63,7 @@ const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
 const appID = process.env.appID || 2
-const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName" : `aztec-${appID}.json`}
+const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": `aztec-${appID}.json` }
 
 let refreshTokens = {};
 const webstackInstance = new webstack(PORT, appID, CONFIG);
@@ -81,16 +81,8 @@ app.get('/', async ({ query }, response) => {
 	// console.log({query});
 	const { code, state, test, nick } = query;
 	let userDataJSON;
-	webstackInstance.update();
-	// If using http://localhost:53134/?test=true use userDataJSON from this file
-	if (test) {
+	//webstackInstance.update();
 
-		userDataJSON = { jsonfsState: webstackInstance.state }
-
-		return makeUserDataJSON(userDataJSON, response);
-	}
-
-	// Redirects through Discord API
 	if (code) {
 
 		let payload = {
@@ -374,11 +366,24 @@ function loadHome(response) {
 	let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
 	let indexHtml = htmlContents.replace("%redirectURL%", REDIRECTURL)
 
-	
-	new gitApiIO(CONFIG).retrieveFileAPI().then( (gameData) => {
-			console.log("Game data from GIT", gameData)
+
+	new gitApiIO(CONFIG).retrieveFileAPI().then((gameData) => {
+		let state = JSON.parse(gameData)
+		webstackInstance.serverStore.dispatch({
+			type: 'UPDATE',
+			payload: state
+		})
+
+		if (test) {
+
+			userDataJSON = { jsonfsState: state }
+
+			return makeUserDataJSON(userDataJSON, response);
+		}
+		else {
 			response.send(indexHtml);
 		}
+	}
 	)
 }
 
