@@ -17,9 +17,9 @@ class Webstack {
 	constructor(port, appIndex,config) {
 		config.content = base64.encode(JSON.stringify(database.getData()))
 		config.fileName = `aztec-${appIndex}.json`
-		this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(database.getData())), 
-									fileName: `aztec-${appIndex}.json`,
-									...config})
+		// this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(database.getData())), 
+		// 							fileName: `aztec-${appIndex}.json`,
+		// 							...config})
 
 		//I'm not sure if this actually saves to GIT because we don't call the function.
 		this.port=port;
