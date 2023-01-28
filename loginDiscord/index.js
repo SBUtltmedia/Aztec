@@ -117,7 +117,7 @@ app.get('/', async ({ query }, response) => {
 			if (oauthData.error) {
 				// console.log({oauthData});
 				// response.send(JSON.stringify(oauthData));
-				return loadHome(response);
+				return loadHome(response),test;
 			}
 
 			const userResult = await fetch('https://discord.com/api/users/@me', {
@@ -146,7 +146,7 @@ app.get('/', async ({ query }, response) => {
 			console.error(error);
 		}
 	}
-	loadHome(response);
+	loadHome(response,test);
 });
 function makeUserDataJSON(initObject, response) {
 	const initVars = {
@@ -362,7 +362,7 @@ function returnTwine(userData, response) {
 	return response.send(`${fileContents} ${userDataScriptTag}`);
 }
 
-function loadHome(response) {
+function loadHome(response,isTest) {
 	let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
 	let indexHtml = htmlContents.replace("%redirectURL%", REDIRECTURL)
 
@@ -374,7 +374,7 @@ function loadHome(response) {
 			payload: state
 		})
 
-		if (test) {
+		if (isTest) {
 
 			userDataJSON = { jsonfsState: state }
 
