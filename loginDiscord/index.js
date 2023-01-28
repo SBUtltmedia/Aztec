@@ -117,7 +117,7 @@ app.get('/', async ({ query }, response) => {
 			if (oauthData.error) {
 				// console.log({oauthData});
 				// response.send(JSON.stringify(oauthData));
-				return loadHome(response),test;
+				return loadHome(response,test);
 			}
 
 			const userResult = await fetch('https://discord.com/api/users/@me', {
