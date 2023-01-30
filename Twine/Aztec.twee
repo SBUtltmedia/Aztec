@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "The Library",
+	"start": "Control: Player Status",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -11656,13 +11656,13 @@ Location: <<print $users[$lookup['Garrido']]['passage']>><br>
 Strength: <<print $users[$lookup["Garrido"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Garrido"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Garrido"]]["stats"]["Loyalty"]>><br>
 Olid<br>
 Location: <<print $users[$lookup['Olid']]['passage']>><br>
-Strength: <<print $users[$lookup["Olid"]]["stats"]["Strength"]>>   Wisdom: <<print $Olid"]]["stats"]["Wisdom"]>>   Loyalty: <<print $Olid"]]["stats"]["Loyalty"]>><br>
+Strength: <<print $users[$lookup["Olid"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Olid"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Olid"]]["stats"]["Loyalty"]>><br>
 Aguilar<br>
 Location: <<print $users[$lookup['Aguilar']]['passage']>><br>
-Strength: <<print $users[$lookup["Aguilar"]]["stats"]["Strength"]>>   Wisdom: <<print $Aguilar"]]["stats"]["Wisdom"]>>   Loyalty: <<print $Aguilar"]]["stats"]["Loyalty"]>><br>
+Strength: <<print $users[$lookup["Aguilar"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Aguilar"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Aguilar"]]["stats"]["Loyalty"]>><br>
 Marina<br>
 Location: <<print $users[$lookup['Marina']]['passage']>><br>
-Strength: <<print $users[$lookup["Marina"]]["stats"]["Strength"]>>   Wisdom: <<print $Marina"]]["stats"]["Wisdom"]>>   Loyalty: <<print $Marina"]]["stats"]["Loyalty"]>><br>
+Strength: <<print $users[$lookup["Marina"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Marina"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Marina"]]["stats"]["Loyalty"]>><br>
 Marina's Boyfriend: <<print $Mal_Boy>>
 <br>
 <b>Aztecs</b><br>
@@ -11773,7 +11773,7 @@ Has the hold been cleared? <b><<if $TL_Attacks eq "" or ndef $TL_Attacks>> No <<
 <b>Spaniards</b><br>
 Cortes<br>
 Current Location: <<print $users[$lookup['Cortes']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Cortes']]['passage']" "">><br>
+New Location: <<textbox "$users[$lookup['Cortes']]['passage']" $users[$lookup['Cortes']]['passage'] "The Library">><br>
 <br>
 Alvarado<br>
 Current Location: <<print $users[$lookup['Garrido']]['passage']>><br>
