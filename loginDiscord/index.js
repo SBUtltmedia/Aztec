@@ -12,31 +12,34 @@ const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
 if (!process.env?.port) {
+	const __filename = fileURLToPath(import.meta.url)
+	const __dirname = path.dirname(__filename)
+	let config_path = '../config.json';
+	if (fs.existsSync(__dirname + "/" + config_path)) {
+		let localAppIndex = 3
+		let confObj = require('./' + config_path);
+		if (confObj.channelconf.length) {
+			var { clientId, clientSecret, guildId } = confObj.channelconf[localAppIndex];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
+			var spanishChannel = confObj.channelconf[localAppIndex].spanishChannel;
+			var aztecChannel = confObj.channelconf[localAppIndex].aztecChannel;
+			var tlaxChannel = confObj.channelconf[localAppIndex].tlaxChannel;
+			var aztecTlax = confObj.channelconf[localAppIndex].aztecTlax;
+			var aztecSpan = confObj.channelconf[localAppIndex].aztecSpan;
+			var spanTlax = confObj.channelconf[localAppIndex].spanTlax;
+			var general = confObj.channelconf[localAppIndex].general;
+			var omen = confObj.channelconf[localAppIndex].omen;
+		}
+		var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
+	}
+	
 	require('dotenv').config()
 }
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-let config_path = '../config.json';
-let confObj;
+
+
 const htmlTemplate = './loginDiscord/index.html'
 // Destructure config.json variables (Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead))
-if (fs.existsSync(__dirname + "/" + config_path)) {
-	confObj = require('./' + config_path);
-	if (confObj.channelconf.length) {
-		var { clientId, clientSecret, guildId } = confObj.channelconf[0];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
-		var spanishChannel = confObj.channelconf[0].spanishChannel;
-		var aztecChannel = confObj.channelconf[0].aztecChannel;
-		var tlaxChannel = confObj.channelconf[0].tlaxChannel;
-		var aztecTlax = confObj.channelconf[0].aztecTlax;
-		var aztecSpan = confObj.channelconf[0].aztecSpan;
-		var spanTlax = confObj.channelconf[0].spanTlax;
-		var general = confObj.channelconf[0].general;
-		var omen = confObj.channelconf[0].omen;
-	}
-	var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
-}
 
 const SPANISH_CHANNEL = process.env.spanishChannel || spanishChannel;
 const AZTEC_CHANNEL = process.env.aztecChannel || aztecChannel;
@@ -54,7 +57,16 @@ const CLIENT_ID = process.env.clientId || clientId;
 const CLIENT_SECRET = process.env.clientSecret || clientSecret;
 const TWINE_PATH = process.env.twinePath || twinePath;
 const PORT = process.env.PORT || port;
-const HEROKU_URL = process.env.herokuURL || `http://localhost:${PORT}`;
+let HEROKU_URL;
+console.log(process.env.PORT)
+if (process.env.PORT){
+	console.log("PROCESS ENV", process.env)
+	HEROKU_URL = `https://aztec-${process.env.appIndex}.herokuapp.com`
+}
+else{
+	console.log("HI")
+	HEROKU_URL = `http://localhost:${PORT}`;
+}
 const GUILD_ID = process.env.guildId || guildId;
 const scope = "identify guilds.members.read guilds"
 //const scope = "identify"
@@ -115,7 +127,7 @@ app.get('/', async ({ query }, response) => {
 			}
 
 			if (oauthData.error) {
-				// console.log({oauthData});
+				console.log({oauthData});
 				// response.send(JSON.stringify(oauthData));
 				return loadHome(response,test);
 			}
@@ -146,7 +158,9 @@ app.get('/', async ({ query }, response) => {
 			console.error(error);
 		}
 	}
-	loadHome(response,test);
+	else{
+		loadHome(response,test);
+	}
 });
 function makeUserDataJSON(initObject, response) {
 	const initVars = {

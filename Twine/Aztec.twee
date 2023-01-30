@@ -280,18 +280,19 @@ importScripts([
 	console.log("problemo");
 <</script>>
 <<set $users[$userId] = {}>>
-<<set $users[$userId]["role"] = _role>>
-<<set $users[$userId]["username"] = _username>>
-<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
-<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
+
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = "The Library">>
-<<set $lookup[$users[$userId]["role"]] = $userId>>
+
 
 <<else>>
 /* <<set $users[$userId] = userData.jsonfsState.users[$userId]>> */
 <</if>>
-
+<<set $users[$userId]["role"] = _role>>
+<<set $users[$userId]["username"] = _username>>
+<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
+<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
+<<set $lookup[$users[$userId]["role"]] = $userId>>
 /* Act 1 Scene 1 */
 /* //To Mutiny or Not */
 /* <<set _currentPassage = "Act 1 Scene 1">> */
