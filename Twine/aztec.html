@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -349,18 +349,19 @@ importScripts([
 	console.log(&quot;problemo&quot;);
 &lt;&lt;/script&gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.faction || &quot;undefined&quot;&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
+
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = &quot;The Library&quot;&gt;&gt;
-&lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
+
 
 &lt;&lt;else&gt;&gt;
 /* &lt;&lt;set $users[$userId] = userData.jsonfsState.users[$userId]&gt;&gt; */
 &lt;&lt;/if&gt;&gt;
-
+&lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.faction || &quot;undefined&quot;&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
+&lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 /* Act 1 Scene 1 */
 /* //To Mutiny or Not */
 /* &lt;&lt;set _currentPassage = &quot;Act 1 Scene 1&quot;&gt;&gt; */

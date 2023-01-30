@@ -17,10 +17,8 @@ class Webstack {
 	constructor(port, appIndex,config) {
 		config.content = base64.encode(JSON.stringify(database.getData()))
 		config.fileName = `aztec-${appIndex}.json`
-		// this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(database.getData())), 
-		// 							fileName: `aztec-${appIndex}.json`,
-		// 							...config})
-
+		this.appIndex = appIndex
+		this.config = config
 		//I'm not sure if this actually saves to GIT because we don't call the function.
 		this.port=port;
 		app.use("/static", express.static('./static/'));
@@ -29,7 +27,7 @@ class Webstack {
 		this.initIO();
 		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
 		this.state=database.getData()
-		if (process.env.PORT){
+		if (1 || process.env.PORT){
 			console.log("port exists")
 			process
 				.on('SIGTERM', this.shutdown('SIGTERM'))
@@ -51,6 +49,9 @@ class Webstack {
 	shutdown(signal) {
 		return (err) => {
 		 console.log('doing stuff')
+		 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(database.getData())), 
+			fileName: `aztec-${this.appIndex}.json`,
+			...this.config})
 		  this.saveJSON.uploadFileApi().then(
 			() => {
 				process.exit(err ? 1 : 0);
