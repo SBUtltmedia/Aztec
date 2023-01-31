@@ -71,6 +71,7 @@ class JSONFS {
     }
 
     setKeyPair(key, value, passedObject) {
+        value=value|"undefined"
         if (this.dataType(value) != "object" && this.dataType(value) != "array") {
             let newDir = this.home + passedObject + key
             this.delTree(newDir)

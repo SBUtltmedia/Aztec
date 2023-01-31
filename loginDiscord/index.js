@@ -11,28 +11,31 @@ import gitApiIO from '../gitApiIO.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
+let localAppIndex
 if (!process.env?.port) {
 	const __filename = fileURLToPath(import.meta.url)
 	const __dirname = path.dirname(__filename)
 	let config_path = '../config.json';
+	
 	if (fs.existsSync(__dirname + "/" + config_path)) {
-		let localAppIndex = 3
 		let confObj = require('./' + config_path);
+		localAppIndex=  confObj.serverconf["localAppIndex"] || 4
 		if (confObj.channelconf.length) {
-			var { clientId, clientSecret, guildId } = confObj.channelconf[localAppIndex];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
-			var spanishChannel = confObj.channelconf[localAppIndex].spanishChannel;
-			var aztecChannel = confObj.channelconf[localAppIndex].aztecChannel;
-			var tlaxChannel = confObj.channelconf[localAppIndex].tlaxChannel;
-			var aztecTlax = confObj.channelconf[localAppIndex].aztecTlax;
-			var aztecSpan = confObj.channelconf[localAppIndex].aztecSpan;
-			var spanTlax = confObj.channelconf[localAppIndex].spanTlax;
-			var general = confObj.channelconf[localAppIndex].general;
-			var omen = confObj.channelconf[localAppIndex].omen;
+			let arrayIndex=localAppIndex-1
+			var { clientId, clientSecret, guildId } = confObj.channelconf[arrayIndex];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
+			var spanishChannel = confObj.channelconf[arrayIndex].spanishChannel;
+			var aztecChannel = confObj.channelconf[arrayIndex].aztecChannel;
+			var tlaxChannel = confObj.channelconf[arrayIndex].tlaxChannel;
+			var aztecTlax = confObj.channelconf[arrayIndex].aztecTlax;
+			var aztecSpan = confObj.channelconf[arrayIndex].aztecSpan;
+			var spanTlax = confObj.channelconf[arrayIndex].spanTlax;
+			var general = confObj.channelconf[arrayIndex].general;
+			var omen = confObj.channelconf[arrayIndex].omen;
 		}
 		var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
 	}
 	
-	require('dotenv').config()
+
 }
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -64,7 +67,7 @@ if (process.env.PORT){
 	HEROKU_URL = `https://aztec-${process.env.appIndex}.herokuapp.com`
 }
 else{
-	console.log("HI")
+	console.log("Running local")
 	HEROKU_URL = `http://localhost:${PORT}`;
 }
 const GUILD_ID = process.env.guildId || guildId;
@@ -74,7 +77,7 @@ const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
-const appID = process.env.appID || 2
+const appID = process.env.appID || localAppIndex;
 const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": `aztec-${appID}.json` }
 
 let refreshTokens = {};
@@ -147,7 +150,7 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
-			return makeUserDataJSON({ jsonfsState: webstackInstance.state, authData: { ...guildResultJson, ...userResultJson } }, response);
+			return makeUserDataJSON({ jsonfsState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } }, response);
 
 
 			//return returnTwine(userDataJSON, response);
