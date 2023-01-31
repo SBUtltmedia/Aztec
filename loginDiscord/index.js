@@ -401,7 +401,7 @@ function loadHome(response,isTest) {
 			response.send(indexHtml);
 		}
 	}
-	)
+	).catch(err=>response.write(err))
 }
 
 // Generates a random ID
