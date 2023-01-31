@@ -16,12 +16,12 @@ if (!process.env?.port) {
 	const __filename = fileURLToPath(import.meta.url)
 	const __dirname = path.dirname(__filename)
 	let config_path = '../config.json';
-	
+
 	if (fs.existsSync(__dirname + "/" + config_path)) {
 		let confObj = require('./' + config_path);
-		localAppIndex=  confObj.serverconf["localAppIndex"] || 4
+		localAppIndex = confObj.serverconf["localAppIndex"] || 4
 		if (confObj.channelconf.length) {
-			let arrayIndex=localAppIndex-1
+			let arrayIndex = localAppIndex - 1
 			var { clientId, clientSecret, guildId } = confObj.channelconf[arrayIndex];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
 			var spanishChannel = confObj.channelconf[arrayIndex].spanishChannel;
 			var aztecChannel = confObj.channelconf[arrayIndex].aztecChannel;
@@ -34,7 +34,7 @@ if (!process.env?.port) {
 		}
 		var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
 	}
-	
+
 
 }
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -62,11 +62,11 @@ const TWINE_PATH = process.env.twinePath || twinePath;
 const PORT = process.env.PORT || port;
 let HEROKU_URL;
 console.log(process.env.PORT)
-if (process.env.PORT){
+if (process.env.PORT) {
 	console.log("PROCESS ENV", process.env)
 	HEROKU_URL = `https://aztec-${process.env.appIndex}.herokuapp.com`
 }
-else{
+else {
 	console.log("Running local")
 	HEROKU_URL = `http://localhost:${PORT}`;
 }
@@ -130,9 +130,9 @@ app.get('/', async ({ query }, response) => {
 			}
 
 			if (oauthData.error) {
-				console.log({oauthData});
+				console.log({ oauthData });
 				// response.send(JSON.stringify(oauthData));
-				return loadHome(response,test);
+				return loadHome(response, test);
 			}
 
 			const userResult = await fetch('https://discord.com/api/users/@me', {
@@ -161,8 +161,8 @@ app.get('/', async ({ query }, response) => {
 			console.error(error);
 		}
 	}
-	else{
-		loadHome(response,test);
+	else {
+		loadHome(response, test);
 	}
 });
 function makeUserDataJSON(initObject, response) {
@@ -379,7 +379,7 @@ function returnTwine(userData, response) {
 	return response.send(`${fileContents} ${userDataScriptTag}`);
 }
 
-function loadHome(response,isTest) {
+function loadHome(response, isTest) {
 	let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
 	let indexHtml = htmlContents.replace("%redirectURL%", REDIRECTURL)
 
@@ -393,15 +393,20 @@ function loadHome(response,isTest) {
 
 		if (isTest) {
 
-			userDataJSON = { jsonfsState: state }
+	
 
-			return makeUserDataJSON(userDataJSON, response);
+			return makeUserDataJSON({ jsonfsState: state }, response);
 		}
 		else {
 			response.send(indexHtml);
 		}
 	}
-	).catch(err=>response.write(err))
+	).catch(err => {
+		console.log(err.message);
+		response.write(err.message, 'utf8', () => {
+			console.log(err.message);
+		})
+	})
 }
 
 // Generates a random ID
