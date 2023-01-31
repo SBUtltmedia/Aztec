@@ -244,23 +244,17 @@ importScripts([
 <<if ndef $factions>>
 	<<set $factions = {
 		"Aztecs": {"stats": {
-			"Loyalty" : 0,
-			"Strength" : 0,
-			"Wisdom" : 0
+			"Loyalty" : 0
 			}
 		},
 
 		"Spaniards": {"stats": {
-			"Loyalty" : 0,
-			"Strength" : 0,
-			"Wisdom" : 0
+			"Loyalty" : 0
 			}
 		},
 
 		"Tlaxcalans": {"stats": {
-			"Loyalty" : 0,
-			"Strength" : 0,
-			"Wisdom" : 0
+			"Loyalty" : 0
 			}
 		},
 	}>>

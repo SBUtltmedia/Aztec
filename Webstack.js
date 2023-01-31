@@ -15,7 +15,7 @@ var base64 = require('base-64');
 
 class Webstack {
 	constructor(port, appIndex,config) {
-		config.content = base64.encode(JSON.stringify(database.getData()))
+		
 		config.fileName = `aztec-${appIndex}.json`
 		this.appIndex = appIndex
 		this.config = config
@@ -26,14 +26,14 @@ class Webstack {
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
-		this.state=database.getData()
-		if (1 || process.env.PORT){
+		//this.state=database.getData()
+		
 			console.log("port exists")
 			process
 				.on('SIGTERM', this.shutdown('SIGTERM'))
 				.on('SIGINT', this.shutdown('SIGINT'))
 				.on('uncaughtException', this.shutdown('uncaughtException'));
-			}
+			
 	}
 
 	update(){
@@ -49,13 +49,16 @@ class Webstack {
 	shutdown(signal) {
 		return (err) => {
 		 console.log('doing stuff')
-		 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(database.getData())), 
+		 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(this.serverStore.getState())), 
 			fileName: `aztec-${this.appIndex}.json`,
 			...this.config})
 		  this.saveJSON.uploadFileApi().then(
 			() => {
+				console.log(err)
 				process.exit(err ? 1 : 0);
-			})
+			}).catch(err=>{
+				console.log(err)
+				process.exit()})
 		 }
 		};
 	  
