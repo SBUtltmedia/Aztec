@@ -291,14 +291,14 @@ importScripts([
 /* //To Mutiny or Not */
 /* <<set _currentPassage = "Act 1 Scene 1">> */
 <<set _currentPassage = $users[$userId]["passage"]>>
-/* <<discord aztecSpan>> as <</discord>>
+ <<discord aztecSpan>> as <</discord>>
 <<discord aztecs>> a <</discord>>
 <<discord tlax>> t <</discord>>
 <<discord spanish>> s <</discord>>
 <<discord aztecTlax>> at <</discord>>
 <<discord spanTlax>> st <</discord>>
 <<discord general>> g <</discord>>
-<<discord omen>> omen <</discord>> */
+<<discord omen>> omen <</discord>> 
 
 
 <<script>>
