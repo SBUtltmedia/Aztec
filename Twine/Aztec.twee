@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "The Library",
+	"start": "Control: Player Status",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -244,17 +244,23 @@ importScripts([
 <<if ndef $factions>>
 	<<set $factions = {
 		"Aztecs": {"stats": {
-			"Loyalty" : 0
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
 			}
 		},
 
 		"Spaniards": {"stats": {
-			"Loyalty" : 0
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
 			}
 		},
 
 		"Tlaxcalans": {"stats": {
-			"Loyalty" : 0
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
 			}
 		},
 	}>>
@@ -274,31 +280,30 @@ importScripts([
 	console.log("problemo");
 <</script>>
 <<set $users[$userId] = {}>>
-
-<<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
-<<set $users[$userId]["passage"] = "The Library">>
-
-
-<<else>>
-/* <<set $users[$userId] = userData.jsonfsState.users[$userId]>> */
-<</if>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
+<<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
+<<set $users[$userId]["passage"] = "The Library">>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
+
+<<else>>
+/* <<set $users[$userId] = userData.jsonfsState.users[$userId]>> */
+<</if>>
+
 /* Act 1 Scene 1 */
 /* //To Mutiny or Not */
 /* <<set _currentPassage = "Act 1 Scene 1">> */
 <<set _currentPassage = $users[$userId]["passage"]>>
- <<discord aztecSpan>> as <</discord>>
+/* <<discord aztecSpan>> as <</discord>>
 <<discord aztecs>> a <</discord>>
 <<discord tlax>> t <</discord>>
 <<discord spanish>> s <</discord>>
 <<discord aztecTlax>> at <</discord>>
 <<discord spanTlax>> st <</discord>>
 <<discord general>> g <</discord>>
-<<discord omen>> omen <</discord>> 
+<<discord omen>> omen <</discord>> */
 
 
 <<script>>
@@ -11651,13 +11656,13 @@ Location: <<print $users[$lookup['Garrido']]['passage']>><br>
 Strength: <<print $users[$lookup["Garrido"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Garrido"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Garrido"]]["stats"]["Loyalty"]>><br>
 Olid<br>
 Location: <<print $users[$lookup['Olid']]['passage']>><br>
-Strength: <<print $users[$lookup["Olid"]]["stats"]["Strength"]>>   Wisdom: <<print $Olid"]]["stats"]["Wisdom"]>>   Loyalty: <<print $Olid"]]["stats"]["Loyalty"]>><br>
+Strength: <<print $users[$lookup["Olid"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Olid"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Olid"]]["stats"]["Loyalty"]>><br>
 Aguilar<br>
 Location: <<print $users[$lookup['Aguilar']]['passage']>><br>
-Strength: <<print $users[$lookup["Aguilar"]]["stats"]["Strength"]>>   Wisdom: <<print $Aguilar"]]["stats"]["Wisdom"]>>   Loyalty: <<print $Aguilar"]]["stats"]["Loyalty"]>><br>
+Strength: <<print $users[$lookup["Aguilar"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Aguilar"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Aguilar"]]["stats"]["Loyalty"]>><br>
 Marina<br>
 Location: <<print $users[$lookup['Marina']]['passage']>><br>
-Strength: <<print $users[$lookup["Marina"]]["stats"]["Strength"]>>   Wisdom: <<print $Marina"]]["stats"]["Wisdom"]>>   Loyalty: <<print $Marina"]]["stats"]["Loyalty"]>><br>
+Strength: <<print $users[$lookup["Marina"]]["stats"]["Strength"]>>   Wisdom: <<print $users[$lookup["Marina"]]["stats"]["Wisdom"]>>   Loyalty: <<print $users[$lookup["Marina"]]["stats"]["Loyalty"]>><br>
 Marina's Boyfriend: <<print $Mal_Boy>>
 <br>
 <b>Aztecs</b><br>
@@ -11768,7 +11773,7 @@ Has the hold been cleared? <b><<if $TL_Attacks eq "" or ndef $TL_Attacks>> No <<
 <b>Spaniards</b><br>
 Cortes<br>
 Current Location: <<print $users[$lookup['Cortes']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Cortes']]['passage']" "">><br>
+New Location: <<textbox "$users[$lookup['Cortes']]['passage']" $users[$lookup['Cortes']]['passage'] "The Library">><br>
 <br>
 Alvarado<br>
 Current Location: <<print $users[$lookup['Garrido']]['passage']>><br>
@@ -11951,5 +11956,4 @@ After much angry debate , you finally determine that <<print $Span_Leader>> has 
 
 
 <</theyr>>
-
 
