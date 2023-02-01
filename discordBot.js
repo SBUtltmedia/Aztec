@@ -17,6 +17,7 @@ class DiscordBot {
 
     // Sends notification to a specific channel 
     sendNotif(channel, message) {
+        console.log(channel, message)
         const content = message;
         let username, avatar_url, channelURL;
 
@@ -72,6 +73,11 @@ class DiscordBot {
         }
         const request = new XMLHttpRequest();
         request.open("POST", channelURL);
+        request.onload = function(e) {
+        
+              //console.log(e);
+           //
+          };
         request.setRequestHeader('Content-type', 'application/json');
         const params = {
             username,
