@@ -49,7 +49,8 @@ class Webstack {
 	shutdown(signal) {
 		return (err) => {
 		 console.log('doing stuff')
-		 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(this.serverStore.getState())), 
+		let content = {"signal":signal,...this.serverStore.getState()}
+		 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
 			fileName: `aztec-${this.appIndex}.json`,
 			...this.config})
 		  this.saveJSON.uploadFileApi().then(
