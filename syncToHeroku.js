@@ -15,7 +15,7 @@ let commands = [
     `git commit -m "Automated update to Heroku/Github"`
 ]
 
-for (let i = startingAppId; i <= startingAppId; i++) {
+for (let i = startingAppId; i <= endingAppId ; i++) {
     commands.push(`git push -f https://git.heroku.com/${app}-${i}.git HEAD:master`);
 
     for (let command of commands) {
