@@ -10779,18 +10779,18 @@ You have the choice of interviewing either Aguilar or Marina first. You must cor
 <br>
 As leader of your team, you will select which character you will start with. Meet with your team on the discord board and decide where to start.<br>
 <br>
-Will you rescue <<link "Aguilar" "Aguilar Quest">><<set $Aguilar_1="No">><<set $Aguilar_2="No">><<set $Aguilar_3="No">><</link>>?<br>
+Will you rescue <<link "Aguilar" "Aguilar Quest">><</link>>?<br>
 <br>
 or<br>
 <br>
-Will you recruit <<link "Marina" "Malinche Quest">><<set $Malinche_1="No">><<set $Malinche_2="No">><<set $Malinche_3="No">><</link>>?<br>
+Will you recruit <<link "Marina" "Malinche Quest">><</link>>?<br>
 <br>
 
 <<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No" or $Malinche_Free eq "" or ndef $Malinche_Free>>
-Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of <<link "value to your team" "Malinche Quest">><<set $Malinche_1="No">><<set $Malinche_2="No">><<set $Malinche_3="No">><</link>>.<br>
+Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of <<link "value to your team" "Malinche Quest">><</link>>.<br>
 <br>
 <<elseif $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "Yes">>
-Congratulations! You have recruited this woman Marina! Now you may turn your attention to freeing your compatriot Aguilar from <<link "his long years in captivity" "Aguilar Quest">><<set $Aguilar_1="No">><<set $Aguilar_2="No">><<set $Aguilar_3="No">><</link>>.<br>
+Congratulations! You have recruited this woman Marina! Now you may turn your attention to freeing your compatriot Aguilar from <<link "his long years in captivity" "Aguilar Quest">><</link>>.<br>
 <br><br>
 <br>
 <<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>

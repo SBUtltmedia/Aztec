@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -9660,18 +9660,18 @@ You have the choice of interviewing either Aguilar or Marina first. You must cor
 &lt;br&gt;
 As leader of your team, you will select which character you will start with. Meet with your team on the discord board and decide where to start.&lt;br&gt;
 &lt;br&gt;
-Will you rescue &lt;&lt;link &quot;Aguilar&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Will you rescue &lt;&lt;link &quot;Aguilar&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 or&lt;br&gt;
 &lt;br&gt;
-Will you recruit &lt;&lt;link &quot;Marina&quot; &quot;Malinche Quest&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Will you recruit &lt;&lt;link &quot;Marina&quot; &quot;Malinche Quest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Aguilar_Free is &quot;Yes&quot; and $Malinche_Free is &quot;No&quot; or $Malinche_Free eq &quot;&quot; or ndef $Malinche_Free&gt;&gt;
-Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of &lt;&lt;link &quot;value to your team&quot; &quot;Malinche Quest&quot;&gt;&gt;&lt;&lt;set $Malinche_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Malinche_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Malinche_3=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of &lt;&lt;link &quot;value to your team&quot; &quot;Malinche Quest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Aguilar_Free is &quot;No&quot; or ndef $Aguilar_Free or $Aguilar_Free eq &quot;&quot; and $Malinche_Free is &quot;Yes&quot;&gt;&gt;
-Congratulations! You have recruited this woman Marina! Now you may turn your attention to freeing your compatriot Aguilar from &lt;&lt;link &quot;his long years in captivity&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+Congratulations! You have recruited this woman Marina! Now you may turn your attention to freeing your compatriot Aguilar from &lt;&lt;link &quot;his long years in captivity&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Aguilar_Free is &quot;Yes&quot; and $Malinche_Free is &quot;Yes&quot;&gt;&gt;
