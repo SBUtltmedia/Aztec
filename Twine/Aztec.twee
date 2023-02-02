@@ -3787,6 +3787,8 @@ You awake to find yourself in <<link "a vaguely familiar place" "Waking up in th
 <<if $ActOne <= 14>>
 You must wait for the rest of the players to finish the first section of the game.<br>
 <br>
+The number of players who have arrived is: <<print $ActOne>><br>
+<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 <<elseif $ActOne > 14>>
