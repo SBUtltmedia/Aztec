@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -3409,14 +3409,14 @@ You awake to find yourself in &lt;&lt;link &quot;a vaguely familiar place&quot; 
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="return to the library_no door" tags="Done Breaks" position="1214,2451" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $ActOne &lt;= 14&gt;&gt;
+&lt;&lt;if $ActOne &lt; 14&gt;&gt;
 You must wait for the rest of the players to finish the first section of the game.&lt;br&gt;
 &lt;br&gt;
 The number of players who have arrived is: &lt;&lt;print $ActOne&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $ActOne &gt; 14&gt;&gt;
+&lt;&lt;elseif $ActOne &gt;= 14&gt;&gt;
 You made it through a full day of classes, but it was torture. You couldn&#39;t concentrate on anything because all you could think about was that mysterious room and the history assignment you don&#39;t remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.&lt;br&gt;
 &lt;br&gt;
 It&#39;s now late afternoon and you&#39;re finally free for the day. You hurry back to the library, excited to revisit the mystery room and its big comfy chair. You hope that if you look closely, you&#39;ll find some clue to what happened...some indication that you really did write that killer paper.&lt;br&gt;

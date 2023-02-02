@@ -3784,14 +3784,14 @@ You awake to find yourself in <<link "a vaguely familiar place" "Waking up in th
 
 :: return to the library_no door [Done Breaks] {"position":"1214,2451","size":"100,100"}
 <<theyr>>
-<<if $ActOne <= 14>>
+<<if $ActOne < 14>>
 You must wait for the rest of the players to finish the first section of the game.<br>
 <br>
 The number of players who have arrived is: <<print $ActOne>><br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<elseif $ActOne > 14>>
+<<elseif $ActOne >= 14>>
 You made it through a full day of classes, but it was torture. You couldn't concentrate on anything because all you could think about was that mysterious room and the history assignment you don't remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.<br>
 <br>
 It's now late afternoon and you're finally free for the day. You hurry back to the library, excited to revisit the mystery room and its big comfy chair. You hope that if you look closely, you'll find some clue to what happened...some indication that you really did write that killer paper.<br>
