@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -747,12 +747,14 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Cortes&#39; Men leave Santiago" tags="Done" position="563,296" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Start &lt;=10&gt;&gt;
+&lt;&lt;if $Start &lt; 10&gt;&gt;
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;print $Start&gt;&gt; players have begun.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=5&gt;&gt;
+&lt;&lt;elseif $Start &gt;=10&gt;&gt;
 &lt;&lt;audio &quot;Gulls_and_waves__5min_&quot; play&gt;&gt;
 November 18th, 1519.  Just off the shore of Cuba. &lt;br&gt;
 &lt;br&gt;
@@ -860,13 +862,15 @@ It&#39;s time to &lt;&lt;link &quot;return to Tlaxcala&quot; &quot;The Spaniards
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="Cortes Leaves Santiago" tags="Done" position="763,292" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Start &lt;=10&gt;&gt;
+&lt;&lt;if $Start &lt; 10&gt;&gt;
 
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;print $Start&gt;&gt; players have begun.&lt;br&gt;
+&lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=5&gt;&gt;
+&lt;&lt;elseif $Start &gt;= 10&gt;&gt;
 &lt;&lt;audio &quot;Gulls_and_waves__5min_&quot; play&gt;&gt;
 November 18th, 1519. Just off the shore of Cuba.&lt;br&gt;
 &lt;br&gt;
@@ -1003,13 +1007,15 @@ When you have finished discussing and strategizing, [[enter the city of Tlaxcala
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="The Aztec Legend of Quetzalcoatl" tags="" position="1225,225" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Start &lt;=10&gt;&gt;
+&lt;&lt;if $Start &lt; 10&gt;&gt;
 
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;print $Start&gt;&gt; players have begun.&lt;br&gt;
+&lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=12&gt;&gt;
+&lt;&lt;elseif $Start &gt;=10&gt;&gt;
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.&lt;br&gt;
 &lt;br&gt;
@@ -1019,12 +1025,14 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="The Tlaxcalan Legend of Quetzalcoatl" tags="Done" position="1179,220" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Start &lt;=10&gt;&gt;
+&lt;&lt;if $Start &lt;10&gt;&gt;
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;print $Start&gt;&gt; players have begun.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=12&gt;&gt;
+&lt;&lt;elseif $Start &gt;=10&gt;&gt;
 
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. &lt;br&gt;
 &lt;br&gt;
@@ -1109,13 +1117,15 @@ Prepare yourself, the Spaniards are [[entering your city|Tlaxcalans Negotiate Pe
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="Aguilar Among the Maya" tags="Done" position="319,168" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Start &lt;=10&gt;&gt;
+&lt;&lt;if $Start &lt;10&gt;&gt;
 
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;print $Start&gt;&gt; players have begun.&lt;br&gt;
+&lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=5&gt;&gt;
+&lt;&lt;elseif $Start &gt;=10&gt;&gt;
 It&#39;s been eight years since you were shipwrecked on the way to Santo Domingo; eight years that you&#39;ve been living as a slave among the Maya. All this time, you&#39;ve remained loyal to your vows as a Franciscan Friar, refusing to take a wife and fully embrace the Mayan culture. After all these years, however, you have become fluent in the Yucatec Maya language. &lt;br&gt;
 &lt;br&gt;
 This morning began like any other, but things take a turn when you overhear some rather interesting news. As you sweep the entrance to the temple, you overhear a conversation between two of the most important men in the village. &lt;br&gt;
@@ -1192,12 +1202,15 @@ You &lt;&lt;link &quot;don&#39;t trust her&quot; &quot;Spaniards and Marina Talk
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="Marina in Slavery" tags="Done" position="54,289" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Start &lt;=10&gt;&gt;
+&lt;&lt;if $Start &lt;10&gt;&gt;
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;print $Start&gt;&gt; players have begun.&lt;br&gt;
+&lt;br&gt; 
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=5&gt;&gt;
+
+&lt;&lt;elseif $Start &gt;=10&gt;&gt;
 
 You have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were respected in your community for your wit and intelligence even at a young age. Among the many things you have acquired in your years as a slave is a facility with the Mayan language, so different from the Nahuatl with which you were raised.&lt;br&gt;
 &lt;br&gt;
