@@ -3784,6 +3784,17 @@ You awake to find yourself in <<link "a vaguely familiar place" "Waking up in th
 
 :: return to the library_no door [Done Breaks] {"position":"1214,2451","size":"100,100"}
 <<theyr>>
+You made it through a full day of classes, but it was torture. You couldn't concentrate on anything because all you could think about was that mysterious room and the history assignment you don't remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.<br>
+<br>
+It's now late afternoon and you're finally free for the day. You hurry back to the library, excited to revisit the mystery room and its big comfy chair. You hope that if you look closely, you'll find some clue to what happened...some indication that you really did write that killer paper.<br>
+<br>
+You arrive on the top floor and round the corner but you can't find the door! You swear this is exactly where you found it before, but it's not here. Confused, you scour every corner of the library to no avail. The door is nowhere to be found. [[You head home feeling deeply unsettled|Return to the Library_Door]].<br>
+<br>
+<</theyr>>
+
+
+:: Return to the Library_Door [Done] {"position":"2051,17","size":"100,100"}
+<<theyr>>
 <<if $ActOne < 14>>
 You must wait for the rest of the players to finish the first section of the game.<br>
 <br>
@@ -3792,21 +3803,7 @@ The number of players who have arrived is: <<print $ActOne>><br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 <<elseif $ActOne >= 14>>
-You made it through a full day of classes, but it was torture. You couldn't concentrate on anything because all you could think about was that mysterious room and the history assignment you don't remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.<br>
-<br>
-It's now late afternoon and you're finally free for the day. You hurry back to the library, excited to revisit the mystery room and its big comfy chair. You hope that if you look closely, you'll find some clue to what happened...some indication that you really did write that killer paper.<br>
-<br>
-You arrive on the top floor and round the corner but you can't find the door! You swear this is exactly where you found it before, but it's not here. Confused, you scour every corner of the library to no avail. The door is nowhere to be found. You head home feeling deeply unsettled.<br>
-<br>
-
-<</if>>
-<</theyr>>
-
-
-:: Return to the Library_Door [Done] {"position":"2051,17","size":"100,100"}
-<<theyr>>
 <<audio "Library" play>>
-
 A week has passed and every day you've gone back to the library after class, looking for the mysterious room. You've explored every inch of the building, growing increasingly desperate with every day that goes by. Every night you've lain awake for hours, trying to figure out what happened and whether you just imagined the whole thing. You wonder if you're losing your mind, because it sure feels like it.<br>
 <br>
 Your history teacher didn't help the situation when she handed back your assignment today. It turns out you really did write it. And you got an A. You now have another assignment due next week and you're extra stressed because now the bar is way too high! Your teacher is going to expect A-level work from you every time and you're just not sure it's in you.<br>
@@ -3831,7 +3828,7 @@ You make your way to the chair and you hear the door swing shut behind you. You 
 You make your way to the chair and you hear the door swing shut behind you. You sink down into the cushions and close your eyes, confused and relieved all at the same time. Without meaning to, <<link "you quickly drift off to sleep" "Spaniards wake up at camp">><<set $Spaniards_currentMap=5>><</link>>.<br>
 <br>
 <</switch>>
-
+<</if>>
 
 <</theyr>>
 
