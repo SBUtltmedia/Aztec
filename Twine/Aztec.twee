@@ -3041,7 +3041,7 @@ The door sticks as you try to open it, but you can tell it's not locked. You giv
 <br>
 You unload your books and make yourself comfortable--maybe a little too comfortable. You get to work on your assignment, but within a matter of minutes your eyes get heavy. You struggle to stay awake but it's impossible to focus. Maybe a ten-minute nap will help. You tell yourself that if you just get it out of your system, you'll be good to go for the rest of the night. You close your eyes and quickly slip into a deep sleep. <br>
 <br>
-Suddenly, <<link "you're startled by a loud noise" "Character Identification">><<set $Spaniards_currentMap=1>><<set $factions["Spaniards"]["stats"]["Strength"] = 7>><<set $Tlaxcalans_currentMap=1>><<set $factions["Tlaxcalans"]["stats"]["Strength"] = 7>><<set $Aztecs_currentMap=1>><<set $factions["Aztecs"]["stats"]["Strength"] = 7>><</link>>!<br>
+Suddenly, <<link "you're startled by a loud noise" "Character Identification">><<set $Spaniards_currentMap=1>><<set $Tlaxcalans_currentMap=1>><<set $Aztecs_currentMap=1>><</link>>!<br>
 <br>
 
 
@@ -3068,7 +3068,7 @@ You grab it, you look, you start reading.  Your history assignment, it is done! 
 <br>
 You take a deep breath, you gather your things up calmly. You can't believe it. You don't remember writing this brilliant paper, but here it is, done. And you feel rested, if a bit disoriented.  Everything is going to be alright after all! You text your friends.  You'll meet them in class.<br>
 <br>
-As you close the door of the weird little room behind you, you know <<link "you'll be back" "return to the library_no door">><<set $Tlaxcalans_currentMap=1000>><<set $Aztecs_currentMap=1000>><<set $Spaniards_currentMap=1000>><</link>>.  You've done your best work here, and that big red chair is so cozy!<br>
+As you close the door of the weird little room behind you, you know <<link "you'll be back" "return to the library_no door">><<set $Tlaxcalans_currentMap=1000>><<set $Aztecs_currentMap=1000>><<set $Spaniards_currentMap=1000>><<set $ActOne +=1>><</link>>.  You've done your best work here, and that big red chair is so cozy!<br>
 <br>
 
 
@@ -3784,6 +3784,12 @@ You awake to find yourself in <<link "a vaguely familiar place" "Waking up in th
 
 :: return to the library_no door [Done Breaks] {"position":"1214,2451","size":"100,100"}
 <<theyr>>
+<<if $ActOne <= 14>>
+You must wait for the rest of the players to finish the first section of the game.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<elseif $ActOne > 14>>
 You made it through a full day of classes, but it was torture. You couldn't concentrate on anything because all you could think about was that mysterious room and the history assignment you don't remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.<br>
 <br>
 It's now late afternoon and you're finally free for the day. You hurry back to the library, excited to revisit the mystery room and its big comfy chair. You hope that if you look closely, you'll find some clue to what happened...some indication that you really did write that killer paper.<br>
@@ -3791,7 +3797,7 @@ It's now late afternoon and you're finally free for the day. You hurry back to t
 You arrive on the top floor and round the corner but you can't find the door! You swear this is exactly where you found it before, but it's not here. Confused, you scour every corner of the library to no avail. The door is nowhere to be found. You head home feeling deeply unsettled.<br>
 <br>
 
-
+<</if>>
 <</theyr>>
 
 

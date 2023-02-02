@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -2742,7 +2742,7 @@ The door sticks as you try to open it, but you can tell it&#39;s not locked. You
 &lt;br&gt;
 You unload your books and make yourself comfortable--maybe a little too comfortable. You get to work on your assignment, but within a matter of minutes your eyes get heavy. You struggle to stay awake but it&#39;s impossible to focus. Maybe a ten-minute nap will help. You tell yourself that if you just get it out of your system, you&#39;ll be good to go for the rest of the night. You close your eyes and quickly slip into a deep sleep. &lt;br&gt;
 &lt;br&gt;
-Suddenly, &lt;&lt;link &quot;you&#39;re startled by a loud noise&quot; &quot;Character Identification&quot;&gt;&gt;&lt;&lt;set $Spaniards_currentMap=1&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;] = 7&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=1&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;] = 7&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;] = 7&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
+Suddenly, &lt;&lt;link &quot;you&#39;re startled by a loud noise&quot; &quot;Character Identification&quot;&gt;&gt;&lt;&lt;set $Spaniards_currentMap=1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
 &lt;br&gt;
 
 
@@ -2765,7 +2765,7 @@ You grab it, you look, you start reading.  Your history assignment, it is done! 
 &lt;br&gt;
 You take a deep breath, you gather your things up calmly. You can&#39;t believe it. You don&#39;t remember writing this brilliant paper, but here it is, done. And you feel rested, if a bit disoriented.  Everything is going to be alright after all! You text your friends.  You&#39;ll meet them in class.&lt;br&gt;
 &lt;br&gt;
-As you close the door of the weird little room behind you, you know &lt;&lt;link &quot;you&#39;ll be back&quot; &quot;return to the library_no door&quot;&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=1000&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1000&gt;&gt;&lt;&lt;set $Spaniards_currentMap=1000&gt;&gt;&lt;&lt;/link&gt;&gt;.  You&#39;ve done your best work here, and that big red chair is so cozy!&lt;br&gt;
+As you close the door of the weird little room behind you, you know &lt;&lt;link &quot;you&#39;ll be back&quot; &quot;return to the library_no door&quot;&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=1000&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1000&gt;&gt;&lt;&lt;set $Spaniards_currentMap=1000&gt;&gt;&lt;&lt;set $ActOne +=1&gt;&gt;&lt;&lt;/link&gt;&gt;.  You&#39;ve done your best work here, and that big red chair is so cozy!&lt;br&gt;
 &lt;br&gt;
 
 
@@ -3409,6 +3409,12 @@ You awake to find yourself in &lt;&lt;link &quot;a vaguely familiar place&quot; 
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="return to the library_no door" tags="Done Breaks" position="1214,2451" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;if $ActOne &lt;= 14&gt;&gt;
+You must wait for the rest of the players to finish the first section of the game.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $ActOne &gt; 14&gt;&gt;
 You made it through a full day of classes, but it was torture. You couldn&#39;t concentrate on anything because all you could think about was that mysterious room and the history assignment you don&#39;t remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.&lt;br&gt;
 &lt;br&gt;
 It&#39;s now late afternoon and you&#39;re finally free for the day. You hurry back to the library, excited to revisit the mystery room and its big comfy chair. You hope that if you look closely, you&#39;ll find some clue to what happened...some indication that you really did write that killer paper.&lt;br&gt;
@@ -3416,7 +3422,7 @@ It&#39;s now late afternoon and you&#39;re finally free for the day. You hurry b
 You arrive on the top floor and round the corner but you can&#39;t find the door! You swear this is exactly where you found it before, but it&#39;s not here. Confused, you scour every corner of the library to no avail. The door is nowhere to be found. You head home feeling deeply unsettled.&lt;br&gt;
 &lt;br&gt;
 
-
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="Return to the Library_Door" tags="Done" position="2051,17" size="100,100">&lt;&lt;theyr&gt;&gt;
 &lt;&lt;audio &quot;Library&quot; play&gt;&gt;
 
