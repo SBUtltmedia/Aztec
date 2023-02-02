@@ -353,7 +353,8 @@ function makeUserDataJSON(initObject, response) {
 		"Tl_Peace": 0,
 		"Tlax_Az_Peace": 0,
 		"ActOne": 0,
-		"ActTwo": 0
+		"ActTwo": 0,
+		"ActThree": 0
 	}
 	initObject.jsonfsState = Object.assign({}, initVars, initObject.jsonfsState)
 	return returnTwine(initObject, response)

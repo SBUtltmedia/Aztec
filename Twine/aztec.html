@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -4774,7 +4774,7 @@ You&#39;ve stopped by the library multiple times a day for the last two weeks, b
 &lt;&lt;if $ActTwo &lt; 14&gt;&gt;
 You must wait for the rest of the players to finish the first section of the game.&lt;br&gt;
 &lt;br&gt;
-The number of players who have arrived is: &lt;&lt;print $ActOne&gt;&gt;&lt;br&gt;
+The number of players who have arrived is: &lt;&lt;print $ActTwo&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -5840,7 +5840,7 @@ After an eventful evening full of food, pulque and heated debate about your docu
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="183" name="Waking up in the Library on a Full Belly" tags="" position="600,2225" size="100,100">&lt;&lt;theyr&gt;&gt;
 You wake to find yourself back in the library, sprawled across the comfy chair. You missed dinner, but somehow your belly feels strangely full. You swear you can still taste the pulque on your lips, but that can&#39;t possibly be true... can it? &lt;br&gt;
 &lt;br&gt;
-You look at the stack of papers on the floor, and, sure enough, there&#39;s your latest history assignment, complete and ready to hand in. Buoyed by the knowledge that another A grade is coming your way, you pack up your things and head home. &lt;br&gt;
+You look at the stack of papers on the floor, and, sure enough, there&#39;s your latest history assignment, complete and ready to hand in. Buoyed by the knowledge that another A grade is coming your way, you pack up your things [[and head home|No Library Door Once Again]]. &lt;br&gt;
 &lt;br&gt;
 
 
@@ -5849,16 +5849,26 @@ After a full day of classes, you head back to the library. You&#39;re pretty sur
 &lt;br&gt;
 Even though you knew this was going to happen, you can&#39;t help but feel disappointed. Tenochtitlán is unlike anything you&#39;ve ever imagined and you&#39;re dying to get back there. You go online and find your history syllabus, wondering when your next assignment is due. Much to your dismay, it&#39;s two weeks until you&#39;ll get your next assignment. You&#39;ve never been so eager to get homework in your life! &lt;br&gt;
 &lt;br&gt;
-You trudge home wondering how you can possibly wait so long. Maybe if you tell your professor you want to get a headstart, she&#39;ll give you the assignment early.&lt;br&gt;
+You trudge home wondering how you can possibly wait so long. Maybe if you tell your professor you want to get a headstart, she&#39;ll give you the assignment early. &lt;&lt;link &quot;she&#39;ll give you the assignment early&quot; &quot;Back to the Library Yet Again&quot;&gt;&gt;&lt;&lt;set $ActThree +=1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=1000&gt;&gt;&lt;&lt;set $Aztecs_currentMap=1000&gt;&gt;&lt;&lt;set $Spaniards_currentMap=1000&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
 &lt;br&gt;
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="Back to the Library Yet Again" tags="" position="850,2225" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;if $ActThree &lt; 14&gt;&gt;
+You must wait for the rest of the players to finish the first section of the game.&lt;br&gt;
+&lt;br&gt;
+The number of players who have arrived is: &lt;&lt;print $ActThree&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $ActThree &gt;= 14&gt;&gt;
 Your plan worked! It&#39;s only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you&#39;re now an ‘A&#39; student, she didn&#39;t seem surprised that you would want to get ahead.&lt;br&gt;
 &lt;br&gt;
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there&#39;s the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].&lt;br&gt;
 &lt;br&gt;
-
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="186" name="Waking up 6 months later" tags="" position="975,2225" size="100,100">&lt;&lt;theyr&gt;&gt;
 You wake to the smell of fresh tortillas and the chatter of Nahuatl outside your door. Just as you hoped, you are back in Tenochtitlán. And just like every time before, you wake with a clear awareness of your situation. &lt;br&gt;

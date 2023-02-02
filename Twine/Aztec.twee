@@ -5321,7 +5321,7 @@ You've stopped by the library multiple times a day for the last two weeks, but t
 <<if $ActTwo < 14>>
 You must wait for the rest of the players to finish the first section of the game.<br>
 <br>
-The number of players who have arrived is: <<print $ActOne>><br>
+The number of players who have arrived is: <<print $ActTwo>><br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -6499,7 +6499,7 @@ After an eventful evening full of food, pulque and heated debate about your docu
 <<theyr>>
 You wake to find yourself back in the library, sprawled across the comfy chair. You missed dinner, but somehow your belly feels strangely full. You swear you can still taste the pulque on your lips, but that can't possibly be true... can it? <br>
 <br>
-You look at the stack of papers on the floor, and, sure enough, there's your latest history assignment, complete and ready to hand in. Buoyed by the knowledge that another A grade is coming your way, you pack up your things and head home. <br>
+You look at the stack of papers on the floor, and, sure enough, there's your latest history assignment, complete and ready to hand in. Buoyed by the knowledge that another A grade is coming your way, you pack up your things [[and head home|No Library Door Once Again]]. <br>
 <br>
 
 
@@ -6512,7 +6512,9 @@ After a full day of classes, you head back to the library. You're pretty sure yo
 <br>
 Even though you knew this was going to happen, you can't help but feel disappointed. Tenochtitlán is unlike anything you've ever imagined and you're dying to get back there. You go online and find your history syllabus, wondering when your next assignment is due. Much to your dismay, it's two weeks until you'll get your next assignment. You've never been so eager to get homework in your life! <br>
 <br>
-You trudge home wondering how you can possibly wait so long. Maybe if you tell your professor you want to get a headstart, she'll give you the assignment early.<br>
+You trudge home wondering how you can possibly wait so long. Maybe if you tell your professor you want to get a headstart, she'll give you the assignment early. <<link "she'll give you the assignment early" "Back to the Library Yet Again">><<set $ActThree +=1>><<set $Tlaxcalans_currentMap=1000>><<set $Aztecs_currentMap=1000>><<set $Spaniards_currentMap=1000>><</link>>.<br>
+<br>
+<br>
 <br>
 
 
@@ -6521,11 +6523,19 @@ You trudge home wondering how you can possibly wait so long. Maybe if you tell y
 
 :: Back to the Library Yet Again {"position":"850,2225","size":"100,100"}
 <<theyr>>
+<<if $ActThree < 14>>
+You must wait for the rest of the players to finish the first section of the game.<br>
+<br>
+The number of players who have arrived is: <<print $ActThree>><br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<elseif $ActThree >= 14>>
 Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an ‘A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there's the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].<br>
 <br>
-
+<</if>>
 
 <</theyr>>
 
