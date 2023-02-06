@@ -12,27 +12,44 @@ var base64 = require('base-64');
 
 
 class Webstack {
-	constructor(port, appIndex,config) {
-		
-		config.fileName = `aztec-${appIndex}.json`
+	constructor(port, appIndex,serverConf) {
+		serverConf.fileName = `aztec-${appIndex}.json`
 		this.appIndex = appIndex
-		this.config = config
+		this.serverConf = serverConf
 		//I'm not sure if this actually saves to GIT because we don't call the function.
 		this.port=port;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
-		http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
-		//this.state=database.getData()
-		
+
+		new gitApiIO(serverConf).retrieveFileAPI().then((gameData) => {
+			let state = JSON.parse(gameData)
+			this.serverStore.dispatch({
+				type: 'UPDATE',
+				payload: state
+			})
+	
+			http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
+		}
+		).catch(err => {
+			console.log(err.message);
+			response.write(err.message, 'utf8', () => {
+				console.log(err.message);
+			})
+		})
+
+
+	
 			console.log("port exists")
 			process
 				.on('SIGTERM', this.shutdown('SIGTERM'))
 				.on('SIGINT', this.shutdown('SIGINT'))
 				.on('uncaughtException', this.shutdown('uncaughtException'));
-			
+
 	}
+
+
 	get() {
 		return {
 			app
@@ -42,17 +59,13 @@ class Webstack {
 	shutdown(signal) {
 		return (err) => {
 		 console.log('doing stuff')
-		let content = {"signal":signal,...this.serverStore.getState()}
-		 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
+		  this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(this.serverStore.getState())), 
 			fileName: `aztec-${this.appIndex}.json`,
-			...this.config})
+		...this.config})
 		  this.saveJSON.uploadFileApi().then(
 			() => {
-				console.log(err)
 				process.exit(err ? 1 : 0);
-			}).catch(err=>{
-				console.log(err)
-				process.exit()})
+			})
 		 }
 		};
 	  
@@ -87,7 +100,7 @@ class Webstack {
 			
 				else {
 					//console.log("Retrieving state from JSONFS", database.getData())
-			
+					io.to(id).emit('new connection', {})
 				}
 			})
 
@@ -100,6 +113,7 @@ class Webstack {
 					payload: state
 				})
 				socket.broadcast.emit('difference', state)
+				
 		
 			})
 

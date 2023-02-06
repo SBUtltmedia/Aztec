@@ -7,19 +7,19 @@ var fs = require('fs');
 var base64 = require('base-64');
 
 class gitApiIO{
-    constructor(config) {
-        this.config = config
-        console.log("config is:", config)
+    constructor(serverConf) {
+        this.serverConf = serverConf
+        console.log("config is:", serverConf)
 	}
 
     async uploadFileApi() {
         return new Promise((res,rej)=> {
-            let config = this.config
+            let serverConf = this.serverConf
             var configGetFile = {
                 method: 'get',
-                url: `https://api.github.com/repos/${config.githubUser}/${config.githubRepo}/contents/${config.fileName}`,
+                url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
                 headers: {
-                    'Authorization': `Bearer ${config.githubToken}`,
+                    'Authorization': `Bearer ${serverConf.githubToken}`,
                     'Content-Type': 'application/json'
                 }
             };
@@ -31,14 +31,14 @@ class gitApiIO{
                     sha = response.data.sha
                     var data = JSON.stringify({
                         "message": "txt file",
-                        "content": `${config.content}`,
+                        "content": `${serverConf.content}`,
                         "sha": sha,
                     });
                     var configPutFile = {
                         method: 'put',
-                        url: `https://api.github.com/repos/${config.githubUser}/${config.githubRepo}/contents/${config.fileName}`,
+                        url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
                         headers: {
-                            'Authorization': `Bearer ${config.githubToken}`,
+                            'Authorization': `Bearer ${serverConf.githubToken}`,
                             'Content-Type': 'application/json',
 
                         },
@@ -62,9 +62,9 @@ class gitApiIO{
         return new Promise((res,rej)=> {
         var configGetFile = {
             method: 'get',
-            url: `https://api.github.com/repos/${this.config.githubUser}/${this.config.githubRepo}/contents/${this.config.fileName}`,
+            url: `https://api.github.com/repos/${this.serverConf.githubUser}/${this.serverConf.githubRepo}/contents/${this.serverConf.fileName}`,
             headers: {
-                'Authorization': `Bearer ${this.config.githubToken}`,
+                'Authorization': `Bearer ${this.serverConf.githubToken}`,
                 'Content-Type': 'application/json'
             }
         };
