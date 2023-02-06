@@ -12,7 +12,6 @@ const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
 let localAppIndex
-let testingVarsPath = "../testingVars.json"
 if (!process.env?.port) {
 	const __filename = fileURLToPath(import.meta.url)
 	const __dirname = path.dirname(__filename)
@@ -365,9 +364,6 @@ function makeUserDataJSON(initObject, response) {
 		"Tlax_Az_Peace": 0
 	}
 	initObject.gameState = Object.assign({}, initVars, initObject.gameState)
-
-	let testingVars = require('./' + testingVarsPath);
-	initObject.gameState = Object.assign({}, initObject.gameState, testingVars)
 	return returnTwine(initObject, response)
 
 }
@@ -388,29 +384,16 @@ function loadHome(response, isTest) {
 	let indexHtml = htmlContents.replace("%redirectURL%", REDIRECTURL)
 
 
-	new gitApiIO(CONFIG).retrieveFileAPI().then((gameData) => {
-		let state = JSON.parse(gameData)
-		webstackInstance.serverStore.dispatch({
-			type: 'UPDATE',
-			payload: state
-		})
-
-		if (isTest) {
+	if (isTest) {
 
 	
 
-			return makeUserDataJSON({ gameState: state }, response);
-		}
-		else {
-			response.send(indexHtml);
-		}
+		return makeUserDataJSON({ gameState: webstackInstance.serverStore.getState() }, response);
 	}
-	).catch(err => {
-		console.log(err.message);
-		response.write(err.message, 'utf8', () => {
-			console.log(err.message);
-		})
-	})
+	else {
+		response.send(indexHtml);
+	}
+
 }
 
 // Generates a random ID
