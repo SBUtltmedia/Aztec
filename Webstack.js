@@ -1,5 +1,4 @@
 import express from 'express';
-import Db from './db.js'
 import gitApiIO from './gitApiIO.js';
 import Redux from 'redux'
 import { createRequire } from "module";
@@ -7,7 +6,6 @@ const require = createRequire(import.meta.url);
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const database = new Db()
 var base64 = require('base-64');
 
 
@@ -35,11 +33,6 @@ class Webstack {
 				.on('uncaughtException', this.shutdown('uncaughtException'));
 			
 	}
-
-	update(){
-		this.state= database.getData();
-	}
-
 	get() {
 		return {
 			app
@@ -94,7 +87,6 @@ class Webstack {
 			
 				else {
 					//console.log("Retrieving state from JSONFS", database.getData())
-					io.to(id).emit('new connection', database.getData())
 			
 				}
 			})
@@ -108,8 +100,6 @@ class Webstack {
 					payload: state
 				})
 				socket.broadcast.emit('difference', state)
-				
-				database.setData(state) // Updates the database
 		
 			})
 

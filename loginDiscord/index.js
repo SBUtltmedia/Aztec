@@ -150,7 +150,7 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
-			return makeUserDataJSON({ jsonfsState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } }, response);
+			return makeUserDataJSON({ gameState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } }, response);
 
 
 			//return returnTwine(userDataJSON, response);
@@ -363,7 +363,7 @@ function makeUserDataJSON(initObject, response) {
 		"Tl_Peace": 0,
 		"Tlax_Az_Peace": 0
 	}
-	initObject.jsonfsState = Object.assign({}, initVars, initObject.jsonfsState)
+	initObject.gameState = Object.assign({}, initVars, initObject.gameState)
 	return returnTwine(initObject, response)
 
 }
@@ -395,7 +395,7 @@ function loadHome(response, isTest) {
 
 	
 
-			return makeUserDataJSON({ jsonfsState: state }, response);
+			return makeUserDataJSON({ gameState: state }, response);
 		}
 		else {
 			response.send(indexHtml);
