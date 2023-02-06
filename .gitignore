@@ -3,3 +3,6 @@ loginDiscord/config.json
 node_modules
 tests.js
 config.json
+jsonFS/data/**
+.env
+.env_back
