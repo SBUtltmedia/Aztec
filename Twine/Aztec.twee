@@ -431,13 +431,27 @@ importScripts([
 <!-- <<masteraudio mute>> -->
 <<masteraudio unmute>>
  <<run showMap()>>
-<<run setBackground()>>
+<<script>>
+	let imageURL = State.getVar("$users[$userId]['faction']");
+
+	 setTimeout(() => {
+	console.log("Image", imageURL);
+		$('#story').css({
+			'backgroundImage': `url(Twine/images/Borders/${imageURL}.jpg)`
+		}
+		)
+	 },1000)
+
+
+<</script>>
 <<if passage() !=  "Name Not Recognized">>
  <<run showStats()>>
 <</if>>
 <<if passage() != Config.passages.start>>
 <<set $users[$userId]["passage"] = passage()>> 
 <</if>>
+
+
 
 <<set _currentTime=new Date()>>
 <<set $users[$userId].lastSeen=_currentTime.getTime()>>  
@@ -493,7 +507,7 @@ Maxixcatl
 	<</if>>
 <</for>>
 
-<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans"]>>
+<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
 	<<print _faction>>
 	<br>
 	<<for _j, _users range _factionUsers>>

@@ -1,0 +1,9 @@
+<svg width="51" height="56" viewBox="0 0 51 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.07909 19.316C1.71371 19.6002 1.5 20.0371 1.5 20.5V48C1.5 49.7239 2.18482 51.3772 3.4038 52.5962C4.62279 53.8152 6.27609 54.5 8 54.5H43C44.7239 54.5 46.3772 53.8152 47.5962 52.5962C48.8152 51.3772 49.5 49.7239 49.5 48V20.5C49.5 20.0371 49.2863 19.6002 48.9209 19.316L26.4209 1.81597C25.8792 1.39468 25.1208 1.39468 24.5791 1.81597L2.07909 19.316Z" fill="#2E2216" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<mask id="path-2-outside-1_280_4570" maskUnits="userSpaceOnUse" x="15" y="25" width="21" height="31" fill="black">
+<rect fill="white" x="15" y="25" width="21" height="31"/>
+<path d="M18 53V28H33V53"/>
+</mask>
+<path d="M18 53V28H33V53" fill="#2E2216"/>
+<path d="M15 53C15 54.6569 16.3431 56 18 56C19.6569 56 21 54.6569 21 53H15ZM18 28V25C16.3431 25 15 26.3431 15 28H18ZM33 28H36C36 26.3431 34.6569 25 33 25V28ZM30 53C30 54.6569 31.3431 56 33 56C34.6569 56 36 54.6569 36 53H30ZM21 53V28H15V53H21ZM18 31H33V25H18V31ZM30 28V53H36V28H30Z" fill="white" mask="url(#path-2-outside-1_280_4570)"/>
+</svg>
