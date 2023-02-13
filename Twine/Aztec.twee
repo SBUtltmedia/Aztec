@@ -415,28 +415,8 @@ importScripts([
 }
 		>>
 
-<<set _userlist = []>>
-<<set _factionUsers = {}>>
-<<set _factionUsers["offline"] = []>>
 
-<<for _id, _data range $users>>
-	<<set _faction = _data["faction"]>>
-	<<if ndef _factionUsers[_faction]>>
-		<<set _factionUsers[_faction] = []>>
-	<</if>>
 
-	<<if new Date().getTime() - _data["lastSeen"] < 1000000>>
-		<<set _factionUsers[_faction].push(_id)>>
-	<<else>>
-		<<set _factionUsers["offline"].push(_id)>>
-	<</if>>
-<</for>>
-
-<<for _i, _data range _factionUsers>>
-	<<for _id range _data>>
-		<<set _userlist.push(_id)>>
-	<</for>>
-<</for>>
 
 /* Object.keys(factions).forEach(faction=>{
 	
@@ -492,6 +472,40 @@ Xicotencatl_Elder <br>
 Xicotencatl_Younger <br>
 Maxixcatl
 
+<</theyr>>
+
+
+:: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+<<set _factionUsers = {}>>
+<<set _factionUsers["offline"] = []>>
+
+<<for _id, _data range $users>>
+	<<set _faction = _data["faction"]>>
+	<<if ndef _factionUsers[_faction]>>
+		<<set _factionUsers[_faction] = []>>
+	<</if>>
+
+	<<if new Date().getTime() - _data["lastSeen"] < 1000000>>
+		<<set _factionUsers[_faction].push(_id)>>
+	<<else>>
+		<<set _factionUsers["offline"].push(_id)>>
+	<</if>>
+<</for>>
+
+<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans"]>>
+	<<print _faction>>
+	<br>
+	<<for _j, _users range _factionUsers>>
+		<<for _k, _user range _users>>
+			<<if $users[_user]["faction"] == _faction>>
+			<<print $users[_user]["role"]>>
+			<br>
+			<</if>>
+		<</for>>
+	<</for>>
+		<br>
+<</for>>
 <</theyr>>
 
 
@@ -11956,4 +11970,5 @@ After much angry debate , you finally determine that <<print $Span_Leader>> has 
 
 
 <</theyr>>
+
 
