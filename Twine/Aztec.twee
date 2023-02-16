@@ -431,6 +431,13 @@ importScripts([
 <!-- <<masteraudio mute>> -->
 <<masteraudio unmute>>
  <<run showMap()>>
+<<if passage() !=  "Name Not Recognized">>
+ <<run showStats()>>
+<</if>>
+<<if passage() != Config.passages.start>>
+<<set $users[$userId]["passage"] = passage()>> 
+<</if>>
+
 <<script>>
 	let imageURL = State.getVar("$users[$userId]['faction']");
 	if(State.getVar("$users[$userId]['passage']") == "Player List"){
@@ -444,12 +451,6 @@ importScripts([
 
 
 <</script>>
-<<if passage() !=  "Name Not Recognized">>
- <<run showStats()>>
-<</if>>
-<<if passage() != Config.passages.start>>
-<<set $users[$userId]["passage"] = passage()>> 
-<</if>>
 
 
 
