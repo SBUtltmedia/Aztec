@@ -433,14 +433,14 @@ importScripts([
  <<run showMap()>>
 <<script>>
 	let imageURL = State.getVar("$users[$userId]['faction']");
+	if(State.getVar("$users[$userId]['passage']") == "Player List"){
+		imageURL = "main"
+	}
 
-	 setTimeout(() => {
-	console.log("Image", imageURL);
 		$('#story').css({
 			'backgroundImage': `url(Twine/images/Borders/${imageURL}.jpg)`
 		}
 		)
-	 },1000)
 
 
 <</script>>
@@ -491,8 +491,7 @@ Maxixcatl
 
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
-<<set _factionUsers = {}>>
-<<set _factionUsers["offline"] = []>>
+<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
 
 <<for _id, _data range $users>>
 	<<set _faction = _data["faction"]>>
@@ -510,13 +509,9 @@ Maxixcatl
 <<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
 	<<print _faction>>
 	<br>
-	<<for _j, _users range _factionUsers>>
-		<<for _k, _user range _users>>
-			<<if $users[_user]["faction"] == _faction>>
-			<<print $users[_user]["role"]>>
-			<br>
-			<</if>>
-		<</for>>
+	<<for _j, _userId range _factionUsers[_faction]>>
+		<<print $users[_userId]["role"]>>
+		<br>
 	<</for>>
 		<br>
 <</for>>
