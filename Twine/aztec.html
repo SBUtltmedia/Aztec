@@ -176,7 +176,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -498,14 +498,14 @@ importScripts([
  &lt;&lt;run showMap()&gt;&gt;
 &lt;&lt;script&gt;&gt;
 	let imageURL = State.getVar(&quot;$users[$userId][&#39;faction&#39;]&quot;);
+	if(State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;) == &quot;Player List&quot;){
+		imageURL = &quot;main&quot;
+	}
 
-	 setTimeout(() =&gt; {
-	console.log(&quot;Image&quot;, imageURL);
 		$(&#39;#story&#39;).css({
 			&#39;backgroundImage&#39;: `url(Twine/images/Borders/${imageURL}.jpg)`
 		}
 		)
-	 },1000)
 
 
 &lt;&lt;/script&gt;&gt;
@@ -548,8 +548,7 @@ Xicotencatl_Younger &lt;br&gt;
 Maxixcatl
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Player List" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;set _factionUsers = {}&gt;&gt;
-&lt;&lt;set _factionUsers[&quot;offline&quot;] = []&gt;&gt;
+&lt;&lt;set _factionUsers = {&quot;Aztecs&quot; : [], &quot;Spaniards&quot;:[],&quot;Tlaxcalans&quot;:[], &quot;offline&quot;:[]}&gt;&gt;
 
 &lt;&lt;for _id, _data range $users&gt;&gt;
 	&lt;&lt;set _faction = _data[&quot;faction&quot;]&gt;&gt;
@@ -567,13 +566,9 @@ Maxixcatl
 &lt;&lt;for _i,_faction   range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;offline&quot;]&gt;&gt;
 	&lt;&lt;print _faction&gt;&gt;
 	&lt;br&gt;
-	&lt;&lt;for _j, _users range _factionUsers&gt;&gt;
-		&lt;&lt;for _k, _user range _users&gt;&gt;
-			&lt;&lt;if $users[_user][&quot;faction&quot;] == _faction&gt;&gt;
-			&lt;&lt;print $users[_user][&quot;role&quot;]&gt;&gt;
-			&lt;br&gt;
-			&lt;&lt;/if&gt;&gt;
-		&lt;&lt;/for&gt;&gt;
+	&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
+		&lt;&lt;print $users[_userId][&quot;role&quot;]&gt;&gt;
+		&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 		&lt;br&gt;
 &lt;&lt;/for&gt;&gt;
