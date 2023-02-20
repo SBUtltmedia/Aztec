@@ -441,7 +441,10 @@ importScripts([
 <<script>>
 	let imageURL = State.getVar("$users[$userId]['faction']");
 	if(State.getVar("$users[$userId]['passage']") == "Player List"){
-		imageURL = "main"
+		$("#story").addClass("playerList");
+		imageURL = "main";
+	}else{
+		$("#story").removeClass("playerList");
 	}
 
 		$('#story').css({

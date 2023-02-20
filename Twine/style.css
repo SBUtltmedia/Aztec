@@ -457,3 +457,16 @@ overflow : hidden !important;
 .home{
 width: 200% !important;
 }
+
+.playerList #passages{
+  position: absolute;
+  left: 85%;
+  width: 15%;
+  background-color: #63503E;
+  height: 100%;
+  color: white;
+  top: 0%;
+}
+.playerList  #map{
+  display:none;
+}
