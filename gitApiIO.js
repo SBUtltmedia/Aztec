@@ -4,7 +4,7 @@ const require = createRequire(import.meta.url);
 
 var axios = require('axios');
 var fs = require('fs');
-var testFile = "testVars.json"
+var testFile = "loginDiscord/testVars.json"
 var base64 = require('base-64');
 
 class gitApiIO{
