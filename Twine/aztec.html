@@ -496,10 +496,20 @@ importScripts([
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
 &lt;&lt;masteraudio unmute&gt;&gt;
  &lt;&lt;run showMap()&gt;&gt;
+&lt;&lt;if passage() !=  &quot;Name Not Recognized&quot;&gt;&gt;
+ &lt;&lt;run showStats()&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if passage() != Config.passages.start&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;passage&quot;] = passage()&gt;&gt; 
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;script&gt;&gt;
 	let imageURL = State.getVar(&quot;$users[$userId][&#39;faction&#39;]&quot;);
 	if(State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;) == &quot;Player List&quot;){
-		imageURL = &quot;main&quot;
+		$(&quot;#story&quot;).addClass(&quot;playerList&quot;);
+		imageURL = &quot;main&quot;;
+	}else{
+		$(&quot;#story&quot;).removeClass(&quot;playerList&quot;);
 	}
 
 		$(&#39;#story&#39;).css({
@@ -509,12 +519,6 @@ importScripts([
 
 
 &lt;&lt;/script&gt;&gt;
-&lt;&lt;if passage() !=  &quot;Name Not Recognized&quot;&gt;&gt;
- &lt;&lt;run showStats()&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if passage() != Config.passages.start&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;passage&quot;] = passage()&gt;&gt; 
-&lt;&lt;/if&gt;&gt;
 
 
 
