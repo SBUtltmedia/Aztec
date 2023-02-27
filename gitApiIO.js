@@ -17,7 +17,7 @@ class gitApiIO{
     async uploadFileApi() {
         return new Promise((res,rej)=> {
             if(this.test){
-                fs.writeFileSync(testFile, base64.decode(this.config.content))
+                fs.writeFileSync(testFile, base64.decode(this.serverConf.content))
                 res()
             }else{
             let serverConf = this.serverConf
