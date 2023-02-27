@@ -163,7 +163,8 @@ display: none;
 #story {
 margin-left: 0;
 position: absolute;
-/* background-image: url('images/1 Cortes Arrives in Veracruz.jpg'), url('images/Borders/Spaniards.png'); */
+background-position: 30% 70%,0 0;
+background-size: 100% 100%;
 
 /* background-position: 30% 70%,0 0; */
 background-size: 100%;
@@ -455,4 +456,17 @@ overflow : hidden !important;
 }
 .home{
 width: 200% !important;
+}
+
+.playerList #passages{
+  position: absolute;
+  left: 85%;
+  width: 15%;
+  background-color: #63503E;
+  height: 100%;
+  color: white;
+  top: 0%;
+}
+.playerList  #map{
+  display:none;
 }
