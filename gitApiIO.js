@@ -4,16 +4,22 @@ const require = createRequire(import.meta.url);
 
 var axios = require('axios');
 var fs = require('fs');
+var testFile = "loginDiscord/testVars.json"
 var base64 = require('base-64');
 
 class gitApiIO{
     constructor(serverConf) {
         this.serverConf = serverConf
+        this.test = fs.existsSync(testFile)
         console.log("config is:", serverConf)
 	}
 
     async uploadFileApi() {
         return new Promise((res,rej)=> {
+            if(this.test){
+                fs.writeFileSync(testFile, base64.decode(this.config.content))
+                res()
+            }else{
             let serverConf = this.serverConf
             var configGetFile = {
                 method: 'get',
@@ -56,10 +62,14 @@ class gitApiIO{
                 .catch(function (error) {
                     rej(error)
                 });
-            })
+            }})
     }
     async retrieveFileAPI() {
         return new Promise((res,rej)=> {
+        if(this.test){
+            let data = fs.readFileSync(testFile)
+            res(data)
+        }else{
         var configGetFile = {
             method: 'get',
             url: `https://api.github.com/repos/${this.serverConf.githubUser}/${this.serverConf.githubRepo}/contents/${this.serverConf.fileName}`,
@@ -77,7 +87,7 @@ class gitApiIO{
             .catch(function (error) {
                 rej(error);
             });
-        })
+        }})
     }
 }
 
