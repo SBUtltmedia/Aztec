@@ -489,6 +489,20 @@ Maxixcatl
 <</theyr>>
 
 
+:: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<set _tempKey = "$Letter">>
+	<<set _tempVal = "">>
+	<<script>>
+	let temp = State.getVar(State.getVar("_tempKey"));
+		console.log("testkey:", temp);
+		State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
+	<</script>>
+	<<print $Letter>>
+	<<textbox _tempKey _tempVal "Control: Variables" >>
+<</theyr>>
+
+
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _factionUsers = {}>>
