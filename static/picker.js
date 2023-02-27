@@ -115,7 +115,7 @@ function submitStats() {
         var jqItem = $(item);
         var statType = $(item).attr("id");
         var statValue = $(item).val();
-        stats[statType] = statValue
+        stats[statType] = parseInt(statValue)
     })
 
     if (valueChange.currentValue != 0) {
