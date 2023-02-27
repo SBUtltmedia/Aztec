@@ -9,7 +9,7 @@ var base64 = require('base-64');
 class gitApiIO{
     constructor(config) {
         this.config = config
-        console.log("config is:", config)
+        console.log("config is", config)
 	}
 
     async uploadFileApi() {
