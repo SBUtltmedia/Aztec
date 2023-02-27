@@ -56,18 +56,35 @@ class Webstack {
 		}
 	}
 
-	shutdown(signal) {
-		return (err) => {
-		 console.log('doing stuff')
-		  this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(this.serverStore.getState())), 
-			fileName: `aztec-${this.appIndex}.json`,
-		...this.config})
-		  this.saveJSON.uploadFileApi().then(
-			() => {
-				process.exit(err ? 1 : 0);
-			})
-		 }
-		};
+	// shutdown(signal) {
+	// 	return (err) => {
+	// 	 console.log('doing stuff')
+	// 	  this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(this.serverStore.getState())), 
+	// 		fileName: `aztec-${this.appIndex}.json`,
+	// 	...this.config})
+	// 	  this.saveJSON.uploadFileApi().then(
+	// 		() => {
+	// 			process.exit(err ? 1 : 0);
+	// 		})
+	// 	 }
+	// 	};
+
+		shutdown(signal) {
+			return (err) => {
+			 console.log('doing stuff')
+			let content = {"signal":signal,...this.serverStore.getState()}
+			 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
+				fileName: `aztec-${this.appIndex}.json`,
+				...this.serverConf})
+			  this.saveJSON.uploadFileApi().then(
+				() => {
+					console.log(err)
+					process.exit(err ? 1 : 0);
+				}).catch(err=>{
+					console.log(err)
+					process.exit()})
+			 }
+			};
 	  
 	reducer(state, action) {
 		switch (action.type) {
