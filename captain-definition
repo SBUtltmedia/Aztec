@@ -1,7 +1,13 @@
 {
  "schemaVersion" : 2 ,
- "templateId" : "node/8.7.0",
+//  "templateId" : "node/8.7.0",
  "dockerfileLines" : [
+    "FROM node:8.7.0-alpine",
+    "RUN mkdir -p /usr/src/app",
+    "WORKDIR /usr/src/app",
+    "COPY ./package.json /usr/src/app/",
+    "RUN npm install && npm cache clean --force",
+    "COPY ./ /usr/src/app",
     "ENV clientId 1062455250562322504",
     "ENV clientSecret DSdwDUTErau2s-yU96pe6CrtPXPFwVZ2",
     "ENV guildId 1062455060770078741",
@@ -21,7 +27,8 @@
     "ENV localAppIndex 4",
     "ENV redirectURL https://discord.com/api/oauth2/authorize?client_id=1062455250562322504&redirect_uri=https%3A%2F%2Faztec-1.herokuapp.com&response_type=code&scope=identify%20guilds.members.read%20guilds",
     "ENV herokuURL https://aztec-1.herokuapp.com",
-    "ENV appIndex 1"
+    "ENV appIndex 1",
+    "CMD [ \"npm\", \"start\" ]"
 ]
 
 }
