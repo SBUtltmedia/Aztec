@@ -491,15 +491,17 @@ Maxixcatl
 
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
-	<<set _tempKey = "$Letter">>
-	<<set _tempVal = "">>
-	<<script>>
-	let temp = State.getVar(State.getVar("_tempKey"));
-		console.log("testkey:", temp);
-		State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
-	<</script>>
-	<<print $Letter>>
-	<<textbox _tempKey _tempVal "Control: Variables" >>
+<<set _initVars = ["$currentPassage","$Tlaxcalans_currentMap","$Aztecs_currentMap","$Start_ctr","$Start_sum","$Xicotencatl_Elder_currentPassage","$Tlax_Leader","$Quest_Leader_T","$T_Q_Heart","$Cuauhtemoc_currentPassage","$Maxixcatl_currentPassage","$Moctezuma_currentPassage","$Pochteca_currentPassage","$Tlacaelel_currentPassage","$Alvarado_currentPassage","$Aztec_Leader","$Quest_Leader_A","$A_Q_Heart","$Span_Leader","$Cuba_Voted_ctr","$Cuba_Voted_sum","$Xochimilco_Ans_A","$Malinalco_Ans_A","$Azcapotzalco_Ans_A","$Tlatelolco_Ans_A","$Cuauhnahuac_Ans_A","$Chapultepec_Ans_A","$Quest_Points_A_ctr","$Quest_Points_A_sum","$Mal_Story","$Xochimilco_Ans_T","$Quest_Points_T_ctr","$Quest_Points_T_sum","$Malinalco_Ans_T","$Chapultepec_Ans_T","$Cuauhnahuac_Ans_T","$Tlatelolco_Ans_T","$Azcapotzalco_Ans_T","$Cac_Statement","$Cuauh_Statement","$Tlac_Statement","$Moc_Proc","$Poch_Statement","$AzPr_Statement","$MocMut_Moc_ctr","$MocMut_Moc_sum","$Moc_Mut_Vote_ctr","$Moc_Mut_Vote_sum","$Moc_Mut_Tla_ctr","$Moc_Mut_AzP_sum","$MocMut_Cua_ctr","$MocMut_Cua_sum","$MocMut_Tla_ctr","$MocMut_Tla_sum","$Cholula_Attack","$XY_Statement","$XE_Statement","$Max_Statement","$TL_St_Voted_ctr","$TL_St_Voted_sum","$Tl_Attacks_Pu","$Mal_Boy","$Mal_Share","$Letter","$Mal_Span","$Gifts","$L_Received","$Mutiny_ctr","$Mutiny_sum","$Mutiny_Voted","$Mut_Cor","$Mut_Olid","$Mutiny_Voted_ctr","$Mutiny_Voted_sum","$Tlaloc_currentPassage","$Spaniards_currentMap","$Tl_Omens","$TL_Attacks","$Olid_Let_Hm","$Cortes_Let_Hm","$Alvarado_Let_Hm","$Garrido_Let_Hm","$Causeway_ctr","$Causeway_sum","$Marina_Let_Hm","$Aguilar_Let_Hm","$Omens","$Tlax_Cause","$Tl_IG","$Feast_ctr","$Feast_sum","$Al_TG","$Ga_TG","$Co_TG","$Ol_TG","$Ma_TG","$Ag_TG","$Tlc_Rec","$Cu_Rec","$Ca_Rec","$AP_Rec","$Moc_Rec","$Az_Ld_Tla_ctr","$Az_Ld_Tla_sum","$Az_Ld_Vote_ctr","$Az_Ld_Vote_sum","$Az_Ld_Cua_ctr","$Az_Ld_Cua_sum","$Az_Ld_Moc_ctr","$Az_Ld_Moc_sum","$Az_Ld_Cac_ctr","$Az_Ld_Cac_sum","$Moctezuma_Loyalty_ctr","$Moctezuma_Loyalty_sum","$Moctezuma_Wisdom_ctr","$Moctezuma_Wisdom_sum","$Aztec_Mut","$Span_Cho_Att","$Sp_Ld_Agu_ctr","$Sp_Ld_Agu_sum","$Sp_Ld_Vote_ctr","$Sp_Ld_Vote_sum","$Sp_Ld_Cor_ctr","$Sp_Ld_Cor_sum","$Sp_Ld_Alv_Teno_ctr","$Sp_Ld_Alv_Teno_sum","$Sp_Ld_Mar_Teno_sum","$Sp_Ld_Agu_Teno_sum","$Sp_Ld_Gar_Teno_sum","$Sp_Ld_Oli_Teno_sum","$Sp_Ld_Vote_Teno_ctr","$Sp_Ld_Vote_Teno_sum","$Tlax_Alliance","$Cortes_Dead","$Riot_ctr","$Riot_sum","$Riot_Vote_ctr","$Riot_Vote_sum","$Az_Ld_Dead","$Hostage","$Moc_Riot_Vote_ctr","$Moc_Riot_Vote_sum","$MocRiot_Moc_ctr","$MocRiot_Moc_sum","$MocRiot_Poc_ctr","$MocRiot_Poc_sum","$MocRiot_Tla_ctr","$MocRiot_Tla_sum","$MocRiot_Cac_ctr","$MocRiot_Cac_sum","$MocRiot_Cua_sum","$MocRiot_AzP_sum","$MocRiot_AzP","$MocRiot_Cua","$New_Aztec_Leader","$Hostage_Exch","$Final_Aztec_Players","$Final_Aztec_Points","$Final_Spanish_Players","$Final_Spanish_Points","$Final_Tlaxcalan_Players","$Final_Tlaxcalan_Points","$Final_Span_Tlax_Points","$Aguilar_Free","$Marina_Free","$Aguilar_1","$Malinche_Free","$Aguilar_2","$Aguilar_3","$Malinche_1","$Malinche_2","$Malinche_3","$Mut_Cor_ctr","$Mut_Cor_sum","$Mut_Olid_ctr","$Mut_Olid_sum","$Sp_Ld_Oli_Teno_ctr","$Sp_Ld_Mar_Teno_ctr","$MocRiot_Cua_ctr","$MocRiot_AzP_ctr","$NT_Fight","$Sp_Ld_Alv_ctr","$Sp_Ld_Olid_sum","$Sp_Ld_Gar_sum","$Sp_Ld_Alv_sum","$cause","$Sp_Ld_Agu_Teno_ctr","$Sp_Ld_Gar_Teno_ctr","$Noche","$Tlax_Bat","$Tlax_Final_Dec","$Sp_Peace","$Az_Peace","$Tl_Peace","$Tlax_Az_Peace"]>>
+	<<print JSON.stringify(_initVars)>>
+	<<for _tempVal, _tempKey range _initVars>>
+		<<script>>
+			State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
+		<</script>>
+		<<print _tempKey.slice(1)>>
+		<br>
+		<<textbox _tempKey _tempVal "Control: Variables" >>
+		<br>
+	<</for>>
 <</theyr>>
 
 
