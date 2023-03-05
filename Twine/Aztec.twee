@@ -285,7 +285,7 @@ importScripts([
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
-<<set $users[$userId]["passage"] = "The Library">>
+<<set $users[$userId]["passage"] = Config.passages.start>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 
 <<else>>
@@ -490,6 +490,23 @@ Xicotencatl_Elder <br>
 Xicotencatl_Younger <br>
 Maxixcatl
 
+<</theyr>>
+
+
+:: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+<<set _initVars = State.variables>>
+	<<print JSON.stringify(_initVars)>>
+	<<for _tempKey, _tempVal range _initVars>>
+		<<set _tempKey = "$" + _tempKey>>
+		<<script>>
+			State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
+		<</script>>
+		<<print _tempKey.slice(1)>>
+		<br>
+		<<textbox _tempKey _tempVal "Control: Variables" >>
+		<br>
+	<</for>>
 <</theyr>>
 
 
