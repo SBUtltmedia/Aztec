@@ -496,16 +496,20 @@ Maxixcatl
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _initVars = State.variables>>
-	<<print JSON.stringify(_initVars)>>
+	/* <<print JSON.stringify(_initVars)>> */
 	<<for _tempKey, _tempVal range _initVars>>
-		<<set _tempKey = "$" + _tempKey>>
-		<<script>>
-			State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
-		<</script>>
-		<<print _tempKey.slice(1)>>
-		<br>
-		<<textbox _tempKey _tempVal "Control: Variables" >>
-		<br>
+		 /* <<script>>
+		//  console.log( State.getVar(_tempKey), _tempVal )
+		//	State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
+		<</script>>  */
+		<<if typeof _tempVal != "object">>
+
+			<<set _twineKey = `$${ _tempKey}`>>
+			<<print _tempKey>>
+			<br>
+			<<textbox _twineKey _tempVal "Control: Variables" >>
+			<br>
+		<</if>>
 	<</for>>
 <</theyr>>
 
