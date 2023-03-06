@@ -551,9 +551,25 @@ Xicotencatl_Elder &lt;br&gt;
 Xicotencatl_Younger &lt;br&gt;
 Maxixcatl
 
-&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Player List" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;set _factionUsers = {}&gt;&gt;
-&lt;&lt;set _factionUsers[&quot;offline&quot;] = []&gt;&gt;
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Control: Variables" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;set _initVars = State.variables&gt;&gt;
+	/* &lt;&lt;print JSON.stringify(_initVars)&gt;&gt; */
+	&lt;&lt;for _tempKey, _tempVal range _initVars&gt;&gt;
+		 /* &lt;&lt;script&gt;&gt;
+		//  console.log( State.getVar(_tempKey), _tempVal )
+		//	State.setVar(&quot;_tempVal&quot;, State.getVar(State.getVar(&quot;_tempKey&quot;)));
+		&lt;&lt;/script&gt;&gt;  */
+		&lt;&lt;if typeof _tempVal != &quot;object&quot;&gt;&gt;
+
+			&lt;&lt;set _twineKey = `$${ _tempKey}`&gt;&gt;
+			&lt;&lt;print _tempKey&gt;&gt;
+			&lt;br&gt;
+			&lt;&lt;textbox _twineKey _tempVal &quot;Control: Variables&quot; &gt;&gt;
+			&lt;br&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Player List" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;set _factionUsers = {&quot;Aztecs&quot; : [], &quot;Spaniards&quot;:[],&quot;Tlaxcalans&quot;:[], &quot;offline&quot;:[]}&gt;&gt;
 
 &lt;&lt;for _id, _data range $users&gt;&gt;
 	&lt;&lt;set _faction = _data[&quot;faction&quot;]&gt;&gt;
@@ -573,6 +589,7 @@ Maxixcatl
 	&lt;br&gt;
 	&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
 		&lt;&lt;print $users[_userId][&quot;role&quot;]&gt;&gt;
+		&lt;&lt;print $users[_userId][&quot;username&quot;]&gt;&gt;
 		&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 		&lt;br&gt;
