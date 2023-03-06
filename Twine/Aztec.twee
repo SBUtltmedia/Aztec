@@ -518,7 +518,6 @@ Maxixcatl
 Only modify stats and passages if you aren't 100% sure what you are doing
 
 
-<<set _initVars = State.variables>>
 	/* <<print JSON.stringify(_initVars)>> */
 
 	/* Goes through list of all users */
@@ -545,6 +544,43 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 				<<print`${_userName}'s ${_varKey}`>>
 				<br>
 				<<textbox _twineKey _varVal "Control: Variables (Users)" >>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
+		<br>
+	<</for>>
+<</theyr>>
+
+:: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+Only modify stats and passages if you aren't 100% sure what you are doing
+
+	/* Goes through list of all factions */
+	<<for _factionId, _factionData range $factions>> 
+		/* Goes through list of all Variables */
+
+		<<set _factionName = _factionId>>
+		<<print _factionName>>
+		<br>
+
+		<<for _varKey, _varVal range _factionData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					<<set _twineKey = `$factions["stats"][${ _statKey}]`>>
+					<<print `${_factionName}'s ${_statKey}`>>
+					<br>
+					<<textbox _twineKey _statVal "Control: Variables (Factions)" >>
+					<br>
+				<</for>>
+			<<else>>
+				/* Goes through all faction variables (besides stats) */
+				<<set _twineKey = `$factions[${ _varKey}]`>>
+				<<print`${_factionName}'s ${_varKey}`>>
+				<br>
+				<<textbox _twineKey _varVal "Control: Variables (Factions)" >>
 				<br>
 
 			<</if>>
