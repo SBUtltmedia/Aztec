@@ -513,6 +513,46 @@ Maxixcatl
 	<</for>>
 <</theyr>>
 
+:: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+Only modify stats and passages if you aren't 100% sure what you are doing
+
+
+<<set _initVars = State.variables>>
+	/* <<print JSON.stringify(_initVars)>> */
+
+	/* Goes through list of all users */
+	<<for _userId, _userData range $users>> 
+		/* Goes through list of all Variables */
+
+		<<set _userName = _userData["role"]>>
+		<<print `${_userName} (userId: ${_userId})`>>
+		<br>
+
+		<<for _varKey, _varVal range _userData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					<<set _twineKey = `$users[${_userId}]["stats][${ _statKey}]`>>
+					<<print `${_userName}'s ${_statKey}`>>
+					<br>
+					<<textbox _twineKey _statVal "Control: Variables (Users)" >>
+					<br>
+				<</for>>
+			<<else>>
+				/* Goes through all user variables (besides stats) */
+				<<set _twineKey = `$users[${_userId}][${ _varKey}]`>>
+				<<print`${_userName}'s ${_varKey}`>>
+				<br>
+				<<textbox _twineKey _varVal "Control: Variables (Users)" >>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
+		<br>
+	<</for>>
+<</theyr>>
 
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
@@ -542,6 +582,8 @@ Maxixcatl
 		<br>
 <</for>>
 <</theyr>>
+
+
 
 
 :: Act 1 Scene 1 [Done Breaks] {"position":"338,1151","size":"100,100"}
