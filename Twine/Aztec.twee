@@ -204,80 +204,66 @@ importScripts([
 <<set $users = {}>>
 <</if>>
 
-<<if ndef $users["test"]>>
-<<set $users["test"] = {
+<<if ndef $users["Not seen"]>>
+<<set $users["Not seen"] = {
 		"stats" : {
 			"Loyalty" : 0,
 			"Strength" : 0,
 			"Wisdom" : 0
 		},
-		"character" : "test",
-		"faction" : "test",
-		"isLeader" : "no",
+		"character" : "Not seen",
+		"faction" : "Not seen",
+		"isLeader" : "Not seen",
 		"lastSeen" : 0,
 		"passage" : "Name Not Recognized",
-		"role" : "test",
-		"username" : "test"
+		"role" : "Not seen",
+		"username" : "Not seen"
 	}>>
 <</if>>
 
-<<if ndef $lookup>>
-/* <<set $lookup = {"Marina" : "test","Alvarado" : "test","Aguilar" : "test","Garrido" : "test","Olid" : "test","Cortes" : "test","Moctezuma" : "test","Tlacaelel" : "test","Cuauhtemoc" : "test","Aztec_Priest" : "test","Cacamatzin" : "test","Pochteca" : "test","Xicotencatl_Elder" : "test","Xicotencatl_Younger" : "test","Maxixcatl" : "test"}>> */
-	<<set $lookup = {}>>
-<</if>>
+
 /* <<for _i, _data range _factionUsers>> */
 
-<<for _user, _data  range _roles>>
-	<<script>>
-		console.log(State.getVar("$lookup"))
-	<</script>>
-	<<if not (Object.keys($lookup)).includes(_user)>>
-		<<set $lookup[_user] = "test">>
-	<</if>>
-<</for>>
 
-<<if ndef $Start>>
-<<set $Start = 0>>
-<</if>>
+
 
 
 <<if ndef $factions>>
 	<<set $factions = {
 		"Aztecs": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+
 			}
 		},
 
 		"Spaniards": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+
 			}
 		},
 
 		"Tlaxcalans": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+	
 			}
 		},
 	}>>
 <</if>>
 
 
-<<if ndef $leaders>>
-<<set $flags = {}>>
-<</if>>
-
-<<if ndef $flags>>
-<<set $flags = {}>>
+<<if ndef $lookup>>
+	<<set $lookup = {}>>
+	<<for _user, _data  range _roles>>
+		<<set $lookup[_user] = "Not Seen">>
+	<</for>>
 <</if>>
 
 <<if ndef $users[$userId]>>
 <<script>>
-	console.log("problemo");
+	console.log("new user");
 <</script>>
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
@@ -287,15 +273,14 @@ importScripts([
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
-
-<<else>>
-/* <<set $users[$userId] = userData.jsonfsState.users[$userId]>> */
 <</if>>
 
-/* Act 1 Scene 1 */
-/* //To Mutiny or Not */
-/* <<set _currentPassage = "Act 1 Scene 1">> */
-<<set _currentPassage = $users[$userId]["passage"]>>
+
+
+
+
+/* for testing discord macro: */
+
 /* <<discord aztecSpan>> as <</discord>>
 <<discord aztecs>> a <</discord>>
 <<discord tlax>> t <</discord>>
@@ -316,7 +301,7 @@ importScripts([
 	}  
 
 
-	var passage = State.getVar("$users[$userId]['passage']")
+	var passage =  State.getVar("$users[$userId]['passage']")  
 	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
@@ -521,11 +506,18 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	/* <<print JSON.stringify(_initVars)>> */
 
 	/* Goes through list of all users */
-	<<for _userId, _userData range $users>> 
+	<<for _role, _userId range $lookup>> 
 		/* Goes through list of all Variables */
 
-		<<set _userName = _userData["role"]>>
+		<<set _userData = $users[_userId]>>
+		<<set _userName = _role>>
 		<<print `${_userName} (userId: ${_userId})`>>
+		<br>
+
+		<<set _twineKey = `$lookup[${ _role}]`>>
+		<<print `${_userName}'s id#`>>
+		<br>
+		<<textbox _twineKey _userId "Control: Variables (Users)" >>
 		<br>
 
 		<<for _varKey, _varVal range _userData>>
@@ -564,6 +556,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<<set _factionName = _factionId>>
 		<<print _factionName>>
 		<br>
+
 
 		<<for _varKey, _varVal range _factionData>>
 			<<if  _varKey == "stats">>

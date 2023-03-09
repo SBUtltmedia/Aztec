@@ -273,80 +273,66 @@ importScripts([
 &lt;&lt;set $users = {}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if ndef $users[&quot;test&quot;]&gt;&gt;
-&lt;&lt;set $users[&quot;test&quot;] = {
+&lt;&lt;if ndef $users[&quot;Not seen&quot;]&gt;&gt;
+&lt;&lt;set $users[&quot;Not seen&quot;] = {
 		&quot;stats&quot; : {
 			&quot;Loyalty&quot; : 0,
 			&quot;Strength&quot; : 0,
 			&quot;Wisdom&quot; : 0
 		},
-		&quot;character&quot; : &quot;test&quot;,
-		&quot;faction&quot; : &quot;test&quot;,
-		&quot;isLeader&quot; : &quot;no&quot;,
+		&quot;character&quot; : &quot;Not seen&quot;,
+		&quot;faction&quot; : &quot;Not seen&quot;,
+		&quot;isLeader&quot; : &quot;Not seen&quot;,
 		&quot;lastSeen&quot; : 0,
 		&quot;passage&quot; : &quot;Name Not Recognized&quot;,
-		&quot;role&quot; : &quot;test&quot;,
-		&quot;username&quot; : &quot;test&quot;
+		&quot;role&quot; : &quot;Not seen&quot;,
+		&quot;username&quot; : &quot;Not seen&quot;
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if ndef $lookup&gt;&gt;
-/* &lt;&lt;set $lookup = {&quot;Marina&quot; : &quot;test&quot;,&quot;Alvarado&quot; : &quot;test&quot;,&quot;Aguilar&quot; : &quot;test&quot;,&quot;Garrido&quot; : &quot;test&quot;,&quot;Olid&quot; : &quot;test&quot;,&quot;Cortes&quot; : &quot;test&quot;,&quot;Moctezuma&quot; : &quot;test&quot;,&quot;Tlacaelel&quot; : &quot;test&quot;,&quot;Cuauhtemoc&quot; : &quot;test&quot;,&quot;Aztec_Priest&quot; : &quot;test&quot;,&quot;Cacamatzin&quot; : &quot;test&quot;,&quot;Pochteca&quot; : &quot;test&quot;,&quot;Xicotencatl_Elder&quot; : &quot;test&quot;,&quot;Xicotencatl_Younger&quot; : &quot;test&quot;,&quot;Maxixcatl&quot; : &quot;test&quot;}&gt;&gt; */
-	&lt;&lt;set $lookup = {}&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+
 /* &lt;&lt;for _i, _data range _factionUsers&gt;&gt; */
 
-&lt;&lt;for _user, _data  range _roles&gt;&gt;
-	&lt;&lt;script&gt;&gt;
-		console.log(State.getVar(&quot;$lookup&quot;))
-	&lt;&lt;/script&gt;&gt;
-	&lt;&lt;if not (Object.keys($lookup)).includes(_user)&gt;&gt;
-		&lt;&lt;set $lookup[_user] = &quot;test&quot;&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/for&gt;&gt;
 
-&lt;&lt;if ndef $Start&gt;&gt;
-&lt;&lt;set $Start = 0&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+
 
 
 &lt;&lt;if ndef $factions&gt;&gt;
 	&lt;&lt;set $factions = {
 		&quot;Aztecs&quot;: {&quot;stats&quot;: {
-			&quot;Loyalty&quot; : 0,
+
 			&quot;Strength&quot; : 0,
-			&quot;Wisdom&quot; : 0
+
 			}
 		},
 
 		&quot;Spaniards&quot;: {&quot;stats&quot;: {
-			&quot;Loyalty&quot; : 0,
+
 			&quot;Strength&quot; : 0,
-			&quot;Wisdom&quot; : 0
+
 			}
 		},
 
 		&quot;Tlaxcalans&quot;: {&quot;stats&quot;: {
-			&quot;Loyalty&quot; : 0,
+
 			&quot;Strength&quot; : 0,
-			&quot;Wisdom&quot; : 0
+	
 			}
 		},
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;if ndef $leaders&gt;&gt;
-&lt;&lt;set $flags = {}&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;if ndef $flags&gt;&gt;
-&lt;&lt;set $flags = {}&gt;&gt;
+&lt;&lt;if ndef $lookup&gt;&gt;
+	&lt;&lt;set $lookup = {}&gt;&gt;
+	&lt;&lt;for _user, _data  range _roles&gt;&gt;
+		&lt;&lt;set $lookup[_user] = &quot;Not Seen&quot;&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if ndef $users[$userId]&gt;&gt;
 &lt;&lt;script&gt;&gt;
-	console.log(&quot;problemo&quot;);
+	console.log(&quot;new user&quot;);
 &lt;&lt;/script&gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
@@ -356,15 +342,14 @@ importScripts([
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
 &lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
-
-&lt;&lt;else&gt;&gt;
-/* &lt;&lt;set $users[$userId] = userData.jsonfsState.users[$userId]&gt;&gt; */
 &lt;&lt;/if&gt;&gt;
 
-/* Act 1 Scene 1 */
-/* //To Mutiny or Not */
-/* &lt;&lt;set _currentPassage = &quot;Act 1 Scene 1&quot;&gt;&gt; */
-&lt;&lt;set _currentPassage = $users[$userId][&quot;passage&quot;]&gt;&gt;
+
+
+
+
+/* for testing discord macro: */
+
 /* &lt;&lt;discord aztecSpan&gt;&gt; as &lt;&lt;/discord&gt;&gt;
 &lt;&lt;discord aztecs&gt;&gt; a &lt;&lt;/discord&gt;&gt;
 &lt;&lt;discord tlax&gt;&gt; t &lt;&lt;/discord&gt;&gt;
@@ -385,7 +370,7 @@ importScripts([
 	}  
 
 
-	var passage = State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;)
+	var passage =  State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;)  
 	var role = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;role&quot;];
 	if(!searchParams.get(&#39;test&#39;) &amp;&amp; !(role in State.getVar(&quot;_roles&quot;))) passage = &quot;Name Not Recognized&quot;
 
@@ -575,11 +560,18 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 	/* &lt;&lt;print JSON.stringify(_initVars)&gt;&gt; */
 
 	/* Goes through list of all users */
-	&lt;&lt;for _userId, _userData range $users&gt;&gt; 
+	&lt;&lt;for _role, _userId range $lookup&gt;&gt; 
 		/* Goes through list of all Variables */
 
-		&lt;&lt;set _userName = _userData[&quot;role&quot;]&gt;&gt;
+		&lt;&lt;set _userData = $users[_userId]&gt;&gt;
+		&lt;&lt;set _userName = _role&gt;&gt;
 		&lt;&lt;print `${_userName} (userId: ${_userId})`&gt;&gt;
+		&lt;br&gt;
+
+		&lt;&lt;set _twineKey = `$lookup[${ _role}]`&gt;&gt;
+		&lt;&lt;print `${_userName}&#39;s id#`&gt;&gt;
+		&lt;br&gt;
+		&lt;&lt;textbox _twineKey _userId &quot;Control: Variables (Users)&quot; &gt;&gt;
 		&lt;br&gt;
 
 		&lt;&lt;for _varKey, _varVal range _userData&gt;&gt;
@@ -615,6 +607,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		&lt;&lt;set _factionName = _factionId&gt;&gt;
 		&lt;&lt;print _factionName&gt;&gt;
 		&lt;br&gt;
+
 
 		&lt;&lt;for _varKey, _varVal range _factionData&gt;&gt;
 			&lt;&lt;if  _varKey == &quot;stats&quot;&gt;&gt;
