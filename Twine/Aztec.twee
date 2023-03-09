@@ -204,80 +204,66 @@ importScripts([
 <<set $users = {}>>
 <</if>>
 
-<<if ndef $users["test"]>>
-<<set $users["test"] = {
+<<if ndef $users["Not seen"]>>
+<<set $users["Not seen"] = {
 		"stats" : {
 			"Loyalty" : 0,
 			"Strength" : 0,
 			"Wisdom" : 0
 		},
-		"character" : "test",
-		"faction" : "test",
-		"isLeader" : "no",
+		"character" : "Not seen",
+		"faction" : "Not seen",
+		"isLeader" : "Not seen",
 		"lastSeen" : 0,
 		"passage" : "Name Not Recognized",
-		"role" : "test",
-		"username" : "test"
+		"role" : "Not seen",
+		"username" : "Not seen"
 	}>>
 <</if>>
 
-<<if ndef $lookup>>
-/* <<set $lookup = {"Marina" : "test","Alvarado" : "test","Aguilar" : "test","Garrido" : "test","Olid" : "test","Cortes" : "test","Moctezuma" : "test","Tlacaelel" : "test","Cuauhtemoc" : "test","Aztec_Priest" : "test","Cacamatzin" : "test","Pochteca" : "test","Xicotencatl_Elder" : "test","Xicotencatl_Younger" : "test","Maxixcatl" : "test"}>> */
-	<<set $lookup = {}>>
-<</if>>
+
 /* <<for _i, _data range _factionUsers>> */
 
-<<for _user, _data  range _roles>>
-	<<script>>
-		console.log(State.getVar("$lookup"))
-	<</script>>
-	<<if not (Object.keys($lookup)).includes(_user)>>
-		<<set $lookup[_user] = "test">>
-	<</if>>
-<</for>>
 
-<<if ndef $Start>>
-<<set $Start = 0>>
-<</if>>
+
 
 
 <<if ndef $factions>>
 	<<set $factions = {
 		"Aztecs": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+
 			}
 		},
 
 		"Spaniards": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+
 			}
 		},
 
 		"Tlaxcalans": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+	
 			}
 		},
 	}>>
 <</if>>
 
 
-<<if ndef $leaders>>
-<<set $flags = {}>>
-<</if>>
-
-<<if ndef $flags>>
-<<set $flags = {}>>
+<<if ndef $lookup>>
+	<<set $lookup = {}>>
+	<<for _user, _data  range _roles>>
+		<<set $lookup[_user] = "Not Seen">>
+	<</for>>
 <</if>>
 
 <<if ndef $users[$userId]>>
 <<script>>
-	console.log("problemo");
+	console.log("new user");
 <</script>>
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
@@ -287,15 +273,14 @@ importScripts([
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
-
-<<else>>
-/* <<set $users[$userId] = userData.jsonfsState.users[$userId]>> */
 <</if>>
 
-/* Act 1 Scene 1 */
-/* //To Mutiny or Not */
-/* <<set _currentPassage = "Act 1 Scene 1">> */
-<<set _currentPassage = $users[$userId]["passage"]>>
+
+
+
+
+/* for testing discord macro: */
+
 /* <<discord aztecSpan>> as <</discord>>
 <<discord aztecs>> a <</discord>>
 <<discord tlax>> t <</discord>>
@@ -316,7 +301,7 @@ importScripts([
 	}  
 
 
-	var passage = State.getVar("$users[$userId]['passage']")
+	var passage =  State.getVar("$users[$userId]['passage']")  
 	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
@@ -496,19 +481,107 @@ Maxixcatl
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _initVars = State.variables>>
-	<<print JSON.stringify(_initVars)>>
+	/* <<print JSON.stringify(_initVars)>> */
 	<<for _tempKey, _tempVal range _initVars>>
-		<<set _tempKey = "$" + _tempKey>>
-		<<script>>
-			State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
-		<</script>>
-		<<print _tempKey.slice(1)>>
+		 /* <<script>>
+		//  console.log( State.getVar(_tempKey), _tempVal )
+		//	State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
+		<</script>>  */
+		<<if typeof _tempVal != "object">>
+
+			<<set _twineKey = `$${ _tempKey}`>>
+			<<print _tempKey>>
+			<br>
+			<<textbox _twineKey _tempVal "Control: Variables" >>
+			<br>
+		<</if>>
+	<</for>>
+<</theyr>>
+
+:: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+Only modify stats and passages if you aren't 100% sure what you are doing
+
+
+	/* <<print JSON.stringify(_initVars)>> */
+
+	/* Goes through list of all users */
+	<<for _role, _userId range $lookup>> 
+		/* Goes through list of all Variables */
+
+		<<set _userData = $users[_userId]>>
+		<<set _userName = _role>>
+		<<print `${_userName} (userId: ${_userId})`>>
 		<br>
-		<<textbox _tempKey _tempVal "Control: Variables" >>
+
+		<<set _twineKey = `$lookup[${ _role}]`>>
+		<<print `${_userName}'s id#`>>
+		<br>
+		<<textbox _twineKey _userId "Control: Variables (Users)" >>
+		<br>
+
+		<<for _varKey, _varVal range _userData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					<<set _twineKey = `$users[${_userId}]["stats][${ _statKey}]`>>
+					<<print `${_userName}'s ${_statKey}`>>
+					<br>
+					<<textbox _twineKey _statVal "Control: Variables (Users)" >>
+					<br>
+				<</for>>
+			<<else>>
+				/* Goes through all user variables (besides stats) */
+				<<set _twineKey = `$users[${_userId}][${ _varKey}]`>>
+				<<print`${_userName}'s ${_varKey}`>>
+				<br>
+				<<textbox _twineKey _varVal "Control: Variables (Users)" >>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
 		<br>
 	<</for>>
 <</theyr>>
 
+:: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+Only modify stats and passages if you aren't 100% sure what you are doing
+
+	/* Goes through list of all factions */
+	<<for _factionId, _factionData range $factions>> 
+		/* Goes through list of all Variables */
+
+		<<set _factionName = _factionId>>
+		<<print _factionName>>
+		<br>
+
+
+		<<for _varKey, _varVal range _factionData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					<<set _twineKey = `$factions["stats"][${ _statKey}]`>>
+					<<print `${_factionName}'s ${_statKey}`>>
+					<br>
+					<<textbox _twineKey _statVal "Control: Variables (Factions)" >>
+					<br>
+				<</for>>
+			<<else>>
+				/* Goes through all faction variables (besides stats) */
+				<<set _twineKey = `$factions[${ _varKey}]`>>
+				<<print`${_factionName}'s ${_varKey}`>>
+				<br>
+				<<textbox _twineKey _varVal "Control: Variables (Factions)" >>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
+		<br>
+	<</for>>
+<</theyr>>
 
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
@@ -538,6 +611,8 @@ Maxixcatl
 		<br>
 <</for>>
 <</theyr>>
+
+
 
 
 :: Act 1 Scene 1 [Done Breaks] {"position":"338,1151","size":"100,100"}
