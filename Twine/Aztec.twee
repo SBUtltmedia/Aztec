@@ -117,7 +117,7 @@ importScripts([
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
-
+	console.log()
 <</script>>
 
 
@@ -261,7 +261,9 @@ importScripts([
 	<</for>>
 <</if>>
 
-<<if ndef $users[$userId]>>
+
+
+<<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<script>>
 	console.log("new user");
 <</script>>
@@ -303,6 +305,8 @@ importScripts([
 
 	var passage =  State.getVar("$users[$userId]['passage']")  
 	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
+
+	// If not using test user and role is not recognized, go to Name not Recognized passage
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
@@ -416,9 +420,14 @@ importScripts([
 <!-- <<masteraudio mute>> -->
 <<masteraudio unmute>>
  <<run showMap()>>
+
+ 
 <<if passage() !=  "Name Not Recognized">>
- <<run showStats()>>
+ 	<<run showStats()>>
+
 <</if>>
+
+
 <<if passage() != Config.passages.start>>
 <<set $users[$userId]["passage"] = passage()>> 
 <</if>>
@@ -448,6 +457,12 @@ importScripts([
 
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
+	<<set $users[$userId]["role"] = _role>>
+	<<set $users[$userId]["username"] = _username>>
+	<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
+	<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
+	<<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
+	<<set $users[$userId]["passage"] = Config.passages.start>>
 /* <<for _i, _name range $users>>
 	<<if  _name.role=="Cuauhtemoc">>
 	<<set _CuauhtemocId=_i>>
