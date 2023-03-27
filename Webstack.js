@@ -87,6 +87,8 @@ class Webstack {
 			};
 	  
 	reducer(state, action) {
+		console.log({state})
+		console.log({action})
 		switch (action.type) {
 			case 'UPDATE':
 				return {
