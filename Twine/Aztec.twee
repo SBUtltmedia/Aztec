@@ -613,6 +613,25 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <</theyr>>
 
 
+:: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<set $users[$userId]["sidePassage"] = previous()>>
+	Side passage example 1
+	 <<link "Next passage (2)" "Side Passage Example 2">><</link>>
+	 
+<</theyr>>
+
+:: Side Passage Example 2 [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	Side passage example 2
+	<<link "Next passage (final)" "Side Passage Example Final">><</link>>
+<</theyr>>
+
+:: Side Passage Example Final [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	Side passage example Final
+	<<link "Back to main passage" $users[$userId]["sidePassage"]>><</link>>
+<</theyr>>
 
 
 :: Act 1 Scene 1 [Done Breaks] {"position":"338,1151","size":"100,100"}
