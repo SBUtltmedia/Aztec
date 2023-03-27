@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "Control: Player Status",
+	"start": "Diff Test",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -261,7 +261,7 @@ importScripts([
 	<</for>>
 <</if>>
 
-<<if ndef $users[$userId]>>
+<<if ndef $users[$userId]    >>
 <<script>>
 	console.log("new user");
 <</script>>
@@ -498,6 +498,11 @@ Maxixcatl
 	<</for>>
 <</theyr>>
 
+:: Diff Test 
+<<if ndef $users[$userId]["stats"]>>
+	<<set $users[$userId]["stats"] = {}>> 
+	<</if>>
+<<set $users[$userId]["stats"]["strength"] = 6>>
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
