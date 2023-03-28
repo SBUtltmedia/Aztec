@@ -15,8 +15,10 @@ class gitApiIO{
 	}
 
     async uploadFileApi() {
+        console.log("IN UPLOAD")
         return new Promise((res,rej)=> {
             if(this.test){
+                console.log("resolved")
                 fs.writeFileSync(testFile, base64.decode(this.serverConf.content))
                 res()
             }else{
@@ -53,13 +55,17 @@ class gitApiIO{
                     };
                     axios(configPutFile)
                         .then(function (response) {
+                            console.log("ffinished")
                             res()
                         })
                         .catch(function (error) {
+                            console.log(error)
                             rej(error)
+
                         });
                     })
                 .catch(function (error) {
+                    console.log(error)
                     rej(error)
                 });
             }})
