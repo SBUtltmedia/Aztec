@@ -248,7 +248,7 @@ function initTheyr(lockInfo) {
         console.log(lockInfo)
         lockInfo.callback(lockInfo.lockId)
     })
-
+git
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
         // console.log("Connecting state:", state)
@@ -257,7 +257,7 @@ function initTheyr(lockInfo) {
         //console.log("Combined State", combinedState)
         store = combinedState;
         // If the server's state is empty, set with this client's state
-        updateSugarCubeState(combinedState);
+       // updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
         // socket.emit('difference',store)
 
@@ -265,9 +265,9 @@ function initTheyr(lockInfo) {
     });
 
     // Incoming difference, update your state and store
-    socket.on('difference', (state) => {
-        store = Object.assign({},state)
-        updateSugarCubeState(state)
+    socket.on('difference', (diff) => {
+        store = Object.assign({},diff)
+        updateSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
     })
@@ -276,30 +276,7 @@ function initTheyr(lockInfo) {
 
     setInterval(update, 100)
 
-    function update() {
-
-        var tempVars = Object.assign({},Window.SugarCubeState.variables);
-       // console.log("SG",JSON.stringify(tempVars.users[tempVars.userId]))
-
-       // console.log("store",JSON.stringify(store.users[tempVars.userId]))
-        delete tempVars['userId']
-        // console.log(tempVars)
-
-        if (JSON.stringify(tempVars) != JSON.stringify(store)) {
-            let diff = difference(tempVars, store);
-            if(Object.keys(diff).length){
-            store = _.merge(store, tempVars)
-            updateSugarCubeState(store)
-            socket.emit('difference', store)
-            $(document).trigger(":liveupdate");
-            }
-        }
-
-
-
-    }
-
-    function difference(object, base) {
+   function difference(object, base) {
         function changes(object, base) {
             return _.transform(object, function (result, value, key) {
                 try {
@@ -314,6 +291,31 @@ function initTheyr(lockInfo) {
         }
         return changes(object, base);
     }
+
+    function update() {
+
+        var tempVars = Object.assign({},Window.SugarCubeState.variables);
+       // console.log("SG",JSON.stringify(tempVars.users[tempVars.userId]))
+
+       // console.log("store",JSON.stringify(store.users[tempVars.userId]))
+        delete tempVars['userId']
+        // console.log(tempVars)
+
+        if (JSON.stringify(tempVars) != JSON.stringify(store)) {
+            let diff = difference(tempVars, store);
+            if(Object.keys(diff).length){
+            store = _.merge(store, tempVars)
+            // updateSugarCubeState(store)
+            socket.emit('difference', diff)
+            $(document).trigger(":liveupdate");
+            }
+        }
+
+
+
+    }
+
+ 
 
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
