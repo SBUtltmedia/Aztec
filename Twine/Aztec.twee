@@ -457,7 +457,7 @@ importScripts([
 
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
-	<<set $users[$userId]["role"] = _role>>
+<<set $users[$userId]["role"] = _role>>
 	<<set $users[$userId]["username"] = _username>>
 	<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 	<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
@@ -513,6 +513,7 @@ Maxixcatl
 	<</for>>
 <</theyr>>
 
+
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -560,6 +561,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</theyr>>
 
+
 :: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -598,6 +600,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</theyr>>
 
+
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
@@ -626,8 +629,6 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<br>
 <</for>>
 <</theyr>>
-
-
 
 
 :: Act 1 Scene 1 [Done Breaks] {"position":"338,1151","size":"100,100"}
