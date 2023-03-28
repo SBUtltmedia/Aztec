@@ -248,17 +248,16 @@ function initTheyr(lockInfo) {
         console.log(lockInfo)
         lockInfo.callback(lockInfo.lockId)
     })
-
+git
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
         // console.log("Connecting state:", state)
         // console.log("Current State:", Window.SugarCubeState.variables)
         let combinedState = Object.assign({},state, Window.SugarCubeState.variables)
-        delete combinedState['userId']
         //console.log("Combined State", combinedState)
         store = combinedState;
         // If the server's state is empty, set with this client's state
-        updateSugarCubeState(combinedState);
+       // updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
         // socket.emit('difference',store)
 
@@ -266,9 +265,9 @@ function initTheyr(lockInfo) {
     });
 
     // Incoming difference, update your state and store
-    socket.on('difference', (state) => {
-        store = Object.assign({},store,state)
-        updateSugarCubeState(state)
+    socket.on('difference', (diff) => {
+        store = Object.assign({},diff)
+        updateSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
     })
@@ -276,6 +275,22 @@ function initTheyr(lockInfo) {
 
 
     setInterval(update, 100)
+
+   function difference(object, base) {
+        function changes(object, base) {
+            return _.transform(object, function (result, value, key) {
+                try {
+                    if (!_.isEqual(value, base[key])) {
+                        result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
+                    }
+                }
+                catch (err) {
+                    // console.log("Error in diff:", err);
+                }
+            });
+        }
+        return changes(object, base);
+    }
 
     function update() {
 
@@ -285,16 +300,13 @@ function initTheyr(lockInfo) {
        // console.log("store",JSON.stringify(store.users[tempVars.userId]))
         delete tempVars['userId']
         // console.log(tempVars)
-     
+
         if (JSON.stringify(tempVars) != JSON.stringify(store)) {
-            let diff = difference(store,tempVars);
+            let diff = difference(tempVars, store);
             if(Object.keys(diff).length){
-                console.log(JSON.stringify(tempVars.users))
-                console.log(JSON.stringify(store.users))
-                console.log("Diff is ", diff)
             store = _.merge(store, tempVars)
-            updateSugarCubeState(store)
-            socket.emit('difference', store)
+            // updateSugarCubeState(store)
+            socket.emit('difference', diff)
             $(document).trigger(":liveupdate");
             }
         }
@@ -303,21 +315,8 @@ function initTheyr(lockInfo) {
 
     }
 
-    // function difference(object, base) {
-    //     function changes(object, base) {
-    //         return _.transform(object, function (result, value, key) {
-    //             try {
-    //                 if (!_.isEqual(value, base[key])) {
-    //                     result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
-    //                 }
-    //             }
-    //             catch (err) {
-    //                 // console.log("Error in diff:", err);
-    //             }
-    //         });
-    //     }
-    //     return changes(object, base);
-    // }
+ 
+
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
         for (const [key, value] of Object.entries(new_state)) {
@@ -326,15 +325,3 @@ function initTheyr(lockInfo) {
         }
     }
 }
-function difference(origObj, newObj) {
-    function changes(newObj, origObj) {
-      let arrayIndexCounter = 0
-      return _.transform(newObj, function (result, value, key) {
-        if (!_.isEqual(value, origObj[key])) {
-          let resultKey = _.isArray(origObj) ? arrayIndexCounter++ : key
-          result[resultKey] = (_.isObject(value) && _.isObject(origObj[key])) ? changes(value, origObj[key]) : value
-        }
-      })
-    }
-    return changes(newObj, origObj)
-  }
