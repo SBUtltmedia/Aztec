@@ -124,14 +124,14 @@ class Webstack {
 			})
 
 	
-			socket.on('difference', (state) => {
+			socket.on('difference', (diff) => {
 				// console.log(state)
-				delete state['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
+				delete diff['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
 				this.serverStore.dispatch({
 					type: 'UPDATE',
-					payload: state
+					payload: diff
 				})
-				socket.broadcast.emit('difference', state)
+				socket.broadcast.emit('difference', diff)
 				
 		
 			})
