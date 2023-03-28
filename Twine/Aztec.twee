@@ -307,7 +307,7 @@ importScripts([
 
 	if((passage)){
 		setTimeout(() => {
-			console.log("playing passage")
+			console.log("playing passage", passage)
 			Engine.play(passage)
 		}, 100);
 
