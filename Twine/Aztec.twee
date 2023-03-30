@@ -77,18 +77,8 @@ importScripts([
 		}
 	});
 
-	Macro.add(['userlist'], {
-		tags: null,
-		handler: function handler() {
-			try {
-				const Discord = require('discord.js');
-				const client = new Discord.Client();
-				const list = client.guilds.cache.get("myServerID"); 
-				
-			} catch (e) {
-				return e;
-			}
-		}
+	Macro.add(['sidePassage'], {
+		
 	});
 
 	Macro.add(['discord'], {
@@ -420,7 +410,7 @@ importScripts([
  <<run showStats()>>
 <</if>>
 <<if passage() != Config.passages.start>>
-<<set $users[$userId]["passage"] = passage()>> 
+	<<set $users[$userId]["passage"] = passage()>> 
 <</if>>
 
 <<script>>
@@ -498,6 +488,7 @@ Maxixcatl
 	<</for>>
 <</theyr>>
 
+
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -545,6 +536,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</theyr>>
 
+
 :: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -583,6 +575,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</theyr>>
 
+
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
@@ -615,11 +608,12 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 
 :: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
-	<<set $users[$userId]["sidePassage"] = previous()>>
+	<<set $users[$userId]["onSidePassage"] = true>>
 	Side passage example 1
 	 <<link "Next passage (2)" "Side Passage Example 2">><</link>>
 	 
 <</theyr>>
+
 
 :: Side Passage Example 2 [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
@@ -627,12 +621,38 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<<link "Next passage (final)" "Side Passage Example Final">><</link>>
 <</theyr>>
 
+
 :: Side Passage Example Final [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 	Side passage example Final
-	<<link "Back to main passage" $users[$userId]["sidePassage"]>><</link>>
+	<<print $users[$userId]["sidePassage"]>>
+	
+	<<link "Back to main passage" $users[$userId]["sidePassage"]>><<set $users[$userId]["onSidePassage"] = false>><</link>>
 <</theyr>>
 
+:: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<set _role = "Aztec_Priest">>
+	<<set _passage = "Side Passage Control">>
+	<<set _sidePassages = {
+		"example": "Side Passage Example"
+	}>>
+
+
+	<<listbox "_role" autoselect>>
+		<<optionsfrom Object.keys($lookup)>>
+	
+	<</listbox>>
+	<<listbox "_passage" autoselect>>
+		<<optionsfrom _sidePassages>>
+		
+	<</listbox>>
+	<<button "send">>
+		<<set _user = $users[$lookup[_role]]>>
+		<<set _user["sidePassage"] = _user["passage"]>>
+		<<set _user["passage"] = _passage>>
+	<</button>>
+<</theyr>>
 
 :: Act 1 Scene 1 [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>><<if $users[$userId]["role"] is "Marina">>
