@@ -248,7 +248,6 @@ function initTheyr(lockInfo) {
         console.log(lockInfo)
         lockInfo.callback(lockInfo.lockId)
     })
-git
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
         // console.log("Connecting state:", state)
@@ -301,8 +300,9 @@ git
         delete tempVars['userId']
         // console.log(tempVars)
 
-        if (JSON.stringify(tempVars) != JSON.stringify(store)) {
-            let diff = difference(tempVars, store);
+        if (_.isEqual(tempVars, store)) {
+            let diff = difference(store, tempVars);
+            console.log("l")
             if(Object.keys(diff).length){
             store = _.merge(store, tempVars)
             // updateSugarCubeState(store)
