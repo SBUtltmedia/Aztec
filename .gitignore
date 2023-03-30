@@ -1,8 +1,6 @@
 loginDiscord/config.json
 *.off
 node_modules
-tests.js
+loginDiscord/testVars.json
 config.json
 jsonFS/data/**
-.env
-.env_back
