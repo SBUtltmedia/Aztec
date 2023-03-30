@@ -111,6 +111,8 @@ importScripts([
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
 <!-- <<masteraudio volume 0>> -->
+
+/* Gets discord info  */
 <<script>>
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
@@ -120,7 +122,8 @@ importScripts([
 	console.log()
 <</script>>
 
-
+/* 
+List of valid roles and their info */
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",
@@ -204,6 +207,8 @@ importScripts([
 <<set $users = {}>>
 <</if>>
 
+
+/* Not seen user is for testing purposes. Anytime a non-existing user's stats are needed, they will be directed to this temp user */
 <<if ndef $users["Not seen"]>>
 <<set $users["Not seen"] = {
 		"stats" : {
@@ -221,13 +226,7 @@ importScripts([
 	}>>
 <</if>>
 
-
-/* <<for _i, _data range _factionUsers>> */
-
-
-
-
-
+/* Intialize faction data */
 <<if ndef $factions>>
 	<<set $factions = {
 		"Aztecs": {"stats": {
@@ -292,7 +291,7 @@ importScripts([
 <<discord general>> g <</discord>>
 <<discord omen>> omen <</discord>> */
 
-
+/* Load passage */
 <<script>>
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
@@ -310,10 +309,8 @@ importScripts([
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
-		setTimeout(() => {
 			console.log("playing passage")
 			Engine.play(passage)
-		}, 100);
 
 	}else{
 		console.log("no passage")
@@ -449,28 +446,13 @@ importScripts([
 
 <</script>>
 
-
-
+/* Updates user's latest logon time */
 <<set _currentTime=new Date()>>
 <<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 <</theyr>>
 
 
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
-<<set $users[$userId]["role"] = _role>>
-	<<set $users[$userId]["username"] = _username>>
-	<<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
-	<<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
-	<<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
-	<<set $users[$userId]["passage"] = Config.passages.start>>
-/* <<for _i, _name range $users>>
-	<<if  _name.role=="Cuauhtemoc">>
-	<<set _CuauhtemocId=_i>>
-		<<set $users[_CuauhtemocId]["stats"]["strength"]+=2>>
-	<</if>>
-	<</for>> */
-
-
 <<theyr>>
 Name not recognized. Make sure the spelling on your character's name matches your role. <br>
 
