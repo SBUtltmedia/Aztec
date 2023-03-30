@@ -77,18 +77,8 @@ importScripts([
 		}
 	});
 
-	Macro.add(['userlist'], {
-		tags: null,
-		handler: function handler() {
-			try {
-				const Discord = require('discord.js');
-				const client = new Discord.Client();
-				const list = client.guilds.cache.get("myServerID"); 
-				
-			} catch (e) {
-				return e;
-			}
-		}
+	Macro.add(['sidePassage'], {
+		
 	});
 
 	Macro.add(['discord'], {
@@ -309,7 +299,12 @@ List of valid roles and their info */
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
+<<<<<<< HEAD
 			console.log("playing passage")
+=======
+		setTimeout(() => {
+			console.log("playing passage", passage)
+>>>>>>> feature/sidePassage
 			Engine.play(passage)
 
 	}else{
@@ -426,7 +421,7 @@ List of valid roles and their info */
 
 
 <<if passage() != Config.passages.start>>
-<<set $users[$userId]["passage"] = passage()>> 
+	<<set $users[$userId]["passage"] = passage()>> 
 <</if>>
 
 <<script>>
@@ -496,6 +491,7 @@ Maxixcatl
 <</theyr>>
 
 
+<<<<<<< HEAD
 :: Diff Test {"position":"600,100","size":"100,100"}
 <<if ndef $users[$userId]["stats"]>>
 	<<set $users[$userId]["stats"] = {}>> 
@@ -503,6 +499,8 @@ Maxixcatl
 <<set $users[$userId]["stats"]["strength"] =7>>
 
 
+=======
+>>>>>>> feature/sidePassage
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -620,6 +618,57 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <</theyr>>
 
 
+<<<<<<< HEAD
+=======
+:: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<set $users[$userId]["onSidePassage"] = true>>
+	Side passage example 1
+	 <<link "Next passage (2)" "Side Passage Example 2">><</link>>
+	 
+<</theyr>>
+
+
+:: Side Passage Example 2 [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	Side passage example 2
+	<<link "Next passage (final)" "Side Passage Example Final">><</link>>
+<</theyr>>
+
+
+:: Side Passage Example Final [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	Side passage example Final
+	<<print $users[$userId]["sidePassage"]>>
+	
+	<<link "Back to main passage" $users[$userId]["sidePassage"]>><<set $users[$userId]["onSidePassage"] = false>><</link>>
+<</theyr>>
+
+:: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<set _role = "Aztec_Priest">>
+	<<set _passage = "Side Passage Control">>
+	<<set _sidePassages = {
+		"example": "Side Passage Example"
+	}>>
+
+
+	<<listbox "_role" autoselect>>
+		<<optionsfrom Object.keys($lookup)>>
+	
+	<</listbox>>
+	<<listbox "_passage" autoselect>>
+		<<optionsfrom _sidePassages>>
+		
+	<</listbox>>
+	<<button "send">>
+		<<set _user = $users[$lookup[_role]]>>
+		<<set _user["sidePassage"] = _user["passage"]>>
+		<<set _user["passage"] = _passage>>
+	<</button>>
+<</theyr>>
+
+>>>>>>> feature/sidePassage
 :: Act 1 Scene 1 [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>><<if $users[$userId]["role"] is "Marina">>
 Since arriving at the coast of Veracruz, your companions have been visited by emissaries from a number of nearby villages. In all of these interactions, you have proven your value, translating through the man they call Aguilar, who has in turn been able to convey information to the rest of the team. Through the visitors, you've gained important intelligence. Most significantly, you've told them many things about the rich and powerful kingdom that lies to the west. They have learned of the land called Mexico and its ruler, Moctezuma, who has made many enemies in the lands that lie between you.<br>
