@@ -436,11 +436,11 @@ List of valid roles and their info */
 <</script>>
 
 /* Updates user's latest logon time */
-<<set _currentTime=new Date()>>
-<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
+
 <</theyr>>
 
-
+<<set _currentTime=new Date()>>
+<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
 <<theyr>>
 Name not recognized. Make sure the spelling on your character's name matches your role. <br>
