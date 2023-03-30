@@ -77,9 +77,6 @@ importScripts([
 		}
 	});
 
-	Macro.add(['sidePassage'], {
-		
-	});
 
 	Macro.add(['discord'], {
 		tags: null,
@@ -109,7 +106,7 @@ importScripts([
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
-	console.log()
+
 <</script>>
 
 /* 
@@ -299,13 +296,10 @@ List of valid roles and their info */
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
-<<<<<<< HEAD
-			console.log("playing passage")
-=======
 		setTimeout(() => {
 			console.log("playing passage", passage)
->>>>>>> feature/sidePassage
 			Engine.play(passage)
+		}, 100);
 
 	}else{
 		console.log("no passage")
@@ -491,7 +485,7 @@ Maxixcatl
 <</theyr>>
 
 
-<<<<<<< HEAD
+
 :: Diff Test {"position":"600,100","size":"100,100"}
 <<if ndef $users[$userId]["stats"]>>
 	<<set $users[$userId]["stats"] = {}>> 
@@ -499,8 +493,6 @@ Maxixcatl
 <<set $users[$userId]["stats"]["strength"] =7>>
 
 
-=======
->>>>>>> feature/sidePassage
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -549,6 +541,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <</theyr>>
 
 
+
 :: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -588,6 +581,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <</theyr>>
 
 
+
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
@@ -618,11 +612,8 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <</theyr>>
 
 
-<<<<<<< HEAD
-=======
 :: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
-	<<set $users[$userId]["onSidePassage"] = true>>
 	Side passage example 1
 	 <<link "Next passage (2)" "Side Passage Example 2">><</link>>
 	 
@@ -639,9 +630,9 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 :: Side Passage Example Final [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 	Side passage example Final
-	<<print $users[$userId]["sidePassage"]>>
+	<<print $users[$userId]["sidePassageReturn"]>>
 	
-	<<link "Back to main passage" $users[$userId]["sidePassage"]>><<set $users[$userId]["onSidePassage"] = false>><</link>>
+	<<link "Back to main passage" $users[$userId]["sidePassageReturn"]>><</link>>
 <</theyr>>
 
 :: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
@@ -663,12 +654,11 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</listbox>>
 	<<button "send">>
 		<<set _user = $users[$lookup[_role]]>>
-		<<set _user["sidePassage"] = _user["passage"]>>
+		<<set _user["sidePassageReturn"] = _user["passage"]>>
 		<<set _user["passage"] = _passage>>
 	<</button>>
 <</theyr>>
 
->>>>>>> feature/sidePassage
 :: Act 1 Scene 1 [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>><<if $users[$userId]["role"] is "Marina">>
 Since arriving at the coast of Veracruz, your companions have been visited by emissaries from a number of nearby villages. In all of these interactions, you have proven your value, translating through the man they call Aguilar, who has in turn been able to convey information to the rest of the team. Through the visitors, you've gained important intelligence. Most significantly, you've told them many things about the rich and powerful kingdom that lies to the west. They have learned of the land called Mexico and its ruler, Moctezuma, who has made many enemies in the lands that lie between you.<br>
