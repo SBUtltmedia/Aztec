@@ -163,7 +163,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -175,6 +175,9 @@ importScripts([
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
+	setup.printTime = function (date) {
+		return new Date(date).toUTCString();
+	};
 
 &lt;&lt;/script&gt;&gt;
 
@@ -504,8 +507,7 @@ List of valid roles and their info */
 
 &lt;&lt;/theyr&gt;&gt;
 
-&lt;&lt;set _currentTime=new Date()&gt;&gt;
-&lt;&lt;set $users[$userId].lastSeen=_currentTime.getTime()&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Name Not Recognized" tags="" position="350,100" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;set $users[$userId].lastSeen= new Date().getTime()&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Name Not Recognized" tags="" position="350,100" size="100,100">&lt;&lt;theyr&gt;&gt;
 Name not recognized. Make sure the spelling on your character&#39;s name matches your role. &lt;br&gt;
 
 &lt;u&gt; Roles &lt;/u&gt; &lt;br&gt;
@@ -643,8 +645,13 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 	&lt;&lt;print _faction&gt;&gt;
 	&lt;br&gt;
 	&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
-		&lt;&lt;print $users[_userId][&quot;role&quot;]&gt;&gt;
-		&lt;&lt;print $users[_userId][&quot;username&quot;]&gt;&gt;
+		&lt;div id=&quot;printUserRole&quot;&gt; 
+			&lt;&lt;print $users[_userId][&quot;role&quot;]&gt;&gt; 
+		&lt;/div&gt;
+		&lt;div id=&quot;printUserName&quot;&gt;
+			&lt;&lt;print $users[_userId][&quot;username&quot;]&gt;&gt;
+		&lt;/div&gt;
+		&lt;&lt;= setup.printTime($users[_userId][&quot;lastSeen&quot;])&gt;&gt;
 		&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 		&lt;br&gt;
