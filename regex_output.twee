@@ -409,7 +409,7 @@ Aztecs Strength <<print $factions["Aztecs"]["stats"]["Strength"]>> Spaniards Str
 		<<set _factionUsers[_faction] = []>>
 	<</if>>
 
-	<<if new Date().getTime() - _data["lastSeen"] < 1000000>>
+	<<if new Date().getTime() - Date().parse()data["lastSeen"] < 1000000>>
 		<<set _factionUsers[_faction].push(_id)>>
 	<<else>>
 		<<set _factionUsers["offline"].push(_id)>>
@@ -443,7 +443,7 @@ Aztecs Strength <<print $factions["Aztecs"]["stats"]["Strength"]>> Spaniards Str
 <</if>>
 
 <<set _currentTime=new Date()>>
-<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
+<<set $users[$userId].lastSeen=_currentTime.getTime().toDateString()>>  
 <</theyr>>
 
 

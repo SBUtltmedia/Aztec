@@ -106,6 +106,9 @@ importScripts([
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
+	setup.printTime = function (date) {
+		return new Date(date).toUTCString();
+	};
 
 <</script>>
 
@@ -439,8 +442,7 @@ List of valid roles and their info */
 
 <</theyr>>
 
-<<set _currentTime=new Date()>>
-<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
+<<set $users[$userId].lastSeen= new Date().getTime()>>
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
 <<theyr>>
 Name not recognized. Make sure the spelling on your character's name matches your role. <br>
@@ -603,8 +605,13 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<<print _faction>>
 	<br>
 	<<for _j, _userId range _factionUsers[_faction]>>
-		<<print $users[_userId]["role"]>>
-		<<print $users[_userId]["username"]>>
+		<div id="printUserRole"> 
+			<<print $users[_userId]["role"]>> 
+		</div>
+		<div id="printUserName">
+			<<print $users[_userId]["username"]>>
+		</div>
+		<<= setup.printTime($users[_userId]["lastSeen"])>>
 		<br>
 	<</for>>
 		<br>
