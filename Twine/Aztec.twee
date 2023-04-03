@@ -106,6 +106,7 @@ importScripts([
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
+	State.setVar("_foo", "test");
 
 <</script>>
 
@@ -585,6 +586,9 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
+<div id="info">
+currently on passage playerlist blah blah blah blah
+</div>
 
 <<for _id, _data range $users>>
 	<<set _faction = _data["faction"]>>
@@ -598,7 +602,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<<set _factionUsers["offline"].push(_id)>>
 	<</if>>
 <</for>>
-
+<div id="players">
 <<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
 	<<print _faction>>
 	<br>
@@ -609,6 +613,9 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 		<br>
 <</for>>
+<<script>>$('#story').appendChild('#story')<</script>>
+</div>
+
 <</theyr>>
 
 

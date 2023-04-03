@@ -175,6 +175,7 @@ importScripts([
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
+	State.setVar(&quot;_foo&quot;, &quot;test&quot;);
 
 &lt;&lt;/script&gt;&gt;
 
@@ -625,6 +626,9 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="Player List" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
 &lt;&lt;set _factionUsers = {&quot;Aztecs&quot; : [], &quot;Spaniards&quot;:[],&quot;Tlaxcalans&quot;:[], &quot;offline&quot;:[]}&gt;&gt;
+&lt;div id=&quot;info&quot;&gt;
+currently on passage playerlist blah blah blah blah
+&lt;/div&gt;
 
 &lt;&lt;for _id, _data range $users&gt;&gt;
 	&lt;&lt;set _faction = _data[&quot;faction&quot;]&gt;&gt;
@@ -638,7 +642,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		&lt;&lt;set _factionUsers[&quot;offline&quot;].push(_id)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt;
-
+&lt;div id=&quot;players&quot;&gt;
 &lt;&lt;for _i,_faction   range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;offline&quot;]&gt;&gt;
 	&lt;&lt;print _faction&gt;&gt;
 	&lt;br&gt;
@@ -649,6 +653,9 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 	&lt;&lt;/for&gt;&gt;
 		&lt;br&gt;
 &lt;&lt;/for&gt;&gt;
+&lt;&lt;script&gt;&gt;$(&#39;#story&#39;).appendChild(&#39;#story&#39;)&lt;&lt;/script&gt;&gt;
+&lt;/div&gt;
+
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
 	Side passage example 1
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
