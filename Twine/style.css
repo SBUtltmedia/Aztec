@@ -187,10 +187,10 @@ border-width: .1rem;
 border-style: solid;
 background-color: rgba(255, 255, 255, .8); */
 
-height: 82%;
+height: %;
 width: 50%;
 max-width: 89%;
-top: 9%;
+top: 13%;
 left: 7%;
 position: absolute;
 overflow: hidden;
@@ -458,15 +458,39 @@ overflow : hidden !important;
 width: 200% !important;
 }
 
-.playerList #passages{
+.playerList #players{
   position: absolute;
   left: 85%;
   width: 15%;
   background-color: #63503E;
   height: 100%;
   color: white;
-  top: 0%;
+  top: 
+  0%;
 }
+.playerList #passages, #passage-player-list{
+  position: absolute;
+  left:0;
+  top:2%;
+  width:100%;
+  height:98%;
+  max-width: 100%;
+
+}
+
+
+
+#players{
+  position: absolute;
+  left: 85%;
+  width: 15%;
+  background-color: #63503E;
+  height: 100%;
+  color: white;
+  top: 
+  0%;
+}
+
 .playerList  #map{
   display:none;
 }
