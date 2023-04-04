@@ -1,6 +1,7 @@
-loginDiscord/config.json
-*.off
+
+
 node_modules
 loginDiscord/testVars.json
+testVars.json
 config.json
-jsonFS/data/**
+
