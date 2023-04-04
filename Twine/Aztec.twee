@@ -405,7 +405,9 @@ List of valid roles and their info */
 <<if !_menuPassages.includes(passage())>>
  	<<run showStats()>>
 	 <<run showMap()>>
-	<<link "<img src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	 <div id="homeButton">
+		<<link "<img src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	</div>
 <br>
  
 <</if>>
@@ -581,10 +583,12 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 
-<<link "back" $users[$userId]["passage"]>><</link>>
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
+
 <div id="info">
-currently on passage playerlist blah blah blah blah
+	<<link "back" $users[$userId]["passage"]>><</link>>
+	<br>
+	currently on passage playerlist blah blah blah blah
 </div>
 
 <<for _id, _data range $users>>
@@ -610,7 +614,6 @@ currently on passage playerlist blah blah blah blah
 	<</for>>
 		<br>
 <</for>>
-<<script>>$('#story').appendChild('#story')<</script>>
 </div>
 
 <</theyr>>
