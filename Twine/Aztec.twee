@@ -106,8 +106,11 @@ importScripts([
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
+	State.setVar("_discordId", searchParams.get('discriminator') || userData.authData.discriminator)
 	setup.printTime = function (date) {
-		return new Date(date).toUTCString();
+		return new Date(date).toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+  });
 	};
 
 <</script>>
@@ -259,6 +262,7 @@ List of valid roles and their info */
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
+<<set $users[$userId]["discordId"] =  _discordId>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
@@ -425,6 +429,7 @@ List of valid roles and their info */
 	let imageURL = State.getVar("$users[$userId]['faction']");
 	if(State.getVar("$users[$userId]['passage']") == "Player List"){
 		$("#story").addClass("playerList");
+		
 		imageURL = "main";
 	}else{
 		$("#story").removeClass("playerList");
@@ -587,34 +592,62 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 :: Player List [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
-
+<<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
+<<set _totalUsers = 0>>
 <<for _id, _data range $users>>
+	<<set _totalUsers = _totalUsers + 1>>
 	<<set _faction = _data["faction"]>>
 	<<if ndef _factionUsers[_faction]>>
 		<<set _factionUsers[_faction] = []>>
 	<</if>>
 
-	<<if new Date().getTime() - _data["lastSeen"] < 1000000>>
+	<<if new Date().getTime() - _data["lastSeen"] < 100>>
 		<<set _factionUsers[_faction].push(_id)>>
+		<<set _userCount[_faction] = (_userCount[_faction] + 1)>>
 	<<else>>
 		<<set _factionUsers["offline"].push(_id)>>
+		<<set _userCount["offline"] = (_userCount["offline"] + 1)>>
 	<</if>>
 <</for>>
 
-<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
-	<<print _faction>>
-	<br>
-	<<for _j, _userId range _factionUsers[_faction]>>
+<div id = "player">
+	<img id = "playerImage" src = "https://cdn-icons-png.flaticon.com/512/7081/7081031.png">
+	<div id = "playerText">
 		<div id="printUserRole"> 
-			<<print $users[_userId]["role"]>> 
+			<<print $users[$userId]["role"]>>
 		</div>
 		<div id="printUserName">
-			<<print $users[_userId]["username"]>>
+			<<print "#" + $users[$userId]["username"] + $users[$userId]["discordId"]>>
 		</div>
-		<<= setup.printTime($users[_userId]["lastSeen"])>>
-		<br>
+	</div>
+</div>
+
+<div id="onlineCount">
+	<<print "  General(" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
+</div>
+
+<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
+	<<if _faction != "offline">>
+		<<print _faction + " -- (" + _userCount[_faction] + "/" + _factionUsers[_faction].length + ")">>
+	<<else>>
+		<<print "Offline" + " -- (" + _userCount["offline"] + "/" + _totalUsers + ")">>
+	<</if>>
+	<<for _j, _userId range _factionUsers[_faction]>>
+		<div id = "player">
+			<img id = "playerImage" src = "https://cdn-icons-png.flaticon.com/512/7081/7081031.png">
+			<div id = "playerText">
+				<div id="printUserRole"> 
+					<<print $users[_userId]["role"]>> 
+				</div>
+				<div id="printUserName">
+					<<print "#jin6000">>
+				</div>
+			</div>
+		</div>
+		/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
 	<</for>>
 		<br>
+		
 <</for>>
 <</theyr>>
 
