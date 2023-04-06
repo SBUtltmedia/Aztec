@@ -467,6 +467,32 @@ width: 200% !important;
   color: white;
   top: 0%;
 }
+
+.playerList #onlineCount {
+  border-radius: 1px;
+  border-color: white;
+  border-style: solid none;
+}
 .playerList  #map{
   display:none;
+}
+
+.playerList #playerImage{
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 5px;
+}
+
+.playerList #printUserRole{
+  font-weight: light;
+  font-size: 25px;
+}
+
+.playerList #printUserName{
+  color: #DAC8AC;
+  font-size: 18px;
+}
+.player #div{
+  color: aqua;
 }
