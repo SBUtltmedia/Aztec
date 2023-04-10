@@ -164,7 +164,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -176,6 +176,12 @@ importScripts([
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
+	State.setVar(&quot;_discordId&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
+	setup.printTime = function (date) {
+		return new Date(date).toLocaleString(&#39;en-US&#39;, {
+    timeZone: &#39;America/New_York&#39;,
+  });
+	};
 
 &lt;&lt;/script&gt;&gt;
 
@@ -326,6 +332,7 @@ List of valid roles and their info */
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;discordId&quot;] =  _discordId&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.faction || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
@@ -483,6 +490,7 @@ List of valid roles and their info */
 	let imageURL = State.getVar(&quot;$users[$userId][&#39;faction&#39;]&quot;);
 	if(State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;) == &quot;Player List&quot;){
 		$(&quot;#story&quot;).addClass(&quot;playerList&quot;);
+		
 		imageURL = &quot;main&quot;;
 	}else{
 		$(&quot;#story&quot;).removeClass(&quot;playerList&quot;);
@@ -500,8 +508,7 @@ List of valid roles and their info */
 
 &lt;&lt;/theyr&gt;&gt;
 
-&lt;&lt;set _currentTime=new Date()&gt;&gt;
-&lt;&lt;set $users[$userId].lastSeen=_currentTime.getTime()&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Name Not Recognized" tags="" position="350,100" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;set $users[$userId].lastSeen= new Date().getTime()&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Name Not Recognized" tags="" position="350,100" size="100,100">&lt;&lt;theyr&gt;&gt;
 Name not recognized. Make sure the spelling on your character&#39;s name matches your role. &lt;br&gt;
 
 &lt;u&gt; Roles &lt;/u&gt; &lt;br&gt;
@@ -624,29 +631,62 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Player List" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
 &lt;&lt;set _factionUsers = {&quot;Aztecs&quot; : [], &quot;Spaniards&quot;:[],&quot;Tlaxcalans&quot;:[], &quot;offline&quot;:[]}&gt;&gt;
-
+&lt;&lt;set _userCount = {&quot;Aztecs&quot; : 0, &quot;Spaniards&quot;:0,&quot;Tlaxcalans&quot;:0, &quot;offline&quot;:0}&gt;&gt;
+&lt;&lt;set _totalUsers = 0&gt;&gt;
 &lt;&lt;for _id, _data range $users&gt;&gt;
+	&lt;&lt;set _totalUsers = _totalUsers + 1&gt;&gt;
 	&lt;&lt;set _faction = _data[&quot;faction&quot;]&gt;&gt;
 	&lt;&lt;if ndef _factionUsers[_faction]&gt;&gt;
 		&lt;&lt;set _factionUsers[_faction] = []&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 
-	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 1000000&gt;&gt;
+	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 100&gt;&gt;
 		&lt;&lt;set _factionUsers[_faction].push(_id)&gt;&gt;
+		&lt;&lt;set _userCount[_faction] = (_userCount[_faction] + 1)&gt;&gt;
 	&lt;&lt;else&gt;&gt;
 		&lt;&lt;set _factionUsers[&quot;offline&quot;].push(_id)&gt;&gt;
+		&lt;&lt;set _userCount[&quot;offline&quot;] = (_userCount[&quot;offline&quot;] + 1)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
+&lt;div id = &quot;player&quot;&gt;
+	&lt;img id = &quot;playerImage&quot; src = &quot;https://cdn-icons-png.flaticon.com/512/7081/7081031.png&quot;&gt;
+	&lt;div id = &quot;playerText&quot;&gt;
+		&lt;div id=&quot;printUserRole&quot;&gt; 
+			&lt;&lt;print $users[$userId][&quot;role&quot;]&gt;&gt;
+		&lt;/div&gt;
+		&lt;div id=&quot;printUserName&quot;&gt;
+			&lt;&lt;print &quot;#&quot; + $users[$userId][&quot;username&quot;] + $users[$userId][&quot;discordId&quot;]&gt;&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;onlineCount&quot;&gt;
+	&lt;&lt;print &quot;  General(&quot; + (_totalUsers - _userCount[&quot;offline&quot;]) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
+&lt;/div&gt;
+
 &lt;&lt;for _i,_faction   range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;offline&quot;]&gt;&gt;
-	&lt;&lt;print _faction&gt;&gt;
-	&lt;br&gt;
+	&lt;&lt;if _faction != &quot;offline&quot;&gt;&gt;
+		&lt;&lt;print _faction + &quot; -- (&quot; + _userCount[_faction] + &quot;/&quot; + _factionUsers[_faction].length + &quot;)&quot;&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;print &quot;Offline&quot; + &quot; -- (&quot; + _userCount[&quot;offline&quot;] + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 	&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
-		&lt;&lt;print $users[_userId][&quot;role&quot;]&gt;&gt;
-		&lt;&lt;print $users[_userId][&quot;username&quot;]&gt;&gt;
-		&lt;br&gt;
+		&lt;div id = &quot;player&quot;&gt;
+			&lt;img id = &quot;playerImage&quot; src = &quot;https://cdn-icons-png.flaticon.com/512/7081/7081031.png&quot;&gt;
+			&lt;div id = &quot;playerText&quot;&gt;
+				&lt;div id=&quot;printUserRole&quot;&gt; 
+					&lt;&lt;print $users[_userId][&quot;role&quot;]&gt;&gt; 
+				&lt;/div&gt;
+				&lt;div id=&quot;printUserName&quot;&gt;
+					&lt;&lt;print &quot;#jin6000&quot;&gt;&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		/* &lt;&lt;= setup.printTime($users[_userId][&quot;lastSeen&quot;])&gt;&gt; */
 	&lt;&lt;/for&gt;&gt;
 		&lt;br&gt;
+		
 &lt;&lt;/for&gt;&gt;
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
 	Side passage example 1
