@@ -411,7 +411,9 @@ List of valid roles and their info */
 <<if !_menuPassages.includes(passage())>>
  	<<run showStats()>>
 	 <<run showMap()>>
-	<<link "<img src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	 <div id="homeButton">
+		<<link "<img src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	</div>
 <br>
  
 <</if>>
@@ -584,8 +586,9 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 
-
 <<link "back" $users[$userId]["passage"]>><</link>>
+<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
+
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
 <<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
 <<set _totalUsers = 0>>
@@ -644,6 +647,8 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<br>
 		
 <</for>>
+</div>
+
 <</theyr>>
 
 

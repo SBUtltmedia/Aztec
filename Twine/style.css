@@ -187,14 +187,30 @@ border-width: .1rem;
 border-style: solid;
 background-color: rgba(255, 255, 255, .8); */
 
-height: 82%;
+height: 78%;
 width: 50%;
 max-width: 89%;
-top: 9%;
+top: 11%;
 left: 7%;
 position: absolute;
 overflow: hidden;
 }
+
+#passages #homeButton{
+  /* border-radius: 2%;1
+  border-color: green;
+  border-width: .1rem;
+  border-style: solid;
+  background-color: rgba(255, 255, 255, .8); */
+  
+  height: 78%;
+  width: 50%;
+  max-width: 89%;
+  top: 11%;
+  left: 7%;
+  position: fixed;
+  overflow: hidden;
+  }
 
 .passage::-webkit-scrollbar {
 display: none;
@@ -458,14 +474,43 @@ overflow : hidden !important;
 width: 200% !important;
 }
 
-.playerList #passages{
+.playerList #players{
   position: absolute;
   left: 85%;
   width: 15%;
   background-color: #63503E;
   height: 100%;
   color: white;
-  top: 0%;
+  top: 
+  0%;
+}
+.playerList #passages, #passage-player-list{
+  position: absolute;
+  left:0;
+  top:2%;
+  width:100%;
+  height:98%;
+  max-width: 100%;
+
+}
+
+.playerList #info{
+  position: absolute;
+  left: 6%;
+  width: 30%;
+  height: 70%;
+  top: 12%;
+}
+
+.playerList #players{
+  position: absolute;
+  left: 85%;
+  width: 15%;
+  background-color: #63503E;
+  height: 100%;
+  color: white;
+  top: 
+  0%;
 }
 
 .playerList #onlineCount {
@@ -473,7 +518,8 @@ width: 200% !important;
   border-color: white;
   border-style: solid none;
 }
-.playerList  #map{
+
+.playerList  #map, #factionStrength, #factionStrengthLabel{
   display:none;
 }
 
