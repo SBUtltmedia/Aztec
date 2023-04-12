@@ -591,6 +591,10 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <<link "back" $users[$userId]["passage"]>><</link>>
 </div>
 
+<div id="passage">
+	<<print $users[$userId]["passage"]>>
+</div>
+
 <div id="players">
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
 
@@ -653,7 +657,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 			
 	<</for>>
 	</div>
-</div>
+
 
 <</theyr>>
 

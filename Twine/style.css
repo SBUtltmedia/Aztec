@@ -484,6 +484,7 @@ width: 200% !important;
   top: 
   0%;
 }
+
 .playerList #passages, #passage-player-list{
   position: absolute;
   left:0;
@@ -500,6 +501,14 @@ width: 200% !important;
   width: 30%;
   height: 70%;
   top: 12%;
+}
+
+.playerList #passage {
+  position: absolute;
+  left: 45%;
+  top: 18%;
+  font-size: 36px;
+  width: 35%;
 }
 
 .playerList #players{
