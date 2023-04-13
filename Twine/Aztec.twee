@@ -491,6 +491,18 @@ Maxixcatl
 <</theyr>>
 
 
+:: Control: Lookup [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<for _tempKey, _tempVal range $lookup>>
+		<<set _twineKey = `$lookup["${ _tempKey}"]`>>
+		<<print _tempKey>>
+		<br>
+		<<textbox _twineKey _tempVal "Control: Lookup" >>
+		<br>
+	<</for>>
+<</theyr>>
+
+
 :: Diff Test {"position":"600,100","size":"100,100"}
 <<if ndef $users[$userId]["stats"]>>
 	<<set $users[$userId]["stats"] = {}>> 
