@@ -1,5 +1,8 @@
 import { execSync } from 'child_process';
 import { exit } from 'process';
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const configObj = require('./config.json')
 
 const app = process.argv[2];
 let startingAppId = process.argv[3] || 4;
@@ -16,7 +19,23 @@ let commands = [
 ]
 
 for (let i = startingAppId; i <= endingAppId ; i++) {
+    let clientId = configObj.channelconf[i-1].clientId;
+    let configVars = {...configObj.channelconf[i-1], ...configObj.serverconf};  // Combine channelconf and serverconf
     commands.push(`git push -f https://git.heroku.com/${app}-${i}.git HEAD:master`);
+    commands.push(`heroku config:set -a ${app}-${i} PROCFILE=Procfile`) 
+    
+    // Add custom config variables
+    let redirectURL = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(`https://${app}-${i}.herokuapp.com`)}&response_type=code&scope=identify%20guilds.members.read%20guilds`.replace(/&/g, '"&"');
+    console.log({redirectURL});
+    configVars['redirectURL'] = redirectURL;
+    configVars['herokuURL'] = `https://${app}-${i}.herokuapp.com`;
+    configVars['appIndex'] = i;
+
+    for (let key of Object.keys(configVars)) {
+        let command = `heroku config:set -a ${app}-${i} ${key}=${configVars[key]}`;
+        commands.push(command);
+       // console.log `${key}=${configVars[key]}`;
+    }
 
     for (let command of commands) {
         try {
