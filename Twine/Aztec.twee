@@ -268,6 +268,7 @@ List of valid roles and their info */
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
+<<set $users[$userId]["passageHistory"] = []>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
@@ -411,8 +412,10 @@ List of valid roles and their info */
 <<if !_menuPassages.includes(passage())>>
  	<<run showStats()>>
 	 <<run showMap()>>
-
-		<<link "<img src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	<<link "<img src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	<<if !($users[$userId]["passageHistory"].includes(passage()))>>
+		<<set $users[$userId]["passageHistory"].push(passage())>>;
+	<</if>>
 
 <br>
  
@@ -600,7 +603,14 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <div id="info">
-<<link "back" $users[$userId]["passage"]>><</link>>
+	<<link "back" $users[$userId]["passage"]>><</link>>
+	<br>
+	Passages Completed:
+	<br>
+	<<for _i, _passage range $users[$userId]["passageHistory"]>>
+		<<print _passage>>
+		<br>
+	<</for>>
 </div>
 
 <div id="passage">
