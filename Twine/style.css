@@ -488,7 +488,7 @@ width: 200% !important;
 .playerList #passages, #passage-player-list{
   position: absolute;
   left:0;
-  top:2%;
+  top:0%;
   width:100%;
   height:98%;
   max-width: 100%;
