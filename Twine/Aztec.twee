@@ -412,13 +412,22 @@ List of valid roles and their info */
 <<if !_menuPassages.includes(passage())>>
  	<<run showStats()>>
 	 <<run showMap()>>
-	<<link "<img src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	<<script>>
+	let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
+	if(!$('#homeButton').length){
+	$('#story').append(homeButton);
+	}
+		// <<link "<img id='homeButton' src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
+	<</script>>
+
 	<<if !($users[$userId]["passageHistory"].includes(passage()))>>
 		<<set $users[$userId]["passageHistory"].push(passage())>>;
 	<</if>>
 
 <br>
- 
+ <<else>>
+
+
 <</if>>
 
 
