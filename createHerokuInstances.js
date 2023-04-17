@@ -13,8 +13,8 @@ if (!app) {
     exit(0);
 }
 
-let startingAppId = process.argv[3] || 1;
-let endingAppId = process.argv[4] || 1;
+let startingAppId = process.argv[3] || 4;
+let endingAppId = process.argv[4] || 4;
 // let herokuInstances = configObj.channelconf.length;
 
 
