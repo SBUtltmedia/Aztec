@@ -205,7 +205,7 @@ body :not(.playerList)
   
   display:inline;
   height: 5%;
-  width: 5%;
+  width: 3.6%;
   top: 11%;
   left: 7%;
   position: absolute;
@@ -228,10 +228,11 @@ scrollbar-width: none;  /* Firefox */
 }
 
 .passage {
-position: absolute;
-height: 98%;
-margin: 2%;
-overflow-y: scroll !important;
+    position: absolute;
+    height: 90%;
+    margin: 2%;
+    overflow-y: scroll !important;
+    top: 8%;
 }
 
 textarea:hover {
@@ -504,7 +505,7 @@ width: 200% !important;
   position: absolute;
   left: 6%;
   width: 30%;
-  height: 70%;
+  height: 40%;
   top: 12%;
 }
 
