@@ -420,8 +420,8 @@ List of valid roles and their info */
 		// <<link "<img id='homeButton' src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
 	<</script>>
 
-	<<if !($users[$userId]["passageHistory"].includes(passage()))>>
-		<<set $users[$userId]["passageHistory"].push(passage())>>;
+	<<if !($users[$userId]["passageHistory"].includes(Story.get(passage()).text))>>
+		<<set $users[$userId]["passageHistory"].push(`${passage()}: \n ${Story.get(passage()).text}`)>>;
 	<</if>>
 
 <br>
