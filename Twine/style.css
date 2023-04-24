@@ -534,7 +534,7 @@ width: 200% !important;
   border-style: solid none;
 }
 
-.playerList  #map, #factionStrength, #factionStrengthLabel, #homeButton{
+.playerList #map, .playerList #factionStrength, .playerList #factionStrengthLabel, .playerList #homeButton, .playerList #displayStats {
   display:none;
 }
 
