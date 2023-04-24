@@ -82,7 +82,7 @@ importScripts([
     handler: function() {
         let id = this.args[2].replace(/\s/g, '-');
         var output = '<<link "' + this.args[0] + '">><<toggleclass "#' + id + '" "hide">><</link>>' +
-					 '<div id="' + id + '" class="hide"><<print "' + this.args[1] + '">></div>';
+					 '<div id="' + id + '" class="hide">"' + this.args[1] + '"</div>';
                      
         $(this.output).wiki(output);
     }
@@ -628,10 +628,9 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<br>
 	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
 		<<set _passageId = `passage-${_passageName}`>>
+
 		<br>
-		<<print _passageText>>
 		<<hidden _passageName _passageText _passageId>>
-		<br>
 	<</for>>
 </div>
 
