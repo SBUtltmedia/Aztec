@@ -446,15 +446,13 @@
       }).on("click", function () {
         let pickedRole = $(this).data("role");
         let passage = $("#passage").val();
-        if (passage == "-Continue where you left off-") {
-          location.assign(
-            `/?test=true&id=${index}&nick=${pickedRole}&username=test`
+        let passagePair ="";
+        if (passage != "-Continue where you left off-") {
+          let passagePair =`&passage=${passage}`;
+        } 
+        location.assign(
+            `/?test=true&id=${index}&nick=${pickedRole}&username=test${passagePair}`
           );
-        } else {
-          location.assign(
-            `/?test=true&id=${index}&nick=${pickedRole}&username=test&passage=${passage}`
-          );
-        }
       })
     );
 
