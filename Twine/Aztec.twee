@@ -78,6 +78,10 @@ importScripts([
 		}
 	});
 
+	//creates a hidden div with a button to open/close it
+	//arg[0] = button text
+	//arg[1] = hidden div text
+	//arg[2] = hidden div id
 	Macro.add('hidden', {
     handler: function() {
         let id = this.args[2].replace(/\s/g, '-');
@@ -207,6 +211,7 @@ List of valid roles and their info */
 }
 		>>
 
+/* init global users list */
 <<if ndef $users>>
 <<set $users = {}>>
 <</if>>
@@ -256,7 +261,7 @@ List of valid roles and their info */
 	}>>
 <</if>>
 
-
+/* inits lookup table. Maps roles to userid */
 <<if ndef $lookup>>
 	<<set $lookup = {}>>
 	<<for _user, _data  range _roles>>
@@ -265,11 +270,8 @@ List of valid roles and their info */
 <</if>>
 
 
-
+/* inits userdata in $users */
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
-<<script>>
-	console.log("new user");
-<</script>>
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
@@ -429,7 +431,6 @@ List of valid roles and their info */
 	if(!$('#homeButton').length){
 	$('#story').append(homeButton);
 	}
-		// <<link "<img id='homeButton' src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
 	<</script>>
 
 	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
@@ -437,16 +438,14 @@ List of valid roles and their info */
 	<</if>>
 
 <br>
- <<else>>
-
-
 <</if>>
 
-
+/* updates user's current passage */
 <<if passage() != Config.passages.start && !_menuPassages.includes(passage())>>
 	<<set $users[$userId]["passage"] = passage()>> 
 <</if>>
 
+/* adds background image to screen */
 <<script>>
 	let imageURL = State.getVar("$users[$userId]['faction']");
 	if(State.passage == "Home"){
@@ -468,9 +467,10 @@ List of valid roles and their info */
 
 <</theyr>>
 
+/* updates user's last log in time */
 <<set $users[$userId].lastSeen= new Date().getTime()>>
 
-
+/* passage for when user's discord role is not on the list of roles */
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
 <<theyr>>
 Name not recognized. Make sure the spelling on your character's name matches your role. <br>
@@ -492,17 +492,12 @@ Xicotencatl_Younger <br>
 Maxixcatl
 
 <</theyr>>
-
-
+/* 
+control passage for user variables */
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 <<set _initVars = State.variables>>
-	/* <<print JSON.stringify(_initVars)>> */
 	<<for _tempKey, _tempVal range _initVars>>
-		 /* <<script>>
-		//  console.log( State.getVar(_tempKey), _tempVal )
-		//	State.setVar("_tempVal", State.getVar(State.getVar("_tempKey")));
-		<</script>>  */
 		<<if typeof _tempVal != "object">>
 
 			<<set _twineKey = `$${ _tempKey}`>>
@@ -514,7 +509,7 @@ Maxixcatl
 	<</for>>
 <</theyr>>
 
-
+/* allows admin to update lookup. This allows roles to be played by different users */
 :: Control: Lookup [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 	<<for _tempKey, _tempVal range $lookup>>
@@ -533,15 +528,12 @@ Maxixcatl
 	<</if>>
 <<set $users[$userId]["stats"]["strength"] =7>>
 
-
+/* control panel for users stats */
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
 
 
-	/* <<print JSON.stringify(_initVars)>> */
-
-	/* Goes through list of all users */
 	<<for _role, _userId range $lookup>> 
 		/* Goes through list of all Variables */
 
@@ -581,7 +573,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</theyr>>
 
-
+/* control panel for faction stats */
 :: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 Only modify stats and passages if you aren't 100% sure what you are doing
@@ -620,9 +612,11 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</theyr>>
 
-
+/* Passage when clickin home button */
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
+
+/* Prints list of previous passages for user to recollect */
 <div id="info">
 	<<link "back" $users[$userId]["passage"]>><</link>>
 	<br>
@@ -638,10 +632,12 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 </div>
 
+/* prints current passage */
 <div id="passage">
 	<<print $users[$userId]["passage"]>>
 </div>
 
+/* print play status list (discord info, role, etc.) */
 <div id="players">
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
 
@@ -709,6 +705,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <</theyr>>
 
 
+/* Use this as a template to make side passages */
 :: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 	Side passage example 1
@@ -721,6 +718,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 :: Side Passage Example 2 [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 	Side passage example 2
+	/* Put link to next passage  */
 	<<link "Next passage (final)" "Side Passage Example Final">><</link>>
 <</theyr>>
 
@@ -730,11 +728,12 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	Side passage example Final
 	<<print $users[$userId]["sidePassageReturn"]>>
 	
-	/* Put this link line at the end of every side passage */
+	/* Put this link line at the end of every side passage series */
 	<<link "Back to main passage" $users[$userId]["sidePassageReturn"]>><</link>>
 <</theyr>>
 
 
+/* Use this to send users to side passages */
 :: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
 	<<set _role = "Aztec_Priest">>
