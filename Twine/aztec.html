@@ -151,6 +151,16 @@ importScripts([
 		}
 	});
 
+	Macro.add('hidden', {
+    handler: function() {
+        let id = this.args[2].replace(/\s/g, '-');
+        var output = '<<link "' + this.args[0] + '">><<toggleclass "#' + id + '" "hide">><</link>>' +
+					 '<div id="' + id + '" class="hide">"' + this.args[1].replaceAll( /(<([^>]+)>)/ig, '') + '"</div>';
+                     
+        $(this.output).wiki(output);
+    }
+	});
+
 
 	Macro.add(['discord'], {
 		tags: null,
@@ -337,7 +347,7 @@ List of valid roles and their info */
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;passageHistory&quot;] = []&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;passageHistory&quot;] = {}&gt;&gt;
 &lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -487,8 +497,8 @@ List of valid roles and their info */
 		// &lt;&lt;link &quot;&lt;img id=&#39;homeButton&#39; src=&#39;Twine/images/Home/HomeButton.png&#39;&gt;&quot; &quot;Home&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 	&lt;&lt;/script&gt;&gt;
 
-	&lt;&lt;if !($users[$userId][&quot;passageHistory&quot;].includes(Story.get(passage()).text))&gt;&gt;
-		&lt;&lt;set $users[$userId][&quot;passageHistory&quot;].push(`${passage()}: \n ${Story.get(passage()).text}`)&gt;&gt;;
+	&lt;&lt;if !(Object.keys($users[$userId][&quot;passageHistory&quot;]).includes(passage()))&gt;&gt;
+		&lt;&lt;set $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).text}`)&gt;&gt;;
 	&lt;&lt;/if&gt;&gt;
 
 &lt;br&gt;
@@ -655,9 +665,13 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 	&lt;br&gt;
 	Passages Completed:
 	&lt;br&gt;
-	&lt;&lt;for _i, _passage range $users[$userId][&quot;passageHistory&quot;]&gt;&gt;
-		&lt;&lt;print _passage&gt;&gt;
+	&lt;&lt;for _passageName, _passageText range $users[$userId][&quot;passageHistory&quot;]&gt;&gt;
+		&lt;&lt;set _passageId = `passage-${_passageName}`&gt;&gt;
+
 		&lt;br&gt;
+		&lt;&lt;if $users[$userId][&quot;passage&quot;] != _passageName&gt;&gt;
+			&lt;&lt;hidden _passageName _passageText _passageId&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;/div&gt;
 
