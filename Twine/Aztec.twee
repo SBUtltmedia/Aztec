@@ -78,6 +78,16 @@ importScripts([
 		}
 	});
 
+	Macro.add('hidden', {
+    handler: function() {
+        let id = this.args[2].replace(/\s/g, '-');
+        var output = '<<link "' + this.args[0] + '">><<toggleclass "#' + id + '" "hide">><</link>>' +
+					 '<div id="' + id + '" class="hide">"' + this.args[1].replaceAll( /(<([^>]+)>)/ig, '') + '"</div>';
+                     
+        $(this.output).wiki(output);
+    }
+	});
+
 
 	Macro.add(['discord'], {
 		tags: null,
@@ -268,7 +278,7 @@ List of valid roles and their info */
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
-<<set $users[$userId]["passageHistory"] = []>>
+<<set $users[$userId]["passageHistory"] = {}>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
@@ -422,8 +432,8 @@ List of valid roles and their info */
 		// <<link "<img id='homeButton' src='Twine/images/Home/HomeButton.png'>" "Home">><</link>>
 	<</script>>
 
-	<<if !($users[$userId]["passageHistory"].includes(Story.get(passage()).text))>>
-		<<set $users[$userId]["passageHistory"].push(`${passage()}: \n ${Story.get(passage()).text}`)>>;
+	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
+		<<set $users[$userId]["passageHistory"][passage()] = (`${passage()}: \n ${Story.get(passage()).text}`)>>;
 	<</if>>
 
 <br>
@@ -618,9 +628,13 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<br>
 	Passages Completed:
 	<br>
-	<<for _i, _passage range $users[$userId]["passageHistory"]>>
-		<<print _passage>>
+	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
+		<<set _passageId = `passage-${_passageName}`>>
+
 		<br>
+		<<if $users[$userId]["passage"] != _passageName>>
+			<<hidden _passageName _passageText _passageId>>
+		<</if>>
 	<</for>>
 </div>
 

@@ -202,7 +202,7 @@ body :not(.playerList)
   border-width: .1rem;
   border-style: solid;
   background-color: rgba(255, 255, 255, .8); */
-  
+  cursor:pointer;
   display:inline;
   height: 5%;
   width: 3.6%;
@@ -217,9 +217,17 @@ body :not(.playerList)
     display:none;
   }
 
-.passage::-webkit-scrollbar {
-display: none;
-}
+  .passage::-webkit-scrollbar {
+  display: none;
+  }
+
+  #info::-webkit-scrollbar {
+  display: none;
+  }
+
+  #players::-webkit-scrollbar {
+    display: none;
+    }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .passage {
@@ -489,6 +497,10 @@ width: 200% !important;
   color: white;
   top: 
   0%;
+  overflow: hidden;
+  overflow-y: scroll !important;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .playerList #passages, #passage-player-list{
@@ -504,9 +516,13 @@ width: 200% !important;
 .playerList #info{
   position: absolute;
   left: 6%;
-  width: 30%;
-  height: 40%;
+  width: 34%;
+  height: 70%;
   top: 12%;
+  overflow: hidden;
+  overflow-y: scroll !important;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }
 
 .playerList #passage {
@@ -534,8 +550,12 @@ width: 200% !important;
   border-style: solid none;
 }
 
-.playerList #map, .playerList #factionStrength, .playerList #factionStrengthLabel, .playerList #homeButton, .playerList #displayStats {
+.playerList  #map, #factionStrength, #factionStrengthLabel, #homeButton, #displayStats{
   display:none;
+}
+
+.info #statsPicker{
+  display: none;
 }
 
 .playerList #playerImage{
