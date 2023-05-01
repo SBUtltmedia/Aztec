@@ -78,11 +78,11 @@ importScripts([
 		}
 	});
 
-	//creates a hidden div with a button to open/close it
+	//creates a historyButton div with a button to open/close it
 	//arg[0] = button text
-	//arg[1] = hidden div text
-	//arg[2] = hidden div id
-	Macro.add('hidden', {
+	//arg[1] = historyButton div text
+	//arg[2] = historyButton div id
+	Macro.add('historyButton', {
     handler: function() {
         let id = this.args[2].replace(/\s/g, '-');
         var output = '<<link "' + this.args[0] + '">><<toggleclass "#' + id + '" "hide">><</link>>' +
@@ -470,6 +470,26 @@ List of valid roles and their info */
 /* updates user's last log in time */
 <<set $users[$userId].lastSeen= new Date().getTime()>>
 
+:: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+/* List of passages where ui elements don't show up */
+<<set _menuPassages = [
+	"Name Not Recognized",
+	"Home"
+]>>
+
+<<if !_menuPassages.includes(passage())>>
+	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
+
+		<<set $users[$userId]["passageHistory"][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>;
+	<</if>>
+	
+
+<br>
+
+<</if>>
+<</theyr>>
+
 /* passage for when user's discord role is not on the list of roles */
 :: Name Not Recognized {"position":"350,100","size":"100,100"}
 <<theyr>>
@@ -623,7 +643,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	Passages Completed:
 	<br>
 	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
-		<<set _passageId = `passage-${_passageName}`>>
+		<<set _passageId = `passage-${_passageName.replaceAll}`>>
 
 		<br>
 		<<if $users[$userId]["passage"] != _passageName>>
