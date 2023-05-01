@@ -84,10 +84,14 @@ importScripts([
 	//arg[2] = historyButton div id
 	Macro.add('historyButton', {
     handler: function() {
-        let id = this.args[2].replace(/\s/g, '-');
-        var output = '<<link "' + this.args[0] + '">><<toggleclass "#' + id + '" "hide">><</link>>' +
-					 '<div id="' + id + '" class="hide">"' + this.args[1].replaceAll( /(<([^>]+)>)/ig, '') + '"</div>';
-                     
+        let id = this.args[2];
+		let wikiText = this.args[1].replaceAll(/\/\*[^\/]*\//gm, '');
+		wikiText = wikiText.replaceAll( /<<[^>>]*>>/ig, '');
+		wikiText = wikiText.replaceAll( /<[^br>]*>/ig, '');
+	
+        var output = `<<link "${this.args[0]}">><<toggleclass "#${id}" "hide">><</link>>
+				 	<div id="${id}" class="hide">"${wikiText}"</div>`;
+					
         $(this.output).wiki(output);
     }
 	});
@@ -433,9 +437,6 @@ List of valid roles and their info */
 	}
 	<</script>>
 
-	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
-		<<set $users[$userId]["passageHistory"][passage()] = (`${passage()}: \n ${Story.get(passage()).text}`)>>;
-	<</if>>
 
 <br>
 <</if>>
@@ -643,11 +644,11 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	Passages Completed:
 	<br>
 	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
-		<<set _passageId = `passage-${_passageName.replaceAll}`>>
+		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
 
 		<br>
 		<<if $users[$userId]["passage"] != _passageName>>
-			<<hidden _passageName _passageText _passageId>>
+			<<historyButton _passageName _passageText _passageId>>
 		<</if>>
 	<</for>>
 </div>
@@ -3310,15 +3311,6 @@ Vote is 2
 
 :: The Library [Done] {"position":"521,25","size":"100,100"}
 <<theyr>>
-/* <<discord spanish>> Contents of discord tag <</discord>> */
-/* <<for _i, _name range $users>>
-	<<if $users[$userId].faction == _name.faction>>
-		<<print _name.Character>>
-		<<print _name.lastSeen>>
-		<br>
-		
-	<</if>>
-<</for>> */
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
 <br>
 It's 7 pm and the library is more crowded than usual. It looks like you're not the only one with a mountain of work to do this week! There's no way you'll be able to focus in the midst of so many people. Maybe the top floor is quieter. You head upstairs towards the study carrels, but they're all taken. It's dead quiet up here, but there's nowhere to work. You begin wandering down unfamiliar hallways, poking your head into all the different rooms, but none of them work. You're beginning to get frustrated when you notice a door you've never seen before. It's tucked into an alcove in the very back corner of the building. You decide to check this one last spot before you give up and join the masses downstairs. <br>
