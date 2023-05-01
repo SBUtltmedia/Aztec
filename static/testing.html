@@ -448,7 +448,7 @@
         let passage = $("#passage").val();
         let passagePair ="";
         if (passage != "-Continue where you left off-") {
-          let passagePair =`&passage=${passage}`;
+          passagePair =`&passage=${passage}`;
         } 
         location.assign(
             `/?test=true&id=${index}&nick=${pickedRole}&username=test${passagePair}`
