@@ -253,12 +253,12 @@ function initTheyr(lockInfo) {
         // console.log("Connecting state:", state)
         // console.log("Current State:", Window.SugarCubeState.variables)
         let combinedState = Object.assign({},state, Window.SugarCubeState.variables)
-        //console.log("Combined State", combinedState)
+        console.log("Combined State", combinedState)
         store = combinedState;
         // If the server's state is empty, set with this client's state
-       // updateSugarCubeState(combinedState);
+       updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
-        // socket.emit('difference',store)
+        socket.emit('difference',store)
 
 
     });
@@ -302,7 +302,6 @@ function initTheyr(lockInfo) {
 
         if (_.isEqual(tempVars, store)) {
             let diff = difference(store, tempVars);
-            console.log("l")
             if(Object.keys(diff).length){
             store = _.merge(store, tempVars)
             // updateSugarCubeState(store)

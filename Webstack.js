@@ -87,7 +87,7 @@ class Webstack {
 			};
 	  
 	reducer(state, action) {
-		console.log({state})
+		// console.log({state})
 		console.log({action})
 		switch (action.type) {
 			case 'UPDATE':
@@ -108,7 +108,7 @@ class Webstack {
 
 			// User connects 
 			socket.once('new user', (id) => {
-				console.log("SERVER RECEIVES NEW USER:", id);
+				console.log("SERVER RECEIVES NEW USER:", gstate);
 
 			
 				if (typeof gstate !== 'undefined') {
