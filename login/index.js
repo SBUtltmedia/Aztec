@@ -16,6 +16,7 @@ const htmlTemplate = 'login/index.html';
 
 // Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
+	//userData is info from discord
 	const userData = query;
 
 	if (userData.nick) {

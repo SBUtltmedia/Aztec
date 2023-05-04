@@ -124,7 +124,7 @@ importScripts([
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
-	State.setVar("_discordId", searchParams.get('discriminator') || userData.authData.discriminator)
+	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString('en-US', {
     timeZone: 'America/New_York',
@@ -278,7 +278,7 @@ List of valid roles and their info */
 <<set $users[$userId] = {}>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
-<<set $users[$userId]["discordId"] =  _discordId>>
+<<set $users[$userId]["discriminator"] =  _discriminator>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
@@ -482,7 +482,7 @@ List of valid roles and their info */
 <<if !_menuPassages.includes(passage())>>
 	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
 
-		<<set $users[$userId]["passageHistory"][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>;
+		<<set $users[$userId]["passageHistory"][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
 	<</if>>
 	
 
@@ -700,7 +700,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 				<<print $users[$userId]["role"]>>
 			</div>
 			<div id="printUserName">
-				<<print "#" + $users[$userId]["username"] + $users[$userId]["discordId"]>>
+				<<print "#" + $users[$userId]["username"] + $users[$userId]["discriminator"]>>
 			</div>
 		</div>
 	</div>
