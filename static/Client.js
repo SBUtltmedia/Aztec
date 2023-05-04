@@ -277,21 +277,32 @@ function initTheyr(lockInfo) {
 
     setInterval(update, 100)
 
-   function difference(object, base) {
-        function changes(object, base) {
-            return _.transform(object, function (result, value, key) {
-                try {
-                    if (!_.isEqual(value, base[key])) {
-                        result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
-                    }
-                }
-                catch (err) {
-                    // console.log("Error in diff:", err);
-                }
-            });
-        }
-        return changes(object, base);
-    }
+//    function difference(object, base) {
+//         function changes(object, base) {
+//             return _.transform(object, function (result, value, key) {
+//                 try {
+//                     if (!_.isEqual(value, base[key])) {
+//                         result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
+//                     }
+//                 }
+//                 catch (err) {
+//                     // console.log("Error in diff:", err);
+//                 }
+//             });
+//         }
+//         return changes(object, base);
+//     }
+
+function difference(obj1, obj2) {
+    return _.reduce(obj1, function(result, value, key) {
+  if (_.isPlainObject(value)) {
+    result[key] = difference(value, obj2[key]);
+  } else if (!_.isEqual(value, obj2[key])) {
+    result[key] = value;
+  }
+  return result;
+    }, {});
+  };
 
     function update() {
 
@@ -303,7 +314,7 @@ function initTheyr(lockInfo) {
         // console.log(tempVars)
 
         // if (!_.isEqual(tempVars, store)) {
-            if (JSON.stringify(tempVars) != JSON.stringify(store)) {
+        if (JSON.stringify(tempVars) != JSON.stringify(store)) {
             let diff = difference(store, tempVars);
             
             if(Object.keys(diff).length){
