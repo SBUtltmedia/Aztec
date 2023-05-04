@@ -165,7 +165,7 @@ function setFactionStrength(rawValue) {
 
     let gradientMask = `linear-gradient(90deg, black 0%, black ${Math.floor(value)}%, transparent ${Math.min(100, value + 10)}%)`;
     let maskStyle = `-webkit-mask-image:${gradientMask};mask-image:${gradientMask};`;
-    console.log(maskStyle)
+    // console.log(maskStyle)
     $("#factionStrengthBar").attr("style", maskStyle)
 
 }
@@ -250,22 +250,22 @@ function initTheyr(lockInfo) {
     })
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
-        // console.log("Connecting state:", state)
-        // console.log("Current State:", Window.SugarCubeState.variables)
-        let combinedState = Object.assign({},state, Window.SugarCubeState.variables)
+        console.log("Connecting state:", state)
+        console.log("Current State:", Window.SugarCubeState.variables)
+        let combinedState = Object.assign({}, Window.SugarCubeState.variables,state)
         console.log("Combined State", combinedState)
         store = combinedState;
         // If the server's state is empty, set with this client's state
-       updateSugarCubeState(combinedState);
+    //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
-        socket.emit('difference',store)
+        // socket.emit('difference',store)
 
 
     });
 
     // Incoming difference, update your state and store
     socket.on('difference', (diff) => {
-        store = Object.assign({},diff)
+        store = Object.assign({},store, diff)
         updateSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
@@ -297,18 +297,20 @@ function initTheyr(lockInfo) {
        // console.log("SG",JSON.stringify(tempVars.users[tempVars.userId]))
 
        // console.log("store",JSON.stringify(store.users[tempVars.userId]))
-        delete tempVars['userId']
+        // delete tempVars['userId']
         // console.log(tempVars)
 
-        if (_.isEqual(tempVars, store)) {
+        // if (!_.isEqual(tempVars, store)) {
             let diff = difference(store, tempVars);
+            
             if(Object.keys(diff).length){
+                console.log("diff detect:", diff);
             store = _.merge(store, tempVars)
             // updateSugarCubeState(store)
             socket.emit('difference', diff)
             $(document).trigger(":liveupdate");
             }
-        }
+        // }
 
 
 

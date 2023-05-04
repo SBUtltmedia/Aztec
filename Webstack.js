@@ -91,9 +91,11 @@ class Webstack {
 		console.log({action})
 		switch (action.type) {
 			case 'UPDATE':
-				return {
+				let temp = {
 					...state, ...action.payload
 				}
+				console.log("temp:", temp)
+				return temp;
 				default:
 					return state
 		}
@@ -108,7 +110,7 @@ class Webstack {
 
 			// User connects 
 			socket.once('new user', (id) => {
-				console.log("SERVER RECEIVES NEW USER:", gstate);
+				console.log("SERVER RECEIVES NEW USER:", id);
 
 			
 				if (typeof gstate !== 'undefined') {
@@ -131,6 +133,7 @@ class Webstack {
 					type: 'UPDATE',
 					payload: diff
 				})
+				//sends message to all other clients
 				socket.broadcast.emit('difference', diff)
 				
 		
