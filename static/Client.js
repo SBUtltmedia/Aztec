@@ -179,6 +179,7 @@ function makeRoleStats(statsIn) {
     var output = "";
 
     user["stats"] = statsIn;
+    console.log("emitting from role stats", Window.SugarCubeState.variables);
       socket.emit('difference',  Window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
@@ -248,6 +249,7 @@ function initTheyr(lockInfo) {
         console.log(lockInfo)
         lockInfo.callback(lockInfo.lockId)
     })
+    //outdated
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
         console.log("Connecting state:", state)
@@ -265,7 +267,7 @@ function initTheyr(lockInfo) {
 
     // Incoming difference, update your state and store
     socket.on('difference', (diff) => {
-        store = Object.assign({},store, diff)
+        store = _.merge(store, diff);
         updateSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
@@ -301,6 +303,7 @@ function initTheyr(lockInfo) {
         // console.log(tempVars)
 
         // if (!_.isEqual(tempVars, store)) {
+            if (JSON.stringify(tempVars) != JSON.stringify(store)) {
             let diff = difference(store, tempVars);
             
             if(Object.keys(diff).length){
@@ -310,6 +313,7 @@ function initTheyr(lockInfo) {
             socket.emit('difference', diff)
             $(document).trigger(":liveupdate");
             }
+        }
         // }
 
 

@@ -6,6 +6,7 @@ const require = createRequire(import.meta.url);
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const _ = require("lodash"); 
 var base64 = require('base-64');
 
 
@@ -88,12 +89,10 @@ class Webstack {
 	  
 	reducer(state, action) {
 		// console.log({state})
-		console.log({action})
+		// console.log(JSON.stringify({action}));
 		switch (action.type) {
 			case 'UPDATE':
-				let temp = {
-					...state, ...action.payload
-				}
+				let temp = _.merge(state, action.payload);
 				console.log("temp:", temp)
 				return temp;
 				default:
@@ -134,6 +133,7 @@ class Webstack {
 					payload: diff
 				})
 				//sends message to all other clients
+				// let extra = "heleo"
 				socket.broadcast.emit('difference', diff)
 				
 		
