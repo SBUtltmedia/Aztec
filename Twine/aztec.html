@@ -181,7 +181,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -193,7 +193,7 @@ importScripts([
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
-	State.setVar(&quot;_discordId&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
+	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString(&#39;en-US&#39;, {
     timeZone: &#39;America/New_York&#39;,
@@ -347,7 +347,7 @@ List of valid roles and their info */
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;discordId&quot;] =  _discordId&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;discriminator&quot;] =  _discriminator&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.faction || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
@@ -543,7 +543,7 @@ List of valid roles and their info */
 &lt;&lt;if !_menuPassages.includes(passage())&gt;&gt;
 	&lt;&lt;if !(Object.keys($users[$userId][&quot;passageHistory&quot;]).includes(passage()))&gt;&gt;
 
-		&lt;&lt;set $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;;
+		&lt;&lt;set $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 
@@ -733,7 +733,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 				&lt;&lt;print $users[$userId][&quot;role&quot;]&gt;&gt;
 			&lt;/div&gt;
 			&lt;div id=&quot;printUserName&quot;&gt;
-				&lt;&lt;print &quot;#&quot; + $users[$userId][&quot;username&quot;] + $users[$userId][&quot;discordId&quot;]&gt;&gt;
+				&lt;&lt;print &quot;#&quot; + $users[$userId][&quot;username&quot;] + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;

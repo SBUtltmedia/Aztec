@@ -93,7 +93,7 @@ class Webstack {
 		switch (action.type) {
 			case 'UPDATE':
 				let temp = _.merge(state, action.payload);
-				console.log("temp:", temp)
+				// console.log("temp:", JSON.stringify(temp.users))
 				return temp;
 				default:
 					return state
