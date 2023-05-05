@@ -179,7 +179,7 @@ function makeRoleStats(statsIn) {
     var output = "";
 
     user["stats"] = statsIn;
-    console.log("emitting from role stats", Window.SugarCubeState.variables);
+    // console.log("emitting from role stats", Window.SugarCubeState.variables);
       socket.emit('difference',  Window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
@@ -252,10 +252,10 @@ function initTheyr(lockInfo) {
     //outdated
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
-        console.log("Connecting state:", state)
-        console.log("Current State:", Window.SugarCubeState.variables)
+        // console.log("Connecting state:", state)
+        // console.log("Current State:", Window.SugarCubeState.variables)
         let combinedState = Object.assign({}, Window.SugarCubeState.variables,state)
-        console.log("Combined State", combinedState)
+        // console.log("Combined State", combinedState)
         store = combinedState;
         // If the server's state is empty, set with this client's state
     //    updateSugarCubeState(combinedState);
@@ -268,6 +268,7 @@ function initTheyr(lockInfo) {
     // Incoming difference, update your state and store
     socket.on('difference', (diff) => {
         store = _.merge(store, diff);
+        console.log("updating sugarcube", diff);
         updateSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
@@ -277,32 +278,32 @@ function initTheyr(lockInfo) {
 
     setInterval(update, 100)
 
-//    function difference(object, base) {
-//         function changes(object, base) {
-//             return _.transform(object, function (result, value, key) {
-//                 try {
-//                     if (!_.isEqual(value, base[key])) {
-//                         result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
-//                     }
-//                 }
-//                 catch (err) {
-//                     // console.log("Error in diff:", err);
-//                 }
-//             });
-//         }
-//         return changes(object, base);
-//     }
+   function difference(object, base) {
+        function changes(object, base) {
+            return _.transform(object, function (result, value, key) {
+                try {
+                    if (!_.isEqual(value, base[key])) {
+                        result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
+                    }
+                }
+                catch (err) {
+                    // console.log("Error in diff:", err);
+                }
+            });
+        }
+        return changes(object, base);
+    }
 
-function difference(obj1, obj2) {
-    return _.reduce(obj1, function(result, value, key) {
-  if (_.isPlainObject(value)) {
-    result[key] = difference(value, obj2[key]);
-  } else if (!_.isEqual(value, obj2[key])) {
-    result[key] = value;
-  }
-  return result;
-    }, {});
-  };
+// function difference(obj1, obj2) {
+//     return _.reduce(obj1, function(result, value, key) {
+//   if (_.isPlainObject(value)) {
+//     result[key] = difference(value, obj2[key]);
+//   } else if (!_.isEqual(value, obj2[key])) {
+//     result[key] = value;
+//   }
+//   return result;
+//     }, {});
+//   };
 
     function update() {
 
@@ -313,18 +314,23 @@ function difference(obj1, obj2) {
         // delete tempVars['userId']
         // console.log(tempVars)
 
-        // if (!_.isEqual(tempVars, store)) {
-        if (JSON.stringify(tempVars) != JSON.stringify(store)) {
-            let diff = difference(store, tempVars);
+        // if (_.isEqual(tempVars, store)) {
+        // if (JSON.stringify(tempVars) != JSON.stringify(store)) {
+            let tempStore = Object.assign({},store, {});
+        
+            let diff = difference(tempVars, tempStore);
             
             if(Object.keys(diff).length){
-                console.log("diff detect:", diff);
-            store = _.merge(store, tempVars)
-            // updateSugarCubeState(store)
-            socket.emit('difference', diff)
-            $(document).trigger(":liveupdate");
+                // console.log("store", store)
+                // console.log("statevars", tempVars)
+                // console.log("diff detect:", diff);
+                store = tempVars;
+                
+                // updateSugarCubeState(store)
+                socket.emit('difference', diff)
+                $(document).trigger(":liveupdate");
             }
-        }
+        // }
         // }
 
 

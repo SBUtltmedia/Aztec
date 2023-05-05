@@ -115,14 +115,6 @@ display: inline-block;
 width:3rem;
 }
 
-#displayStats {
-top: 9%;
-left: 58%;
-display: flex;
-width:35%;
-height:17%;
-position: absolute;
-}
 
 #factionStrength {
 margin:0;
@@ -211,6 +203,16 @@ body :not(.playerList)
   position: absolute;
   overflow: hidden;
   }
+  
+  body :not(.playerList)
+  #displayStats {
+    top: 9%;
+    left: 58%;
+    display: flex;
+    width:35%;
+    height:17%;
+    position: absolute;
+    }
 
 
   #homeButton{
