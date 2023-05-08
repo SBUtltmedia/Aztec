@@ -95,12 +95,18 @@ importScripts([
     }
 	});
 
+	
 	Macro.add('macroTest', {
     handler: function() {
-		let splitArgs = this.args.raw.split(" "); 
-
-
-		console.log(splitArgs);
+		let [key,value] = this.args.raw.split(/[ ]+/).join('').split("="); 
+		// let key = splitArgs[0].replace(/\s/g, '');
+		// let value = splitArgs[1].replace(/\s/g, '');
+ 
+		var output = `<<set ${key} = ${value}>>`
+					
+        $(this.output).wiki(output);
+		console.log("key:",key);
+		console.log("value:",value);
     }
 	});
 
@@ -425,7 +431,16 @@ List of valid roles and their info */
 }
 		>>
 <<set _macro = "23">>
-<<macroTest _macro = "31">>
+<<script>>
+	console.log("before tset:", State.getVar("_macro"))
+<</script>>
+<<macroTest $users[$userId]["stats"]["strength"] =5>>
+
+<<script>>
+	console.log("after tset:", State.getVar("_macro"))
+<</script>>
+
+
 /* List of passages where ui elements don't show up */
 <<set _menuPassages = [
 	"Name Not Recognized",
@@ -478,7 +493,7 @@ List of valid roles and their info */
 <</theyr>>
 
 /* updates user's last log in time */
-<<set $users[$userId].lastSeen= new Date().getTime()>>
+<<set $users[$userId].lastSeen=new Date().getTime()>>
 
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}

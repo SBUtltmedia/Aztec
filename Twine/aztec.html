@@ -168,12 +168,18 @@ importScripts([
     }
 	});
 
+	
 	Macro.add('macroTest', {
     handler: function() {
-		let splitArgs = this.args.raw.split(" "); 
-
-
-		console.log(splitArgs);
+		let [key,value] = this.args.raw.split(/[ ]+/).join('').split("="); 
+		// let key = splitArgs[0].replace(/\s/g, '');
+		// let value = splitArgs[1].replace(/\s/g, '');
+ 
+		var output = `<<set ${key} = ${value}>>`
+					
+        $(this.output).wiki(output);
+		console.log("key:",key);
+		console.log("value:",value);
     }
 	});
 
@@ -490,7 +496,16 @@ List of valid roles and their info */
 }
 		&gt;&gt;
 &lt;&lt;set _macro = &quot;23&quot;&gt;&gt;
-&lt;&lt;macroTest _macro = &quot;31&quot;&gt;&gt;
+&lt;&lt;script&gt;&gt;
+	console.log(&quot;before tset:&quot;, State.getVar(&quot;_macro&quot;))
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;macroTest $users[$userId][&quot;stats&quot;][&quot;strength&quot;] =5&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+	console.log(&quot;after tset:&quot;, State.getVar(&quot;_macro&quot;))
+&lt;&lt;/script&gt;&gt;
+
+
 /* List of passages where ui elements don&#39;t show up */
 &lt;&lt;set _menuPassages = [
 	&quot;Name Not Recognized&quot;,
@@ -543,7 +558,7 @@ List of valid roles and their info */
 &lt;&lt;/theyr&gt;&gt;
 
 /* updates user&#39;s last log in time */
-&lt;&lt;set $users[$userId].lastSeen= new Date().getTime()&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;set $users[$userId].lastSeen=new Date().getTime()&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
 /* List of passages where ui elements don&#39;t show up */
 &lt;&lt;set _menuPassages = [
 	&quot;Name Not Recognized&quot;,
