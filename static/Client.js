@@ -179,7 +179,8 @@ function makeRoleStats(statsIn) {
     var output = "";
 
     user["stats"] = statsIn;
-    // console.log("emitting from role stats", Window.SugarCubeState.variables);
+
+    //try to only send stats of user
       socket.emit('difference',  Window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
@@ -294,16 +295,9 @@ function initTheyr(lockInfo) {
         return changes(object, base);
     }
 
-// function difference(obj1, obj2) {
-//     return _.reduce(obj1, function(result, value, key) {
-//   if (_.isPlainObject(value)) {
-//     result[key] = difference(value, obj2[key]);
-//   } else if (!_.isEqual(value, obj2[key])) {
-//     result[key] = value;
-//   }
-//   return result;
-//     }, {});
-//   };
+    function tset(){
+        
+    }
 
     function update() {
 
@@ -311,7 +305,8 @@ function initTheyr(lockInfo) {
        // console.log("SG",JSON.stringify(tempVars.users[tempVars.userId]))
 
        // console.log("store",JSON.stringify(store.users[tempVars.userId]))
-        // delete tempVars['userId']
+        delete tempVars['userId']
+        delete store['userId']
         // console.log(tempVars)
 
         // if (_.isEqual(tempVars, store)) {
