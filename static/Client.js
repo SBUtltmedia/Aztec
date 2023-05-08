@@ -249,7 +249,7 @@ function initTheyr(lockInfo) {
         console.log(lockInfo)
         lockInfo.callback(lockInfo.lockId)
     })
-    //outdated
+
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
         // console.log("Connecting state:", state)
@@ -260,7 +260,7 @@ function initTheyr(lockInfo) {
         // If the server's state is empty, set with this client's state
     //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
-        // socket.emit('difference',store)
+        socket.emit('difference',store)
 
 
     });

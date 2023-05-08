@@ -95,6 +95,15 @@ importScripts([
     }
 	});
 
+	Macro.add('macroTest', {
+    handler: function() {
+		let splitArgs = this.args.raw.split(" "); 
+
+
+		console.log(splitArgs);
+    }
+	});
+
 
 	Macro.add(['discord'], {
 		tags: null,
@@ -415,7 +424,8 @@ List of valid roles and their info */
   }
 }
 		>>
-
+<<set _macro = "23">>
+<<macroTest _macro = "31">>
 /* List of passages where ui elements don't show up */
 <<set _menuPassages = [
 	"Name Not Recognized",
