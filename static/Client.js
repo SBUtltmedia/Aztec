@@ -239,6 +239,20 @@ function getUser() {
 // {
 //     lockInfo={lockId,callback}  
 
+/*
+Takes in a diffkey after calling custom twine set macro. Will create a difference object with the diffKey
+as the key and it's new value after setting is done. 
+
+Sends the emits difference with the diff object as the payload to notify serverstore to update
+
+Value cannot be read from sugarcube macro call because only twine can read the syntax.
+*/
+function tset(diffKey){
+    //find new value after setting is done
+    let diff = {[diffKey]: Window.SugarCubeState.getVar(diffKey) }
+    console.log("diff:", diff);
+    socket.emit('difference', diff);
+}
 
 function initTheyr(lockInfo) {
     updateSugarCubeState(userData.gameState);
@@ -277,7 +291,7 @@ function initTheyr(lockInfo) {
 
 
 
-    setInterval(update, 100)
+    // setInterval(update, 100)
 
    function difference(object, base) {
         function changes(object, base) {
@@ -293,10 +307,6 @@ function initTheyr(lockInfo) {
             });
         }
         return changes(object, base);
-    }
-
-    function tset(){
-        
     }
 
     function update() {

@@ -98,15 +98,17 @@ importScripts([
 	
 	Macro.add('macroTest', {
     handler: function() {
-		let [key,value] = this.args.raw.split(/[ ]+/).join('').split("="); 
-		// let key = splitArgs[0].replace(/\s/g, '');
-		// let value = splitArgs[1].replace(/\s/g, '');
+		//saves the key of the value that is being set
+		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
  
-		var output = `<<set ${key} = ${value}>>`
+		var output = `<<set ${this.args.raw}>>`
 					
         $(this.output).wiki(output);
+		console.log("args", this.args);
 		console.log("key:",key);
-		console.log("value:",value);
+
+		//send key of value to client function
+		tset(key);
     }
 	});
 
@@ -430,11 +432,11 @@ List of valid roles and their info */
   }
 }
 		>>
-<<set _macro = "23">>
+<<set _macro = 23>>
 <<script>>
 	console.log("before tset:", State.getVar("_macro"))
 <</script>>
-<<macroTest $users[$userId]["stats"]["strength"] =5>>
+<<macroTest $users[$userId]["stats"]["Strength"] = 5>>
 
 <<script>>
 	console.log("after tset:", State.getVar("_macro"))
