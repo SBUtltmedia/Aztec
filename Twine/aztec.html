@@ -171,15 +171,17 @@ importScripts([
 	
 	Macro.add('macroTest', {
     handler: function() {
-		let [key,value] = this.args.raw.split(/[ ]+/).join('').split("="); 
-		// let key = splitArgs[0].replace(/\s/g, '');
-		// let value = splitArgs[1].replace(/\s/g, '');
+		//saves the key of the value that is being set
+		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
  
-		var output = `<<set ${key} = ${value}>>`
+		var output = `<<set ${this.args.raw}>>`
 					
         $(this.output).wiki(output);
+		console.log("args", this.args);
 		console.log("key:",key);
-		console.log("value:",value);
+
+		//send key of value to client function
+		tset(key);
     }
 	});
 
@@ -196,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -495,11 +497,11 @@ List of valid roles and their info */
   }
 }
 		&gt;&gt;
-&lt;&lt;set _macro = &quot;23&quot;&gt;&gt;
+&lt;&lt;set _macro = 23&gt;&gt;
 &lt;&lt;script&gt;&gt;
 	console.log(&quot;before tset:&quot;, State.getVar(&quot;_macro&quot;))
 &lt;&lt;/script&gt;&gt;
-&lt;&lt;macroTest $users[$userId][&quot;stats&quot;][&quot;strength&quot;] =5&gt;&gt;
+&lt;&lt;macroTest $users[$userId][&quot;stats&quot;][&quot;Strength&quot;] = 5&gt;&gt;
 
 &lt;&lt;script&gt;&gt;
 	console.log(&quot;after tset:&quot;, State.getVar(&quot;_macro&quot;))
