@@ -249,9 +249,11 @@ Value cannot be read from sugarcube macro call because only twine can read the s
 */
 function tset(diffKey){
     //find new value after setting is done
+
     let diff = {[diffKey]: Window.SugarCubeState.getVar(diffKey) }
     console.log("diff:", diff);
-    socket.emit('difference', diff);
+    console.log("testing:", JSON.stringify(Window.SugarCubeState.variables[`users[379034594206285845]`]));
+    socket.emit('difference',  diff)
 }
 
 function initTheyr(lockInfo) {
@@ -275,7 +277,7 @@ function initTheyr(lockInfo) {
         // If the server's state is empty, set with this client's state
     //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
-        socket.emit('difference',store)
+
 
 
     });

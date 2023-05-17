@@ -95,17 +95,25 @@ importScripts([
     }
 	});
 
+
 	
 	Macro.add('macroTest', {
     handler: function() {
 		//saves the key of the value that is being set
-		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
- 
+		let key = this.args.full.split(/[ ]+/).join('').split("=")[0]; 
+
+		//TODO: Replace with regex
+		//accounts for <<set _key+= val>> acses
+		let endings = ['+', '-','*', '/']
+		if(endings.includes(key.slice(-1))){
+			key = key.slice(0,-1);
+		}
+
 		var output = `<<set ${this.args.raw}>>`
-					
+		
         $(this.output).wiki(output);
 		console.log("args", this.args);
-		console.log("key:",key);
+		// console.log("key:",key);
 
 		//send key of value to client function
 		tset(key);
@@ -433,14 +441,8 @@ List of valid roles and their info */
 }
 		>>
 <<set _macro = 23>>
-<<script>>
-	console.log("before tset:", State.getVar("_macro"))
-<</script>>
-<<macroTest $users[$userId]["stats"]["Strength"] = 5>>
 
-<<script>>
-	console.log("after tset:", State.getVar("_macro"))
-<</script>>
+<<macroTest $test = 5>>
 
 
 /* List of passages where ui elements don't show up */
