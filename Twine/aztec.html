@@ -173,7 +173,7 @@ importScripts([
 	Macro.add('macroTest', {
     handler: function() {
 		//saves the key of the value that is being set
-		let key = this.args.full.split(/[ ]+/).join('').split("=")[0]; 
+		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
 
 		//TODO: Replace with regex
 		//accounts for <<set _key+= val>> acses
@@ -206,7 +206,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
@@ -506,8 +506,8 @@ List of valid roles and their info */
 }
 		&gt;&gt;
 &lt;&lt;set _macro = 23&gt;&gt;
-
-&lt;&lt;macroTest $test = 5&gt;&gt;
+&lt;&lt;set $test = {}&gt;&gt;
+&lt;&lt;macroTest $users[$userId][&quot;stats&quot;][&quot;Strength&quot;] -= 1&gt;&gt;
 
 
 /* List of passages where ui elements don&#39;t show up */

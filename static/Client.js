@@ -249,11 +249,41 @@ Value cannot be read from sugarcube macro call because only twine can read the s
 */
 function tset(diffKey){
     //find new value after setting is done
-
-    let diff = {[diffKey]: Window.SugarCubeState.getVar(diffKey) }
-    console.log("diff:", diff);
-    console.log("testing:", JSON.stringify(Window.SugarCubeState.variables[`users[379034594206285845]`]));
+    let keys = SugarCubeToJavascript(diffKey);
+    let currKey;
+    let prevKey = Window.SugarCubeState.getVar(diffKey);
+    while(keys.length > 0){
+        currKey = {[keys.pop()]: prevKey};
+        prevKey = currKey;
+    }
+    let diff = currKey;
+    // console.log("diff:", currKey);
     socket.emit('difference',  diff)
+}
+
+/*
+Converts a Sugarcube string representing a variable accessible via State.getVar()
+to the javascript version which is accessible via Window.SugarCubeState['key'].
+
+*/
+function SugarCubeToJavascript(key){
+    var found;
+    var list = []
+    var str;
+    list.push(((key.includes("[") ? key.substring(0, key.indexOf("[")) : key)).slice(1));
+    var reBrackets = /\[(.*?)\]/g;
+    while(found = reBrackets.exec(key)){
+        str = found[1]
+        if(str.includes("$")){
+            list.push(Window.SugarCubeState.getVar(str));
+        }else{
+            str = str.replace(/["']/g, "");
+            list.push(str);
+        }
+    }
+    
+
+    return list;
 }
 
 function initTheyr(lockInfo) {
@@ -343,7 +373,7 @@ function initTheyr(lockInfo) {
 
 
     }
-
+dsasdawd
  
 
     // Updates client's SugarCube State when state changes are received from the server

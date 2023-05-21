@@ -126,7 +126,6 @@ class Webstack {
 
 	
 			socket.on('difference', (diff) => {
-				console.log("updating store:", diff)
 				delete diff['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
 				this.serverStore.dispatch({
 					type: 'UPDATE',
