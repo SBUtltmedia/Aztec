@@ -97,7 +97,7 @@ importScripts([
 
 
 	
-	Macro.add('macroTest', {
+	Macro.add('storeSet', {
     handler: function() {
 		//saves the key of the value that is being set
 		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
@@ -115,8 +115,10 @@ importScripts([
 		console.log("args", this.args);
 		// console.log("key:",key);
 
-		//send key of value to client function
-		tset(key);
+		//send key of value to client function if not temporary var
+		if(key.substring(0, 1) != "_"){
+			storeSet(key);
+		}
     }
 	});
 
@@ -442,8 +444,7 @@ List of valid roles and their info */
 		>>
 <<set _macro = 23>>
 <<set $test = {}>>
-<<macroTest $users[$userId]["stats"]["Strength"] -= 1>>
-
+<<storeSet $users[$userId]["stats"]["Strength"] -= 1>>
 
 /* List of passages where ui elements don't show up */
 <<set _menuPassages = [

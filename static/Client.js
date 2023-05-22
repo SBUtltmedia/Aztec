@@ -247,7 +247,7 @@ Sends the emits difference with the diff object as the payload to notify servers
 
 Value cannot be read from sugarcube macro call because only twine can read the syntax.
 */
-function tset(diffKey){
+function storeSet(diffKey){
     //find new value after setting is done
     let keys = SugarCubeToJavascript(diffKey);
     let currKey;
@@ -257,7 +257,7 @@ function tset(diffKey){
         prevKey = currKey;
     }
     let diff = currKey;
-    // console.log("diff:", currKey);
+    console.log("diff:", currKey);
     socket.emit('difference',  diff)
 }
 
