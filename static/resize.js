@@ -3,8 +3,8 @@ var stageWidth;
 var stageHeight;
 var stageTop;
 var stageLeft;
-var aspectW=4
-var aspectH=2.64
+var aspectW=16
+var aspectH=9
 
 // Fix aspect ratio of the stage
 $(window).resize(function () {
