@@ -11902,6 +11902,156 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 <</theyr>>
 
+:: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+
+/* Prints list of previous passages for user to recollect */
+<div id="info">
+	<<link "back" $users[$userId]["passage"]>><</link>>
+	<br>
+	Passages Completed:
+	<br>
+	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
+		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
+
+		<br>
+		<<if $users[$userId]["passage"] != _passageName>>
+			<<historyButton _passageName _passageText _passageId>>
+		<</if>>
+	<</for>>
+</div>
+
+/* prints current passage */
+<div id="passage">
+	<<print $users[$userId]["passage"]>>
+</div>
+
+/* print play status list (discord info, role, etc.) */
+<div id="players">
+<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
+
+<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
+<<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
+<<set _totalUsers = 0>>
+<<for _id, _data range $users>>
+	<<set _totalUsers = _totalUsers + 1>>
+	<<set _faction = _data["faction"]>>
+	<<if ndef _factionUsers[_faction]>>
+		<<set _factionUsers[_faction] = []>>
+	<</if>>
+
+	<<if new Date().getTime() - _data["lastSeen"] < 100>>
+		<<set _factionUsers[_faction].push(_id)>>
+		<<set _userCount[_faction] = (_userCount[_faction] + 1)>>
+	<<else>>
+		<<set _factionUsers["offline"].push(_id)>>
+		<<set _userCount["offline"] = (_userCount["offline"] + 1)>>
+	<</if>>
+<</for>>
+
+<div id = "player">
+		<img id = "playerImage" src = "https://cdn-icons-png.flaticon.com/512/7081/7081031.png">
+		<div id = "playerText">
+			<div id="printUserRole"> 
+				<<print $users[$userId]["role"]>>
+			</div>
+			<div id="printUserName">
+				<<print "#" + $users[$userId]["username"] + $users[$userId]["discriminator"]>>
+			</div>
+		</div>
+	</div>
+
+	<div id="onlineCount">
+		<<print "  General(" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
+	</div>
+
+	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
+		<<if _faction != "offline">>
+			<<print _faction + " -- (" + _userCount[_faction] + "/" + _factionUsers[_faction].length + ")">>
+		<<else>>
+			<<print "Offline" + " -- (" + _userCount["offline"] + "/" + _totalUsers + ")">>
+		<</if>>
+		<<for _j, _userId range _factionUsers[_faction]>>
+			<div id = "player">
+				<img id = "playerImage" src = "https://cdn-icons-png.flaticon.com/512/7081/7081031.png">
+				<div id = "playerText">
+					<div id="printUserRole"> 
+						<<print $users[_userId]["role"]>> 
+					</div>
+					<div id="printUserName">
+						<<print "#jin6000">>
+					</div>
+				</div>
+			</div>
+			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
+		<</for>>
+			<br>
+			
+	<</for>>
+	</div>
+
+
+<</theyr>>
+
+
+/* Use this as a template to make side passages */
+
+
+:: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	Side passage example 1
+	/* Put link to next passage  */
+	 <<link "Next passage (2)" "Side Passage Example 2">><</link>>
+	 
+<</theyr>>
+
+
+:: Side Passage Example 2 [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	Side passage example 2
+	/* Put link to next passage  */
+	<<link "Next passage (final)" "Side Passage Example Final">><</link>>
+<</theyr>>
+
+
+:: Side Passage Example Final [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	Side passage example Final
+	<<print $users[$userId]["sidePassageReturn"]>>
+	
+	/* Put this link line at the end of every side passage series */
+	<<link "Back to main passage" $users[$userId]["sidePassageReturn"]>><</link>>
+<</theyr>>
+
+
+/* Use this to send users to side passages */
+
+
+:: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<set _role = "Aztec_Priest">>
+	<<set _passage = "Side Passage Control">>
+
+	/* Add the starting passage of every side passge to this  */
+	<<set _sidePassages = {
+		"example": "Side Passage Example"
+	}>>
+
+
+	<<listbox "_role" autoselect>>
+		<<optionsfrom Object.keys($lookup)>>
+	
+	<</listbox>>
+	<<listbox "_passage" autoselect>>
+		<<optionsfrom _sidePassages>>
+		
+	<</listbox>>
+	<<button "send">>
+		<<set _user = $users[$lookup[_role]]>>
+		<<set _user["sidePassageReturn"] = _user["passage"]>>
+		<<set _user["passage"] = _passage>>
+	<</button>>
+<</theyr>>
 
 :: StoryScript [script]
 Save.clear()
