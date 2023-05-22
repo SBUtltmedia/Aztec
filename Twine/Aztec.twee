@@ -11907,15 +11907,22 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 /* Prints list of previous passages for user to recollect */
 <div id="info">
+
+  /* button to go back to other passages */
 	<<link "back" $users[$userId]["passage"]>><</link>>
 	<br>
 	Passages Completed:
 	<br>
+
+  /* loop to make buttons for showing text of previous passages */
 	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
 		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
 
 		<br>
 		<<if $users[$userId]["passage"] != _passageName>>
+
+      /* macro to make button and the previously read passage's text it shows
+       if you want to edit look for historyButton macro */
 			<<historyButton _passageName _passageText _passageId>>
 		<</if>>
 	<</for>>
@@ -11928,18 +11935,25 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 /* print play status list (discord info, role, etc.) */
 <div id="players">
+
+/* Creates arrays for each faction and offline users */
 <<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
 
-<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
 <<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
 <<set _totalUsers = 0>>
+
+/* _id: discord id for each user
+_data: object with user properties (to access user's passage just use _data["passage"]) */
 <<for _id, _data range $users>>
 	<<set _totalUsers = _totalUsers + 1>>
+
+  /* _faction: the faction of the user that is currently being iterated */
 	<<set _faction = _data["faction"]>>
 	<<if ndef _factionUsers[_faction]>>
 		<<set _factionUsers[_faction] = []>>
 	<</if>>
 
+  /* If user has not been on lately, put them in the offline group */
 	<<if new Date().getTime() - _data["lastSeen"] < 100>>
 		<<set _factionUsers[_faction].push(_id)>>
 		<<set _userCount[_faction] = (_userCount[_faction] + 1)>>
@@ -11949,6 +11963,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<</if>>
 <</for>>
 
+/* creates sidebar with users */
 <div id = "player">
 		<img id = "playerImage" src = "https://cdn-icons-png.flaticon.com/512/7081/7081031.png">
 		<div id = "playerText">
