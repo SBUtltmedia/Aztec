@@ -179,7 +179,8 @@ function makeRoleStats(statsIn) {
     var output = "";
 
     user["stats"] = statsIn;
-    // console.log("emitting from role stats", Window.SugarCubeState.variables);
+
+    //try to only send stats of user
       socket.emit('difference',  Window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
@@ -238,6 +239,52 @@ function getUser() {
 // {
 //     lockInfo={lockId,callback}  
 
+/*
+Takes in a diffkey after calling custom twine set macro. Will create a difference object with the diffKey
+as the key and it's new value after setting is done. 
+
+Sends the emits difference with the diff object as the payload to notify serverstore to update
+
+Value cannot be read from sugarcube macro call because only twine can read the syntax.
+*/
+function storeSet(diffKey){
+    //find new value after setting is done
+    let keys = SugarCubeToJavascript(diffKey);
+    let currKey;
+    let prevKey = Window.SugarCubeState.getVar(diffKey);
+    while(keys.length > 0){
+        currKey = {[keys.pop()]: prevKey};
+        prevKey = currKey;
+    }
+    let diff = currKey;
+    console.log("diff:", currKey);
+    socket.emit('difference',  diff)
+}
+
+/*
+Converts a Sugarcube string representing a variable accessible via State.getVar()
+to the javascript version which is accessible via Window.SugarCubeState['key'].
+
+*/
+function SugarCubeToJavascript(key){
+    var found;
+    var list = []
+    var str;
+    list.push(((key.includes("[") ? key.substring(0, key.indexOf("[")) : key)).slice(1));
+    var reBrackets = /\[(.*?)\]/g;
+    while(found = reBrackets.exec(key)){
+        str = found[1]
+        if(str.includes("$")){
+            list.push(Window.SugarCubeState.getVar(str));
+        }else{
+            str = str.replace(/["']/g, "");
+            list.push(str);
+        }
+    }
+    
+
+    return list;
+}
 
 function initTheyr(lockInfo) {
     updateSugarCubeState(userData.gameState);
@@ -249,7 +296,7 @@ function initTheyr(lockInfo) {
         console.log(lockInfo)
         lockInfo.callback(lockInfo.lockId)
     })
-    //outdated
+
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
         // console.log("Connecting state:", state)
@@ -260,7 +307,7 @@ function initTheyr(lockInfo) {
         // If the server's state is empty, set with this client's state
     //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
-        // socket.emit('difference',store)
+
 
 
     });
@@ -276,7 +323,7 @@ function initTheyr(lockInfo) {
 
 
 
-    setInterval(update, 100)
+    // setInterval(update, 100)
 
    function difference(object, base) {
         function changes(object, base) {
@@ -294,24 +341,14 @@ function initTheyr(lockInfo) {
         return changes(object, base);
     }
 
-// function difference(obj1, obj2) {
-//     return _.reduce(obj1, function(result, value, key) {
-//   if (_.isPlainObject(value)) {
-//     result[key] = difference(value, obj2[key]);
-//   } else if (!_.isEqual(value, obj2[key])) {
-//     result[key] = value;
-//   }
-//   return result;
-//     }, {});
-//   };
-
     function update() {
 
         var tempVars = Object.assign({},Window.SugarCubeState.variables);
        // console.log("SG",JSON.stringify(tempVars.users[tempVars.userId]))
 
        // console.log("store",JSON.stringify(store.users[tempVars.userId]))
-        // delete tempVars['userId']
+        delete tempVars['userId']
+        delete store['userId']
         // console.log(tempVars)
 
         // if (_.isEqual(tempVars, store)) {
@@ -336,7 +373,7 @@ function initTheyr(lockInfo) {
 
 
     }
-
+dsasdawd
  
 
     // Updates client's SugarCube State when state changes are received from the server

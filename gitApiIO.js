@@ -11,7 +11,7 @@ class gitApiIO{
     constructor(serverConf) {
         this.serverConf = serverConf
         this.test = fs.existsSync(testFile)
-        // console.log("config is", serverConf)
+        console.log("config is", serverConf)
 	}
 
     async uploadFileApi() {
