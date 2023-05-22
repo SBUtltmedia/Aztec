@@ -6433,7 +6433,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 		>>
 <<set _macro = 23>>
 <<set $test = {}>>
-<<storeSet $users[$userId]["stats"]["Strength"] -= 1>>
+/* <<storeSet $users[$userId]["stats"]["Strength"] -= 1>> */
 
 /* List of passages where ui elements don't show up */
 <<set _menuPassages = [
