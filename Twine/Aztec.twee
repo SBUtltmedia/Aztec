@@ -12117,18 +12117,22 @@ importScripts([
 		}
 	});
 
-	Macro.add(['userlist'], {
-		tags: null,
-		handler: function handler() {
-			try {
-				const Discord = require('discord.js');
-				const client = new Discord.Client();
-				const list = client.guilds.cache.get("myServerID"); 
-				
-			} catch (e) {
-				return e;
-			}
-		}
+	//creates a historyButton div with a button to open/close it
+	//arg[0] = button text
+	//arg[1] = historyButton div text
+	//arg[2] = historyButton div id
+	Macro.add('historyButton', {
+    handler: function() {
+        let id = this.args[2];
+		let wikiText = this.args[1].replaceAll(/\/\*[^\/]*\//gm, '');
+		wikiText = wikiText.replaceAll( /<<[^>>]*>>/ig, '');
+		wikiText = wikiText.replaceAll( /<[^br>]*>/ig, '');
+	
+        var output = `<<link "${this.args[0]}">><<toggleclass "#${id}" "hide">><</link>>
+				 	<div id="${id}" class="hide">"${wikiText}"</div>`;
+					
+        $(this.output).wiki(output);
+    }
 	});
 	
 	Macro.add('storeSet', {
