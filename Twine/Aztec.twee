@@ -12002,7 +12002,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 			</div>
 			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
 		<</for>>
-			
+			<div id="factionSpaceBetween"></div>
 	<</for>>
 	</div>
 

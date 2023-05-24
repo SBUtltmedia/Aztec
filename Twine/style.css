@@ -552,15 +552,19 @@ small font size: 1.7rem
 */
 
 .playerList #onlineCount {
-  border-radius: 0.5px;
+  border-radius: 0.1rem;
   border-color: white;
   border-style: solid none;
-  text-indent: 15%;
+  text-indent: 14%;
   font-size: 2.6rem;
 }
 
+.playerList #factionSpaceBetween {
+  height: 2%;
+}
+
 .playerList #printFactionOnlineCount {
-  text-indent: 15%;
+  text-indent: 14%;
 }
 
 .playerList  #map, #factionStrength, #factionStrengthLabel, #homeButton, #displayStats{
@@ -601,8 +605,9 @@ small font size: 1.7rem
 
   border-radius: 50%;
   overflow: hidden;
-  border: 0.45rem solid #6C944D;
+  border: 0.5rem solid #6C944D;
   object-fit: cover;
+  margin-top: -1%;
 }
 
 #printUserRoleClient { 
