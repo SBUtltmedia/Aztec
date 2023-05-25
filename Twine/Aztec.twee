@@ -2878,7 +2878,7 @@ This city is <<textbox "$Chapultepec_Ans_T" "">><br>
 <<print $Chapultepec_Ans_A>><br>
 <br>
 <<if def $Chapultepec_Ans_A and $Chapultepec_Ans_A isnot 0 and $Chapultepec_Ans_A isnot "">>
-<<storeSet $Chapultepec_Ans_A to $Chapultepec_Ans_A.toLowerCase()>>
+<<storeSet $Chapultepec_Ans_A = $Chapultepec_Ans_A.toLowerCase()>>
 <</if>>
 
 <<if ndef $Chapultepec_Ans_A or $Chapultepec_Ans_A eq "">>
@@ -2902,7 +2902,7 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 <<print $Chapultepec_Ans_T>><br>
 <br>
 <<if def $Chapultepec_Ans_T and $Chapultepec_Ans_T isnot 0 and $Chapultepec_Ans_T isnot "">>
-<<storeSet $Chapultepec_Ans_T to $Chapultepec_Ans_T.toLowerCase()>>
+<<storeSet $Chapultepec_Ans_T = $Chapultepec_Ans_T.toLowerCase()>>
 <</if>>
 
 <<if ndef $Chapultepec_Ans_T or $Chapultepec_Ans_T eq "">>
@@ -4750,7 +4750,7 @@ This city is <<textbox "$Malinalco_Ans_T" "">><br>
 <<print $Malinalco_Ans_A>><br>
 <br>
 <<if def $Malinalco_Ans_A>>
-<<storeSet $Malinalco_Ans_A to $Malinalco_Ans_A.toLowerCase()>>
+<<storeSet $Malinalco_Ans_A = $Malinalco_Ans_A.toLowerCase()>>
 <</if>>
 <<if ndef $Malinalco_Ans_A or $Malinalco_Ans_A eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Malinalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -4771,7 +4771,7 @@ Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to
 <<print $Malinalco_Ans_T>><br>
 <br>
 <<if def $Malinalco_Ans_T>>
-<<storeSet $Malinalco_Ans_T to $Malinalco_Ans_T.toLowerCase()>>
+<<storeSet $Malinalco_Ans_T = $Malinalco_Ans_T.toLowerCase()>>
 <</if>>
 <<if ndef $Malinalco_Ans_T or $Malinalco_Ans_T eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Malinalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -6549,7 +6549,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 }
 		>>
 <<storeSet _macro = 23>>
-<<storeSet $test = {}>>
+<<storeSet $test = "Test">>
+<<storeSet $test = $test.toLowerCase()>>
+/* <<run changeStats("Aztec_Priest",{"Wisdom":2,"Loyalty":0,"Strength":0})>> */
 /* <<storeSet $users[$userId]["stats"]["Strength"] -= 1>> */
 
 /* List of passages where ui elements don't show up */
@@ -6609,8 +6611,8 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 <<if passage() != "Home">>
 	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
-
-		<<storeSet $users[$userId]["passageHistory"][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
+		<<set _currPassage = passage()>>
+		<<storeSet $users[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
 	<</if>>
 	
 
