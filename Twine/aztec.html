@@ -206,7 +206,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -6025,7 +6025,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
 	&lt;&lt;if !(Object.keys($users[$userId][&quot;passageHistory&quot;]).includes(passage()))&gt;&gt;
 
-		/* &lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt; */
+		&lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 
@@ -10849,10 +10849,10 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;div id=&quot;players&quot;&gt;
 
 /* Creates arrays for each faction and offline users */
-&lt;&lt;storeSet _factionUsers = {&quot;Aztecs&quot; : [], &quot;Spaniards&quot;:[],&quot;Tlaxcalans&quot;:[], &quot;offline&quot;:[]}&gt;&gt;
+&lt;&lt;set _factionUsers = {&quot;Aztecs&quot; : [], &quot;Spaniards&quot;:[],&quot;Tlaxcalans&quot;:[], &quot;offline&quot;:[]}&gt;&gt;
 
-&lt;&lt;storeSet _userCount = {&quot;Aztecs&quot; : 0, &quot;Spaniards&quot;:0,&quot;Tlaxcalans&quot;:0, &quot;offline&quot;:0}&gt;&gt;
-&lt;&lt;storeSet _totalUsers = 0&gt;&gt;
+&lt;&lt;set _userCount = {&quot;Aztecs&quot; : 0, &quot;Spaniards&quot;:0,&quot;Tlaxcalans&quot;:0, &quot;offline&quot;:0}&gt;&gt;
+&lt;&lt;set _totalUsers = 0&gt;&gt;
 
 /* _id: discord id for each user
 _data: object with user properties (to access user&#39;s passage just use _data[&quot;passage&quot;]) */
@@ -10862,42 +10862,44 @@ _data: object with user properties (to access user&#39;s passage just use _data[
   /* _faction: the faction of the user that is currently being iterated */
 	&lt;&lt;storeSet _faction = _data[&quot;faction&quot;]&gt;&gt;
 	&lt;&lt;if ndef _factionUsers[_faction]&gt;&gt;
-		&lt;&lt;storeSet _factionUsers[_faction] = []&gt;&gt;
+		&lt;&lt;set _factionUsers[_faction] = []&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 
   /* If user has not been on lately, put them in the offline group */
 	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 100&gt;&gt;
-		&lt;&lt;storeSet _factionUsers[_faction].push(_id)&gt;&gt;
-		&lt;&lt;storeSet _userCount[_faction] = (_userCount[_faction] + 1)&gt;&gt;
+		&lt;&lt;set _factionUsers[_faction].push(_id)&gt;&gt;
+		&lt;&lt;set _userCount[_faction] = (_userCount[_faction] + 1)&gt;&gt;
 	&lt;&lt;else&gt;&gt;
-		&lt;&lt;storeSet _factionUsers[&quot;offline&quot;].push(_id)&gt;&gt;
-		&lt;&lt;storeSet _userCount[&quot;offline&quot;] = (_userCount[&quot;offline&quot;] + 1)&gt;&gt;
+		&lt;&lt;set _factionUsers[&quot;offline&quot;].push(_id)&gt;&gt;
+		&lt;&lt;set _userCount[&quot;offline&quot;] = (_userCount[&quot;offline&quot;] + 1)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 
-/* creates sidebar with users */
-&lt;div id = &quot;player&quot;&gt;
-		&lt;img id = &quot;playerImage&quot; src = &quot;https://cdn-icons-png.flaticon.com/512/7081/7081031.png&quot;&gt;
-		&lt;div id = &quot;playerText&quot;&gt;
-			&lt;div id=&quot;printUserRole&quot;&gt; 
-				&lt;&lt;print $users[$userId][&quot;role&quot;]&gt;&gt;
-			&lt;/div&gt;
-			&lt;div id=&quot;printUserName&quot;&gt;
-				&lt;&lt;print &quot;#&quot; + $users[$userId][&quot;username&quot;] + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
+  /* creates sidebar with users */
+  &lt;div id = &quot;playerClient&quot;&gt;
+      &lt;img id = &quot;playerImageClient&quot; src = &quot;Twine\images\characters\Tlacaelel.svg&quot;&gt;
+      &lt;div id = &quot;playerTextClient&quot;&gt;
+        &lt;div id=&quot;printUserRoleClient&quot;&gt; 
+          &lt;&lt;print $users[$userId][&quot;role&quot;]&gt;&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;printUserNameClient&quot;&gt;
+          &lt;&lt;print &quot;#&quot; + $users[$userId][&quot;username&quot;] + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
 
 	&lt;div id=&quot;onlineCount&quot;&gt;
-		&lt;&lt;print &quot;  General(&quot; + (_totalUsers - _userCount[&quot;offline&quot;]) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
+		&lt;&lt;print &quot;  General (&quot; + (_totalUsers - _userCount[&quot;offline&quot;]) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
 	&lt;/div&gt;
 
 	&lt;&lt;for _i,_faction   range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;offline&quot;]&gt;&gt;
-		&lt;&lt;if _faction != &quot;offline&quot;&gt;&gt;
+		&lt;div id=&quot;printFactionOnlineCount&quot;&gt;
+    &lt;&lt;if _faction != &quot;offline&quot;&gt;&gt;
 			&lt;&lt;print _faction + &quot; -- (&quot; + _userCount[_faction] + &quot;/&quot; + _factionUsers[_faction].length + &quot;)&quot;&gt;&gt;
-		&lt;&lt;else&gt;&gt;
+    &lt;&lt;else&gt;&gt;
 			&lt;&lt;print &quot;Offline&quot; + &quot; -- (&quot; + _userCount[&quot;offline&quot;] + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
+    &lt;/div&gt;
 		&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
 			&lt;div id = &quot;player&quot;&gt;
 				&lt;img id = &quot;playerImage&quot; src = &quot;https://cdn-icons-png.flaticon.com/512/7081/7081031.png&quot;&gt;
@@ -10912,8 +10914,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 			&lt;/div&gt;
 			/* &lt;&lt;= setup.printTime($users[_userId][&quot;lastSeen&quot;])&gt;&gt; */
 		&lt;&lt;/for&gt;&gt;
-			&lt;br&gt;
-			
+			&lt;div id=&quot;factionSpaceBetween&quot;&gt;&lt;/div&gt;
 	&lt;&lt;/for&gt;&gt;
 	&lt;/div&gt;
 
