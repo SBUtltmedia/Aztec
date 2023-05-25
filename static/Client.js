@@ -213,6 +213,8 @@ function changeStats(rolePlay, newStats) {
         console.log(newStats[stat])
     });
     Window.SugarCubeState.variables.users[currentUserId]["stats"] =roleStats;
+    let diff = {users: {[currentUserId] : { stats: [roleStats]}}}
+    socket.emit('difference', diff);
     console.log(currentUser)
 }
 
