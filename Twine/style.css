@@ -498,10 +498,12 @@ width: 200% !important;
   height: 100%;
   color: white;
   top: 0%;
-  overflow: hidden;
-  overflow-y: scroll !important;
+
+  /* overflow-y: scroll !important; */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  font-family: roboto;
+  font-size: 1rem;
 }
 
 .playerList #passages, #passage-player-list{
@@ -616,19 +618,19 @@ small font size: 1.7rem
 }
 
 #printUserNameClient {
-  font-size: 2.0rem;
-  
+  font-size: 1.6rem;
+  font-weight: 300;
 }
 
 /* For the rest of the players */
 
-.playerList #player {
+.playerList .player {
   display: flex;
   align-items: flex-start;
   text-align: left;
 }
 
-.playerList #playerText {
+.playerList .playerText {
   display: flex;
   flex-direction: column;
   order: 0;
@@ -638,7 +640,7 @@ small font size: 1.7rem
   line-height: 1.1;
 }
 
-.playerList #playerImage {
+.playerList .playerImage {
   position: absolute;
   height: 100%;
   max-height: 8%;
@@ -647,15 +649,27 @@ small font size: 1.7rem
   float: right;
 }
 
-.playerList #printUserRole{
+.playerList .printUserRole{
   font-size: 1.9rem;
   
 }
 
-.playerList #printUserName{
+.playerList .printUserName{
   color: #DAC8AC;
   font-size: 1.7rem;
   
+}
+
+.rolePanel {
+  background-color: #63503E;
+  border-radius: 5%;
+  position: relative;
+  left: -200%;
+  top: 10%;
+  width: 100%;
+  height: 15%;
+  /* visibility: hidden; */
+  display: block;
 }
 
 .player #div{
