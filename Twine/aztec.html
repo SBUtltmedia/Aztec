@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="84" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="223" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 @import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
 @import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
@@ -206,7 +206,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -6025,7 +6025,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
 	&lt;&lt;if !(Object.keys($users[$userId][&quot;passageHistory&quot;]).includes(passage()))&gt;&gt;
 
-		&lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
+		/* &lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt; */
 	&lt;&lt;/if&gt;&gt;
 	
 
@@ -7908,20 +7908,29 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 [[Return to the Dashboard|Dashboard]]&lt;br&gt;
 
 
-&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="211" name="StoryInit" tags="" position="4575,3400" size="100,100">/* &lt;&lt;storeSet $lastSeenDelay=60 * 5000&gt;&gt; */
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="211" name="StoryInit" tags="" position="22,135" size="100,100">/* &lt;&lt;storeSet $lastSeenDelay=60 * 5000&gt;&gt; */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
+
+/* Gets discord info  */
 &lt;&lt;script&gt;&gt;
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
+	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
+	setup.printTime = function (date) {
+		return new Date(date).toLocaleString(&#39;en-US&#39;, {
+    timeZone: &#39;America/New_York&#39;,
+  });
+	};
 
 &lt;&lt;/script&gt;&gt;
 
-
+/* 
+List of valid roles and their info */
 &lt;&lt;storeSet _roles = {
   &quot;Marina&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
@@ -8001,102 +8010,88 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 }
 		&gt;&gt;
 
+/* init global users list */
 &lt;&lt;if ndef $users&gt;&gt;
 &lt;&lt;storeSet $users = {}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if ndef $users[&quot;test&quot;]&gt;&gt;
-&lt;&lt;storeSet $users[&quot;test&quot;] = {
+
+/* Not seen user is for testing purposes. Anytime a non-existing user&#39;s stats are needed, they will be directed to this temp user */
+&lt;&lt;if ndef $users[&quot;Not seen&quot;]&gt;&gt;
+&lt;&lt;storeSet $users[&quot;Not seen&quot;] = {
 		&quot;stats&quot; : {
 			&quot;Loyalty&quot; : 0,
 			&quot;Strength&quot; : 0,
 			&quot;Wisdom&quot; : 0
 		},
-		&quot;character&quot; : &quot;test&quot;,
-		&quot;faction&quot; : &quot;test&quot;,
-		&quot;isLeader&quot; : &quot;no&quot;,
+		&quot;character&quot; : &quot;Not seen&quot;,
+		&quot;faction&quot; : &quot;Not seen&quot;,
+		&quot;isLeader&quot; : &quot;Not seen&quot;,
 		&quot;lastSeen&quot; : 0,
 		&quot;passage&quot; : &quot;Name Not Recognized&quot;,
-		&quot;role&quot; : &quot;test&quot;,
-		&quot;username&quot; : &quot;test&quot;
+		&quot;role&quot; : &quot;Not seen&quot;,
+		&quot;username&quot; : &quot;Not seen&quot;
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if ndef $lookup&gt;&gt;
-/* &lt;&lt;storeSet $lookup = {&quot;Marina&quot; : &quot;test&quot;,&quot;Alvarado&quot; : &quot;test&quot;,&quot;Aguilar&quot; : &quot;test&quot;,&quot;Garrido&quot; : &quot;test&quot;,&quot;Olid&quot; : &quot;test&quot;,&quot;Cortes&quot; : &quot;test&quot;,&quot;Moctezuma&quot; : &quot;test&quot;,&quot;Tlacaelel&quot; : &quot;test&quot;,&quot;Cuauhtemoc&quot; : &quot;test&quot;,&quot;Aztec_Priest&quot; : &quot;test&quot;,&quot;Cacamatzin&quot; : &quot;test&quot;,&quot;Pochteca&quot; : &quot;test&quot;,&quot;Xicotencatl_Elder&quot; : &quot;test&quot;,&quot;Xicotencatl_Younger&quot; : &quot;test&quot;,&quot;Maxixcatl&quot; : &quot;test&quot;}&gt;&gt; */
-	&lt;&lt;storeSet $lookup = {}&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-/* &lt;&lt;for _i, _data range _factionUsers&gt;&gt; */
-
-&lt;&lt;for _user, _data  range _roles&gt;&gt;
-	&lt;&lt;script&gt;&gt;
-		console.log(State.getVar(&quot;$lookup&quot;))
-	&lt;&lt;/script&gt;&gt;
-	&lt;&lt;if not (Object.keys($lookup)).includes(_user)&gt;&gt;
-		&lt;&lt;storeSet $lookup[_user] = &quot;test&quot;&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/for&gt;&gt;
-
-&lt;&lt;if ndef $Start&gt;&gt;
-&lt;&lt;storeSet $Start = 0&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-
-
+/* Intialize faction data */
 &lt;&lt;if ndef $factions&gt;&gt;
 	&lt;&lt;storeSet $factions = {
 		&quot;Aztecs&quot;: {&quot;stats&quot;: {
-			&quot;Loyalty&quot; : 0,
+
 			&quot;Strength&quot; : 0,
-			&quot;Wisdom&quot; : 0
+
 			}
 		},
 
 		&quot;Spaniards&quot;: {&quot;stats&quot;: {
-			&quot;Loyalty&quot; : 0,
+
 			&quot;Strength&quot; : 0,
-			&quot;Wisdom&quot; : 0
+
 			}
 		},
 
 		&quot;Tlaxcalans&quot;: {&quot;stats&quot;: {
-			&quot;Loyalty&quot; : 0,
+
 			&quot;Strength&quot; : 0,
-			&quot;Wisdom&quot; : 0
+	
 			}
 		},
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-
-&lt;&lt;if ndef $leaders&gt;&gt;
-&lt;&lt;storeSet $flags = {}&gt;&gt;
+/* inits lookup table. Maps roles to userid */
+&lt;&lt;if ndef $lookup&gt;&gt;
+	&lt;&lt;storeSet $lookup = {}&gt;&gt;
+	&lt;&lt;for _user, _data  range _roles&gt;&gt;
+		&lt;&lt;storeSet $lookup[_user] = &quot;Not Seen&quot;&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if ndef $flags&gt;&gt;
-&lt;&lt;storeSet $flags = {}&gt;&gt;
-&lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if ndef $users[$userId]&gt;&gt;
-&lt;&lt;script&gt;&gt;
-	console.log(&quot;problemo&quot;);
-&lt;&lt;/script&gt;&gt;
+/* inits userdata in $users */
+&lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
 &lt;&lt;storeSet $users[$userId] = {}&gt;&gt;
+&lt;script&gt;
+console.log(&quot;new user detected&quot;)
+&lt;/script&gt;
 &lt;&lt;storeSet $users[$userId][&quot;role&quot;] = _role&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;username&quot;] = _username&gt;&gt;
+&lt;&lt;storeSet $users[$userId][&quot;discriminator&quot;] =  _discriminator&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.faction || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
-&lt;&lt;storeSet $users[$userId][&quot;passage&quot;] = &quot;The Library&quot;&gt;&gt;
+&lt;&lt;storeSet $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
+&lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;] = {}&gt;&gt;
 &lt;&lt;storeSet $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
-
-&lt;&lt;else&gt;&gt;
-/* &lt;&lt;storeSet $users[$userId] = userData.jsonfsState.users[$userId]&gt;&gt; */
 &lt;&lt;/if&gt;&gt;
 
-/* Act 1 Scene 1 */
-/* //To Mutiny or Not */
-/* &lt;&lt;storeSet _currentPassage = &quot;Act 1 Scene 1&quot;&gt;&gt; */
-&lt;&lt;storeSet _currentPassage = $users[$userId][&quot;passage&quot;]&gt;&gt;
+
+
+
+
+/* for testing discord macro: */
+
 /* &lt;&lt;discord aztecSpan&gt;&gt; as &lt;&lt;/discord&gt;&gt;
 &lt;&lt;discord aztecs&gt;&gt; a &lt;&lt;/discord&gt;&gt;
 &lt;&lt;discord tlax&gt;&gt; t &lt;&lt;/discord&gt;&gt;
@@ -8106,24 +8101,28 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 &lt;&lt;discord general&gt;&gt; g &lt;&lt;/discord&gt;&gt;
 &lt;&lt;discord omen&gt;&gt; omen &lt;&lt;/discord&gt;&gt; */
 
-
+/* Load passage */
 &lt;&lt;script&gt;&gt;
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 
 	if(searchParams.get(&#39;test&#39;)){
 		console.log(&quot;Test user&quot;);
-		if(searchParams.has(&#39;passage&#39;) &amp;&amp; encodeURI(searchParams.get(&#39;passage&#39;)) !== &quot;-Continue where you left off-&quot;)State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
+		if(searchParams.has(&#39;passage&#39;)){
+			State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
+			}
 	}  
 
 
-	var passage = State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;)
+	var passage =  State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;)  
 	var role = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;role&quot;];
+
+	// If not using test user and role is not recognized, go to Name not Recognized passage
 	if(!searchParams.get(&#39;test&#39;) &amp;&amp; !(role in State.getVar(&quot;_roles&quot;))) passage = &quot;Name Not Recognized&quot;
 
 	if((passage)){
 		setTimeout(() =&gt; {
-			console.log(&quot;playing passage&quot;)
+			console.log(&quot;playing passage&quot;, passage)
 			Engine.play(passage)
 		}, 100);
 
@@ -10829,7 +10828,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
   /* loop to make buttons for showing text of previous passages */
 	&lt;&lt;for _passageName, _passageText range $users[$userId][&quot;passageHistory&quot;]&gt;&gt;
-		&lt;&lt;storeSet _passageId = `passage-${_passageName.replaceAll(/\s/g, &#39;-&#39;)}`&gt;&gt;
+		&lt;&lt;set _passageId = `passage-${_passageName.replaceAll(/\s/g, &#39;-&#39;)}`&gt;&gt;
 
 		&lt;br&gt;
 		&lt;&lt;if $users[$userId][&quot;passage&quot;] != _passageName&gt;&gt;
