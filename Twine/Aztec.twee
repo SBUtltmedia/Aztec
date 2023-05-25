@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "Control: Player Status",
+	"start": "The Library",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -8678,21 +8678,30 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<storeSet $Sp_
 <</theyr>>
 
 
-:: StoryInit {"position":"4575,3400","size":"100,100"}
+:: StoryInit {"position":"22,135","size":"100,100"}
 /* <<storeSet $lastSeenDelay=60 * 5000>> */
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
 <!-- <<masteraudio volume 0>> -->
+
+/* Gets discord info  */
 <<script>>
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
+	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
+	setup.printTime = function (date) {
+		return new Date(date).toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+  });
+	};
 
 <</script>>
 
-
+/* 
+List of valid roles and their info */
 <<storeSet _roles = {
   "Marina": {
     "faction": "Spaniards",
@@ -8772,102 +8781,88 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<storeSet $Sp_
 }
 		>>
 
+/* init global users list */
 <<if ndef $users>>
 <<storeSet $users = {}>>
 <</if>>
 
-<<if ndef $users["test"]>>
-<<storeSet $users["test"] = {
+
+/* Not seen user is for testing purposes. Anytime a non-existing user's stats are needed, they will be directed to this temp user */
+<<if ndef $users["Not seen"]>>
+<<storeSet $users["Not seen"] = {
 		"stats" : {
 			"Loyalty" : 0,
 			"Strength" : 0,
 			"Wisdom" : 0
 		},
-		"character" : "test",
-		"faction" : "test",
-		"isLeader" : "no",
+		"character" : "Not seen",
+		"faction" : "Not seen",
+		"isLeader" : "Not seen",
 		"lastSeen" : 0,
 		"passage" : "Name Not Recognized",
-		"role" : "test",
-		"username" : "test"
+		"role" : "Not seen",
+		"username" : "Not seen"
 	}>>
 <</if>>
 
-<<if ndef $lookup>>
-/* <<storeSet $lookup = {"Marina" : "test","Alvarado" : "test","Aguilar" : "test","Garrido" : "test","Olid" : "test","Cortes" : "test","Moctezuma" : "test","Tlacaelel" : "test","Cuauhtemoc" : "test","Aztec_Priest" : "test","Cacamatzin" : "test","Pochteca" : "test","Xicotencatl_Elder" : "test","Xicotencatl_Younger" : "test","Maxixcatl" : "test"}>> */
-	<<storeSet $lookup = {}>>
-<</if>>
-/* <<for _i, _data range _factionUsers>> */
-
-<<for _user, _data  range _roles>>
-	<<script>>
-		console.log(State.getVar("$lookup"))
-	<</script>>
-	<<if not (Object.keys($lookup)).includes(_user)>>
-		<<storeSet $lookup[_user] = "test">>
-	<</if>>
-<</for>>
-
-<<if ndef $Start>>
-<<storeSet $Start = 0>>
-<</if>>
-
-
+/* Intialize faction data */
 <<if ndef $factions>>
 	<<storeSet $factions = {
 		"Aztecs": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+
 			}
 		},
 
 		"Spaniards": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+
 			}
 		},
 
 		"Tlaxcalans": {"stats": {
-			"Loyalty" : 0,
+
 			"Strength" : 0,
-			"Wisdom" : 0
+	
 			}
 		},
 	}>>
 <</if>>
 
-
-<<if ndef $leaders>>
-<<storeSet $flags = {}>>
+/* inits lookup table. Maps roles to userid */
+<<if ndef $lookup>>
+	<<storeSet $lookup = {}>>
+	<<for _user, _data  range _roles>>
+		<<storeSet $lookup[_user] = "Not Seen">>
+	<</for>>
 <</if>>
 
-<<if ndef $flags>>
-<<storeSet $flags = {}>>
-<</if>>
 
-<<if ndef $users[$userId]>>
-<<script>>
-	console.log("problemo");
-<</script>>
+/* inits userdata in $users */
+<<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<storeSet $users[$userId] = {}>>
+<script>
+console.log("new user detected")
+</script>
 <<storeSet $users[$userId]["role"] = _role>>
 <<storeSet $users[$userId]["username"] = _username>>
+<<storeSet $users[$userId]["discriminator"] =  _discriminator>>
 <<storeSet $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<storeSet $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<storeSet $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
-<<storeSet $users[$userId]["passage"] = "The Library">>
+<<storeSet $users[$userId]["passage"] = Config.passages.start>>
+<<storeSet $users[$userId]["passageHistory"] = {}>>
 <<storeSet $lookup[$users[$userId]["role"]] = $userId>>
-
-<<else>>
-/* <<storeSet $users[$userId] = userData.jsonfsState.users[$userId]>> */
 <</if>>
 
-/* Act 1 Scene 1 */
-/* //To Mutiny or Not */
-/* <<storeSet _currentPassage = "Act 1 Scene 1">> */
-<<storeSet _currentPassage = $users[$userId]["passage"]>>
+
+
+
+
+/* for testing discord macro: */
+
 /* <<discord aztecSpan>> as <</discord>>
 <<discord aztecs>> a <</discord>>
 <<discord tlax>> t <</discord>>
@@ -8877,24 +8872,28 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<storeSet $Sp_
 <<discord general>> g <</discord>>
 <<discord omen>> omen <</discord>> */
 
-
+/* Load passage */
 <<script>>
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 
 	if(searchParams.get('test')){
 		console.log("Test user");
-		if(searchParams.has('passage') && encodeURI(searchParams.get('passage')) !== "-Continue where you left off-")State.setVar("$users[$userId]['passage']", searchParams.get('passage'))
+		if(searchParams.has('passage')){
+			State.setVar("$users[$userId]['passage']", searchParams.get('passage'))
+			}
 	}  
 
 
-	var passage = State.getVar("$users[$userId]['passage']")
+	var passage =  State.getVar("$users[$userId]['passage']")  
 	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
+
+	// If not using test user and role is not recognized, go to Name not Recognized passage
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
 		setTimeout(() => {
-			console.log("playing passage")
+			console.log("playing passage", passage)
 			Engine.play(passage)
 		}, 100);
 
@@ -12024,7 +12023,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
   /* loop to make buttons for showing text of previous passages */
 	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
-		<<storeSet _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
+		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
 
 		<br>
 		<<if $users[$userId]["passage"] != _passageName>>
