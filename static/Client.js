@@ -247,7 +247,7 @@ Sends the emits difference with the diff object as the payload to notify servers
 
 Value cannot be read from sugarcube macro call because only twine can read the syntax.
 */
-function storeSet(diffKey){
+function diffSet(diffKey){
     //find new value after setting is done
     let keys = SugarCubeToJavascript(diffKey);
     let currKey;
@@ -271,10 +271,12 @@ function SugarCubeToJavascript(key){
     var list = []
     var str;
     list.push(((key.includes("[") ? key.substring(0, key.indexOf("[")) : key)).slice(1));
-    var reBrackets = /\[(.*?)\]/g;
+    var reBrackets = /(?<=\[)(?:[^[\]]+|\[[^\]]+\])+/g;
     while(found = reBrackets.exec(key)){
-        str = found[1]
-        if(str.includes("$")){
+        str = found[0]
+        //in the case of nested argument
+
+        if(str.includes("$") || str.substring(0,1) == "_"){
             list.push(Window.SugarCubeState.getVar(str));
         }else{
             str = str.replace(/["']/g, "");
@@ -373,8 +375,7 @@ function initTheyr(lockInfo) {
 
 
     }
-dsasdawd
- 
+
 
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
