@@ -208,14 +208,19 @@ function changeStats(rolePlay, newStats) {
     let currentUser =usersObj[currentUserId]
     let roleStats = currentUser.stats
     Object.keys(roleStats).forEach((stat, idx) => {
+        console.log("stat:", stat);
         console.log( roleStats[stat])
         roleStats[stat] = parseInt(newStats[stat]) + parseInt(roleStats[stat])
         console.log(newStats[stat])
     });
     Window.SugarCubeState.variables.users[currentUserId]["stats"] =roleStats;
-    let diff = {users: {[currentUserId] : { stats: [roleStats]}}}
+
+    //renaming rolestats to stats so a diff object can be created
+    let stats = roleStats
+    let diff = {users: {[currentUserId] :  {stats}}};
+    console.log("stat change diff:", diff);
+    
     socket.emit('difference', diff);
-    console.log(currentUser)
 }
 
 
@@ -345,6 +350,8 @@ function initTheyr(lockInfo) {
         return changes(object, base);
     }
 
+    // compares entire sugarcubestate.variables with previously saved version for differences
+    // No longer in use
     function update() {
 
         var tempVars = Object.assign({},Window.SugarCubeState.variables);

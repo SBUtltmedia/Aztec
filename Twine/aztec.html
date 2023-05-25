@@ -206,7 +206,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -4346,7 +4346,7 @@ Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to
 &lt;&lt;print $Malinalco_Ans_T&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Malinalco_Ans_T&gt;&gt;
-&lt;&lt;storeSet $Malinalco_Ans_T to $Malinalco_Ans_T.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Malinalco_Ans_T = $Malinalco_Ans_T.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Malinalco_Ans_T or $Malinalco_Ans_T eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Malinalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -5970,6 +5970,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;storeSet _macro = 23&gt;&gt;
 &lt;&lt;storeSet $test = &quot;Test&quot;&gt;&gt;
 &lt;&lt;storeSet $test = $test.toLowerCase()&gt;&gt;
+&lt;&lt;run changeStats(&quot;Aztec_Priest&quot;,{&quot;Wisdom&quot;:2,&quot;Loyalty&quot;:0,&quot;Strength&quot;:0})&gt;&gt;
 /* &lt;&lt;storeSet $users[$userId][&quot;stats&quot;][&quot;Strength&quot;] -= 1&gt;&gt; */
 
 /* List of passages where ui elements don&#39;t show up */
@@ -6025,8 +6026,8 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
 	&lt;&lt;if !(Object.keys($users[$userId][&quot;passageHistory&quot;]).includes(passage()))&gt;&gt;
-
-		&lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
+		&lt;&lt;set _currPassage = passage()&gt;&gt;
+		&lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 

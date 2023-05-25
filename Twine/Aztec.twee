@@ -4769,7 +4769,7 @@ Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to
 <<print $Malinalco_Ans_T>><br>
 <br>
 <<if def $Malinalco_Ans_T>>
-<<storeSet $Malinalco_Ans_T to $Malinalco_Ans_T.toLowerCase()>>
+<<storeSet $Malinalco_Ans_T = $Malinalco_Ans_T.toLowerCase()>>
 <</if>>
 <<if ndef $Malinalco_Ans_T or $Malinalco_Ans_T eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Malinalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -6549,6 +6549,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<storeSet _macro = 23>>
 <<storeSet $test = "Test">>
 <<storeSet $test = $test.toLowerCase()>>
+<<run changeStats("Aztec_Priest",{"Wisdom":2,"Loyalty":0,"Strength":0})>>
 /* <<storeSet $users[$userId]["stats"]["Strength"] -= 1>> */
 
 /* List of passages where ui elements don't show up */
@@ -6608,8 +6609,8 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 <<if passage() != "Home">>
 	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
-
-		<<storeSet $users[$userId]["passageHistory"][passage()] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
+		<<set _currPassage = passage()>>
+		<<storeSet $users[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
 	<</if>>
 	
 
