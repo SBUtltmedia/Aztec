@@ -6549,7 +6549,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<storeSet _macro = 23>>
 <<storeSet $test = "Test">>
 <<storeSet $test = $test.toLowerCase()>>
-<<run changeStats("Aztec_Priest",{"Wisdom":2,"Loyalty":0,"Strength":0})>>
+/* <<run changeStats("Aztec_Priest",{"Wisdom":2,"Loyalty":0,"Strength":0})>> */
 /* <<storeSet $users[$userId]["stats"]["Strength"] -= 1>> */
 
 /* List of passages where ui elements don't show up */
