@@ -208,7 +208,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="5675,1175" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -5972,7 +5972,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;storeSet _macro = 23&gt;&gt;
 &lt;&lt;storeSet $test = &quot;Test&quot;&gt;&gt;
 &lt;&lt;storeSet $test = $test.toLowerCase()&gt;&gt;
-&lt;&lt;run changeStats(&quot;Aztec_Priest&quot;,{&quot;Wisdom&quot;:2,&quot;Loyalty&quot;:0,&quot;Strength&quot;:0})&gt;&gt;
+/* &lt;&lt;run changeStats(&quot;Aztec_Priest&quot;,{&quot;Wisdom&quot;:2,&quot;Loyalty&quot;:0,&quot;Strength&quot;:0})&gt;&gt; */
 /* &lt;&lt;storeSet $users[$userId][&quot;stats&quot;][&quot;Strength&quot;] -= 1&gt;&gt; */
 
 /* List of passages where ui elements don&#39;t show up */
@@ -10858,6 +10858,9 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;set _userCount = {&quot;Aztecs&quot; : 0, &quot;Spaniards&quot;:0,&quot;Tlaxcalans&quot;:0, &quot;offline&quot;:0}&gt;&gt;
 &lt;&lt;set _totalUsers = 0&gt;&gt;
 
+/* Defines border colors for each faction */
+&lt;&lt;set _factionColor = {&quot;Aztecs&quot;: &quot;#6C944D&quot;, &quot;Spaniards&quot;: &quot;#B14A10&quot;, &quot;Tlaxcalans&quot;: &quot;#D19700&quot;}&gt;&gt;
+
 /* _id: discord id for each user
 _data: object with user properties (to access user&#39;s passage just use _data[&quot;passage&quot;]) */
 &lt;&lt;for _id, _data range $users&gt;&gt;
@@ -10905,24 +10908,31 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;&lt;/if&gt;&gt;
     &lt;/div&gt;
 		&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
+		&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;`+$users[_userId][&#39;role&#39;]+`&quot;&gt;			
-				&lt;img class = &quot;playerImage&quot; src = &quot;https://cdn-icons-png.flaticon.com/512/7081/7081031.png&quot;&gt;
+				&lt;img class = &quot;playerImage&quot; src = &quot;Twine\\images\\characters\\icon_placeholder.png&quot; style=&quot;border-color: #D19700;&quot;&gt; 
+				
+				&lt;div class=&quot;rolePanel&quot;&gt;
+					this is &lt;br/&gt;
+					&lt;&lt;print  $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
+					&lt;br/&gt;great dude.&lt;br/&gt;
+					last active: tomorrow
+				&lt;/div&gt;
+
 				&lt;div class = &quot;playerText&quot;&gt;
 					&lt;div class=&quot;printUserRole&quot;&gt; 
 						`+$users[_userId][&quot;role&quot;]+`
 					&lt;/div&gt;
 					&lt;div class=&quot;printUserName&quot;&gt;
-						&lt;&lt;print &quot;#jin6000&quot;&gt;&gt;
+						&lt;&lt;print  $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
 					&lt;/div&gt;&lt;/div&gt; 
 
-					&lt;div class=&quot;rolePanel&quot;&gt;
-						
-					&lt;/div&gt;
+					
 
 				&lt;/div&gt;
 				`&gt;&gt;
-
+			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			/* &lt;&lt;= setup.printTime($users[_userId][&quot;lastSeen&quot;])&gt;&gt; */
 		&lt;&lt;/for&gt;&gt;
 			&lt;div id=&quot;factionSpaceBetween&quot;&gt;&lt;/div&gt;
