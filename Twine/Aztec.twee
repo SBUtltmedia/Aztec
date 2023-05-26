@@ -12053,6 +12053,9 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
 <<set _totalUsers = 0>>
 
+/* Defines border colors for each faction */
+<<set _factionColor = {"Aztecs": "#6C944D", "Spaniards": "#B14A10", "Tlaxcalans": "#D19700"}>>
+
 /* _id: discord id for each user
 _data: object with user properties (to access user's passage just use _data["passage"]) */
 <<for _id, _data range $users>>
@@ -12100,24 +12103,31 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<</if>>
     </div>
 		<<for _j, _userId range _factionUsers[_faction]>>
+		<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="`+$users[_userId]['role']+`">			
-				<img class = "playerImage" src = "https://cdn-icons-png.flaticon.com/512/7081/7081031.png">
+				<img class = "playerImage" src = "Twine\\images\\characters\\icon_placeholder.png" style="border-color: #D19700;"> 
+				
+				<div class="rolePanel">
+					this is <br/>
+					<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+					<br/>great dude.<br/>
+					last active: tomorrow
+				</div>
+
 				<div class = "playerText">
 					<div class="printUserRole"> 
 						`+$users[_userId]["role"]+`
 					</div>
 					<div class="printUserName">
-						<<print "#jin6000">>
+						<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
 					</div></div> 
 
-					<div class="rolePanel">
-						
-					</div>
+					
 
 				</div>
 				`>>
-
+			<div id="playerSpaceBetween"></div>
 			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
 		<</for>>
 			<div id="factionSpaceBetween"></div>
