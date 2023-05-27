@@ -138,7 +138,7 @@ importScripts([
 })();
 
 
-:: A Friendly Invitation {"position":"5675,1175","size":"100,100"}
+:: A Friendly Invitation {"position":"4200,6375","size":"100,100"}
 <<theyr>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -156,8 +156,8 @@ Option 1: You refuse the invitation and attack the Aztecs. You ask the Tlaxcalan
 Option 2: You refuse the invitation and return peacefully to Tlaxcala.
  
 
-
-
+Option 3: You accept the invitation and enter the city, taking your Tlaxcalan companions with you.
+ 
 
 [[Battle on the Causeway: Spaniards Attack]]
 
@@ -169,7 +169,7 @@ Option 2: You refuse the invitation and return peacefully to Tlaxcala.
 <</theyr>>
 
 
-:: A Spanish Victory [Done] {"position":"4500,1475","size":"100,100"}
+:: A Spanish Victory [Done] {"position":"1875,3625","size":"100,100"}
 <<theyr>>
 You've won a victory against the Tlaxcalans, but it was not easy.  They are fierce warriors.  You lost men in battle, and even with your superior weapons, it took three weeks of hard fighting.<br>
 <br>
@@ -184,7 +184,7 @@ When you have finished discussing and strategizing, [[enter the city of Tlaxcala
 <</theyr>>
 
 
-:: A Tlaxcalan Nap [Done Breaks] {"position":"4275,3375","size":"100,100"}
+:: A Tlaxcalan Nap [Done Breaks] {"position":"2975,2325","size":"100,100"}
 <<theyr>>
 For days now, you've been worried about events outside your control. It's clear the Aztecs are preparing for something, but you have no way to know what this is.<br>
 <br>
@@ -197,7 +197,7 @@ You awake to find yourself in <<link "a vaguely familiar place" "Waking up in th
 <</theyr>>
 
 
-:: A Trap in Cholula [Done] {"position":"3725,1725","size":"100,100"}
+:: A Trap in Cholula [Done] {"position":"1750,4500","size":"100,100"}
 <<theyr>>
 <<if $Mal_Share eq "" or ndef $Mal_Share>>
 You go to bed satisfied, full of food and a strange Cholulan wine. <br>
@@ -274,7 +274,7 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 <</theyr>>
 
 
-:: Absent Cortes Leadership Challenge {"position":"450,1125","size":"100,100"}
+:: Absent Cortes Leadership Challenge {"position":"2675,9050","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader is "Cortes">>
 
@@ -319,7 +319,7 @@ Option 5: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<storeSet $S
 <</theyr>>
 
 
-:: Act 1 Scene 1 [Done Breaks] {"position":"2300,725","size":"100,100"}
+:: Act 1 Scene 1 [Done Breaks] {"position":"2025,1250","size":"100,100"}
 <<theyr>><<if $users[$userId]["role"] is "Marina">>
 Since arriving at the coast of Veracruz, your companions have been visited by emissaries from a number of nearby villages. In all of these interactions, you have proven your value, translating through the man they call Aguilar, who has in turn been able to convey information to the rest of the team. Through the visitors, you've gained important intelligence. Most significantly, you've told them many things about the rich and powerful kingdom that lies to the west. They have learned of the land called Mexico and its ruler, Moctezuma, who has made many enemies in the lands that lie between you.<br>
 <br>
@@ -356,7 +356,7 @@ You wonder what the next day will bring. Return here to find out.<br>
 <</theyr>>
 
 
-:: Act 2, Scene 2: Moctezuma's Arrest {"position":"3375,2250","size":"100,100"}
+:: Act 2, Scene 2: Moctezuma's Arrest {"position":"4300,8975","size":"100,100"}
 <<theyr>>
 [[Moctezuma's Arrest: Spaniards explain themselves to Tlaxcala]]
 
@@ -366,7 +366,7 @@ You wonder what the next day will bring. Return here to find out.<br>
 <</theyr>>
 
 
-:: Act 3, Scene 1: The Great Encounter {"position":"5525,850","size":"100,100"}
+:: Act 3, Scene 1: The Great Encounter {"position":"4050,6050","size":"100,100"}
 <<theyr>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -387,7 +387,7 @@ All three factions mingle on the causeway, getting to know each other and formul
 <</theyr>>
 
 
-:: Act 3, Scene 2: Moctezuma Speaks {"position":"5525,1000","size":"100,100"}
+:: Act 3, Scene 2: Moctezuma Speaks {"position":"4050,6200","size":"100,100"}
 <<theyr>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -404,7 +404,7 @@ The crowd quiets and it becomes clear that Moctezuma, the huey tlatoani, is abou
 <</theyr>>
 
 
-:: Act 3: The Great Encounter {"position":"5525,575","size":"100,100"}
+:: Act 3: The Great Encounter {"position":"4050,5775","size":"100,100"}
 <<theyr>>
 [[Secret Information Drop Moctezuma and Tlacaelel the Younger]]
 
@@ -414,7 +414,7 @@ The crowd quiets and it becomes clear that Moctezuma, the huey tlatoani, is abou
 <</theyr>>
 
 
-:: Act 4, Scene 1: The Aztecs Give the visitors a Tour of Tenochtitlan {"position":"3375,2100","size":"100,100"}
+:: Act 4, Scene 1: The Aztecs Give the visitors a Tour of Tenochtitlan {"position":"4300,8825","size":"100,100"}
 <<theyr>>
 Tenochtitlán, November 1519
  
@@ -438,7 +438,7 @@ Remember, your journey is far from over, and this is a rare opportunity for ever
 <</theyr>>
 
 
-:: Act 4: Tenochtitlan {"position":"3375,1950","size":"100,100"}
+:: Act 4: Tenochtitlan {"position":"4300,8675","size":"100,100"}
 <<theyr>>
 [[Act 4, Scene 1: The Aztecs Give the visitors a Tour of Tenochtitlan]]
 
@@ -446,7 +446,7 @@ Remember, your journey is far from over, and this is a rare opportunity for ever
 <</theyr>>
 
 
-:: After the Feast {"position":"4650,2125","size":"100,100"}
+:: After the Feast {"position":"2300,8300","size":"100,100"}
 <<theyr>>
 After an eventful evening full of food, pulque and heated debate about your documents, you go back to your quarters and fall into the kind of deep sleep that only comes from over-indulging [[in so many delicious things|Waking up in the Library on a Full Belly]]. <br>
 <br>
@@ -455,7 +455,7 @@ After an eventful evening full of food, pulque and heated debate about your docu
 <</theyr>>
 
 
-:: After the Riot Leader {"position":"125,2475","size":"100,100"}
+:: After the Riot Leader {"position":"2450,10875","size":"100,100"}
 <<theyr>>
 Your new leader is <<print $New_Aztec_Leader>>.<br>
 <br>
@@ -466,7 +466,7 @@ Now that your leader has been chosen, it's time to confront [[the bigger questio
 <</theyr>>
 
 
-:: After the Riot Vote {"position":"5075,3100","size":"100,100"}
+:: After the Riot Vote {"position":"2450,10750","size":"100,100"}
 <<theyr>>
 <<if $Moc_Riot_Vote isnot 5>>
 You have cast your vote, but others are less decisive. You wait for the rest of the council to make their choice.<br>
@@ -530,7 +530,7 @@ The votes have been cast, click through to find out who your <<link "next leader
 <</theyr>>
 
 
-:: Aguilar Among the Maya [Done] {"position":"2100,125","size":"100,100"}
+:: Aguilar Among the Maya [Done] {"position":"1925,50","size":"100,100"}
 <<theyr>>
 <<if $Start <=10>>
 
@@ -551,7 +551,7 @@ This morning began like any other, but things take a turn when you overhear some
 <</theyr>>
 
 
-:: Aguilar Answers {"position":"2525,325","size":"100,100"}
+:: Aguilar Answers {"position":"2350,250","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aguilar">>
@@ -687,7 +687,7 @@ You have answered question 3 correctly! The strangers fired rocks into the sea a
 <</theyr>>
 
 
-:: Aguilar Quest {"position":"2450,525","size":"100,100"}
+:: Aguilar Quest {"position":"2300,450","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aguilar">>
@@ -908,7 +908,7 @@ You have answered Question 3. The strangers fired rocks into the sea and fled.<b
 <</theyr>>
 
 
-:: Aguilar Receives a Letter [Done Breaks] {"position":"6275,2050","size":"100,100"}
+:: Aguilar Receives a Letter [Done Breaks] {"position":"1375,575","size":"100,100"}
 <<theyr>>
 Since hearing the rumor of the strangers on the coast, you have been quietly plotting your escape. Unfortunately, the opportunity to flee has not yet presented itself. <br>
 <br>
@@ -936,7 +936,7 @@ You inform Guerrero that God will never forgive him and warn him that he will be
 <</theyr>>
 
 
-:: Aguilar's Contribution {"position":"4275,3250","size":"100,100"}
+:: Aguilar's Contribution {"position":"2300,7800","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -997,7 +997,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <</theyr>>
 
 
-:: Alvarado's Contribution {"position":"4150,3250","size":"100,100"}
+:: Alvarado's Contribution {"position":"2300,7675","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -1055,7 +1055,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <</theyr>>
 
 
-:: An Unexpected Loss for Tlaxcala [Done] {"position":"4775,1475","size":"100,100"}
+:: An Unexpected Loss for Tlaxcala [Done] {"position":"2050,3625","size":"100,100"}
 <<theyr>>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You are fierce and savvy warriors, having defended yourselves against the Aztec Empire for decades. And yet these foreigners have bested you on the battlefield! Perhaps you can use their strength to your advantage. <br>
@@ -1081,7 +1081,7 @@ Prepare yourself, the Spaniards are [[entering your city|Tlaxcalans Negotiate Pe
 <</theyr>>
 
 
-:: Angry [Done] {"position":"6125,1350","size":"100,100"}
+:: Angry [Done] {"position":"950,300","size":"100,100"}
 <<theyr>>
 You've lost a wisdom point! Your wisdom is now <<print $users[$lookup["Aguilar"]]["stats"]["Wisdom"]>>. <br>
 <br>
@@ -1105,7 +1105,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 <</theyr>>
 
 
-:: Assignments Summary {"position":"5875,4250","size":"100,100"}
+:: Assignments Summary {"position":"4500,400","size":"100,100"}
 <<theyr>>
 [[Check Player and Team Status and Location|Control: Player Status]]<br>
 [[Check the Status of Holds and Votes|Control: Votes]]<br>
@@ -1115,7 +1115,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 <</theyr>>
 
 
-:: Attack On a Beach in Veracruz [Done Breaks] {"position":"3225,1075","size":"100,100"}
+:: Attack On a Beach in Veracruz [Done Breaks] {"position":"2775,1700","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -1194,7 +1194,7 @@ After the skirmish was done and the Mexica retreated back to Tenochtitlán, the 
 <</theyr>>
 
 
-:: Azcapotzalco [Done Breaks] {"position":"4925,2375","size":"100,100"}
+:: Azcapotzalco [Done Breaks] {"position":"2525,550","size":"100,100"}
 The many things you gather in preparation for your journey will undoubtedly be a great weight to carry. In the place of the ants you will find a way to lessen your burden.<br>
 <br>
 
@@ -1223,7 +1223,7 @@ This city is <<textbox "$Azcapotzalco_Ans_T" "">><br>
 <</switch>>
 
 
-:: Azcapotzalco 2 [Done Breaks] {"position":"5200,2375","size":"100,100"}
+:: Azcapotzalco 2 [Done Breaks] {"position":"2675,550","size":"100,100"}
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Azcapotzalco_Ans_A>><br>
@@ -1268,7 +1268,7 @@ Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return
 <</switch>>
 
 
-:: Aztec Leader Dies and Aztecs Choose a Leader Riot {"position":"1075,2700","size":"100,100"}
+:: Aztec Leader Dies and Aztecs Choose a Leader Riot {"position":"2375,10625","size":"100,100"}
 <<theyr>>
 Overcome by grief, you gather for a council meeting. Now is not the time for mourning; that must wait. The first task at hand is to elect a new leader, but who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
@@ -1352,7 +1352,7 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 <</theyr>>
 
 
-:: Aztec Leader Gives a Speech {"position":"675,2050","size":"100,100"}
+:: Aztec Leader Gives a Speech {"position":"2725,9925","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -1437,7 +1437,7 @@ You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
 <</theyr>>
 
 
-:: Aztec Leader Lives and Aztecs Choose a Leader Riot {"position":"925,2700","size":"100,100"}
+:: Aztec Leader Lives and Aztecs Choose a Leader Riot {"position":"2525,10625","size":"100,100"}
 <<theyr>>
 You gather for a council meeting and decide to elect a new leader. Who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
@@ -1521,7 +1521,7 @@ You gather for a council meeting and decide to elect a new leader. Who among you
 <</theyr>>
 
 
-:: Aztec Leader Makes a Choice [Done] {"position":"5300,3125","size":"100,100"}
+:: Aztec Leader Makes a Choice [Done] {"position":"2375,3400","size":"100,100"}
 <<theyr>>
 <<if $Aztec_Leader is $users[$userId]["role"] and $users[$userId]["role"] is "Moctezuma">>
 After a tense council meeting, all has been resolved and you shall continue to lead your people. You now face an important decision: how will you deal with the foreigners who make their way to your city? 
@@ -1547,7 +1547,7 @@ What will he choose? [[Making Plans for Cholula]]<br>
 <</theyr>>
 
 
-:: Aztec Leader taken prisoner {"position":"600,1600","size":"100,100"}
+:: Aztec Leader taken prisoner {"position":"2650,9550","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -1643,7 +1643,7 @@ You are waiting for The Tlaxcalans to do something.<br>
 <</theyr>>
 
 
-:: Aztec Leader will make an invitation {"position":"6825,2500","size":"100,100"}
+:: Aztec Leader will make an invitation {"position":"2150,6250","size":"100,100"}
 <<theyr>>
 <<if $Aztec_Leader is $users[$userId]["role"]>>
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and it is now time to decide how you will deal with them. You have weighed all your options, you have considered the omens carefully, and you have decided that the best course of action is to invite the strangers into your city.<br><br>
@@ -1661,7 +1661,7 @@ As <<print $Aztec_Leader>> gathers a welcoming party and gets ready to <<link "m
 <</theyr>>
 
 
-:: Aztec Leadership Challenge Again {"position":"7275,2200","size":"100,100"}
+:: Aztec Leadership Challenge Again {"position":"2450,6800","size":"100,100"}
 <<theyr>>
 <<if $Aztec_Leader is $users[$userId]["role"]>>
 You have made your case to the council and retire from the council chamber, confident that they will trust in your infinite wisdom. <br>
@@ -1689,7 +1689,7 @@ Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<storeSet $Az_Ld_Cac 
 <</theyr>>
 
 
-:: Aztec Leadership Results {"position":"7275,2350","size":"100,100"}
+:: Aztec Leadership Results {"position":"2450,6925","size":"100,100"}
 <<theyr>>
 <<if $Aztec_Leader is $users[$userId]["role"] and $Az_Ld_Vote isnot 4>>
 You wait nervously for your advisors to deliberate.<br>
@@ -1742,7 +1742,7 @@ The council has made a decision.  Continue to the next page to find out <<link "
 <</theyr>>
 
 
-:: Aztec Mob Recedes {"position":"950,2225","size":"100,100"}
+:: Aztec Mob Recedes {"position":"3000,10200","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -1834,7 +1834,7 @@ You send another spy out, [[hoping for news|Spaniards Kill Aztec Leader]].<br>
 <</theyr>>
 
 
-:: Aztecs Accept Peace Treaty {"position":"2625,5600","size":"100,100"}
+:: Aztecs Accept Peace Treaty {"position":"4675,13525","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -1848,7 +1848,7 @@ The Tlaxcalans have convinced you that peace is your best way forward. You agree
 <</theyr>>
 
 
-:: Aztecs Attack: Battle on the Causeway! {"position":"5400,1175","size":"100,100"}
+:: Aztecs Attack: Battle on the Causeway! {"position":"3925,6375","size":"100,100"}
 <<theyr>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -1872,7 +1872,7 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 <</theyr>>
 
 
-:: Aztecs Decide About The Riot {"position":"950,2050","size":"100,100"}
+:: Aztecs Decide About The Riot {"position":"2875,10050","size":"100,100"}
 <<theyr>>
 <<if $Riot_Vote isnot 5>>
 You wait while the rest of your team casts their vote. <br>
@@ -1893,7 +1893,7 @@ You have decided now is not the time to fight. You gather the council together a
 <</theyr>>
 
 
-:: Aztecs Decide Whether to Make an Exchange {"position":"500,3050","size":"100,100"}
+:: Aztecs Decide Whether to Make an Exchange {"position":"2950,11125","size":"100,100"}
 <<theyr>>
 <<if ndef $Hostage_Exch or $Hostage_Exch eq "">>
 You wait for the Aztecs to make a decision.<br>
@@ -1957,7 +1957,7 @@ Once the deed is done, you decide that your best chance of escape is to leave by
 <</theyr>>
 
 
-:: Aztecs Gather Intelligence in Cholula [Done] {"position":"4250,2875","size":"100,100"}
+:: Aztecs Gather Intelligence in Cholula [Done] {"position":"2475,5225","size":"100,100"}
 <<theyr>>
 Your Cholulan allies send word that the foreigners have entered their city. They have plied them with food and wine, treating the strangers as honored guests. All is going according to plan.<br>
 <br>
@@ -2001,7 +2001,7 @@ The strangers asked many questions--questions about your great city and the trea
 <</theyr>>
 
 
-:: Aztecs Hold a Council {"position":"7275,2050","size":"100,100"}
+:: Aztecs Hold a Council {"position":"2450,6650","size":"100,100"}
 <<theyr>>
 <<if $Aztec_Leader is $users[$userId]["role"]>>
 You have left your guests under the watchful eye of your most trusted guards and must now face your council. The city is buzzing and, though no one would dare question you, you know that many are uneasy at your decision to allow the strangers--and your Tlaxcalan enemies!--into the city. <br><br>
@@ -2032,7 +2032,7 @@ When you are satisfied you have heard everything <<print $Aztec_Leader>> has to 
 <</theyr>>
 
 
-:: Aztecs Hold a Council Meeting [Done] {"position":"5300,2700","size":"100,100"}
+:: Aztecs Hold a Council Meeting [Done] {"position":"2375,2975","size":"100,100"}
 Tlacaelel's Statement: <<print $Tlac_Statement>><br>
 <br>
 Cuauhtemoc's Statement: <<print $Cuauh_Statement>><br>
@@ -2070,7 +2070,7 @@ When Moctezuma has come to a decision, you may continue on to [[read his proclam
 <</switch>>
 
 
-:: Aztecs Lay a Trap in Cholula [Done] {"position":"4500,2900","size":"100,100"}
+:: Aztecs Lay a Trap in Cholula [Done] {"position":"2625,5225","size":"100,100"}
 <<theyr>>
 Your Cholulan allies send word that the foreigners have entered their city. They have plied them with food and wine, treating the strangers as honored guests. All is going according to plan.<br>
 <br>
@@ -2115,7 +2115,7 @@ Your men have wisely decided not to give chase, for the strangers travel with th
 <</theyr>>
 
 
-:: Aztecs Plot Against the Spanish {"position":"125,2675","size":"100,100"}
+:: Aztecs Plot Against the Spanish {"position":"2450,11000","size":"100,100"}
 <<theyr>>
 <<if ndef $Hostage or $Hostage eq "">>
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
@@ -2168,7 +2168,7 @@ You and the other members of the council spring into action. The streets ring ou
 <</theyr>>
 
 
-:: Aztecs Prepare for a Council Meeting [Done] {"position":"5300,2550","size":"100,100"}
+:: Aztecs Prepare for a Council Meeting [Done] {"position":"2375,2825","size":"100,100"}
 <<switch $users[$userId]["role"]>>
 <<case "Moctezuma">>
 You wake to the buzz of people talking. You haven't even opened your eyes when you catch the scent of tortillas cooking over an open fire and you know you're back in Tenochtitlán!<br>
@@ -2204,7 +2204,7 @@ Once you have composed your statement, you must paste the link below to share wi
 <</switch>>
 
 
-:: Aztecs Refuse Peace Treaty and Attack Tlaxcala {"position":"1875,4725","size":"100,100"}
+:: Aztecs Refuse Peace Treaty and Attack Tlaxcala {"position":"3925,12650","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -2223,7 +2223,7 @@ You launch your attack but much to your surprise, your two sides are as evenly m
 <</theyr>>
 
 
-:: Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory {"position":"1975,5625","size":"100,100"}
+:: Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory {"position":"4025,13550","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -2238,7 +2238,7 @@ The battle was quick and bloody, but you have emerged victorious! You round up t
 <</theyr>>
 
 
-:: Aztecs Refuse Peace Treaty and Attack Tlaxcala Tlaxcalan Victory {"position":"1825,5150","size":"100,100"}
+:: Aztecs Refuse Peace Treaty and Attack Tlaxcala Tlaxcalan Victory {"position":"3875,13075","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -2253,7 +2253,7 @@ You put up a valiant fight, but it was not enough. The Tlaxcalans had the Gods o
 <</theyr>>
 
 
-:: Aztecs Return to Tenochtitlan to report [Done Breaks] {"position":"2975,500","size":"100,100"}
+:: Aztecs Return to Tenochtitlan to report [Done Breaks] {"position":"2725,1200","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Moctezuma">>
@@ -2305,7 +2305,7 @@ When your satisfied with your discussion, [[head home|The Spaniards Head Inland]
 <</theyr>>
 
 
-:: Aztecs Riot {"position":"750,2225","size":"100,100"}
+:: Aztecs Riot {"position":"2800,10200","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -2397,7 +2397,7 @@ You send another spy out, [[hoping for news|Spaniards Kill Aztec Leader Riot]].<
 <</theyr>>
 
 
-:: Aztecs and Tlaxcalans Join Forces {"position":"200,4600","size":"100,100"}
+:: Aztecs and Tlaxcalans Join Forces {"position":"2250,12525","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -2432,7 +2432,7 @@ The battle is like nothing you've seen before. The stakes are high and this will
 <</theyr>>
 
 
-:: Back to the Library Yet Again {"position":"250,750","size":"100,100"}
+:: Back to the Library Yet Again {"position":"2300,8675","size":"100,100"}
 <<theyr>>
 Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an ‘A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
@@ -2443,7 +2443,7 @@ Assignment in hand, you make a beeline for the library. You head for the top flo
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Spaniards {"position":"700,3825","size":"100,100"}
+:: Battle Outcome Aztecs Versus Spaniards {"position":"2850,11650","size":"100,100"}
 <<theyr>>
 <<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
@@ -2463,7 +2463,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Spaniards 2 {"position":"1275,6100","size":"100,100"}
+:: Battle Outcome Aztecs Versus Spaniards 2 {"position":"3725,14100","size":"100,100"}
 <<theyr>>
 <<if $Final_Aztec Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
@@ -2483,7 +2483,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Spaniards 3 {"position":"1125,4300","size":"100,100"}
+:: Battle Outcome Aztecs Versus Spaniards 3 {"position":"3200,12250","size":"100,100"}
 <<theyr>>
 <<if $Final_Aztec Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
@@ -2503,7 +2503,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Spaniards and Tlaxcalans {"position":"2550,4825","size":"100,100"}
+:: Battle Outcome Aztecs Versus Spaniards and Tlaxcalans {"position":"4600,12750","size":"100,100"}
 <<theyr>>
 <<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
@@ -2524,7 +2524,7 @@ You wipe the sweat of battle from your eyes, squinting to judge where [[victory 
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Spaniards and Tlaxcalans 2 {"position":"2500,5200","size":"100,100"}
+:: Battle Outcome Aztecs Versus Spaniards and Tlaxcalans 2 {"position":"4550,13125","size":"100,100"}
 <<theyr>>
 <<if ndef $Final_Span_Tlax_Points or $Final_Span_Tlax_Points eq "">>
 You continue to wait for the haze of war to clear.<br>
@@ -2545,7 +2545,7 @@ You must wait for <<print $Span_Leader>> to join you.<br>
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Tlaxcalans {"position":"1875,5000","size":"100,100"}
+:: Battle Outcome Aztecs Versus Tlaxcalans {"position":"3925,12925","size":"100,100"}
 <<theyr>>
 <<if $Final_Tlaxcalan_Points eq "" or ndef $Final_Tlaxcalan_Points or $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points>>
 You wait for the haze of war to clear.<br>
@@ -2566,7 +2566,7 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Tlaxcalans 2 {"position":"1300,5025","size":"100,100"}
+:: Battle Outcome Aztecs Versus Tlaxcalans 2 {"position":"3325,13050","size":"100,100"}
 <<theyr>>
 <<if $Final_Tlaxcalan_Points eq "" or ndef $Final_Tlaxcalan_Points or $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points>>
 You wait for the haze of war to clear.<br>
@@ -2587,7 +2587,7 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 <</theyr>>
 
 
-:: Battle Outcome Aztecs Versus Tlaxcalans 3 {"position":"1125,5100","size":"100,100"}
+:: Battle Outcome Aztecs Versus Tlaxcalans 3 {"position":"3175,13025","size":"100,100"}
 <<theyr>>
 <<if $Final_Tlaxcalan_Points eq "" or ndef $Final_Tlaxcalan_Points or $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points>>
 You wait for the haze of war to clear.<br>
@@ -2608,7 +2608,7 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 <</theyr>>
 
 
-:: Battle Outcome Aztecs and Tlaxcalans versus Spaniards {"position":"200,4950","size":"100,100"}
+:: Battle Outcome Aztecs and Tlaxcalans versus Spaniards {"position":"2250,12875","size":"100,100"}
 <<theyr>>
 <<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
@@ -2629,7 +2629,7 @@ You wipe the sweat of battle from your eyes, squinting to judge where [[victory 
 <</theyr>>
 
 
-:: Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2 {"position":"200,5125","size":"100,100"}
+:: Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2 {"position":"2250,13050","size":"100,100"}
 <<theyr>>
 <<if ndef $Final_Az_Tlax_Points or $Final_Az_Tlax_Points eq "">>
 You continue to wait for the haze of war to clear.<br>
@@ -2650,7 +2650,7 @@ You must wait for <<print $Tlax_Leader>> to join you.<br>
 <</theyr>>
 
 
-:: Battle Outcome Spaniards Versus Tlaxcalans {"position":"400,4275","size":"100,100"}
+:: Battle Outcome Spaniards Versus Tlaxcalans {"position":"2450,12200","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards" or "Tlaxcalans">>
@@ -2689,7 +2689,7 @@ You must wait for both <<print $Span_Leader>> and <<print $Tlax_Leader>> to do s
 <</theyr>>
 
 
-:: Battle Outcome Spaniards Versus Tlaxcalans 2 {"position":"625,5125","size":"100,100"}
+:: Battle Outcome Spaniards Versus Tlaxcalans 2 {"position":"2675,13050","size":"100,100"}
 <<theyr>>
 <<if $Final_Tlaxcalan_Points eq "" or ndef $Final_Tlaxcalan_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
@@ -2710,7 +2710,7 @@ You must wait for both <<print $Span_Leader>> and <<print $Tlax_Leader>> to join
 <</theyr>>
 
 
-:: Battle on the Causeway: Spaniards Attack {"position":"5675,1600","size":"100,100"}
+:: Battle on the Causeway: Spaniards Attack {"position":"4200,6800","size":"100,100"}
 <<theyr>>
 Double-click this passage to edit it.
 
@@ -2718,7 +2718,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Battle on the Causeway: Tlaxcala sides with Aztecs {"position":"5200,1350","size":"100,100"}
+:: Battle on the Causeway: Tlaxcala sides with Aztecs {"position":"3725,6550","size":"100,100"}
 <<theyr>>
 [[Game Over: Aztecs Win the Battle on the Causeway]]
 
@@ -2726,7 +2726,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Battle on the Causeway: Tlaxcala sides with Spaniards {"position":"5400,1350","size":"100,100"}
+:: Battle on the Causeway: Tlaxcala sides with Spaniards {"position":"3925,6550","size":"100,100"}
 <<theyr>>
 [[Spaniards Return to Tlaxcala]]
 
@@ -2734,7 +2734,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Burning the Ships [Done Breaks] {"position":"1775,1075","size":"100,100"}
+:: Burning the Ships [Done Breaks] {"position":"1450,1800","size":"100,100"}
 <<theyr>>
 <<if $Mutiny_Voted isnot 5>>
 
@@ -2760,7 +2760,7 @@ The rabblerouser [[chickened out|Burning the Ships: Failed Mutiny]]!<br>
 <</theyr>>
 
 
-:: Burning the Ships: Failed Mutiny [Done Breaks] {"position":"1925,1175","size":"100,100"}
+:: Burning the Ships: Failed Mutiny [Done Breaks] {"position":"1575,1950","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader isnot $users[$userId]["role"]>>
 After the first encounter with the fabled Mexica, the group has questioned the wisdom of moving forward. Not only would such an expedition be illegal, it's clear that great danger lies ahead with little promise of reward. Nonetheless, the coup has failed and it is clear that you will continue your perilous journey inward.<br>
@@ -2783,7 +2783,7 @@ All of this turmoil surrounding the mutiny has caused shifts in loyalty.  Has <<
 <</theyr>>
 
 
-:: Burning the Ships: Mutiny [Done Breaks] {"position":"1650,1225","size":"100,100"}
+:: Burning the Ships: Mutiny [Done Breaks] {"position":"1325,1950","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader isnot $users[$userId]["role"]>>
 After the first encounter with the fabled Mexica, the group has questioned the wisdom of moving forward. Not only would such an expedition be illegal, it's clear that great danger lies ahead with little promise of reward.<br>
@@ -2806,7 +2806,7 @@ All of this turmoil surrounding the mutiny has caused shifts in loyalty.  Has <<
 <</theyr>>
 
 
-:: Burning the Ships: No Mutiny [Done Breaks] {"position":"1800,1225","size":"100,100"}
+:: Burning the Ships: No Mutiny [Done Breaks] {"position":"1450,1950","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader isnot $users[$userId]["role"]>>
 After the first encounter with the fabled Mexica, the group is wary of the journey that lies ahead, but the potential for glory is too great to resist. <br>
@@ -2830,7 +2830,7 @@ All of this turmoil surrounding the mutiny has caused shifts in loyalty.  Have y
 <</theyr>>
 
 
-:: Chapultepec [Done Breaks] {"position":"6100,2300","size":"100,100"}
+:: Chapultepec [Done Breaks] {"position":"2525,675","size":"100,100"}
 The preparations for your journey have left you tired, and you stop to rest beside a spring. Out of the corner of your eye, you spy a tasty treat hopping through the grass beside you. You reach for your stash of tortillas!<br>
 <br>
 
@@ -2872,7 +2872,7 @@ This city is <<textbox "$Chapultepec_Ans_T" "">><br>
 <</switch>>
 
 
-:: Chapultepec 2 [Done Breaks] {"position":"5725,2275","size":"100,100"}
+:: Chapultepec 2 [Done Breaks] {"position":"2675,675","size":"100,100"}
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Chapultepec_Ans_A>><br>
@@ -2925,7 +2925,7 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 <</switch>>
 
 
-:: Character Identification [Done] {"position":"4675,2925","size":"100,100"}
+:: Character Identification [Done] {"position":"4025,1200","size":"100,100"}
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
 You open your eyes and find yourself on a ship. The boom you heard was the sound of cannon fire and you startle as another shot tears through the sky. <br>
@@ -3091,7 +3091,7 @@ Are you ready to <<link "begin your journey" "Aguilar Among the Maya">><<storeSe
 </div>
 
 
-:: Cholula [Done Breaks] {"position":"6150,2775","size":"100,100"}
+:: Cholula [Done Breaks] {"position":"2925,525","size":"100,100"}
 <<theyr>>
 You've made it to Cholula!<br>
 <br>
@@ -3168,7 +3168,7 @@ This is the [[end of your quest|End of Quest]].<br>
 <</theyr>>
 
 
-:: Cholula Makes an Invitation [Done] {"position":"3800,1400","size":"100,100"}
+:: Cholula Makes an Invitation [Done] {"position":"2000,4000","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -3187,7 +3187,7 @@ As your allies pack up camp and prepare to enter the city of your enemy, [[you r
 <</theyr>>
 
 
-:: Cholula New Spanish Leader {"position":"3350,1600","size":"100,100"}
+:: Cholula New Spanish Leader {"position":"2100,5225","size":"100,100"}
 <<theyr>>
 After much angry debate , you finally determine that <<print $Span_Leader>> has the greatest loyalty of his men, and you [[move forward under his leadership|Into the Mountain Pass]]
 
@@ -3195,7 +3195,7 @@ After much angry debate , you finally determine that <<print $Span_Leader>> has 
 <</theyr>>
 
 
-:: Cholula Spanish Leadership Challenge {"position":"3775,2325","size":"100,100"}
+:: Cholula Spanish Leadership Challenge {"position":"1875,4950","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader is $users[$userId]["role"]>>
 You have made your decisions and led your people through a complicated situation, but do they still believe in your leadership? <br>
@@ -3225,7 +3225,7 @@ Option 4: <<link "Olid" "Cholula Spanish Leadership Results">><<storeSet $Sp_Ld_
 <</theyr>>
 
 
-:: Cholula Spanish Leadership Results {"position":"3775,2475","size":"100,100"}
+:: Cholula Spanish Leadership Results {"position":"2100,5100","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader is $users[$userId]["role"] and $Sp_Ld_Vote isnot 5>>
 You wait nervously for your team to deliberate.<br>
@@ -3277,7 +3277,7 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 <</theyr>>
 
 
-:: Cholulans Attack [Done] {"position":"3550,2150","size":"100,100"}
+:: Cholulans Attack [Done] {"position":"1600,4800","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Marina">>
 You try to sleep, but your nerves are frayed and you anxiously listen for any noise that might alert you to an attack. <br>
@@ -3299,7 +3299,7 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 <</theyr>>
 
 
-:: Cholulans Don't Attack [Done] {"position":"4000,2150","size":"100,100"}
+:: Cholulans Don't Attack [Done] {"position":"2150,4750","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Marina">>
 You try to sleep, but your nerves are frayed and you anxiously listen for any noise that might alert you to an attack. <br>
@@ -3317,7 +3317,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 <</theyr>>
 
 
-:: Control: Change Passage {"position":"4925,4250","size":"100,100"}
+:: Control: Change Passage {"position":"3525,400","size":"100,100"}
 <b>CHANGE THE LOCATION OF PLAYERS</b><br>
 
 <b>Spaniards</b><br>
@@ -3389,7 +3389,7 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 [[Return to the Dashboard|Dashboard]]<br>
 
 
-:: Control: Player Status {"position":"5650,4225","size":"100,100"}
+:: Control: Player Status {"position":"4275,375","size":"100,100"}
 <<theyr>>
 <b>CURRENT STATUS OF TEAMS AND PLAYERS</b><br>
 <br>
@@ -3464,7 +3464,7 @@ Strength: <<print $users[$lookup["Maxixcatl"]]["stats"]["Strength"]>>   Wisdom: 
 <</theyr>>
 
 
-:: Control: Votes {"position":"5450,4075","size":"100,100"}
+:: Control: Votes {"position":"4075,225","size":"100,100"}
 <<theyr>>
 <b>STATUS OF VOTES AND HOLDS</b><br>
 <b> Act 1</b><br>
@@ -3526,7 +3526,7 @@ Has the hold been cleared? <b><<if $TL_Attacks eq "" or ndef $TL_Attacks>> No <<
 <</theyr>>
 
 
-:: Cortes Attacks Narvaez {"position":"4275,2600","size":"100,100"}
+:: Cortes Attacks Narvaez {"position":"2175,9675","size":"100,100"}
 <<theyr>>
 You have received word that the enemy camp lies just ahead. The time has come to make your move.<br>
 <br>
@@ -3541,7 +3541,7 @@ You are alive, but you are weakened. You have lost many men, but you gather thos
 <</theyr>>
 
 
-:: Cortes Beaches Ships {"position":"2325,1250","size":"100,100"}
+:: Cortes Beaches Ships {"position":"2025,1750","size":"100,100"}
 <<theyr>>
 You have made your case to the men, but can you really trust them? Now is not the time for inaction; the risk is too high and the reward too great!<br>
 <br>
@@ -3554,7 +3554,7 @@ Even if your men have turned against you, there's [[no going back|Mutiny Outcome
 <</theyr>>
 
 
-:: Cortes Doesn't Return {"position":"475,1825","size":"100,100"}
+:: Cortes Doesn't Return {"position":"2500,9800","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -3593,7 +3593,7 @@ Once you have discussed the present situation, [[you may move forward|Aztec Lead
 <</theyr>>
 
 
-:: Cortes Gets Sent to Cuba {"position":"6875,3075","size":"100,100"}
+:: Cortes Gets Sent to Cuba {"position":"1900,14500","size":"100,100"}
 <<theyr>>
 You arrive in Cuba, where you are taken before Governor Velazquez, your sworn enemy. Velazquez declares that you acted outside of his authority, reminding you that he only granted permission for you to explore the coast. You defend your actions as perfectly legal! Upon arriving in Veracruz, you tell him, you and your men established a formal settlement. When the town council of Veracruz appointed you military leader, they imbued you with the authority to carry out further exploration. You were not disobeying Velazquez because you were no longer acting under his authority!<br>
 <br>
@@ -3606,7 +3606,7 @@ As you are thrown in chains into the hold of another ship, you wonder why <<link
 <</theyr>>
 
 
-:: Cortes Leadership Check [Done] {"position":"6575,1925","size":"100,100"}
+:: Cortes Leadership Check [Done] {"position":"1525,300","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
@@ -3667,7 +3667,7 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 <</theyr>>
 
 
-:: Cortes Leaves Santiago [Done] {"position":"2375,125","size":"100,100"}
+:: Cortes Leaves Santiago [Done] {"position":"2200,50","size":"100,100"}
 <<theyr>>
 <<if $Start <=10>>
 
@@ -3694,7 +3694,7 @@ You forge onward, dreaming of the riches that surely await you! [[Without risk, 
 <</theyr>>
 
 
-:: Cortes Proposes a meeting with Narvaez {"position":"6875,2775","size":"100,100"}
+:: Cortes Proposes a meeting with Narvaez {"position":"2025,9675","size":"100,100"}
 <<theyr>>
 You have received word that the enemy camp lies just ahead. The time has come to make your move. You send a messenger to make contact with Narváez. You propose a meeting.<br>
 <br>
@@ -3709,7 +3709,7 @@ The next day, you are thrown on a boat and [[sent to Cuba|Cortes Waits]]. <br>
 <</theyr>>
 
 
-:: Cortes Returns Victorious {"position":"675,1825","size":"100,100"}
+:: Cortes Returns Victorious {"position":"2175,9800","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -3761,7 +3761,7 @@ Once you have discussed the present situation, [[you may move forward|Aztec Lead
 <</theyr>>
 
 
-:: Cortes Returns Weakened {"position":"200,1825","size":"100,100"}
+:: Cortes Returns Weakened {"position":"2350,9800","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -3814,7 +3814,7 @@ Once you have discussed the present situation, [[you may move forward|Aztec Lead
 <</theyr>>
 
 
-:: Cortes Waits {"position":"6875,2925","size":"100,100"}
+:: Cortes Waits {"position":"2025,9800","size":"100,100"}
 <<theyr>>
 You suffer through the journey in the hold of the boat, wondering what awaits you [[back on the island|Cortes Gets Sent to Cuba]].<br>
 <br>
@@ -3823,7 +3823,7 @@ You suffer through the journey in the hold of the boat, wondering what awaits yo
 <</theyr>>
 
 
-:: Cortes gets called to the coast {"position":"250,1000","size":"100,100"}
+:: Cortes gets called to the coast {"position":"2300,8925","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
@@ -3895,7 +3895,7 @@ You wonder at what is [[about to unfold|Toxcatl]].<br>
 <</theyr>>
 
 
-:: Cortes takes Tlaxcalans to the coast {"position":"400,1275","size":"100,100"}
+:: Cortes takes Tlaxcalans to the coast {"position":"2425,9175","size":"100,100"}
 <<theyr>>
 Your journey is long and arduous, but at least it is familiar this time. Along the way, you prepare your allies for what you might encounter. Your Tlaxcalan friends listen closely and you can't help but wonder at their allegiance. As you prepare to face Velazquez' forces, you are completely at the mercy of your native allies. You do everything in your power to win them over, but is it enough?<br>
 <br>
@@ -3921,7 +3921,7 @@ You are waiting for the Tlaxcalans to do something.<br>
 <</theyr>>
 
 
-:: Cortes' Contribution {"position":"4150,3400","size":"100,100"}
+:: Cortes' Contribution {"position":"2300,7550","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -3975,7 +3975,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <</theyr>>
 
 
-:: Cortes' Men leave Santiago [Done] {"position":"2225,125","size":"100,100"}
+:: Cortes' Men leave Santiago [Done] {"position":"2050,50","size":"100,100"}
 <<theyr>>
 <<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
@@ -3999,7 +3999,7 @@ You cast your doubts aside, as Cortés assures you of the riches that undoubtedl
 <</theyr>>
 
 
-:: Cuauhnahuac [Done Breaks] {"position":"4900,2250","size":"100,100"}
+:: Cuauhnahuac [Done Breaks] {"position":"2525,425","size":"100,100"}
 You descend the mountains into the place near the trees, in search of something tropical and sweet. This place is lush and green. No wonder it's been so coveted by Mexica leaders!<br>
 <br>
 
@@ -4028,7 +4028,7 @@ This city is <<textbox "$Cuauhnahuac_Ans_T" "">><br>
 <</switch>>
 
 
-:: Cuauhnahuac 2 [Done Breaks] {"position":"5175,2250","size":"100,100"}
+:: Cuauhnahuac 2 [Done Breaks] {"position":"2675,425","size":"100,100"}
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Cuauhnahuac_Ans_A>><br>
@@ -4073,7 +4073,7 @@ Your answer is incorrect.  You may [[try again|Cuauhnahuac]], or you may return 
 <</switch>>
 
 
-:: Dashboard {"position":"5600,4400","size":"100,100"}
+:: Dashboard {"position":"4175,550","size":"100,100"}
 <<theyr>>
 <b> THE SPANISH AZTEC WAR DASHBOARD</b><br>
 <br>
@@ -4089,7 +4089,7 @@ Your answer is incorrect.  You may [[try again|Cuauhnahuac]], or you may return 
 <</theyr>>
 
 
-:: Debating the Omens {"position":"6825,2350","size":"100,100"}
+:: Debating the Omens {"position":"2000,5900","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Moctezuma">>
@@ -4135,7 +4135,7 @@ When you have come to an understanding, you may [[decide how to deal with the st
 <</theyr>>
 
 
-:: Discuss these options with your men [Done Breaks] {"position":"2775,525","size":"100,100"}
+:: Discuss these options with your men [Done Breaks] {"position":"2450,1150","size":"100,100"}
 <<theyr>>
 You have discussed these options with your men, and together you have decided you will:<br>
 <br>
@@ -4184,7 +4184,7 @@ Tlacaelel has not yet entered your decision.<br>
 <</theyr>>
 
 
-:: Discussing the Omens {"position":"7000,2375","size":"100,100"}
+:: Discussing the Omens {"position":"2150,5900","size":"100,100"}
 You wake to find yourself exactly where you hoped: back in Tenochtitlán! An army of over 10,000 men is headed towards your city, led by your Tlaxcalan enemies and their foreign friends.<br>
 <br>
 <<switch $users[$userId]["role"]>>
@@ -4212,7 +4212,7 @@ Your nerves are frayed, wondering what lies ahead, but Moctezuma has informed yo
 <</switch>>
 
 
-:: End of Quest [Done Breaks] {"position":"6125,3075","size":"100,100"}
+:: End of Quest [Done Breaks] {"position":"2925,675","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -4229,7 +4229,7 @@ Now that your quest is complete, <<link "you return home exhausted" "Rumors from
 <</theyr>>
 
 
-:: Everyone Gathers for a Feast {"position":"6300,2775","size":"100,100"}
+:: Everyone Gathers for a Feast {"position":"2300,7300","size":"100,100"}
 <<theyr>>
 <<if $Feast <=12>>
 It is rude to start eating before all the guests have arrived! You'll just have to wait, no matter how hungry you are!<br>
@@ -4277,7 +4277,7 @@ Your Aztec hosts agree and, in exchange, offer you a copy of a cookbook. It seem
 <</theyr>>
 
 
-:: Faction Identification [Coding-Problem] {"position":"6475,2775","size":"100,100"}
+:: Faction Identification [Coding-Problem] {"position":"3875,1125","size":"100,100"}
 <<theyr>>
 Welcome to the Spanish Aztec War! 
 <<storeSet $charCreated="true">>
@@ -4326,7 +4326,7 @@ Now let's [[learn about your role|The Library]]!
 <</theyr>>
 
 
-:: Game Over: Aztecs Win La Noche Triste {"position":"3575,3100","size":"100,100"}
+:: Game Over: Aztecs Win La Noche Triste {"position":"4475,9850","size":"100,100"}
 <<theyr>>
 Double-click this passage to edit it.
 
@@ -4334,7 +4334,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Game Over: Aztecs Win the Battle on the Causeway {"position":"5200,1500","size":"100,100"}
+:: Game Over: Aztecs Win the Battle on the Causeway {"position":"3725,6700","size":"100,100"}
 <<theyr>>
 Double-click this passage to edit it.
 
@@ -4342,7 +4342,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Game Setup {"position":"5100,4575","size":"100,100"}
+:: Game Setup {"position":"3725,725","size":"100,100"}
 <<theyr>>
 [[Check Player and Team Status and Location|Control: Player Status]]<br>
 [[Check the Status of Holds and Votes|Control: Votes]]<br>
@@ -4352,7 +4352,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Garrido's Contribution {"position":"5050,2775","size":"100,100"}
+:: Garrido's Contribution {"position":"2300,8050","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -4392,7 +4392,7 @@ The Tlaxcalan's Insider's Guide is:  <<print "$Tl_IG">><br>
 <</theyr>>
 
 
-:: Generic New Spanish Leader {"position":"3650,1600","size":"100,100"}
+:: Generic New Spanish Leader {"position":"2800,5225","size":"100,100"}
 <<theyr>>
 After much angry debate , you finally determine that <<print $Span_Leader>> has the greatest loyalty of his men, and you [[move forward under his leadership|Into the Mountain Pass]]
 
@@ -4400,7 +4400,7 @@ After much angry debate , you finally determine that <<print $Span_Leader>> has 
 <</theyr>>
 
 
-:: Generic Spanish Leadership Results {"position":"5825,3075","size":"100,100"}
+:: Generic Spanish Leadership Results {"position":"2800,5100","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader is $users[$userId]["role"] and $Sp_Ld_Vote isnot 5>>
 You wait nervously for your team to deliberate.<br>
@@ -4453,7 +4453,7 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 <</theyr>>
 
 
-:: Happy [Done] {"position":"6275,1350","size":"100,100"}
+:: Happy [Done] {"position":"1075,300","size":"100,100"}
 <<theyr>>
 You've gained a wisdom point! Your wisdom is now <<print $users[$lookup["Aguilar"]]["stats"]["Wisdom"]>>.<br>
 <br>
@@ -4477,7 +4477,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 <</theyr>>
 
 
-:: Into Tenochtitlan {"position":"5850,1325","size":"100,100"}
+:: Into Tenochtitlan {"position":"4375,6525","size":"100,100"}
 <<theyr>>
 Double-click this passage to edit it.
 
@@ -4485,7 +4485,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Into the City {"position":"7100,1925","size":"100,100"}
+:: Into the City {"position":"2300,6525","size":"100,100"}
 <<theyr>>
 Together you make your way down the long causeway and enter the city of Tenochtitlán. As you look at the faces of the strangers in your midst you cannot help but wonder what this visit has in store for you.<br>
 <br>
@@ -4521,7 +4521,7 @@ Your lodgings are sparse, but you have what you need. The pochteca allows you ti
 <</theyr>>
 
 
-:: Into the Mountain Pass [Done] {"position":"3525,1825","size":"100,100"}
+:: Into the Mountain Pass [Done] {"position":"2300,5425","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -4560,7 +4560,7 @@ When you are ready, you bed down for the night. Your enemies are close and <<lin
 <</theyr>>
 
 
-:: Judging the Feast Documents {"position":"6300,3075","size":"100,100"}
+:: Judging the Feast Documents {"position":"2300,7425","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -4633,7 +4633,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <</theyr>>
 
 
-:: La Noche Triste {"position":"3375,2825","size":"100,100"}
+:: La Noche Triste {"position":"4300,9550","size":"100,100"}
 <<theyr>>
 [[Tlaxcalans Respond to La Noche Triste]]
 
@@ -4641,7 +4641,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <</theyr>>
 
 
-:: Leadership After the Mutiny [Done Breaks] {"position":"1800,1350","size":"100,100"}
+:: Leadership After the Mutiny [Done Breaks] {"position":"1475,2125","size":"100,100"}
 <<theyr>>
 <<if $users[$lookup["Cortes"]]["stats"]["Loyalty"] >=$users[$lookup["Alvarado"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Marina"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Aguilar"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Olid"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Garrido"]]["stats"]["Loyalty"]>><<storeSet $Span_Leader="Cortes">>
 
@@ -4688,7 +4688,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <</theyr>>
 
 
-:: Making Plans for Cholula [Done] {"position":"5300,3275","size":"100,100"}
+:: Making Plans for Cholula [Done] {"position":"2550,5100","size":"100,100"}
 <<theyr>>
 <<if ndef $Cholula_Attack or $Cholula_Attack eq "">>
 
@@ -4716,7 +4716,7 @@ You send word to Cholula, telling them of the strangers who have befriended thei
 <</theyr>>
 
 
-:: Malinalco [Done Breaks] {"position":"4825,2075","size":"100,100"}
+:: Malinalco [Done Breaks] {"position":"2525,300","size":"100,100"}
 To seek approval from the Gods, you must enter the mouth of the serpent. There, under the watchful eye of the eagles, you shall let your own blood in sacrifice.<br>
 <br>
 <<switch $users[$userId]["faction"]>>
@@ -4744,7 +4744,7 @@ This city is <<textbox "$Malinalco_Ans_T" "">><br>
 <</switch>>
 
 
-:: Malinalco 2 [Done Breaks] {"position":"5000,2075","size":"100,100"}
+:: Malinalco 2 [Done Breaks] {"position":"2675,300","size":"100,100"}
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Malinalco_Ans_A>><br>
@@ -4789,7 +4789,7 @@ Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to
 <</switch>>
 
 
-:: Malinche Answers {"position":"1975,350","size":"100,100"}
+:: Malinche Answers {"position":"1800,275","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aguilar">>
@@ -4914,7 +4914,7 @@ You have answered question 3 correctly! Tlaxcala might prove a valuable ally in 
 <</theyr>>
 
 
-:: Malinche Quest {"position":"1975,550","size":"100,100"}
+:: Malinche Quest {"position":"1800,475","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aguilar">>
@@ -5132,7 +5132,7 @@ You have answered Question 3 correctly. Tlaxcala might make a valuable ally.<br>
 <</theyr>>
 
 
-:: Marina Hears a Real Rumor [Done] {"position":"4200,1725","size":"100,100"}
+:: Marina Hears a Real Rumor [Done] {"position":"1900,4300","size":"100,100"}
 <<theyr>>
 You follow the wizened old woman around the corner, into a cramped alleyway. She informs you--and you alone--that the Spaniards have walked into a trap. The leaders of the city are planning an ambush and there is an Aztec army hidden nearby. <br>
 <br>
@@ -5145,7 +5145,7 @@ You have two choices, <<link "you can share the information" "Marina responds to
 <</theyr>>
 
 
-:: Marina Hears a Rumor [Done] {"position":"4025,1725","size":"100,100"}
+:: Marina Hears a Rumor [Done] {"position":"2025,4300","size":"100,100"}
 <<theyr>>
 You follow the wizened old woman around the corner, into a cramped alleyway. She informs you--and you alone--that the Spaniards have walked into a trap. The leaders of the city are planning an ambush and there is an Aztec army hidden nearby. <br>
 <br>
@@ -5158,7 +5158,7 @@ You have two choices, <<link "you can share the information" "Marina responds to
 <</theyr>>
 
 
-:: Marina Tells Her Story [Done Breaks] {"position":"4450,2400","size":"100,100"}
+:: Marina Tells Her Story [Done Breaks] {"position":"1375,975","size":"100,100"}
 The village is in a state of chaos and you hear that the Chontal elders have been trying to decide what they should do about these powerful foreigners. It is clear to everyone that they cannot risk losing hundreds more men in battle and there is little doubt that, even if the strange men leave, they will return again in the future. Not only would the Chontal people be vulnerable to the strangers, but the devastating losses would also weaken them in the face of their traditional enemies. The chiefs send a messenger to offer peace. <br>
 <br>
 Marina, you've been writing your story and this is your chance to make yourself heard. Now that your story is assembled, you may enter the link for it here.  It will be shared with those you will meet in the coming days, so be sure it is complete, and be sure you've represented yourself well.<br>
@@ -5173,7 +5173,7 @@ Now that you've augmented the historical record, [[you can move forward|Spaniard
 <br>
 
 
-:: Marina Warns of No Attack [Done] {"position":"3875,1975","size":"100,100"}
+:: Marina Warns of No Attack [Done] {"position":"2150,4625","size":"100,100"}
 <<theyr>>
 <<if $Mal_Span is "Yes" and $users[$userId]["role"] is $Span_Leader>>
 A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen to believe the rumor. You are now trapped within the city walls at the mercy of your hosts, and your allies wait outside. What is your best course of action?<br>
@@ -5218,7 +5218,7 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Don
 <</theyr>>
 
 
-:: Marina Warns of the Attack [Done] {"position":"3675,1975","size":"100,100"}
+:: Marina Warns of the Attack [Done] {"position":"1675,4650","size":"100,100"}
 <<theyr>>
 <<if $Mal_Span is "Yes" and $users[$userId]["role"] is $Span_Leader>>
 A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen to believe the rumor. You are now trapped within the city walls at the mercy of your hosts, and your allies wait outside. What is your best course of action?<br>
@@ -5263,7 +5263,7 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 <</theyr>>
 
 
-:: Marina in Slavery [Done] {"position":"2525,125","size":"100,100"}
+:: Marina in Slavery [Done] {"position":"2350,50","size":"100,100"}
 <<theyr>>
 <<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
@@ -5296,7 +5296,7 @@ Once you have figured out what they said, you may continue. But [[make note of t
 <</theyr>>
 
 
-:: Marina responds to the attack [Done] {"position":"4100,3050","size":"100,100"}
+:: Marina responds to the attack [Done] {"position":"1850,4400","size":"100,100"}
 <<theyr>>
 <<if $Mal_Share is "No">>
 You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "A Trap in Cholula">><<run changeStats("Marina",{"Wisdom":-3,"Loyalty":-3,"Strength":0})>><</link>>.<br>
@@ -5310,7 +5310,7 @@ You have decided to share the rumor with your Spanish friends. You make your way
 <</theyr>>
 
 
-:: Marina responds to the rumor [Done] {"position":"4275,2725","size":"100,100"}
+:: Marina responds to the rumor [Done] {"position":"2050,4400","size":"100,100"}
 <<theyr>>
 <<if $Mal_Share is "No">>
 You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "No Trap in Cholula">><<run changeStats("Marina",{"Wisdom":3,"Loyalty":-3,"Strength":0})>><</link>>.<br>
@@ -5324,7 +5324,7 @@ You have decided to share the rumor with your Spanish friends. You make your way
 <</theyr>>
 
 
-:: Marina the Independent Woman [Done] {"position":"4625,925","size":"100,100"}
+:: Marina the Independent Woman [Done] {"position":"1975,2950","size":"100,100"}
 <<theyr>>
 You would rather go it alone than subject yourself to the whims and desires of such brutish men. You worry about what might come next, but you are confident that your wits have gotten you this far.<br>
 <br>
@@ -5335,7 +5335,7 @@ You rise from your sleeping mat to build a fire. Soon, the rest of camp begins t
 <</theyr>>
 
 
-:: Marina's Boyfriend [Done] {"position":"4850,975","size":"100,100"}
+:: Marina's Boyfriend [Done] {"position":"1750,2950","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Marina">>
 Having made your decision, you quietly make your way to <<print $Mal_Boy>>. He wakes with a start, but calms when he realizes it's you.<br>
@@ -5356,7 +5356,7 @@ Morning comes too soon, and you reluctantly pack up camp to [[continue your jour
 <</theyr>>
 
 
-:: Marina's Choice [Done] {"position":"5500,3000","size":"100,100"}
+:: Marina's Choice [Done] {"position":"1975,2825","size":"100,100"}
 <<theyr>>
 You wake to the sound of snoring and open your eyes to find you are back at camp. You feel the hard ground beneath you and look up at the stars. You've never seen a night so clear. The horses rest nearby and the men sleep in the open, scattered around the site. As you lay in the dark, you reflect upon the events that have brought you here and you ponder your situation...Marina's that is.<br>
 <br>
@@ -5381,7 +5381,7 @@ You lie awake for hours, weighing this question carefully. Shortly before the su
 <</theyr>>
 
 
-:: Master Spanish Faction Leadership Test All {"position":"4700,3375","size":"100,100"}
+:: Master Spanish Faction Leadership Test All {"position":"3725,1200","size":"100,100"}
 <<theyr>>
 <<if $users[$lookup["Cortes"]]["stats"]["Loyalty"] >=$users[$lookup["Alvarado"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Marina"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Aguilar"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Olid"]]["stats"]["Loyalty"] and $users[$lookup["Cortes"]]["stats"]["Loyalty"] >= $users[$lookup["Garrido"]]["stats"]["Loyalty"]>><<storeSet $Span_Leader="Cortes">>
 
@@ -5404,7 +5404,7 @@ Your new leader is: <<print$Span_Leader>>
 <</theyr>>
 
 
-:: Maya Gossip [Done] {"position":"2100,250","size":"100,100"}
+:: Maya Gossip [Done] {"position":"1925,175","size":"100,100"}
 <<theyr>>
 <b>Yich'ak-k'ak':</b> <i>Jo'oljeak, táan te' k'íiwiko' tu'ux tin k'ajóoltaj u juntúul máak Tulum. Ku beetik jump'éel k'iino'ob, táan paakat le k'áak'náabo' ka tu yilaj jump'éel nuxi' naj chíikpajal ichil le ja'o'. Le najo' Náats' Amal ka'atéen asab yéetel xiibo'obo' le kaajo' múuch'o'ob utia'al in wil le najo'. Ka le najo' Náats' páajchajo'obij wil táan Chuup yéetel wíiniko'ob yéetel yoot'el n wíinkilil yéetel ya'ab tso'otsel. Xiibo'obo' Tulum ma' sabían tu'ux venía le naja', ba'ale' tu yilo'ob toop. Tu beetajo'ob juum ka menta'abij tunicho'ob ti' le k'áak'náabo'. Le najo' sunaj ka lanchajal. </i> <br>
 <br>
@@ -5422,7 +5422,7 @@ Once you have figured out what they said, [[you may continue|Spaniards Quest Ins
 <</theyr>>
 
 
-:: Maya Gossip Response [Done] {"position":"4675,2775","size":"100,100"}
+:: Maya Gossip Response [Done] {"position":"1150,175","size":"100,100"}
 <<theyr>>
 You've mulled over what you heard while sweeping the temple steps.  How are you feeling right now? <br>
 <br>
@@ -5439,7 +5439,7 @@ These rumors <<link "make you sad" "Sad">><<storeSet $users[$lookup["Aguilar"]][
 <</theyr>>
 
 
-:: Moctezuma Confidence Vote [Done] {"position":"5300,2975","size":"100,100"}
+:: Moctezuma Confidence Vote [Done] {"position":"2375,3250","size":"100,100"}
 <<theyr>>
 <<if $Moc_Mut_Vote isnot 5>>
 You wait while your fellow counselors cast their vote.<br>
@@ -5649,7 +5649,7 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 <</theyr>>
 
 
-:: Moctezuma Makes his Proclamation [Done] {"position":"5300,2850","size":"100,100"}
+:: Moctezuma Makes his Proclamation [Done] {"position":"2375,3125","size":"100,100"}
 <<theyr>>
 You may read Moctezuma's Proclamation here:  <<print $Moc_Proc>><br>
 <br>
@@ -5685,7 +5685,7 @@ After meeting without you, your counselors call you [[into the chamber|Moctezuma
 <</theyr>>
 
 
-:: Moctezuma Respectfully Asks the Spaniards and their Allies to Leave {"position":"5525,1175","size":"100,100"}
+:: Moctezuma Respectfully Asks the Spaniards and their Allies to Leave {"position":"4050,6375","size":"100,100"}
 <<theyr>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -5710,7 +5710,7 @@ Option 2: Return to Tlaxcala.
 <</theyr>>
 
 
-:: Moctezuma's Arrest:  The Aztecs React {"position":"3475,2400","size":"100,100"}
+:: Moctezuma's Arrest:  The Aztecs React {"position":"4400,9125","size":"100,100"}
 <<theyr>>
 [[The Festival of Toxcatl]]
 
@@ -5718,7 +5718,7 @@ Option 2: Return to Tlaxcala.
 <</theyr>>
 
 
-:: Moctezuma's Arrest: Spaniards explain themselves to Tlaxcala {"position":"3275,2400","size":"100,100"}
+:: Moctezuma's Arrest: Spaniards explain themselves to Tlaxcala {"position":"4200,9125","size":"100,100"}
 <<theyr>>
 [[The Festival of Toxcatl]]
 
@@ -5726,7 +5726,7 @@ Option 2: Return to Tlaxcala.
 <</theyr>>
 
 
-:: Mutiny Outcome {"position":"2225,1375","size":"100,100"}
+:: Mutiny Outcome {"position":"1925,1875","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
@@ -5783,7 +5783,7 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 <</theyr>>
 
 
-:: Mutiny Vote {"position":"2100,1275","size":"100,100"}
+:: Mutiny Vote {"position":"1775,1750","size":"100,100"}
 <<theyr>>
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?<br>
 <br>
@@ -5796,7 +5796,7 @@ Vote <<link "Olid" "Mutiny Outcome">><<storeSet $Mut_Olid = $Mut_Olid + 1>><<sto
 <</theyr>>
 
 
-:: Mutiny in Veracruz [Done Breaks] {"position":"5075,2625","size":"100,100"}
+:: Mutiny in Veracruz [Done Breaks] {"position":"1525,1675","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Olid">>
@@ -5821,7 +5821,7 @@ Olid has tried to convince you to mutiny, but it is a risky path. Will you join 
 <</theyr>>
 
 
-:: Name Not Recognized {"position":"4850,3300","size":"100,100"}
+:: Name Not Recognized {"position":"4450,1200","size":"100,100"}
 /* <<for _i, _name range $users>>
 	<<if  _name.role=="Cuauhtemoc">>
 	<<storeSet _CuauhtemocId=_i>>
@@ -5852,7 +5852,7 @@ Maxixcatl
 <</theyr>>
 
 
-:: New Aztec Leader {"position":"5650,2775","size":"100,100"}
+:: New Aztec Leader {"position":"2450,7050","size":"100,100"}
 <<theyr>>
 After much angry debate in the Council Room, you finally determine that <<print $Aztec_Leader>> has the greatest loyalty of his men, and you [[move forward under his leadership|Set up for the Feast]]
 
@@ -5860,7 +5860,7 @@ After much angry debate in the Council Room, you finally determine that <<print 
 <</theyr>>
 
 
-:: New Leader [Done Breaks] {"position":"6675,2050","size":"100,100"}
+:: New Leader [Done Breaks] {"position":"1625,425","size":"100,100"}
 <<theyr>>
 <<if $users[$lookup["Alvarado"]]["stats"]["Loyalty"] >= $users[$lookup["Cortes"]]["stats"]["Loyalty"] and $users[$lookup["Alvarado"]]["stats"]["Loyalty"] >= $users[$lookup["Olid"]]["stats"]["Loyalty"] and $users[$lookup["Alvarado"]]["stats"]["Loyalty"] >= $users[$lookup["Garrido"]]["stats"]["Loyalty"]>><<storeSet $Span_Leader="Alvarado">><<storeSet $Spaniards_currentMap=2>>
 
@@ -5894,7 +5894,7 @@ Together, under his leadership, you may [[now continue|Spaniards Send a Letter]]
 <</theyr>>
 
 
-:: News from the land of the Olmeca Xicalanca [Done Breaks] {"position":"3150,125","size":"100,100"}
+:: News from the land of the Olmeca Xicalanca [Done Breaks] {"position":"2850,800","size":"100,100"}
 <<theyr>>
 You return from your journey to find the city buzzing with news. One of your spies has just returned from the coast, where a band of strangers recently arrived from across the sea. The strangers are pale in skin and covered in hair. <br>
 <br>
@@ -5914,7 +5914,7 @@ Moctezuma <<link "orders you to the coast" "The Land of the Olmeca Xicalanca">><
 <</theyr>>
 
 
-:: No Library Door Once Again {"position":"4275,3050","size":"100,100"}
+:: No Library Door Once Again {"position":"2300,8550","size":"100,100"}
 <<theyr>>
 After a full day of classes, you head back to the library. You're pretty sure you know how this whole thing works by now and, since your history teacher didn't give you any new assignments, you don't expect to find the door. You round the corner in the library and, as expected, the door isn't there. <br>
 <br>
@@ -5927,7 +5927,7 @@ You trudge home wondering how you can possibly wait so long. Maybe if you tell y
 <</theyr>>
 
 
-:: No Trap in Cholula [Done] {"position":"3875,1725","size":"100,100"}
+:: No Trap in Cholula [Done] {"position":"2150,4500","size":"100,100"}
 <<theyr>>
 <<if $Mal_Share eq "" or ndef $Mal_Share>>
 You go to bed satisfied, full of food and a strange Cholulan wine. <br>
@@ -6001,7 +6001,7 @@ Your Cholulan hosts are generous and treat you as esteemed visitors. You pass a 
 <</theyr>>
 
 
-:: Noche Triste {"position":"175,3150","size":"100,100"}
+:: Noche Triste {"position":"2450,11125","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -6042,7 +6042,7 @@ You wonder if they will [[eventually make their way back to Tlaxcala|Spaniards D
 <</theyr>>
 
 
-:: Offer to Bargain or Not {"position":"600,2900","size":"100,100"}
+:: Offer to Bargain or Not {"position":"2950,10925","size":"100,100"}
 <<theyr>>
 <<if ndef $Hostage or $Hostage eq "">>
 It seems <<print $Span_Leader>> has not yet made his decision. Wait here until the choice has been made.<br>
@@ -6090,7 +6090,7 @@ You've just received a shocking report from Tenochtitlán: <<print $Aztec_Leader
 <</theyr>>
 
 
-:: Olid's Contribution {"position":"4875,2750","size":"100,100"}
+:: Olid's Contribution {"position":"2300,7925","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -6154,7 +6154,7 @@ Does he <<link "PASS" "After the Feast">><<run changeStats("Aztec_Priest",{"Wisd
 <</theyr>>
 
 
-:: On The Way to Veracruz {"position":"2300,600","size":"100,100"}
+:: On The Way to Veracruz {"position":"2100,1125","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aguilar">>
@@ -6180,7 +6180,7 @@ You reach the end or your journey up the coast, landing at a site that you decid
 <</theyr>>
 
 
-:: On a Beach in Veracruz: Gifts [Done Breaks] {"position":"2775,925","size":"100,100"}
+:: On a Beach in Veracruz: Gifts [Done Breaks] {"position":"2475,1525","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -6272,7 +6272,7 @@ You will continue to observe these developments closely as you consider your nex
 <</theyr>>
 
 
-:: On a Beach in Veracruz: No Gifts [Done Breaks] {"position":"2300,875","size":"100,100"}
+:: On a Beach in Veracruz: No Gifts [Done Breaks] {"position":"2025,1425","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -6359,7 +6359,7 @@ You will [[continue to observe these developments closely|Tlaxcalans Observe the
 <</theyr>>
 
 
-:: On the Causeway {"position":"7100,1800","size":"100,100"}
+:: On the Causeway {"position":"2300,6375","size":"100,100"}
 <<theyr>>
 <<if $Causeway <=12>>
 You must wait for all players to gather before you can continue.<br>
@@ -6444,7 +6444,7 @@ As you join the Spaniards and [[head towards the city|Into the City]], you take 
 <</theyr>>
 
 
-:: On the way to Puebla [Done] {"position":"4725,1075","size":"100,100"}
+:: On the way to Puebla [Done] {"position":"1975,3325","size":"100,100"}
 <<theyr>>
 You've been on the road for weeks now and can hardly believe the things you've seen. You marched for three days through desert, where all the water you found was salt and you feared you might die of thirst. You've survived a sandstorm and bitter cold. All the men remarked on how long it had been since they felt such cold as this. Many of the Indian porters fell ill. You have climbed mountains and discovered villages, everywhere hearing tales about the Mexica capital, a place of untold treasure and bloody sacrifice. <br>
 <br>
@@ -6468,7 +6468,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</theyr>>
 
 
-:: PassageHeader {"position":"138,11","size":"100,100"}
+:: PassageHeader {"position":"4300,1200","size":"100,100"}
 <<theyr>>
 <<storeSet _roles = {
   "Marina": {
@@ -6579,23 +6579,20 @@ Along your journey, you have met many people. Some have been willing allies of t
 	<<storeSet $users[$userId]["passage"] = passage()>> 
 <</if>>
 
-/* adds background image to screen */
-<<script>>
-	let imageURL = State.getVar("$users[$userId]['faction']");
-	if(State.passage == "Home"){
-		$("#story").addClass("playerList");
-		imageURL = "Home";
-	}else{
-		$("#story").removeClass("playerList");
-	}
+<<for _i, _data range _factionUsers>>
+	<<for _id range _data>>
+		<<set _userlist.push(_id)>>
+	<</for>>
+<</for>>
 
-	$('#story').css({
-		'backgroundImage': `url(Twine/images/Borders/${imageURL}.jpg)`
-	}
-	)
+/* Object.keys(factions).forEach(faction=>{
+	
 
-
-<</script>>
+<<set $users[$userId]["passage"] = passage()>> 
+/* <<print $userId>>
+<<print $users[$userId]["faction"]>> */
+/* <<print $users[$userId]["character"]>> */
+/* <<print $users[$userId]["username"]>> */
 
 /* Updates user's latest logon time */
 <<storeSet $users[$userId]["lastSeen"]=new Date().getTime()>>
@@ -6619,10 +6616,13 @@ Along your journey, you have met many people. Some have been willing allies of t
 <br>
 
 <</if>>
+
+<<set _currentTime=new Date()>>
+<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
 <</theyr>>
 
 
-:: Return to the Library_Another Door {"position":"4925,2600","size":"100,100"}
+:: Return to the Library_Another Door {"position":"2300,5775","size":"100,100"}
 <<theyr>>
 <<audio "Library" play>>
 
@@ -6648,7 +6648,7 @@ You hurry toward the library, make your way to the top floor, and there it is: t
 <</theyr>>
 
 
-:: Return to the Library_Door [Done] {"position":"5500,2800","size":"100,100"}
+:: Return to the Library_Door [Done] {"position":"1975,2700","size":"100,100"}
 <<theyr>>
 <<audio "Library" play>>
 
@@ -6681,7 +6681,7 @@ You make your way to the chair and you hear the door swing shut behind you. You 
 <</theyr>>
 
 
-:: Rumors from the Coast [Done Breaks] {"position":"3450,150","size":"100,100"}
+:: Rumors from the Coast [Done Breaks] {"position":"3000,800","size":"100,100"}
 <<theyr>>
 You return from your journey to find the village buzzing with news. One of your spies has just returned from the coast, where a band of strangers recently arrived from across the sea. The strangers are pale in skin and covered in hair. They have been giving gifts to people of the coast and winning their affection. These coastal people are allied to the Mexica, but have been brutalized by them. Like so many others in the empire, they harbor deep resentment for their Aztec overlords.<br>
 <br>
@@ -6722,7 +6722,7 @@ You are waiting for <<print $Tlax_Leader>>
 <</theyr>>
 
 
-:: Rumors of Mutiny [Done Breaks] {"position":"1775,950","size":"100,100"}
+:: Rumors of Mutiny [Done Breaks] {"position":"1375,1675","size":"100,100"}
 <<theyr>>
 <<print $Span_Leader>>, you have heard rumors and rumblings amongst your faction that they are planning a mutiny. You don't know whether or not this is true, but you are fearful for your life and must not let them rob you of the glory that lies ahead. As you move to the group discussion board on the next screen, you must ensure that the entire faction is ready to follow you inland in pursuit of your dreams.<br>
 <br>
@@ -6735,7 +6735,7 @@ Proceed to the next page, where you will learn [[if there is mutiny|Burning the 
 <</theyr>>
 
 
-:: Sad [Done] {"position":"6550,1375","size":"100,100"}
+:: Sad [Done] {"position":"1350,300","size":"100,100"}
 <<theyr>>
 You've lost a wisdom point! Your wisdom is now <<print $users[$lookup["Aguilar"]]["stats"]["Wisdom"]>>.<br>
 <br>
@@ -6759,7 +6759,7 @@ Now it is time to [[head to the coast|Aguilar Receives a Letter]]. You pack up a
 <</theyr>>
 
 
-:: Scared [Done] {"position":"6425,1375","size":"100,100"}
+:: Scared [Done] {"position":"1225,300","size":"100,100"}
 <<theyr>>
 You've lost a wisdom point! Your wisdom is now <<print $users[$lookup["Aguilar"]]["stats"]["Wisdom"]>>. <br>
 <br>
@@ -6783,7 +6783,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 <</theyr>>
 
 
-:: Scavenger Hunt Hub [Done Breaks] {"position":"5450,2350","size":"100,100"}
+:: Scavenger Hunt Hub [Done Breaks] {"position":"2925,400","size":"100,100"}
 <<theyr>>
 <<if ndef $Quest_Points_A >>
 <<storeSet$Quest_Points_A=0 >>
@@ -6909,7 +6909,7 @@ You cannot yet travel to Cholula, continue your quest to gather all the items ne
 <</theyr>>
 
 
-:: Scripts {"position":"4550,3275","size":"100,100"}
+:: Scripts {"position":"4175,1200","size":"100,100"}
 <<theyr>>
 /* <<audio "Library" play>> */
 <<script>>
@@ -6928,7 +6928,7 @@ Vote is 2
 <</theyr>>
 
 
-:: Secret Information Drop Moctezuma and Tlacaelel the Younger {"position":"5650,725","size":"100,100"}
+:: Secret Information Drop Moctezuma and Tlacaelel the Younger {"position":"4175,5925","size":"100,100"}
 <<theyr>>
 Moctezuma and Tlacaelel the Younger, the Spaniards are approaching your city.  As the rulers of the Empire, it is up to you to decide how to treat the strangers.  In the next scene, you and the rest of your faction will have the opportunity to get to these strangers in your city. However, at the end of the day, DAY 10, after everybody has had a chance to get to know each other, you should be prepared to advance to the next scene with a decision you have secretly made together.  Assess the situation in the next discussion board conversation, and then decide how you want to behave towards the Spaniards and their allies. 
  
@@ -6953,7 +6953,7 @@ Click through to the page titled "Moctezuma Speaks", follow the link to the Go t
 <</theyr>>
 
 
-:: Set up for the Feast {"position":"5650,3050","size":"100,100"}
+:: Set up for the Feast {"position":"2450,7175","size":"100,100"}
 While your guests are off exploring the city, it's time to prepare for the greatest feast this city has ever seen! <br>
 <br>
 
@@ -7014,7 +7014,7 @@ Your recipe is:  <<textbox "$AP_Rec" "">><br>
 When your contribution to the cookbook is ready, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<storeSet $Feast = $Feast + 1>><</link>>!
 
 
-:: Smallpox in Tenochtitlán {"position":"525,4100","size":"100,100"}
+:: Smallpox in Tenochtitlán {"position":"2575,12025","size":"100,100"}
 <<theyr>>
 <<if $Hostage_Exch is "Yes">>
 They are finally gone. For seven months, the strangers occupied your city. For seven months, their presence dominated life in Tenochtitlán. Rather than celebrate, your friends and neighbors breathe a sigh of relief, thankful to reclaim the city.<br>
@@ -7056,7 +7056,7 @@ Rumors from the mountains begin to [[trickle in|Tlaxcala Sides with the Aztecs]]
 <</theyr>>
 
 
-:: Spaniards Attack [Done] {"position":"3700,2150","size":"100,100"}
+:: Spaniards Attack [Done] {"position":"1825,4800","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader is $users[$userId]["role"]>>
 The next morning, you ask your hosts to summon all the nobles of the city so you can deliver an address. After thanking them for their hospitality, you inform them that you must now carry on your journey and ask for some men to help load your supplies. When everyone is gathered outside the main temple, you order your men to kill everyone present. You then spill into the streets of Cholula, killing everyone in sight.<br>
@@ -7087,7 +7087,7 @@ You leave the city of Cholula a smoldering mess and [[carry on your journey|Chol
 <</theyr>>
 
 
-:: Spaniards Battle the Tabascans [Done Breaks] {"position":"4750,2525","size":"100,100"}
+:: Spaniards Battle the Tabascans [Done Breaks] {"position":"1525,825","size":"100,100"}
 <<theyr>>
 You continue along the coast, stopping next at a place called Tabasco. <br>
 <br>
@@ -7105,7 +7105,7 @@ You continue inland, [[following behind|Spaniards Meet Marina]] the native messe
 <</theyr>>
 
 
-:: Spaniards Cannot Go Back {"position":"2200,1525","size":"100,100"}
+:: Spaniards Cannot Go Back {"position":"1925,2025","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
@@ -7163,7 +7163,7 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 <</theyr>>
 
 
-:: Spaniards Decide How to Proceed {"position":"125,3475","size":"100,100"}
+:: Spaniards Decide How to Proceed {"position":"2200,11350","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7230,7 +7230,7 @@ You wait and [[wonder what the Spaniards will do next|Spaniards Retreat to Tlaxc
 <</theyr>>
 
 
-:: Spaniards Decide Whether to Retreat to Tlaxcala {"position":"325,3275","size":"100,100"}
+:: Spaniards Decide Whether to Retreat to Tlaxcala {"position":"2525,11250","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is $Span_Leader>>
 <<if $Hostage_Exch is "Yes">>
@@ -7293,7 +7293,7 @@ Go to the Spanish discussion board and consider your options. When you have made
 <</theyr>>
 
 
-:: Spaniards Defeat Tlaxcalans and Fight Aztecs Alone {"position":"400,4450","size":"100,100"}
+:: Spaniards Defeat Tlaxcalans and Fight Aztecs Alone {"position":"2450,12375","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7325,7 +7325,7 @@ The battle is like nothing you've seen before. The stakes are high and this will
 <</theyr>>
 
 
-:: Spaniards Defeat Tlaxcalans and Fight Aztecs Alone Aztec Victory {"position":"1350,6300","size":"100,100"}
+:: Spaniards Defeat Tlaxcalans and Fight Aztecs Alone Aztec Victory {"position":"3800,14300","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7351,7 +7351,7 @@ You have won the battle! You have saved your city and [[brought death to your en
 <</theyr>>
 
 
-:: Spaniards Defeat Tlaxcalans and Fight Aztecs Alone Spanish Victory {"position":"1200,6300","size":"100,100"}
+:: Spaniards Defeat Tlaxcalans and Fight Aztecs Alone Spanish Victory {"position":"3650,14300","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7377,7 +7377,7 @@ You have lost your battle. [[The city belongs to your enemies now|The End]].<br>
 <</theyr>>
 
 
-:: Spaniards Descend into the Valley {"position":"6000,2775","size":"100,100"}
+:: Spaniards Descend into the Valley {"position":"2300,5900","size":"100,100"}
 <<theyr>>
 You wake to find yourself exactly where you hoped: back at camp, on the road to Tenochtitlán! You lead an army of over 10,000 men, with your Tlaxcalan allies at your side.<br>
 <br>
@@ -7388,7 +7388,7 @@ You pack up camp and set out for your destination. Your Tlaxcalan friends have a
 <</theyr>>
 
 
-:: Spaniards Enter Cholula [Done] {"position":"3925,1575","size":"100,100"}
+:: Spaniards Enter Cholula [Done] {"position":"1975,4125","size":"100,100"}
 <<theyr>>
 <<if ndef $Cholula_Attack or $Cholula_Attack eq "">>
 You enter the ancient city of Cholula, which is bustling with people. Your hosts inform you that this is a holy place, where the God Quetzalcoatl stands watch. They guide you through the city, where you are awed by a massive central temple and a vibrant market. <br>
@@ -7431,7 +7431,7 @@ Your hosts treat you to a feast and provide you with the finest accommodations. 
 <</theyr>>
 
 
-:: Spaniards Fight the Aztecs Alone {"position":"675,3525","size":"100,100"}
+:: Spaniards Fight the Aztecs Alone {"position":"2850,11400","size":"100,100"}
 <<theyr>>
 <<if $Hostage_Exch is "Yes">>
 <<if $users[$userId]["faction"] is "Spaniards">>
@@ -7505,7 +7505,7 @@ Once you have discussed this turn of events, you may proceed to learn the [[outc
 <</theyr>>
 
 
-:: Spaniards Fight the Aztecs Alone Aztec Victory {"position":"725,4000","size":"100,100"}
+:: Spaniards Fight the Aztecs Alone Aztec Victory {"position":"2775,11900","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7551,7 +7551,7 @@ Go to the Tlaxcalan discussion board and weigh your options with the other membe
 <</theyr>>
 
 
-:: Spaniards Fight the Aztecs Alone Spanish Victory {"position":"350,3750","size":"100,100"}
+:: Spaniards Fight the Aztecs Alone Spanish Victory {"position":"2375,11775","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7597,7 +7597,7 @@ Go to the Tlaxcalan discussion board and weigh your options with the other membe
 <</theyr>>
 
 
-:: Spaniards Keep Aztec Leader Alive {"position":"1200,2400","size":"100,100"}
+:: Spaniards Keep Aztec Leader Alive {"position":"3200,10425","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7628,7 +7628,7 @@ What does fate have in store for the captive Mexica ruler? [[Only time will tell
 <</theyr>>
 
 
-:: Spaniards Keep Aztec Leader Alive Riot {"position":"775,2400","size":"100,100"}
+:: Spaniards Keep Aztec Leader Alive Riot {"position":"2800,10325","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7657,7 +7657,7 @@ It seems the mighty <<print $Aztec_Leader>> has proven to be just as mortal as e
 <</theyr>>
 
 
-:: Spaniards Kill Aztec Leader {"position":"1025,2400","size":"100,100"}
+:: Spaniards Kill Aztec Leader {"position":"3000,10325","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7693,7 +7693,7 @@ You've just received a shocking report from Tenochtitlán: <<print $Aztec_Leader
 <</theyr>>
 
 
-:: Spaniards Kill Aztec Leader Riot {"position":"300,2425","size":"100,100"}
+:: Spaniards Kill Aztec Leader Riot {"position":"2525,10375","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7727,7 +7727,7 @@ You've just received a shocking report from Tenochtitlán: <<print $Aztec_Leader
 <</theyr>>
 
 
-:: Spaniards Leave Cuba [Done] {"position":"6575,1675","size":"100,100"}
+:: Spaniards Leave Cuba [Done] {"position":"1525,50","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
@@ -7750,7 +7750,7 @@ When you have come to an agreement, you may  [[continue on|The Spaniards Decide 
 <</theyr>>
 
 
-:: Spaniards Meet Marina [Done Breaks] {"position":"4550,2550","size":"100,100"}
+:: Spaniards Meet Marina [Done Breaks] {"position":"1525,975","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Marina">>
@@ -7809,7 +7809,7 @@ You <<link "don't trust her" "Spaniards and Marina Talk">><<run changeStats("Mar
 <</theyr>>
 
 
-:: Spaniards Plot their Departure {"position":"725,2700","size":"100,100"}
+:: Spaniards Plot their Departure {"position":"2975,10725","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -7887,7 +7887,7 @@ You are waiting for <<print $Span_Leader>> to do something.<br>
 <</theyr>>
 
 
-:: Spaniards Quest Instructions 1 {"position":"2300,325","size":"100,100"}
+:: Spaniards Quest Instructions 1 {"position":"2125,250","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aguilar">>
@@ -7933,7 +7933,7 @@ It is now time to [[investigate these two individuals|Spaniards Quest Instructio
 <</theyr>>
 
 
-:: Spaniards Quest Instructions 2 {"position":"2300,450","size":"100,100"}
+:: Spaniards Quest Instructions 2 {"position":"2125,375","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aguilar">>
@@ -8031,7 +8031,7 @@ Congratulations! You have sucessfully completed the quest!  You may now continue
 <</theyr>>
 
 
-:: Spaniards Retreat to Tlaxcala {"position":"75,3625","size":"100,100"}
+:: Spaniards Retreat to Tlaxcala {"position":"2125,11550","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -8055,7 +8055,7 @@ Your spies warn you that [[the Spaniards approach|Spaniards in Tlaxcala Cortes A
 <</theyr>>
 
 
-:: Spaniards Return to Tlaxcala {"position":"5500,1600","size":"100,100"}
+:: Spaniards Return to Tlaxcala {"position":"4025,6800","size":"100,100"}
 <<theyr>>
 Double-click this passage to edit it.
 
@@ -8063,7 +8063,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Spaniards Send a Letter [Done Breaks] {"position":"6575,2175","size":"100,100"}
+:: Spaniards Send a Letter [Done Breaks] {"position":"1525,575","size":"100,100"}
 <<theyr>>
 Spaniards, you have been at sea for many weeks when you land on the shores of Cozumel.<br>
 <br>
@@ -8093,7 +8093,7 @@ You settle in and [[wait for a response|Spaniards arrive at Yucatan]].<br>
 <</theyr>>
 
 
-:: Spaniards Tour Tenochtitlan {"position":"6975,2050","size":"100,100"}
+:: Spaniards Tour Tenochtitlan {"position":"2150,7175","size":"100,100"}
 You settle in quickly, eager to see everything this remarkable city has to offer. Moctezuma has sent a group of Aztec nobles to be your guides and they have presented you with an itinerary:<br>
 <br>
 
@@ -8175,7 +8175,7 @@ When your contribution to the guidebook is ready, you may continue <<link "on to
 <br>
 
 
-:: Spaniards Write Letters {"position":"5975,3075","size":"100,100"}
+:: Spaniards Write Letters {"position":"2300,6250","size":"100,100"}
 Your compatriot Bernal Diaz later recalled the sight as such:<br>
 <br>
 <i>“The next morning we reached the broad high road of Iztapalapan, whence we for the first time beheld the numbers of towns and villages built in the lake, and the still greater number of large townships on the mainland, with the level causeway which ran in a straight line into Mexico. Our astonishment was indeed raised to the highest pitch, and we could not help remarking to each other, that all these buildings resembled the fairy castles we read of in Amadis de Gaul; so high, majestic, and splendid did the temples, towers, and houses of the town, all built of massive stone and lime, rise up out of the midst of the lake. Indeed, many of our men believed what they saw was a mere dream. And the reader must not feel surprised at the manner in which I have expressed myself, for it is impossible to speak coolly of things which we had never seen nor heard of, nor even could have dreamt of, beforehand.” (Lockhart, 219)</i><br>
@@ -8244,7 +8244,7 @@ Once you have entered your link, you may <<link "continue your journey" "On the 
 <br>
 
 
-:: Spaniards and Marina Talk [Done Breaks] {"position":"4450,2700","size":"100,100"}
+:: Spaniards and Marina Talk [Done Breaks] {"position":"1950,1125","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Marina">>
@@ -8271,7 +8271,7 @@ When you feel like you have gotten to know Marina <<link "continue on" "Act 1 Sc
 <</theyr>>
 
 
-:: Spaniards and Tlaxcalans on the way to Cholula [Done] {"position":"3800,1250","size":"100,100"}
+:: Spaniards and Tlaxcalans on the way to Cholula [Done] {"position":"1975,3875","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -8318,7 +8318,7 @@ After a long night, you wake to a visit from some [[Cholulan delegates|Cholula M
 <</theyr>>
 
 
-:: Spaniards arrive at Yucatan [Done Breaks] {"position":"6575,2325","size":"100,100"}
+:: Spaniards arrive at Yucatan [Done Breaks] {"position":"1450,700","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] isnot "Aguilar" and ndef $L_Received or $L_Received eq "">>
 
@@ -8367,7 +8367,7 @@ You now <<link "continue on your journey" "Spaniards Battle the Tabascans">><<st
 <</theyr>>
 
 
-:: Spaniards in Tlaxcala Cortes Alive {"position":"0,3750","size":"100,100"}
+:: Spaniards in Tlaxcala Cortes Alive {"position":"2050,11700","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -8495,7 +8495,7 @@ When you have agreed on the best course of action, <<print $Tlax_Leader>> will i
 <</theyr>>
 
 
-:: Spaniards in Tlaxcala Cortes Dead {"position":"175,3750","size":"100,100"}
+:: Spaniards in Tlaxcala Cortes Dead {"position":"2225,11700","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -8609,7 +8609,7 @@ When you have agreed on the best course of action, <<print $Tlax_Leader>> will i
 <</theyr>>
 
 
-:: Spaniards wake up at camp [Done] {"position":"4750,850","size":"100,100"}
+:: Spaniards wake up at camp [Done] {"position":"1800,2825","size":"100,100"}
 <<theyr>>
 <<if ndef $Mal_Boy or $Mal_Boy eq "">>
 You wake to the sound of snoring and open your eyes to find you are back at camp. You feel the hard ground beneath you and look up at the stars. You've never seen a night so clear. The horses rest nearby and the other men sleep in the open, scattered around the site. You can hardly believe you're back here.  You shift, trying to escape that rock that seems to have found its way under your hip, and you fall back into an uneasy rest.<br>
@@ -8644,7 +8644,7 @@ Finally, dawn comes. You rise and begin packing up [[eager to continue your jour
 <</theyr>>
 
 
-:: Spanish Leadership Challenge {"position":"5825,2800","size":"100,100"}
+:: Spanish Leadership Challenge {"position":"2800,4975","size":"100,100"}
 <<theyr>>
 <<if $Span_Leader is $users[$userId]["role"]>>
 You have made your decisions and led your people through a complicated situation, but do they still believe in your leadership? <br>
@@ -8672,7 +8672,7 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<storeSet $Sp_
 <</theyr>>
 
 
-:: Status of the Quest {"position":"5600,3825","size":"100,100"}
+:: Status of the Quest {"position":"4275,50","size":"100,100"}
 <<theyr>>
 [[Check Player and Team Status and Location|Control: Player Status]]<br>
 [[Check the Status of Holds and Votes|Control: Votes]]<br>
@@ -8682,8 +8682,8 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<storeSet $Sp_
 <</theyr>>
 
 
-:: StoryInit {"position":"22,135","size":"100,100"}
-/* <<storeSet $lastSeenDelay=60 * 5000>> */
+:: StoryInit {"position":"4600,1200","size":"100,100"}
+/* <<set $lastSeenDelay=60 * 5000>> */
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
 <!-- <<masteraudio volume 0>> -->
@@ -8909,7 +8909,7 @@ console.log("new user detected")
 <</script>>
 
 
-:: Tenochtitlan New Spanish Leader {"position":"600,925","size":"100,100"}
+:: Tenochtitlan New Spanish Leader {"position":"2675,9300","size":"100,100"}
 <<theyr>>
 After much  debate , you finally determine that <<print $Span_Leader>> has the greatest loyalty , and you [[move forward under his leadership|Toxcatl]].<br>
 <br>
@@ -8918,7 +8918,7 @@ After much  debate , you finally determine that <<print $Span_Leader>> has the g
 <</theyr>>
 
 
-:: Tenochtitlan Spanish Leadership Results {"position":"4100,2875","size":"100,100"}
+:: Tenochtitlan Spanish Leadership Results {"position":"2675,9175","size":"100,100"}
 <<theyr>>
 <<if $Sp_Ld_Vote_Teno isnot 5>>
 When everyone has voted, you will find out who will lead you now.<br>
@@ -8978,7 +8978,7 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 <</theyr>>
 
 
-:: The Aztec Legend of Quetzalcoatl {"position":"5100,2925","size":"100,100"}
+:: The Aztec Legend of Quetzalcoatl {"position":"3125,100","size":"100,100"}
 <<theyr>>
 <<if $Start <=10>>
 
@@ -8998,7 +8998,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 <</theyr>>
 
 
-:: The Aztec Quest for Legitimacy [Done] {"position":"5725,2125","size":"100,100"}
+:: The Aztec Quest for Legitimacy [Done] {"position":"3125,225","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Pochteca">>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Pochteca, as a trader, you know the terrain well. It is up to you to lead your team in this quest.<br>
@@ -9033,7 +9033,7 @@ Enter the palace and [[begin your quest|Scavenger Hunt Hub]].<br>
 <</theyr>>
 
 
-:: The Aztecs Regroup {"position":"3375,3125","size":"100,100"}
+:: The Aztecs Regroup {"position":"4300,9850","size":"100,100"}
 <<theyr>>
 Double-click this passage to edit it.
 
@@ -9041,7 +9041,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: The End {"position":"1675,5450","size":"100,100"}
+:: The End {"position":"3725,13375","size":"100,100"}
 <<theyr>>
 As the smell of blood and smoke fills your nostrils, you wake with a start. You jolt upright, open your eyes, and let out a scream. You are back in the library, but this time you're not alone. The room is lit with a soft, red glow and looming over you is the most terrifying figure you've ever seen. <br>
 <br>
@@ -9060,7 +9060,7 @@ You rise up out of the chair, knees shaking. You know what you must do...<br>
 <</theyr>>
 
 
-:: The Festival of Toxcatl {"position":"3375,2525","size":"100,100"}
+:: The Festival of Toxcatl {"position":"4300,9250","size":"100,100"}
 <<theyr>>
 [[The Festival of Toxcatl: The Spaniards]]
 
@@ -9072,7 +9072,7 @@ You rise up out of the chair, knees shaking. You know what you must do...<br>
 <</theyr>>
 
 
-:: The Festival of Toxcatl: The Aztecs {"position":"3575,2675","size":"100,100"}
+:: The Festival of Toxcatl: The Aztecs {"position":"4500,9400","size":"100,100"}
 <<theyr>>
 [[La Noche Triste]]
 
@@ -9080,7 +9080,7 @@ You rise up out of the chair, knees shaking. You know what you must do...<br>
 <</theyr>>
 
 
-:: The Festival of Toxcatl: The Spaniards {"position":"3175,2675","size":"100,100"}
+:: The Festival of Toxcatl: The Spaniards {"position":"4100,9400","size":"100,100"}
 <<theyr>>
 [[La Noche Triste]]
 
@@ -9088,7 +9088,7 @@ You rise up out of the chair, knees shaking. You know what you must do...<br>
 <</theyr>>
 
 
-:: The Festival of Toxcatl: The Tlaxcalans {"position":"3375,2675","size":"100,100"}
+:: The Festival of Toxcatl: The Tlaxcalans {"position":"4300,9400","size":"100,100"}
 <<theyr>>
 [[La Noche Triste]]
 
@@ -9096,7 +9096,7 @@ You rise up out of the chair, knees shaking. You know what you must do...<br>
 <</theyr>>
 
 
-:: The Land of the Olmeca Xicalanca [Done Breaks] {"position":"2775,400","size":"100,100"}
+:: The Land of the Olmeca Xicalanca [Done Breaks] {"position":"2475,975","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Tlacaelel">>
@@ -9159,7 +9159,7 @@ You are waiting for Tlacaelel to input his decision.<br>
 <</theyr>>
 
 
-:: The Library [Done] {"position":"6475,3100","size":"100,100"}
+:: The Library [Done] {"position":"3875,1275","size":"100,100"}
 <<theyr>>
 /* <<discord spanish>> Contents of discord tag <</discord>> */
 /* <<for _i, _name range $users>>
@@ -9185,7 +9185,7 @@ Suddenly, <<link "you're startled by a loud noise" "Character Identification">><
 <</theyr>>
 
 
-:: The Spaniards Decide to Continue [Done] {"position":"6575,1800","size":"100,100"}
+:: The Spaniards Decide to Continue [Done] {"position":"1525,175","size":"100,100"}
 <<theyr>>
 Now that you've made a decision, you can move forward. <br>
 <br>
@@ -9213,7 +9213,7 @@ Cortes, you have convinced your men somehow.  As you move to the next page, note
 <</theyr>>
 
 
-:: The Spaniards Head Inland [Done Breaks] {"position":"2250,1750","size":"100,100"}
+:: The Spaniards Head Inland [Done Breaks] {"position":"1975,2325","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9242,7 +9242,7 @@ Exhausted from the events of the last few weeks, you settle down on your sleepin
 <</theyr>>
 
 
-:: The Tabascans battle the Spaniards [Done Breaks] {"position":"4400,2125","size":"100,100"}
+:: The Tabascans battle the Spaniards [Done Breaks] {"position":"1375,825","size":"100,100"}
 <<theyr>>
 For weeks now, the Chontal leaders have been hearing rumors that a group of foreigners has been traveling along the coast, making their way towards your village. When word arrived that they had landed upon your shores, the local chiefs sent an army to head them off. Much to everyone's surprise, many of the men came back wounded, telling stories of their defeat. <br>
 <br>
@@ -9255,7 +9255,7 @@ Never before have you felt such fear among the Chontal people. As they consider 
 <</theyr>>
 
 
-:: The Tlaxcalan Leader Decides [Done] {"position":"4475,1075","size":"100,100"}
+:: The Tlaxcalan Leader Decides [Done] {"position":"2175,3350","size":"100,100"}
 <<theyr>>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 Your people have recognized your wisdom, and you will now lead them through the treachourous times ahead, at least for now.  You made your argument to the Council, but will you follow through with it?  You must decide, and your fellow Tlaxcalans must follow.  Will you <<link "attack the Spaniards" "Tlaxcala Attacks in Puebla">><<storeSet $Tl_Attacks_Pu="Yes">><</link>>, or <<link "will you approach them as friends" "Tlaxcala Doesn't Attack in Puebla">><<storeSet $Tl_Attacks_Pu="No">><</link>>?
@@ -9282,7 +9282,7 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebl
 <</theyr>>
 
 
-:: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"4900,3050","size":"100,100"}
+:: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"2975,100","size":"100,100"}
 <<theyr>>
 <<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
@@ -9301,7 +9301,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 <</theyr>>
 
 
-:: The Tlaxcalan Quest for Legitimacy [Done] {"position":"5525,2075","size":"100,100"}
+:: The Tlaxcalan Quest for Legitimacy [Done] {"position":"2975,225","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Xicotencatl_Younger">>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Xicotencatl the Younger, you have much to prove and this is your chance. It is up to you to lead your team on this quest!<br>
@@ -9335,7 +9335,7 @@ Enter the palace and [[begin your quest|Scavenger Hunt Hub]].<br>
 <</theyr>>
 
 
-:: The Tlaxcalans and Spaniards Flee {"position":"3200,3125","size":"100,100"}
+:: The Tlaxcalans and Spaniards Flee {"position":"4125,9850","size":"100,100"}
 <<theyr>>
 Double-click this passage to edit it.
 
@@ -9343,7 +9343,7 @@ Double-click this passage to edit it.
 <</theyr>>
 
 
-:: Tlatelolco [Done Breaks] {"position":"4675,1900","size":"100,100"}
+:: Tlatelolco [Done Breaks] {"position":"2525,175","size":"100,100"}
 This place has you buzzing with energy. Your senses are nearly overwhelmed! You can barely hear over the din of voices, and you find yourself drawn towards the scent of fresh tortillas, epazote, and copal smoke.<br>
 <br>
 
@@ -9372,7 +9372,7 @@ This city is <<textbox "$Tlatelolco_Ans_T" "">><br>
 <</switch>>
 
 
-:: Tlatelolco 2 [Done Breaks] {"position":"4950,1875","size":"100,100"}
+:: Tlatelolco 2 [Done Breaks] {"position":"2675,175","size":"100,100"}
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Tlatelolco_Ans_A>><br>
@@ -9417,7 +9417,7 @@ Your answer is incorrect.  You may [[try again|Tlatelolco]], or you may return t
 <</switch>>
 
 
-:: Tlaxcala Attacks Aztecs {"position":"1275,4675","size":"100,100"}
+:: Tlaxcala Attacks Aztecs {"position":"3325,12600","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9454,7 +9454,7 @@ You gather your wits and your weapons, facing off once more against your hated e
 <</theyr>>
 
 
-:: Tlaxcala Attacks Aztecs Aztec Victory {"position":"1375,5625","size":"100,100"}
+:: Tlaxcala Attacks Aztecs Aztec Victory {"position":"3425,13550","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9469,7 +9469,7 @@ The battle was quick and bloody, but you have emerged victorious! You round up t
 <</theyr>>
 
 
-:: Tlaxcala Attacks Aztecs Tlaxcalan Victory {"position":"1475,5250","size":"100,100"}
+:: Tlaxcala Attacks Aztecs Tlaxcalan Victory {"position":"3525,13175","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9484,7 +9484,7 @@ You put up a valiant fight, but it was not enough. The Tlaxcalans had the Gods o
 <</theyr>>
 
 
-:: Tlaxcala Attacks in Puebla [Done] {"position":"4550,1225","size":"100,100"}
+:: Tlaxcala Attacks in Puebla [Done] {"position":"1875,3475","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9507,7 +9507,7 @@ The foreigners surround you, however, almost as though they knew what to expect!
 <</theyr>>
 
 
-:: Tlaxcala Attacks the Spaniards {"position":"175,4150","size":"100,100"}
+:: Tlaxcala Attacks the Spaniards {"position":"2225,12075","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9550,7 +9550,7 @@ By the time it is done, Tlaxcala is a ruin and it seems that no-one has any rema
 <</theyr>>
 
 
-:: Tlaxcala Attacks the Spaniards Spanish Victory {"position":"600,4400","size":"100,100"}
+:: Tlaxcala Attacks the Spaniards Spanish Victory {"position":"2650,12325","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9588,7 +9588,7 @@ You have lost your battle. The Spaniards have defeated you, but are they strong 
 <</theyr>>
 
 
-:: Tlaxcala Attacks the Spaniards Tlaxcalan Victory {"position":"1875,4450","size":"100,100"}
+:: Tlaxcala Attacks the Spaniards Tlaxcalan Victory {"position":"3925,12375","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9679,7 +9679,7 @@ You must wait for <<print $Tlax_Leader>> to do something.<br>
 <</theyr>>
 
 
-:: Tlaxcala Decides What To Do {"position":"800,4400","size":"100,100"}
+:: Tlaxcala Decides What To Do {"position":"2850,12325","size":"100,100"}
 <<theyr>>
 <<if $Final_Aztec Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for your options to become clear.<br>
@@ -9775,7 +9775,7 @@ When you have agreed on the best course of action, <<print $Tlax_Leader>> will i
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing {"position":"1125,3875","size":"100,100"}
+:: Tlaxcala Does Nothing {"position":"3200,11825","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9798,7 +9798,7 @@ You inform your guests that they must fight their battles alone and [[send them 
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Attacks the Aztec Winners {"position":"1075,4775","size":"100,100"}
+:: Tlaxcala Does Nothing Attacks the Aztec Winners {"position":"3150,12700","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9817,7 +9817,7 @@ Your two sides are evenly matched, as usual, but only one [[can claim victory|Vi
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Attacks the Spanish Winners {"position":"675,4800","size":"100,100"}
+:: Tlaxcala Does Nothing Attacks the Spanish Winners {"position":"2725,12725","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9836,7 +9836,7 @@ Your two sides are evenly matched, as usual, but only one [[can claim victory|Vi
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Aztecs Accept Peace Treaty {"position":"825,5125","size":"100,100"}
+:: Tlaxcala Does Nothing Aztecs Accept Peace Treaty {"position":"2875,13050","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9850,7 +9850,7 @@ The Tlaxcalans have convinced you that peace is your best way forward. You agree
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala {"position":"1000,4875","size":"100,100"}
+:: Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala {"position":"3025,12800","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9869,7 +9869,7 @@ You launch your attack but much to your surprise, your two sides are as evenly m
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory {"position":"1000,5475","size":"100,100"}
+:: Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory {"position":"3050,13400","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9884,7 +9884,7 @@ The battle was quick and bloody, but you have emerged victorious! You round up t
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala Tlaxcalan Victory {"position":"1150,5600","size":"100,100"}
+:: Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala Tlaxcalan Victory {"position":"3200,13525","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -9899,7 +9899,7 @@ You put up a valiant fight, but it was not enough. The Tlaxcalans had the Gods o
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Spaniards Accept Peace Treaty {"position":"325,5625","size":"100,100"}
+:: Tlaxcala Does Nothing Spaniards Accept Peace Treaty {"position":"2375,13550","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9914,7 +9914,7 @@ The Spaniards have listened to reason and agreed with your wisdom! You will move
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Spaniards Fight Aztecs Alone {"position":"1125,4050","size":"100,100"}
+:: Tlaxcala Does Nothing Spaniards Fight Aztecs Alone {"position":"3200,12000","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9946,7 +9946,7 @@ The battle is like nothing you've seen before. The stakes are high and this will
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory {"position":"1050,4575","size":"100,100"}
+:: Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory {"position":"3125,12500","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -9986,7 +9986,7 @@ You must wait for <<print $Tlax_Leader>> to make a move.<br>
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Spanish Victory {"position":"1125,4450","size":"100,100"}
+:: Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Spanish Victory {"position":"3375,12350","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -10040,7 +10040,7 @@ You have lost your battle. [[The city belongs to your enemies now|The End]].<br>
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala {"position":"525,4850","size":"100,100"}
+:: Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala {"position":"2575,12775","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10059,7 +10059,7 @@ You launch your attack but much to your surprise, your two sides are evenly matc
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala Spanish Victory {"position":"625,5350","size":"100,100"}
+:: Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala Spanish Victory {"position":"2675,13275","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10074,7 +10074,7 @@ The battle was quick and bloody, but you have emerged victorious! You round up t
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala Tlaxcalan Victory {"position":"775,5400","size":"100,100"}
+:: Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala Tlaxcalan Victory {"position":"2825,13325","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10089,7 +10089,7 @@ You put up a valiant fight, but it was not enough. The Tlaxcalans had the Gods o
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners {"position":"500,4675","size":"100,100"}
+:: Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners {"position":"2550,12600","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -10155,7 +10155,7 @@ You must wait for <<print $Span_Leader>> to input a decision.<br>
 <</theyr>>
 
 
-:: Tlaxcala Does Nothing and Makes a Peace Treaty with the Aztec Winners {"position":"900,4725","size":"100,100"}
+:: Tlaxcala Does Nothing and Makes a Peace Treaty with the Aztec Winners {"position":"2950,12650","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10221,7 +10221,7 @@ When you have agreed on the best course of action, <<print $New_Aztec_Leader>> w
 <</theyr>>
 
 
-:: Tlaxcala Doesn't Attack in Puebla [Done] {"position":"4725,1225","size":"100,100"}
+:: Tlaxcala Doesn't Attack in Puebla [Done] {"position":"2050,3475","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -10244,7 +10244,7 @@ A bloody battle ensues. It lasts many days and you kill many of their men, but t
 <</theyr>>
 
 
-:: Tlaxcala Makes a Peace Treaty with the Aztecs {"position":"1950,4575","size":"100,100"}
+:: Tlaxcala Makes a Peace Treaty with the Aztecs {"position":"4000,12500","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10314,7 +10314,7 @@ When you have agreed on the best course of action, <<print $New_Aztec_Leader>> w
 <</theyr>>
 
 
-:: Tlaxcala Sides with the Aztecs {"position":"200,4425","size":"100,100"}
+:: Tlaxcala Sides with the Aztecs {"position":"2250,12350","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10342,7 +10342,7 @@ Weakened by the sickness, you would be fools to fight the foreigners alone. You 
 <</theyr>>
 
 
-:: Tlaxcala Sides with the Aztecs Aztec and Tlaxcalan Victory {"position":"525,5275","size":"100,100"}
+:: Tlaxcala Sides with the Aztecs Aztec and Tlaxcalan Victory {"position":"2500,13225","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10360,7 +10360,7 @@ You put up a valiant fight, but it was not enough. Your enemies had the Gods on 
 <</theyr>>
 
 
-:: Tlaxcala Sides with the Aztecs Spanish Victory {"position":"150,5275","size":"100,100"}
+:: Tlaxcala Sides with the Aztecs Spanish Victory {"position":"2200,13200","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
@@ -10378,7 +10378,7 @@ The battle was quick and bloody, but you have emerged victorious! You round up t
 <</theyr>>
 
 
-:: Tlaxcala helps the Spaniards {"position":"2550,4475","size":"100,100"}
+:: Tlaxcala helps the Spaniards {"position":"4600,12400","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -10436,7 +10436,7 @@ The enemy exits the mountain pass. You can barely believe your eyes as they make
 <</theyr>>
 
 
-:: Tlaxcala sends spies to Veracruz [Done Breaks] {"position":"3275,675","size":"100,100"}
+:: Tlaxcala sends spies to Veracruz [Done Breaks] {"position":"2850,1325","size":"100,100"}
 <<theyr>>
 You disguise yourselves as Huastec traders, and you head to the coast of Veracruz.  There, you observe the meeting of the Mexica and the bearded strangers from afar.<br>
 <br>
@@ -10470,7 +10470,7 @@ You are waiting for the Aztecs to make a move.<br>
 <</theyr>>
 
 
-:: Tlaxcalan Wisdom Check [Done] {"position":"4475,925","size":"100,100"}
+:: Tlaxcalan Wisdom Check [Done] {"position":"2175,3200","size":"100,100"}
 <<theyr>>
 <<if $TL_St_Voted <3>>
 You wait nervously while the others deliberate. <br>
@@ -10504,7 +10504,7 @@ Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Deci
 <</theyr>>
 
 
-:: Tlaxcalan's Contribution {"position":"4900,2900","size":"100,100"}
+:: Tlaxcalan's Contribution {"position":"2300,8175","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -10550,7 +10550,7 @@ Do they <<link "PASS" "After the Feast">><<storeSet $factions["Tlaxcalans"]["sta
 <</theyr>>
 
 
-:: Tlaxcalans Attack Aztecs on return journey [Done Breaks] {"position":"2550,1425","size":"100,100"}
+:: Tlaxcalans Attack Aztecs on return journey [Done Breaks] {"position":"2225,1875","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -10571,7 +10571,7 @@ It's time to <<link "return to Tlaxcala" "The Spaniards Head Inland">><<storeSet
 <</theyr>>
 
 
-:: Tlaxcalans Back In Tlaxcala {"position":"300,1600","size":"100,100"}
+:: Tlaxcalans Back In Tlaxcala {"position":"2400,9550","size":"100,100"}
 <<theyr>>
 <<if $Tlax_Alliance is "Veracruz">>
 You make your way home, weary but encouraged by your most recent victory. Events have been unfolding in your favor and you can't help but feel confident in the choices you have made.<br>
@@ -10614,7 +10614,7 @@ For now, you will just have to wait and see. You settle in, happy to [[finally r
 <</theyr>>
 
 
-:: Tlaxcalans Decide About the Spaniards {"position":"175,3925","size":"100,100"}
+:: Tlaxcalans Decide About the Spaniards {"position":"2225,11850","size":"100,100"}
 <<theyr>>
 <<if ndef $Tlax_Final_Dec or $Tlax_Final_Dec eq "">>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -10639,7 +10639,7 @@ A decision has [[been made|Tlaxcala Sides with the Aztecs]].<br>
 <</theyr>>
 
 
-:: Tlaxcalans Face a Choice {"position":"7025,2775","size":"100,100"}
+:: Tlaxcalans Face a Choice {"position":"2450,5900","size":"100,100"}
 <<theyr>>
 You wake to find yourself exactly where you hoped: back at camp, on the road to Tenochtitlán! You lead an army of over 10,000 men, with your Spanish allies at your side.<br>
 <br>
@@ -10657,7 +10657,7 @@ The sight that lies ahead has [[a much different meaning for you|Tlaxcalans cons
 <</theyr>>
 
 
-:: Tlaxcalans Hold for a Council Meeting [Done] {"position":"6675,2950","size":"100,100"}
+:: Tlaxcalans Hold for a Council Meeting [Done] {"position":"2175,2950","size":"100,100"}
 <<theyr>>
 You gather together with the other two members of your leadership council. All of you have prepared your statements, which you share with the others. <br>
 <br>
@@ -10674,7 +10674,7 @@ Once you have composed your statement, you must present it to the rest of the co
 <</theyr>>
 
 
-:: Tlaxcalans Make the First Decision about Aztecs {"position":"725,4175","size":"100,100"}
+:: Tlaxcalans Make the First Decision about Aztecs {"position":"2800,12100","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -10711,7 +10711,7 @@ Your leader has made [[a decision|Tlaxcala Makes a Peace Treaty with the Aztecs]
 <</theyr>>
 
 
-:: Tlaxcalans Make the First Decision about Spaniards {"position":"300,3975","size":"100,100"}
+:: Tlaxcalans Make the First Decision about Spaniards {"position":"2350,11925","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -10746,7 +10746,7 @@ Your leader has made [[a decision|Tlaxcala Does Nothing and Makes a Peace Treaty
 <</theyr>>
 
 
-:: Tlaxcalans Negotiate Peace [Done] {"position":"4650,1675","size":"100,100"}
+:: Tlaxcalans Negotiate Peace [Done] {"position":"1975,3750","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -10783,7 +10783,7 @@ Now that you have made your decision, go to the Spanish-Tlaxcalan discussion boa
 <</theyr>>
 
 
-:: Tlaxcalans Observe the Ship Burning [Done Breaks] {"position":"2850,1375","size":"100,100"}
+:: Tlaxcalans Observe the Ship Burning [Done Breaks] {"position":"2525,1825","size":"100,100"}
 <<theyr>>
 You have continued to observe events along the coast, waiting to see what this strange turn of events will mean for you. The news that arrives next is intriguing.<br>
 <br>
@@ -10813,7 +10813,7 @@ or you can [[attack the Mexica on their way back to Tenochtitlan|Tlaxcalans Atta
 <</theyr>>
 
 
-:: Tlaxcalans Prepare for a Council Meeting [Done] {"position":"6650,2775","size":"100,100"}
+:: Tlaxcalans Prepare for a Council Meeting [Done] {"position":"2175,2825","size":"100,100"}
 You wake to the buzz of people talking. You haven't even opened your eyes when you catch the scent of tortillas cooking over an open fire and you know you're back in Tlaxcala!<br>
 <br>
 You get up from your sleeping mat and excitedly make your way outside, where you learn that there is to be a council meeting tonight. Word has reached the village that the strangers are nearing Tlaxcalan territory and they could arrive any day now. The leadership must decide how to respond to the strangers...and that includes you.<br>
@@ -10834,7 +10834,7 @@ Once your statement is prepared, paste a link here to share with your fellow Cou
 <</switch>>
 
 
-:: Tlaxcalans Respond to La Noche Triste {"position":"3375,2975","size":"100,100"}
+:: Tlaxcalans Respond to La Noche Triste {"position":"4300,9700","size":"100,100"}
 <<theyr>>
 [[Game Over: Aztecs Win La Noche Triste]]
 
@@ -10846,7 +10846,7 @@ Once your statement is prepared, paste a link here to share with your fellow Cou
 <</theyr>>
 
 
-:: Tlaxcalans Visit Tlatelolco {"position":"7125,2150","size":"100,100"}
+:: Tlaxcalans Visit Tlatelolco {"position":"2300,7175","size":"100,100"}
 <<if $users[$userId]["role"] is "Pochteca">>
 You set out for the market with your Tlaxcalan guests in tow. They are eager to visit the legendary Tlatelolco Market and, as one of the most important agents of the market, you can't help but take pride in their excitement. You are halfway to your destination when you are approached by a messenger. He has come to assign your guests a task.<br>
 <br>
@@ -10900,7 +10900,7 @@ When your work is complete, you may continue <<link "on to the feast" "Everyone 
 <br>
 
 
-:: Tlaxcalans Vote on Attacking Spaniards [Done] {"position":"6650,3100","size":"100,100"}
+:: Tlaxcalans Vote on Attacking Spaniards [Done] {"position":"2175,3075","size":"100,100"}
 <<theyr>>
 You sit in the council chamber weighing the arguments made by the other two men.  You measure their wisdom and ambition against your own. Whose statement is most compelling?<br>
 <br>
@@ -10915,7 +10915,7 @@ You sit in the council chamber weighing the arguments made by the other two men.
 <</theyr>>
 
 
-:: Tlaxcalans Wait Outside and Send Spies [Done] {"position":"3500,1600","size":"100,100"}
+:: Tlaxcalans Wait Outside and Send Spies [Done] {"position":"2325,5225","size":"100,100"}
 <<theyr>>
 You watch your allies enter the city of Cholula where they will consort with your enemy. When they are out of sight, you send out spies to keep watch. It is clearly to your benefit to know exactly what goes on inside the city walls.<br>
 <br>
@@ -10984,7 +10984,7 @@ Meanwhile, you wait impatiently to [[carry on your journey|Into the Mountain Pas
 <</theyr>>
 
 
-:: Tlaxcalans agree to fight {"position":"125,1450","size":"100,100"}
+:: Tlaxcalans agree to fight {"position":"2300,9375","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Cortes">>
 You have received word that the enemy camp lies just ahead. The time has come to face the force of Spaniards who have come to secure your arrest.<br>
@@ -11012,7 +11012,7 @@ As you depart the scene of the battle, Cortes instructs you to take the large an
 <</theyr>>
 
 
-:: Tlaxcalans and Aztecs meet [Done Breaks] {"position":"3150,425","size":"100,100"}
+:: Tlaxcalans and Aztecs meet [Done Breaks] {"position":"2825,1075","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -11035,7 +11035,7 @@ When you are done negotiating, you return to the palace and wait anxiously for w
 <</theyr>>
 
 
-:: Tlaxcalans and Spaniards Fight Aztecs Aztec Victory {"position":"2350,5675","size":"100,100"}
+:: Tlaxcalans and Spaniards Fight Aztecs Aztec Victory {"position":"4400,13600","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11055,7 +11055,7 @@ The battle seemed as though it would never end. Your city lies in ruins and coun
 <</theyr>>
 
 
-:: Tlaxcalans and Spaniards Fight Aztecs Spanish and Tlaxcalan Victory {"position":"2375,5325","size":"100,100"}
+:: Tlaxcalans and Spaniards Fight Aztecs Spanish and Tlaxcalan Victory {"position":"4425,13250","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11073,7 +11073,7 @@ You put up a valiant fight, but it was not enough. Your enemies had the Gods on 
 <</theyr>>
 
 
-:: Tlaxcalans announce their departure {"position":"300,1425","size":"100,100"}
+:: Tlaxcalans announce their departure {"position":"2100,9550","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Cortes">>
 Much to your dismay, your fears turn out to be valid. As you near Tlaxcala,  <<print $Tlax_Leader>> informs you that he and his men will not be carrying on the rest of the way. They will remain in Tlaxcala, leaving you to face the enemy with a greatly-diminished force.<br>
@@ -11103,7 +11103,7 @@ You host the troops for the night and see them on their way the next morning, [[
 <</theyr>>
 
 
-:: Tlaxcalans attack Cortes in Veracruz [Done Breaks] {"position":"2250,1925","size":"100,100"}
+:: Tlaxcalans attack Cortes in Veracruz [Done Breaks] {"position":"2125,2175","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11125,7 +11125,7 @@ Hopefully, this doesn't leave you vulnerable down the road! If only you had been
 <</theyr>>
 
 
-:: Tlaxcalans consider their options {"position":"7025,2925","size":"100,100"}
+:: Tlaxcalans consider their options {"position":"2450,6025","size":"100,100"}
 <<theyr>>
 The Aztec capital may be impressive, rising up from the lake, but it's teeming with your enemies. You have battled the Aztecs many times before. Is this time any different? You lead an army of 10,000 allies who share your hatred of the Aztecs. The Spanish force is small, but they carry powerful weapons and they ride their giant deer.<br>
 <br>
@@ -11146,7 +11146,7 @@ When you have reached a decision, <<print $Tlax_Leader>> [[must input your choic
 <</theyr>>
 
 
-:: Tlaxcalans cut their losses {"position":"7100,1675","size":"100,100"}
+:: Tlaxcalans cut their losses {"position":"2450,6375","size":"100,100"}
 <<theyr>>
 You've packed up camp and are headed for home when you find yourself surrounded by a group of angry warriors. Their weapons trained upon you, the allies that have marched at your side since you began this journey are angry. They remind you that it's not only the Spaniards you have left at the mercy of the Aztecs. They demand that you stay and fight. <br>
 <br>
@@ -11159,7 +11159,7 @@ You turn back [[towards Tenochtitlan|On the Causeway]].<br>
 <</theyr>>
 
 
-:: Tlaxcalans decide where to go {"position":"7050,3050","size":"100,100"}
+:: Tlaxcalans decide where to go {"position":"2450,6250","size":"100,100"}
 <<theyr>>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 Now that you have consulted with your men, it is up to you to decide how to proceed.<br>
@@ -11195,7 +11195,7 @@ You will honor an existing but secret alliance with the Aztecs and <<link "enter
 <</theyr>>
 
 
-:: Tlaxcalans decide whether or not to fight with Cortes {"position":"175,1275","size":"100,100"}
+:: Tlaxcalans decide whether or not to fight with Cortes {"position":"2200,9175","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is $Tlax_Leader>>
 Select your team's decision from the options below.<br>
@@ -11235,7 +11235,7 @@ You wait for <<print $Tlax_Leader>> to finalize your decision.<br>
 <</theyr>>
 
 
-:: Tlaxcalans go with Cortes to the coast {"position":"175,1125","size":"100,100"}
+:: Tlaxcalans go with Cortes to the coast {"position":"2225,9050","size":"100,100"}
 <<theyr>>
 You travel for many days and many nights. Cortes warns you of the force that you will likely encounter. They will be men like his own, but they will carry even more weapons. He reminds you of the battle you once fought against each other and the giant pipes that made smoke and noise. He calls them cannons and prepares you to face them once again.<br>
 <br>
@@ -11254,7 +11254,7 @@ Once your team has decided on the best course of action, [[proceed to the next p
 <</theyr>>
 
 
-:: Tlaxcalans keep waiting [Done] {"position":"3450,450","size":"100,100"}
+:: Tlaxcalans keep waiting [Done] {"position":"2975,2200","size":"100,100"}
 <<theyr>>
 Unfortunately, you have no way of knowing what's going on. If only you had eyes on the coast, you might be better able to prepare.<br>
 <br>
@@ -11267,7 +11267,7 @@ When you have made your plan, <<link "click here to continue" "A Tlaxcalan Nap">
 <</theyr>>
 
 
-:: Tlaxcalans leave Cortes to fend for himself {"position":"450,1425","size":"100,100"}
+:: Tlaxcalans leave Cortes to fend for himself {"position":"2500,9375","size":"100,100"}
 <<theyr>>
 <<if $users[$userId]["role"] is "Cortes">>
 You have received word that the enemy camp lies just ahead. The time has come to face the force of Spaniards who have come to secure your arrest.<br>
@@ -11291,7 +11291,7 @@ At midnight, Cortes makes the signal to attack, hoping to catch the enemy forces
 <</theyr>>
 
 
-:: Tlaxcalans let Cortes move inland [Done Breaks] {"position":"2975,1525","size":"100,100"}
+:: Tlaxcalans let Cortes move inland [Done Breaks] {"position":"2300,2175","size":"100,100"}
 <<theyr>>
 You have decided that it's best to remain patient. You will leave both groups to carry on their journeys undisturbed, watching carefully and waiting for your opening.<br>
 <br>
@@ -11302,7 +11302,7 @@ You <<link "head back to Tlaxcala" "The Spaniards Head Inland">><<run changeStat
 <</theyr>>
 
 
-:: Tlaxcalans wait [Done] {"position":"3450,300","size":"100,100"}
+:: Tlaxcalans wait [Done] {"position":"3050,925","size":"100,100"}
 <<theyr>>
 <<<<if $Mutiny_Voted <3>>>>
 All is quiet in Tlaxcala and you find yourself bored, wondering what could possibly be happening on the coast. Unfortunately, your decision not to send spies means that you've lost track of the foreigners and have no idea what's going on.<br>
@@ -11320,7 +11320,7 @@ Your guards have seen Aztec spies running to and from the coast. Clearly [[thing
 <</theyr>>
 
 
-:: To Mutiny or Not [Done Breaks] {"position":"2200,1100","size":"100,100"}
+:: To Mutiny or Not [Done Breaks] {"position":"1925,1600","size":"100,100"}
 <<theyr>>
 
 <<switch $users[$userId]["role"]>>
@@ -11359,7 +11359,7 @@ Once you have decided where your loyalty lies, [[continue to the next screen|Mut
 <</theyr>>
 
 
-:: Toxcatl {"position":"600,1125","size":"100,100"}
+:: Toxcatl {"position":"2650,9425","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11408,7 +11408,7 @@ As the dust settles, people flood into the plaza. You join the mob in an attempt
 <</theyr>>
 
 
-:: Victory Decision Aztecs Versus Tlaxcalans {"position":"1875,4875","size":"100,100"}
+:: Victory Decision Aztecs Versus Tlaxcalans {"position":"3925,12800","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 
@@ -11435,7 +11435,7 @@ You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the fina
 <</theyr>>
 
 
-:: Victory Decision Aztecs Versus Tlaxcalans 2 {"position":"1300,4825","size":"100,100"}
+:: Victory Decision Aztecs Versus Tlaxcalans 2 {"position":"3325,12875","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 
@@ -11462,7 +11462,7 @@ You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the fina
 <</theyr>>
 
 
-:: Victory Decision Aztecs Versus Tlaxcalans 3 {"position":"1125,4975","size":"100,100"}
+:: Victory Decision Aztecs Versus Tlaxcalans 3 {"position":"3175,12900","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 
@@ -11489,7 +11489,7 @@ You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the fina
 <</theyr>>
 
 
-:: Victory Decision Aztecs and Tlaxcalans versus Spaniards {"position":"200,4775","size":"100,100"}
+:: Victory Decision Aztecs and Tlaxcalans versus Spaniards {"position":"2250,12700","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11524,7 +11524,7 @@ You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the fina
 <</theyr>>
 
 
-:: Victory Decision Aztecs versus Spaniards {"position":"700,3675","size":"100,100"}
+:: Victory Decision Aztecs versus Spaniards {"position":"2850,11525","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11552,7 +11552,7 @@ You watch from afar as [[the battle rages|Battle Outcome Aztecs Versus Spaniards
 <</theyr>>
 
 
-:: Victory Decision Aztecs versus Spaniards 2 {"position":"1275,5975","size":"100,100"}
+:: Victory Decision Aztecs versus Spaniards 2 {"position":"3725,13975","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11577,7 +11577,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <</theyr>>
 
 
-:: Victory Decision Aztecs versus Spaniards 3 {"position":"1125,4175","size":"100,100"}
+:: Victory Decision Aztecs versus Spaniards 3 {"position":"3200,12125","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11602,7 +11602,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <</theyr>>
 
 
-:: Victory Decision Aztecs versus Spaniards and Tlaxcalans {"position":"2550,4650","size":"100,100"}
+:: Victory Decision Aztecs versus Spaniards and Tlaxcalans {"position":"4600,12575","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11637,7 +11637,7 @@ You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the fina
 <</theyr>>
 
 
-:: Victory Decision Spaniards versus Tlaxcalans {"position":"200,4275","size":"100,100"}
+:: Victory Decision Spaniards versus Tlaxcalans {"position":"2250,12200","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11664,7 +11664,7 @@ You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the fina
 <</theyr>>
 
 
-:: Victory Decision Spaniards versus Tlaxcalans 2 {"position":"575,4975","size":"100,100"}
+:: Victory Decision Spaniards versus Tlaxcalans 2 {"position":"2625,12900","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11691,7 +11691,7 @@ You watch as <<print $Tlax_Leader>> raises his macuahuitl and [[strikes the fina
 <</theyr>>
 
 
-:: Waking up 6 months later {"position":"250,875","size":"100,100"}
+:: Waking up 6 months later {"position":"2300,8800","size":"100,100"}
 <<theyr>>
 You wake to the smell of fresh tortillas and the chatter of Nahuatl outside your door. Just as you hoped, you are back in Tenochtitlán. And just like every time before, you wake with a clear awareness of your situation. <br>
 <br>
@@ -11720,7 +11720,7 @@ As you begin to prepare for your day, you hear word that the Spaniards have rece
 <</theyr>>
 
 
-:: Waking up in the Library on a Full Belly {"position":"4650,2325","size":"100,100"}
+:: Waking up in the Library on a Full Belly {"position":"2300,8425","size":"100,100"}
 <<theyr>>
 You wake to find yourself back in the library, sprawled across the comfy chair. You missed dinner, but somehow your belly feels strangely full. You swear you can still taste the pulque on your lips, but that can't possibly be true... can it? <br>
 <br>
@@ -11731,7 +11731,7 @@ You look at the stack of papers on the floor, and, sure enough, there's your lat
 <</theyr>>
 
 
-:: Waking up in the library [Done Breaks] {"position":"4475,3050","size":"100,100"}
+:: Waking up in the library [Done Breaks] {"position":"1975,2450","size":"100,100"}
 <<theyr>>
 You slowly pull yourself awake.  It takes real effort, you were sleeping so deeply.  You're confused, there is nothing worse than waking up mid-dream. <br>
 <br>
@@ -11758,7 +11758,7 @@ As you close the door of the weird little room behind you, you know <<link "you'
 <</theyr>>
 
 
-:: Waking up in the library 3 [Done] {"position":"4100,2725","size":"100,100"}
+:: Waking up in the library 3 [Done] {"position":"2300,5550","size":"100,100"}
 <<theyr>>
 You wake from a fitful sleep, disturbed by dreams of battle. When you open your eyes, you are surprised to find that you're not on the battlefield but back in the library once again. <br>
 <br>
@@ -11775,7 +11775,7 @@ You decide that you'll hand the assignment in this time and <<link "go back late
 <</theyr>>
 
 
-:: Xochimilco [Done Breaks] {"position":"5675,1875","size":"100,100"}
+:: Xochimilco [Done Breaks] {"position":"2525,50","size":"100,100"}
 If you are to survive your journey, you will need to stop first at the place of flowers. Be careful as you seek what you came for, as you could easily get stuck in the mud.<br>
 <br>
 
@@ -11804,7 +11804,7 @@ This city is <<textbox "$Xochimilco_Ans_T" "">><br>
 <</switch>>
 
 
-:: Xochimilco 2 [Done Breaks] {"position":"5175,1850","size":"100,100"}
+:: Xochimilco 2 [Done Breaks] {"position":"2675,50","size":"100,100"}
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Xochimilco_Ans_A>><br>
@@ -11850,7 +11850,7 @@ Your answer is incorrect. You may [[try again|Xochimilco]], or you may return to
 <</switch>>
 
 
-:: return to the library_no door [Done Breaks] {"position":"4700,3075","size":"100,100"}
+:: return to the library_no door [Done Breaks] {"position":"1975,2575","size":"100,100"}
 <<theyr>>
 You made it through a full day of classes, but it was torture. You couldn't concentrate on anything because all you could think about was that mysterious room and the history assignment you don't remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.<br>
 <br>
@@ -11863,7 +11863,7 @@ You arrive on the top floor and round the corner but you can't find the door! Yo
 <</theyr>>
 
 
-:: test equations {"position":"5725,4700","size":"100,100"}
+:: test equations {"position":"4350,850","size":"100,100"}
 <<theyr>>
 <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 <br>
@@ -11900,7 +11900,7 @@ Set Final Totals<br>
 <</theyr>>
 
 
-:: test equations outcome {"position":"5850,4400","size":"100,100"}
+:: test equations outcome {"position":"4475,550","size":"100,100"}
 <<theyr>>
 <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 <br>
@@ -11921,7 +11921,7 @@ Set Final Totals<br>
 <</theyr>>
 
 
-:: the Omens [Done] {"position":"3150,250","size":"100,100"}
+:: the Omens [Done] {"position":"2825,925","size":"100,100"}
 <<theyr>>
 <<switch $users[$userId]["role"]>>
 <<case "Aztec_Priest">>
