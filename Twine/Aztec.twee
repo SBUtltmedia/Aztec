@@ -1229,7 +1229,7 @@ This city is <<textbox "$Azcapotzalco_Ans_T" "">><br>
 <<print $Azcapotzalco_Ans_A>><br>
 <br>
 <<if def $Azcapotzalco_Ans_A and $Azcapotzalco_Ans_A isnot 0 and $Azcapotzalco_Ans_A isnot "">>
-<<storeSet $Azcapotzalco_Ans_A to $Azcapotzalco_Ans_A.toLowerCase()>>
+<<storeSet $Azcapotzalco_Ans_A = $Azcapotzalco_Ans_A.toLowerCase()>>
 <</if>>
 <<if ndef $Azcapotzalco_Ans_A or $Azcapotzalco_Ans_A eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Azcapotzalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -1250,7 +1250,7 @@ Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return
 <<print $Azcapotzalco_Ans_T>><br>
 <br>
 <<if def $Azcapotzalco_Ans_T and $Azcapotzalco_Ans_T isnot 0 and $Azcapotzalco_Ans_T isnot "">>
-<<storeSet $Azcapotzalco_Ans_T to $Azcapotzalco_Ans_T.toLowerCase()>>
+<<storeSet $Azcapotzalco_Ans_T = $Azcapotzalco_Ans_T.toLowerCase()>>
 <</if>>
 <<if ndef $Azcapotzalco_Ans_T or $Azcapotzalco_Ans_T eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Azcapotzalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -3102,7 +3102,7 @@ You've made it to Cholula!<br>
 Congratulations! You have beaten the Tlaxcalans and you may claim Quetzalcoatl's heart, which will increase your teams's strength by 5!<br>
 <br>
 
-<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<storeSet $A_Q_Heart to "yes">><<storeSet $factions["Aztecs"]["stats"]["Strength"]+=5>><</link>><br>
+<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<storeSet $A_Q_Heart = "yes">><<storeSet $factions["Aztecs"]["stats"]["Strength"]+=5>><</link>><br>
 <br>
 
 <<elseif $Quest_Leader_A is $users[$userId]["role"] and $T_Q_Heart is "yes">>
@@ -3135,7 +3135,7 @@ This is the [[end of your quest|End of Quest]].<br>
 Congratulations! You have beaten the Mexica and you may claim Quetzalcoatl's heart, which will increase your teams's strength by 5!<br>
 <br>
 
-<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<storeSet $T_Q_Heart to "yes">><<storeSet $factions["Tlaxcalans"]["stats"]["Strength"]+=5>><</link>><br>
+<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<storeSet $T_Q_Heart = "yes">><<storeSet $factions["Tlaxcalans"]["stats"]["Strength"]+=5>><</link>><br>
 <br>
 
 <<elseif $Quest_Leader_T is $users[$userId]["role"] and $A_Q_Heart is "yes">>
@@ -4034,7 +4034,7 @@ This city is <<textbox "$Cuauhnahuac_Ans_T" "">><br>
 <<print $Cuauhnahuac_Ans_A>><br>
 <br>
 <<if def $Cuauhnahuac_Ans_A and $Cuauhnahuac_Ans_A isnot 0 and $Cuauhnahuac_Ans_A isnot "">>
-<<storeSet $Cuauhnahuac_Ans_A to $Cuauhnahuac_Ans_A.toLowerCase()>>
+<<storeSet $Cuauhnahuac_Ans_A = $Cuauhnahuac_Ans_A.toLowerCase()>>
 <</if>>
 <<if ndef $Cuauhnahuac_Ans_A or $Cuauhnahuac_Ans_A eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Cuauhnahuac]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -4055,7 +4055,7 @@ Your answer is incorrect.  You may [[try again|Cuauhnahuac]], or you may return 
 <<print $Cuauhnahuac_Ans_T>><br>
 <br>
 <<if def $Cuauhnahuac_Ans_T and $Cuauhnahuac_Ans_T isnot 0 and $Cuauhnahuac_Ans_T isnot "">>
-<<storeSet $Cuauhnahuac_Ans_T to $Cuauhnahuac_Ans_T.toLowerCase()>>
+<<storeSet $Cuauhnahuac_Ans_T = $Cuauhnahuac_Ans_T.toLowerCase()>>
 <</if>>
 <<if ndef $Cuauhnahuac_Ans_T or $Cuauhnahuac_Ans_T eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Cuauhnahuac]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -9374,7 +9374,7 @@ This city is <<textbox "$Tlatelolco_Ans_T" "">><br>
 <<print $Tlatelolco_Ans_A>><br>
 <br>
 <<if def $Tlatelolco_Ans_A and $Tlatelolco_Ans_A isnot 0 and $Tlatelolco_Ans_A isnot "">>
-<<storeSet $Tlatelolco_Ans_A to $Tlatelolco_Ans_A.toLowerCase()>>
+<<storeSet $Tlatelolco_Ans_A = $Tlatelolco_Ans_A.toLowerCase()>>
 <</if>>
 <<if ndef $Tlatelolco_Ans_A or $Tlatelolco_Ans_A eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Tlatelolco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -9395,7 +9395,7 @@ Your answer is incorrect.  You may [[try again|Tlatelolco]], or you may return t
 <<print $Tlatelolco_Ans_T>><br>
 <br>
 <<if def $Tlatelolco_Ans_T and $Tlatelolco_Ans_T isnot 0 and $Tlatelolco_Ans_T isnot "">>
-<<storeSet $Tlatelolco_Ans_T to $Tlatelolco_Ans_T.toLowerCase()>>
+<<storeSet $Tlatelolco_Ans_T = $Tlatelolco_Ans_T.toLowerCase()>>
 <</if>>
 <<if ndef $Tlatelolco_Ans_T or $Tlatelolco_Ans_T eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Tlatelolco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -11806,7 +11806,7 @@ This city is <<textbox "$Xochimilco_Ans_T" "">><br>
 <<print $Xochimilco_Ans_A>><br>
 <br>
 <<if def $Xochimilco_Ans_A and $Xochimilco_Ans_A isnot 0 and $Xochimilco_Ans_A isnot "">>
-<<storeSet $Xochimilco_Ans_A to $Xochimilco_Ans_A.toLowerCase()>>
+<<storeSet $Xochimilco_Ans_A = $Xochimilco_Ans_A.toLowerCase()>>
 <</if>>
 <<if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq "">>
 You have not yet submitted an answer to this challenge. You may [[try again|Xochimilco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].<br>
@@ -11827,7 +11827,7 @@ Your answer is incorrect.  You may [[try again|Xochimilco]], or you may return t
 <<print $Xochimilco_Ans_T>><br>
 <br>
 <<if def $Xochimilco_Ans_T and $Xochimilco_Ans_T isnot 0 and $Xochimilco_Ans_T isnot "">>
-<<storeSet $Xochimilco_Ans_T to $Xochimilco_Ans_T.toLowerCase()>>
+<<storeSet $Xochimilco_Ans_T = $Xochimilco_Ans_T.toLowerCase()>>
 <</if>>
 
 <<if ndef $Xochimilco_Ans_T or $Xochimilco_Ans_T eq "">>
