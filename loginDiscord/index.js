@@ -172,6 +172,7 @@ function makeUserDataJSON(initObject, response) {
 		"Aztecs_currentMap": 0,
 		"Start_ctr": 0,
 		"Start_sum": 0,
+		"Start": 0,
 		"Xicotencatl_Elder_currentPassage": 0,
 		"Tlax_Leader": "Xicotencatl_Elder",
 		"Quest_Leader_T": "Xicotencatl_Younger",
