@@ -6468,7 +6468,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</theyr>>
 
 
-:: PassageHeader {"position":"4300,1200","size":"100,100"}
+:: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
 <<storeSet _roles = {
   "Marina": {
@@ -6579,26 +6579,30 @@ Along your journey, you have met many people. Some have been willing allies of t
 	<<storeSet $users[$userId]["passage"] = passage()>> 
 <</if>>
 
-<<for _i, _data range _factionUsers>>
-	<<for _id range _data>>
-		<<set _userlist.push(_id)>>
-	<</for>>
-<</for>>
+/* adds background image to screen */
+<<script>>
+	let imageURL = State.getVar("$users[$userId]['faction']");
+	if(State.passage == "Home"){
+		$("#story").addClass("playerList");
+		imageURL = "Home";
+	}else{
+		$("#story").removeClass("playerList");
+	}
 
-/* Object.keys(factions).forEach(faction=>{
-	
+	$('#story').css({
+		'backgroundImage': `url(Twine/images/Borders/${imageURL}.jpg)`
+	}
+	)
 
-<<set $users[$userId]["passage"] = passage()>> 
-/* <<print $userId>>
-<<print $users[$userId]["faction"]>> */
-/* <<print $users[$userId]["character"]>> */
-/* <<print $users[$userId]["username"]>> */
+
+<</script>>
 
 /* Updates user's latest logon time */
 <<storeSet $users[$userId]["lastSeen"]=new Date().getTime()>>
 <</theyr>>
 
 /* updates user's last log in time */
+
 
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
@@ -9161,15 +9165,7 @@ You are waiting for Tlacaelel to input his decision.<br>
 
 :: The Library [Done] {"position":"3875,1275","size":"100,100"}
 <<theyr>>
-/* <<discord spanish>> Contents of discord tag <</discord>> */
-/* <<for _i, _name range $users>>
-	<<if $users[$userId].faction == _name.faction>>
-		<<print _name.Character>>
-		<<print _name.lastSeen>>
-		<br>
-		
-	<</if>>
-<</for>> */
+
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
 <br>
 It's 7 pm and the library is more crowded than usual. It looks like you're not the only one with a mountain of work to do this week! There's no way you'll be able to focus in the midst of so many people. Maybe the top floor is quieter. You head upstairs towards the study carrels, but they're all taken. It's dead quiet up here, but there's nowhere to work. You begin wandering down unfamiliar hallways, poking your head into all the different rooms, but none of them work. You're beginning to get frustrated when you notice a door you've never seen before. It's tucked into an alcove in the very back corner of the building. You decide to check this one last spot before you give up and join the masses downstairs. <br>
