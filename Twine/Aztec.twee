@@ -6548,9 +6548,9 @@ Along your journey, you have met many people. Some have been willing allies of t
   }
 }
 		>>
-<<storeSet _macro = 23>>
+/* <<storeSet _macro = 23>>
 <<storeSet $test = "Test">>
-<<storeSet $test = $test.toLowerCase()>>
+<<storeSet $test = $test.toLowerCase()>> */
 /* <<run changeStats("Aztec_Priest",{"Wisdom":2,"Loyalty":0,"Strength":0})>> */
 /* <<storeSet $users[$userId]["stats"]["Strength"] -= 1>> */
 
@@ -6575,7 +6575,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</if>>
 
 /* updates user's current passage */
-<<if passage() != Config.passages.start && passage() != "Home">>
+<<if passage() != Config.passages.start && passage() != "Home" && $users[$userId]["passage"] != passage()>>
 	<<storeSet $users[$userId]["passage"] = passage()>> 
 <</if>>
 
@@ -6598,11 +6598,10 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</script>>
 
 /* Updates user's latest logon time */
-<<storeSet $users[$userId]["lastSeen"]=new Date().getTime()>>
+/* <<storeSet $users[$userId]["lastSeen"]=new Date().getTime()>> */
 <</theyr>>
 
 /* updates user's last log in time */
-
 
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
@@ -8796,20 +8795,20 @@ List of valid roles and their info */
 
 
 /* Not seen user is for testing purposes. Anytime a non-existing user's stats are needed, they will be directed to this temp user */
-<<if ndef $users["Not seen"]>>
-<<storeSet $users["Not seen"] = {
+<<if ndef $users["notSeen"]>>
+<<storeSet $users["notSeen"] = {
 		"stats" : {
 			"Loyalty" : 0,
 			"Strength" : 0,
 			"Wisdom" : 0
 		},
 		"character" : "Not seen",
-		"faction" : "Not seen",
-		"isLeader" : "Not seen",
+		"faction" : "notSeen",
+		"isLeader" : "notSeen",
 		"lastSeen" : 0,
 		"passage" : "Name Not Recognized",
-		"role" : "Not seen",
-		"username" : "Not seen"
+		"role" : "notSeen",
+		"username" : "notSeen"
 	}>>
 <</if>>
 
@@ -8843,7 +8842,7 @@ List of valid roles and their info */
 <<if ndef $lookup>>
 	<<storeSet $lookup = {}>>
 	<<for _user, _data  range _roles>>
-		<<storeSet $lookup[_user] = "Not Seen">>
+		<<storeSet $lookup[_user] = "notSeen">>
 	<</for>>
 <</if>>
 
