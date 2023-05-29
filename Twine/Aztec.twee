@@ -6619,9 +6619,10 @@ Along your journey, you have met many people. Some have been willing allies of t
 <br>
 
 <</if>>
-
 <<set _currentTime=new Date()>>
-<<set $users[$userId].lastSeen=_currentTime.getTime()>>  
+<<if _currentTime.getTime() - $users[$userId]["lastSeen"] > 10000>>
+	<<storeSet $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
+<</if>>
 <</theyr>>
 
 
@@ -12063,7 +12064,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 	<</if>>
 
   /* If user has not been on lately, put them in the offline group */
-	<<if new Date().getTime() - _data["lastSeen"] < 100>>
+	<<if new Date().getTime() - _data["lastSeen"] < 10000>>
 		<<set _factionUsers[_faction].push(_id)>>
 		<<set _userCount[_faction] = (_userCount[_faction] + 1)>>
 	<<else>>

@@ -208,7 +208,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -6036,9 +6036,10 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;br&gt;
 
 &lt;&lt;/if&gt;&gt;
-
 &lt;&lt;set _currentTime=new Date()&gt;&gt;
-&lt;&lt;set $users[$userId].lastSeen=_currentTime.getTime()&gt;&gt;  
+&lt;&lt;if _currentTime.getTime() - $users[$userId][&quot;lastSeen&quot;] &gt; 10000&gt;&gt;
+	&lt;&lt;storeSet $users[$userId][&quot;lastSeen&quot;]=_currentTime.getTime()&gt;&gt;  
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="165" name="Return to the Library_Another Door" tags="" position="2300,5775" size="100,100">&lt;&lt;theyr&gt;&gt;
 &lt;&lt;audio &quot;Library&quot; play&gt;&gt;
 
@@ -10868,7 +10869,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 	&lt;&lt;/if&gt;&gt;
 
   /* If user has not been on lately, put them in the offline group */
-	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 100&gt;&gt;
+	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 10000&gt;&gt;
 		&lt;&lt;set _factionUsers[_faction].push(_id)&gt;&gt;
 		&lt;&lt;set _userCount[_faction] = (_userCount[_faction] + 1)&gt;&gt;
 	&lt;&lt;else&gt;&gt;
