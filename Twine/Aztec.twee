@@ -12115,7 +12115,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 						</div>
 					</div>
 					<div class="rolePanelDetails">
-						<<print "Last seen: N/A">>
+						<<print "Last seen: " + $users[$userId]["lastSeen"]>>
 						<br />
 						<<print "Details:">>
 						<br />
