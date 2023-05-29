@@ -390,7 +390,9 @@ function initTheyr(lockInfo) {
     function updateSugarCubeState(new_state) {
         for (const [key, value] of Object.entries(new_state)) {
             // console.log({key,value})
-            Window.SugarCubeState.variables[key] = value
+            let temp = _.merge(Window.SugarCubeState.variables, new_state);
+            Window.SugarCubeState.variables = temp
+            // Window.SugarCubeState.variables[key] = value
         }
     }
 }
