@@ -2465,7 +2465,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 
 :: Battle Outcome Aztecs Versus Spaniards 2 {"position":"3725,14100","size":"100,100"}
 <<theyr>>
-<<if $Final_Aztec Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
+<<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -2485,7 +2485,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 
 :: Battle Outcome Aztecs Versus Spaniards 3 {"position":"3200,12250","size":"100,100"}
 <<theyr>>
-<<if $Final_Aztec Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
+<<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
