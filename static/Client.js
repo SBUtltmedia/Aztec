@@ -392,7 +392,8 @@ function initTheyr(lockInfo) {
             // console.log({key,value})
             let temp = _.merge(Window.SugarCubeState.variables, new_state);
             Window.SugarCubeState.variables = temp
-            // Window.SugarCubeState.variables[key] = value
+
         }
+        $(document).trigger(":liveupdate");
     }
 }
