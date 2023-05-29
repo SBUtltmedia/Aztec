@@ -208,7 +208,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -1194,7 +1194,7 @@ This city is &lt;&lt;textbox &quot;$Azcapotzalco_Ans_T&quot; &quot;&quot;&gt;&gt
 &lt;&lt;print $Azcapotzalco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Azcapotzalco_Ans_A and $Azcapotzalco_Ans_A isnot 0 and $Azcapotzalco_Ans_A isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Azcapotzalco_Ans_A to $Azcapotzalco_Ans_A.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Azcapotzalco_Ans_A = $Azcapotzalco_Ans_A.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Azcapotzalco_Ans_A or $Azcapotzalco_Ans_A eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Azcapotzalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -1215,7 +1215,7 @@ Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return
 &lt;&lt;print $Azcapotzalco_Ans_T&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Azcapotzalco_Ans_T and $Azcapotzalco_Ans_T isnot 0 and $Azcapotzalco_Ans_T isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Azcapotzalco_Ans_T to $Azcapotzalco_Ans_T.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Azcapotzalco_Ans_T = $Azcapotzalco_Ans_T.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Azcapotzalco_Ans_T or $Azcapotzalco_Ans_T eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Azcapotzalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -2318,7 +2318,7 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="Battle Outcome Aztecs Versus Spaniards 2" tags="" position="3725,14100" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Final_Aztec Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
+&lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
 You wait for the haze of war to clear.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
@@ -2334,7 +2334,7 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="Battle Outcome Aztecs Versus Spaniards 3" tags="" position="3200,12250" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;if $Final_Aztec Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
+&lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
 You wait for the haze of war to clear.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
@@ -2871,7 +2871,7 @@ You&#39;ve made it to Cholula!&lt;br&gt;
 Congratulations! You have beaten the Tlaxcalans and you may claim Quetzalcoatl&#39;s heart, which will increase your teams&#39;s strength by 5!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;link &quot;Claim Quetzalcoatl&#39;s Heart&quot; &quot;End of Quest&quot;&gt;&gt;&lt;&lt;storeSet $A_Q_Heart to &quot;yes&quot;&gt;&gt;&lt;&lt;storeSet $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;link &quot;Claim Quetzalcoatl&#39;s Heart&quot; &quot;End of Quest&quot;&gt;&gt;&lt;&lt;storeSet $A_Q_Heart = &quot;yes&quot;&gt;&gt;&lt;&lt;storeSet $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Quest_Leader_A is $users[$userId][&quot;role&quot;] and $T_Q_Heart is &quot;yes&quot;&gt;&gt;
@@ -2904,7 +2904,7 @@ This is the [[end of your quest|End of Quest]].&lt;br&gt;
 Congratulations! You have beaten the Mexica and you may claim Quetzalcoatl&#39;s heart, which will increase your teams&#39;s strength by 5!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;link &quot;Claim Quetzalcoatl&#39;s Heart&quot; &quot;End of Quest&quot;&gt;&gt;&lt;&lt;storeSet $T_Q_Heart to &quot;yes&quot;&gt;&gt;&lt;&lt;storeSet $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;link &quot;Claim Quetzalcoatl&#39;s Heart&quot; &quot;End of Quest&quot;&gt;&gt;&lt;&lt;storeSet $T_Q_Heart = &quot;yes&quot;&gt;&gt;&lt;&lt;storeSet $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Quest_Leader_T is $users[$userId][&quot;role&quot;] and $A_Q_Heart is &quot;yes&quot;&gt;&gt;
@@ -3703,7 +3703,7 @@ This city is &lt;&lt;textbox &quot;$Cuauhnahuac_Ans_T&quot; &quot;&quot;&gt;&gt;
 &lt;&lt;print $Cuauhnahuac_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Cuauhnahuac_Ans_A and $Cuauhnahuac_Ans_A isnot 0 and $Cuauhnahuac_Ans_A isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Cuauhnahuac_Ans_A to $Cuauhnahuac_Ans_A.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Cuauhnahuac_Ans_A = $Cuauhnahuac_Ans_A.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Cuauhnahuac_Ans_A or $Cuauhnahuac_Ans_A eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Cuauhnahuac]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -3724,7 +3724,7 @@ Your answer is incorrect.  You may [[try again|Cuauhnahuac]], or you may return 
 &lt;&lt;print $Cuauhnahuac_Ans_T&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Cuauhnahuac_Ans_T and $Cuauhnahuac_Ans_T isnot 0 and $Cuauhnahuac_Ans_T isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Cuauhnahuac_Ans_T to $Cuauhnahuac_Ans_T.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Cuauhnahuac_Ans_T = $Cuauhnahuac_Ans_T.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Cuauhnahuac_Ans_T or $Cuauhnahuac_Ans_T eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Cuauhnahuac]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -5969,9 +5969,9 @@ Along your journey, you have met many people. Some have been willing allies of t
   }
 }
 		&gt;&gt;
-&lt;&lt;storeSet _macro = 23&gt;&gt;
+/* &lt;&lt;storeSet _macro = 23&gt;&gt;
 &lt;&lt;storeSet $test = &quot;Test&quot;&gt;&gt;
-&lt;&lt;storeSet $test = $test.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $test = $test.toLowerCase()&gt;&gt; */
 /* &lt;&lt;run changeStats(&quot;Aztec_Priest&quot;,{&quot;Wisdom&quot;:2,&quot;Loyalty&quot;:0,&quot;Strength&quot;:0})&gt;&gt; */
 /* &lt;&lt;storeSet $users[$userId][&quot;stats&quot;][&quot;Strength&quot;] -= 1&gt;&gt; */
 
@@ -5996,7 +5996,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;/if&gt;&gt;
 
 /* updates user&#39;s current passage */
-&lt;&lt;if passage() != Config.passages.start &amp;&amp; passage() != &quot;Home&quot;&gt;&gt;
+&lt;&lt;if passage() != Config.passages.start &amp;&amp; passage() != &quot;Home&quot; &amp;&amp; $users[$userId][&quot;passage&quot;] != passage()&gt;&gt;
 	&lt;&lt;storeSet $users[$userId][&quot;passage&quot;] = passage()&gt;&gt; 
 &lt;&lt;/if&gt;&gt;
 
@@ -6019,7 +6019,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;/script&gt;&gt;
 
 /* Updates user&#39;s latest logon time */
-&lt;&lt;storeSet $users[$userId][&quot;lastSeen&quot;]=new Date().getTime()&gt;&gt;
+/* &lt;&lt;storeSet $users[$userId][&quot;lastSeen&quot;]=new Date().getTime()&gt;&gt; */
 &lt;&lt;/theyr&gt;&gt;
 
 /* updates user&#39;s last log in time */</tw-passagedata><tw-passagedata pid="164" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
@@ -8024,20 +8024,20 @@ List of valid roles and their info */
 
 
 /* Not seen user is for testing purposes. Anytime a non-existing user&#39;s stats are needed, they will be directed to this temp user */
-&lt;&lt;if ndef $users[&quot;Not seen&quot;]&gt;&gt;
-&lt;&lt;storeSet $users[&quot;Not seen&quot;] = {
+&lt;&lt;if ndef $users[&quot;notSeen&quot;]&gt;&gt;
+&lt;&lt;storeSet $users[&quot;notSeen&quot;] = {
 		&quot;stats&quot; : {
 			&quot;Loyalty&quot; : 0,
 			&quot;Strength&quot; : 0,
 			&quot;Wisdom&quot; : 0
 		},
 		&quot;character&quot; : &quot;Not seen&quot;,
-		&quot;faction&quot; : &quot;Not seen&quot;,
-		&quot;isLeader&quot; : &quot;Not seen&quot;,
+		&quot;faction&quot; : &quot;notSeen&quot;,
+		&quot;isLeader&quot; : &quot;notSeen&quot;,
 		&quot;lastSeen&quot; : 0,
 		&quot;passage&quot; : &quot;Name Not Recognized&quot;,
-		&quot;role&quot; : &quot;Not seen&quot;,
-		&quot;username&quot; : &quot;Not seen&quot;
+		&quot;role&quot; : &quot;notSeen&quot;,
+		&quot;username&quot; : &quot;notSeen&quot;
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -8071,7 +8071,7 @@ List of valid roles and their info */
 &lt;&lt;if ndef $lookup&gt;&gt;
 	&lt;&lt;storeSet $lookup = {}&gt;&gt;
 	&lt;&lt;for _user, _data  range _roles&gt;&gt;
-		&lt;&lt;storeSet $lookup[_user] = &quot;Not Seen&quot;&gt;&gt;
+		&lt;&lt;storeSet $lookup[_user] = &quot;notSeen&quot;&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -8518,7 +8518,7 @@ This city is &lt;&lt;textbox &quot;$Tlatelolco_Ans_T&quot; &quot;&quot;&gt;&gt;&
 &lt;&lt;print $Tlatelolco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Tlatelolco_Ans_A and $Tlatelolco_Ans_A isnot 0 and $Tlatelolco_Ans_A isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Tlatelolco_Ans_A to $Tlatelolco_Ans_A.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Tlatelolco_Ans_A = $Tlatelolco_Ans_A.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Tlatelolco_Ans_A or $Tlatelolco_Ans_A eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Tlatelolco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -8539,7 +8539,7 @@ Your answer is incorrect.  You may [[try again|Tlatelolco]], or you may return t
 &lt;&lt;print $Tlatelolco_Ans_T&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Tlatelolco_Ans_T and $Tlatelolco_Ans_T isnot 0 and $Tlatelolco_Ans_T isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Tlatelolco_Ans_T to $Tlatelolco_Ans_T.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Tlatelolco_Ans_T = $Tlatelolco_Ans_T.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Tlatelolco_Ans_T or $Tlatelolco_Ans_T eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Tlatelolco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -10630,7 +10630,7 @@ This city is &lt;&lt;textbox &quot;$Xochimilco_Ans_T&quot; &quot;&quot;&gt;&gt;&
 &lt;&lt;print $Xochimilco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Xochimilco_Ans_A and $Xochimilco_Ans_A isnot 0 and $Xochimilco_Ans_A isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Xochimilco_Ans_A to $Xochimilco_Ans_A.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Xochimilco_Ans_A = $Xochimilco_Ans_A.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq &quot;&quot;&gt;&gt;
 You have not yet submitted an answer to this challenge. You may [[try again|Xochimilco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
@@ -10651,7 +10651,7 @@ Your answer is incorrect.  You may [[try again|Xochimilco]], or you may return t
 &lt;&lt;print $Xochimilco_Ans_T&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if def $Xochimilco_Ans_T and $Xochimilco_Ans_T isnot 0 and $Xochimilco_Ans_T isnot &quot;&quot;&gt;&gt;
-&lt;&lt;storeSet $Xochimilco_Ans_T to $Xochimilco_Ans_T.toLowerCase()&gt;&gt;
+&lt;&lt;storeSet $Xochimilco_Ans_T = $Xochimilco_Ans_T.toLowerCase()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if ndef $Xochimilco_Ans_T or $Xochimilco_Ans_T eq &quot;&quot;&gt;&gt;

@@ -73,18 +73,24 @@ class Webstack {
 		shutdown(signal) {
 			return (err) => {
 			 console.log('doing stuff', signal)
-			let content = {"signal":signal,...this.serverStore.getState()}
+
+			let state = this.serverStore.getState();
+			console.log("state gotten");
+			let content = {"signal":signal, ...this.serverStore.getState()};
+			console.log("content made")
 			 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
 				fileName: `aztec-${this.appIndex}.json`,
 				...this.serverConf})
 				console.log("savejosn madew")
+			
 			  this.saveJSON.uploadFileApi().then(
 				() => {
 					console.log(err)
 					process.exit(err ? 1 : 0);
 				}).catch(err=>{
 					console.log(err)
-					process.exit()})
+					process.exit()
+				})
 			 }
 			};
 	  
