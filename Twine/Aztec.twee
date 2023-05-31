@@ -8713,7 +8713,7 @@ List of valid roles and their info */
 <<storeSet _roles = {
   "Marina": {
     "faction": "Spaniards",
-    "Character": "Doña Marina/Malinche",
+    "Character": "Do&#xf1;a Marina/Malinche",
     "isLeader": "FALSE"
   },
   "Alvarado": {
@@ -8723,7 +8723,7 @@ List of valid roles and their info */
   },
   "Aguilar": {
     "faction": "Spaniards",
-    "Character": "Gerónimo de Aguilar",  
+    "Character": "Ger&#xf3;nimo de Aguilar",  
     "isLeader": "FALSE"
   },
   "Garrido": {
@@ -8733,7 +8733,7 @@ List of valid roles and their info */
   },
   "Olid": {
     "faction": "Spaniards",
-    "Character": "Cristóbal de Olid",
+    "Character": "Crist&#xf3;bal de Olid",
     "isLeader": "FALSE"
   },
   "Cortes": {
@@ -8753,7 +8753,7 @@ List of valid roles and their info */
   },
   "Cuauhtemoc": {
     "faction": "Aztecs",
-    "Character": "Cuauhtémoc",
+    "Character": "Cuauht&#xe9;moc",
     "isLeader": "FALSE"
   },
   "Aztec_Priest": {
@@ -8763,7 +8763,7 @@ List of valid roles and their info */
   },
   "Cacamatzin": {
     "faction": "Aztecs",
-    "Character": "Cacamatzín",
+    "Character": "Cacamatz&#xed;n",
     "isLeader": "FALSE"
   },
   "Pochteca": {
