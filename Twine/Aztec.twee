@@ -97,6 +97,7 @@ importScripts([
     }
 	});
 	
+
 	Macro.add('storeSet', {
     handler: function() {
 		//saves the key of the value that is being set
@@ -6610,9 +6611,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 /* <<storeSet _menuPassages = {"Name Not Recognized":0,"Home":0}>> */
 
 <<if passage() != "Home">>
-	<<if !(Object.keys($users[$userId]["passageHistory"]).includes(passage()))>>
+	<<if !Object.keys($passageHistory[$userId]).includes(passage())>>
 		<<set _currPassage = passage()>>
-		<<storeSet $users[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
+		<<storeSet $passageHistory[$userId][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
 	<</if>>
 	
 
@@ -8847,7 +8848,7 @@ List of valid roles and their info */
 	<</for>>
 <</if>>
 
-
+<<run getHistory($userId)>>
 /* inits userdata in $users */
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<storeSet $users[$userId] = {}>>
@@ -8861,7 +8862,7 @@ console.log("new user detected")
 <<storeSet $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<storeSet $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<storeSet $users[$userId]["passage"] = Config.passages.start>>
-<<storeSet $users[$userId]["passageHistory"] = {}>>
+<<storeSet $passageHistory[$userId] = {test:"test"}>>
 <<storeSet $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
@@ -12011,7 +12012,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
-
 /* Prints list of previous passages for user to recollect */
 <div id="info">
 
@@ -12022,7 +12022,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<br>
 
   /* loop to make buttons for showing text of previous passages */
-	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
+	<<for _passageName, _passageText range $passageHistory[$userId]>>
 		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
 
 		<br>
@@ -12102,7 +12102,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="`+$users[_userId]['role']+`">			
-				<img class = "playerImage" src = "Twine\\images\\characters\\icon_placeholder.png" style="border-color: #D19700;"> 
+				<img class = "playerImage" src = "Twine\\images\\characters\\icon_placeholder.png" style="border-color: `+_factionColor[$users[_userId]['role']]+`;"> 
 				
 				<div class="rolePanel">
 					<img class="rolePanelImage" src = "Twine\\images\\characters\\icon_placeholder.png">
