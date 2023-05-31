@@ -12052,6 +12052,24 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 /* Defines border colors for each faction */
 <<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder"}>>
 
+<<set _userSvgPicture = {
+	"Do&#xf1;a Marina/Malinche":"Twine/images/characters/Marina.svg",
+	"Pedro de Alvarado":"Twine/images/characters/Alvarado.svg",
+	"Ger&#xf3;nimo de Aguilar":"Twine/images/characters/Aguilar.svg",
+	"Juan Garrido":"Twine/images/characters/Garrido.svg",
+	"Crist&#xf3;bal de Olid":"Twine/images/characters/Cristobal.svg",
+	"Hern&#xe1;n Cort&#xe9;s":"Twine/images/characters/Cortes.svg",
+	"Moctezuma":"Twine/images/characters/Moctezuma.svg",
+	"Tlacaelel Xocoyotl (aka Tlacaelel the Younger)":"Twine/images/characters/Tlacaelel.svg",
+	"Cuauht&#xe9;moc":"Twine/images/characters/Cuauhtemoc.svg",
+	"Aztec Priest":"Twine/images/characters/Aztec Priest.svg",
+	"Cacamatz&#xed;n":"Twine/images/characters/Cacamatzin.svg",
+	"Pochteca":"Twine/images/characters/Pochteca.svg",
+	"Xicotencatl the Elder":"Twine/images/characters/Xicotencatl the Elder.svg",
+	"Xicotencatl the Younger":"Twine/images/characters/Xicotencatl the Younger.svg",
+	"Maxixcatl": "Twine/images/characters/Maxixcatl.svg"
+}>>
+
 /* _id: discord id for each user
 _data: object with user properties (to access user's passage just use _data["passage"]) */
 <<for _id, _data range $users>>
@@ -12075,13 +12093,14 @@ _data: object with user properties (to access user's passage just use _data["pas
 
   /* creates sidebar with users */
   <div id = "playerClient">
-      <img id = "playerImageClient" src = "Twine/images/characters/Tlacaelel.svg">
+  		<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "Twine/images/characters/Tlacaelel.svg"> `>>
+      
       <div id = "playerTextClient">
         <div id="printUserRoleClient"> 
           <<print $users[$userId]["character"]>>
         </div>
         <div id="printUserNameClient">
-          <<print "#" + $users[$userId]["username"] + $users[$userId]["discriminator"]>>
+          <<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
         </div>
       </div>
   </div>
@@ -12101,21 +12120,20 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<<for _j, _userId range _factionUsers[_faction]>>
 		<div id="playerSpaceBetween"></div>
 			<<print `
-				<div class = "player" id="`+$users[_userId]['role']+`">			
-				<img class = "playerImage spaniardBorder" src = "Twine/images/characters/icon_placeholder.png"> 
-				
+				<div class = "player" id="`+$users[_userId]['_faction']+`">			
+				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
 				<div class="rolePanel">
-					<img class="rolePanelImage" src = "Twine//images//characters//icon_placeholder.png">
+					<img class="rolePanelImage `+_factionColor[$users[_userId]["faction"]]+`" src = "Twine//images//characters//icon_placeholder.png">
 					<div class="rolePanelText">
 						<div class="rolePanelPrintUserRole"> 
-							<<print $users[$userId]["character"]>>
+							<<print $users[_userId]["character"]>>
 						</div>
 						<div class="rolePanelPrintUserName">
-							<<print "#" + $users[$userId]["username"] + $users[$userId]["discriminator"]>>
+							<<print $users[_userId]["username"] + "#" + $users[$userId]["discriminator"]>>
 						</div>
 					</div>
 					<div class="rolePanelDetails">
-						<<print "Last seen: " + $users[$userId]["lastSeen"]>>
+						<<print "Last seen: " + $users[_userId]["lastSeen"]>>
 						<br />
 						<<print "Details:">>
 						<br />
@@ -12133,13 +12151,16 @@ _data: object with user properties (to access user's passage just use _data["pas
 						`+$users[_userId]["character"]+`
 					</div>
 					<div class="printUserName">
-						<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+						<a href="https://discordapp.com/users/405918053226774538">
+							<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+						</a>
 					</div></div> 
 
 					
 
 				</div>
 				`>>
+				
 			<div id="playerSpaceBetween"></div>
 			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
 		<</for>>

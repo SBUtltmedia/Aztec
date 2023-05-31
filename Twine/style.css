@@ -486,6 +486,7 @@ max-width: 100% !important;
 height: 100% !important;
 overflow : hidden !important;
 }
+
 .home{
 width: 200% !important;
 }
@@ -523,9 +524,13 @@ width: 200% !important;
   height: 70%;
   top: 12%;
   overflow: hidden;
-  overflow-y: scroll !important;
+  overflow-y: auto ;
   -ms-overflow-style: none;  
   scrollbar-width: none;  
+}
+
+.playerList #info:hover {
+  overflow-y: scroll; /* Change to scroll on hover */
 }
 
 .playerList #passage {
@@ -612,7 +617,7 @@ small font size: 1.7rem
 
   border-radius: 50%;
   overflow: hidden;
-  border: 0.5rem solid #6C944D;
+  border: 0.5rem solid;
   object-fit: cover;
   margin-top: -1%;
 }
@@ -655,7 +660,6 @@ small font size: 1.7rem
   float: right;
 
   border-radius: 50%;
-  overflow: hidden;
   border: 0.25rem solid;
   object-fit: cover;
   margin-top: -1%;
@@ -666,10 +670,10 @@ small font size: 1.7rem
 
 }
 
-.playerList .printUserName{
+.playerList .printUserName a {
   color: #DAC8AC;
   font-size: 1.4rem; /* Significant FONT SIZE */
-
+  text-decoration: none;
 }
 
 .rolePanel {
@@ -678,7 +682,8 @@ small font size: 1.7rem
   height: 25rem; /* Set the desired height */
   background-color: #63503E; /* Optional background color */
   position: absolute;
-  left: -122%;
+  left: -122%; /* 119% and you can hover into it*/
+  margin-top: -3%;
   visibility: hidden;
 
   display: flex;
@@ -712,13 +717,13 @@ small font size: 1.7rem
 
 .rolePanelPrintUserRole {
   font-size: 1.6rem; /* Significant FONT SIZE */
-  white-space: nowrap;
+  
 }
 
 .rolePanelPrintUserName {
   color: #DAC8AC;
   font-size: 1.4rem; /* Significant FONT SIZE */
-  white-space: nowrap;
+  
 }
 
 .rolePanelDetails {
@@ -756,17 +761,17 @@ small font size: 1.7rem
   color: aqua;
 }
 
-.player .aztecBorder {
-  border-color: #6C944D;
+.player .aztecBorder, .aztecBorder {
+  border-color: #6C944D !important;
 
 }
 
-.player .spaniardBorder {
-  border-color: #B14A10;
+.player .spaniardBorder, .spaniardBorder {
+  border-color: #B14A10 !important;
 }
 
-.player .tlaxcalanBorder {
-  border-color: #D19700;
+.player .tlaxcalanBorder, .tlaxcalanBorder {
+  border-color: #D19700 !important; 
 }
 
 .player:hover .rolePanel {
