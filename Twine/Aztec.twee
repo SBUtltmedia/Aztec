@@ -8738,7 +8738,7 @@ List of valid roles and their info */
   },
   "Cortes": {
     "faction": "Spaniards",
-    "Character": "Hernán Cortés",
+    "Character": "Hern&#xe1;n Cort&#xe9;s",
     "isLeader": "TRUE"
   },
   "Moctezuma": {
@@ -12050,7 +12050,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <<set _totalUsers = 0>>
 
 /* Defines border colors for each faction */
-<<set _factionColor = {"Aztecs": "#6C944D", "Spaniards": "#B14A10", "Tlaxcalans": "#D19700"}>>
+<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder"}>>
 
 /* _id: discord id for each user
 _data: object with user properties (to access user's passage just use _data["passage"]) */
@@ -12075,10 +12075,10 @@ _data: object with user properties (to access user's passage just use _data["pas
 
   /* creates sidebar with users */
   <div id = "playerClient">
-      <img id = "playerImageClient" src = "Twine\images\characters\Tlacaelel.svg">
+      <img id = "playerImageClient" src = "Twine/images/characters/Tlacaelel.svg">
       <div id = "playerTextClient">
         <div id="printUserRoleClient"> 
-          <<print $users[$userId]["role"]>>
+          <<print $users[$userId]["character"]>>
         </div>
         <div id="printUserNameClient">
           <<print "#" + $users[$userId]["username"] + $users[$userId]["discriminator"]>>
@@ -12102,13 +12102,13 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="`+$users[_userId]['role']+`">			
-				<img class = "playerImage" src = "Twine\\images\\characters\\icon_placeholder.png" style="border-color: #D19700;"> 
+				<img class = "playerImage spaniardBorder" src = "Twine/images/characters/icon_placeholder.png"> 
 				
 				<div class="rolePanel">
-					<img class="rolePanelImage" src = "Twine\\images\\characters\\icon_placeholder.png">
+					<img class="rolePanelImage" src = "Twine//images//characters//icon_placeholder.png">
 					<div class="rolePanelText">
 						<div class="rolePanelPrintUserRole"> 
-							<<print $users[$userId]["role"]>>
+							<<print $users[$userId]["character"]>>
 						</div>
 						<div class="rolePanelPrintUserName">
 							<<print "#" + $users[$userId]["username"] + $users[$userId]["discriminator"]>>
@@ -12130,7 +12130,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 				<div class = "playerText">
 					<div class="printUserRole"> 
-						`+$users[_userId]["role"]+`
+						`+$users[_userId]["character"]+`
 					</div>
 					<div class="printUserName">
 						<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>

@@ -663,13 +663,13 @@ small font size: 1.7rem
 
 .playerList .printUserRole{
   font-size: 1.5rem; /* Significant FONT SIZE */
-  white-space: nowrap;
+
 }
 
 .playerList .printUserName{
   color: #DAC8AC;
   font-size: 1.4rem; /* Significant FONT SIZE */
-  white-space: nowrap;
+
 }
 
 .rolePanel {
@@ -754,6 +754,19 @@ small font size: 1.7rem
 
 .player #div{
   color: aqua;
+}
+
+.player .aztecBorder {
+  border-color: #6C944D;
+
+}
+
+.player .spaniardBorder {
+  border-color: #B14A10;
+}
+
+.player .tlaxcalanBorder {
+  border-color: #D19700;
 }
 
 .player:hover .rolePanel {
