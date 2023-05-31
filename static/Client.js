@@ -266,6 +266,7 @@ function diffSet(diffKey){
     let diff = currKey;
     console.log("diff:", currKey);
     socket.emit('difference',  diff)
+
 }
 
 /*
@@ -295,6 +296,14 @@ function SugarCubeToJavascript(key){
     return list;
 }
 
+function getHistory(id){
+    socket.emit('getHistory', id, (res) => {
+        console.log("history returned:", res);
+        let temp = _.merge(Window.SugarCubeState.variables,res);
+        Window.SugarCubeState.variables = temp
+    })
+}
+
 function initTheyr(lockInfo) {
     updateSugarCubeState(userData.gameState);
     socket = io();
@@ -308,7 +317,7 @@ function initTheyr(lockInfo) {
 
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
-        // console.log("Connecting state:", state)
+        console.log("Connecting state:", state)
         // console.log("Current State:", Window.SugarCubeState.variables)
         let combinedState = Object.assign({}, Window.SugarCubeState.variables,state)
         // console.log("Combined State", combinedState)
@@ -385,9 +394,9 @@ function initTheyr(lockInfo) {
 
     }
 
-
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
+        //remove all passagehistories besides the user's
         for (const [key, value] of Object.entries(new_state)) {
             // console.log({key,value})
             let temp = _.merge(Window.SugarCubeState.variables, new_state);

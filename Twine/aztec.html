@@ -170,6 +170,7 @@ importScripts([
     }
 	});
 	
+
 	Macro.add('storeSet', {
     handler: function() {
 		//saves the key of the value that is being set
@@ -208,7 +209,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -6027,9 +6028,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 /* &lt;&lt;storeSet _menuPassages = {&quot;Name Not Recognized&quot;:0,&quot;Home&quot;:0}&gt;&gt; */
 
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
-	&lt;&lt;if !(Object.keys($users[$userId][&quot;passageHistory&quot;]).includes(passage()))&gt;&gt;
+	&lt;&lt;if !Object.keys($passageHistory[$userId]).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
-		&lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
+		&lt;&lt;storeSet $passageHistory[$userId][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 
@@ -8076,7 +8077,7 @@ List of valid roles and their info */
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-
+&lt;&lt;run getHistory($userId)&gt;&gt;
 /* inits userdata in $users */
 &lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
 &lt;&lt;storeSet $users[$userId] = {}&gt;&gt;
@@ -8090,7 +8091,7 @@ console.log(&quot;new user detected&quot;)
 &lt;&lt;storeSet $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
-&lt;&lt;storeSet $users[$userId][&quot;passageHistory&quot;] = {}&gt;&gt;
+&lt;&lt;storeSet $passageHistory[$userId] = {test:&quot;test&quot;}&gt;&gt;
 &lt;&lt;storeSet $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -10816,7 +10817,6 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="317" name="Home" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
-
 /* Prints list of previous passages for user to recollect */
 &lt;div id=&quot;info&quot;&gt;
 
@@ -10827,7 +10827,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;br&gt;
 
   /* loop to make buttons for showing text of previous passages */
-	&lt;&lt;for _passageName, _passageText range $users[$userId][&quot;passageHistory&quot;]&gt;&gt;
+	&lt;&lt;for _passageName, _passageText range $passageHistory[$userId]&gt;&gt;
 		&lt;&lt;set _passageId = `passage-${_passageName.replaceAll(/\s/g, &#39;-&#39;)}`&gt;&gt;
 
 		&lt;br&gt;
@@ -10907,7 +10907,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;`+$users[_userId][&#39;role&#39;]+`&quot;&gt;			
-				&lt;img class = &quot;playerImage&quot; src = &quot;Twine\\images\\characters\\icon_placeholder.png&quot; style=&quot;border-color: #D19700;&quot;&gt; 
+				&lt;img class = &quot;playerImage&quot; src = &quot;Twine\\images\\characters\\icon_placeholder.png&quot; style=&quot;border-color: `+_factionColor[$users[_userId][&#39;role&#39;]]+`;&quot;&gt; 
 				
 				&lt;div class=&quot;rolePanel&quot;&gt;
 					&lt;img class=&quot;rolePanelImage&quot; src = &quot;Twine\\images\\characters\\icon_placeholder.png&quot;&gt;

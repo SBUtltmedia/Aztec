@@ -150,7 +150,8 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
-			return makeUserDataJSON({ gameState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } }, response);
+			let store = (({ passageHistory, ...o }) => o)(webstackInstance.serverStore.getState());
+			return makeUserDataJSON({ gameState: store, authData: { ...guildResultJson, ...userResultJson } }, response);
 
 
 			//return returnTwine(userDataJSON, response);
@@ -362,7 +363,8 @@ function makeUserDataJSON(initObject, response) {
 		"Sp_Peace": 0,
 		"Az_Peace": 0,
 		"Tl_Peace": 0,
-		"Tlax_Az_Peace": 0
+		"Tlax_Az_Peace": 0,
+		"passageHistory": {}
 	}
 	initObject.gameState = Object.assign({}, initVars, initObject.gameState)
 	return returnTwine(initObject, response)
@@ -386,10 +388,9 @@ function loadHome(response, isTest) {
 
 
 	if (isTest) {
-
-	
-
-		return makeUserDataJSON({ gameState: webstackInstance.serverStore.getState() }, response);
+		let store = (({ passageHistory, ...o }) => o)(webstackInstance.serverStore.getState());
+		delete store["passageHistory"]
+		return makeUserDataJSON({ gameState: store }, response);
 	}
 	else {
 		response.send(indexHtml);
