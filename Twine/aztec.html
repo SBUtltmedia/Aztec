@@ -8091,7 +8091,7 @@ console.log(&quot;new user detected&quot;)
 &lt;&lt;storeSet $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;storeSet $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
-&lt;&lt;storeSet $passageHistory[$userId] = {test:&quot;test&quot;}&gt;&gt;
+&lt;&lt;storeSet $passageHistory[$userId] = {}&gt;&gt;
 &lt;&lt;storeSet $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 

@@ -8862,7 +8862,7 @@ console.log("new user detected")
 <<storeSet $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<storeSet $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<storeSet $users[$userId]["passage"] = Config.passages.start>>
-<<storeSet $passageHistory[$userId] = {test:"test"}>>
+<<storeSet $passageHistory[$userId] = {}>>
 <<storeSet $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
