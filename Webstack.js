@@ -136,10 +136,11 @@ class Webstack {
 					type: 'UPDATE',
 					payload: diff
 				})
-				//sends message to all other clients
+				//sends message to all other clients unless passage History
 				// let extra = "heleo"
-				socket.broadcast.emit('difference', diff)
-				
+				if(!Object.keys(diff).includes("passageHistory")){
+					socket.broadcast.emit('difference', diff)
+				}
 			})
 
 
