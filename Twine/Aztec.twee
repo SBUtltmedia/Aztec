@@ -12124,7 +12124,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 				<div class = "player" id="`+$users[_userId]['_faction']+`">			
 				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
 				<div class="rolePanel">
-					<img class="rolePanelImage `+_factionColor[$users[_userId]["faction"]]+`" src = "Twine//images//characters//icon_placeholder.png">
+					<img class="rolePanelImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
 					<div class="rolePanelText">
 						<div class="rolePanelPrintUserRole"> 
 							<<print $users[_userId]["character"]>>
