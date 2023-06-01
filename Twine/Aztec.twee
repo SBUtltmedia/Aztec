@@ -12129,7 +12129,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 							<<print $users[_userId]["character"]>>
 						</div>
 						<div class="rolePanelPrintUserName">
-							<<print $users[_userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+							<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
 						</div>
 					</div>
 					<div class="rolePanelDetails">
@@ -12151,7 +12151,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 						`+$users[_userId]["character"]+`
 					</div>
 					<div class="printUserName">
-						<a href="https://discordapp.com/users/405918053226774538">
+						<a href="https://discordapp.com/users/`+$_userId+`">
 							<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
 						</a>
 					</div></div> 

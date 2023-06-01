@@ -10934,7 +10934,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 							&lt;&lt;print $users[_userId][&quot;character&quot;]&gt;&gt;
 						&lt;/div&gt;
 						&lt;div class=&quot;rolePanelPrintUserName&quot;&gt;
-							&lt;&lt;print $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+							&lt;&lt;print $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
 						&lt;/div&gt;
 					&lt;/div&gt;
 					&lt;div class=&quot;rolePanelDetails&quot;&gt;
@@ -10956,7 +10956,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 						`+$users[_userId][&quot;character&quot;]+`
 					&lt;/div&gt;
 					&lt;div class=&quot;printUserName&quot;&gt;
-						&lt;a href=&quot;https://discordapp.com/users/405918053226774538&quot;&gt;
+						&lt;a href=&quot;https://discordapp.com/users/`+$_userId+`&quot;&gt;
 							&lt;&lt;print  $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
 						&lt;/a&gt;
 					&lt;/div&gt;&lt;/div&gt; 
