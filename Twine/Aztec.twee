@@ -12057,17 +12057,18 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	"Pedro de Alvarado":"Twine/images/characters/Alvarado.svg",
 	"Ger&#xf3;nimo de Aguilar":"Twine/images/characters/Aguilar.svg",
 	"Juan Garrido":"Twine/images/characters/Garrido.svg",
-	"Crist&#xf3;bal de Olid":"Twine/images/characters/Cristobal.svg",
+	"Cristóbal de Olid":"Twine/images/characters/Cristobal.svg",
 	"Hern&#xe1;n Cort&#xe9;s":"Twine/images/characters/Cortes.svg",
 	"Moctezuma":"Twine/images/characters/Moctezuma.svg",
 	"Tlacaelel Xocoyotl (aka Tlacaelel the Younger)":"Twine/images/characters/Tlacaelel.svg",
 	"Cuauht&#xe9;moc":"Twine/images/characters/Cuauhtemoc.svg",
 	"Aztec Priest":"Twine/images/characters/Aztec Priest.svg",
-	"Cacamatz&#xed;n":"Twine/images/characters/Cacamatzin.svg",
+	"Cacamatzín":"Twine/images/characters/Cacamatzin.svg",
 	"Pochteca":"Twine/images/characters/Pochteca.svg",
 	"Xicotencatl the Elder":"Twine/images/characters/Xicotencatl the Elder.svg",
 	"Xicotencatl the Younger":"Twine/images/characters/Xicotencatl the Younger.svg",
-	"Maxixcatl": "Twine/images/characters/Maxixcatl.svg"
+	"Maxixcatl": "Twine/images/characters/Maxixcatl.svg",
+	"Not seen":"Twine/images/characters/icon_placeholder.png"
 }>>
 
 /* _id: discord id for each user
@@ -12151,7 +12152,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 						`+$users[_userId]["character"]+`
 					</div>
 					<div class="printUserName">
-						<a href="https://discordapp.com/users/`+$_userId+`">
+						<a href="https://discordapp.com/users/`+_userId+`">
 							<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
 						</a>
 					</div></div> 
