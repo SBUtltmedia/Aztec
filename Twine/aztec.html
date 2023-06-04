@@ -209,7 +209,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -7943,7 +7943,7 @@ List of valid roles and their info */
 &lt;&lt;storeSet _roles = {
   &quot;Marina&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
-    &quot;Character&quot;: &quot;Doña Marina/Malinche&quot;,
+    &quot;Character&quot;: &quot;Do&amp;#xf1;a Marina/Malinche&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Alvarado&quot;: {
@@ -7953,7 +7953,7 @@ List of valid roles and their info */
   },
   &quot;Aguilar&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
-    &quot;Character&quot;: &quot;Gerónimo de Aguilar&quot;,  
+    &quot;Character&quot;: &quot;Ger&amp;#xf3;nimo de Aguilar&quot;,  
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Garrido&quot;: {
@@ -7963,12 +7963,12 @@ List of valid roles and their info */
   },
   &quot;Olid&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
-    &quot;Character&quot;: &quot;Cristóbal de Olid&quot;,
+    &quot;Character&quot;: &quot;Crist&amp;#xf3;bal de Olid&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Cortes&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
-    &quot;Character&quot;: &quot;Hernán Cortés&quot;,
+    &quot;Character&quot;: &quot;Hern&amp;#xe1;n Cort&amp;#xe9;s&quot;,
     &quot;isLeader&quot;: &quot;TRUE&quot;
   },
   &quot;Moctezuma&quot;: {
@@ -7983,7 +7983,7 @@ List of valid roles and their info */
   },
   &quot;Cuauhtemoc&quot;: {
     &quot;faction&quot;: &quot;Aztecs&quot;,
-    &quot;Character&quot;: &quot;Cuauhtémoc&quot;,
+    &quot;Character&quot;: &quot;Cuauht&amp;#xe9;moc&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Aztec_Priest&quot;: {
@@ -7993,7 +7993,7 @@ List of valid roles and their info */
   },
   &quot;Cacamatzin&quot;: {
     &quot;faction&quot;: &quot;Aztecs&quot;,
-    &quot;Character&quot;: &quot;Cacamatzín&quot;,
+    &quot;Character&quot;: &quot;Cacamatz&amp;#xed;n&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Pochteca&quot;: {
@@ -10855,7 +10855,26 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;set _totalUsers = 0&gt;&gt;
 
 /* Defines border colors for each faction */
-&lt;&lt;set _factionColor = {&quot;Aztecs&quot;: &quot;#6C944D&quot;, &quot;Spaniards&quot;: &quot;#B14A10&quot;, &quot;Tlaxcalans&quot;: &quot;#D19700&quot;}&gt;&gt;
+&lt;&lt;set _factionColor = {&quot;Aztecs&quot;: &quot;aztecBorder&quot;, &quot;Spaniards&quot;: &quot;spaniardBorder&quot;, &quot;Tlaxcalans&quot;: &quot;tlaxcalanBorder&quot;}&gt;&gt;
+
+&lt;&lt;set _userSvgPicture = {
+	&quot;Do&amp;#xf1;a Marina/Malinche&quot;:&quot;Twine/images/characters/Marina.svg&quot;,
+	&quot;Pedro de Alvarado&quot;:&quot;Twine/images/characters/Alvarado.svg&quot;,
+	&quot;Ger&amp;#xf3;nimo de Aguilar&quot;:&quot;Twine/images/characters/Aguilar.svg&quot;,
+	&quot;Juan Garrido&quot;:&quot;Twine/images/characters/Garrido.svg&quot;,
+	&quot;Cristóbal de Olid&quot;:&quot;Twine/images/characters/Cristobal.svg&quot;,
+	&quot;Hern&amp;#xe1;n Cort&amp;#xe9;s&quot;:&quot;Twine/images/characters/Cortes.svg&quot;,
+	&quot;Moctezuma&quot;:&quot;Twine/images/characters/Moctezuma.svg&quot;,
+	&quot;Tlacaelel Xocoyotl (aka Tlacaelel the Younger)&quot;:&quot;Twine/images/characters/Tlacaelel.svg&quot;,
+	&quot;Cuauht&amp;#xe9;moc&quot;:&quot;Twine/images/characters/Cuauhtemoc.svg&quot;,
+	&quot;Aztec Priest&quot;:&quot;Twine/images/characters/Aztec Priest.svg&quot;,
+	&quot;Cacamatzín&quot;:&quot;Twine/images/characters/Cacamatzin.svg&quot;,
+	&quot;Pochteca&quot;:&quot;Twine/images/characters/Pochteca.svg&quot;,
+	&quot;Xicotencatl the Elder&quot;:&quot;Twine/images/characters/Xicotencatl the Elder.svg&quot;,
+	&quot;Xicotencatl the Younger&quot;:&quot;Twine/images/characters/Xicotencatl the Younger.svg&quot;,
+	&quot;Maxixcatl&quot;: &quot;Twine/images/characters/Maxixcatl.svg&quot;,
+	&quot;Not seen&quot;:&quot;Twine/images/characters/icon_placeholder.png&quot;
+}&gt;&gt;
 
 /* _id: discord id for each user
 _data: object with user properties (to access user&#39;s passage just use _data[&quot;passage&quot;]) */
@@ -10880,13 +10899,14 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 
   /* creates sidebar with users */
   &lt;div id = &quot;playerClient&quot;&gt;
-      &lt;img id = &quot;playerImageClient&quot; src = &quot;Twine\images\characters\Tlacaelel.svg&quot;&gt;
+  		&lt;&lt;print `&lt;img id = &quot;playerImageClient&quot; class=&quot;`+_factionColor[$users[$userId][&quot;faction&quot;]]+`&quot; src = &quot;Twine/images/characters/Tlacaelel.svg&quot;&gt; `&gt;&gt;
+      
       &lt;div id = &quot;playerTextClient&quot;&gt;
         &lt;div id=&quot;printUserRoleClient&quot;&gt; 
-          &lt;&lt;print $users[$userId][&quot;role&quot;]&gt;&gt;
+          &lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
         &lt;/div&gt;
         &lt;div id=&quot;printUserNameClient&quot;&gt;
-          &lt;&lt;print &quot;#&quot; + $users[$userId][&quot;username&quot;] + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+          &lt;&lt;print $users[$userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
         &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;
@@ -10907,20 +10927,20 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;`+$users[_userId][&#39;role&#39;]+`&quot;&gt;			
-				&lt;img class = &quot;playerImage&quot; src = &quot;Twine\\images\\characters\\icon_placeholder.png&quot; style=&quot;border-color: `+_factionColor[$users[_userId][&#39;role&#39;]]+`;&quot;&gt; 
+				&lt;img class = &quot;playerImage&quot; src = &quot;Twine\\images\\characters\\icon_placeholder.png&quot; style=&quot;border-color: #D19700;&quot;&gt; 
 				
 				&lt;div class=&quot;rolePanel&quot;&gt;
-					&lt;img class=&quot;rolePanelImage&quot; src = &quot;Twine\\images\\characters\\icon_placeholder.png&quot;&gt;
+					&lt;img class=&quot;rolePanelImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;Twine//images//characters//icon_placeholder.png&quot;&gt;
 					&lt;div class=&quot;rolePanelText&quot;&gt;
 						&lt;div class=&quot;rolePanelPrintUserRole&quot;&gt; 
-							&lt;&lt;print $users[$userId][&quot;role&quot;]&gt;&gt;
+							&lt;&lt;print $users[_userId][&quot;character&quot;]&gt;&gt;
 						&lt;/div&gt;
 						&lt;div class=&quot;rolePanelPrintUserName&quot;&gt;
-							&lt;&lt;print &quot;#&quot; + $users[$userId][&quot;username&quot;] + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+							&lt;&lt;print $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
 						&lt;/div&gt;
 					&lt;/div&gt;
 					&lt;div class=&quot;rolePanelDetails&quot;&gt;
-						&lt;&lt;print &quot;Last seen: N/A&quot;&gt;&gt;
+						&lt;&lt;print &quot;Last seen: &quot; + $users[_userId][&quot;lastSeen&quot;]&gt;&gt;
 						&lt;br /&gt;
 						&lt;&lt;print &quot;Details:&quot;&gt;&gt;
 						&lt;br /&gt;
@@ -10935,16 +10955,19 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 
 				&lt;div class = &quot;playerText&quot;&gt;
 					&lt;div class=&quot;printUserRole&quot;&gt; 
-						`+$users[_userId][&quot;role&quot;]+`
+						`+$users[_userId][&quot;character&quot;]+`
 					&lt;/div&gt;
 					&lt;div class=&quot;printUserName&quot;&gt;
-						&lt;&lt;print  $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
+						&lt;a href=&quot;https://discordapp.com/users/`+_userId+`&quot;&gt;
+							&lt;&lt;print  $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
+						&lt;/a&gt;
 					&lt;/div&gt;&lt;/div&gt; 
 
 					
 
 				&lt;/div&gt;
 				`&gt;&gt;
+				
 			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			/* &lt;&lt;= setup.printTime($users[_userId][&quot;lastSeen&quot;])&gt;&gt; */
 		&lt;&lt;/for&gt;&gt;
