@@ -254,18 +254,17 @@ Sends the emits difference with the diff object as the payload to notify servers
 
 Value cannot be read from sugarcube macro call because only twine can read the syntax.
 */
-function diffSet(diffKey){
+function diffSet(pathArr, value){
     //find new value after setting is done
-    let keys = SugarCubeToJavascript(diffKey);
+    pathArr.shift();
     let currKey;
-    let prevKey = Window.SugarCubeState.getVar(diffKey);
-    while(keys.length > 0){
-        currKey = {[keys.pop()]: prevKey};
+    let prevKey = value
+    while(pathArr.length > 0){
+        currKey = {[pathArr.pop()]: prevKey};
         prevKey = currKey;
     }
-    let diff = currKey;
     console.log("diff:", currKey);
-    socket.emit('difference',  diff)
+    socket.emit('difference',  currKey)
 
 }
 
@@ -299,13 +298,13 @@ function SugarCubeToJavascript(key){
 function getHistory(id){
     socket.emit('getHistory', id, (res) => {
         console.log("history returned:", res);
-        let temp = _.merge(Window.SugarCubeState.variables,res);
-        Window.SugarCubeState.variables = temp
+       _.merge(Window.SugarCubeState.variables,res);
     })
 }
 
 function initTheyr(lockInfo) {
     updateSugarCubeState(userData.gameState);
+
     socket = io();
     store = {}
     // Receive state from server upon connecting, then update all other clients that you've connected
@@ -397,12 +396,29 @@ function initTheyr(lockInfo) {
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
         //remove all passagehistories besides the user's
-        for (const [key, value] of Object.entries(new_state)) {
             // console.log({key,value})
-            let temp = _.merge(Window.SugarCubeState.variables, new_state);
-            Window.SugarCubeState.variables = temp
-
+        function createHandler(path){
+            return {
+            get(target, key) {
+                if (typeof target[key] === 'object' && target[key] !== null) {
+                return new Proxy(target[key], createHandler([...path,key]))
+                } else {
+                return target[key];
+                }
+            },
+            set (target, key, value) {
+                console.log("path" , [...path, key]);
+                target[key] = value
+                diffSet([...path,key], value)
+                return true
+            }
+            }
         }
+        // new_state = new Proxy(new_state, createHandler([]))
+        // console.log("new_state:", new_state)
+       _.merge(Window.SugarCubeState.variables, new_state);
+
+        
         $(document).trigger(":liveupdate");
     }
 }
