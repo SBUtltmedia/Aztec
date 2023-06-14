@@ -12101,7 +12101,12 @@ _data: object with user properties (to access user's passage just use _data["pas
           <<print $users[$userId]["character"]>>
         </div>
         <div id="printUserNameClient">
-          <<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+		<<if $users[$userId]["discriminator"] == 0>>
+			<<print "@" + $users[$userId]["username"]>>
+		<<else>>
+			<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+		<</if>>
+          
         </div>
       </div>
   </div>

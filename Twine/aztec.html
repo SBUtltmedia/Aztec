@@ -208,7 +208,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -10906,7 +10906,12 @@ _data: object with user properties (to access user&#39;s passage just use _data[
           &lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
         &lt;/div&gt;
         &lt;div id=&quot;printUserNameClient&quot;&gt;
-          &lt;&lt;print $users[$userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+		&lt;&lt;if $users[$userId][&quot;discriminator&quot;] == 0&gt;&gt;
+			&lt;&lt;print &quot;@&quot; + $users[$userId][&quot;username&quot;]&gt;&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;&lt;print $users[$userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+          
         &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;
@@ -10929,7 +10934,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 				&lt;div class = &quot;player&quot; id=&quot;`+$users[_userId][&#39;_faction&#39;]+`&quot;&gt;			
 				&lt;img class = &quot;playerImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;`+_userSvgPicture[$users[_userId][&quot;character&quot;]]+`&quot;&gt; 
 				&lt;div class=&quot;rolePanel&quot;&gt;
-					&lt;img class=&quot;rolePanelImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;Twine//images//characters//icon_placeholder.png&quot;&gt;
+					&lt;img class=&quot;rolePanelImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;`+_userSvgPicture[$users[_userId][&quot;character&quot;]]+`&quot;&gt; 
 					&lt;div class=&quot;rolePanelText&quot;&gt;
 						&lt;div class=&quot;rolePanelPrintUserRole&quot;&gt; 
 							&lt;&lt;print $users[_userId][&quot;character&quot;]&gt;&gt;
