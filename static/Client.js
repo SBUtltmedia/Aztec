@@ -232,7 +232,6 @@ function changeStats(rolePlay, newStats) {
 function getUser() {
     let userId = Window.SugarCubeState.getVar("$userId");
 
-    console.log({userId});
     let user =  Window.SugarCubeState.getVar("$users")[userId];
     return user;
 }
@@ -302,9 +301,28 @@ function getHistory(id){
     })
 }
 
+function createHandler(path){
+    return {
+    get(target, key) {
+        if(path.length == 0 && key != `variables`){
+            return target[key];
+        }
+        if (typeof target[key] === 'object' && target[key] !== null) {
+        return new Proxy(target[key], createHandler([...path,key]))
+        } else {
+        return target[key];
+        }
+    },
+    set (target, key, value) {
+        target[key] = value
+        diffSet([...path,key], value)
+        return true
+    }
+    }
+}
+
 function initTheyr(lockInfo) {
     updateSugarCubeState(userData.gameState);
-
     socket = io();
     store = {}
     // Receive state from server upon connecting, then update all other clients that you've connected
@@ -393,27 +411,13 @@ function initTheyr(lockInfo) {
 
     }
 
+
+}
+
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
         //remove all passagehistories besides the user's
             // console.log({key,value})
-        function createHandler(path){
-            return {
-            get(target, key) {
-                if (typeof target[key] === 'object' && target[key] !== null) {
-                return new Proxy(target[key], createHandler([...path,key]))
-                } else {
-                return target[key];
-                }
-            },
-            set (target, key, value) {
-                console.log("path" , [...path, key]);
-                target[key] = value
-                diffSet([...path,key], value)
-                return true
-            }
-            }
-        }
         // new_state = new Proxy(new_state, createHandler([]))
         // console.log("new_state:", new_state)
        _.merge(Window.SugarCubeState.variables, new_state);
@@ -421,4 +425,3 @@ function initTheyr(lockInfo) {
         
         $(document).trigger(":liveupdate");
     }
-}
