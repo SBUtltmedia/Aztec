@@ -54,27 +54,6 @@ importScripts([
 	.then(function() {
 			initTheyr({lockId,callback:LoadScreen.unlock})
 
-		function createHandler(path){
-		return {
-		get(target, key) {
-			if(path.length == 0 && key != `variables`){
-				return target[key];
-			}
-			if (typeof target[key] === 'object' && target[key] !== null) {
-			return new Proxy(target[key], createHandler([...path,key]))
-			} else {
-			return target[key];
-			}
-		},
-		set (target, key, value) {
-			console.log("path" , [...path, key]);
-			target[key] = value
-			diffSet([...path,key], value)
-			return true
-		}
-		}
-	}
-
 	State = new Proxy(State, createHandler([]))
 
 	}
@@ -3415,6 +3394,132 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 [[Return to the Dashboard|Dashboard]]<br>
 
 
+:: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+<<set _initVars = State.variables>>
+	<<for _tempKey, _tempVal range _initVars>>
+		<<if typeof _tempVal != "object">>
+
+			<<set _twineKey = `$${ _tempKey}`>>
+			<<print _tempKey>>
+			<br>
+			<<textbox _twineKey _tempVal "Control: Variables" >>
+			<br>
+		<</if>>
+	<</for>>
+<</theyr>>
+
+/* allows admin to update lookup. This allows roles to be played by different users */
+
+
+:: Control: Lookup [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+	<<for _tempKey, _tempVal range $lookup>>
+		<<set _twineKey = `$lookup["${ _tempKey}"]`>>
+		<<print _tempKey>>
+		<br>
+		<<textbox _twineKey _tempVal "Control: Lookup" >>
+		<br>
+	<</for>>
+<</theyr>>
+
+
+:: Diff Test {"position":"600,100","size":"100,100"}
+<<if ndef $users[$userId]["stats"]>>
+	<<set $users[$userId]["stats"] = {}>> 
+	<</if>>
+<<set $users[$userId]["stats"]["strength"] =7>>
+
+/* control panel for users stats */
+
+
+:: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+Only modify stats and passages if you aren't 100% sure what you are doing
+
+
+	<<for _role, _userId range $lookup>> 
+		/* Goes through list of all Variables */
+
+		<<set _userData = $users[_userId]>>
+		<<set _userName = _role>>
+		<<print `${_userName} (userId: ${_userId})`>>
+		<br>
+
+		<<set _twineKey = `$lookup[${ _role}]`>>
+		<<print `${_userName}'s id#`>>
+		<br>
+		<<textbox _twineKey _userId "Control: Variables (Users)" >>
+		<br>
+
+		<<for _varKey, _varVal range _userData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					<<set _twineKey = `$users['${_userId}']["stats]'[${ _statKey}']`>>
+					<<print `${_userName}'s ${_statKey}`>>
+					<br>
+					<<textbox _twineKey _statVal >>
+					<br>
+				<</for>>
+			<<else>>
+				/* Goes through all user variables (besides stats) */
+				<<set _twineKey = `$users['${_userId}']['${ _varKey}']`>>
+				<<print JSON.stringify(_twineKey)>>
+				<<print`${_userName}'s ${_varKey}`>>
+				<br>
+				<<textbox _twineKey _varVal >>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
+		<br>
+	<</for>>
+<</theyr>>
+
+/* control panel for faction stats */
+
+
+:: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<theyr>>
+Only modify stats and passages if you aren't 100% sure what you are doing
+
+	/* Goes through list of all factions */
+	<<for _factionId, _factionData range $factions>> 
+		/* Goes through list of all Variables */
+
+		<<set _factionName = _factionId>>
+		<<print _factionName>>
+		<br>
+
+
+		<<for _varKey, _varVal range _factionData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					<<set _twineKey = `$factions["stats"][${ _statKey}]`>>
+					<<print `${_factionName}'s ${_statKey}`>>
+					<br>
+					<<textbox _twineKey _statVal "Control: Variables (Factions)" >>
+					<br>
+				<</for>>
+			<<else>>
+				/* Goes through all faction variables (besides stats) */
+				<<set _twineKey = `$factions[${ _varKey}]`>>
+				<<print`${_factionName}'s ${_varKey}`>>
+				<br>
+				<<textbox _twineKey _varVal "Control: Variables (Factions)" >>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
+		<br>
+	<</for>>
+<</theyr>>
+
+
 :: Control: Player Status {"position":"4275,375","size":"100,100"}
 <<theyr>>
 <b>CURRENT STATUS OF TEAMS AND PLAYERS</b><br>
@@ -6496,6 +6601,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
+/* <<textbox "$users['379034594206285845']['character']" $users['379034594206285845']["character"]>> */
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",
@@ -8725,7 +8831,8 @@ console.log("storyinit started");
 <<script>>
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
-	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
+	// State.setVar("$userId", searchParams.get('id') || userData.authData.id)
+	updateSugarCubeState({userId: searchParams.get('id') || userData.authData.id})
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
 	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
