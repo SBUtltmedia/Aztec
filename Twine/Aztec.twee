@@ -12111,9 +12111,22 @@ _data: object with user properties (to access user's passage just use _data["pas
       </div>
   </div>
 
+
+
+
 	<div id="onlineCount">
 		<<print "  General (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
 	</div>
+
+	<script>
+		$(document).on('mouseenter', '.player', function() {
+			$(this).find('.rolePanel').show();
+		});
+
+		$(document).on('mouseleave', '.player', function() {
+			$(this).find('.rolePanel').hide();
+		});
+	</script>
 
 	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
 		<div id="printFactionOnlineCount">
@@ -12124,6 +12137,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<</if>>
     </div>
 		<<for _j, _userId range _factionUsers[_faction]>>
+		
 		<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="`+$users[_userId]['_faction']+`">			
@@ -12135,20 +12149,26 @@ _data: object with user properties (to access user's passage just use _data["pas
 							<<print $users[_userId]["character"]>>
 						</div>
 						<div class="rolePanelPrintUserName">
-							<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<<if $users[_userId]["discriminator"] == 0>>
+								<<print "@" + $users[_userId]["username"]>>
+							<<else>>
+								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<</if>>
 						</div>
 					</div>
 					<div class="rolePanelDetails">
-						<<print "Last seen: " + $users[_userId]["lastSeen"]>>
-						<br />
-						<<print "Details:">>
-						<br />
-						<<print "- hardcoded detail 1">>
-						<br />
-						<<print "- hardcoded detail 2">>
+						<ul>
+							<<print "<li><b>Last Active</b>: " + $users[_userId]["lastSeen"]+"</li>">>
+							<li>Details
+								<ul>
+								<li>hardcoded detail 1</li>
+								<li>hardcoded detail 2</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 					<div class="rolePanelNotes">
-						<<print "Notes: ">>
+						<<print "<b>Notes</b>: ">>
 					</div>
 				</div>
 
@@ -12158,7 +12178,11 @@ _data: object with user properties (to access user's passage just use _data["pas
 					</div>
 					<div class="printUserName">
 						<a href="https://discordapp.com/users/`+_userId+`">
-							<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<<if $users[_userId]["discriminator"] == 0>>
+								<<print "@" + $users[_userId]["username"]>>
+							<<else>>
+								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<</if>>
 						</a>
 					</div></div> 
 
