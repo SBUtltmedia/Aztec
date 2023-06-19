@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "The Library",
+	"start": "0 Dakota Test Passage",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -137,6 +137,10 @@ importScripts([
 	});
 })();
 
+:: 0 Dakota Test Passage
+<<theyr>>
+
+<</theyr>>
 
 :: A Friendly Invitation {"position":"4200,6375","size":"100,100"}
 <<theyr>>
@@ -12057,17 +12061,19 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	"Pedro de Alvarado":"Twine/images/characters/Alvarado.svg",
 	"Ger&#xf3;nimo de Aguilar":"Twine/images/characters/Aguilar.svg",
 	"Juan Garrido":"Twine/images/characters/Garrido.svg",
-	"Cristóbal de Olid":"Twine/images/characters/Cristobal.svg",
+	"Crist&#xf3;bal de Olid":"Twine/images/characters/Cristobal.svg",
 	"Hern&#xe1;n Cort&#xe9;s":"Twine/images/characters/Cortes.svg",
 	"Moctezuma":"Twine/images/characters/Moctezuma.svg",
 	"Tlacaelel Xocoyotl (aka Tlacaelel the Younger)":"Twine/images/characters/Tlacaelel.svg",
 	"Cuauht&#xe9;moc":"Twine/images/characters/Cuauhtemoc.svg",
 	"Aztec Priest":"Twine/images/characters/Aztec Priest.svg",
-	"Cacamatzín":"Twine/images/characters/Cacamatzin.svg",
+	"Cacamatz&#xed;n":"Twine/images/characters/Cacamatzin.svg",
 	"Pochteca":"Twine/images/characters/Pochteca.svg",
 	"Xicotencatl the Elder":"Twine/images/characters/Xicotencatl the Elder.svg",
 	"Xicotencatl the Younger":"Twine/images/characters/Xicotencatl the Younger.svg",
 	"Maxixcatl": "Twine/images/characters/Maxixcatl.svg",
+
+	"undefined":"Twine/images/characters/icon_placeholder.png",
 	"Not seen":"Twine/images/characters/icon_placeholder.png"
 }>>
 
@@ -12111,22 +12117,35 @@ _data: object with user properties (to access user's passage just use _data["pas
       </div>
   </div>
 
-
-
-
 	<div id="onlineCount">
 		<<print "  General (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
 	</div>
 
-	<script>
-		$(document).on('mouseenter', '.player', function() {
-			$(this).find('.rolePanel').show();
-		});
-
-		$(document).on('mouseleave', '.player', function() {
-			$(this).find('.rolePanel').hide();
-		});
-	</script>
+	<div id="rolePanelDynamic">
+		<img id="rolePanelImageDynamic" src="Twine/images/characters/icon_placeholder.png"> 
+		<div id="rolePanelTextDynamic" >
+			<div id="rolePanelPrintUserRole">
+				user role
+			</div>
+			<div id="rolePanelPrintUserName">
+				user name
+			</div>
+		</div>
+		<div id="rolePanelDetails">
+			<ul>
+				<<print "<li><b>Last Active</b>: " + $users[$userId]["lastSeen"]+"</li>">>
+				<li>Details
+					<ul>
+					<li>hardcoded detail 1</li>
+					<li>hardcoded detail 2</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="rolePanelNotes">
+			<<print "<b>Notes</b>: ">>
+		</div>
+	</div>
 
 	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
 		<div id="printFactionOnlineCount">
@@ -12140,69 +12159,99 @@ _data: object with user properties (to access user's passage just use _data["pas
 		
 		<div id="playerSpaceBetween"></div>
 			<<print `
-				<div class = "player" id="`+$users[_userId]['_faction']+`">			
+				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
 				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
-				<div class="rolePanel">
-					<img class="rolePanelImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
-					<div class="rolePanelText">
-						<div class="rolePanelPrintUserRole"> 
-							<<print $users[_userId]["character"]>>
-						</div>
-						<div class="rolePanelPrintUserName">
-							<<if $users[_userId]["discriminator"] == 0>>
-								<<print "@" + $users[_userId]["username"]>>
-							<<else>>
-								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
-							<</if>>
-						</div>
-					</div>
-					<div class="rolePanelDetails">
-						<ul>
-							<<print "<li><b>Last Active</b>: " + $users[_userId]["lastSeen"]+"</li>">>
-							<li>Details
-								<ul>
-								<li>hardcoded detail 1</li>
-								<li>hardcoded detail 2</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					<div class="rolePanelNotes">
-						<<print "<b>Notes</b>: ">>
-					</div>
-				</div>
 
 				<div class = "playerText">
 					<div class="printUserRole"> 
 						`+$users[_userId]["character"]+`
 					</div>
 					<div class="printUserName">
-						<a href="https://discordapp.com/users/`+_userId+`">
-							<<if $users[_userId]["discriminator"] == 0>>
-								<<print "@" + $users[_userId]["username"]>>
-							<<else>>
-								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
-							<</if>>
+						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
+							<<print "@" + $users[_userId]["username"]>>
 						</a>
 					</div></div> 
-
-					
-
 				</div>
 				`>>
 				
 			<div id="playerSpaceBetween"></div>
 			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
+			
 		<</for>>
 			<div id="factionSpaceBetween"></div>
 	<</for>>
-	</div>
+
+	
+
+</div>
 
 	
 
 
 <</theyr>>
 
+	<<script>>
+		window.addEventListener("resize", function() {
+			var rolePanel = $("#rolePanelDynamic");
+				rolePanel.css("visibility", "hidden");
+		});
+		setTimeout(() => {
+			$(".player").on('mouseenter', function() {
+				var top = $(this).offset().top + window.screenY;
+				var left = $(this).offset().left + window.screenX;
+				var pageWidth = parseInt($("#story").css("width"));
+				var pageHeight = parseInt($("#story").css("height"));
+				var _userSvgPicture = {
+					"Marina":"Twine/images/characters/Marina.svg",
+					"Alvarado":"Twine/images/characters/Alvarado.svg",
+					"Aguilar":"Twine/images/characters/Aguilar.svg",
+					"Garrido":"Twine/images/characters/Garrido.svg",
+					"Olid":"Twine/images/characters/Cristobal.svg",
+					"Cortes":"Twine/images/characters/Cortes.svg",
+					"Moctezuma":"Twine/images/characters/Moctezuma.svg",
+					"Tlacaelel":"Twine/images/characters/Tlacaelel.svg",
+					"Cuauhtemoc":"Twine/images/characters/Cuauhtemoc.svg",
+					"Aztec_Priest":"Twine/images/characters/Aztec Priest.svg",
+					"Cacamatzin":"Twine/images/characters/Cacamatzin.svg",
+					"Pochteca":"Twine/images/characters/Pochteca.svg",
+					"Xicotencatl_Elder":"Twine/images/characters/Xicotencatl the Elder.svg",
+					"Xicotencatl_Younger":"Twine/images/characters/Xicotencatl the Younger.svg",
+					"Maxixcatl": "Twine/images/characters/Maxixcatl.svg",
+
+					"undefined":"Twine/images/characters/icon_placeholder.png",
+					"Not seen":"Twine/images/characters/icon_placeholder.png",
+					"notSeen":"Twine/images/characters/icon_placeholder.png",
+					"God":"Twine/images/characters/icon_placeholder.png"
+				};
+
+				var firstUnderscoreIndex = $(this).attr("id").indexOf("_");
+				var user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
+
+				var imageSource = _userSvgPicture[user];
+				$("#rolePanelImageDynamic").attr("src", imageSource);
+
+				$("#rolePanelPrintUserRole").text("amongus");
+
+				var rolePanel = $("#rolePanelDynamic");
+				rolePanel.css("visibility", "visible");
+
+				var rpHeight = parseInt(rolePanel.css("height"));
+
+				if (top + rpHeight > pageHeight) {
+					top = pageHeight - rpHeight - 5
+				}
+				left = left - pageWidth * 0.22;
+
+				rolePanel.css("top", top + "px");
+				rolePanel.css("left", left + "px");
+				
+				console.log("");
+			}).on('mouseleave', function() {
+				
+			})
+		}, 1500)
+		
+	<</script>>
 
 /* Use this as a template to make side passages */
 
