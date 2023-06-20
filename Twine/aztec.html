@@ -127,7 +127,7 @@ importScripts([
 	.then(function() {
 			initTheyr({lockId,callback:LoadScreen.unlock})
 
-	State = new Proxy(State, createHandler([]))
+	State = new Proxy(State, createHandler())
 
 	}
 );
@@ -175,29 +175,12 @@ importScripts([
 	});
 	
 
-	Macro.add('storeSet', {
+	/*	Designates a global variable as an execption, preventing it from being sent to other clients
+	 */
+	Macro.add('theyrException', {
     handler: function() {
-		//saves the key of the value that is being set
-		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
-
-		//TODO: Replace with regex
-		//accounts for <<set _key+= val>> acses
-		let endings = ['+', '-','*', '/']
-		if(endings.includes(key.slice(-1))){
-			key = key.slice(0,-1);
-		}
-
-		var output = `<<set ${this.args.raw}>>`
-		
-        $(this.output).wiki(output);
-		// console.log("args", this.args);
-		// console.log("key:",key);
-
-		//send key of value to client function if not temporary var
-		if(key.substring(0, 1) != "_"){
-			diffSet(key);
-		}
-    }
+			addTheyrException(this.args.full)
+    	}
 	});
 
 
@@ -213,7 +196,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -6094,7 +6077,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
 &lt;&lt;masteraudio unmute&gt;&gt;
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
- 	/* &lt;&lt;run showStats()&gt;&gt; */
+ 	&lt;&lt;run showStats()&gt;&gt;
 	 &lt;&lt;run showMap()&gt;&gt;
 	&lt;&lt;script&gt;&gt;
 	let homeButton= $(&#39;&lt;img/&gt;&#39;,{id:&quot;homeButton&quot;,src:&quot;Twine/images/Home/HomeButton.png&quot;}).on(&quot;click&quot;, ()=&gt; { Engine.play(&quot;Home&quot;)});	
@@ -8037,11 +8020,12 @@ console.log(&quot;storyinit started&quot;);
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
 
 /* Gets discord info  */
+&lt;&lt;theyrException $userId&gt;&gt;
 &lt;&lt;script&gt;&gt;
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 	// State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
-	updateSugarCubeState({userId: searchParams.get(&#39;id&#39;) || userData.authData.id})
+	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
 	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
@@ -8192,7 +8176,7 @@ List of valid roles and their info */
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;run getHistory($userId)&gt;&gt;
+/* &lt;&lt;run getPrivateVars($userId)&gt;&gt; */
 /* inits userdata in $users */
 &lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;

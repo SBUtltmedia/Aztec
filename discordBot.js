@@ -4,73 +4,68 @@ var XMLHttpRequest = require('xhr2');
 
 class DiscordBot {
     //Webhook URLs need to be defined in env vars (config vars in heroku). get them at discord dev browser 
-    constructor(spanishChannel, aztecChannel, tlaxChannel, aztecTlax, aztecSpan, spanTlax, general, omen) {
-        this.spanishChannel = spanishChannel;  
-        this.aztecChannel = aztecChannel;   
-        this.tlaxChannel = tlaxChannel;   
-        this.aztecTlax = aztecTlax;
-        this.aztecSpan = aztecSpan;
-        this.spanTlax = spanTlax;
-        this.general = general;
-        this.omen = omen;
+    constructor(channels) {
+        this.channels = channels;
     }
 
     // Sends notification to a specific channel 
     sendNotif(channel, message) {
-        console.log(channel, message)
         const content = message;
-        let username, avatar_url, channelURL;
+        let username = `${channel} messenger`
+        let avatar_url =  "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg" 
+        let channelURL = this.channels[channel];
 
-        switch(channel){
-            case "aztecs":
-                username = 'Aztec Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.aztecChannel;
-                break;
 
-            case "spanish":
-                username = 'Spanish Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.spanishChannel;
-                break;
+        // switch(channel){
+        //     case "aztecs":
+        //         username = 'Aztec Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.aztecChannel;
+        //         break;
 
-            case "tlax":
-                username = 'Tlaxcalan Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.tlaxChannel;
-                break;
+        //     case "spanish":
+        //         username = 'Spanish Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.spanishChannel;
+        //         break;
 
-            case "aztecSpan":
-                username = 'Spanish and Aztec Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.aztecSpan;
-                break;
+        //     case "tlax":
+        //         username = 'Tlaxcalan Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.tlaxChannel;
+        //         break;
 
-            case "aztecTlax":
-                username = 'Aztec and Tlaxcalan Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.aztecTlax;
-                break;
+        //     case "aztecSpan":
+        //         username = 'Spanish and Aztec Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.aztecSpan;
+        //         break;
 
-            case "spanTlax":
-                username = 'Spanish and Tlaxcalan Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.spanTlax;
-                break;
+        //     case "aztecTlax":
+        //         username = 'Aztec and Tlaxcalan Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.aztecTlax;
+        //         break;
 
-            case "general":
-                username = 'General Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.general;
-                break;
+        //     case "spanTlax":
+        //         username = 'Spanish and Tlaxcalan Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.spanTlax;
+        //         break;
 
-            case "omen":
-                username = 'Omen Messenger';
-                avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-                channelURL = this.omen;
-                break;
+        //     case "general":
+        //         username = 'General Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.general;
+        //         break;
+
+        //     case "omen":
+        //         username = 'Omen Messenger';
+        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
+        //         channelURL = this.omen;
+        //         break;
         
-        }
+        // }
         const request = new XMLHttpRequest();
         request.open("POST", channelURL);
         request.onload = function(e) {
