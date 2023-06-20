@@ -23,7 +23,8 @@ class Webstack {
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 
-		new gitApiIO(serverConf).retrieveFileAPI().then((gameData) => {
+		this.gitApi = new gitApiIO(serverConf)
+		this.gitApi.retrieveFileAPI().then((gameData) => {
 			let state = JSON.parse(gameData)
 			this.serverStore.dispatch({
 				type: 'UPDATE',
@@ -75,11 +76,8 @@ class Webstack {
 
 			let state = this.serverStore.getState();
 			let content = {"signal":signal, ...this.serverStore.getState()};
-			 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
-				fileName: this.serverConf.fileName,
-				...this.serverConf})
 			
-			  this.saveJSON.uploadFileApi().then(
+			  this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content))).then(
 				() => {
 					console.log(err)
 					process.exit(err ? 1 : 0);
