@@ -7,19 +7,29 @@ var fs = require('fs');
 var testFile = "loginDiscord/testVars.json"
 var base64 = require('base-64');
 
+/*Allows the sending an retrieving of git files based on .env file intended for backing up state after 
+a shutdown
+*/
 class gitApiIO{
+
+    /*
+    *   Constructs gitApiIO object, use methods on constructed object
+    *   @param serverConf: Object with properties: serverConf from config, if uploading also add content 
+    *   and exit signal
+    *   
+    */
     constructor(serverConf) {
         this.serverConf = serverConf
         this.test = fs.existsSync(testFile)
         console.log("config is", serverConf)
 	}
 
-    async uploadFileApi() {
+    async uploadFileApi(content) {
         console.log("IN UPLOAD")
         return new Promise((res,rej)=> {
             if(this.test){
                 console.log("resolved")
-                fs.writeFileSync(testFile, base64.decode(this.serverConf.content))
+                fs.writeFileSync(testFile, base64.decode(content))
                 res()
             }else{
             let serverConf = this.serverConf
@@ -37,9 +47,10 @@ class gitApiIO{
                 .then(function (response) {
                     // console.log(response.data.sha);
                     sha = response.data.sha
+                    
                     var data = JSON.stringify({
                         "message": "txt file",
-                        "content": `${serverConf.content}`,
+                        "content": `${content}`,
                         "sha": sha,
                     });
                     var configPutFile = {
@@ -88,8 +99,6 @@ class gitApiIO{
         axios(configGetFile)
             .then(function (response) {
                 res(base64.decode(response.data.content))
-
-                // return base64.decode(response.data.content)
             })
             .catch(function (error) {
                 rej(error);
