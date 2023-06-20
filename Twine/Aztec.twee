@@ -54,7 +54,7 @@ importScripts([
 	.then(function() {
 			initTheyr({lockId,callback:LoadScreen.unlock})
 
-	State = new Proxy(State, createHandler([]))
+	State = new Proxy(State, createHandler())
 
 	}
 );
@@ -102,29 +102,12 @@ importScripts([
 	});
 	
 
-	Macro.add('storeSet', {
+	/*	Designates a global variable as an exeception, preventing it from being sent to other clients
+	 */
+	Macro.add('theyrException', {
     handler: function() {
-		//saves the key of the value that is being set
-		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
-
-		//TODO: Replace with regex
-		//accounts for <<set _key+= val>> acses
-		let endings = ['+', '-','*', '/']
-		if(endings.includes(key.slice(-1))){
-			key = key.slice(0,-1);
-		}
-
-		var output = `<<set ${this.args.raw}>>`
-		
-        $(this.output).wiki(output);
-		// console.log("args", this.args);
-		// console.log("key:",key);
-
-		//send key of value to client function if not temporary var
-		if(key.substring(0, 1) != "_"){
-			diffSet(key);
-		}
-    }
+			addTheyrException(this.args.full)
+    	}
 	});
 
 
@@ -8828,11 +8811,12 @@ console.log("storyinit started");
 <!-- <<masteraudio volume 0>> -->
 
 /* Gets discord info  */
+<<theyrException $userId>>
 <<script>>
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 	// State.setVar("$userId", searchParams.get('id') || userData.authData.id)
-	updateSugarCubeState({userId: searchParams.get('id') || userData.authData.id})
+	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick)
 	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
@@ -8983,7 +8967,7 @@ List of valid roles and their info */
 	<</for>>
 <</if>>
 
-<<run getHistory($userId)>>
+/* <<run getPrivateVars($userId)>> */
 /* inits userdata in $users */
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<set $users[$userId] = {}>>

@@ -14,7 +14,6 @@ var base64 = require('base-64');
 
 class Webstack {
 	constructor(port, appIndex,serverConf) {
-		serverConf.fileName = `aztec-${appIndex}.json`
 		this.appIndex = appIndex
 		this.serverConf = serverConf
 		//I'm not sure if this actually saves to GIT because we don't call the function.
@@ -77,7 +76,7 @@ class Webstack {
 			let state = this.serverStore.getState();
 			let content = {"signal":signal, ...this.serverStore.getState()};
 			 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
-				fileName: `aztec-${this.appIndex}.json`,
+				fileName: this.serverConf.fileName,
 				...this.serverConf})
 			
 			  this.saveJSON.uploadFileApi().then(
@@ -138,18 +137,18 @@ class Webstack {
 				})
 				//sends message to all other clients unless passage History
 				// let extra = "heleo"
-				if(!Object.keys(diff).includes("passageHistory")){
-					socket.broadcast.emit('difference', diff)
-				}
+		
+				socket.broadcast.emit('difference', diff)
+				
 			})
 
 
 			//returns a user's passage history. 
 			//needed to avoid sending data to irrelevant clients
-			socket.on('getHistory', (id, callback) => {
+			socket.on('getPrivateVars', (id, callback) => {
 				try{
-					let res = this.serverStore.getState()["passageHistory"][id];
-					callback({passageHistory: { [id]: res}})
+					let res = this.serverStore.getState()["theyrPrivateVars"];
+					callback({theyrPrivateVars: { [id]: res}})
 				}catch{
 					callback({})
 				}
