@@ -8709,7 +8709,9 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<storeSet $Sp_
     timeZone: 'America/New_York',
   });
 	};
-
+	setup.getUserSvgPicture = function(role) {
+		return `Twine/images/characters/${role}.svg`
+	}
 <</script>>
 
 /* 
@@ -12031,9 +12033,9 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 		<br>
 		<<if $users[$userId]["passage"] != _passageName>>
-
-      /* macro to make button and the previously read passage's text it shows
-       if you want to edit look for historyButton macro */
+			
+			/* macro to make button and the previously read passage's text it shows
+			if you want to edit look for historyButton macro */
 			<<historyButton _passageName _passageText _passageId>>
 		<</if>>
 	<</for>>
@@ -12055,27 +12057,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 /* Defines border colors for each faction */
 <<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder"}>>
-
-<<set _userSvgPicture = {
-	"Do&#xf1;a Marina/Malinche":"Twine/images/characters/Marina.svg",
-	"Pedro de Alvarado":"Twine/images/characters/Alvarado.svg",
-	"Ger&#xf3;nimo de Aguilar":"Twine/images/characters/Aguilar.svg",
-	"Juan Garrido":"Twine/images/characters/Garrido.svg",
-	"Crist&#xf3;bal de Olid":"Twine/images/characters/Cristobal.svg",
-	"Hern&#xe1;n Cort&#xe9;s":"Twine/images/characters/Cortes.svg",
-	"Moctezuma":"Twine/images/characters/Moctezuma.svg",
-	"Tlacaelel Xocoyotl (aka Tlacaelel the Younger)":"Twine/images/characters/Tlacaelel.svg",
-	"Cuauht&#xe9;moc":"Twine/images/characters/Cuauhtemoc.svg",
-	"Aztec Priest":"Twine/images/characters/Aztec Priest.svg",
-	"Cacamatz&#xed;n":"Twine/images/characters/Cacamatzin.svg",
-	"Pochteca":"Twine/images/characters/Pochteca.svg",
-	"Xicotencatl the Elder":"Twine/images/characters/Xicotencatl the Elder.svg",
-	"Xicotencatl the Younger":"Twine/images/characters/Xicotencatl the Younger.svg",
-	"Maxixcatl": "Twine/images/characters/Maxixcatl.svg",
-
-	"undefined":"Twine/images/characters/icon_placeholder.png",
-	"Not seen":"Twine/images/characters/icon_placeholder.png"
-}>>
 
 /* _id: discord id for each user
 _data: object with user properties (to access user's passage just use _data["passage"]) */
@@ -12128,7 +12109,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 				user role
 			</div>
 			<div id="rolePanelPrintUserName">
-				user name
+				@username
 			</div>
 		</div>
 		<div id="rolePanelDetails">
@@ -12160,7 +12141,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
+				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
 
 				<div class = "playerText">
 					<div class="printUserRole"> 
@@ -12196,41 +12177,38 @@ _data: object with user properties (to access user's passage just use _data["pas
 				rolePanel.css("visibility", "hidden");
 		});
 		setTimeout(() => {
+			$("#players").on('mouseleave', function() {
+				$(document).mousemove(function(event) {
+					var xPos = event.pageX;
+					var yPos = event.pageY;
+					var rolePanel = $("#rolePanelDynamic");
+					var rolePanelX = rolePanel.offset().left;
+					var rolePanelY = rolePanel.offset().top;
+					var rpHeight = parseInt(rolePanel.css("height"));
+					var rpWidth = parseInt(rolePanel.css("width"));
+
+					if (!((xPos > rolePanelX) && (yPos > rolePanelY - (rolePanelY / 8)&& yPos < rolePanelY + rpHeight))) {
+						$(document).off('mousemove');
+						rolePanel.css("visibility", "hidden");
+					}
+				});
+			});
+		}, 1500);
+		setTimeout(() => {
 			$(".player").on('mouseenter', function() {
 				var top = $(this).offset().top + window.screenY;
 				var left = $(this).offset().left + window.screenX;
 				var pageWidth = parseInt($("#story").css("width"));
 				var pageHeight = parseInt($("#story").css("height"));
-				var _userSvgPicture = {
-					"Marina":"Twine/images/characters/Marina.svg",
-					"Alvarado":"Twine/images/characters/Alvarado.svg",
-					"Aguilar":"Twine/images/characters/Aguilar.svg",
-					"Garrido":"Twine/images/characters/Garrido.svg",
-					"Olid":"Twine/images/characters/Cristobal.svg",
-					"Cortes":"Twine/images/characters/Cortes.svg",
-					"Moctezuma":"Twine/images/characters/Moctezuma.svg",
-					"Tlacaelel":"Twine/images/characters/Tlacaelel.svg",
-					"Cuauhtemoc":"Twine/images/characters/Cuauhtemoc.svg",
-					"Aztec_Priest":"Twine/images/characters/Aztec Priest.svg",
-					"Cacamatzin":"Twine/images/characters/Cacamatzin.svg",
-					"Pochteca":"Twine/images/characters/Pochteca.svg",
-					"Xicotencatl_Elder":"Twine/images/characters/Xicotencatl the Elder.svg",
-					"Xicotencatl_Younger":"Twine/images/characters/Xicotencatl the Younger.svg",
-					"Maxixcatl": "Twine/images/characters/Maxixcatl.svg",
-
-					"undefined":"Twine/images/characters/icon_placeholder.png",
-					"Not seen":"Twine/images/characters/icon_placeholder.png",
-					"notSeen":"Twine/images/characters/icon_placeholder.png",
-					"God":"Twine/images/characters/icon_placeholder.png"
-				};
 
 				var firstUnderscoreIndex = $(this).attr("id").indexOf("_");
 				var user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
 
-				var imageSource = _userSvgPicture[user];
+				var imageSource = setup.getUserSvgPicture(user);
 				$("#rolePanelImageDynamic").attr("src", imageSource);
 
-				$("#rolePanelPrintUserRole").text("amongus");
+				var printableUser = user.replace(/_/g, " ");
+				$("#rolePanelPrintUserRole").text(printableUser);
 
 				var rolePanel = $("#rolePanelDynamic");
 				rolePanel.css("visibility", "visible");
@@ -12238,19 +12216,15 @@ _data: object with user properties (to access user's passage just use _data["pas
 				var rpHeight = parseInt(rolePanel.css("height"));
 
 				if (top + rpHeight > pageHeight) {
-					top = pageHeight - rpHeight - 5
+					top = pageHeight - rpHeight - 5;
 				}
 				left = left - pageWidth * 0.22;
 
 				rolePanel.css("top", top + "px");
 				rolePanel.css("left", left + "px");
-				
-				console.log("");
-			}).on('mouseleave', function() {
-				
 			})
-		}, 1500)
-		
+		}, 1500);
+
 	<</script>>
 
 /* Use this as a template to make side passages */
