@@ -20,6 +20,8 @@ class Webstack {
 		this.port=port;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
+
+		//serverStore stores the current game state and is backed up via gitApiIO because Heroku is ephemeral 
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 
@@ -72,9 +74,8 @@ class Webstack {
 
 		shutdown(signal) {
 			return (err) => {
-			 console.log('doing stuff', signal)
+			 console.log('shutting down', signal)
 
-			let state = this.serverStore.getState();
 			let content = {"signal":signal, ...this.serverStore.getState()};
 			
 			  this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content))).then(
@@ -88,6 +89,7 @@ class Webstack {
 			 }
 			};
 	  
+	//Controller for serverStore
 	reducer(state, action) {
 		// console.log({state})
 		// console.log(JSON.stringify({action}));
