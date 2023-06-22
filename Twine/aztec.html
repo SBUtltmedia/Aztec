@@ -7936,7 +7936,9 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
     timeZone: &#39;America/New_York&#39;,
   });
 	};
-
+	setup.getUserSvgPicture = function(role) {
+		return `Twine/images/characters/${role}.svg`
+	}
 &lt;&lt;/script&gt;&gt;
 
 /* 
@@ -10834,9 +10836,9 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 		&lt;br&gt;
 		&lt;&lt;if $users[$userId][&quot;passage&quot;] != _passageName&gt;&gt;
-
-      /* macro to make button and the previously read passage&#39;s text it shows
-       if you want to edit look for historyButton macro */
+			&lt;div class=&quot;passageTest&quot;&gt;yo&lt;/div&gt;
+			/* macro to make button and the previously read passage&#39;s text it shows
+			if you want to edit look for historyButton macro */
 			&lt;&lt;historyButton _passageName _passageText _passageId&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
@@ -10858,27 +10860,6 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 /* Defines border colors for each faction */
 &lt;&lt;set _factionColor = {&quot;Aztecs&quot;: &quot;aztecBorder&quot;, &quot;Spaniards&quot;: &quot;spaniardBorder&quot;, &quot;Tlaxcalans&quot;: &quot;tlaxcalanBorder&quot;}&gt;&gt;
-
-&lt;&lt;set _userSvgPicture = {
-	&quot;Do&amp;#xf1;a Marina/Malinche&quot;:&quot;Twine/images/characters/Marina.svg&quot;,
-	&quot;Pedro de Alvarado&quot;:&quot;Twine/images/characters/Alvarado.svg&quot;,
-	&quot;Ger&amp;#xf3;nimo de Aguilar&quot;:&quot;Twine/images/characters/Aguilar.svg&quot;,
-	&quot;Juan Garrido&quot;:&quot;Twine/images/characters/Garrido.svg&quot;,
-	&quot;Crist&amp;#xf3;bal de Olid&quot;:&quot;Twine/images/characters/Cristobal.svg&quot;,
-	&quot;Hern&amp;#xe1;n Cort&amp;#xe9;s&quot;:&quot;Twine/images/characters/Cortes.svg&quot;,
-	&quot;Moctezuma&quot;:&quot;Twine/images/characters/Moctezuma.svg&quot;,
-	&quot;Tlacaelel Xocoyotl (aka Tlacaelel the Younger)&quot;:&quot;Twine/images/characters/Tlacaelel.svg&quot;,
-	&quot;Cuauht&amp;#xe9;moc&quot;:&quot;Twine/images/characters/Cuauhtemoc.svg&quot;,
-	&quot;Aztec Priest&quot;:&quot;Twine/images/characters/Aztec Priest.svg&quot;,
-	&quot;Cacamatz&amp;#xed;n&quot;:&quot;Twine/images/characters/Cacamatzin.svg&quot;,
-	&quot;Pochteca&quot;:&quot;Twine/images/characters/Pochteca.svg&quot;,
-	&quot;Xicotencatl the Elder&quot;:&quot;Twine/images/characters/Xicotencatl the Elder.svg&quot;,
-	&quot;Xicotencatl the Younger&quot;:&quot;Twine/images/characters/Xicotencatl the Younger.svg&quot;,
-	&quot;Maxixcatl&quot;: &quot;Twine/images/characters/Maxixcatl.svg&quot;,
-
-	&quot;undefined&quot;:&quot;Twine/images/characters/icon_placeholder.png&quot;,
-	&quot;Not seen&quot;:&quot;Twine/images/characters/icon_placeholder.png&quot;
-}&gt;&gt;
 
 /* _id: discord id for each user
 _data: object with user properties (to access user&#39;s passage just use _data[&quot;passage&quot;]) */
@@ -10931,7 +10912,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 				user role
 			&lt;/div&gt;
 			&lt;div id=&quot;rolePanelPrintUserName&quot;&gt;
-				user name
+				@username
 			&lt;/div&gt;
 		&lt;/div&gt;
 		&lt;div id=&quot;rolePanelDetails&quot;&gt;
@@ -10963,7 +10944,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;playerInfo_`+$users[_userId][&quot;role&quot;]+`&quot;&gt;			
-				&lt;img class = &quot;playerImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;`+_userSvgPicture[$users[_userId][&quot;character&quot;]]+`&quot;&gt; 
+				&lt;img class = &quot;playerImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;`+setup.getUserSvgPicture($users[_userId][&quot;role&quot;])+`&quot;&gt; 
 
 				&lt;div class = &quot;playerText&quot;&gt;
 					&lt;div class=&quot;printUserRole&quot;&gt; 
@@ -10999,41 +10980,38 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 				rolePanel.css(&quot;visibility&quot;, &quot;hidden&quot;);
 		});
 		setTimeout(() =&gt; {
+			$(&quot;#players&quot;).on(&#39;mouseleave&#39;, function() {
+				$(document).mousemove(function(event) {
+					var xPos = event.pageX;
+					var yPos = event.pageY;
+					var rolePanel = $(&quot;#rolePanelDynamic&quot;);
+					var rolePanelX = rolePanel.offset().left;
+					var rolePanelY = rolePanel.offset().top;
+					var rpHeight = parseInt(rolePanel.css(&quot;height&quot;));
+					var rpWidth = parseInt(rolePanel.css(&quot;width&quot;));
+
+					if (!((xPos &gt; rolePanelX) &amp;&amp; (yPos &gt; rolePanelY - (rolePanelY / 8)&amp;&amp; yPos &lt; rolePanelY + rpHeight))) {
+						$(document).off(&#39;mousemove&#39;);
+						rolePanel.css(&quot;visibility&quot;, &quot;hidden&quot;);
+					}
+				});
+			});
+		}, 1500);
+		setTimeout(() =&gt; {
 			$(&quot;.player&quot;).on(&#39;mouseenter&#39;, function() {
 				var top = $(this).offset().top + window.screenY;
 				var left = $(this).offset().left + window.screenX;
 				var pageWidth = parseInt($(&quot;#story&quot;).css(&quot;width&quot;));
 				var pageHeight = parseInt($(&quot;#story&quot;).css(&quot;height&quot;));
-				var _userSvgPicture = {
-					&quot;Marina&quot;:&quot;Twine/images/characters/Marina.svg&quot;,
-					&quot;Alvarado&quot;:&quot;Twine/images/characters/Alvarado.svg&quot;,
-					&quot;Aguilar&quot;:&quot;Twine/images/characters/Aguilar.svg&quot;,
-					&quot;Garrido&quot;:&quot;Twine/images/characters/Garrido.svg&quot;,
-					&quot;Olid&quot;:&quot;Twine/images/characters/Cristobal.svg&quot;,
-					&quot;Cortes&quot;:&quot;Twine/images/characters/Cortes.svg&quot;,
-					&quot;Moctezuma&quot;:&quot;Twine/images/characters/Moctezuma.svg&quot;,
-					&quot;Tlacaelel&quot;:&quot;Twine/images/characters/Tlacaelel.svg&quot;,
-					&quot;Cuauhtemoc&quot;:&quot;Twine/images/characters/Cuauhtemoc.svg&quot;,
-					&quot;Aztec_Priest&quot;:&quot;Twine/images/characters/Aztec Priest.svg&quot;,
-					&quot;Cacamatzin&quot;:&quot;Twine/images/characters/Cacamatzin.svg&quot;,
-					&quot;Pochteca&quot;:&quot;Twine/images/characters/Pochteca.svg&quot;,
-					&quot;Xicotencatl_Elder&quot;:&quot;Twine/images/characters/Xicotencatl the Elder.svg&quot;,
-					&quot;Xicotencatl_Younger&quot;:&quot;Twine/images/characters/Xicotencatl the Younger.svg&quot;,
-					&quot;Maxixcatl&quot;: &quot;Twine/images/characters/Maxixcatl.svg&quot;,
-
-					&quot;undefined&quot;:&quot;Twine/images/characters/icon_placeholder.png&quot;,
-					&quot;Not seen&quot;:&quot;Twine/images/characters/icon_placeholder.png&quot;,
-					&quot;notSeen&quot;:&quot;Twine/images/characters/icon_placeholder.png&quot;,
-					&quot;God&quot;:&quot;Twine/images/characters/icon_placeholder.png&quot;
-				};
 
 				var firstUnderscoreIndex = $(this).attr(&quot;id&quot;).indexOf(&quot;_&quot;);
 				var user = $(this).attr(&quot;id&quot;).substring(firstUnderscoreIndex + 1);
 
-				var imageSource = _userSvgPicture[user];
+				var imageSource = setup.getUserSvgPicture(user);
 				$(&quot;#rolePanelImageDynamic&quot;).attr(&quot;src&quot;, imageSource);
 
-				$(&quot;#rolePanelPrintUserRole&quot;).text(&quot;amongus&quot;);
+				var printableUser = user.replace(/_/g, &quot; &quot;);
+				$(&quot;#rolePanelPrintUserRole&quot;).text(printableUser);
 
 				var rolePanel = $(&quot;#rolePanelDynamic&quot;);
 				rolePanel.css(&quot;visibility&quot;, &quot;visible&quot;);
@@ -11041,19 +11019,15 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 				var rpHeight = parseInt(rolePanel.css(&quot;height&quot;));
 
 				if (top + rpHeight &gt; pageHeight) {
-					top = pageHeight - rpHeight - 5
+					top = pageHeight - rpHeight - 5;
 				}
 				left = left - pageWidth * 0.22;
 
 				rolePanel.css(&quot;top&quot;, top + &quot;px&quot;);
 				rolePanel.css(&quot;left&quot;, left + &quot;px&quot;);
-				
-				console.log(&quot;&quot;);
-			}).on(&#39;mouseleave&#39;, function() {
-				
 			})
-		}, 1500)
-		
+		}, 1500);
+
 	&lt;&lt;/script&gt;&gt;
 
 /* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="319" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
