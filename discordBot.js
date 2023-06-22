@@ -14,58 +14,6 @@ class DiscordBot {
         let username = `${channel} messenger`
         let avatar_url =  "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg" 
         let channelURL = this.channels[channel];
-
-
-        // switch(channel){
-        //     case "aztecs":
-        //         username = 'Aztec Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.aztecChannel;
-        //         break;
-
-        //     case "spanish":
-        //         username = 'Spanish Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.spanishChannel;
-        //         break;
-
-        //     case "tlax":
-        //         username = 'Tlaxcalan Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.tlaxChannel;
-        //         break;
-
-        //     case "aztecSpan":
-        //         username = 'Spanish and Aztec Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.aztecSpan;
-        //         break;
-
-        //     case "aztecTlax":
-        //         username = 'Aztec and Tlaxcalan Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.aztecTlax;
-        //         break;
-
-        //     case "spanTlax":
-        //         username = 'Spanish and Tlaxcalan Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.spanTlax;
-        //         break;
-
-        //     case "general":
-        //         username = 'General Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.general;
-        //         break;
-
-        //     case "omen":
-        //         username = 'Omen Messenger';
-        //         avatar_url = "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg";
-        //         channelURL = this.omen;
-        //         break;
-        
-        // }
         const request = new XMLHttpRequest();
         request.open("POST", channelURL);
         request.onload = function(e) {

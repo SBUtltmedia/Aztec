@@ -16,9 +16,10 @@ function init() {
     // setInterval(checkDif, 1000)
 }
 
-
-function setBackground(image) {
-    // image = image || "paper.jpg"
+/**
+ * Loads twine background based on the player's faction
+ */
+function setBackground() {
     let { faction } = getUser();
     let imageURL = `url('Twine/images/Borders/Observer.jpg')`
     if (faction) {
@@ -34,7 +35,12 @@ function setBackground(image) {
     })
 }
 
-
+/**
+ * Fade in effect
+ * 
+ * @param {*} el 
+ * @param {*} destination 
+ */
 function fade(el, destination) {
     $({
         opacity: 1 - destination
@@ -70,10 +76,8 @@ function showMap() {
         }))
     }
 
-    // let { faction, role } = getUser();
    let  faction =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]["faction"]
     var currentMap =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId].currentMap
-    // let currentMapIndex = 0
     if (!currentMap) {
         let currentMapIndex = Window.SugarCubeState.getVar(`$${faction}_currentMap`) || 0;
         currentMap = `${faction}_${currentMapIndex}.png`
@@ -85,6 +89,9 @@ function showMap() {
     }
 }
 
+/**
+ * Displays player's stats widget
+ */
 function showStats() {
     let { role, faction } = getUser();
     var stats = {
@@ -99,8 +106,6 @@ function showStats() {
 
     let userId =  Window.SugarCubeState.variables.userId
     let twineStats =  Window.SugarCubeState.variables.users[userId].stats
-
-
 
     if (twineStats) {
         Object.keys(stats).forEach((stat, idx) => {
@@ -126,9 +131,7 @@ function showStats() {
         }
     }
 
-    // let twineVar = SugarCube.State.variables[`${faction}_strength`];
     let factions =  Window.SugarCubeState.variables['factions']
-
     let twineVar = factions[faction]['stats']['Strength'];
 
     if (twineVar) {
@@ -170,17 +173,19 @@ function setFactionStrength(rawValue) {
 
 }
 
+/**
+ * Creates stat picker widget when player gets to pick their stats
+ * 
+ * @param {object} statsIn: a player's default stats
+ */
 function makeRoleStats(statsIn) {
-    var total = 0;
-
     let userId = Window.SugarCubeState.variables.userId;
     let user = Window.SugarCubeState.variables.users[userId]
-   // let role= Window.SugarCubeState.variables.users[userId]["role"]
     var output = "";
 
     user["stats"] = statsIn;
 
-    //try to only send stats of user
+    //TODO: try to only send stats of user
       socket.emit('difference',  Window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
@@ -198,6 +203,12 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+/**
+ * A function to modify a role's stats
+ * 
+ * @param {string} rolePlay: the role whose stats are being modified
+ * @param {object} newStats: the new stat values
+ */
 function changeStats(rolePlay, newStats) {
     let usersObj= Window.SugarCubeState.variables.users;
     let currentUserId = Object.keys(usersObj).find(userId => usersObj[userId].role == rolePlay)
@@ -231,7 +242,6 @@ function changeStats(rolePlay, newStats) {
 // Returns the role of the current player
 function getUser() {
     let userId = Window.SugarCubeState.getVar("$userId");
-
     let user =  Window.SugarCubeState.getVar("$users")[userId];
     return user;
 }
@@ -252,23 +262,25 @@ function createHandler(path = []){
     },
     set (target, key, value) {
         target[key] = value
+        path.shift();
         diffSet([...path,key], value)
         return true
     }
     }
 }
 
-/*
-Takes in a diffkey after calling custom twine set macro. Will create a difference object with the diffKey
-as the key and it's new value after setting is done. 
+/**
+ * Takes in a pathArr after proxy on setting SugarCubeState is triggered. Will create a difference object with the diffKey
+    as the key and it's new value after setting is done. 
 
-Sends the emits difference with the diff object as the payload to notify serverstore to update
+    Sends the emits difference with the diff object as the payload to notify serverstore to update
 
-Value cannot be read from sugarcube macro call because only twine can read the syntax.
-*/
+ * @param {Array} pathArr: path followed by proxy to get to value being set
+ * @param {*} value: the new value of whatever is being set
+ * @returns 
+ */
 function diffSet(pathArr, value){
     //find new value after setting is done
-    pathArr.shift();
     
     //If an varible that has been labeled an exception is being set, stop
     if(exceptions.includes(pathArr[0])){
@@ -305,9 +317,6 @@ function initTheyr(lockInfo) {
         // If the server's state is empty, set with this client's state
     //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
-
-
-
     });
 
     // Incoming difference, update your state and store
@@ -321,11 +330,8 @@ function initTheyr(lockInfo) {
 
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
-            // console.log({key,value})
-        // console.log("new_state:", new_state)
        _.merge(Window.SugarCubeState.variables, new_state);
-
-        
+    
         $(document).trigger(":liveupdate");
     }
 

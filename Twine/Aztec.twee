@@ -6584,7 +6584,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
-/* <<textbox "$users['379034594206285845']['character']" $users['379034594206285845']["character"]>> */
+
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",
@@ -6663,14 +6663,6 @@ Along your journey, you have met many people. Some have been willing allies of t
   }
 }
 		>>
-/* <<set _macro = 23>>
-<<set $test = "Test">>
-<<set $test = $test.toLowerCase()>> */
-/* <<run changeStats("Aztec_Priest",{"Wisdom":2,"Loyalty":0,"Strength":0})>> */
-/* <<set $users[$userId]["stats"]["Strength"] -= 1>> */
-
-/* List of passages where ui elements don't show up */
-
 
 /* <<audio ":all" stop>> */
 <!-- <<masteraudio mute>> -->
@@ -6684,8 +6676,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 	$('#story').append(homeButton);
 	}
 	<</script>>
-
-
 <br>
 <</if>>
 
@@ -6711,19 +6701,13 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 <</script>>
-
-/* Updates user's latest logon time */
-/* <<set $users[$userId]["lastSeen"]=new Date().getTime()>> */
 <</theyr>>
-
-/* updates user's last log in time */
 
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<theyr>>
-/* List of passages where ui elements don't show up */
-/* <<set _menuPassages = {"Name Not Recognized":0,"Home":0}>> */
 
+/* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
 	<<if !Object.keys($passageHistory[$userId]).includes(passage())>>
 		<<set _currPassage = passage()>>
@@ -6733,6 +6717,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 <br>
 
+/* updates time when user was last online */
 <</if>>
 <<set _currentTime=new Date()>>
 <<if _currentTime.getTime() - $users[$userId]["lastSeen"] > 10000>>
@@ -8802,15 +8787,13 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 
 
 :: StoryInit {"position":"4600,1200","size":"100,100"}
-/* <<set $lastSeenDelay=60 * 5000>> */
-<script>
-console.log("storyinit started");
-</script>
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
 <!-- <<masteraudio volume 0>> -->
 
 /* Gets discord info  */
+
+/* prevents $userId from interacting with multiplayer system */
 <<theyrException $userId>>
 <<script>>
 	const loc = location.search
@@ -8825,7 +8808,6 @@ console.log("storyinit started");
     timeZone: 'America/New_York',
   });
 	};
-
 <</script>>
 
 /* 
@@ -8915,7 +8897,8 @@ List of valid roles and their info */
 <</if>>
 
 
-/* Not seen user is for testing purposes. Anytime a non-existing user's stats are needed, they will be directed to this temp user */
+/* Not seen user is for testing purposes. Anytime a non-existing user's stats are needed, 
+they will be directed to this temp user */
 <<if ndef $users["notSeen"]>>
 <<set $users["notSeen"] = {
 		"stats" : {
@@ -8967,7 +8950,6 @@ List of valid roles and their info */
 	<</for>>
 <</if>>
 
-/* <<run getPrivateVars($userId)>> */
 /* inits userdata in $users */
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<set $users[$userId] = {}>>
@@ -8984,10 +8966,6 @@ console.log("new user detected")
 <<set $passageHistory[$userId] = {}>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
-
-
-
-
 
 /* for testing discord macro: */
 
