@@ -8983,7 +8983,7 @@ List of valid roles and their info */
 	<</for>>
 <</if>>
 
-<<run getHistory($userId)>>
+/* <<run getHistory($userId)>> */
 /* inits userdata in $users */
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<set $users[$userId] = {}>>

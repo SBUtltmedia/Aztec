@@ -150,7 +150,6 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
-			let store = (({ passageHistory, ...o }) => o)(webstackInstance.serverStore.getState());
 			return makeUserDataJSON({ gameState: store, authData: { ...guildResultJson, ...userResultJson } }, response);
 
 
@@ -388,8 +387,8 @@ function loadHome(response, isTest) {
 
 
 	if (isTest) {
-		let store = (({ passageHistory, ...o }) => o)(webstackInstance.serverStore.getState());
-		delete store["passageHistory"]
+		let store = (webstackInstance.serverStore.getState());
+
 		return makeUserDataJSON({ gameState: store }, response);
 	}
 	else {

@@ -213,7 +213,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -6094,7 +6094,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
 &lt;&lt;masteraudio unmute&gt;&gt;
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
- 	/* &lt;&lt;run showStats()&gt;&gt; */
+ 	&lt;&lt;run showStats()&gt;&gt;
 	 &lt;&lt;run showMap()&gt;&gt;
 	&lt;&lt;script&gt;&gt;
 	let homeButton= $(&#39;&lt;img/&gt;&#39;,{id:&quot;homeButton&quot;,src:&quot;Twine/images/Home/HomeButton.png&quot;}).on(&quot;click&quot;, ()=&gt; { Engine.play(&quot;Home&quot;)});	
@@ -8192,7 +8192,7 @@ List of valid roles and their info */
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;run getHistory($userId)&gt;&gt;
+/* &lt;&lt;run getHistory($userId)&gt;&gt; */
 /* inits userdata in $users */
 &lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
