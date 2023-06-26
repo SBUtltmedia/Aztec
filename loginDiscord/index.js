@@ -150,6 +150,7 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
+			let store = (webstackInstance.serverStore.getState());
 			return makeUserDataJSON({ gameState: store, authData: { ...guildResultJson, ...userResultJson } }, response);
 
 
