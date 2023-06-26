@@ -12021,24 +12021,37 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 /* Prints list of previous passages for user to recollect */
 <div id="info">
 
-  /* button to go back to other passages */
+  	/* button to go back to other passages */
 	<<link "back" $users[$userId]["passage"]>><</link>>
-	<br>
-	Passages Completed:
+
+	/* header of the book's left page */
+	<div id="passagesCompletedHeader">
+		Passages Completed
+	</div>
+
+	<div id="passagesCompletedButtons">
+		<div class="passagesCompletedButtonsGrid">
+			<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
+				<<if $users[$userId]["passage"] != _passageName>>
+					<button class="square-button">
+						<<print _passageName>>
+					</button>
+				<</if>>
+			<</for>>
+			<button class="square-button">Button 1</button>
+			<button class="square-button">Button 2</button>
+			<button class="square-button">Button 3</button>
+		</div>
+	</div>
+
 	<br>
 
-  /* loop to make buttons for showing text of previous passages */
-	<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
-		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
+	<div id="selectedPassageTextContainer">
+		
+	</div>
 
-		<br>
-		<<if $users[$userId]["passage"] != _passageName>>
-			
-			/* macro to make button and the previously read passage's text it shows
-			if you want to edit look for historyButton macro */
-			<<historyButton _passageName _passageText _passageId>>
-		<</if>>
-	<</for>>
+ 	
+
 </div>
 
 /* prints current passage */
@@ -12212,6 +12225,8 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 				var rolePanel = $("#rolePanelDynamic");
 				rolePanel.css("visibility", "visible");
+
+				$("#rolePanelNotes").wiki("<<textbox>> ");
 
 				var rpHeight = parseInt(rolePanel.css("height"));
 
