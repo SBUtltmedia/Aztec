@@ -3446,7 +3446,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<<print `${_userName} (userId: ${_userId})`>>
 		<br>
 
-		<<set _twineKey = `$lookup[${ _role}]`>>
+		<<set _twineKey = `$lookup["${ _role}"]`>>
 		<<print `${_userName}'s id#`>>
 		<br>
 		<<textbox _twineKey _userId "Control: Variables (Users)" >>
@@ -3456,7 +3456,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 			<<if  _varKey == "stats">>
 				/* Goes through list of all stats */
 				<<for _statKey, _statVal range _varVal>>
-					<<set _twineKey = `$users['${_userId}']["stats]'[${ _statKey}']`>>
+					<<set _twineKey = `$users['${_userId}']["stats"]['${ _statKey}']`>>
 					<<print `${_userName}'s ${_statKey}`>>
 					<br>
 					<<textbox _twineKey _statVal >>
@@ -3498,7 +3498,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 			<<if  _varKey == "stats">>
 				/* Goes through list of all stats */
 				<<for _statKey, _statVal range _varVal>>
-					<<set _twineKey = `$factions["stats"][${ _statKey}]`>>
+					<<set _twineKey = `$factions["stats"]["${ _statKey}"]`>>
 					<<print `${_factionName}'s ${_statKey}`>>
 					<br>
 					<<textbox _twineKey _statVal "Control: Variables (Factions)" >>
@@ -3506,7 +3506,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 				<</for>>
 			<<else>>
 				/* Goes through all faction variables (besides stats) */
-				<<set _twineKey = `$factions[${ _varKey}]`>>
+				<<set _twineKey = `$factions["${ _varKey}"]`>>
 				<<print`${_factionName}'s ${_varKey}`>>
 				<br>
 				<<textbox _twineKey _varVal "Control: Variables (Factions)" >>
@@ -8983,7 +8983,7 @@ List of valid roles and their info */
 	<</for>>
 <</if>>
 
-<<run getHistory($userId)>>
+/* <<run getHistory($userId)>> */
 /* inits userdata in $users */
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<set $users[$userId] = {}>>
@@ -12236,14 +12236,32 @@ _data: object with user properties (to access user's passage just use _data["pas
           <<print $users[$userId]["character"]>>
         </div>
         <div id="printUserNameClient">
-          <<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+		<<if $users[$userId]["discriminator"] == 0>>
+			<<print "@" + $users[$userId]["username"]>>
+		<<else>>
+			<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+		<</if>>
+          
         </div>
       </div>
   </div>
 
+
+
+
 	<div id="onlineCount">
 		<<print "  General (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
 	</div>
+
+	<script>
+		$(document).on('mouseenter', '.player', function() {
+			$(this).find('.rolePanel').show();
+		});
+
+		$(document).on('mouseleave', '.player', function() {
+			$(this).find('.rolePanel').hide();
+		});
+	</script>
 
 	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
 		<div id="printFactionOnlineCount">
@@ -12254,6 +12272,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<</if>>
     </div>
 		<<for _j, _userId range _factionUsers[_faction]>>
+		
 		<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="`+$users[_userId]['_faction']+`">			
@@ -12265,20 +12284,26 @@ _data: object with user properties (to access user's passage just use _data["pas
 							<<print $users[_userId]["character"]>>
 						</div>
 						<div class="rolePanelPrintUserName">
-							<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<<if $users[_userId]["discriminator"] == 0>>
+								<<print "@" + $users[_userId]["username"]>>
+							<<else>>
+								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<</if>>
 						</div>
 					</div>
 					<div class="rolePanelDetails">
-						<<print "Last seen: " + $users[_userId]["lastSeen"]>>
-						<br />
-						<<print "Details:">>
-						<br />
-						<<print "- hardcoded detail 1">>
-						<br />
-						<<print "- hardcoded detail 2">>
+						<ul>
+							<<print "<li><b>Last Active</b>: " + $users[_userId]["lastSeen"]+"</li>">>
+							<li>Details
+								<ul>
+								<li>hardcoded detail 1</li>
+								<li>hardcoded detail 2</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 					<div class="rolePanelNotes">
-						<<print "Notes: ">>
+						<<print "<b>Notes</b>: ">>
 					</div>
 				</div>
 
@@ -12288,7 +12313,11 @@ _data: object with user properties (to access user's passage just use _data["pas
 					</div>
 					<div class="printUserName">
 						<a href="https://discordapp.com/users/`+_userId+`">
-							<<print  $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<<if $users[_userId]["discriminator"] == 0>>
+								<<print "@" + $users[_userId]["username"]>>
+							<<else>>
+								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
+							<</if>>
 						</a>
 					</div></div> 
 

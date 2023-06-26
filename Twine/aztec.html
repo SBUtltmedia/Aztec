@@ -3171,7 +3171,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		&lt;&lt;print `${_userName} (userId: ${_userId})`&gt;&gt;
 		&lt;br&gt;
 
-		&lt;&lt;set _twineKey = `$lookup[${ _role}]`&gt;&gt;
+		&lt;&lt;set _twineKey = `$lookup[&quot;${ _role}&quot;]`&gt;&gt;
 		&lt;&lt;print `${_userName}&#39;s id#`&gt;&gt;
 		&lt;br&gt;
 		&lt;&lt;textbox _twineKey _userId &quot;Control: Variables (Users)&quot; &gt;&gt;
@@ -3181,7 +3181,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 			&lt;&lt;if  _varKey == &quot;stats&quot;&gt;&gt;
 				/* Goes through list of all stats */
 				&lt;&lt;for _statKey, _statVal range _varVal&gt;&gt;
-					&lt;&lt;set _twineKey = `$users[&#39;${_userId}&#39;][&quot;stats]&#39;[${ _statKey}&#39;]`&gt;&gt;
+					&lt;&lt;set _twineKey = `$users[&#39;${_userId}&#39;][&quot;stats&quot;][&#39;${ _statKey}&#39;]`&gt;&gt;
 					&lt;&lt;print `${_userName}&#39;s ${_statKey}`&gt;&gt;
 					&lt;br&gt;
 					&lt;&lt;textbox _twineKey _statVal &gt;&gt;
@@ -3219,7 +3219,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 			&lt;&lt;if  _varKey == &quot;stats&quot;&gt;&gt;
 				/* Goes through list of all stats */
 				&lt;&lt;for _statKey, _statVal range _varVal&gt;&gt;
-					&lt;&lt;set _twineKey = `$factions[&quot;stats&quot;][${ _statKey}]`&gt;&gt;
+					&lt;&lt;set _twineKey = `$factions[&quot;stats&quot;][&quot;${ _statKey}&quot;]`&gt;&gt;
 					&lt;&lt;print `${_factionName}&#39;s ${_statKey}`&gt;&gt;
 					&lt;br&gt;
 					&lt;&lt;textbox _twineKey _statVal &quot;Control: Variables (Factions)&quot; &gt;&gt;
@@ -3227,7 +3227,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 				&lt;&lt;/for&gt;&gt;
 			&lt;&lt;else&gt;&gt;
 				/* Goes through all faction variables (besides stats) */
-				&lt;&lt;set _twineKey = `$factions[${ _varKey}]`&gt;&gt;
+				&lt;&lt;set _twineKey = `$factions[&quot;${ _varKey}&quot;]`&gt;&gt;
 				&lt;&lt;print`${_factionName}&#39;s ${_varKey}`&gt;&gt;
 				&lt;br&gt;
 				&lt;&lt;textbox _twineKey _varVal &quot;Control: Variables (Factions)&quot; &gt;&gt;
@@ -6094,7 +6094,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
 &lt;&lt;masteraudio unmute&gt;&gt;
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
- 	/* &lt;&lt;run showStats()&gt;&gt; */
+ 	&lt;&lt;run showStats()&gt;&gt;
 	 &lt;&lt;run showMap()&gt;&gt;
 	&lt;&lt;script&gt;&gt;
 	let homeButton= $(&#39;&lt;img/&gt;&#39;,{id:&quot;homeButton&quot;,src:&quot;Twine/images/Home/HomeButton.png&quot;}).on(&quot;click&quot;, ()=&gt; { Engine.play(&quot;Home&quot;)});	
@@ -8192,7 +8192,7 @@ List of valid roles and their info */
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;run getHistory($userId)&gt;&gt;
+/* &lt;&lt;run getHistory($userId)&gt;&gt; */
 /* inits userdata in $users */
 &lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
@@ -11021,14 +11021,32 @@ _data: object with user properties (to access user&#39;s passage just use _data[
           &lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
         &lt;/div&gt;
         &lt;div id=&quot;printUserNameClient&quot;&gt;
-          &lt;&lt;print $users[$userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+		&lt;&lt;if $users[$userId][&quot;discriminator&quot;] == 0&gt;&gt;
+			&lt;&lt;print &quot;@&quot; + $users[$userId][&quot;username&quot;]&gt;&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;&lt;print $users[$userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+          
         &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;
 
+
+
+
 	&lt;div id=&quot;onlineCount&quot;&gt;
 		&lt;&lt;print &quot;  General (&quot; + (_totalUsers - _userCount[&quot;offline&quot;]) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
 	&lt;/div&gt;
+
+	&lt;script&gt;
+		$(document).on(&#39;mouseenter&#39;, &#39;.player&#39;, function() {
+			$(this).find(&#39;.rolePanel&#39;).show();
+		});
+
+		$(document).on(&#39;mouseleave&#39;, &#39;.player&#39;, function() {
+			$(this).find(&#39;.rolePanel&#39;).hide();
+		});
+	&lt;/script&gt;
 
 	&lt;&lt;for _i,_faction   range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;offline&quot;]&gt;&gt;
 		&lt;div id=&quot;printFactionOnlineCount&quot;&gt;
@@ -11039,6 +11057,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;&lt;/if&gt;&gt;
     &lt;/div&gt;
 		&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
+		
 		&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;`+$users[_userId][&#39;_faction&#39;]+`&quot;&gt;			
@@ -11050,20 +11069,26 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 							&lt;&lt;print $users[_userId][&quot;character&quot;]&gt;&gt;
 						&lt;/div&gt;
 						&lt;div class=&quot;rolePanelPrintUserName&quot;&gt;
-							&lt;&lt;print $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
+							&lt;&lt;if $users[_userId][&quot;discriminator&quot;] == 0&gt;&gt;
+								&lt;&lt;print &quot;@&quot; + $users[_userId][&quot;username&quot;]&gt;&gt;
+							&lt;&lt;else&gt;&gt;
+								&lt;&lt;print $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
+							&lt;&lt;/if&gt;&gt;
 						&lt;/div&gt;
 					&lt;/div&gt;
 					&lt;div class=&quot;rolePanelDetails&quot;&gt;
-						&lt;&lt;print &quot;Last seen: &quot; + $users[_userId][&quot;lastSeen&quot;]&gt;&gt;
-						&lt;br /&gt;
-						&lt;&lt;print &quot;Details:&quot;&gt;&gt;
-						&lt;br /&gt;
-						&lt;&lt;print &quot;- hardcoded detail 1&quot;&gt;&gt;
-						&lt;br /&gt;
-						&lt;&lt;print &quot;- hardcoded detail 2&quot;&gt;&gt;
+						&lt;ul&gt;
+							&lt;&lt;print &quot;&lt;li&gt;&lt;b&gt;Last Active&lt;/b&gt;: &quot; + $users[_userId][&quot;lastSeen&quot;]+&quot;&lt;/li&gt;&quot;&gt;&gt;
+							&lt;li&gt;Details
+								&lt;ul&gt;
+								&lt;li&gt;hardcoded detail 1&lt;/li&gt;
+								&lt;li&gt;hardcoded detail 2&lt;/li&gt;
+								&lt;/ul&gt;
+							&lt;/li&gt;
+						&lt;/ul&gt;
 					&lt;/div&gt;
 					&lt;div class=&quot;rolePanelNotes&quot;&gt;
-						&lt;&lt;print &quot;Notes: &quot;&gt;&gt;
+						&lt;&lt;print &quot;&lt;b&gt;Notes&lt;/b&gt;: &quot;&gt;&gt;
 					&lt;/div&gt;
 				&lt;/div&gt;
 
@@ -11073,7 +11098,11 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 					&lt;/div&gt;
 					&lt;div class=&quot;printUserName&quot;&gt;
 						&lt;a href=&quot;https://discordapp.com/users/`+_userId+`&quot;&gt;
-							&lt;&lt;print  $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
+							&lt;&lt;if $users[_userId][&quot;discriminator&quot;] == 0&gt;&gt;
+								&lt;&lt;print &quot;@&quot; + $users[_userId][&quot;username&quot;]&gt;&gt;
+							&lt;&lt;else&gt;&gt;
+								&lt;&lt;print $users[_userId][&quot;username&quot;] + &quot;#&quot; + $users[_userId][&quot;discriminator&quot;]&gt;&gt;
+							&lt;&lt;/if&gt;&gt;
 						&lt;/a&gt;
 					&lt;/div&gt;&lt;/div&gt; 
 
