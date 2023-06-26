@@ -137,10 +137,12 @@ importScripts([
 	});
 })();
 
-:: 0 Dakota Test Passage
+
+:: 0 Dakota Test Passage {"position":"100,100","size":"100,100"}
 <<theyr>>
 
 <</theyr>>
+
 
 :: A Friendly Invitation {"position":"4200,6375","size":"100,100"}
 <<theyr>>
@@ -12033,21 +12035,31 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<div class="passagesCompletedButtonsGrid">
 			<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
 				<<if $users[$userId]["passage"] != _passageName>>
-					<button class="square-button">
+					<button class="passageButton" id="_passageName">
 						<<print _passageName>>
 					</button>
 				<</if>>
 			<</for>>
-			<button class="square-button">Button 1</button>
-			<button class="square-button">Button 2</button>
-			<button class="square-button">Button 3</button>
+			<button class="passageButton">Button 1</button>
+			<button class="passageButton">Button 2</button>
+			<button class="passageButton">Button 3</button>
 		</div>
 	</div>
 
 	<br>
 
 	<div id="selectedPassageTextContainer">
-		
+		this is an example passage.
+
+		great things are soon to come
+		<<script>>
+			setTimeout(() => {
+				$(".passageButton").on("click", function() {
+					var passageButtonId = $(this).attr("id");
+					$("#selectedPassageTextContainer").text(passageButtonId)
+				});
+			}, 1000);
+		<</script>>
 	</div>
 
  	
@@ -12216,7 +12228,6 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 				var firstUnderscoreIndex = $(this).attr("id").indexOf("_");
 				var user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
-
 				var imageSource = setup.getUserSvgPicture(user);
 				$("#rolePanelImageDynamic").attr("src", imageSource);
 
@@ -12226,7 +12237,16 @@ _data: object with user properties (to access user's passage just use _data["pas
 				var rolePanel = $("#rolePanelDynamic");
 				rolePanel.css("visibility", "visible");
 
-				$("#rolePanelNotes").wiki("<<textbox>> ");
+				let notes = State.getVar("$users[$userId]['notes']");
+				console.log(notes);
+				if (!notes)  {
+					console.log("setting notes");
+					State.setVar("$users[$userId]['notes']", {});
+				}
+
+				console.log(notes);
+				console.log(State.getVar("$users[$userId]"));
+				$("#rolePanelNotes").wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
 
 				var rpHeight = parseInt(rolePanel.css("height"));
 

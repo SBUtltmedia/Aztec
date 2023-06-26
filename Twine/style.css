@@ -824,7 +824,7 @@ small font size: 1.7rem
 
 #info #selectedPassageTextContainer {
   width: 88%;
-  height: 30%;
+  height: 40%;
   margin-left: auto;
   margin-right: auto;
   overflow: auto;
@@ -842,7 +842,7 @@ small font size: 1.7rem
   padding: 10px; /* Add padding around the grid */
 }
 
-.square-button {
+.passageButton {
   width: 100%;
   padding: 10px;
   text-align: center;
