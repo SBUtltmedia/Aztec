@@ -491,6 +491,9 @@ overflow : hidden !important;
 width: 200% !important;
 }
 
+/* playerList things */
+/* playerList things */
+
 .playerList #players{
   position: absolute;
   left: 85%;
@@ -535,9 +538,10 @@ width: 200% !important;
 
 .playerList #passage {
   position: absolute;
-  left: 45%;
+  left: 43%;
   top: 18%;
   font-size: 3.5rem;
+  text-align: center;
   width: 35%;
 }
 
@@ -791,4 +795,59 @@ small font size: 1.7rem
 .rolePanelDetails li {
   line-height: 2.0rem; /* Adjust the value as needed */
   padding-left: -1rem;
+}
+
+/* PassageHistory things */
+/* PassageHistory things */
+
+#info {
+  align-items: center;
+}
+
+#info #passagesCompletedHeader {
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+#info #passagesCompletedButtons {
+  width: 88%;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+}
+
+#info #passagesCompletedButtons::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+#info #selectedPassageTextContainer {
+  width: 88%;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+}
+
+#info #selectedPassageTextContainer::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.passagesCompletedButtonsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 10px; /* Adjust gap between buttons as needed */
+  padding: 10px; /* Add padding around the grid */
+}
+
+.square-button {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: blanchedalmond;
+  border-color: black;
+  color: black;
+  /* Additional styles for the square buttons */
 }
