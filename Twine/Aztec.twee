@@ -12173,11 +12173,20 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					<button class="passageButton" id="_passageName">
 						<<print _passageName>>
 					</button>
+					<<print `
+						<button class="passageButton" id=`+_passageName+`>
+							<<print _passageName>>
+						</button>	
+					`>>
 				<</if>>
 			<</for>>
 			<button class="passageButton">Button 1</button>
 			<button class="passageButton">Button 2</button>
 			<button class="passageButton">Button 3</button>
+
+
+			
+
 		</div>
 	</div>
 
@@ -12191,7 +12200,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 			setTimeout(() => {
 				$(".passageButton").on("click", function() {
 					var passageButtonId = $(this).attr("id");
-					$("#selectedPassageTextContainer").text(passageButtonId)
+					$("#selectedPassageTextContainer").text($users[$userId]["passageHistory"][passageButtonId]);
 				});
 			}, 1000);
 		<</script>>
@@ -12373,16 +12382,17 @@ _data: object with user properties (to access user's passage just use _data["pas
 				rolePanel.css("visibility", "visible");
 
 				let notes = State.getVar("$users[$userId]['notes']");
-				console.log(notes);
 				if (!notes)  {
 					console.log("setting notes");
 					State.setVar("$users[$userId]['notes']", {});
 				}
 
-				console.log(notes);
-				console.log(State.getVar("$users[$userId]"));
-				$("#rolePanelNotes").wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
-
+				console.log(`$users[$userId]['notes']['${user}']`);
+				let defaultText = State.getVar(`$users[$userId]['notes']['${user}']`);
+				
+				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
+				$("#textbox-usersuseridnotes" + user).val(defaultText);
+			
 				var rpHeight = parseInt(rolePanel.css("height"));
 
 				if (top + rpHeight > pageHeight) {
