@@ -3429,7 +3429,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<<print `${_userName} (userId: ${_userId})`>>
 		<br>
 
-		<<set _twineKey = `$lookup[${ _role}]`>>
+		<<set _twineKey = `$lookup["${ _role}"]`>>
 		<<print `${_userName}'s id#`>>
 		<br>
 		<<textbox _twineKey _userId "Control: Variables (Users)" >>
@@ -3439,7 +3439,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 			<<if  _varKey == "stats">>
 				/* Goes through list of all stats */
 				<<for _statKey, _statVal range _varVal>>
-					<<set _twineKey = `$users['${_userId}']["stats]'[${ _statKey}']`>>
+					<<set _twineKey = `$users['${_userId}']["stats"]['${ _statKey}']`>>
 					<<print `${_userName}'s ${_statKey}`>>
 					<br>
 					<<textbox _twineKey _statVal >>
@@ -6584,7 +6584,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<theyr>>
-
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",

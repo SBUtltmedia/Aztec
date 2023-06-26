@@ -196,7 +196,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -3154,7 +3154,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		&lt;&lt;print `${_userName} (userId: ${_userId})`&gt;&gt;
 		&lt;br&gt;
 
-		&lt;&lt;set _twineKey = `$lookup[${ _role}]`&gt;&gt;
+		&lt;&lt;set _twineKey = `$lookup[&quot;${ _role}&quot;]`&gt;&gt;
 		&lt;&lt;print `${_userName}&#39;s id#`&gt;&gt;
 		&lt;br&gt;
 		&lt;&lt;textbox _twineKey _userId &quot;Control: Variables (Users)&quot; &gt;&gt;
@@ -3164,7 +3164,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 			&lt;&lt;if  _varKey == &quot;stats&quot;&gt;&gt;
 				/* Goes through list of all stats */
 				&lt;&lt;for _statKey, _statVal range _varVal&gt;&gt;
-					&lt;&lt;set _twineKey = `$users[&#39;${_userId}&#39;][&quot;stats]&#39;[${ _statKey}&#39;]`&gt;&gt;
+					&lt;&lt;set _twineKey = `$users[&#39;${_userId}&#39;][&quot;stats&quot;][&#39;${ _statKey}&#39;]`&gt;&gt;
 					&lt;&lt;print `${_userName}&#39;s ${_statKey}`&gt;&gt;
 					&lt;br&gt;
 					&lt;&lt;textbox _twineKey _statVal &gt;&gt;
@@ -5985,7 +5985,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;theyr&gt;&gt;
-
 &lt;&lt;set _roles = {
   &quot;Marina&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
