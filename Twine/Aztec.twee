@@ -12169,38 +12169,21 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<div id="passagesCompletedButtons">
 		<div class="passagesCompletedButtonsGrid">
 			<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
-				<<if $users[$userId]["passage"] != _passageName>>
-					<button class="passageButton" id="_passageName">
-						<<print _passageName>>
-					</button>
-					<<print `
-						<button class="passageButton" id=`+_passageName+`>
-							<<print _passageName>>
-						</button>	
-					`>>
-				<</if>>
+				<<print `<button class="passageButton" id="`+_passageName+`"> `+_passageName+` </button>`>>
 			<</for>>
-			<button class="passageButton">Button 1</button>
-			<button class="passageButton">Button 2</button>
-			<button class="passageButton">Button 3</button>
-
-
-			
-
 		</div>
 	</div>
 
-	<br>
-
 	<div id="selectedPassageTextContainer">
-		this is an example passage.
-
-		great things are soon to come
+		Select a passage from your passage history above to review it.
 		<<script>>
 			setTimeout(() => {
 				$(".passageButton").on("click", function() {
 					var passageButtonId = $(this).attr("id");
-					$("#selectedPassageTextContainer").text($users[$userId]["passageHistory"][passageButtonId]);
+
+					var passage_text = passageButtonId + " text goes here, but $users[$userId]['passageHistory'] doesnt work :( ";
+
+					$("#selectedPassageTextContainer").text(passage_text);
 				});
 			}, 1000);
 		<</script>>
@@ -12282,19 +12265,18 @@ _data: object with user properties (to access user's passage just use _data["pas
 			</div>
 		</div>
 		<div id="rolePanelDetails">
-			<ul>
+			<ul id="rolePanelDetailsText">
 				<<print "<li><b>Last Active</b>: " + $users[$userId]["lastSeen"]+"</li>">>
 				<li>Details
 					<ul>
-					<li>hardcoded detail 1</li>
-					<li>hardcoded detail 2</li>
+						<li>hardcoded detail 1</li>
+						<li>hardcoded detail 2</li>
 					</ul>
 				</li>
 			</ul>
 		</div>
-		<div id="rolePanelNotes">
-			<<print "<b>Notes</b>: ">>
-		</div>
+		<div id="rolePanelNotesLabel">Notes</div>
+		<div id="rolePanelNotes"></div>
 	</div>
 
 	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
@@ -12383,11 +12365,9 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 				let notes = State.getVar("$users[$userId]['notes']");
 				if (!notes)  {
-					console.log("setting notes");
 					State.setVar("$users[$userId]['notes']", {});
 				}
 
-				console.log(`$users[$userId]['notes']['${user}']`);
 				let defaultText = State.getVar(`$users[$userId]['notes']['${user}']`);
 				
 				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
