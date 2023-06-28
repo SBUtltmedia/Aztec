@@ -75,13 +75,10 @@ class Webstack {
 			 console.log('doing stuff', signal)
 
 			let state = this.serverStore.getState();
-			console.log("state gotten");
 			let content = {"signal":signal, ...this.serverStore.getState()};
-			console.log("content made")
 			 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
 				fileName: `aztec-${this.appIndex}.json`,
 				...this.serverConf})
-				console.log("savejosn madew")
 			
 			  this.saveJSON.uploadFileApi().then(
 				() => {
@@ -133,16 +130,29 @@ class Webstack {
 
 	
 			socket.on('difference', (diff) => {
-				delete diff['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
+				 delete diff['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
+
 				this.serverStore.dispatch({
 					type: 'UPDATE',
 					payload: diff
 				})
-				//sends message to all other clients
+				//sends message to all other clients unless passage History
 				// let extra = "heleo"
-				socket.broadcast.emit('difference', diff)
+
+					socket.broadcast.emit('difference', diff)
 				
-		
+			})
+
+
+			//returns a user's passage history. 
+			//needed to avoid sending data to irrelevant clients
+			socket.on('getHistory', (id, callback) => {
+				try{
+					let res = this.serverStore.getState()["passageHistory"][id];
+					callback({passageHistory: { [id]: res}})
+				}catch{
+					callback({})
+				}
 			})
 
 		});

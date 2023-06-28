@@ -232,7 +232,6 @@ function changeStats(rolePlay, newStats) {
 function getUser() {
     let userId = Window.SugarCubeState.getVar("$userId");
 
-    console.log({userId});
     let user =  Window.SugarCubeState.getVar("$users")[userId];
     return user;
 }
@@ -254,18 +253,18 @@ Sends the emits difference with the diff object as the payload to notify servers
 
 Value cannot be read from sugarcube macro call because only twine can read the syntax.
 */
-function diffSet(diffKey){
+function diffSet(pathArr, value){
     //find new value after setting is done
-    let keys = SugarCubeToJavascript(diffKey);
+    pathArr.shift();
     let currKey;
-    let prevKey = Window.SugarCubeState.getVar(diffKey);
-    while(keys.length > 0){
-        currKey = {[keys.pop()]: prevKey};
+    let prevKey = value
+    while(pathArr.length > 0){
+        currKey = {[pathArr.pop()]: prevKey};
         prevKey = currKey;
     }
-    let diff = currKey;
     console.log("diff:", currKey);
-    socket.emit('difference',  diff)
+    socket.emit('difference',  currKey)
+
 }
 
 /*
@@ -295,6 +294,35 @@ function SugarCubeToJavascript(key){
     return list;
 }
 
+function getHistory(id){
+    socket.emit('getHistory', id, (res) => {
+        console.log("history returned:", res);
+       _.merge(Window.SugarCubeState.variables,res);
+    })
+}
+
+function createHandler(path){
+    return {
+    get(target, key) {
+        if(path.length == 0 && key != `variables`){
+            return target[key];
+        }
+        if (typeof target[key] === 'object' && target[key] !== null) {
+        return new Proxy(target[key], createHandler([...path,key]))
+        } else {
+        return target[key];
+        }
+    },
+    set (target, key, value) {
+        if(target[key] != value){
+            target[key] = value
+            diffSet([...path,key], value)
+            return true
+        }
+    }
+    }
+}
+
 function initTheyr(lockInfo) {
     updateSugarCubeState(userData.gameState);
     socket = io();
@@ -308,7 +336,7 @@ function initTheyr(lockInfo) {
 
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
-        // console.log("Connecting state:", state)
+        console.log("Connecting state:", state)
         // console.log("Current State:", Window.SugarCubeState.variables)
         let combinedState = Object.assign({}, Window.SugarCubeState.variables,state)
         // console.log("Combined State", combinedState)
@@ -386,14 +414,16 @@ function initTheyr(lockInfo) {
     }
 
 
+}
+
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
-        for (const [key, value] of Object.entries(new_state)) {
+        //remove all passagehistories besides the user's
             // console.log({key,value})
-            let temp = _.merge(Window.SugarCubeState.variables, new_state);
-            Window.SugarCubeState.variables = temp
+        // new_state = new Proxy(new_state, createHandler([]))
+        // console.log("new_state:", new_state)
+       _.merge(Window.SugarCubeState.variables, new_state);
 
-        }
+        
         $(document).trigger(":liveupdate");
     }
-}
