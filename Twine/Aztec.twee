@@ -12238,16 +12238,17 @@ _data: object with user properties (to access user's passage just use _data["pas
 				rolePanel.css("visibility", "visible");
 
 				let notes = State.getVar("$users[$userId]['notes']");
-				console.log(notes);
 				if (!notes)  {
 					console.log("setting notes");
 					State.setVar("$users[$userId]['notes']", {});
 				}
 
-				console.log(notes);
-				console.log(State.getVar("$users[$userId]"));
-				$("#rolePanelNotes").wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
-
+				console.log(`$users[$userId]['notes']['${user}']`);
+				let defaultText = State.getVar(`$users[$userId]['notes']['${user}']`);
+				
+				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
+				$("#textbox-usersuseridnotes" + user).val(defaultText);
+			
 				var rpHeight = parseInt(rolePanel.css("height"));
 
 				if (top + rpHeight > pageHeight) {
