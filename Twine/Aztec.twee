@@ -6708,9 +6708,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 /* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
-	<<if !Object.keys($passageHistory[$userId]).includes(passage())>>
+	<<if !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
 		<<set _currPassage = passage()>>
-		<<set $passageHistory[$userId][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
+		<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
 	<</if>>
 	
 
@@ -8808,6 +8808,7 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
   });
 	};
 <</script>>
+<<run getPrivateVars()>>
 
 /* 
 List of valid roles and their info */
@@ -8950,6 +8951,10 @@ they will be directed to this temp user */
 <</if>>
 
 /* inits userdata in $users */
+<<if ndef $theyrPrivateVars>>
+	<<set $theyrPrivateVars = {}>>
+<</if>>
+
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<set $users[$userId] = {}>>
 <script>
@@ -8962,7 +8967,8 @@ console.log("new user detected")
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
-<<set $passageHistory[$userId] = {}>>
+<<set $theyrPrivateVars[$userId] = {}>>
+<<set $theyrPrivateVars[$userId]["passageHistory"] = {}>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
@@ -12118,7 +12124,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<br>
 
   /* loop to make buttons for showing text of previous passages */
-	<<for _passageName, _passageText range $passageHistory[$userId]>>
+	<<for _passageName, _passageText range $theyrPrivateVars[$userId]["passageHistory"]>>
 		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
 
 		<br>

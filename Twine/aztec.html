@@ -196,7 +196,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;theyr&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
  
@@ -6105,9 +6105,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 /* if user is on a new passage, update their current passage and add a recap of the last */
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
-	&lt;&lt;if !Object.keys($passageHistory[$userId]).includes(passage())&gt;&gt;
+	&lt;&lt;if !Object.keys($theyrPrivateVars[$userId][&quot;passageHistory&quot;]).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
-		&lt;&lt;set $passageHistory[$userId][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
+		&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 
@@ -8017,6 +8017,7 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
   });
 	};
 &lt;&lt;/script&gt;&gt;
+&lt;&lt;run getPrivateVars()&gt;&gt;
 
 /* 
 List of valid roles and their info */
@@ -8159,6 +8160,10 @@ they will be directed to this temp user */
 &lt;&lt;/if&gt;&gt;
 
 /* inits userdata in $users */
+&lt;&lt;if ndef $theyrPrivateVars&gt;&gt;
+	&lt;&lt;set $theyrPrivateVars = {}&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
 &lt;script&gt;
@@ -8171,7 +8176,8 @@ console.log(&quot;new user detected&quot;)
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
-&lt;&lt;set $passageHistory[$userId] = {}&gt;&gt;
+&lt;&lt;set $theyrPrivateVars[$userId] = {}&gt;&gt;
+&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;] = {}&gt;&gt;
 &lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -10903,7 +10909,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;br&gt;
 
   /* loop to make buttons for showing text of previous passages */
-	&lt;&lt;for _passageName, _passageText range $passageHistory[$userId]&gt;&gt;
+	&lt;&lt;for _passageName, _passageText range $theyrPrivateVars[$userId][&quot;passageHistory&quot;]&gt;&gt;
 		&lt;&lt;set _passageId = `passage-${_passageName.replaceAll(/\s/g, &#39;-&#39;)}`&gt;&gt;
 
 		&lt;br&gt;
