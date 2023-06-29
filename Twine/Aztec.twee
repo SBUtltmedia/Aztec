@@ -8808,7 +8808,7 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
   });
 	};
 <</script>>
-<<run getPrivateVars()>>
+/* <<run getPrivateVars()>> */
 
 /* 
 List of valid roles and their info */
@@ -8951,9 +8951,9 @@ they will be directed to this temp user */
 <</if>>
 
 /* inits userdata in $users */
-<<if ndef $theyrPrivateVars>>
+/* <<if ndef $theyrPrivateVars>>
 	<<set $theyrPrivateVars = {}>>
-<</if>>
+<</if>> */
 
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<set $users[$userId] = {}>>

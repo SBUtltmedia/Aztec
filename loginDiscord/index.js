@@ -142,8 +142,8 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 
-			let store = (({ theyrPrivateVars, ...o }) => o)(webstackInstance.serverStore.getState());
-			return returnTwine({ gameState: store, authData: { ...guildResultJson, ...userResultJson } }, response);
+			// let store = (({ theyrPrivateVars, ...o }) => o)(webstackInstance.serverStore.getState());
+			return returnTwine({ gameState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } }, response);
 
 
 			//return returnTwine(userDataJSON, response);
@@ -167,6 +167,15 @@ app.get('/', async ({ query }, response) => {
  * @returns the twine game html
  */
 function returnTwine(userData, response) {
+	//removes private vars
+	if(userData.gameState.theyrPrivateVars){
+		Object.keys(userData.gameState.theyrPrivateVars).forEach((id)=>{
+			if(userData.authData && id != userData.authData.id){
+				delete userData.gameState.theyrPrivateVars[id];
+			}
+		})
+	}
+
 	let userDataScriptTag = `
 	<script>
 	sessionStorage.clear(); 
@@ -190,8 +199,7 @@ function loadHome(response, isTest) {
 
 
 	if (isTest) {
-		let store = (({ theyrPrivateVars, ...o }) => o)(webstackInstance.serverStore.getState());
-		return returnTwine({ gameState: store }, response);
+		return returnTwine({ gameState: webstackInstance.serverStore.getState() }, response);
 	}
 	else {
 		response.send(indexHtml);

@@ -267,6 +267,7 @@ function createHandler(path = []){
             diffSet([...path,key], value)
             return true
         }
+        return false
     }
     }
 }

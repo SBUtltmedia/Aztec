@@ -137,8 +137,9 @@ class Webstack {
 				})
 				//sends message to all other clients unless passage History
 				// let extra = "heleo"
-		
-				socket.broadcast.emit('difference', diff)
+				if(!Object.keys.includes("theyrPrivateVars")){
+					socket.broadcast.emit('difference', diff)
+				}
 				
 			})
 
@@ -147,8 +148,8 @@ class Webstack {
 			//needed to avoid sending data to irrelevant clients
 			socket.on('getPrivateVars', (id, callback) => {
 				try{
-					let res = this.serverStore.getState()["theyrPrivateVars"];
-					callback({theyrPrivateVars: res})
+					let res = this.serverStore.getState()["theyrPrivateVars"][id];
+					callback({theyrPrivateVars: {[id]: res}})
 				}catch{
 					callback({})
 				}
