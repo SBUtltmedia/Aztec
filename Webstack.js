@@ -148,7 +148,7 @@ class Webstack {
 			socket.on('getPrivateVars', (id, callback) => {
 				try{
 					let res = this.serverStore.getState()["theyrPrivateVars"];
-					callback({theyrPrivateVars: { [id]: res}})
+					callback({theyrPrivateVars: res})
 				}catch{
 					callback({})
 				}
