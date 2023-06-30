@@ -265,9 +265,9 @@ function createHandler(path = []){
             target[key] = value
             path.shift();
             diffSet([...path,key], value)
-            return true
+            
         }
-        return false
+        return true
     }
     }
 }

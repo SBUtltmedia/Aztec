@@ -137,7 +137,7 @@ class Webstack {
 				})
 				//sends message to all other clients unless passage History
 				// let extra = "heleo"
-				if(!Object.keys.includes("theyrPrivateVars")){
+				if(!Object.keys(diff).includes("theyrPrivateVars")){
 					socket.broadcast.emit('difference', diff)
 				}
 				
