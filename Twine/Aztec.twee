@@ -8951,9 +8951,6 @@ they will be directed to this temp user */
 <</if>>
 
 /* inits userdata in $users */
-/* <<if ndef $theyrPrivateVars>>
-	<<set $theyrPrivateVars = {}>>
-<</if>> */
 
 <<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
 <<set $users[$userId] = {}>>

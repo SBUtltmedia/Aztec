@@ -176,6 +176,10 @@ function returnTwine(userData, response) {
 		})
 	}
 
+	if(!userData.gameState.theyrPrivateVars){
+		userData.gameState.theyrPrivateVars = {};
+	}
+
 	let userDataScriptTag = `
 	<script>
 	sessionStorage.clear(); 
