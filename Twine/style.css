@@ -210,7 +210,7 @@ body :not(.playerList)
     left: 58%;
     display: flex;
     width:35%;
-    height:17%;
+    height:20%;
     position: absolute;
     }
 
@@ -710,13 +710,12 @@ small font size: 1.7rem
 }
 
 #rolePanelNotesLabel {
-  height: 5%;
   width: 89%;
   overflow: hidden;
   align-self: center;
-  font-size: 1.0rem;
+  font-size: 1.5rem;
   position: absolute;
-  top: 66%;
+  top: 64.5%;
 }
 
 #rolePanelNotes {
@@ -737,6 +736,8 @@ small font size: 1.7rem
 #rolePanelNotes .macro-textbox {
   background-color: initial;
   outline: none;
+  all: unset;
+  text-align: left;
 }
 
 #rolePanelNotes .macro-textbox:hover {
