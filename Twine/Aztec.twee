@@ -48,6 +48,7 @@ importScripts([
 	`${urlPrefix}Client.js`,
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js",
 	"https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js",
 	"https://code.jquery.com/ui/1.12.1/jquery-ui.js"
 	]	
 )
@@ -9000,6 +9001,7 @@ console.log("new user detected")
 </script>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
+<<set $users[$userId]["lastSeen"] = 0>>
 <<set $users[$userId]["discriminator"] =  _discriminator>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
@@ -12266,7 +12268,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 		</div>
 		<div id="rolePanelDetails">
 			<ul id="rolePanelDetailsText">
-				<<print "<li><b>Last Active</b>: " + $users[$userId]["lastSeen"]+"</li>">>
+				<<print "<li><b>Last Active</b>: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
 				<li>Details
 					<ul>
 						<li>hardcoded detail 1</li>

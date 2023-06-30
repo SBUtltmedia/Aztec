@@ -317,8 +317,9 @@ function createHandler(path){
         if(target[key] != value){
             target[key] = value
             diffSet([...path,key], value)
-            return true
+            
         }
+        return true
     }
     }
 }

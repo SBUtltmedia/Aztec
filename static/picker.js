@@ -3,17 +3,21 @@ class valueChanger {
     constructor(currentValue) {
         this.currentValue = currentValue
         this.maxValue = currentValue;
+        this.statsArray = ["Strength", "Loyalty", "Wisdom"];
     }
 
     change(direction, $currentInput) {
         var spinValue = parseInt($currentInput.val());
         var changed = false;
         var testValue = this.currentValue - direction;
-
-        if (testValue < 0 || testValue > this.maxValue || spinValue < 0) {
-            changed = false;
-        } else {
-            this.currentValue -= direction;
+        let accumStats = this.statsArray.reduce(
+            (accumulator, currentValue) => {console.log(parseInt($(`#${currentValue}`).val())); return accumulator + parseInt($(`#${currentValue}`).val()) },
+            0
+        );
+        //console.log(accumStats);
+        if (!(testValue < 0 || testValue > this.maxValue || spinValue < 0)) {
+            
+            this.currentValue = this.maxValue - accumStats;
             $("#currentValue").html(this.currentValue);
 
             changed = true;
@@ -91,11 +95,11 @@ function statPickerInit() {
 
         $("#submitButton").on("click", submitStats)
         $('#stats input[type="number"]').niceNumber({
-            onIncrement: ($currentInput, amount, settings) => change($currentInput, amount, settings, 1),
-            onDecrement: ($currentInput, amount, settings) => change($currentInput, amount, settings, -1),
+            onIncrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, settings, 1),
+            onDecrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, settings, -1),
         });
         disableButtons();
-    }, 1000);
+    }, 0);
     return ""
 }
 
@@ -143,7 +147,11 @@ function disableButtons() {
 }
 
 
-function change($currentInput, amount, settings, direction) {
+function changeHelper($currentInput, amount, settings, direction) {
+    if (amount == 0) {
+        return;
+    }
+
     if (!valueChange.change(direction, $currentInput)) {
         $currentInput.val($currentInput.val() - direction);
     } else {

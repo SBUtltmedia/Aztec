@@ -121,6 +121,7 @@ importScripts([
 	`${urlPrefix}Client.js`,
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js",
 	"https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js",
 	"https://code.jquery.com/ui/1.12.1/jquery-ui.js"
 	]	
 )
@@ -8205,6 +8206,7 @@ console.log(&quot;new user detected&quot;)
 &lt;/script&gt;
 &lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;lastSeen&quot;] = 0&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;discriminator&quot;] =  _discriminator&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;faction&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.faction || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
@@ -11047,7 +11049,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;/div&gt;
 		&lt;div id=&quot;rolePanelDetails&quot;&gt;
 			&lt;ul id=&quot;rolePanelDetailsText&quot;&gt;
-				&lt;&lt;print &quot;&lt;li&gt;&lt;b&gt;Last Active&lt;/b&gt;: &quot; + $users[$userId][&quot;lastSeen&quot;]+&quot;&lt;/li&gt;&quot;&gt;&gt;
+				&lt;&lt;print &quot;&lt;li&gt;&lt;b&gt;Last Active&lt;/b&gt;: &quot; + moment(new Date(parseInt($users[$userId][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
 				&lt;li&gt;Details
 					&lt;ul&gt;
 						&lt;li&gt;hardcoded detail 1&lt;/li&gt;
