@@ -14,8 +14,12 @@ class DiscordBot {
         let username = `${channel} messenger`
         let avatar_url =  "https://images.fineartamerica.com/images-medium-large/2-hernando-cortez-spanish-conquistador-photo-researchers.jpg" 
         let channelURL = this.channels[channel];
-        const request = new XMLHttpRequest();
-        request.open("POST", channelURL);
+        try{
+            const request = new XMLHttpRequest();
+            request.open("POST", channelURL);
+        }catch(e){
+            throw "Invalid Discord URL"
+        }
         request.onload = function(e) {
         
               //console.log(e);

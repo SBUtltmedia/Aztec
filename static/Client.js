@@ -1,5 +1,3 @@
-
-
 var socket;
 var exceptions = []
 var stateReceived = false;
