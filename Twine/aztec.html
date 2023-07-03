@@ -10951,10 +10951,16 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 	&lt;div id=&quot;passagesCompletedButtons&quot;&gt;
 		&lt;div class=&quot;passagesCompletedButtonsGrid&quot;&gt;
-			&lt;&lt;for _passageName, _passageText range $users[$userId][&quot;passageHistory&quot;]&gt;&gt;
-				&lt;&lt;print `&lt;button class=&quot;passageButton&quot; id=&quot;`+_passageName+`&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
+			&lt;&lt;for _passageName, _passageText range $passageHistory[$userId]&gt;&gt;
+				&lt;&lt;print `&lt;button class=&quot;passageButton&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
 			&lt;&lt;/for&gt;&gt;
 		&lt;/div&gt;
+	&lt;/div&gt;
+
+	&lt;div id=&quot;passageChevron&quot;&gt;
+		&lt;svg transform=&quot;scale(5)&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;16&quot; height=&quot;16&quot; fill=&quot;currentColor&quot; class=&quot;bi bi-chevron-compact-down&quot; viewBox=&quot;0 0 16 16&quot;&gt;
+			&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z&quot;/&gt;
+		&lt;/svg&gt;
 	&lt;/div&gt;
 
 	&lt;div id=&quot;selectedPassageTextContainer&quot;&gt;
@@ -10962,17 +10968,14 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;&lt;script&gt;&gt;
 			setTimeout(() =&gt; {
 				$(&quot;.passageButton&quot;).on(&quot;click&quot;, function() {
-					var passageButtonId = $(this).attr(&quot;id&quot;);
-
-					var passage_text = passageButtonId + &quot; text goes here, but $users[$userId][&#39;passageHistory&#39;] doesnt work :( &quot;;
-
+					var passageButtonId = $(this).attr(&quot;data-passageName&quot;);
+					var passage_text = State.getVar(`$passageHistory[$userId][&quot;${passageButtonId}&quot;]`);
 					$(&quot;#selectedPassageTextContainer&quot;).text(passage_text);
 				});
 			}, 1000);
 		&lt;&lt;/script&gt;&gt;
 	&lt;/div&gt;
 
- 	
 
 &lt;/div&gt;
 

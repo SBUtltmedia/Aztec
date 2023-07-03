@@ -880,4 +880,12 @@ small font size: 1.7rem
   color: black;
   font: 1.6rem;
   /* Additional styles for the square buttons */
+  
+}
+
+#passageChevron {
+  text-align: center;
+  height: 1rem;
+  position: relative;
+  top: -1.1rem;
 }
