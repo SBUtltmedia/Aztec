@@ -12170,10 +12170,16 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 	<div id="passagesCompletedButtons">
 		<div class="passagesCompletedButtonsGrid">
-			<<for _passageName, _passageText range $users[$userId]["passageHistory"]>>
-				<<print `<button class="passageButton" id="`+_passageName+`"> `+_passageName+` </button>`>>
+			<<for _passageName, _passageText range $passageHistory[$userId]>>
+				<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
 			<</for>>
 		</div>
+	</div>
+
+	<div id="passageChevron">
+		<svg transform="scale(5)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+		</svg>
 	</div>
 
 	<div id="selectedPassageTextContainer">
@@ -12181,17 +12187,14 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<<script>>
 			setTimeout(() => {
 				$(".passageButton").on("click", function() {
-					var passageButtonId = $(this).attr("id");
-
-					var passage_text = passageButtonId + " text goes here, but $users[$userId]['passageHistory'] doesnt work :( ";
-
+					var passageButtonId = $(this).attr("data-passageName");
+					var passage_text = State.getVar(`$passageHistory[$userId]["${passageButtonId}"]`);
 					$("#selectedPassageTextContainer").text(passage_text);
 				});
 			}, 1000);
 		<</script>>
 	</div>
 
- 	
 
 </div>
 
