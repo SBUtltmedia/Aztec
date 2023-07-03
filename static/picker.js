@@ -182,6 +182,8 @@ function makeStats(item, container, value = 0) {
         console.log($(this))
         $(this).blur()
     })
+
+    
 }
 
 jsLoaded = true

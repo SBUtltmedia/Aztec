@@ -12268,7 +12268,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 		</div>
 		<div id="rolePanelDetails">
 			<ul id="rolePanelDetailsText">
-				<<print "<li><b>Last Active</b>: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
+				<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
 				<li>Details
 					<ul>
 						<li>hardcoded detail 1</li>
@@ -12371,6 +12371,11 @@ _data: object with user properties (to access user's passage just use _data["pas
 				}
 
 				let defaultText = State.getVar(`$users[$userId]['notes']['${user}']`);
+				if (!defaultText) {
+					defaultText = "Click to add a note";
+				} else {
+					console.log("note exist");
+				}
 				
 				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
 				$("#textbox-usersuseridnotes" + user).val(defaultText);
@@ -12384,6 +12389,21 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 				rolePanel.css("top", top + "px");
 				rolePanel.css("left", left + "px");
+
+				let usernameDiv = $("#rolePanelPrintUserName");
+				let username = State.getVar(`$users[$lookup["${user}"]]["username"]`);
+				usernameDiv.text("@" + username);
+
+				let lastSeen = $("#rolePanelLastSeen");
+				let lastSeenText = "Last Active: ";
+				let milli = State.getVar(`$users[$lookup["${user}"]]["lastSeen"]`);
+				let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
+				let dateObject = new Date();
+				if (Math.abs(dateObject.getTime() - milli) < 120000) {
+					lastSeenTime = "Right now"
+				}
+				lastSeenText += lastSeenTime;
+				lastSeen.text(lastSeenText);
 			})
 		}, 1500);
 

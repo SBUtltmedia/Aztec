@@ -11049,7 +11049,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;/div&gt;
 		&lt;div id=&quot;rolePanelDetails&quot;&gt;
 			&lt;ul id=&quot;rolePanelDetailsText&quot;&gt;
-				&lt;&lt;print &quot;&lt;li&gt;&lt;b&gt;Last Active&lt;/b&gt;: &quot; + moment(new Date(parseInt($users[$userId][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
+				&lt;&lt;print &quot;&lt;li id=&#39;rolePanelLastSeen&#39;&gt;Last Active: &quot; + moment(new Date(parseInt($users[$userId][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
 				&lt;li&gt;Details
 					&lt;ul&gt;
 						&lt;li&gt;hardcoded detail 1&lt;/li&gt;
@@ -11152,6 +11152,11 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 				}
 
 				let defaultText = State.getVar(`$users[$userId][&#39;notes&#39;][&#39;${user}&#39;]`);
+				if (!defaultText) {
+					defaultText = &quot;Click to add a note&quot;;
+				} else {
+					console.log(&quot;note exist&quot;);
+				}
 				
 				$(&quot;#rolePanelNotes&quot;).empty().wiki(`&lt;&lt;textbox &quot;$users[$userId][&#39;notes&#39;][&#39;${user}&#39;]&quot; $users[$userId][&#39;notes&#39;][&#39;${user}&#39;]&gt;&gt;`);
 				$(&quot;#textbox-usersuseridnotes&quot; + user).val(defaultText);
@@ -11165,6 +11170,21 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 
 				rolePanel.css(&quot;top&quot;, top + &quot;px&quot;);
 				rolePanel.css(&quot;left&quot;, left + &quot;px&quot;);
+
+				let usernameDiv = $(&quot;#rolePanelPrintUserName&quot;);
+				let username = State.getVar(`$users[$lookup[&quot;${user}&quot;]][&quot;username&quot;]`);
+				usernameDiv.text(&quot;@&quot; + username);
+
+				let lastSeen = $(&quot;#rolePanelLastSeen&quot;);
+				let lastSeenText = &quot;Last Active: &quot;;
+				let milli = State.getVar(`$users[$lookup[&quot;${user}&quot;]][&quot;lastSeen&quot;]`);
+				let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
+				let dateObject = new Date();
+				if (Math.abs(dateObject.getTime() - milli) &lt; 120000) {
+					lastSeenTime = &quot;Right now&quot;
+				}
+				lastSeenText += lastSeenTime;
+				lastSeen.text(lastSeenText);
 			})
 		}, 1500);
 

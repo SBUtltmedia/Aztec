@@ -738,6 +738,7 @@ small font size: 1.7rem
   outline: none;
   all: unset;
   text-align: left;
+  text-indent: 10px;
 }
 
 #rolePanelNotes .macro-textbox:hover {
