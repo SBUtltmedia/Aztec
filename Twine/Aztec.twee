@@ -8808,7 +8808,6 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
   });
 	};
 <</script>>
-/* <<run getPrivateVars()>> */
 
 /* 
 List of valid roles and their info */
@@ -8971,14 +8970,14 @@ console.log("new user detected")
 
 /* for testing discord macro: */
 
-/* <<discord aztecSpan>> as <</discord>>
+<<discord aztecSpan>> as <</discord>>
 <<discord aztecs>> a <</discord>>
 <<discord tlax>> t <</discord>>
 <<discord spanish>> s <</discord>>
 <<discord aztecTlax>> at <</discord>>
 <<discord spanTlax>> st <</discord>>
 <<discord general>> g <</discord>>
-<<discord omen>> omen <</discord>> */
+<<discord omen>> omen <</discord>>
 
 /* Load passage */
 <<script>>
