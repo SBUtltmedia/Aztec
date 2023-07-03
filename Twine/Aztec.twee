@@ -8970,14 +8970,14 @@ console.log("new user detected")
 
 /* for testing discord macro: */
 
-<<discord aztecSpan>> as <</discord>>
+/* <<discord aztecSpan>> as <</discord>>
 <<discord aztecs>> a <</discord>>
 <<discord tlax>> t <</discord>>
 <<discord spanish>> s <</discord>>
 <<discord aztecTlax>> at <</discord>>
 <<discord spanTlax>> st <</discord>>
 <<discord general>> g <</discord>>
-<<discord omen>> omen <</discord>>
+<<discord omen>> omen <</discord>> */
 
 /* Load passage */
 <<script>>
@@ -9082,6 +9082,8 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 
 
 :: The Aztec Legend of Quetzalcoatl {"position":"3125,100","size":"100,100"}
+/* Sometimes the icon doesn't appear, this is a sign variables haven't been initiazlized properly,
+specifically $Start in this case. */
 <<theyr>>
 <<if $Start <=10>>
 

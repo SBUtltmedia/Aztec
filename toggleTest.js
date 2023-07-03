@@ -1,5 +1,5 @@
-//quick node program to change .env to .env_back or vice versa. Use for testing process.env
-//run by typing: 'node toggleEnv.js' in terminal
+//quick node program to change .test to .test or vice versa. Use for testing process.env
+//run by typing: 'node toggleTest.js' in terminal
 
 import fs from 'fs'
 import path from 'path'
