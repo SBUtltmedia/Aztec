@@ -45,7 +45,7 @@ const htmlTemplate = './loginDiscord/index.html'
 const CHANNELNAMES = (process.env.discordChannelNamess || channelNames).split(',');
 let DISCORDCHANNELS = discordChannels;
 if(!DISCORDCHANNELS){
-	channelNames.forEach((channel)=>{
+	CHANNELNAMES.forEach((channel)=>{
 		DISCORDCHANNELS[channel] = process.env[channel];
 	})
 }
@@ -57,6 +57,8 @@ const CLIENT_ID = process.env.clientId || clientId;
 const CLIENT_SECRET = process.env.clientSecret || clientSecret;
 const TWINE_PATH = process.env.twinePath || twinePath;
 const PORT = process.env.PORT || port;
+const appID = process.env.appIndex || localAppIndex;
+const FILENAME = `${process.env.fileName || fileName}-${appID}.json`;
 let HEROKU_URL;
 console.log(process.env.PORT)
 if (process.env.PORT) {
@@ -75,8 +77,6 @@ const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
-const FILENAME = `${process.env.fileName || fileName}-${localAppIndex}.json`;
-const appID = process.env.appIndex || localAppIndex;
 const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": FILENAME }
 
 let refreshTokens = {};
@@ -86,6 +86,7 @@ const { app } = webstackInstance.get();
 //for reading input from twee 
 app.post('/discordbot', urlencodedParser, function (req, res) {
 	res.send({});
+	console.log(req.body.channel)
 	discordBot.sendNotif(req.body.channel, req.body.message)
 })
 

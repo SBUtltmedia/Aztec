@@ -247,7 +247,7 @@ function getUser() {
 }
 
 
-//Creates a handler for the state proxy, maintains entire path for emitting to webstack
+//Creates a handler for the state proxy, maintains entire path of var getting set for emitting to webstack
 function createHandler(path = []){
     return {
     get(target, key) {
@@ -337,17 +337,6 @@ function initTheyr(lockInfo) {
     
         $(document).trigger(":liveupdate");
     }
-
-    /*
-TODO: Come up with private var system. Private vars are all added to the server store but
-but not shared to all clients. Each user gets their own in the form $theyrPrivateVars[$userId]
-*/
-function getPrivateVars(id){
-    socket.emit('getPrivateVars', id, (res) => {
-        console.log("history returned:", res);
-       _.merge(Window.SugarCubeState.variables,res);
-    })
-}
 
 //Exceptions are global variables that shouldn't be shared between users
 function addTheyrException(varName){

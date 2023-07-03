@@ -127,31 +127,16 @@ class Webstack {
 				}
 			})
 
-	
+			// When a client detects a variable being changed they send the difference signal which is
+			// caught here and sent to other clients
 			socket.on('difference', (diff) => {
-				// delete diff['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
-
 				this.serverStore.dispatch({
 					type: 'UPDATE',
 					payload: diff
 				})
-				//sends message to all other clients unless passage History
-				// let extra = "heleo"
+				//sends message to all other clients unless inside theyrPrivateVars
 				if(!Object.keys(diff).includes("theyrPrivateVars")){
 					socket.broadcast.emit('difference', diff)
-				}
-				
-			})
-
-
-			//returns a user's passage history. 
-			//needed to avoid sending data to irrelevant clients
-			socket.on('getPrivateVars', (id, callback) => {
-				try{
-					let res = this.serverStore.getState()["theyrPrivateVars"][id];
-					callback({theyrPrivateVars: {[id]: res}})
-				}catch{
-					callback({})
 				}
 			})
 
