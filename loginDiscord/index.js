@@ -42,7 +42,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const htmlTemplate = './loginDiscord/index.html'
 
 // Destructure config.json variables (Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead))
-const CHANNELNAMES = (process.env.discordChannelNamess || channelNames).split(',');
+const CHANNELNAMES = (process.env.discordChannelNames || channelNames).split(',');
 let DISCORDCHANNELS = discordChannels;
 if(!DISCORDCHANNELS){
 	CHANNELNAMES.forEach((channel)=>{

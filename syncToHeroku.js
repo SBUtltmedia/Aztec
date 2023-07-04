@@ -30,7 +30,16 @@ for (let i = startingAppId; i <= endingAppId ; i++) {
     configVars['redirectURL'] = redirectURL;
     configVars['herokuURL'] = `https://${app}-${i}.herokuapp.com`;
     configVars['appIndex'] = i;
+    configVars['discordChannelNames'] = Object.keys(configVars['discordChannels']).reduce(
+        (accumulator, currentValue) => `${accumulator},${currentValue}`,
+        '')
 
+    // converts discordChannel nested object into .env format
+    for (const [key, value] of Object.entries(configVars["discordChannels"])) {
+        configVars[key] = value
+    }
+    delete configVars['discordChannels']
+    
     for (let key of Object.keys(configVars)) {
         let command = `heroku config:set -a ${app}-${i} ${key}=${configVars[key]}`;
         commands.push(command);
