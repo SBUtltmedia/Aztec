@@ -14,17 +14,19 @@ var base64 = require('base-64');
 
 class Webstack {
 	constructor(port, appIndex,serverConf) {
-		serverConf.fileName = `aztec-${appIndex}.json`
 		this.appIndex = appIndex
 		this.serverConf = serverConf
 		//I'm not sure if this actually saves to GIT because we don't call the function.
 		this.port=port;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
+
+		//serverStore stores the current game state and is backed up via gitApiIO because Heroku is ephemeral 
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 
-		new gitApiIO(serverConf).retrieveFileAPI().then((gameData) => {
+		this.gitApi = new gitApiIO(serverConf)
+		this.gitApi.retrieveFileAPI().then((gameData) => {
 			let state = JSON.parse(gameData)
 			this.serverStore.dispatch({
 				type: 'UPDATE',
@@ -72,15 +74,11 @@ class Webstack {
 
 		shutdown(signal) {
 			return (err) => {
-			 console.log('doing stuff', signal)
+			 console.log('shutting down', signal)
 
-			let state = this.serverStore.getState();
 			let content = {"signal":signal, ...this.serverStore.getState()};
-			 this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(content)), 
-				fileName: `aztec-${this.appIndex}.json`,
-				...this.serverConf})
 			
-			  this.saveJSON.uploadFileApi().then(
+			  this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content))).then(
 				() => {
 					console.log(err)
 					process.exit(err ? 1 : 0);
@@ -91,6 +89,7 @@ class Webstack {
 			 }
 			};
 	  
+	//Controller for serverStore
 	reducer(state, action) {
 		// console.log({state})
 		// console.log(JSON.stringify({action}));
@@ -128,30 +127,16 @@ class Webstack {
 				}
 			})
 
-	
+			// When a client detects a variable being changed they send the difference signal which is
+			// caught here and sent to other clients
 			socket.on('difference', (diff) => {
-				 delete diff['userId'] // Removes userId from the global state (Prevents users overriding each other's userId variables)
-
 				this.serverStore.dispatch({
 					type: 'UPDATE',
 					payload: diff
 				})
-				//sends message to all other clients unless passage History
-				// let extra = "heleo"
-
+				//sends message to all other clients unless inside theyrPrivateVars
+				if(!Object.keys(diff).includes("theyrPrivateVars")){
 					socket.broadcast.emit('difference', diff)
-				
-			})
-
-
-			//returns a user's passage history. 
-			//needed to avoid sending data to irrelevant clients
-			socket.on('getHistory', (id, callback) => {
-				try{
-					let res = this.serverStore.getState()["passageHistory"][id];
-					callback({passageHistory: { [id]: res}})
-				}catch{
-					callback({})
 				}
 			})
 

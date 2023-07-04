@@ -127,7 +127,7 @@ importScripts([
 	.then(function() {
 			initTheyr({lockId,callback:LoadScreen.unlock})
 
-	State = new Proxy(State, createHandler([]))
+	State = new Proxy(State, createHandler())
 
 	}
 );
@@ -175,29 +175,12 @@ importScripts([
 	});
 	
 
-	Macro.add('storeSet', {
+	/*	Designates a global variable as an exeception, preventing it from being sent to other clients
+	 */
+	Macro.add('theyrException', {
     handler: function() {
-		//saves the key of the value that is being set
-		let key = this.args.raw.split(/[ ]+/).join('').split("=")[0]; 
-
-		//TODO: Replace with regex
-		//accounts for <<set _key+= val>> acses
-		let endings = ['+', '-','*', '/']
-		if(endings.includes(key.slice(-1))){
-			key = key.slice(0,-1);
-		}
-
-		var output = `<<set ${this.args.raw}>>`
-		
-        $(this.output).wiki(output);
-		// console.log("args", this.args);
-		// console.log("key:",key);
-
-		//send key of value to client function if not temporary var
-		if(key.substring(0, 1) != "_"){
-			diffSet(key);
-		}
-    }
+			addTheyrException(this.args.full)
+    	}
 	});
 
 
@@ -6002,7 +5985,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 &lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;theyr&gt;&gt;
-/* &lt;&lt;textbox &quot;$users[&#39;379034594206285845&#39;][&#39;character&#39;]&quot; $users[&#39;379034594206285845&#39;][&quot;character&quot;]&gt;&gt; */
 &lt;&lt;set _roles = {
   &quot;Marina&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
@@ -6081,14 +6063,6 @@ Along your journey, you have met many people. Some have been willing allies of t
   }
 }
 		&gt;&gt;
-/* &lt;&lt;set _macro = 23&gt;&gt;
-&lt;&lt;set $test = &quot;Test&quot;&gt;&gt;
-&lt;&lt;set $test = $test.toLowerCase()&gt;&gt; */
-/* &lt;&lt;run changeStats(&quot;Aztec_Priest&quot;,{&quot;Wisdom&quot;:2,&quot;Loyalty&quot;:0,&quot;Strength&quot;:0})&gt;&gt; */
-/* &lt;&lt;set $users[$userId][&quot;stats&quot;][&quot;Strength&quot;] -= 1&gt;&gt; */
-
-/* List of passages where ui elements don&#39;t show up */
-
 
 /* &lt;&lt;audio &quot;:all&quot; stop&gt;&gt; */
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
@@ -6102,8 +6076,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 	$(&#39;#story&#39;).append(homeButton);
 	}
 	&lt;&lt;/script&gt;&gt;
-
-
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -6129,24 +6101,19 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 &lt;&lt;/script&gt;&gt;
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="169" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
 
-/* Updates user&#39;s latest logon time */
-/* &lt;&lt;set $users[$userId][&quot;lastSeen&quot;]=new Date().getTime()&gt;&gt; */
-&lt;&lt;/theyr&gt;&gt;
-
-/* updates user&#39;s last log in time */</tw-passagedata><tw-passagedata pid="169" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;theyr&gt;&gt;
-/* List of passages where ui elements don&#39;t show up */
-/* &lt;&lt;set _menuPassages = {&quot;Name Not Recognized&quot;:0,&quot;Home&quot;:0}&gt;&gt; */
-
+/* if user is on a new passage, update their current passage and add a recap of the last */
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
-	&lt;&lt;if !Object.keys($passageHistory[$userId]).includes(passage())&gt;&gt;
+	&lt;&lt;if !Object.keys($theyrPrivateVars[$userId][&quot;passageHistory&quot;]).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
-		&lt;&lt;set $passageHistory[$userId][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
+		&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 
 &lt;br&gt;
 
+/* updates time when user was last online */
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set _currentTime=new Date()&gt;&gt;
 &lt;&lt;if _currentTime.getTime() - $users[$userId][&quot;lastSeen&quot;] &gt; 10000&gt;&gt;
@@ -8028,20 +7995,19 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 [[Return to the Dashboard|Dashboard]]&lt;br&gt;
 
 
-&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="216" name="StoryInit" tags="" position="4600,1200" size="100,100">/* &lt;&lt;set $lastSeenDelay=60 * 5000&gt;&gt; */
-&lt;script&gt;
-console.log(&quot;storyinit started&quot;);
-&lt;/script&gt;
-&lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="216" name="StoryInit" tags="" position="4600,1200" size="100,100">&lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 &lt;!-- &lt;&lt;masteraudio volume 0&gt;&gt; --&gt;
 
 /* Gets discord info  */
+
+/* prevents $userId from interacting with multiplayer system */
+&lt;&lt;theyrException $userId&gt;&gt;
 &lt;&lt;script&gt;&gt;
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 	// State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
-	updateSugarCubeState({userId: searchParams.get(&#39;id&#39;) || userData.authData.id})
+	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
 	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
@@ -8050,7 +8016,6 @@ console.log(&quot;storyinit started&quot;);
     timeZone: &#39;America/New_York&#39;,
   });
 	};
-
 &lt;&lt;/script&gt;&gt;
 
 /* 
@@ -8140,7 +8105,8 @@ List of valid roles and their info */
 &lt;&lt;/if&gt;&gt;
 
 
-/* Not seen user is for testing purposes. Anytime a non-existing user&#39;s stats are needed, they will be directed to this temp user */
+/* Not seen user is for testing purposes. Anytime a non-existing user&#39;s stats are needed, 
+they will be directed to this temp user */
 &lt;&lt;if ndef $users[&quot;notSeen&quot;]&gt;&gt;
 &lt;&lt;set $users[&quot;notSeen&quot;] = {
 		&quot;stats&quot; : {
@@ -8192,8 +8158,8 @@ List of valid roles and their info */
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-/* &lt;&lt;run getHistory($userId)&gt;&gt; */
 /* inits userdata in $users */
+
 &lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
 &lt;script&gt;
@@ -8206,13 +8172,10 @@ console.log(&quot;new user detected&quot;)
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
-&lt;&lt;set $passageHistory[$userId] = {}&gt;&gt;
+&lt;&lt;set $theyrPrivateVars[$userId] = {}&gt;&gt;
+&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;] = {}&gt;&gt;
 &lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-
-
-
-
 
 /* for testing discord macro: */
 
@@ -8316,7 +8279,9 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="219" name="The Aztec Legend of Quetzalcoatl" tags="" position="3125,100" size="100,100">&lt;&lt;theyr&gt;&gt;
+&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="219" name="The Aztec Legend of Quetzalcoatl" tags="" position="3125,100" size="100,100">/* Sometimes the icon doesn&#39;t appear, this is a sign variables haven&#39;t been initiazlized properly,
+specifically $Start in this case. */
+&lt;&lt;theyr&gt;&gt;
 &lt;&lt;if $Start &lt;=10&gt;&gt;
 
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
@@ -10942,7 +10907,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;br&gt;
 
   /* loop to make buttons for showing text of previous passages */
-	&lt;&lt;for _passageName, _passageText range $passageHistory[$userId]&gt;&gt;
+	&lt;&lt;for _passageName, _passageText range $theyrPrivateVars[$userId][&quot;passageHistory&quot;]&gt;&gt;
 		&lt;&lt;set _passageId = `passage-${_passageName.replaceAll(/\s/g, &#39;-&#39;)}`&gt;&gt;
 
 		&lt;br&gt;
