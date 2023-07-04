@@ -7,19 +7,35 @@ var fs = require('fs');
 var testFile = "loginDiscord/testVars.json"
 var base64 = require('base-64');
 
+/**
+ * Allows the sending an retrieving of git files based on .env file intended for backing up state after 
+a shutdown
+ */
 class gitApiIO{
+
+    /** 
+    *   Constructs gitApiIO object, use methods on constructed object
+    *   @param {object} serverConf: serverConf from config or .env file, contains: port, twinePath, githubtoken,
+    *   githubuser, githubrepo, and localappindex
+    *   
+    **/
     constructor(serverConf) {
         this.serverConf = serverConf
         this.test = fs.existsSync(testFile)
         console.log("config is", serverConf)
 	}
 
-    async uploadFileApi() {
+    /** 
+    * Uploads file to github repo described in serverConf. Used to backup game state
+    *  since Heroku is ephemeral
+    * @param {object} content: The last saved Sugarcube.State.variables taken from serverstore
+    **/
+    async uploadFileApi(content) {
         console.log("IN UPLOAD")
         return new Promise((res,rej)=> {
             if(this.test){
                 console.log("resolved")
-                fs.writeFileSync(testFile, base64.decode(this.serverConf.content))
+                fs.writeFileSync(testFile, base64.decode(content))
                 res()
             }else{
             let serverConf = this.serverConf
@@ -37,9 +53,10 @@ class gitApiIO{
                 .then(function (response) {
                     // console.log(response.data.sha);
                     sha = response.data.sha
+                    console.log("sha:", sha);
                     var data = JSON.stringify({
                         "message": "txt file",
-                        "content": `${serverConf.content}`,
+                        "content": `${content}`,
                         "sha": sha,
                     });
                     var configPutFile = {
@@ -71,6 +88,12 @@ class gitApiIO{
                 });
             }})
     }
+
+    /**Retrieves file specified by serverConf on github 
+     * 
+     * @returns {object} response containing last saved game state in the form of a JSON. To be loaded
+     * into SugarCubeState.variables
+     */
     async retrieveFileAPI() {
         return new Promise((res,rej)=> {
         if(this.test){
@@ -88,13 +111,69 @@ class gitApiIO{
         axios(configGetFile)
             .then(function (response) {
                 res(base64.decode(response.data.content))
-
-                // return base64.decode(response.data.content)
             })
             .catch(function (error) {
                 rej(error);
             });
         }})
+    }
+
+    async setupFileAPI(){
+        return new Promise((res,rej)=> {
+            if(this.test){
+                console.log("resolved")
+                fs.writeFileSync(testFile, base64.decode(content))
+                res()
+            }else{
+            let serverConf = this.serverConf
+            var configGetFile = {
+                method: 'get',
+                url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
+                headers: {
+                    'Authorization': `Bearer ${serverConf.githubToken}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            let sha = ""
+            axios(configGetFile)
+                .then(function (response) {
+                    // console.log(response.data.sha);
+                    sha = response.data.sha
+                    
+                    var data = JSON.stringify({
+                        "message": "txt file",
+                        "content": `${content}`,
+                        "sha": sha,
+                    });
+                    var configPutFile = {
+                        method: 'put',
+                        url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
+                        headers: {
+                            'Authorization': `Bearer ${serverConf.githubToken}`,
+                            'Content-Type': 'application/json',
+
+                        },
+                        message: "Commit message",
+                        data: data,
+                    };
+                    axios(configPutFile)
+                        .then(function (response) {
+                            console.log("ffinished")
+                            // console.log(response);
+                            res()
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                            rej(error)
+
+                        });
+                    })
+                .catch(function (error) {
+                    console.log(error)
+                    rej(error)
+                });
+            }})
     }
 }
 

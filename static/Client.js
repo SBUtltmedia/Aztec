@@ -1,7 +1,5 @@
-
-
 var socket;
-var store = {};
+var exceptions = []
 var stateReceived = false;
 let lockInfo = {};
 var gameVars;
@@ -16,9 +14,10 @@ function init() {
     // setInterval(checkDif, 1000)
 }
 
-
-function setBackground(image) {
-    // image = image || "paper.jpg"
+/**
+ * Loads twine background based on the player's faction
+ */
+function setBackground() {
     let { faction } = getUser();
     let imageURL = `url('Twine/images/Borders/Observer.jpg')`
     if (faction) {
@@ -34,7 +33,12 @@ function setBackground(image) {
     })
 }
 
-
+/**
+ * Fade in effect
+ * 
+ * @param {*} el 
+ * @param {*} destination 
+ */
 function fade(el, destination) {
     $({
         opacity: 1 - destination
@@ -70,10 +74,8 @@ function showMap() {
         }))
     }
 
-    // let { faction, role } = getUser();
    let  faction =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]["faction"]
     var currentMap =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId].currentMap
-    // let currentMapIndex = 0
     if (!currentMap) {
         let currentMapIndex = Window.SugarCubeState.getVar(`$${faction}_currentMap`) || 0;
         currentMap = `${faction}_${currentMapIndex}.png`
@@ -85,6 +87,9 @@ function showMap() {
     }
 }
 
+/**
+ * Displays player's stats widget
+ */
 function showStats() {
     let { role, faction } = getUser();
     var stats = {
@@ -99,8 +104,6 @@ function showStats() {
 
     let userId =  Window.SugarCubeState.variables.userId
     let twineStats =  Window.SugarCubeState.variables.users[userId].stats
-
-
 
     if (twineStats) {
         Object.keys(stats).forEach((stat, idx) => {
@@ -126,9 +129,7 @@ function showStats() {
         }
     }
 
-    // let twineVar = SugarCube.State.variables[`${faction}_strength`];
     let factions =  Window.SugarCubeState.variables['factions']
-
     let twineVar = factions[faction]['stats']['Strength'];
 
     if (twineVar) {
@@ -170,17 +171,19 @@ function setFactionStrength(rawValue) {
 
 }
 
+/**
+ * Creates stat picker widget when player gets to pick their stats
+ * 
+ * @param {object} statsIn: a player's default stats
+ */
 function makeRoleStats(statsIn) {
-    var total = 0;
-
     let userId = Window.SugarCubeState.variables.userId;
     let user = Window.SugarCubeState.variables.users[userId]
-   // let role= Window.SugarCubeState.variables.users[userId]["role"]
     var output = "";
 
     user["stats"] = statsIn;
 
-    //try to only send stats of user
+    //TODO: try to only send stats of user
       socket.emit('difference',  Window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
@@ -198,6 +201,12 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+/**
+ * A function to modify a role's stats
+ * 
+ * @param {string} rolePlay: the role whose stats are being modified
+ * @param {object} newStats: the new stat values
+ */
 function changeStats(rolePlay, newStats) {
     let usersObj= Window.SugarCubeState.variables.users;
     let currentUserId = Object.keys(usersObj).find(userId => usersObj[userId].role == rolePlay)
@@ -231,77 +240,13 @@ function changeStats(rolePlay, newStats) {
 // Returns the role of the current player
 function getUser() {
     let userId = Window.SugarCubeState.getVar("$userId");
-
     let user =  Window.SugarCubeState.getVar("$users")[userId];
     return user;
 }
 
 
-//Beginning of Old Client.js
-
-// User connects, asks server for game state
-
-// function setLockInfo(lockId,callback)
-// {
-//     lockInfo={lockId,callback}  
-
-/*
-Takes in a diffkey after calling custom twine set macro. Will create a difference object with the diffKey
-as the key and it's new value after setting is done. 
-
-Sends the emits difference with the diff object as the payload to notify serverstore to update
-
-Value cannot be read from sugarcube macro call because only twine can read the syntax.
-*/
-function diffSet(pathArr, value){
-    //find new value after setting is done
-    pathArr.shift();
-    let currKey;
-    let prevKey = value
-    while(pathArr.length > 0){
-        currKey = {[pathArr.pop()]: prevKey};
-        prevKey = currKey;
-    }
-    console.log("diff:", currKey);
-    socket.emit('difference',  currKey)
-
-}
-
-/*
-Converts a Sugarcube string representing a variable accessible via State.getVar()
-to the javascript version which is accessible via Window.SugarCubeState['key'].
-
-*/
-function SugarCubeToJavascript(key){
-    var found;
-    var list = []
-    var str;
-    list.push(((key.includes("[") ? key.substring(0, key.indexOf("[")) : key)).slice(1));
-    var reBrackets = /(?<=\[)(?:[^[\]]+|\[[^\]]+\])+/g;
-    while(found = reBrackets.exec(key)){
-        str = found[0]
-        //in the case of nested argument
-
-        if(str.includes("$") || str.substring(0,1) == "_"){
-            list.push(Window.SugarCubeState.getVar(str));
-        }else{
-            str = str.replace(/["']/g, "");
-            list.push(str);
-        }
-    }
-    
-
-    return list;
-}
-
-function getHistory(id){
-    socket.emit('getHistory', id, (res) => {
-        console.log("history returned:", res);
-       _.merge(Window.SugarCubeState.variables,res);
-    })
-}
-
-function createHandler(path){
+//Creates a handler for the state proxy, maintains entire path of var getting set for emitting to webstack
+function createHandler(path = []){
     return {
     get(target, key) {
         if(path.length == 0 && key != `variables`){
@@ -316,17 +261,47 @@ function createHandler(path){
     set (target, key, value) {
         if(target[key] != value){
             target[key] = value
+            path.shift();
             diffSet([...path,key], value)
-            return true
         }
+        return true
     }
+}
+}
+
+
+/**
+ * Takes in a pathArr after proxy on setting SugarCubeState is triggered. Will create a difference object with the diffKey
+    as the key and it's new value after setting is done. 
+
+    Sends the emits difference with the diff object as the payload to notify serverstore to update
+
+ * @param {Array} pathArr: path followed by proxy to get to value being set
+ * @param {*} value: the new value of whatever is being set
+ * @returns 
+ */
+function diffSet(pathArr, value){
+    //find new value after setting is done
+    
+    //If an varible that has been labeled an exception is being set, stop
+    if(exceptions.includes(pathArr[0])){
+        return;
     }
+    let currKey;
+    let prevKey = value
+    while(pathArr.length > 0){
+        currKey = {[pathArr.pop()]: prevKey};
+        prevKey = currKey;
+    }
+
+    console.log("diff:", currKey);
+    socket.emit('difference',  currKey)
+
 }
 
 function initTheyr(lockInfo) {
     updateSugarCubeState(userData.gameState);
     socket = io();
-    store = {}
     // Receive state from server upon connecting, then update all other clients that you've connected
     socket.on('connect', () => {
         socket.emit('new user', socket.id);
@@ -340,90 +315,30 @@ function initTheyr(lockInfo) {
         // console.log("Current State:", Window.SugarCubeState.variables)
         let combinedState = Object.assign({}, Window.SugarCubeState.variables,state)
         // console.log("Combined State", combinedState)
-        store = combinedState;
         // If the server's state is empty, set with this client's state
     //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
-
-
-
     });
 
     // Incoming difference, update your state and store
     socket.on('difference', (diff) => {
-        store = _.merge(store, diff);
         console.log("updating sugarcube", diff);
         updateSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
     })
-
-
-
-    // setInterval(update, 100)
-
-   function difference(object, base) {
-        function changes(object, base) {
-            return _.transform(object, function (result, value, key) {
-                try {
-                    if (!_.isEqual(value, base[key])) {
-                        result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
-                    }
-                }
-                catch (err) {
-                    // console.log("Error in diff:", err);
-                }
-            });
-        }
-        return changes(object, base);
-    }
-
-    // compares entire sugarcubestate.variables with previously saved version for differences
-    // No longer in use
-    function update() {
-
-        var tempVars = Object.assign({},Window.SugarCubeState.variables);
-       // console.log("SG",JSON.stringify(tempVars.users[tempVars.userId]))
-
-       // console.log("store",JSON.stringify(store.users[tempVars.userId]))
-        delete tempVars['userId']
-        delete store['userId']
-        // console.log(tempVars)
-
-        // if (_.isEqual(tempVars, store)) {
-        // if (JSON.stringify(tempVars) != JSON.stringify(store)) {
-            let tempStore = Object.assign({},store, {});
-        
-            let diff = difference(tempVars, tempStore);
-            
-            if(Object.keys(diff).length){
-                // console.log("store", store)
-                // console.log("statevars", tempVars)
-                // console.log("diff detect:", diff);
-                store = tempVars;
-                
-                // updateSugarCubeState(store)
-                socket.emit('difference', diff)
-                $(document).trigger(":liveupdate");
-            }
-        // }
-        // }
-
-
-
-    }
-
-
 }
 
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
-        //remove all passagehistories besides the user's
-            // console.log({key,value})
-        // new_state = new Proxy(new_state, createHandler([]))
-        // console.log("new_state:", new_state)
        _.merge(Window.SugarCubeState.variables, new_state);
-
-        
+    
         $(document).trigger(":liveupdate");
     }
+
+//Exceptions are global variables that shouldn't be shared between users
+function addTheyrException(varName){
+    varName = varName.replace('State.variables.','')
+    console.log(varName)
+    exceptions.push(varName);
+}
