@@ -45,6 +45,7 @@ const htmlTemplate = './loginDiscord/index.html'
 const CHANNELNAMES = (process.env.discordChannelNames || channelNames).split(',');
 let DISCORDCHANNELS = discordChannels;
 if(!DISCORDCHANNELS){
+	DISCORDCHANNELS = [];
 	CHANNELNAMES.forEach((channel)=>{
 		DISCORDCHANNELS[channel] = process.env[channel];
 	})
