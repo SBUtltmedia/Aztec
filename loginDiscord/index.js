@@ -58,7 +58,7 @@ const CLIENT_SECRET = process.env.clientSecret || clientSecret;
 const TWINE_PATH = process.env.twinePath || twinePath;
 const PORT = process.env.PORT || port;
 const appID = process.env.appIndex || localAppIndex;
-const FILENAME = `${process.env.fileName || fileName}-${appID}.json`;
+const FILENAME = `${process.env.fileName || fileName}-${appID}`;
 let HEROKU_URL;
 console.log(process.env.PORT)
 if (process.env.PORT) {
@@ -77,7 +77,7 @@ const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
-const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": FILENAME }
+const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": `${FILENAME}.json` }
 
 let refreshTokens = {};
 const webstackInstance = new webstack(PORT, appID, CONFIG);
