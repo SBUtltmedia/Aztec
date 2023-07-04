@@ -25,12 +25,11 @@ if (!process.env?.port) {
 		localAppIndex = confObj.serverconf["localAppIndex"] || 4
 		if (confObj.channelconf.length) {
 			let arrayIndex = localAppIndex - 1
-			var fileName = confObj.fileName;
 			var discordChannels = confObj.channelconf[arrayIndex].discordChannels;
 			var channelNames = confObj.channelconf[arrayIndex].discordChannelNames
 			var { clientId, clientSecret, guildId } = confObj.channelconf[arrayIndex];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
 		}
-		var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
+		var { fileName, twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
 	}
 
 
