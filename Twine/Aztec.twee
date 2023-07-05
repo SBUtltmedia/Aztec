@@ -48,6 +48,7 @@ importScripts([
 	`${urlPrefix}Client.js`,
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js",
 	"https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js",
 	"https://code.jquery.com/ui/1.12.1/jquery-ui.js"
 	]	
 )
@@ -124,6 +125,12 @@ importScripts([
 		}
 	});
 })();
+
+
+:: 0 Dakota Test Passage {"position":"100,100","size":"100,100"}
+<<theyr>>
+
+<</theyr>>
 
 
 :: A Friendly Invitation {"position":"4200,6375","size":"100,100"}
@@ -6710,7 +6717,15 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<if passage() != "Home">>
 	<<if !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
 		<<set _currPassage = passage()>>
-		<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${Story.get(passage()).processText()}`)>>
+		<<set _text = Story.get(passage()).processText()>>
+		<<script>>
+			let text = State.getVar("_text");
+			text = text.replaceAll(/\/\*[^\/]*\//gm, '');
+			text = text.replaceAll(/<<[^>>]*>>/ig, '');
+			text = text.replaceAll(/<[^br>]*>/ig, '');
+			State.setVar("_text", text);
+		<</script>>
+		<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${State.getVar("_text")}`)>>
 	<</if>>
 	
 
@@ -8807,6 +8822,9 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
     timeZone: 'America/New_York',
   });
 	};
+	setup.getUserSvgPicture = function(role) {
+		return `Twine/images/characters/${role}.svg`
+	}
 <</script>>
 
 /* 
@@ -8958,6 +8976,7 @@ console.log("new user detected")
 </script>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
+<<set $users[$userId]["lastSeen"] = 0>>
 <<set $users[$userId]["discriminator"] =  _discriminator>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
@@ -12115,24 +12134,42 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 /* Prints list of previous passages for user to recollect */
 <div id="info">
 
-  /* button to go back to other passages */
+  	/* button to go back to other passages */
 	<<link "back" $users[$userId]["passage"]>><</link>>
-	<br>
-	Passages Completed:
-	<br>
 
-  /* loop to make buttons for showing text of previous passages */
-	<<for _passageName, _passageText range $theyrPrivateVars[$userId]["passageHistory"]>>
-		<<set _passageId = `passage-${_passageName.replaceAll(/\s/g, '-')}`>>
+	/* header of the book's left page */
+	<div id="passagesCompletedHeader">
+		Passages Completed
+	</div>
 
-		<br>
-		<<if $users[$userId]["passage"] != _passageName>>
+	<div id="passagesCompletedButtons">
+		<div class="passagesCompletedButtonsGrid">
+			<<for _passageName, _passageText range $theyrPrivateVars[$userId]['passageHistory']>>
+				<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+			<</for>>
+		</div>
+	</div>
 
-      /* macro to make button and the previously read passage's text it shows
-       if you want to edit look for historyButton macro */
-			<<historyButton _passageName _passageText _passageId>>
-		<</if>>
-	<</for>>
+	<div id="passageChevron">
+		<svg transform="scale(5)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+		</svg>
+	</div>
+
+	<div id="selectedPassageTextContainer">
+		Select a passage from your passage history above to review it.
+		<<script>>
+			setTimeout(() => {
+				$(".passageButton").on("click", function() {
+					var passageButtonId = $(this).attr("data-passageName");
+					var passage_text = State.getVar(`$passageHistory[$userId]["${passageButtonId}"]`);
+					$("#selectedPassageTextContainer").text(passage_text);
+				});
+			}, 1000);
+		<</script>>
+	</div>
+
+
 </div>
 
 /* prints current passage */
@@ -12151,25 +12188,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 /* Defines border colors for each faction */
 <<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder"}>>
-
-<<set _userSvgPicture = {
-	"Do&#xf1;a Marina/Malinche":"Twine/images/characters/Marina.svg",
-	"Pedro de Alvarado":"Twine/images/characters/Alvarado.svg",
-	"Ger&#xf3;nimo de Aguilar":"Twine/images/characters/Aguilar.svg",
-	"Juan Garrido":"Twine/images/characters/Garrido.svg",
-	"Cristóbal de Olid":"Twine/images/characters/Cristobal.svg",
-	"Hern&#xe1;n Cort&#xe9;s":"Twine/images/characters/Cortes.svg",
-	"Moctezuma":"Twine/images/characters/Moctezuma.svg",
-	"Tlacaelel Xocoyotl (aka Tlacaelel the Younger)":"Twine/images/characters/Tlacaelel.svg",
-	"Cuauht&#xe9;moc":"Twine/images/characters/Cuauhtemoc.svg",
-	"Aztec Priest":"Twine/images/characters/Aztec Priest.svg",
-	"Cacamatzín":"Twine/images/characters/Cacamatzin.svg",
-	"Pochteca":"Twine/images/characters/Pochteca.svg",
-	"Xicotencatl the Elder":"Twine/images/characters/Xicotencatl the Elder.svg",
-	"Xicotencatl the Younger":"Twine/images/characters/Xicotencatl the Younger.svg",
-	"Maxixcatl": "Twine/images/characters/Maxixcatl.svg",
-	"Not seen":"Twine/images/characters/icon_placeholder.png"
-}>>
 
 /* _id: discord id for each user
 _data: object with user properties (to access user's passage just use _data["passage"]) */
@@ -12211,22 +12229,34 @@ _data: object with user properties (to access user's passage just use _data["pas
       </div>
   </div>
 
-
-
-
 	<div id="onlineCount">
 		<<print "  General (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
 	</div>
 
-	<script>
-		$(document).on('mouseenter', '.player', function() {
-			$(this).find('.rolePanel').show();
-		});
-
-		$(document).on('mouseleave', '.player', function() {
-			$(this).find('.rolePanel').hide();
-		});
-	</script>
+	<div id="rolePanelDynamic">
+		<img id="rolePanelImageDynamic" src="Twine/images/characters/icon_placeholder.png"> 
+		<div id="rolePanelTextDynamic" >
+			<div id="rolePanelPrintUserRole">
+				user role
+			</div>
+			<div id="rolePanelPrintUserName">
+				@username
+			</div>
+		</div>
+		<div id="rolePanelDetails">
+			<ul id="rolePanelDetailsText">
+				<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
+				<li>Details
+					<ul>
+						<li>hardcoded detail 1</li>
+						<li>hardcoded detail 2</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="rolePanelNotesLabel">Notes</div>
+		<div id="rolePanelNotes"></div>
+	</div>
 
 	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
 		<div id="printFactionOnlineCount">
@@ -12240,69 +12270,121 @@ _data: object with user properties (to access user's passage just use _data["pas
 		
 		<div id="playerSpaceBetween"></div>
 			<<print `
-				<div class = "player" id="`+$users[_userId]['_faction']+`">			
-				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
-				<div class="rolePanel">
-					<img class="rolePanelImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+_userSvgPicture[$users[_userId]["character"]]+`"> 
-					<div class="rolePanelText">
-						<div class="rolePanelPrintUserRole"> 
-							<<print $users[_userId]["character"]>>
-						</div>
-						<div class="rolePanelPrintUserName">
-							<<if $users[_userId]["discriminator"] == 0>>
-								<<print "@" + $users[_userId]["username"]>>
-							<<else>>
-								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
-							<</if>>
-						</div>
-					</div>
-					<div class="rolePanelDetails">
-						<ul>
-							<<print "<li><b>Last Active</b>: " + $users[_userId]["lastSeen"]+"</li>">>
-							<li>Details
-								<ul>
-								<li>hardcoded detail 1</li>
-								<li>hardcoded detail 2</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					<div class="rolePanelNotes">
-						<<print "<b>Notes</b>: ">>
-					</div>
-				</div>
+				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
+				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
 
 				<div class = "playerText">
 					<div class="printUserRole"> 
 						`+$users[_userId]["character"]+`
 					</div>
 					<div class="printUserName">
-						<a href="https://discordapp.com/users/`+_userId+`">
-							<<if $users[_userId]["discriminator"] == 0>>
-								<<print "@" + $users[_userId]["username"]>>
-							<<else>>
-								<<print $users[_userId]["username"] + "#" + $users[_userId]["discriminator"]>>
-							<</if>>
+						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
+							<<print "@" + $users[_userId]["username"]>>
 						</a>
 					</div></div> 
-
-					
-
 				</div>
 				`>>
 				
 			<div id="playerSpaceBetween"></div>
 			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
+			
 		<</for>>
 			<div id="factionSpaceBetween"></div>
 	<</for>>
-	</div>
+
+	
+
+</div>
 
 	
 
 
 <</theyr>>
 
+	<<script>>
+		window.addEventListener("resize", function() {
+			var rolePanel = $("#rolePanelDynamic");
+				rolePanel.css("visibility", "hidden");
+		});
+		setTimeout(() => {
+			$("#players").on('mouseleave', function() {
+				$(document).mousemove(function(event) {
+					var xPos = event.pageX;
+					var yPos = event.pageY;
+					var rolePanel = $("#rolePanelDynamic");
+					var rolePanelX = rolePanel.offset().left;
+					var rolePanelY = rolePanel.offset().top;
+					var rpHeight = parseInt(rolePanel.css("height"));
+					var rpWidth = parseInt(rolePanel.css("width"));
+
+					if (!((xPos > rolePanelX) && (yPos > rolePanelY - (rolePanelY / 8)&& yPos < rolePanelY + rpHeight))) {
+						$(document).off('mousemove');
+						rolePanel.css("visibility", "hidden");
+					}
+				});
+			});
+		}, 1500);
+		setTimeout(() => {
+			$(".player").on('mouseenter', function() {
+				var top = $(this).offset().top + window.screenY;
+				var left = $(this).offset().left + window.screenX;
+				var pageWidth = parseInt($("#story").css("width"));
+				var pageHeight = parseInt($("#story").css("height"));
+
+				var firstUnderscoreIndex = $(this).attr("id").indexOf("_");
+				var user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
+				var imageSource = setup.getUserSvgPicture(user);
+				$("#rolePanelImageDynamic").attr("src", imageSource);
+
+				var printableUser = user.replace(/_/g, " ");
+				$("#rolePanelPrintUserRole").text(printableUser);
+
+				var rolePanel = $("#rolePanelDynamic");
+				rolePanel.css("visibility", "visible");
+
+				let notes = State.getVar("$users[$userId]['notes']");
+				if (!notes)  {
+					State.setVar("$users[$userId]['notes']", {});
+				}
+
+				let defaultText = State.getVar(`$users[$userId]['notes']['${user}']`);
+				if (!defaultText) {
+					defaultText = "Click to add a note";
+				} else {
+					console.log("note exist");
+				}
+				
+				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
+				$("#textbox-usersuseridnotes" + user).val(defaultText);
+			
+				var rpHeight = parseInt(rolePanel.css("height"));
+
+				if (top + rpHeight > pageHeight) {
+					top = pageHeight - rpHeight - 5;
+				}
+				left = left - pageWidth * 0.22;
+
+				rolePanel.css("top", top + "px");
+				rolePanel.css("left", left + "px");
+
+				let usernameDiv = $("#rolePanelPrintUserName");
+				let username = State.getVar(`$users[$lookup["${user}"]]["username"]`);
+				usernameDiv.text("@" + username);
+
+				let lastSeen = $("#rolePanelLastSeen");
+				let lastSeenText = "Last Active: ";
+				let milli = State.getVar(`$users[$lookup["${user}"]]["lastSeen"]`);
+				let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
+				let dateObject = new Date();
+				if (Math.abs(dateObject.getTime() - milli) < 120000) {
+					lastSeenTime = "Right now"
+				}
+				lastSeenText += lastSeenTime;
+				lastSeen.text(lastSeenText);
+			})
+		}, 1500);
+
+	<</script>>
 
 /* Use this as a template to make side passages */
 
