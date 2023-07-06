@@ -47,8 +47,8 @@ function statPickerInit() {
         
         $("#submitButton").on("click", submitStats)
         $('#stats input[type="number"]').niceNumber({
-            onIncrement: ($currentInput, amount, settings) => dakotaHelper($currentInput, amount, settings, 1),
-            onDecrement: ($currentInput, amount, settings) => dakotaHelper($currentInput, amount, settings, -1),
+            onIncrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, settings, 1),
+            onDecrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, settings, -1),
         });
 
         disableButtons();
@@ -57,7 +57,7 @@ function statPickerInit() {
     return ""
 }
 
-function dakotaHelper($currentInput, amount, settings, direction) {
+function changeHelper($currentInput, amount, settings, direction) {
     if (amount < 0) {
         $currentInput.val($currentInput.val() - direction);
         return
