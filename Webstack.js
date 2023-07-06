@@ -25,7 +25,7 @@ class Webstack {
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 
-		this.gitApi = new gitApiIO(serverConf)
+		this.gitApi = new gitApiIO(serverConf, !process.env.serverConf)
 		this.gitApi.retrieveFileAPI().then((gameData) => {
 			let state = JSON.parse(gameData)
 			this.serverStore.dispatch({
