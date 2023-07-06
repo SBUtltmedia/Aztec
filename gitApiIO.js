@@ -19,10 +19,11 @@ class gitApiIO{
     *   githubuser, githubrepo, and localappindex
     *   
     **/
-    constructor(serverConf) {
+    constructor(serverConf, isTest=false) {
         this.serverConf = serverConf
-        this.test = fs.existsSync(testFile)
+        this.test = isTest;
         console.log("config is", serverConf)
+        console.log("isTest", isTest)
 	}
 
     /** 
