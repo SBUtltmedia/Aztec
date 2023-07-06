@@ -24,12 +24,11 @@ if (!process.env?.port) {
 		localAppIndex = confObj.serverconf["localAppIndex"] || 4
 		if (confObj.channelconf.length) {
 			let arrayIndex = localAppIndex - 1
-			var fileName = confObj.fileName;
 			var discordChannels = confObj.channelconf[arrayIndex].discordChannels;
 			var channelNames = confObj.channelconf[arrayIndex].discordChannelNames
 			var { clientId, clientSecret, guildId } = confObj.channelconf[arrayIndex];	// Indexed at 0 b/c when running locally we'll just use the first element as our test
 		}
-		var { twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
+		var { fileName, twinePath, port, githubToken, githubUser, githubRepo } = confObj.serverconf;
 	}
 
 
@@ -44,6 +43,7 @@ const htmlTemplate = './loginDiscord/index.html'
 const CHANNELNAMES = (process.env.discordChannelNames || channelNames).split(',');
 let DISCORDCHANNELS = discordChannels;
 if(!DISCORDCHANNELS){
+	DISCORDCHANNELS = [];
 	CHANNELNAMES.forEach((channel)=>{
 		DISCORDCHANNELS[channel] = process.env[channel];
 	})
@@ -57,7 +57,7 @@ const CLIENT_SECRET = process.env.clientSecret || clientSecret;
 const TWINE_PATH = process.env.twinePath || twinePath;
 const PORT = process.env.PORT || port;
 const appID = process.env.appIndex || localAppIndex;
-const FILENAME = `${process.env.fileName || fileName}-${appID}.json`;
+const FILENAME = `${process.env.fileName || fileName}-${appID}`;
 let HEROKU_URL;
 console.log(process.env.PORT)
 if (process.env.PORT) {
@@ -76,7 +76,7 @@ const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
-const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": FILENAME }
+const CONFIG = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": `${FILENAME}.json` }
 
 let refreshTokens = {};
 const webstackInstance = new webstack(PORT, appID, CONFIG);

@@ -40,7 +40,7 @@ for (let i = startingAppId; i <= endingAppId ; i++) {
         configVars[key] = value
     }
     delete configVars['discordChannels']
-    
+
     for (let key of Object.keys(configVars)) {
         let command = `heroku config:set -a ${app}-${i} ${key}=${configVars[key]}`;
         commands.push(command);
