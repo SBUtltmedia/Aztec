@@ -8,7 +8,6 @@ import { createRequire } from 'module';
 import DiscordBot from '../discordBot.js';
 import { channel } from 'diagnostics_channel';
 // import { RichPresenceAssets } from 'discord.js';
-// import gitApiIO from '../gitApiIO.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const hex = require('string-hex')
@@ -42,7 +41,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const htmlTemplate = './loginDiscord/index.html'
 
 // Destructure config.json variables (Check if directory exists b/c it won't be available on Heroku (will use ENV variables instead))
-const CHANNELNAMES = (process.env.discordChannelNamess || channelNames).split(',');
+const CHANNELNAMES = (process.env.discordChannelNames || channelNames).split(',');
 let DISCORDCHANNELS = discordChannels;
 if(!DISCORDCHANNELS){
 	CHANNELNAMES.forEach((channel)=>{
