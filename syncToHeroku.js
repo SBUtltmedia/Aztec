@@ -4,13 +4,14 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const configObj = require('./config.json')
 
-const app = process.argv[2];
-let startingAppId = process.argv[3] || 4;
-let endingAppId = process.argv[4] || 4;
+const app =configObj.serverconf.fileName;
 if (!app) {
-    console.log(`Name argument required. Usage: node ${process.argv[1]} name`);
+    console.log("Name argument required. Usage: node .\\createHerokuInstances.js startingAppId endingAppId");
     exit(0);
 }
+
+let startingAppId = process.argv[2] || 4;
+let endingAppId = process.argv[3] || 4;
 let herokuInstances = 1;
 
 let commands = [

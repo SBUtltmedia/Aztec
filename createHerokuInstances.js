@@ -7,14 +7,14 @@ const require = createRequire(import.meta.url);
 const configObj = require('./config.json')
 
 // Checks command line arguments for app name
-const app = process.argv[2];
+const app =configObj.serverconf.fileName;
 if (!app) {
-    console.log("Name argument required. Usage: node .\\createHerokuInstances.js name startingAppId endingAppId");
+    console.log("Name argument required. Usage: node .\\createHerokuInstances.js startingAppId endingAppId");
     exit(0);
 }
 
-let startingAppId = process.argv[3] || 4;
-let endingAppId = process.argv[4] || 4;
+let startingAppId = process.argv[2] || 4;
+let endingAppId = process.argv[3] || 4;
 // let herokuInstances = configObj.channelconf.length;
 
 
