@@ -2439,7 +2439,7 @@ The battle is like nothing you've seen before. The stakes are high and this will
 
 :: Back to the Library Yet Again {"position":"2300,8675","size":"100,100"}
 <<theyr>>
-Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an ‘A' student, she didn't seem surprised that you would want to get ahead.<br>
+Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an 'A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there's the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].<br>
 <br>
@@ -11127,7 +11127,7 @@ You wait until midnight to launch your attack, hoping to catch the enemy forces 
 <br>
 Fortunately for you, these men are no fools. They have heard tales of the great Mexica city and the riches found there. Hundreds of them choose to join you. You have just quadrupled your forces. This could not have gone better.<br>
 <br>
-<<link "As you prepare for the journey back to Tenochtitlán" "Cortes Returns Victorious">><<set $factions["Spaniards"]["stats"]["Strength"]+=3>><</link>>you take possession of Narváez' cannons, and your team's strength increases significantly. Your Tlaxcalan friends are returning home and will take them for safekeeping.<br>
+<<link "As you prepare for the journey back to Tenochtitlán" "Cortes Returns Victorious">><<set $factions["Spaniards"]["stats"]["Strength"]+=5>><</link>>you take possession of Narváez' cannons, and your team's strength increases significantly. Your Tlaxcalan friends are returning home and will take them for safekeeping.<br>
 <br>
 <<else>>
 You have received word that the enemy camp lies just ahead. The time has come to face yet another force of Spaniards in battle.<br>
@@ -11837,7 +11837,7 @@ You rouse yourself out of bed and prepare for another day of wondering and waiti
 Suddenly, [[a messenger arrives at your lodgings|Cortes gets called to the coast]].<br>
 <br>
 <<case "Aztecs">>
-Six months have passed since the strangers arrived in your city. For six months, you have treated them as guests and watched their every move. They have marvelled at your city, recoiled in horror at your temples, and beseeched you to worship their god instead. Strange creatures, these bearded men and their slave woman. You don't trust them. Nobody does. For many moons, you have been weighing your options, carefully plotting the best way to remove them from your city--permanently.<br>
+Six months have passed since the strangers arrived in your city. For six months, you have treated them as guests and watched their every move. They have marveled at your city, recoiled in horror at your temples, and beseeched you to worship their god instead. Strange creatures, these bearded men and their slave woman. You don't trust them. Nobody does. For many moons, you have been weighing your options, carefully plotting the best way to remove them from your city--permanently.<br>
 <br>
 As you begin to prepare for your day, you hear word that the Spaniards have received a message. [[This could be just what you need|Cortes gets called to the coast]].<br>
 <br>
