@@ -886,7 +886,21 @@ small font size: 1.7rem
 
 #passageChevron {
   text-align: center;
-  height: 1rem;
+  height: 1.4rem;
   position: relative;
-  top: -1.1rem;
+  top: -1.6rem;
 }
+
+#passageChevronImg {
+  width: 6rem; /* Adjust the width value to increase or decrease the image size */
+  height: 6rem; /* Adjust the height value to match the desired aspect ratio */
+  object-fit: contain; /* Preserve the aspect ratio and fit the image within the container */
+
+}
+
+#back_button_img {
+  width: 3.5rem; /* Adjust the width value to increase or decrease the image size */
+  height: 3.5rem; /* Adjust the height value to match the desired aspect ratio */
+  object-fit: contain; /* Preserve the aspect ratio and fit the image within the container */
+}
+
