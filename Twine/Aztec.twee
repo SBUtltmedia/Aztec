@@ -12137,7 +12137,14 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="info">
 
   	/* button to go back to other passages */
-	<<link "back" $users[$userId]["passage"]>><</link>>
+	<<link "" $users[$userId]["passage"]>><</link>>
+	
+	<<script>>
+	$(document).ready(function() {
+		var svgContent = '<img id="back_button_img" src="Twine/images/back_button.svg" alt="Back"></img>';
+		$("#info .link-internal.macro-link").append(svgContent);
+	});
+	<</script>>
 
 	/* header of the book's left page */
 	<div id="passagesCompletedHeader">
@@ -12153,9 +12160,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<div id="passageChevron">
-		<svg transform="scale(5)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-			<path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-		</svg>
+		<img id = "passageChevronImg" src = "Twine/images/Chevron.svg">
 	</div>
 
 	<div id="selectedPassageTextContainer">
@@ -12179,21 +12184,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<<print $users[$userId]["passage"]>>
 
 
-	<div id="chat">
-		<<if ndef $chatlog>>
-			<<set $chatlog= "">>
-		<</if>>
-
-		$chatlog
-		
-		<br>
-
-		<<textbox "_chattext" "" autofocus>> 
-
-		<<button "Continue">>
-			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
-		<</button>>
-	</div>
+	
 
 
 
@@ -12237,7 +12228,7 @@ _data: object with user properties (to access user's passage just use _data["pas
   		<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "Twine/images/characters/Tlacaelel.svg"> `>>
       
       <div id = "playerTextClient">
-        <div id="printUserRoleClient"> 
+        <div id="printUserRoleClient">
           <<print $users[$userId]["character"]>>
         </div>
         <div id="printUserNameClient">
@@ -12252,7 +12243,7 @@ _data: object with user properties (to access user's passage just use _data["pas
   </div>
 
 	<div id="onlineCount">
-		<<print "  General (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
+		<<print "  Total Players (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
 	</div>
 
 	<div id="rolePanelDynamic">
@@ -12326,7 +12317,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 	<<script>>
 		window.addEventListener("resize", function() {
 			var rolePanel = $("#rolePanelDynamic");
-				rolePanel.css("visibility", "hidden");
+			rolePanel.css("visibility", "hidden");
 		});
 		setTimeout(() => {
 			$("#players").on('mouseleave', function() {
