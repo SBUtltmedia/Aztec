@@ -880,8 +880,6 @@ small font size: 1.7rem
   border-color: black;
   color: black;
   font: 1.6rem;
-  /* Additional styles for the square buttons */
-  
 }
 
 #passageChevron {
@@ -963,6 +961,7 @@ small font size: 1.7rem
   padding-left: 10px;
   scrollbar-width: none;
 	-ms-overflow-style: none;
+  word-wrap:break-word;
 }
 
 #chatmessages::-webkit-scrollbar {
