@@ -12239,6 +12239,26 @@ _data: object with user properties (to access user's passage just use _data["pas
 	<</if>>
 <</for>>
 
+	<<script>>
+		$(document).ready(function() {
+			setTimeout(function() {
+				var element = document.getElementById("printUserRoleClient");
+				var container = element.parentNode;
+
+				var fontSize = 2.3;
+				element.style.fontSize = fontSize + 'rem';
+				var width = container.clientWidth;
+				var height = container.clientHeight;
+
+				while (element.scrollWidth > width || element.scrollHeight > height) {
+					fontSize -= 0.1;
+					console.log(fontSize);
+					element.style.fontSize = fontSize + 'rem';
+				}
+			}, 100);
+		});
+	<</script>>
+
   /* creates sidebar with users */
   <div id = "playerClient">
   	<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[$userId]["role"])+`"> `>>

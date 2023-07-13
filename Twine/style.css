@@ -629,8 +629,10 @@ small font size: 1.7rem
 #printUserRoleClient { 
   font-size: 2.3rem; /* Significant FONT SIZE */
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   text-overflow: ellipsis;
+  width: 14rem;
+  /* height: 5rem; */
 }
 
 #printUserNameClient {
