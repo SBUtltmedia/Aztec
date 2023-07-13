@@ -12158,7 +12158,12 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<div id="passagesCompletedButtons">
 		<div class="passagesCompletedButtonsGrid">
 			<<for _passageName, _passageText range $theyrPrivateVars[$userId]['passageHistory']>>
-				<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+				<<if $users[$userId]["passage"] == _passageName>>
+					<<print `<button class="passageButton" style="background-color:rgb(165, 133, 85);" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+				<<else>>
+					<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+				<</if>>
+				
 			<</for>>
 		</div>
 	</div>
@@ -12168,7 +12173,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<div id="selectedPassageTextContainer">
-		Select a passage from your passage history above to review it.
+		Select a passage from your passage history above to review it. The passages are in order of how you played them. Your current passage is highlighted.
 		<<script>>
 			setTimeout(() => {
 				$(".passageButton").on("click", function() {
