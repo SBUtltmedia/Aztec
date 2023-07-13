@@ -296,6 +296,7 @@ function diffSet(pathArr, value){
 
     console.log("diff:", currKey);
     socket.emit('difference',  currKey)
+    $(document).trigger(":liveupdate");
 
 }
 

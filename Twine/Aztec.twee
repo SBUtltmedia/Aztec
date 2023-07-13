@@ -4866,6 +4866,7 @@ This city is <<textbox "$Malinalco_Ans_T" "">><br>
 
 
 :: Malinalco 2 [Done Breaks] {"position":"2675,300","size":"100,100"}
+<<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Malinalco_Ans_A>><br>
@@ -4908,6 +4909,7 @@ Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to
 <br>
 <</if>>
 <</switch>>
+<</theyr>>
 
 
 :: Malinche Answers {"position":"1800,275","size":"100,100"}
@@ -6721,7 +6723,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 		<<script>>
 			let text = State.getVar("_text");
 			text = text.replaceAll(/\/\*[^\/]*\//ig, '');
-			text = text.replaceAll(/<<[^>>]*>>/ig, '');
+			text = text.replaceAll(/<<(?:.*?)>>/ig, '');
 			text = text.replaceAll(/<[^>]*>/ig, '');
 			State.setVar("_text", text);
 		<</script>>
