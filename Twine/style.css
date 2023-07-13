@@ -538,11 +538,11 @@ width: 200% !important;
 
 .playerList #passage {
   position: absolute;
-  left: 43%;
-  top: 18%;
+  left: 29.5%;
+  top: 2%;
   font-size: 3.5rem;
   text-align: center;
-  width: 35%;
+  width: 40%;
 }
 
 .playerList #players {
@@ -892,15 +892,80 @@ small font size: 1.7rem
 }
 
 #passageChevronImg {
-  width: 6rem; /* Adjust the width value to increase or decrease the image size */
-  height: 6rem; /* Adjust the height value to match the desired aspect ratio */
-  object-fit: contain; /* Preserve the aspect ratio and fit the image within the container */
+  width: 6rem; 
+  height: 6rem; 
+  object-fit: contain; 
 
 }
 
 #back_button_img {
-  width: 3.5rem; /* Adjust the width value to increase or decrease the image size */
-  height: 3.5rem; /* Adjust the height value to match the desired aspect ratio */
-  object-fit: contain; /* Preserve the aspect ratio and fit the image within the container */
+  width: 3.5rem; 
+  height: 3.5rem;
+  object-fit: contain; 
 }
 
+#chat {
+  position: relative;
+  width: 32%;
+  height: 55%;
+  top: 26.1%;
+  left: 45%;
+  
+
+  display: flex;
+	flex-direction: column;
+}
+
+#chattextarea {
+  display: flex;
+	align-items: flex-end;
+  box-sizing: border-box;
+}
+
+#chattextarea button {
+  background-color: transparent;
+  color: black;
+  border: 0.3rem solid black;
+  padding: 0.3rem;
+  border-radius: 1rem;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+#chattextarea button:hover {
+  background-color: black;
+  color: white;
+}
+
+#chattextbox {
+  max-width: 90%;
+  flex-grow: 1;
+  background-color: transparent;
+  border: 0.2rem solid black;
+  resize: none;
+}
+
+#chattextbox .macro-textbox {
+  background-color: initial;
+  outline: none;
+  all: unset;
+  text-align: left;
+  text-indent: 10px;
+  width: 100%;
+}
+
+#chatmessages {
+	flex-grow: 1;
+	overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-left: 10px;
+  scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+#chatmessages::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
