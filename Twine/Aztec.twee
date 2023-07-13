@@ -12144,6 +12144,12 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	});
 	<</script>>
 
+	/* prints current passage
+	<div id="passage">
+		<<print $users[$userId]["passage"]>>
+	</div>
+	*/
+
 	/* header of the book's left page */
 	<div id="passagesCompletedHeader">
 		Passages Completed
@@ -12177,15 +12183,22 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 </div>
 
-/* prints current passage */
-<div id="passage">
-	<<print $users[$userId]["passage"]>>
-
-
-	
-
-
-
+/* Creates the chat */
+<div id="chat">
+	<<if ndef $chatlog>>
+		<<set $chatlog= "">>
+	<</if>>
+	<div id="chatmessages">
+		$chatlog
+	</div>
+	<div id="chattextarea">
+		<div id="chattextbox">
+			<<textbox "_chattext" "Hello!" autofocus>>
+		</div>
+		<<button "Continue">>
+			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		<</button>>
+	</div>
 </div>
 
 /* print play status list (discord info, role, etc.) */
