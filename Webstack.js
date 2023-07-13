@@ -13,11 +13,11 @@ var base64 = require('base-64');
 
 
 class Webstack {
-	constructor(port, appIndex,serverConf) {
-		this.appIndex = appIndex
+	constructor(serverConf) {
+		this.appIndex = serverConf.appIndex
 		this.serverConf = serverConf
 		//I'm not sure if this actually saves to GIT because we don't call the function.
-		this.port=port;
+		this.port=serverConf.port;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
 
