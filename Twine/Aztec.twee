@@ -12241,21 +12241,21 @@ _data: object with user properties (to access user's passage just use _data["pas
 
   /* creates sidebar with users */
   <div id = "playerClient">
-  		<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "Twine/images/characters/Tlacaelel.svg"> `>>
+  	<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[$userId]["role"])+`"> `>>
       
-      <div id = "playerTextClient">
-        <div id="printUserRoleClient">
-          <<print $users[$userId]["character"]>>
-        </div>
-        <div id="printUserNameClient">
-		<<if $users[$userId]["discriminator"] == 0>>
-			<<print "@" + $users[$userId]["username"]>>
-		<<else>>
-			<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
-		<</if>>
-          
-        </div>
-      </div>
+	<div id = "playerTextClient">
+	<div id="printUserRoleClient">
+		<<print $users[$userId]["character"]>>
+	</div>
+	<div id="printUserNameClient">
+	<<if $users[$userId]["discriminator"] == 0>>
+		<<print "@" + $users[$userId]["username"]>>
+	<<else>>
+		<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+	<</if>>
+		
+	</div>
+	</div>
   </div>
 
 	<div id="onlineCount">
