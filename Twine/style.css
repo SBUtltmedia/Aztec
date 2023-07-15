@@ -969,3 +969,37 @@ small font size: 1.7rem
 	width: 0;
 	height: 0;
 }
+
+#bookmarks {
+  position: absolute;
+  display: flex;
+	flex-direction:row;
+  width: 4rem;
+  height: 4rem;
+  top: 9%;
+  left: 27%;
+}
+
+#home_bookmark_img {
+  object-fit: contain;
+}
+
+#stat_bookmark_img {
+  object-fit: contain;
+}
+
+#info-stats {
+  position: absolute;
+  left: 5%;
+  width: 34%;
+  height: 70%;
+  top: 13%;
+  overflow: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#info-stats-faction-strength {
+  width: 3rem;
+}
