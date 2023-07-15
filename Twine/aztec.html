@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="" position="100,100" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="" position="100,100" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -11038,6 +11038,24 @@ _data: object with user properties (to access user&#39;s passage just use _data[
         &lt;/div&gt;
       &lt;/div&gt;
   &lt;/div&gt;
+
+	&lt;&lt;script&gt;&gt;
+		$(document).ready(function() {
+			setTimeout(function() {
+				var element = document.getElementById(&quot;printUserRoleClient&quot;);
+
+				var fontSize = 2.3;
+				element.style.fontSize = fontSize + &#39;rem&#39;;
+				var width = element.clientWidth;
+				var height = element.clientHeight;
+
+				while (element.scrollWidth &gt; width || element.scrollHeight &gt; height) {
+					fontSize -= 0.1;
+					element.style.fontSize = fontSize + &#39;rem&#39;;
+				}
+			}, 100);
+		});
+	&lt;&lt;/script&gt;&gt;
 
 	&lt;div id=&quot;onlineCount&quot;&gt;
 		&lt;&lt;print &quot;  Total Players (&quot; + (_totalUsers - _userCount[&quot;offline&quot;]) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
