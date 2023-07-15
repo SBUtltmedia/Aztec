@@ -12258,6 +12258,24 @@ _data: object with user properties (to access user's passage just use _data["pas
       </div>
   </div>
 
+	<<script>>
+		$(document).ready(function() {
+			setTimeout(function() {
+				var element = document.getElementById("printUserRoleClient");
+
+				var fontSize = 2.3;
+				element.style.fontSize = fontSize + 'rem';
+				var width = element.clientWidth;
+				var height = element.clientHeight;
+
+				while (element.scrollWidth > width || element.scrollHeight > height) {
+					fontSize -= 0.1;
+					element.style.fontSize = fontSize + 'rem';
+				}
+			}, 100);
+		});
+	<</script>>
+
 	<div id="onlineCount">
 		<<print "  Total Players (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
 	</div>

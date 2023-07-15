@@ -605,7 +605,7 @@ small font size: 1.7rem
   flex-direction: column;
   order: 0;
   margin-left: 39%;
-  margin-top: 11%;
+  margin-top: 12.5%;
   flex-grow: 1;
   line-height: 1.25;
 
@@ -627,8 +627,9 @@ small font size: 1.7rem
 }
 
 #printUserRoleClient { 
-  font-size: 2.3rem; /* Significant FONT SIZE */
-  white-space: nowrap;
+  font-size: 2.3rem;
+  white-space: normal;
+  height: 3rem;
 }
 
 #printUserNameClient {
