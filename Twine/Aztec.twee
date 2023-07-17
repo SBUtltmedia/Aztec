@@ -12146,6 +12146,12 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	});
 	<</script>>
 
+	/* prints current passage
+	<div id="passage">
+		<<print $users[$userId]["passage"]>>
+	</div>
+	*/
+
 	/* header of the book's left page */
 	<div id="passagesCompletedHeader">
 		Passages Completed
@@ -12154,7 +12160,12 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<div id="passagesCompletedButtons">
 		<div class="passagesCompletedButtonsGrid">
 			<<for _passageName, _passageText range $theyrPrivateVars[$userId]['passageHistory']>>
-				<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+				<<if $users[$userId]["passage"] == _passageName>>
+					<<print `<button class="passageButton" style="background-color:rgb(165, 133, 85);" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+				<<else>>
+					<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+				<</if>>
+				
 			<</for>>
 		</div>
 	</div>
@@ -12164,7 +12175,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<div id="selectedPassageTextContainer">
-		Select a passage from your passage history above to review it.
+		Select a passage from your passage history above to review it. The passages are in order of how you played them. Your current passage is highlighted.
 		<<script>>
 			setTimeout(() => {
 				$(".passageButton").on("click", function() {
@@ -12179,15 +12190,22 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 </div>
 
-/* prints current passage */
-<div id="passage">
-	<<print $users[$userId]["passage"]>>
-
-
-	
-
-
-
+/* Creates the chat */
+<div id="chat">
+	<<if ndef $chatlog>>
+		<<set $chatlog= "">>
+	<</if>>
+	<div id="chatmessages">
+		$chatlog
+	</div>
+	<div id="chattextarea">
+		<div id="chattextbox">
+			<<textbox "_chattext" "Hello!" autofocus>>
+		</div>
+		<<button "Continue">>
+			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		<</button>>
+	</div>
 </div>
 
 /* print play status list (discord info, role, etc.) */
@@ -12225,21 +12243,21 @@ _data: object with user properties (to access user's passage just use _data["pas
 
   /* creates sidebar with users */
   <div id = "playerClient">
-  		<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "Twine/images/characters/Tlacaelel.svg"> `>>
+  	<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[$userId]["role"])+`"> `>>
       
-      <div id = "playerTextClient">
-        <div id="printUserRoleClient">
-          <<print $users[$userId]["character"]>>
-        </div>
-        <div id="printUserNameClient">
-		<<if $users[$userId]["discriminator"] == 0>>
-			<<print "@" + $users[$userId]["username"]>>
-		<<else>>
-			<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
-		<</if>>
-          
-        </div>
-      </div>
+	<div id = "playerTextClient">
+	<div id="printUserRoleClient">
+		<<print $users[$userId]["character"]>>
+	</div>
+	<div id="printUserNameClient">
+	<<if $users[$userId]["discriminator"] == 0>>
+		<<print "@" + $users[$userId]["username"]>>
+	<<else>>
+		<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+	<</if>>
+		
+	</div>
+	</div>
   </div>
 
 	<div id="onlineCount">

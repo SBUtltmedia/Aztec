@@ -10931,6 +10931,12 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	});
 	&lt;&lt;/script&gt;&gt;
 
+	/* prints current passage
+	&lt;div id=&quot;passage&quot;&gt;
+		&lt;&lt;print $users[$userId][&quot;passage&quot;]&gt;&gt;
+	&lt;/div&gt;
+	*/
+
 	/* header of the book&#39;s left page */
 	&lt;div id=&quot;passagesCompletedHeader&quot;&gt;
 		Passages Completed
@@ -10939,7 +10945,12 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;div id=&quot;passagesCompletedButtons&quot;&gt;
 		&lt;div class=&quot;passagesCompletedButtonsGrid&quot;&gt;
 			&lt;&lt;for _passageName, _passageText range $theyrPrivateVars[$userId][&#39;passageHistory&#39;]&gt;&gt;
-				&lt;&lt;print `&lt;button class=&quot;passageButton&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
+				&lt;&lt;if $users[$userId][&quot;passage&quot;] == _passageName&gt;&gt;
+					&lt;&lt;print `&lt;button class=&quot;passageButton&quot; style=&quot;background-color:rgb(165, 133, 85);&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
+				&lt;&lt;else&gt;&gt;
+					&lt;&lt;print `&lt;button class=&quot;passageButton&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
+				&lt;&lt;/if&gt;&gt;
+				
 			&lt;&lt;/for&gt;&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
@@ -10949,7 +10960,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;/div&gt;
 
 	&lt;div id=&quot;selectedPassageTextContainer&quot;&gt;
-		Select a passage from your passage history above to review it.
+		Select a passage from your passage history above to review it. The passages are in order of how you played them. Your current passage is highlighted.
 		&lt;&lt;script&gt;&gt;
 			setTimeout(() =&gt; {
 				$(&quot;.passageButton&quot;).on(&quot;click&quot;, function() {
@@ -10964,15 +10975,22 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 &lt;/div&gt;
 
-/* prints current passage */
-&lt;div id=&quot;passage&quot;&gt;
-	&lt;&lt;print $users[$userId][&quot;passage&quot;]&gt;&gt;
-
-
-	
-
-
-
+/* Creates the chat */
+&lt;div id=&quot;chat&quot;&gt;
+	&lt;&lt;if ndef $chatlog&gt;&gt;
+		&lt;&lt;set $chatlog= &quot;&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;div id=&quot;chatmessages&quot;&gt;
+		$chatlog
+	&lt;/div&gt;
+	&lt;div id=&quot;chattextarea&quot;&gt;
+		&lt;div id=&quot;chattextbox&quot;&gt;
+			&lt;&lt;textbox &quot;_chattext&quot; &quot;Hello!&quot; autofocus&gt;&gt;
+		&lt;/div&gt;
+		&lt;&lt;button &quot;Continue&quot;&gt;&gt;
+			&lt;&lt;set $chatlog += &quot;&lt;br&gt;&quot; + $users[$userId].username + &quot;: &quot; + _chattext&gt;&gt;
+		&lt;&lt;/button&gt;&gt;
+	&lt;/div&gt;
 &lt;/div&gt;
 
 /* print play status list (discord info, role, etc.) */
@@ -11010,21 +11028,21 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 
   /* creates sidebar with users */
   &lt;div id = &quot;playerClient&quot;&gt;
-  		&lt;&lt;print `&lt;img id = &quot;playerImageClient&quot; class=&quot;`+_factionColor[$users[$userId][&quot;faction&quot;]]+`&quot; src = &quot;Twine/images/characters/Tlacaelel.svg&quot;&gt; `&gt;&gt;
+  	&lt;&lt;print `&lt;img id = &quot;playerImageClient&quot; class=&quot;`+_factionColor[$users[$userId][&quot;faction&quot;]]+`&quot; src = &quot;`+setup.getUserSvgPicture($users[$userId][&quot;role&quot;])+`&quot;&gt; `&gt;&gt;
       
-      &lt;div id = &quot;playerTextClient&quot;&gt;
-        &lt;div id=&quot;printUserRoleClient&quot;&gt;
-          &lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
-        &lt;/div&gt;
-        &lt;div id=&quot;printUserNameClient&quot;&gt;
-		&lt;&lt;if $users[$userId][&quot;discriminator&quot;] == 0&gt;&gt;
-			&lt;&lt;print &quot;@&quot; + $users[$userId][&quot;username&quot;]&gt;&gt;
-		&lt;&lt;else&gt;&gt;
-			&lt;&lt;print $users[$userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
-		&lt;&lt;/if&gt;&gt;
-          
-        &lt;/div&gt;
-      &lt;/div&gt;
+	&lt;div id = &quot;playerTextClient&quot;&gt;
+	&lt;div id=&quot;printUserRoleClient&quot;&gt;
+		&lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
+	&lt;/div&gt;
+	&lt;div id=&quot;printUserNameClient&quot;&gt;
+	&lt;&lt;if $users[$userId][&quot;discriminator&quot;] == 0&gt;&gt;
+		&lt;&lt;print &quot;@&quot; + $users[$userId][&quot;username&quot;]&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;print $users[$userId][&quot;username&quot;] + &quot;#&quot; + $users[$userId][&quot;discriminator&quot;]&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+		
+	&lt;/div&gt;
+	&lt;/div&gt;
   &lt;/div&gt;
 
 	&lt;div id=&quot;onlineCount&quot;&gt;
