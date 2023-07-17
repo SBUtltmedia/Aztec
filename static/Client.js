@@ -74,7 +74,7 @@ function showMap() {
         }))
     }
 
-   let  faction =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]["faction"]
+    let  faction =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]["faction"]
     var currentMap =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId].currentMap
     if (!currentMap) {
         let currentMapIndex = Window.SugarCubeState.getVar(`$${faction}_currentMap`) || 0;

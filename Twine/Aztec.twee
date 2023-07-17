@@ -12180,6 +12180,55 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
+
+/* Creates some bookmarks to switch between pages */
+<div id="bookmarks">
+	<img id="home_bookmark_img" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
+	<img id="stat_bookmark_img" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
+</div>
+
+<<script>>
+	setTimeout(() => {
+		$("#info-stats").hide();
+		$("#home_bookmark_img").on('mousedown', function() {
+			$("#passagesCompletedHeader").show();
+			$("#passagesCompletedButtons").show();
+			$("#passageChevron").show();
+			$("#selectedPassageTextContainer").show();
+			
+			$("#info-stats").hide();
+		});
+		$("#stat_bookmark_img").on('mousedown', function() {
+			$("#passagesCompletedHeader").hide();
+			$("#passagesCompletedButtons").hide();
+			$("#passageChevron").hide();
+			$("#selectedPassageTextContainer").hide();
+
+			$("#info-stats").show();
+		});
+	}, 200);
+<</script>>
+
+<div id="info-stats">
+	<div id="info-stats-faction-strength">
+		Aztec Strength: 7
+	</div>
+	<div id="info-stats-user">
+		<div id="info-stats-user-title">
+			Your Stats:
+		</div>
+		<div id="info-stats-user-strength">
+			loyal 100
+		</div>
+		<div id="info-stats-user-wisdom">
+			wisdom dumb
+		</div>
+		<div id="info-stats-user">
+			strength arm wrestle me rn
+		</div>
+	</div>
+</div>
+
 /* Prints list of previous passages for user to recollect */
 <div id="info">
 
@@ -12306,6 +12355,24 @@ _data: object with user properties (to access user's passage just use _data["pas
 	</div>
 	</div>
   </div>
+
+	<<script>>
+		$(document).ready(function() {
+			setTimeout(function() {
+				var element = document.getElementById("printUserRoleClient");
+
+				var fontSize = 2.3;
+				element.style.fontSize = fontSize + 'rem';
+				var width = element.clientWidth;
+				var height = element.clientHeight;
+
+				while (element.scrollWidth > width || element.scrollHeight > height) {
+					fontSize -= 0.1;
+					element.style.fontSize = fontSize + 'rem';
+				}
+			}, 100);
+		});
+	<</script>>
 
 	<div id="onlineCount">
 		<<print "  Total Players (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
