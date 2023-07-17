@@ -7,6 +7,9 @@ import gitApiIO from './gitApiIO.js';
 
 const require = createRequire(import.meta.url);
 const configObj = require('./config.json')
+const base64 = require('base-64');
+let content = require('./initVars.json');
+content = base64.encode(JSON.stringify(content));
 
 // Checks command line arguments for app name
 const app =configObj.serverconf.fileName;
@@ -61,7 +64,7 @@ for (let i = startingAppId ; i <=  endingAppId; i++) {
 
     //creates json files on github repo for backup purposes
     let gitApi = new gitApiIO({...configObj.serverConf, appIndex: i});
-    gitApi.setupFileAPI();
+    gitApi.setupFileAPI(content);
 
     // Execute commands
     for (let command of commands) {
