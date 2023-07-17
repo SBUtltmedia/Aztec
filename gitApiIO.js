@@ -123,7 +123,8 @@ class gitApiIO{
     }
 
     //for creating new json files
-    async setupFileAPI(){
+    async setupFileAPI(content){
+        console.log(content);
         return new Promise((res,rej)=> {
             if(this.test){
                 console.log("resolved")

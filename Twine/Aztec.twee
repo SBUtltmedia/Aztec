@@ -3384,6 +3384,25 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 [[Return to the Dashboard|Dashboard]]<br>
 
 
+:: Passage Teleport [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+	Click on a passage name to telport there:
+	<br>
+
+	<<set _temp = Story.lookupWith((p)=>{return true})>>
+	<<set _passageList = []>>
+	<<for _i to 0; _i lt _temp.length; _i ++>>
+		<<set _passageList.push(_temp[_i].title)>>
+	<</for>>
+	<<set _passage = "The Library">>
+
+	<<for _i, _name range _passageList>>
+		<<link _name _name>> <</link>>
+		<br>
+	<</for>>
+<</liveblock>>
+
+
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 <<set _initVars = State.variables>>
@@ -3411,6 +3430,33 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 		<<textbox _twineKey _tempVal "Control: Lookup" >>
 		<br>
 	<</for>>
+<</liveblock>>
+
+
+:: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+	<<set _role = "Aztec_Priest">>
+	<<set _passage = "Side Passage Control">>
+
+	/* Add the starting passage of every side passge to this  */
+	<<set _sidePassages = {
+		"example": "Side Passage Example"
+	}>>
+
+
+	<<listbox "_role" autoselect>>
+		<<optionsfrom Object.keys($lookup)>>
+	
+	<</listbox>>
+	<<listbox "_passage" autoselect>>
+		<<optionsfrom _sidePassages>>
+		
+	<</listbox>>
+	<<button "send">>
+		<<set _user = $users[$lookup[_role]]>>
+		<<set _user["sidePassageReturn"] = _user["passage"]>>
+		<<set _user["passage"] = _passage>>
+	<</button>>
 <</liveblock>>
 
 
@@ -4866,6 +4912,7 @@ This city is <<textbox "$Malinalco_Ans_T" "">><br>
 
 
 :: Malinalco 2 [Done Breaks] {"position":"2675,300","size":"100,100"}
+<<theyr>>
 <<theyr>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -12418,7 +12465,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 /* Use this as a template to make side passages */
 
 
-:: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Side Passage Example [sidePassage Done Breaks] {"position":"338,1151","size":"100,100"}
 >>
 	Side passage example 1
 	/* Put link to next passage  */
@@ -12446,32 +12493,5 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 
 /* Use this to send users to side passages */
-
-
-:: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
-	<<set _role = "Aztec_Priest">>
-	<<set _passage = "Side Passage Control">>
-
-	/* Add the starting passage of every side passge to this  */
-	<<set _sidePassages = {
-		"example": "Side Passage Example"
-	}>>
-
-
-	<<listbox "_role" autoselect>>
-		<<optionsfrom Object.keys($lookup)>>
-	
-	<</listbox>>
-	<<listbox "_passage" autoselect>>
-		<<optionsfrom _sidePassages>>
-		
-	<</listbox>>
-	<<button "send">>
-		<<set _user = $users[$lookup[_role]]>>
-		<<set _user["sidePassageReturn"] = _user["passage"]>>
-		<<set _user["passage"] = _passage>>
-	<</button>>
-<</liveblock>>
 
 
