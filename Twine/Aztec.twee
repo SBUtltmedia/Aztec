@@ -12362,6 +12362,9 @@ _data: object with user properties (to access user's passage just use _data["pas
 				var element = document.getElementById("printUserRoleClient");
 
 				var fontSize = 2.3;
+				if (!element) {
+					return;
+				}
 				element.style.fontSize = fontSize + 'rem';
 				var width = element.clientWidth;
 				var height = element.clientHeight;
