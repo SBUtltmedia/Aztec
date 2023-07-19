@@ -55,7 +55,7 @@ importScripts([
 	.then(function() {
 			initTheyr({lockId,callback:LoadScreen.unlock})
 
-	State = new Proxy(State, createHandler())
+		State = new Proxy(State, createHandler())
 
 	}
 );
@@ -3439,17 +3439,18 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 	<<set _passage = "Side Passage Control">>
 
 	/* Add the starting passage of every side passge to this  */
-	<<set _sidePassages = {
-		"example": "Side Passage Example"
-	}>>
-
+	<<set _passages = Story.lookup("tags","sidePassage")>>
+	<<set _sidePassages = []>>
+	<<for _i, _passage range _passages>>
+		<<set _sidePassages.push(_passage.title)>>
+	<</for>>
 
 	<<listbox "_role" autoselect>>
 		<<optionsfrom Object.keys($lookup)>>
 	
 	<</listbox>>
 	<<listbox "_passage" autoselect>>
-		<<optionsfrom _sidePassages>>
+		<<optionsfrom Object.values(_sidePassages)>>
 		
 	<</listbox>>
 	<<button "send">>
@@ -12544,7 +12545,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 <</liveblock>>
 
 
-:: Side Passage Example 2 [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Side Passage Example 2 [sidePassage Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 	Side passage example 2
 	/* Put link to next passage  */
