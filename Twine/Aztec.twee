@@ -12445,10 +12445,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 </div>
 
-	
 
-
-<</liveblock>>
 
 	<<script>>
 		window.addEventListener("resize", function() {
@@ -12533,6 +12530,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 	<</script>>
 
+<</liveblock>>
 /* Use this as a template to make side passages */
 
 
@@ -12545,7 +12543,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 <</liveblock>>
 
 
-:: Side Passage Example 2 [sidePassage Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Side Passage Example 2 [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 	Side passage example 2
 	/* Put link to next passage  */
