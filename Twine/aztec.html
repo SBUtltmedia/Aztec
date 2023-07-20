@@ -197,8 +197,8 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="" position="100,100" size="100,100">&lt;&lt;liveblock&gt;&gt;
-
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -10919,44 +10919,59 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;img id=&quot;stat_bookmark_img&quot; src=&quot;Twine/images/Home/bookmark_star.svg&quot; alt=&quot;Bookmark&quot;&gt;
 &lt;/div&gt;
 
-&lt;&lt;script&gt;&gt;
-	setTimeout(() =&gt; {
-		$(&quot;#info-stats&quot;).hide();
-		$(&quot;#home_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
-			$(&quot;#passagesCompletedHeader&quot;).show();
-			$(&quot;#passagesCompletedButtons&quot;).show();
-			$(&quot;#passageChevron&quot;).show();
-			$(&quot;#selectedPassageTextContainer&quot;).show();
-			
-			$(&quot;#info-stats&quot;).hide();
-		});
-		$(&quot;#stat_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
-			$(&quot;#passagesCompletedHeader&quot;).hide();
-			$(&quot;#passagesCompletedButtons&quot;).hide();
-			$(&quot;#passageChevron&quot;).hide();
-			$(&quot;#selectedPassageTextContainer&quot;).hide();
-
-			$(&quot;#info-stats&quot;).show();
-		});
-	}, 200);
-&lt;&lt;/script&gt;&gt;
-
 &lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
-		Aztec Strength: 7
+		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
+		&lt;span&gt;Aztec Strength: &lt;&lt;print $factions[$users[$userId][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
+		
 	&lt;/div&gt;
 	&lt;div id=&quot;info-stats-user&quot;&gt;
 		&lt;div id=&quot;info-stats-user-title&quot;&gt;
-			Your Stats:
+			&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
+			&lt;span&gt;
+				&lt;&lt;print $users[$userId][&quot;character&quot;]&gt;&gt;
+			&lt;/span&gt;
 		&lt;/div&gt;
-		&lt;div id=&quot;info-stats-user-strength&quot;&gt;
-			loyal 100
-		&lt;/div&gt;
-		&lt;div id=&quot;info-stats-user-wisdom&quot;&gt;
-			wisdom dumb
-		&lt;/div&gt;
-		&lt;div id=&quot;info-stats-user&quot;&gt;
-			strength arm wrestle me rn
+		&lt;div class=&quot;info-stats-traits&quot;&gt;
+			&lt;div class=&quot;info-stats-trait&quot;&gt;
+				&lt;&lt;print `&lt;img class=&quot;stats_image&quot; src = &quot;Twine/images/Stats/`+$users[$userId][&quot;faction&quot;]+`_Loyalty.png&quot;&gt; `&gt;&gt;
+				&lt;div class=&quot;info-stats-trait-text&quot;&gt;
+					&lt;span&gt;
+						&lt;&lt;if $users[$userId][&quot;stats&quot;] === undefined&gt;&gt;
+							&lt;&lt;print &quot;N/A&quot;&gt;&gt;
+						&lt;&lt;else&gt;&gt;
+							&lt;&lt;print $users[$userId][&quot;stats&quot;][&quot;Loyalty&quot;]&gt;&gt;
+						&lt;&lt;/if&gt;&gt;
+					&lt;/span&gt;
+					&lt;span&gt;Loyalty&lt;/span&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;info-stats-trait&quot;&gt;
+				&lt;&lt;print `&lt;img class=&quot;stats_image&quot; src = &quot;Twine/images/Stats/`+$users[$userId][&quot;faction&quot;]+`_Wisdom.png&quot;&gt; `&gt;&gt;
+				&lt;div class=&quot;info-stats-trait-text&quot;&gt;
+					&lt;span&gt;
+						&lt;&lt;if $users[$userId][&quot;stats&quot;] === undefined&gt;&gt;
+							&lt;&lt;print &quot;N/A&quot;&gt;&gt;
+						&lt;&lt;else&gt;&gt;
+							&lt;&lt;print $users[$userId][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;
+						&lt;&lt;/if&gt;&gt;
+					&lt;/span&gt;
+					&lt;span&gt;Wisdom&lt;/span&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;info-stats-trait&quot;&gt;
+				&lt;&lt;print `&lt;img class=&quot;stats_image&quot; src = &quot;Twine/images/Stats/`+$users[$userId][&quot;faction&quot;]+`_Strength.png&quot;&gt; `&gt;&gt;
+				&lt;div class=&quot;info-stats-trait-text&quot;&gt;
+					&lt;span&gt;
+						&lt;&lt;if $users[$userId][&quot;stats&quot;] === undefined&gt;&gt;
+							&lt;&lt;print &quot;N/A&quot;&gt;&gt;
+						&lt;&lt;else&gt;&gt;
+							&lt;&lt;print $users[$userId][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;
+						&lt;&lt;/if&gt;&gt;
+					&lt;/span&gt;
+					&lt;span &gt;Strength&lt;/span&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
@@ -10969,7 +10984,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	
 	&lt;&lt;script&gt;&gt;
 	$(document).ready(function() {
-		var svgContent = &#39;&lt;img id=&quot;back_button_img&quot; src=&quot;Twine/images/back_button.svg&quot; alt=&quot;Back&quot;&gt;&lt;/img&gt;&#39;;
+		let svgContent = &#39;&lt;img id=&quot;back_button_img&quot; src=&quot;Twine/images/back_button.svg&quot; alt=&quot;Back&quot;&gt;&lt;/img&gt;&#39;;
 		$(&quot;#info .link-internal.macro-link&quot;).append(svgContent);
 	});
 	&lt;&lt;/script&gt;&gt;
@@ -10989,7 +11004,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;div class=&quot;passagesCompletedButtonsGrid&quot;&gt;
 			&lt;&lt;for _passageName, _passageText range $theyrPrivateVars[$userId][&#39;passageHistory&#39;]&gt;&gt;
 				&lt;&lt;if $users[$userId][&quot;passage&quot;] == _passageName&gt;&gt;
-					&lt;&lt;print `&lt;button class=&quot;passageButton&quot; style=&quot;background-color:rgb(165, 133, 85);&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
+					&lt;&lt;print `&lt;button class=&quot;passageButton selectedPassageButton&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
 				&lt;&lt;else&gt;&gt;
 					&lt;&lt;print `&lt;button class=&quot;passageButton&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
 				&lt;&lt;/if&gt;&gt;
@@ -11003,12 +11018,15 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;/div&gt;
 
 	&lt;div id=&quot;selectedPassageTextContainer&quot;&gt;
-		Select a passage from your passage history above to review it. The passages are in order of how you played them. Your current passage is highlighted.
+		Select a passage from your passage history above to review it. The passages are in order of how you played them.
 		&lt;&lt;script&gt;&gt;
 			setTimeout(() =&gt; {
 				$(&quot;.passageButton&quot;).on(&quot;click&quot;, function() {
-					var passageButtonId = $(this).attr(&quot;data-passageName&quot;);
-					var passage_text = State.getVar(`$theyrPrivateVars[$userId][&#39;passageHistory&#39;][&quot;${passageButtonId}&quot;]`);
+					$(&quot;.passageButton.selectedPassageButton&quot;).removeClass(&quot;selectedPassageButton&quot;);
+					$(this).addClass(&quot;selectedPassageButton&quot;);
+
+					let passageButtonId = $(this).attr(&quot;data-passageName&quot;);
+					let passage_text = State.getVar(`$theyrPrivateVars[$userId][&#39;passageHistory&#39;][&quot;${passageButtonId}&quot;]`);
 					$(&quot;#selectedPassageTextContainer&quot;).text(passage_text);
 				});
 			}, 1000);
@@ -11089,23 +11107,39 @@ _data: object with user properties (to access user&#39;s passage just use _data[
   &lt;/div&gt;
 
 	&lt;&lt;script&gt;&gt;
-		$(document).ready(function() {
-			setTimeout(function() {
-				var element = document.getElementById(&quot;printUserRoleClient&quot;);
+		
+		function scaleText(x) {
+			return (-1/56) * x + 2.475
+		}
 
-				var fontSize = 2.3;
-				if (!element) {
-					return;
-				}
-				element.style.fontSize = fontSize + &#39;rem&#39;;
-				var width = element.clientWidth;
-				var height = element.clientHeight;
+		$(document).one(&#39;:passagerender&#39;, function (ev) {
+			$(ev.content).find(&quot;#info-stats&quot;).hide();
 
-				while (element.scrollWidth &gt; width || element.scrollHeight &gt; height) {
-					fontSize -= 0.1;
-					element.style.fontSize = fontSize + &#39;rem&#39;;
-				}
-			}, 100);
+			$(ev.content).find(&quot;#home_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
+				$(ev.content).find(&quot;#passagesCompletedHeader&quot;).show();
+				$(ev.content).find(&quot;#passagesCompletedButtons&quot;).show();
+				$(ev.content).find(&quot;#passageChevron&quot;).show();
+				$(ev.content).find(&quot;#selectedPassageTextContainer&quot;).show();
+				
+				$(ev.content).find(&quot;#info-stats&quot;).hide();
+			});
+			$(ev.content).find(&quot;#stat_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
+				$(ev.content).find(&quot;#passagesCompletedHeader&quot;).hide();
+				$(ev.content).find(&quot;#passagesCompletedButtons&quot;).hide();
+				$(ev.content).find(&quot;#passageChevron&quot;).hide();
+				$(ev.content).find(&quot;#selectedPassageTextContainer&quot;).hide();
+
+				$(ev.content).find(&quot;#info-stats&quot;).css(&quot;display&quot;, &quot;flex&quot;);
+			});
+
+			let element = $(ev.content).find(&quot;#printUserRoleClient&quot;)[0];
+			if (!element) { return; }
+			let elementLength = $(ev.content).find(&quot;#printUserRoleClient&quot;).html().length;
+
+			
+			
+			element.style.fontSize = scaleText(elementLength) + &#39;rem&#39;;
+		
 		});
 	&lt;&lt;/script&gt;&gt;
 
@@ -11176,26 +11210,21 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 
 &lt;/div&gt;
 
-	
-
-
-&lt;&lt;/liveblock&gt;&gt;
-
 	&lt;&lt;script&gt;&gt;
 		window.addEventListener(&quot;resize&quot;, function() {
-			var rolePanel = $(&quot;#rolePanelDynamic&quot;);
+			let rolePanel = $(&quot;#rolePanelDynamic&quot;);
 			rolePanel.css(&quot;visibility&quot;, &quot;hidden&quot;);
 		});
 		setTimeout(() =&gt; {
 			$(&quot;#players&quot;).on(&#39;mouseleave&#39;, function() {
 				$(document).mousemove(function(event) {
-					var xPos = event.pageX;
-					var yPos = event.pageY;
-					var rolePanel = $(&quot;#rolePanelDynamic&quot;);
-					var rolePanelX = rolePanel.offset().left;
-					var rolePanelY = rolePanel.offset().top;
-					var rpHeight = parseInt(rolePanel.css(&quot;height&quot;));
-					var rpWidth = parseInt(rolePanel.css(&quot;width&quot;));
+					let xPos = event.pageX;
+					let yPos = event.pageY;
+					let rolePanel = $(&quot;#rolePanelDynamic&quot;);
+					let rolePanelX = rolePanel.offset().left;
+					let rolePanelY = rolePanel.offset().top;
+					let rpHeight = parseInt(rolePanel.css(&quot;height&quot;));
+					let rpWidth = parseInt(rolePanel.css(&quot;width&quot;));
 
 					if (!((xPos &gt; rolePanelX) &amp;&amp; (yPos &gt; rolePanelY - (rolePanelY / 8)&amp;&amp; yPos &lt; rolePanelY + rpHeight))) {
 						$(document).off(&#39;mousemove&#39;);
@@ -11206,20 +11235,20 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		}, 1500);
 		setTimeout(() =&gt; {
 			$(&quot;.player&quot;).on(&#39;mouseenter&#39;, function() {
-				var top = $(this).offset().top + window.screenY;
-				var left = $(this).offset().left + window.screenX;
-				var pageWidth = parseInt($(&quot;#story&quot;).css(&quot;width&quot;));
-				var pageHeight = parseInt($(&quot;#story&quot;).css(&quot;height&quot;));
+				let top = $(this).offset().top + window.screenY;
+				let left = $(this).offset().left + window.screenX;
+				let pageWidth = parseInt($(&quot;#story&quot;).css(&quot;width&quot;));
+				let pageHeight = parseInt($(&quot;#story&quot;).css(&quot;height&quot;));
 
-				var firstUnderscoreIndex = $(this).attr(&quot;id&quot;).indexOf(&quot;_&quot;);
-				var user = $(this).attr(&quot;id&quot;).substring(firstUnderscoreIndex + 1);
-				var imageSource = setup.getUserSvgPicture(user);
+				let firstUnderscoreIndex = $(this).attr(&quot;id&quot;).indexOf(&quot;_&quot;);
+				let user = $(this).attr(&quot;id&quot;).substring(firstUnderscoreIndex + 1);
+				let imageSource = setup.getUserSvgPicture(user);
 				$(&quot;#rolePanelImageDynamic&quot;).attr(&quot;src&quot;, imageSource);
 
-				var printableUser = user.replace(/_/g, &quot; &quot;);
+				let printableUser = user.replace(/_/g, &quot; &quot;);
 				$(&quot;#rolePanelPrintUserRole&quot;).text(printableUser);
 
-				var rolePanel = $(&quot;#rolePanelDynamic&quot;);
+				let rolePanel = $(&quot;#rolePanelDynamic&quot;);
 				rolePanel.css(&quot;visibility&quot;, &quot;visible&quot;);
 
 				let notes = State.getVar(&quot;$users[$userId][&#39;notes&#39;]&quot;);
@@ -11235,7 +11264,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 				$(&quot;#rolePanelNotes&quot;).empty().wiki(`&lt;&lt;textbox &quot;$users[$userId][&#39;notes&#39;][&#39;${user}&#39;]&quot; &quot;${defaultText}&quot;&gt;&gt;`);
 				$(&quot;#textbox-usersuseridnotes&quot; + user).val(defaultText);
 			
-				var rpHeight = parseInt(rolePanel.css(&quot;height&quot;));
+				let rpHeight = parseInt(rolePanel.css(&quot;height&quot;));
 
 				if (top + rpHeight &gt; pageHeight) {
 					top = pageHeight - rpHeight - 5;
@@ -11263,6 +11292,8 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		}, 1500);
 
 	&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;/liveblock&gt;&gt;
 
 /* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="324" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&gt;&gt;
 	Side passage example 1

@@ -12128,6 +12128,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 <</liveblock>>
 
+:: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+<p> hey </p>
+<</liveblock>>
+
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
@@ -12138,44 +12143,59 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<img id="stat_bookmark_img" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
 </div>
 
-<<script>>
-	setTimeout(() => {
-		$("#info-stats").hide();
-		$("#home_bookmark_img").on('mousedown', function() {
-			$("#passagesCompletedHeader").show();
-			$("#passagesCompletedButtons").show();
-			$("#passageChevron").show();
-			$("#selectedPassageTextContainer").show();
-			
-			$("#info-stats").hide();
-		});
-		$("#stat_bookmark_img").on('mousedown', function() {
-			$("#passagesCompletedHeader").hide();
-			$("#passagesCompletedButtons").hide();
-			$("#passageChevron").hide();
-			$("#selectedPassageTextContainer").hide();
-
-			$("#info-stats").show();
-		});
-	}, 200);
-<</script>>
-
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
-		Aztec Strength: 7
+		<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
+		<span>Aztec Strength: <<print $factions[$users[$userId]["faction"]]["stats"]["Strength"]>></span>
+		
 	</div>
 	<div id="info-stats-user">
 		<div id="info-stats-user-title">
-			Your Stats:
+			<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
+			<span>
+				<<print $users[$userId]["character"]>>
+			</span>
 		</div>
-		<div id="info-stats-user-strength">
-			loyal 100
-		</div>
-		<div id="info-stats-user-wisdom">
-			wisdom dumb
-		</div>
-		<div id="info-stats-user">
-			strength arm wrestle me rn
+		<div class="info-stats-traits">
+			<div class="info-stats-trait">
+				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Loyalty.png"> `>>
+				<div class="info-stats-trait-text">
+					<span>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Loyalty"]>>
+						<</if>>
+					</span>
+					<span>Loyalty</span>
+				</div>
+			</div>
+			<div class="info-stats-trait">
+				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Wisdom.png"> `>>
+				<div class="info-stats-trait-text">
+					<span>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Wisdom"]>>
+						<</if>>
+					</span>
+					<span>Wisdom</span>
+				</div>
+			</div>
+			<div class="info-stats-trait">
+				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Strength.png"> `>>
+				<div class="info-stats-trait-text">
+					<span>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Strength"]>>
+						<</if>>
+					</span>
+					<span >Strength</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -12188,7 +12208,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	
 	<<script>>
 	$(document).ready(function() {
-		var svgContent = '<img id="back_button_img" src="Twine/images/back_button.svg" alt="Back"></img>';
+		let svgContent = '<img id="back_button_img" src="Twine/images/back_button.svg" alt="Back"></img>';
 		$("#info .link-internal.macro-link").append(svgContent);
 	});
 	<</script>>
@@ -12208,7 +12228,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<div class="passagesCompletedButtonsGrid">
 			<<for _passageName, _passageText range $theyrPrivateVars[$userId]['passageHistory']>>
 				<<if $users[$userId]["passage"] == _passageName>>
-					<<print `<button class="passageButton" style="background-color:rgb(165, 133, 85);" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+					<<print `<button class="passageButton selectedPassageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
 				<<else>>
 					<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
 				<</if>>
@@ -12222,12 +12242,15 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<div id="selectedPassageTextContainer">
-		Select a passage from your passage history above to review it. The passages are in order of how you played them. Your current passage is highlighted.
+		Select a passage from your passage history above to review it. The passages are in order of how you played them.
 		<<script>>
 			setTimeout(() => {
 				$(".passageButton").on("click", function() {
-					var passageButtonId = $(this).attr("data-passageName");
-					var passage_text = State.getVar(`$theyrPrivateVars[$userId]['passageHistory']["${passageButtonId}"]`);
+					$(".passageButton.selectedPassageButton").removeClass("selectedPassageButton");
+					$(this).addClass("selectedPassageButton");
+
+					let passageButtonId = $(this).attr("data-passageName");
+					let passage_text = State.getVar(`$theyrPrivateVars[$userId]['passageHistory']["${passageButtonId}"]`);
 					$("#selectedPassageTextContainer").text(passage_text);
 				});
 			}, 1000);
@@ -12308,23 +12331,39 @@ _data: object with user properties (to access user's passage just use _data["pas
   </div>
 
 	<<script>>
-		$(document).ready(function() {
-			setTimeout(function() {
-				var element = document.getElementById("printUserRoleClient");
+		
+		function scaleText(x) {
+			return (-1/56) * x + 2.475
+		}
 
-				var fontSize = 2.3;
-				if (!element) {
-					return;
-				}
-				element.style.fontSize = fontSize + 'rem';
-				var width = element.clientWidth;
-				var height = element.clientHeight;
+		$(document).one(':passagerender', function (ev) {
+			$(ev.content).find("#info-stats").hide();
 
-				while (element.scrollWidth > width || element.scrollHeight > height) {
-					fontSize -= 0.1;
-					element.style.fontSize = fontSize + 'rem';
-				}
-			}, 100);
+			$(ev.content).find("#home_bookmark_img").on('mousedown', function() {
+				$(ev.content).find("#passagesCompletedHeader").show();
+				$(ev.content).find("#passagesCompletedButtons").show();
+				$(ev.content).find("#passageChevron").show();
+				$(ev.content).find("#selectedPassageTextContainer").show();
+				
+				$(ev.content).find("#info-stats").hide();
+			});
+			$(ev.content).find("#stat_bookmark_img").on('mousedown', function() {
+				$(ev.content).find("#passagesCompletedHeader").hide();
+				$(ev.content).find("#passagesCompletedButtons").hide();
+				$(ev.content).find("#passageChevron").hide();
+				$(ev.content).find("#selectedPassageTextContainer").hide();
+
+				$(ev.content).find("#info-stats").css("display", "flex");
+			});
+
+			let element = $(ev.content).find("#printUserRoleClient")[0];
+			if (!element) { return; }
+			let elementLength = $(ev.content).find("#printUserRoleClient").html().length;
+
+			
+			
+			element.style.fontSize = scaleText(elementLength) + 'rem';
+		
 		});
 	<</script>>
 
@@ -12395,26 +12434,21 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 </div>
 
-	
-
-
-<</liveblock>>
-
 	<<script>>
 		window.addEventListener("resize", function() {
-			var rolePanel = $("#rolePanelDynamic");
+			let rolePanel = $("#rolePanelDynamic");
 			rolePanel.css("visibility", "hidden");
 		});
 		setTimeout(() => {
 			$("#players").on('mouseleave', function() {
 				$(document).mousemove(function(event) {
-					var xPos = event.pageX;
-					var yPos = event.pageY;
-					var rolePanel = $("#rolePanelDynamic");
-					var rolePanelX = rolePanel.offset().left;
-					var rolePanelY = rolePanel.offset().top;
-					var rpHeight = parseInt(rolePanel.css("height"));
-					var rpWidth = parseInt(rolePanel.css("width"));
+					let xPos = event.pageX;
+					let yPos = event.pageY;
+					let rolePanel = $("#rolePanelDynamic");
+					let rolePanelX = rolePanel.offset().left;
+					let rolePanelY = rolePanel.offset().top;
+					let rpHeight = parseInt(rolePanel.css("height"));
+					let rpWidth = parseInt(rolePanel.css("width"));
 
 					if (!((xPos > rolePanelX) && (yPos > rolePanelY - (rolePanelY / 8)&& yPos < rolePanelY + rpHeight))) {
 						$(document).off('mousemove');
@@ -12425,20 +12459,20 @@ _data: object with user properties (to access user's passage just use _data["pas
 		}, 1500);
 		setTimeout(() => {
 			$(".player").on('mouseenter', function() {
-				var top = $(this).offset().top + window.screenY;
-				var left = $(this).offset().left + window.screenX;
-				var pageWidth = parseInt($("#story").css("width"));
-				var pageHeight = parseInt($("#story").css("height"));
+				let top = $(this).offset().top + window.screenY;
+				let left = $(this).offset().left + window.screenX;
+				let pageWidth = parseInt($("#story").css("width"));
+				let pageHeight = parseInt($("#story").css("height"));
 
-				var firstUnderscoreIndex = $(this).attr("id").indexOf("_");
-				var user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
-				var imageSource = setup.getUserSvgPicture(user);
+				let firstUnderscoreIndex = $(this).attr("id").indexOf("_");
+				let user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
+				let imageSource = setup.getUserSvgPicture(user);
 				$("#rolePanelImageDynamic").attr("src", imageSource);
 
-				var printableUser = user.replace(/_/g, " ");
+				let printableUser = user.replace(/_/g, " ");
 				$("#rolePanelPrintUserRole").text(printableUser);
 
-				var rolePanel = $("#rolePanelDynamic");
+				let rolePanel = $("#rolePanelDynamic");
 				rolePanel.css("visibility", "visible");
 
 				let notes = State.getVar("$users[$userId]['notes']");
@@ -12454,7 +12488,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" "${defaultText}">>`);
 				$("#textbox-usersuseridnotes" + user).val(defaultText);
 			
-				var rpHeight = parseInt(rolePanel.css("height"));
+				let rpHeight = parseInt(rolePanel.css("height"));
 
 				if (top + rpHeight > pageHeight) {
 					top = pageHeight - rpHeight - 5;
@@ -12483,8 +12517,9 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 	<</script>>
 
-/* Use this as a template to make side passages */
+<</liveblock>>
 
+/* Use this as a template to make side passages */
 
 :: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
 >>
