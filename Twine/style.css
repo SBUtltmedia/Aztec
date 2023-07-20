@@ -866,6 +866,58 @@ small font size: 1.7rem
   height: 0;
 }
 
+#info-stats {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  left: 10%;
+  top: 24%;
+  width: 35rem;
+}
+
+#info-stats #info-stats-faction-strength {
+  width:100%;
+  font-size: 5rem;
+  text-align: center;
+}
+
+#info-stats #info-stats-user-title {
+  width:100%;
+  font-size: 4rem;
+  text-align: center;
+}
+
+#info-stats #info-stats-trait {
+  display:flex;
+  flex-direction: row;
+}
+
+#info-stats .info-stats-trait-text {
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: flex-start;
+  font-size: 3rem;
+}
+
+.stats_image {
+  width: 10rem;
+  height: 10rem;
+}
+
+.info-stats-traits {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.info_img {
+  object-fit: contain;
+  width: 2.5rem;
+  vertical-align: middle;
+  margin-bottom: 5px;
+}
+
 .passagesCompletedButtonsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two columns */
@@ -881,6 +933,10 @@ small font size: 1.7rem
   border-color: black;
   color: black;
   font: 1.6rem;
+}
+
+.selectedPassageButton {
+  background-color:rgb(165, 133, 85);
 }
 
 #passageChevron {
@@ -988,18 +1044,5 @@ small font size: 1.7rem
   object-fit: contain;
 }
 
-#info-stats {
-  position: absolute;
-  left: 5%;
-  width: 34%;
-  height: 70%;
-  top: 13%;
-  overflow: hidden;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 
-#info-stats-faction-strength {
-  width: 3rem;
-}
+
