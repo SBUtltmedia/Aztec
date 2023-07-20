@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -10976,6 +10976,27 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
 
+&lt;&lt;script&gt;&gt;
+	setTimeout(() =&gt; {
+		$(&quot;#home_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
+			$(&quot;#passagesCompletedHeader&quot;).show();
+			$(&quot;#passagesCompletedButtons&quot;).show();
+			$(&quot;#passageChevron&quot;).show();
+			$(&quot;#selectedPassageTextContainer&quot;).show();
+			
+			$(&quot;#info-stats&quot;).hide();
+		});
+		$(&quot;#stat_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
+			$(&quot;#passagesCompletedHeader&quot;).hide();
+			$(&quot;#passagesCompletedButtons&quot;).hide();
+			$(&quot;#passageChevron&quot;).hide();
+			$(&quot;#selectedPassageTextContainer&quot;).hide();
+	
+			$(&quot;#info-stats&quot;).css(&quot;display&quot;, &quot;flex&quot;);
+		});
+	}, 200);
+&lt;&lt;/script&gt;&gt;
+
 /* Prints list of previous passages for user to recollect */
 &lt;div id=&quot;info&quot;&gt;
 
@@ -11038,18 +11059,57 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 /* Creates the chat */
 &lt;div id=&quot;chat&quot;&gt;
+    /* Instantiate a chatlog if it doesnt already exist*/
 	&lt;&lt;if ndef $chatlog&gt;&gt;
 		&lt;&lt;set $chatlog= &quot;&quot;&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
+
+	/* Create a scope switch for Global and Faction */
+	&lt;div id=&quot;chat-switch&quot;&gt;
+		&lt;&lt;button &quot;GLOBAL&quot;&gt;&gt;
+			&lt;&lt;set $chatlog += &quot;&lt;br&gt;&quot; + $users[$userId].username + &quot;: &quot; + _chattext&gt;&gt;
+		&lt;&lt;/button&gt;&gt;
+		&lt;&lt;button &quot;FACTION&quot;&gt;&gt;
+			&lt;&lt;set $chatlog += &quot;&lt;br&gt;&quot; + $users[$userId].username + &quot;: &quot; + _chattext&gt;&gt;
+		&lt;&lt;/button&gt;&gt;
+	&lt;/div&gt;
+
+	/* Fill #chatmessages with $chatlog */
 	&lt;div id=&quot;chatmessages&quot;&gt;
 		$chatlog
 	&lt;/div&gt;
+
+	/* Create the area for users to send messsages to */
 	&lt;div id=&quot;chattextarea&quot;&gt;
+		/* Type messages here */
 		&lt;div id=&quot;chattextbox&quot;&gt;
 			&lt;&lt;textbox &quot;_chattext&quot; &quot;Hello!&quot; autofocus&gt;&gt;
 		&lt;/div&gt;
-		&lt;&lt;button &quot;Continue&quot;&gt;&gt;
-			&lt;&lt;set $chatlog += &quot;&lt;br&gt;&quot; + $users[$userId].username + &quot;: &quot; + _chattext&gt;&gt;
+		
+		/* Hit send here */
+		&lt;&lt;button &quot;SEND&quot;&gt;&gt;
+			
+			&lt;&lt;set 
+				$chatlog = 
+					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
+					
+						&#39;&lt;img class=&quot;playerMessageIcon&quot; src=&quot;Twine/images/back_button.svg&quot; alt=&quot;icon&quot;&gt;&#39; +
+					
+						&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
+							$users[$userId].username + 
+						&quot;&lt;/div&gt;&quot; +
+
+						&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
+							&quot;now&quot; + 
+						&quot;&lt;/div&gt;&quot; +
+
+						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
+							_chattext + 
+						&quot;&lt;/div&gt;&quot; +
+					
+					&quot;&lt;/div&gt;&quot; + 
+				$chatlog
+			&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
@@ -11109,39 +11169,26 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 	&lt;&lt;script&gt;&gt;
 		
 		function scaleText(x) {
-			return (-1/56) * x + 2.475
+			return -(0.024) * x + 2.884
 		}
+			
+		setTimeout(() =&gt; {
+			let element = $(&quot;#printUserRoleClient&quot;)[0];
+			if (!element) { return; }
+			let elementLength = $(&quot;#printUserRoleClient&quot;).html().length;
+			element.style.fontSize = scaleText(elementLength) + &#39;rem&#39;;
+		}, 100);
+		
+	&lt;&lt;/script&gt;&gt;
 
+	/*
 		$(document).one(&#39;:passagerender&#39;, function (ev) {
-			$(ev.content).find(&quot;#info-stats&quot;).hide();
-
-			$(ev.content).find(&quot;#home_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
-				$(ev.content).find(&quot;#passagesCompletedHeader&quot;).show();
-				$(ev.content).find(&quot;#passagesCompletedButtons&quot;).show();
-				$(ev.content).find(&quot;#passageChevron&quot;).show();
-				$(ev.content).find(&quot;#selectedPassageTextContainer&quot;).show();
-				
-				$(ev.content).find(&quot;#info-stats&quot;).hide();
-			});
-			$(ev.content).find(&quot;#stat_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
-				$(ev.content).find(&quot;#passagesCompletedHeader&quot;).hide();
-				$(ev.content).find(&quot;#passagesCompletedButtons&quot;).hide();
-				$(ev.content).find(&quot;#passageChevron&quot;).hide();
-				$(ev.content).find(&quot;#selectedPassageTextContainer&quot;).hide();
-
-				$(ev.content).find(&quot;#info-stats&quot;).css(&quot;display&quot;, &quot;flex&quot;);
-			});
-
 			let element = $(ev.content).find(&quot;#printUserRoleClient&quot;)[0];
 			if (!element) { return; }
 			let elementLength = $(ev.content).find(&quot;#printUserRoleClient&quot;).html().length;
-
-			
-			
 			element.style.fontSize = scaleText(elementLength) + &#39;rem&#39;;
-		
 		});
-	&lt;&lt;/script&gt;&gt;
+	 */
 
 	&lt;div id=&quot;onlineCount&quot;&gt;
 		&lt;&lt;print &quot;  Total Players (&quot; + (_totalUsers - _userCount[&quot;offline&quot;]) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
