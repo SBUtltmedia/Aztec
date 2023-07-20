@@ -12128,6 +12128,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 <</liveblock>>
 
+:: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+<p> hey </p>
+<</liveblock>>
+
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
@@ -12141,7 +12146,8 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
 		<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
-		<span>Aztec Strength: <<print 100>></span>
+		<span>Aztec Strength: <<print $factions[$users[$userId]["faction"]]["stats"]["Strength"]>></span>
+		
 	</div>
 	<div id="info-stats-user">
 		<div id="info-stats-user-title">
@@ -12155,7 +12161,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Loyalty.png"> `>>
 				<div class="info-stats-trait-text">
 					<span>
-						<<print $users[$userId]["stats"]["Loyalty"]>>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Loyalty"]>>
+						<</if>>
 					</span>
 					<span>Loyalty</span>
 				</div>
@@ -12164,7 +12174,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Wisdom.png"> `>>
 				<div class="info-stats-trait-text">
 					<span>
-						<<print $users[$userId]["stats"]["Wisdom"]>>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Wisdom"]>>
+						<</if>>
 					</span>
 					<span>Wisdom</span>
 				</div>
@@ -12173,7 +12187,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Strength.png"> `>>
 				<div class="info-stats-trait-text">
 					<span>
-						<<print $users[$userId]["stats"]["Strength"]>>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Strength"]>>
+						<</if>>
 					</span>
 					<span >Strength</span>
 				</div>
@@ -12342,7 +12360,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 			if (!element) { return; }
 			let elementLength = $(ev.content).find("#printUserRoleClient").html().length;
 
-			console.log({elementLength});
+			
 			
 			element.style.fontSize = scaleText(elementLength) + 'rem';
 		
@@ -12415,8 +12433,6 @@ _data: object with user properties (to access user's passage just use _data["pas
 	
 
 </div>
-
-<</liveblock>>
 
 	<<script>>
 		window.addEventListener("resize", function() {
@@ -12501,8 +12517,9 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 	<</script>>
 
-/* Use this as a template to make side passages */
+<</liveblock>>
 
+/* Use this as a template to make side passages */
 
 :: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
 >>
