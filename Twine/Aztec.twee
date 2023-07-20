@@ -12200,6 +12200,27 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 </div>
 
+<<script>>
+	setTimeout(() => {
+		$("#home_bookmark_img").on('mousedown', function() {
+			$("#passagesCompletedHeader").show();
+			$("#passagesCompletedButtons").show();
+			$("#passageChevron").show();
+			$("#selectedPassageTextContainer").show();
+			
+			$("#info-stats").hide();
+		});
+		$("#stat_bookmark_img").on('mousedown', function() {
+			$("#passagesCompletedHeader").hide();
+			$("#passagesCompletedButtons").hide();
+			$("#passageChevron").hide();
+			$("#selectedPassageTextContainer").hide();
+	
+			$("#info-stats").css("display", "flex");
+		});
+	}, 200);
+<</script>>
+
 /* Prints list of previous passages for user to recollect */
 <div id="info">
 
@@ -12262,18 +12283,57 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 /* Creates the chat */
 <div id="chat">
+    /* Instantiate a chatlog if it doesnt already exist*/
 	<<if ndef $chatlog>>
 		<<set $chatlog= "">>
 	<</if>>
+
+	/* Create a scope switch for Global and Faction */
+	<div id="chat-switch">
+		<<button "GLOBAL">>
+			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		<</button>>
+		<<button "FACTION">>
+			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		<</button>>
+	</div>
+
+	/* Fill #chatmessages with $chatlog */
 	<div id="chatmessages">
 		$chatlog
 	</div>
+
+	/* Create the area for users to send messsages to */
 	<div id="chattextarea">
+		/* Type messages here */
 		<div id="chattextbox">
 			<<textbox "_chattext" "Hello!" autofocus>>
 		</div>
-		<<button "Continue">>
-			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		
+		/* Hit send here */
+		<<button "SEND">>
+			
+			<<set 
+				$chatlog = 
+					"<div class='playerMessage'>" + 
+					
+						'<img class="playerMessageIcon" src="Twine/images/back_button.svg" alt="icon">' +
+					
+						"<div class='playerMessageUsername'>" +
+							$users[$userId].username + 
+						"</div>" +
+
+						"<div class='playerMessageTimeStamp'>" +
+							"now" + 
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$chatlog
+			>>
 		<</button>>
 	</div>
 </div>
@@ -12333,39 +12393,26 @@ _data: object with user properties (to access user's passage just use _data["pas
 	<<script>>
 		
 		function scaleText(x) {
-			return (-1/56) * x + 2.475
+			return -(0.024) * x + 2.884
 		}
+			
+		setTimeout(() => {
+			let element = $("#printUserRoleClient")[0];
+			if (!element) { return; }
+			let elementLength = $("#printUserRoleClient").html().length;
+			element.style.fontSize = scaleText(elementLength) + 'rem';
+		}, 100);
+		
+	<</script>>
 
+	/*
 		$(document).one(':passagerender', function (ev) {
-			$(ev.content).find("#info-stats").hide();
-
-			$(ev.content).find("#home_bookmark_img").on('mousedown', function() {
-				$(ev.content).find("#passagesCompletedHeader").show();
-				$(ev.content).find("#passagesCompletedButtons").show();
-				$(ev.content).find("#passageChevron").show();
-				$(ev.content).find("#selectedPassageTextContainer").show();
-				
-				$(ev.content).find("#info-stats").hide();
-			});
-			$(ev.content).find("#stat_bookmark_img").on('mousedown', function() {
-				$(ev.content).find("#passagesCompletedHeader").hide();
-				$(ev.content).find("#passagesCompletedButtons").hide();
-				$(ev.content).find("#passageChevron").hide();
-				$(ev.content).find("#selectedPassageTextContainer").hide();
-
-				$(ev.content).find("#info-stats").css("display", "flex");
-			});
-
 			let element = $(ev.content).find("#printUserRoleClient")[0];
 			if (!element) { return; }
 			let elementLength = $(ev.content).find("#printUserRoleClient").html().length;
-
-			
-			
 			element.style.fontSize = scaleText(elementLength) + 'rem';
-		
 		});
-	<</script>>
+	 */
 
 	<div id="onlineCount">
 		<<print "  Total Players (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
