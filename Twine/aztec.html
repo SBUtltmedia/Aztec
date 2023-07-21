@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="" position="100,100" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="" position="100,100" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -6172,7 +6172,11 @@ Along your journey, you have met many people. Some have been willing allies of t
 		&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${State.getVar(&quot;_text&quot;)}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
-
+&lt;&lt;for _i, _passage range Story.lookup(&quot;tags&quot;,&quot;sidePassageEnd&quot;)&gt;&gt;
+	&lt;&lt;if _passage.title == passage()&gt;&gt;
+	&lt;&lt;link &quot;Back to main passage&quot; $users[$userId][&quot;sidePassageReturn&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/for&gt;&gt;
 &lt;br&gt;
 
 /* updates time when user was last online */
@@ -11309,7 +11313,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 	&lt;&lt;/script&gt;&gt;
 
 &lt;&lt;/liveblock&gt;&gt;
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="326" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="326" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
@@ -11318,12 +11322,12 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 	Side passage example 2
 	/* Put link to next passage  */
 	&lt;&lt;link &quot;Next passage (final)&quot; &quot;Side Passage Example Final&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="328" name="Side Passage Example Final" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="328" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example Final
 	&lt;&lt;print $users[$userId][&quot;sidePassageReturn&quot;]&gt;&gt;
 	
 	/* Put this link line at the end of every side passage series */
-	&lt;&lt;link &quot;Back to main passage&quot; $users[$userId][&quot;sidePassageReturn&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;
+	/* &lt;&lt;link &quot;Back to main passage&quot; $users[$userId][&quot;sidePassageReturn&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt; */
 &lt;&lt;/liveblock&gt;&gt;
 
 
