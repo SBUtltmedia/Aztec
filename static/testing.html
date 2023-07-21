@@ -113,15 +113,6 @@
     }
   };
 
-  var s = $("<select />", { id: "passage" });
-
-  for (var val of passages) {
-    $("<option />", { value: val, text: val }).appendTo(s);
-  }
-
-  s.appendTo("body"); // or wherever it should be
-  $("body").append($("<br/>"));
-
   Object.keys(roles).forEach((role, index) => {
     $("body").append(
       $("<div/>", {
@@ -130,13 +121,8 @@
         html: role,
       }).on("click", function () {
         let pickedRole = $(this).data("role");
-        let passage = $("#passage").val();
-        let passagePair ="";
-        if (passage != "-Continue where you left off-") {
-          passagePair =`&passage=${passage}`;
-        } 
         location.assign(
-            `/?test=true&id=${index}&nick=${pickedRole}&username=test&discriminator=1234${passagePair}`
+            `/?test=true&id=${index}&nick=${pickedRole}&username=test&discriminator=1234`
           );
       })
     );

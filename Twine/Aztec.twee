@@ -3386,7 +3386,7 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 
 :: Passage Teleport [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-	Click on a passage name to telport there:
+	Click on a passage name to teleport there:
 	<br>
 
 	<<set _temp = Story.lookupWith((p)=>{return true})>>
@@ -6743,10 +6743,19 @@ Along your journey, you have met many people. Some have been willing allies of t
 /* adds background image to screen */
 <<script>>
 	let imageURL = State.getVar("$users[$userId]['faction']");
+	let controlPassages = ["Control: Variables", 
+		"Control: Variables (Users)",
+		"Control: Variables (factions)",
+		"Control: Lookup",
+		"Teleport Passage"];
+
 	if(State.passage == "Home"){
 		$("#story").addClass("playerList");
 		imageURL = "Home";
 	}else{
+		if(controlPassages.includes(State.passage)){
+			imageURL = "Control";
+		}
 		$("#story").removeClass("playerList");
 	}
 
@@ -9053,16 +9062,12 @@ console.log("new user detected")
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 
-	if(searchParams.get('test')){
-		console.log("Test user");
-		if(searchParams.has('passage')){
-			State.setVar("$users[$userId]['passage']", searchParams.get('passage'))
-			}
-	}  
-
-
 	var passage =  State.getVar("$users[$userId]['passage']")  
 	var role = State.getVar("$users")[State.getVar("$userId")]["role"];
+
+	if(searchParams.get('test')){
+		passage = "Passage Teleport"
+	}  
 
 	// If not using test user and role is not recognized, go to Name not Recognized passage
 	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"

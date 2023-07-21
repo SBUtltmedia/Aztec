@@ -3119,7 +3119,7 @@ New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Maxixcatl&#39;]][&#39;pa
 [[Check Player and Team Status and Location|Control: Player Status]]&lt;br&gt;
 [[Check the Status of Holds and Votes|Control: Votes]]&lt;br&gt;
 [[Return to the Dashboard|Dashboard]]&lt;br&gt;</tw-passagedata><tw-passagedata pid="85" name="Passage Teleport" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-	Click on a passage name to telport there:
+	Click on a passage name to teleport there:
 	&lt;br&gt;
 
 	&lt;&lt;set _temp = Story.lookupWith((p)=&gt;{return true})&gt;&gt;
@@ -6132,10 +6132,19 @@ Along your journey, you have met many people. Some have been willing allies of t
 /* adds background image to screen */
 &lt;&lt;script&gt;&gt;
 	let imageURL = State.getVar(&quot;$users[$userId][&#39;faction&#39;]&quot;);
+	let controlPassages = [&quot;Control: Variables&quot;, 
+		&quot;Control: Variables (Users)&quot;,
+		&quot;Control: Variables (factions)&quot;,
+		&quot;Control: Lookup&quot;,
+		&quot;Teleport Passage&quot;];
+
 	if(State.passage == &quot;Home&quot;){
 		$(&quot;#story&quot;).addClass(&quot;playerList&quot;);
 		imageURL = &quot;Home&quot;;
 	}else{
+		if(controlPassages.includes(State.passage)){
+			imageURL = &quot;Control&quot;;
+		}
 		$(&quot;#story&quot;).removeClass(&quot;playerList&quot;);
 	}
 
@@ -8250,16 +8259,12 @@ console.log(&quot;new user detected&quot;)
 	const loc = location.search
 	const searchParams = new URLSearchParams(loc);
 
-	if(searchParams.get(&#39;test&#39;)){
-		console.log(&quot;Test user&quot;);
-		if(searchParams.has(&#39;passage&#39;)){
-			State.setVar(&quot;$users[$userId][&#39;passage&#39;]&quot;, searchParams.get(&#39;passage&#39;))
-			}
-	}  
-
-
 	var passage =  State.getVar(&quot;$users[$userId][&#39;passage&#39;]&quot;)  
 	var role = State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)][&quot;role&quot;];
+
+	if(searchParams.get(&#39;test&#39;)){
+		passage = &quot;Passage Teleport&quot;
+	}  
 
 	// If not using test user and role is not recognized, go to Name not Recognized passage
 	if(!searchParams.get(&#39;test&#39;) &amp;&amp; !(role in State.getVar(&quot;_roles&quot;))) passage = &quot;Name Not Recognized&quot;
