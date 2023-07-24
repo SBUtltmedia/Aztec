@@ -1038,6 +1038,7 @@ small font size: 1.7rem
   padding-left: 10px;
   scrollbar-width: none;
 	-ms-overflow-style: none;
+  overflow-x: hidden;
   word-wrap:break-word;
 }
 
@@ -1064,5 +1065,51 @@ small font size: 1.7rem
   object-fit: contain;
 }
 
+.playerMessage {
+  display: flex;
+	flex-direction:row;
+  width: 95%;
+  line-height: 1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 0.1rem black solid;
+  margin: 0.5rem 0.2rem 0.4rem 0.2rem;
+}
+
+.playerMessageText {
+  flex-grow: 1;
+}
+
+.playerMessageLeft {
+  display: flex;
+	flex-direction:row;
+  flex-basis: 30%; 
+  flex-grow: 0;
+}
+
+.playerMessageIconDiv {
+  width: 7rem;
+  height: 5rem;
+  position: relative;
+  top: -20%;
+}
+
+.playerMesssageIcon {
+  object-fit: contain;
+}
+
+.playerMessageLeftText {
+  padding: 0px 5px 0px 5px;
+  border-right: 0.2rem black solid;
+  margin-right: 5px;
+}
+
+.playerMessageUsername {
+
+}
+
+.playerMessageTimeStamp {
+
+}
 
 
