@@ -10922,7 +10922,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
-		&lt;span&gt;Aztec Strength: &lt;&lt;print $factions[$users[$userId][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
+		&lt;span&gt;&lt;&lt;print $users[$userId][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$userId][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
 		
 	&lt;/div&gt;
 	&lt;div id=&quot;info-stats-user&quot;&gt;
@@ -11064,19 +11064,39 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;&lt;set $chatlog= &quot;&quot;&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 
+	&lt;&lt;if ndef $aztecslog&gt;&gt;
+		&lt;&lt;set $aztecslog= &quot;&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	&lt;&lt;if ndef $spaniardslog&gt;&gt;
+		&lt;&lt;set $spaniardslog= &quot;&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	&lt;&lt;if ndef $tlaxcolanslog&gt;&gt;
+		&lt;&lt;set $tlaxcolanslog= &quot;&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
 	/* Create a scope switch for Global and Faction */
 	&lt;div id=&quot;chat-switch&quot;&gt;
-		&lt;&lt;button &quot;GLOBAL&quot;&gt;&gt;
-			&lt;&lt;set $chatlog += &quot;&lt;br&gt;&quot; + $users[$userId].username + &quot;: &quot; + _chattext&gt;&gt;
+		&lt;&lt;button &quot;Global&quot;&gt;&gt;
+			&lt;&lt;set $users[$userId].currentChat = &quot;GLOBAL&quot;&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
-		&lt;&lt;button &quot;FACTION&quot;&gt;&gt;
-			&lt;&lt;set $chatlog += &quot;&lt;br&gt;&quot; + $users[$userId].username + &quot;: &quot; + _chattext&gt;&gt;
+		&lt;&lt;button $users[$userId].faction &gt;&gt;
+			&lt;&lt;set $users[$userId].currentChat = $users[$userId].faction&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
 
 	/* Fill #chatmessages with $chatlog */
 	&lt;div id=&quot;chatmessages&quot;&gt;
-		$chatlog
+		&lt;&lt;if $users[$userId].currentChat == &quot;Aztecs&quot;&gt;&gt;
+			$aztecslog
+		&lt;&lt;elseif $users[$userId].currentChat == &quot;Spaniards&quot;&gt;&gt;
+			$spaniardslog
+		&lt;&lt;elseif $users[$userId].currentChat == &quot;Tlaxcolans&quot;&gt;&gt;
+			$tlaxcolanslog
+		&lt;&lt;else&gt;&gt;
+			$chatlog
+		&lt;&lt;/if&gt;&gt;
 	&lt;/div&gt;
 
 	/* Create the area for users to send messsages to */
@@ -11088,19 +11108,117 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		
 		/* Hit send here */
 		&lt;&lt;button &quot;SEND&quot;&gt;&gt;
-			
-			&lt;&lt;set 
+			&lt;&lt;if $users[$userId].currentChat == &quot;Aztecs&quot;&gt;&gt;
+				&lt;&lt;set 
+				$aztecslog = 
+					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
+					
+						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
+
+							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
+						
+							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
+									$users[$userId].username + 
+								&quot;&lt;/div&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
+									&quot;2:13am&quot; + 
+								&quot;&lt;/div&gt;&quot; +
+
+							&quot;&lt;/div&gt;&quot; +
+						
+						&quot;&lt;/div&gt;&quot; +
+
+						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
+							_chattext + 
+						&quot;&lt;/div&gt;&quot; +
+					
+					&quot;&lt;/div&gt;&quot; + 
+				$aztecslog
+			&gt;&gt;
+			&lt;&lt;elseif $users[$userId].currentChat == &quot;Spaniards&quot;&gt;&gt;
+				&lt;&lt;set 
+				$spaniardslog = 
+					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
+					
+						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
+
+							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
+						
+							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
+									$users[$userId].username + 
+								&quot;&lt;/div&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
+									&quot;2:13am&quot; + 
+								&quot;&lt;/div&gt;&quot; +
+
+							&quot;&lt;/div&gt;&quot; +
+						
+						&quot;&lt;/div&gt;&quot; +
+
+						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
+							_chattext + 
+						&quot;&lt;/div&gt;&quot; +
+					
+					&quot;&lt;/div&gt;&quot; + 
+				$spaniardslog
+			&gt;&gt;
+			&lt;&lt;elseif $users[$userId].currentChat == &quot;Tlaxcolans&quot;&gt;&gt;
+				&lt;&lt;set 
+				$tlaxcolanslog = 
+					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
+					
+						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
+
+							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
+						
+							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
+									$users[$userId].username + 
+								&quot;&lt;/div&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
+									&quot;2:13am&quot; + 
+								&quot;&lt;/div&gt;&quot; +
+
+							&quot;&lt;/div&gt;&quot; +
+						
+						&quot;&lt;/div&gt;&quot; +
+
+						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
+							_chattext + 
+						&quot;&lt;/div&gt;&quot; +
+					
+					&quot;&lt;/div&gt;&quot; + 
+				$tlaxcolanslog
+			&gt;&gt;
+			&lt;&lt;else&gt;&gt;
+				&lt;&lt;set 
 				$chatlog = 
 					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
 					
-						&#39;&lt;img class=&quot;playerMessageIcon&quot; src=&quot;Twine/images/back_button.svg&quot; alt=&quot;icon&quot;&gt;&#39; +
-					
-						&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
-							$users[$userId].username + 
-						&quot;&lt;/div&gt;&quot; +
+						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
 
-						&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
-							&quot;now&quot; + 
+							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
+						
+							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
+									$users[$userId].username + 
+								&quot;&lt;/div&gt;&quot; +
+
+								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
+									&quot;2:13am&quot; + 
+								&quot;&lt;/div&gt;&quot; +
+
+							&quot;&lt;/div&gt;&quot; +
+						
 						&quot;&lt;/div&gt;&quot; +
 
 						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
@@ -11110,6 +11228,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 					&quot;&lt;/div&gt;&quot; + 
 				$chatlog
 			&gt;&gt;
+			&lt;&lt;/if&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
 &lt;/div&gt;

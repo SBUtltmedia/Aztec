@@ -12146,7 +12146,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
 		<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
-		<span>Aztec Strength: <<print $factions[$users[$userId]["faction"]]["stats"]["Strength"]>></span>
+		<span><<print $users[$userId]["faction"]>> Strength: <<print $factions[$users[$userId]["faction"]]["stats"]["Strength"]>></span>
 		
 	</div>
 	<div id="info-stats-user">
@@ -12288,19 +12288,39 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<<set $chatlog= "">>
 	<</if>>
 
+	<<if ndef $aztecslog>>
+		<<set $aztecslog= "">>
+	<</if>>
+
+	<<if ndef $spaniardslog>>
+		<<set $spaniardslog= "">>
+	<</if>>
+
+	<<if ndef $tlaxcolanslog>>
+		<<set $tlaxcolanslog= "">>
+	<</if>>
+
 	/* Create a scope switch for Global and Faction */
 	<div id="chat-switch">
-		<<button "GLOBAL">>
-			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		<<button "Global">>
+			<<set $users[$userId].currentChat = "GLOBAL">>
 		<</button>>
-		<<button "FACTION">>
-			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		<<button $users[$userId].faction >>
+			<<set $users[$userId].currentChat = $users[$userId].faction>>
 		<</button>>
 	</div>
 
 	/* Fill #chatmessages with $chatlog */
 	<div id="chatmessages">
-		$chatlog
+		<<if $users[$userId].currentChat == "Aztecs">>
+			$aztecslog
+		<<elseif $users[$userId].currentChat == "Spaniards">>
+			$spaniardslog
+		<<elseif $users[$userId].currentChat == "Tlaxcolans">>
+			$tlaxcolanslog
+		<<else>>
+			$chatlog
+		<</if>>
 	</div>
 
 	/* Create the area for users to send messsages to */
@@ -12312,19 +12332,117 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			
-			<<set 
+			<<if $users[$userId].currentChat == "Aztecs">>
+				<<set 
+				$aztecslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$aztecslog
+			>>
+			<<elseif $users[$userId].currentChat == "Spaniards">>
+				<<set 
+				$spaniardslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$spaniardslog
+			>>
+			<<elseif $users[$userId].currentChat == "Tlaxcolans">>
+				<<set 
+				$tlaxcolanslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$tlaxcolanslog
+			>>
+			<<else>>
+				<<set 
 				$chatlog = 
 					"<div class='playerMessage'>" + 
 					
-						'<img class="playerMessageIcon" src="Twine/images/back_button.svg" alt="icon">' +
-					
-						"<div class='playerMessageUsername'>" +
-							$users[$userId].username + 
-						"</div>" +
+						"<div class='playerMessageLeft'>" +
 
-						"<div class='playerMessageTimeStamp'>" +
-							"now" + 
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
 						"</div>" +
 
 						"<div class='playerMessageText'>" +
@@ -12334,6 +12452,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					"</div>" + 
 				$chatlog
 			>>
+			<</if>>
 		<</button>>
 	</div>
 </div>
