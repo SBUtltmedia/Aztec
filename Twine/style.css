@@ -504,6 +504,7 @@ width: 200% !important;
   top: 0%;
 
   overflow-y: scroll !important;
+  
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
   font-family: roboto;
@@ -579,7 +580,7 @@ small font size: 1.7rem
   height: 1%;
 }
 
-.playerList #printFactionOnlineCount {
+.playerList .printFactionOnlineCount {
   text-indent: 11%;
 }
 
@@ -805,6 +806,10 @@ small font size: 1.7rem
 
 .player .tlaxcalanBorder, .tlaxcalanBorder {
   border-color: #D19700 !important; 
+}
+
+.player .notSeenBorder, .notSeenBorder {
+  border-color: gray !important;
 }
 
 /* .player:hover .rolePanel {
