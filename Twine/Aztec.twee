@@ -12135,7 +12135,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
+
 
 /* Creates some bookmarks to switch between pages */
 <div id="bookmarks">
@@ -12280,7 +12280,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 </div>
-
+<<liveblock>>
 /* Creates the chat */
 <div id="chat">
     /* Instantiate a chatlog if it doesnt already exist*/
@@ -12456,39 +12456,15 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<</button>>
 	</div>
 </div>
-
+<</liveblock>>
 /* print play status list (discord info, role, etc.) */
 <div id="players">
 
-/* Creates arrays for each faction and offline users */
-<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
-
-<<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
-<<set _totalUsers = 0>>
-
 /* Defines border colors for each faction */
-<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder"}>>
+<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder", "notSeen": "notSeenBorder"}>>
 
-/* _id: discord id for each user
-_data: object with user properties (to access user's passage just use _data["passage"]) */
-<<for _id, _data range $users>>
-	<<set _totalUsers = _totalUsers + 1>>
+/* Creates arrays for each faction and offline users */
 
-  /* _faction: the faction of the user that is currently being iterated */
-	<<set _faction = _data["faction"]>>
-	<<if ndef _factionUsers[_faction]>>
-		<<set _factionUsers[_faction] = []>>
-	<</if>>
-
-  /* If user has not been on lately, put them in the offline group */
-	<<if new Date().getTime() - _data["lastSeen"] < 10000>>
-		<<set _factionUsers[_faction].push(_id)>>
-		<<set _userCount[_faction] = (_userCount[_faction] + 1)>>
-	<<else>>
-		<<set _factionUsers["offline"].push(_id)>>
-		<<set _userCount["offline"] = (_userCount["offline"] + 1)>>
-	<</if>>
-<</for>>
 
   /* creates sidebar with users */
   <div id = "playerClient">
@@ -12533,8 +12509,74 @@ _data: object with user properties (to access user's passage just use _data["pas
 		});
 	 */
 
+	/* Aztecs, Spaniards, Tlaxcalans */
+	<<set _factions = [...new Set(Object.keys(_roles).reduce(
+		(accumulator, currentValue) => {
+				
+				accumulator.push(_roles[currentValue].faction);
+				return accumulator;
+			},
+		[]
+	))]>>
+	
+	/* A count of users in each faction. Returns an array of factions, which is an array of IDs. Offline and Factions are NOT! mutually exclusive */
+	<<set _factionUsers = _factions.reduce((acc, faction) => {
+		acc[faction] = Object.keys($users).filter((user) => {
+			if (new Date().getTime() - $users[user].lastSeen > 10000) {
+				$users[user].offline = true
+			} else {
+				$users[user].offline = false
+			}
+			return $users[user].faction == faction;
+		});
+		return acc;
+	}, {})>>
+
+	<<set _totalUsers = Object.keys(_roles).length>>
+
+	<<set _totalFactionUserCount = {"Aztecs":"6", "Spaniards":"6", "Tlaxcalans":"3"}>>
+
+	/* A count of users in each faction. Returns an array of factions, which is an array of userdata. Offline and Faction are MUTUALLY EXCLUSIVE */
+	/* it is a terribly confusing system i know. to be fixed: probably someday */
+	<<set _userCount = Object.keys($users).reduce((acc, user)=>{
+		if (!acc[$users[user].faction]) {
+			acc[$users[user].faction]= []
+		}
+		if (!$users[user].offline) {
+			acc[$users[user].faction].push($users[user])
+		} else {
+			if (!acc["offline"]) {
+				acc["offline"] = []
+			}
+			acc["offline"].push($users[user])
+		}
+		return acc;
+	}, {})>>
+
+	<<for _i, _faction range _factions>>
+		<<if ndef _userCount[_faction]>>
+			<<set _userCount[_faction] = []>>
+		<</if>>
+	<</for>>
+
+	/* Users who have been seen, but are currently offline */
+	<<set _factionUsers.offline = []>>
+	<<for _id, _data range $users>>
+		<<if new Date().getTime() - _data["lastSeen"] > 10000>>
+			<<set _factionUsers["offline"].push(_id)>>
+		<</if>>
+	<</for>>
+
+	/* Users who have NEVER been seen. Never logged on. No ID associated. */
+	<<set _factionUsers.neverSeen = []>>
+	<<for _user, _id range $lookup>>
+		<<if $lookup[_user] == "notSeen">>
+			<<set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])>>
+		<</if>>
+	<</for>>
+
 	<div id="onlineCount">
-		<<print "  Total Players (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
+		<<print "  Players Online (" + (_userCount["offline"].length) + "/" + _totalUsers + ")">>
 	</div>
 
 	<div id="rolePanelDynamic">
@@ -12562,41 +12604,87 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<div id="rolePanelNotes"></div>
 	</div>
 
-	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
-		<div id="printFactionOnlineCount">
-    <<if _faction != "offline">>
-			<<print _faction + " -- (" + _userCount[_faction] + "/" + _factionUsers[_faction].length + ")">>
-    <<else>>
-			<<print "Offline" + " -- (" + _userCount["offline"] + "/" + _totalUsers + ")">>
-		<</if>>
-    </div>
+	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans"]>>
+
+		<div class="printFactionOnlineCount">
+			<<print _faction + " -- (" + _userCount[_faction].length + "/" + _totalFactionUserCount[_faction] + ")">>
+		</div>
+
 		<<for _j, _userId range _factionUsers[_faction]>>
-		
-		<div id="playerSpaceBetween"></div>
+			<<if _userId != "notSeen" || $users[_userId]["offline"] != true>>
+				<div id="playerSpaceBetween"></div>
+				<<print `
+					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
+						<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+
+						<div class = "playerText">
+							<div class="printUserRole"> 
+								`+$users[_userId]["character"]+`
+							</div>
+							<div class="printUserName">
+							<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
+								<<print "@" + $users[_userId]["username"]>>
+							</a>
+							</div>
+						</div> 
+					</div>
+				`>>
+				<div id="playerSpaceBetween"></div>
+			<</if>>
+		<</for>>
+
+		<div id="factionSpaceBetween"></div>
+	<</for>>
+
+	<div class="printFactionOnlineCount">
+		<<print "Offline" + " -- (" +  (_totalUsers - _factionUsers["offline"].length) + "/" + _totalUsers + ")">>
+	</div>
+
+	<<for _j, _userId range _factionUsers["offline"]>>
+		<<if _userId != "notSeen">>
+			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+					<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
 
-				<div class = "playerText">
-					<div class="printUserRole"> 
-						`+$users[_userId]["character"]+`
-					</div>
-					<div class="printUserName">
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+$users[_userId]["character"]+`
+						</div>
+						<div class="printUserName">
 						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
 							<<print "@" + $users[_userId]["username"]>>
 						</a>
-					</div></div> 
+						</div>
+					</div> 
 				</div>
-				`>>
-				
+			`>>
 			<div id="playerSpaceBetween"></div>
-			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
-			
-		<</for>>
-			<div id="factionSpaceBetween"></div>
+		<</if>>
 	<</for>>
 
-	
+	<<for _i, _role range _factionUsers["neverSeen"]>>
+		<<if _role != "notSeen">>
+			<div id="playerSpaceBetween"></div>
+			<<print `
+				<div class = "playerNull" id="playerInfo_notSeen_`+_role+`">			
+					<img class = "playerImage `+_factionColor["notSeen"]+`" src = "`+setup.getUserSvgPicture(_role)+`"> 
+
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+_role+`
+						</div>
+						<div class="printUserName">
+						<a href="https://discordapp.com/users/`+0+`" target="_blank">
+							<<print "@blank">>
+						</a>
+						</div>
+					</div> 
+				</div>
+			`>>
+			<div id="playerSpaceBetween"></div>
+		<</if>>
+	<</for>>
 
 </div>
 
@@ -12683,7 +12771,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 	<</script>>
 
-<</liveblock>>
+
 
 /* Use this as a template to make side passages */
 

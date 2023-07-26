@@ -10911,9 +10911,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="Home" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-
-/* Creates some bookmarks to switch between pages */
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="Home" tags="Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
 &lt;div id=&quot;bookmarks&quot;&gt;
 	&lt;img id=&quot;home_bookmark_img&quot; src=&quot;Twine/images/Home/bookmark_home.svg&quot; alt=&quot;Bookmark&quot;&gt;
 	&lt;img id=&quot;stat_bookmark_img&quot; src=&quot;Twine/images/Home/bookmark_star.svg&quot; alt=&quot;Bookmark&quot;&gt;
@@ -11056,7 +11054,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 
 &lt;/div&gt;
-
+&lt;&lt;liveblock&gt;&gt;
 /* Creates the chat */
 &lt;div id=&quot;chat&quot;&gt;
     /* Instantiate a chatlog if it doesnt already exist*/
@@ -11232,39 +11230,15 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-
+&lt;&lt;/liveblock&gt;&gt;
 /* print play status list (discord info, role, etc.) */
 &lt;div id=&quot;players&quot;&gt;
 
-/* Creates arrays for each faction and offline users */
-&lt;&lt;set _factionUsers = {&quot;Aztecs&quot; : [], &quot;Spaniards&quot;:[],&quot;Tlaxcalans&quot;:[], &quot;offline&quot;:[]}&gt;&gt;
-
-&lt;&lt;set _userCount = {&quot;Aztecs&quot; : 0, &quot;Spaniards&quot;:0,&quot;Tlaxcalans&quot;:0, &quot;offline&quot;:0}&gt;&gt;
-&lt;&lt;set _totalUsers = 0&gt;&gt;
-
 /* Defines border colors for each faction */
-&lt;&lt;set _factionColor = {&quot;Aztecs&quot;: &quot;aztecBorder&quot;, &quot;Spaniards&quot;: &quot;spaniardBorder&quot;, &quot;Tlaxcalans&quot;: &quot;tlaxcalanBorder&quot;}&gt;&gt;
+&lt;&lt;set _factionColor = {&quot;Aztecs&quot;: &quot;aztecBorder&quot;, &quot;Spaniards&quot;: &quot;spaniardBorder&quot;, &quot;Tlaxcalans&quot;: &quot;tlaxcalanBorder&quot;, &quot;notSeen&quot;: &quot;notSeenBorder&quot;}&gt;&gt;
 
-/* _id: discord id for each user
-_data: object with user properties (to access user&#39;s passage just use _data[&quot;passage&quot;]) */
-&lt;&lt;for _id, _data range $users&gt;&gt;
-	&lt;&lt;set _totalUsers = _totalUsers + 1&gt;&gt;
+/* Creates arrays for each faction and offline users */
 
-  /* _faction: the faction of the user that is currently being iterated */
-	&lt;&lt;set _faction = _data[&quot;faction&quot;]&gt;&gt;
-	&lt;&lt;if ndef _factionUsers[_faction]&gt;&gt;
-		&lt;&lt;set _factionUsers[_faction] = []&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-
-  /* If user has not been on lately, put them in the offline group */
-	&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &lt; 10000&gt;&gt;
-		&lt;&lt;set _factionUsers[_faction].push(_id)&gt;&gt;
-		&lt;&lt;set _userCount[_faction] = (_userCount[_faction] + 1)&gt;&gt;
-	&lt;&lt;else&gt;&gt;
-		&lt;&lt;set _factionUsers[&quot;offline&quot;].push(_id)&gt;&gt;
-		&lt;&lt;set _userCount[&quot;offline&quot;] = (_userCount[&quot;offline&quot;] + 1)&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/for&gt;&gt;
 
   /* creates sidebar with users */
   &lt;div id = &quot;playerClient&quot;&gt;
@@ -11309,8 +11283,74 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		});
 	 */
 
+	/* Aztecs, Spaniards, Tlaxcalans */
+	&lt;&lt;set _factions = [...new Set(Object.keys(_roles).reduce(
+		(accumulator, currentValue) =&gt; {
+				
+				accumulator.push(_roles[currentValue].faction);
+				return accumulator;
+			},
+		[]
+	))]&gt;&gt;
+	
+	/* A count of users in each faction. Returns an array of factions, which is an array of IDs. Offline and Factions are NOT! mutually exclusive */
+	&lt;&lt;set _factionUsers = _factions.reduce((acc, faction) =&gt; {
+		acc[faction] = Object.keys($users).filter((user) =&gt; {
+			if (new Date().getTime() - $users[user].lastSeen &gt; 10000) {
+				$users[user].offline = true
+			} else {
+				$users[user].offline = false
+			}
+			return $users[user].faction == faction;
+		});
+		return acc;
+	}, {})&gt;&gt;
+
+	&lt;&lt;set _totalUsers = Object.keys(_roles).length&gt;&gt;
+
+	&lt;&lt;set _totalFactionUserCount = {&quot;Aztecs&quot;:&quot;6&quot;, &quot;Spaniards&quot;:&quot;6&quot;, &quot;Tlaxcalans&quot;:&quot;3&quot;}&gt;&gt;
+
+	/* A count of users in each faction. Returns an array of factions, which is an array of userdata. Offline and Faction are MUTUALLY EXCLUSIVE */
+	/* it is a terribly confusing system i know. to be fixed: probably someday */
+	&lt;&lt;set _userCount = Object.keys($users).reduce((acc, user)=&gt;{
+		if (!acc[$users[user].faction]) {
+			acc[$users[user].faction]= []
+		}
+		if (!$users[user].offline) {
+			acc[$users[user].faction].push($users[user])
+		} else {
+			if (!acc[&quot;offline&quot;]) {
+				acc[&quot;offline&quot;] = []
+			}
+			acc[&quot;offline&quot;].push($users[user])
+		}
+		return acc;
+	}, {})&gt;&gt;
+
+	&lt;&lt;for _i, _faction range _factions&gt;&gt;
+		&lt;&lt;if ndef _userCount[_faction]&gt;&gt;
+			&lt;&lt;set _userCount[_faction] = []&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+
+	/* Users who have been seen, but are currently offline */
+	&lt;&lt;set _factionUsers.offline = []&gt;&gt;
+	&lt;&lt;for _id, _data range $users&gt;&gt;
+		&lt;&lt;if new Date().getTime() - _data[&quot;lastSeen&quot;] &gt; 10000&gt;&gt;
+			&lt;&lt;set _factionUsers[&quot;offline&quot;].push(_id)&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+
+	/* Users who have NEVER been seen. Never logged on. No ID associated. */
+	&lt;&lt;set _factionUsers.neverSeen = []&gt;&gt;
+	&lt;&lt;for _user, _id range $lookup&gt;&gt;
+		&lt;&lt;if $lookup[_user] == &quot;notSeen&quot;&gt;&gt;
+			&lt;&lt;set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+
 	&lt;div id=&quot;onlineCount&quot;&gt;
-		&lt;&lt;print &quot;  Total Players (&quot; + (_totalUsers - _userCount[&quot;offline&quot;]) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
+		&lt;&lt;print &quot;  Players Online (&quot; + (_userCount[&quot;offline&quot;].length) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
 	&lt;/div&gt;
 
 	&lt;div id=&quot;rolePanelDynamic&quot;&gt;
@@ -11338,41 +11378,87 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 		&lt;div id=&quot;rolePanelNotes&quot;&gt;&lt;/div&gt;
 	&lt;/div&gt;
 
-	&lt;&lt;for _i,_faction   range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;offline&quot;]&gt;&gt;
-		&lt;div id=&quot;printFactionOnlineCount&quot;&gt;
-    &lt;&lt;if _faction != &quot;offline&quot;&gt;&gt;
-			&lt;&lt;print _faction + &quot; -- (&quot; + _userCount[_faction] + &quot;/&quot; + _factionUsers[_faction].length + &quot;)&quot;&gt;&gt;
-    &lt;&lt;else&gt;&gt;
-			&lt;&lt;print &quot;Offline&quot; + &quot; -- (&quot; + _userCount[&quot;offline&quot;] + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
-		&lt;&lt;/if&gt;&gt;
-    &lt;/div&gt;
+	&lt;&lt;for _i,_faction range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;]&gt;&gt;
+
+		&lt;div class=&quot;printFactionOnlineCount&quot;&gt;
+			&lt;&lt;print _faction + &quot; -- (&quot; + _userCount[_faction].length + &quot;/&quot; + _totalFactionUserCount[_faction] + &quot;)&quot;&gt;&gt;
+		&lt;/div&gt;
+
 		&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
-		
-		&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
+			&lt;&lt;if _userId != &quot;notSeen&quot; || $users[_userId][&quot;offline&quot;] != true&gt;&gt;
+				&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
+				&lt;&lt;print `
+					&lt;div class = &quot;player&quot; id=&quot;playerInfo_`+$users[_userId][&quot;role&quot;]+`&quot;&gt;			
+						&lt;img class = &quot;playerImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;`+setup.getUserSvgPicture($users[_userId][&quot;role&quot;])+`&quot;&gt; 
+
+						&lt;div class = &quot;playerText&quot;&gt;
+							&lt;div class=&quot;printUserRole&quot;&gt; 
+								`+$users[_userId][&quot;character&quot;]+`
+							&lt;/div&gt;
+							&lt;div class=&quot;printUserName&quot;&gt;
+							&lt;a href=&quot;https://discordapp.com/users/`+_userId+`&quot; target=&quot;_blank&quot;&gt;
+								&lt;&lt;print &quot;@&quot; + $users[_userId][&quot;username&quot;]&gt;&gt;
+							&lt;/a&gt;
+							&lt;/div&gt;
+						&lt;/div&gt; 
+					&lt;/div&gt;
+				`&gt;&gt;
+				&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
+			&lt;&lt;/if&gt;&gt;
+		&lt;&lt;/for&gt;&gt;
+
+		&lt;div id=&quot;factionSpaceBetween&quot;&gt;&lt;/div&gt;
+	&lt;&lt;/for&gt;&gt;
+
+	&lt;div class=&quot;printFactionOnlineCount&quot;&gt;
+		&lt;&lt;print &quot;Offline&quot; + &quot; -- (&quot; +  (_totalUsers - _factionUsers[&quot;offline&quot;].length) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
+	&lt;/div&gt;
+
+	&lt;&lt;for _j, _userId range _factionUsers[&quot;offline&quot;]&gt;&gt;
+		&lt;&lt;if _userId != &quot;notSeen&quot;&gt;&gt;
+			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;playerInfo_`+$users[_userId][&quot;role&quot;]+`&quot;&gt;			
-				&lt;img class = &quot;playerImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;`+setup.getUserSvgPicture($users[_userId][&quot;role&quot;])+`&quot;&gt; 
+					&lt;img class = &quot;playerImage `+_factionColor[$users[_userId][&quot;faction&quot;]]+`&quot; src = &quot;`+setup.getUserSvgPicture($users[_userId][&quot;role&quot;])+`&quot;&gt; 
 
-				&lt;div class = &quot;playerText&quot;&gt;
-					&lt;div class=&quot;printUserRole&quot;&gt; 
-						`+$users[_userId][&quot;character&quot;]+`
-					&lt;/div&gt;
-					&lt;div class=&quot;printUserName&quot;&gt;
+					&lt;div class = &quot;playerText&quot;&gt;
+						&lt;div class=&quot;printUserRole&quot;&gt; 
+							`+$users[_userId][&quot;character&quot;]+`
+						&lt;/div&gt;
+						&lt;div class=&quot;printUserName&quot;&gt;
 						&lt;a href=&quot;https://discordapp.com/users/`+_userId+`&quot; target=&quot;_blank&quot;&gt;
 							&lt;&lt;print &quot;@&quot; + $users[_userId][&quot;username&quot;]&gt;&gt;
 						&lt;/a&gt;
-					&lt;/div&gt;&lt;/div&gt; 
+						&lt;/div&gt;
+					&lt;/div&gt; 
 				&lt;/div&gt;
-				`&gt;&gt;
-				
+			`&gt;&gt;
 			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
-			/* &lt;&lt;= setup.printTime($users[_userId][&quot;lastSeen&quot;])&gt;&gt; */
-			
-		&lt;&lt;/for&gt;&gt;
-			&lt;div id=&quot;factionSpaceBetween&quot;&gt;&lt;/div&gt;
+		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
 
-	
+	&lt;&lt;for _i, _role range _factionUsers[&quot;neverSeen&quot;]&gt;&gt;
+		&lt;&lt;if _role != &quot;notSeen&quot;&gt;&gt;
+			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
+			&lt;&lt;print `
+				&lt;div class = &quot;playerNull&quot; id=&quot;playerInfo_notSeen_`+_role+`&quot;&gt;			
+					&lt;img class = &quot;playerImage `+_factionColor[&quot;notSeen&quot;]+`&quot; src = &quot;`+setup.getUserSvgPicture(_role)+`&quot;&gt; 
+
+					&lt;div class = &quot;playerText&quot;&gt;
+						&lt;div class=&quot;printUserRole&quot;&gt; 
+							`+_role+`
+						&lt;/div&gt;
+						&lt;div class=&quot;printUserName&quot;&gt;
+						&lt;a href=&quot;https://discordapp.com/users/`+0+`&quot; target=&quot;_blank&quot;&gt;
+							&lt;&lt;print &quot;@blank&quot;&gt;&gt;
+						&lt;/a&gt;
+						&lt;/div&gt;
+					&lt;/div&gt; 
+				&lt;/div&gt;
+			`&gt;&gt;
+			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
 
 &lt;/div&gt;
 
@@ -11459,7 +11545,7 @@ _data: object with user properties (to access user&#39;s passage just use _data[
 
 	&lt;&lt;/script&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;
+
 
 /* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="324" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&gt;&gt;
 	Side passage example 1
