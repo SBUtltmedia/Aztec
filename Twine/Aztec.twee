@@ -314,7 +314,7 @@ Option 5: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_
 <</liveblock>>
 
 
-:: Act 1 Scene 1 [Done Breaks] {"position":"2025,1250","size":"100,100"}
+:: Spaniards hear rumors about a delegation approaching the coast [Done Breaks] {"position":"2025,1250","size":"100,100"}
 <<liveblock>><<if $users[$userId]["role"] is "Marina">>
 Since arriving at the coast of Veracruz, your companions have been visited by emissaries from a number of nearby villages. In all of these interactions, you have proven your value, translating through the man they call Aguilar, who has in turn been able to convey information to the rest of the team. Through the visitors, you've gained important intelligence. Most significantly, you've told them many things about the rich and powerful kingdom that lies to the west. They have learned of the land called Mexico and its ruler, Moctezuma, who has made many enemies in the lands that lie between you.<br>
 <br>
@@ -1119,17 +1119,17 @@ Though you have been expecting a visit from the notorious Mexica, you were not p
 After a short and ferocious battle, you force the attackers to retreat but it has cost you. You had the greater numbers this time and they were clearly unprepared for your weapons, but you might not be so lucky when you meet again.<br>
 <br>
 <<if $TL_Attacks is "No">>
-You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 <<elseif $TL_Attacks is "Aztecs">>
-You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 <<elseif $TL_Attacks is "Spanish">>
-You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
 
-You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
@@ -1181,7 +1181,7 @@ Your spies have been busy keeping watch over events along the coast and they hav
 <br>
 After the skirmish was done and the Mexica retreated back to Tenochtitlán, the strangers asked many more questions of the local people. Your spies believe they are determined to head inland towards the capital.<br>
 <br>
-[[You will continue to observe these developments closely|Tlaxcalans Observe the Ship Burning]] as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
+[[You will continue to observe these developments closely|Tlaxcalans observe the Spanish ships being destroyed]] as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
 <br>
 <</switch>>
 
@@ -3070,7 +3070,7 @@ Are you ready to <<link "begin your journey" "The Tlaxcalan Legend of Quetzalcoa
 
 <<switch $users[$userId]["role"]>>
 <<case "Alvarado" OR "Garrido" OR "Olid">><br>
-Are you ready to <<link "begin your journey" "Cortes' Men leave Santiago">><<set $Start = $Start + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><</link>>?<br>
 <br>
 <<case "Cortes">>
 Are you ready to <<link "begin your journey" "Cortes Leaves Santiago">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><</link>>?<br>
@@ -3709,7 +3709,7 @@ You are alive, but you are weakened. You have lost many men, but you gather thos
 <</liveblock>>
 
 
-:: Cortes Beaches Ships {"position":"2025,1750","size":"100,100"}
+:: Cortes decides to beach ships {"position":"2025,1750","size":"100,100"}
 <<liveblock>>
 You have made your case to the men, but can you really trust them? Now is not the time for inaction; the risk is too high and the reward too great!<br>
 <br>
@@ -4143,7 +4143,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <</liveblock>>
 
 
-:: Cortes' Men leave Santiago [Done] {"position":"2050,50","size":"100,100"}
+:: Spaniards set sail from Cuba [Done] {"position":"2050,50","size":"100,100"}
 <<liveblock>>
 <<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
@@ -4834,7 +4834,7 @@ You come together, putting the turmoil of the last few days behind you, and you 
 <br>
 <<elseif $TL_Attacks is "Spanish">>
 
-With this challenge passed, you thought the worst was over, however fate has [[other ideas|Tlaxcalans attack Cortes in Veracruz]].<br>
+With this challenge passed, you thought the worst was over, however fate has [[other ideas|Tlaxcalans decide to attack the Spaniards in Veracruz]].<br>
 <br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
@@ -5908,10 +5908,10 @@ You must wait until all the Spaniards have decided where their loyalties lie.<br
 
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
-It seems you have retained the faith of your men…for now. Perhaps you were a little impulsive when you decided to beach the ships. You hope that doesn't come back to hurt you later, but you cannot let that distract you. You wait for the rest of the crew to learn their fate as you [[begin planning your next steps|Spaniards Cannot Go Back]].<br>
+It seems you have retained the faith of your men…for now. Perhaps you were a little impulsive when you decided to beach the ships. You hope that doesn't come back to hurt you later, but you cannot let that distract you. You wait for the rest of the crew to learn their fate as you [[begin planning your next steps|Spaniards learn their leader beached the ships]].<br>
 <br>
 <<elseif $Mut_Olid >2>>
-It seems your efforts have failed. There has been a mutiny! Olid has taken control of the men. You choke back your anger and take some small satisfaction in the horror that surely awaits the others when they <<link "learn what you've done" "Spaniards Cannot Go Back">><<set $Span_Leader="Olid">><</link>>.<br>
+It seems your efforts have failed. There has been a mutiny! Olid has taken control of the men. You choke back your anger and take some small satisfaction in the horror that surely awaits the others when they <<link "learn what you've done" "Spaniards learn their leader beached the ships">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
 <</if>>
 <</if>>
@@ -5924,10 +5924,10 @@ You must wait until all the Spaniards have decided where their loyalties lie. <b
 
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
-Your efforts have failed and the men have remained loyal to Cortés. You curse your luck and await your next opportunity. Surely the others will see him for [[the fool he is eventually|Spaniards Cannot Go Back]].<br>
+Your efforts have failed and the men have remained loyal to Cortés. You curse your luck and await your next opportunity. Surely the others will see him for [[the fool he is eventually|Spaniards learn their leader beached the ships]].<br>
 <br>
 <<elseif $Mut_Olid >2>>
-You have convinced the men to mutiny! You watch in glee as Cortés learns the news and the look on his face is everything you hoped for. You begin plotting your next steps, eager to claim the rewards that <<link "await you in Tenochtitlán" "Spaniards Cannot Go Back">><<set $Span_Leader="Olid">><</link>>.<br>
+You have convinced the men to mutiny! You watch in glee as Cortés learns the news and the look on his face is everything you hoped for. You begin plotting your next steps, eager to claim the rewards that <<link "await you in Tenochtitlán" "Spaniards learn their leader beached the ships">><<set $Span_Leader="Olid">><</link>>.<br>
 <br> 
 <</if>>
 <</if>>
@@ -5940,11 +5940,11 @@ You must wait until all the Spaniards have decided where their loyalties lie.<br
 
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
-You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards Cannot Go Back]].<br>
+You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards learn their leader beached the ships]].<br>
 <br>
 
 <<elseif $Mut_Olid >2>>
-You have voted to mutiny! Cortés is livid at the turn of events, while Olid seems giddy. You wonder if Cortes will <<link "part ways with the crew or concede to Olid's authority" "Spaniards Cannot Go Back">><<set $Span_Leader="Olid">><</link>>.<br>
+You have voted to mutiny! Cortés is livid at the turn of events, while Olid seems giddy. You wonder if Cortes will <<link "part ways with the crew or concede to Olid's authority" "Spaniards learn their leader beached the ships">><<set $Span_Leader="Olid">><</link>>.<br>
 <br> 
 <</if>>
 <</if>>
@@ -5954,7 +5954,7 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 <</liveblock>>
 
 
-:: Mutiny Vote {"position":"1775,1750","size":"100,100"}
+:: Spaniards decide whether to mutiny {"position":"1775,1750","size":"100,100"}
 <<liveblock>>
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?<br>
 <br>
@@ -6331,19 +6331,19 @@ Does he <<link "PASS" "After the Feast">><<run changeStats("Aztec_Priest",{"Wisd
 <<case "Aguilar">>
 It is clear to your compatriots that your language skills are quite valuable, especially with the discovery of the slave woman, Marina. As you make your way up the coast, the Maya language gives way to Nahuatl and thus begins your three-way translation: Marina translates the Nahuatl into Mayan and you, in turn, translate the Mayan into Spanish.<br>
 <br>
-You reach the end or your journey up the coast, landing at a site that you decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Act 1 Scene 1]]. <br>
+You reach the end or your journey up the coast, landing at a site that you decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Spaniards hear rumors about a delegation approaching the coast]]. <br>
 <br>
 
 <<case "Marina">>
 It is clear to your new masters that your language skills are quite valuable, especially with the addition of the strange foreigner who speaks the Mayan tongue. As you make your way up the coast, the Maya language gives way to Nahuatl. Being surrounded by your own mother tongue brings you a strange comfort, but you remain on your guard, engaging in a three-way translation: you translate the Nahuatl into Mayan and Aguilar the priest, in turn, translates the Mayan into the foreigner's tongue: a language they call Castilian, or Spanish.<br>
 <br>
-You reach the end or your journey up the coast, landing at a site that your companions decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Act 1 Scene 1]]. <br>
+You reach the end or your journey up the coast, landing at a site that your companions decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Spaniards hear rumors about a delegation approaching the coast]]. <br>
 <br>
 
 <<case "Cortes" or "Alvarado" or "Garrido" or "Olid">>
 It is clear that the new members of your expedition possess an invaluable skill: language. As you make your way up the coast, the language that has only begun to sound familiar gives way to something entirely new. Aguilar informs you that you have left Maya territory and are now surrounded by a language called Nahuatl. Thus begins a three-way process of translation: Marina translates the Nahuatl into Mayan and the priest Aguilar, in turn, translates the Mayan into Spanish. <br>
 <br>
-You reach the end or your journey up the coast, landing at a site that you decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Act 1 Scene 1]]. <br>
+You reach the end or your journey up the coast, landing at a site that you decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Spaniards hear rumors about a delegation approaching the coast]]. <br>
 <br>
 <</switch>>
 
@@ -6369,17 +6369,17 @@ Go to the main discussion board and get to know these strange men. What might yo
 
 <<if $TL_Attacks is "No">>
 
-Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 
 <<elseif $TL_Attacks is "Spanish">>
 
-Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
 
-Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
@@ -6435,7 +6435,7 @@ Your spies have been busy keeping watch over events along the coast and they hav
 <br>
 You will continue to observe these developments closely as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
 <br>
-[[Tlaxcalans Observe the Ship Burning]]<br>
+[[Tlaxcalans observe the Spanish ships being destroyed]]<br>
 <br>
 <</switch>>
 
@@ -6455,19 +6455,19 @@ Your curiosity about these frightful Mexica is finally satisfied when a delegati
 Go to the Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.<br>
 <br>
 <<if $TL_Attacks is "No">>
-Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 <<elseif $TL_Attacks is "Aztecs">>
 
-Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 <<elseif $TL_Attacks is "Spanish">>
 
-Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
 
-Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|To Mutiny or Not]].<br>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
 <br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
@@ -6521,7 +6521,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <<case "Tlaxcalans">>
 Your spies have been busy keeping watch over events along the coast and they have many stories to tell. It seems a delegation of Mexica went in search of the strangers who arrived by sea and warned them not to make the journey to Tennochtitlán. The foreigners paid little heed to the Mexica's warnings and have requested a meeting with the Emperor Moctezuma. The local people have informed your spies that the leader of the foreigners seems determined to make the journey inland.<br>
 <br>
-You will [[continue to observe these developments closely|Tlaxcalans Observe the Ship Burning]] as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
+You will [[continue to observe these developments closely|Tlaxcalans observe the Spanish ships being destroyed]] as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
 <br>
 
 <</switch>>
@@ -7286,7 +7286,7 @@ You continue inland, [[following behind|Spaniards Meet Marina]] the native messe
 <</liveblock>>
 
 
-:: Spaniards Cannot Go Back {"position":"1925,2025","size":"100,100"}
+:: Spaniards learn their leader beached the ships {"position":"1925,2025","size":"100,100"}
 <<liveblock>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
@@ -8435,15 +8435,15 @@ In the meantime, go to the Spanish discussion board and get to know these strang
 <br>
 As you speak through your interpreter, does he accurately represent your words? <br>
 <br>
-<<link "Yes" "Act 1 Scene 1">><<set $Spaniards_currentMap=5>><</link>>. <br>
+<<link "Yes" "Spaniards hear rumors about a delegation approaching the coast">><<set $Spaniards_currentMap=5>><</link>>. <br>
 <br>
-<<link "No" "Act 1 Scene 1">><<set $users[$lookup["Aguilar"]]["stats"]["Loyalty"]-=1>><<set $Spaniards_currentMap=5>><</link>>.<br>
+<<link "No" "Spaniards hear rumors about a delegation approaching the coast">><<set $users[$lookup["Aguilar"]]["stats"]["Loyalty"]-=1>><<set $Spaniards_currentMap=5>><</link>>.<br>
 <br>
 <<case "Cortes" OR "Alvarado" OR "Aguilar" OR "Garrido" OR "Olid">>
 
 Now that you have read Marina's story, go to the Spanish discussion board and get to know your new captive. Fortunately, Aguilar speaks her language. It is his responsibility to convey her words to you.<br>
 <br>
-When you feel like you have gotten to know Marina <<link "continue on" "Act 1 Scene 1">><<set $Spaniards_currentMap=5>><</link>>.<br>
+When you feel like you have gotten to know Marina <<link "continue on" "Spaniards hear rumors about a delegation approaching the coast">><<set $Spaniards_currentMap=5>><</link>>.<br>
 <br><br>
 <br>
 <</switch>>
@@ -10958,7 +10958,7 @@ Now that you have made your decision, go to the Spanish-Tlaxcalan discussion boa
 <</liveblock>>
 
 
-:: Tlaxcalans Observe the Ship Burning [Done Breaks] {"position":"2525,1825","size":"100,100"}
+:: Tlaxcalans observe the Spanish ships being destroyed [Done Breaks] {"position":"2525,1825","size":"100,100"}
 <<liveblock>>
 You have continued to observe events along the coast, waiting to see what this strange turn of events will mean for you. The news that arrives next is intriguing.<br>
 <br>
@@ -10969,15 +10969,15 @@ Go to the Tlaxcalan discussion board and decide upon your best course of action.
 <br>
 
 <<if $users[$userId]["role"] is $Tlax_Leader>>
-<<link "do nothing" "Tlaxcalans let Cortes move inland">><<set $TL_Attacks="No">><</link>>, <br>
+<<link "do nothing" "Tlaxcalans decide to let the Spaniards continue their journey inland">><<set $TL_Attacks="No">><</link>>, <br>
 <br>
-<<link "attack the Spaniards on the beach" "Tlaxcalans attack Cortes in Veracruz">><<set $TL_Attacks="Spanish">><</link>>,<br>
+<<link "attack the Spaniards on the beach" "Tlaxcalans decide to attack the Spaniards in Veracruz">><<set $TL_Attacks="Spanish">><</link>>,<br>
 <br>
 or you can <<link "attack the Mexica on their way back to Tenochtitlan" "Tlaxcalans Attack Aztecs on return journey">><<set $TL_Attacks="Aztecs">><</link>>.
 <<else>>
-[[do nothing|Tlaxcalans let Cortes move inland]], <br>
+[[do nothing|Tlaxcalans decide to let the Spaniards continue their journey inland]], <br>
 <br>
-[[attack the Spaniards on the beach|Tlaxcalans attack Cortes in Veracruz]],<br>
+[[attack the Spaniards on the beach|Tlaxcalans decide to attack the Spaniards in Veracruz]],<br>
 <br>
 or you can [[attack the Mexica on their way back to Tenochtitlan|Tlaxcalans Attack Aztecs on return journey]].
 <</if>>
@@ -11278,7 +11278,7 @@ You host the troops for the night and see them on their way the next morning, [[
 <</liveblock>>
 
 
-:: Tlaxcalans attack Cortes in Veracruz [Done Breaks] {"position":"2125,2175","size":"100,100"}
+:: Tlaxcalans decide to attack the Spaniards in Veracruz [Done Breaks] {"position":"2125,2175","size":"100,100"}
 <<liveblock>>
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -11466,7 +11466,7 @@ At midnight, Cortes makes the signal to attack, hoping to catch the enemy forces
 <</liveblock>>
 
 
-:: Tlaxcalans let Cortes move inland [Done Breaks] {"position":"2300,2175","size":"100,100"}
+:: Tlaxcalans decide to let the Spaniards continue their journey inland [Done Breaks] {"position":"2300,2175","size":"100,100"}
 <<liveblock>>
 You have decided that it's best to remain patient. You will leave both groups to carry on their journeys undisturbed, watching carefully and waiting for your opening.<br>
 <br>
@@ -11495,7 +11495,7 @@ Your guards have seen Aztec spies running to and from the coast. Clearly [[thing
 <</liveblock>>
 
 
-:: To Mutiny or Not [Done Breaks] {"position":"1925,1600","size":"100,100"}
+:: One of the crew tries to start a mutiny[Done Breaks] {"position":"1925,1600","size":"100,100"}
 <<liveblock>>
 
 <<switch $users[$userId]["role"]>>
@@ -11504,7 +11504,7 @@ After your encounter with the Mexica, the mood amongst your men has shifted. The
 <br>
 You must convince your men to remain loyal. Only you can lead them to the gold and the glory that await them! You may want to address them as a group, but it might be more effective to win over each individually. Choose your best course of action and go to Discord to make your case.<br>
 <br>
-When you are satisfied with your effort [[you may continue on|Cortes Beaches Ships]].<br>
+When you are satisfied with your effort [[you may continue on|Cortes decides to beach ships]].<br>
 <br>
 <<case "Olid">>
 After your encounter with the Mexica, the mood amongst the men has shifted. There is excitement about the riches that may well lie inland, but there is also a clear current of unease. You've always questioned Cortés' abilities and his betrayal of your friend Velazquez left a bitter taste in your mouth. Like Cortés, you are convinced that the journey inland could bring you untold riches, but you do not have faith in his leadership. Besides, whoever leads the expedition will surely be rewarded by the King. Now is your chance to take that victory for yourself!<br>
@@ -11518,14 +11518,14 @@ After your encounter with the Mexica, the mood amongst the crew has shifted. The
 <br>
 Go to Discord to see what is being said. Is Cortés able to maintain your support? Or can you be convinced to change your allegiance? You may be approached in private, so keep an eye on your DMs.<br>
 <br>
-Once you have decided where your loyalty lies, [[continue to the next screen|Mutiny Vote]].<br>
+Once you have decided where your loyalty lies, [[continue to the next screen|Spaniards decide whether to mutiny]].<br>
 <br>
 <<case "Marina">>
 After your encounter with the Mexica, the mood amongst the men has shifted. There is excitement about the riches that may well lie inland, but there is also a clear current of unease. You have learned a great deal about your companions during these last weeks and it seems there is deep distrust among them.<br>
 <br>
 Go Discord to see what is being said. Will you support Cortés? Or would you rather place your trust in someone else? You may be approached in private, so keep an eye on your DMs. If the men do not yet perceive you as a member of the team, now might be a good time to prove your allegiance.<br>
 <br>
-Once you have decided where your loyalty lies, [[continue to the next screen|Mutiny Vote]].<br>
+Once you have decided where your loyalty lies, [[continue to the next screen|Spaniards decide whether to mutiny]].<br>
 <br>
 
 <</switch>>
