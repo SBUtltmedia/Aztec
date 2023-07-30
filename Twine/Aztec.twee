@@ -133,7 +133,7 @@ importScripts([
 <</liveblock>>
 
 
-:: A Friendly Invitation {"position":"4200,6375","size":"100,100"}
+:: Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do {"position":"4200,6375","size":"100,100"}
 <<liveblock>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -164,7 +164,7 @@ Option 3: You accept the invitation and enter the city, taking your Tlaxcalan co
 <</liveblock>>
 
 
-:: A Spanish Victory [Done] {"position":"1875,3625","size":"100,100"}
+:: Spaniards defeat the Tlaxcalans in battle [Done] {"position":"1875,3625","size":"100,100"}
 <<liveblock>>
 You've won a victory against the Tlaxcalans, but it was not easy.  They are fierce warriors.  You lost men in battle, and even with your superior weapons, it took three weeks of hard fighting.<br>
 <br>
@@ -361,7 +361,7 @@ You wonder what the next day will bring. Return here to find out.<br>
 <</liveblock>>
 
 
-:: Act 3, Scene 1: The Great Encounter {"position":"4050,6050","size":"100,100"}
+:: Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán {"position":"4050,6050","size":"100,100"}
 <<liveblock>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
@@ -376,20 +376,20 @@ A ritual then unfolds, with each of the Aztecs bowing to kiss the ground. Each t
 
 All three factions mingle on the causeway, getting to know each other and formulating their next move. Use this opportunity to get a sense of the opposing side. What do you think they are planning? Who do you trust?
  
-[[Act 3, Scene 2: Moctezuma Speaks]]
+[[Moctezuma speaks on the causeway to Tenochtitlán]]
 
 
 <</liveblock>>
 
 
-:: Act 3, Scene 2: Moctezuma Speaks {"position":"4050,6200","size":"100,100"}
+:: Moctezuma speaks on the causeway to Tenochtitlán {"position":"4050,6200","size":"100,100"}
 <<liveblock>>
 Causeway leading into Tenochtitlán, November 8th, 1519
 
 The crowd quiets and it becomes clear that Moctezuma, the huey tlatoani, is about to speak. He delivers an astonishing address, in which he announces the Aztecs' next move. 
  
 
-[[A Friendly Invitation]]
+[[Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do]]
 
 [[Moctezuma Respectfully Asks the Spaniards and their Allies to Leave]]
 
@@ -399,11 +399,11 @@ The crowd quiets and it becomes clear that Moctezuma, the huey tlatoani, is abou
 <</liveblock>>
 
 
-:: Act 3: The Great Encounter {"position":"4050,5775","size":"100,100"}
+:: Moctezuma and Tlacaelel gain secret information {"position":"4050,5775","size":"100,100"}
 <<liveblock>>
-[[Secret Information Drop Moctezuma and Tlacaelel the Younger]]
+[[Moctezuma and Tlacaelel decide whether to share their information]]
 
-[[Act 3, Scene 1: The Great Encounter]]
+[[Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán]]
 
 
 <</liveblock>>
@@ -525,7 +525,7 @@ The votes have been cast, click through to find out who your <<link "next leader
 <</liveblock>>
 
 
-:: Aguilar Among the Maya [Done] {"position":"1925,50","size":"100,100"}
+:: Aguilar overhears Maya gossip [Done] {"position":"1925,50","size":"100,100"}
 <<liveblock>>
 <<if $Start <=10>>
 
@@ -538,7 +538,7 @@ It's been eight years since you were shipwrecked on the way to Santo Domingo; ei
 <br>
 This morning began like any other, but things take a turn when you overhear some rather interesting news. As you sweep the entrance to the temple, you overhear a conversation between two of the most important men in the village. <br>
 <br>
-[[Here is what they said|Maya Gossip]]:<br>
+[[Here is what they said|Aguilar hears Maya gossip]]:<br>
 <br>
 <</if>>
 
@@ -923,7 +923,7 @@ You are elated at the message and set out in search of your former companion, Go
 <br>
 When you find him, you share the letter. Guerrero reads it and, much to your dismay, he refuses to leave. “Brother Aguilar,” he says to you, “I am married and have three children and the Indians look on me as a Cacique and captain in wartime,--You go and God be with you, but I have my face tattooed and my ears pierced, what would the Spaniards say should they see me in this guise?”<br>
 <br>
-You inform Guerrero that God will never forgive him and warn him that he will be punished for his sins. And then you <<link "head for the coast" "Spaniards arrive at Yucatan">><<set $L_Received="Yes">><</link>>.<br>
+You inform Guerrero that God will never forgive him and warn him that he will be punished for his sins. And then you <<link "head for the coast" "Aguilar’s first encounter with the Spaniards">><<set $L_Received="Yes">><</link>>.<br>
 <br>
 <</if>>
 
@@ -1050,7 +1050,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <</liveblock>>
 
 
-:: An Unexpected Loss for Tlaxcala [Done] {"position":"2050,3625","size":"100,100"}
+:: Tlaxcalans lose battle to Spaniards and decide whether to form an alliance [Done] {"position":"2050,3625","size":"100,100"}
 <<liveblock>>
 <<if $Tlax_Leader is $users[$userId]["role"]>>
 You are fierce and savvy warriors, having defended yourselves against the Aztec Empire for decades. And yet these foreigners have bested you on the battlefield! Perhaps you can use their strength to your advantage. <br>
@@ -1154,7 +1154,7 @@ You are forced to retreat, hanging your heads in shame and strategizing for your
 <br>
 <<elseif $TL_Attacks is "Aztecs">>
 
-You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You [[flee back towards the mountains|Tlaxcalans Attack Aztecs on return journey]] and wonder how you will explain this to Moctezuma.<br>
+You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You [[flee back towards the mountains|Tlaxcalans decide to attack the Aztecs on their way back from the coast]] and wonder how you will explain this to Moctezuma.<br>
 <br>
 <<elseif $TL_Attacks is "Spanish">>
 
@@ -2920,7 +2920,7 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 <</switch>>
 
 
-:: Character Identification [Done] {"position":"4025,1200","size":"100,100"}
+:: Character assignment and points selection [Done] {"position":"4025,1200","size":"100,100"}
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
 You open your eyes and find yourself on a ship. The boom you heard was the sound of cannon fire and you startle as another shot tears through the sky. <br>
@@ -3060,11 +3060,11 @@ You need to assign points to your character to continue. <br>
 
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
-Are you ready to <<link "begin your journey" "The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="Pochteca">><<set $A_Q_Heart="no">><</link>>? <br>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="Pochteca">><<set $A_Q_Heart="no">><</link>>? <br>
 <br>
 
 <<case "Tlaxcalans">>
-Are you ready to <<link "begin your journey" "The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><</link>>?<br>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><</link>>?<br>
 <br>
 <</switch>>
 
@@ -3073,13 +3073,13 @@ Are you ready to <<link "begin your journey" "The Tlaxcalan Legend of Quetzalcoa
 Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><</link>>?<br>
 <br>
 <<case "Cortes">>
-Are you ready to <<link "begin your journey" "Cortes Leaves Santiago">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><</link>>?<br>
+Are you ready to <<link "begin your journey" "Cortes sets sail from Cuba">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><</link>>?<br>
 <br>
 <<case "Marina">>
-Are you ready to <<link "begin your journey" "Marina in Slavery">><<set $Start = $Start + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Marina hears gossip in the market">><<set $Start = $Start + 1>><</link>>?<br>
 <br>
 <<case "Aguilar">>
-Are you ready to <<link "begin your journey" "Aguilar Among the Maya">><<set $Start = $Start + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Aguilar overhears Maya gossip">><<set $Start = $Start + 1>><</link>>?<br>
 <br>
 <</switch>>
 
@@ -3835,7 +3835,7 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 <</liveblock>>
 
 
-:: Cortes Leaves Santiago [Done] {"position":"2200,50","size":"100,100"}
+:: Cortes sets sail from Cuba [Done] {"position":"2200,50","size":"100,100"}
 <<liveblock>>
 <<if $Start <=10>>
 
@@ -4384,11 +4384,11 @@ Your nerves are frayed, wondering what lies ahead, but Moctezuma has informed yo
 <<liveblock>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
-Now that your quest is complete, <<link "you return home exhausted" "News from the land of the Olmeca Xicalanca">><<set $Aztecs_currentMap=1>><</link>>. After all that excitement, you hope to get some rest in the coming days.<br>
+Now that your quest is complete, <<link "you return home exhausted" "Aztecs hear rumors of strange men on the coast and send a delegation">><<set $Aztecs_currentMap=1>><</link>>. After all that excitement, you hope to get some rest in the coming days.<br>
 <br>
 
 <<case "Tlaxcalans">>
-Now that your quest is complete, <<link "you return home exhausted" "Rumors from the Coast">><<set $Tlaxcalans_currentMap=1>><</link>>. After all that excitement, you hope to get some rest in the coming days.<br>
+Now that your quest is complete, <<link "you return home exhausted" "Tlaxcalans hear rumors of strange men on the coast and decide what to do">><<set $Tlaxcalans_currentMap=1>><</link>>. After all that excitement, you hope to get some rest in the coming days.<br>
 <br>
 
 <</switch>>
@@ -4445,7 +4445,7 @@ Your Aztec hosts agree and, in exchange, offer you a copy of a cookbook. It seem
 <</liveblock>>
 
 
-:: Faction Identification [Coding-Problem] {"position":"3875,1125","size":"100,100"}
+:: Introduction to your assigned faction [Coding-Problem] {"position":"3875,1125","size":"100,100"}
 <<liveblock>>
 Welcome to the Spanish Aztec War! 
 <<set $charCreated="true">>
@@ -5434,7 +5434,7 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 <</liveblock>>
 
 
-:: Marina in Slavery [Done] {"position":"2350,50","size":"100,100"}
+:: Marina hears gossip in the market [Done] {"position":"2350,50","size":"100,100"}
 <<liveblock>>
 <<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
@@ -5575,7 +5575,7 @@ Your new leader is: <<print$Span_Leader>>
 <</liveblock>>
 
 
-:: Maya Gossip [Done] {"position":"1925,175","size":"100,100"}
+:: Aguilar hears Maya gossip [Done] {"position":"1925,175","size":"100,100"}
 <<liveblock>>
 <b>Yich'ak-k'ak':</b> <i>Jo'oljeak, táan te' k'íiwiko' tu'ux tin k'ajóoltaj u juntúul máak Tulum. Ku beetik jump'éel k'iino'ob, táan paakat le k'áak'náabo' ka tu yilaj jump'éel nuxi' naj chíikpajal ichil le ja'o'. Le najo' Náats' Amal ka'atéen asab yéetel xiibo'obo' le kaajo' múuch'o'ob utia'al in wil le najo'. Ka le najo' Náats' páajchajo'obij wil táan Chuup yéetel wíiniko'ob yéetel yoot'el n wíinkilil yéetel ya'ab tso'otsel. Xiibo'obo' Tulum ma' sabían tu'ux venía le naja', ba'ale' tu yilo'ob toop. Tu beetajo'ob juum ka menta'abij tunicho'ob ti' le k'áak'náabo'. Le najo' sunaj ka lanchajal. </i> <br>
 <br>
@@ -5593,7 +5593,7 @@ Once you have figured out what they said, [[you may continue|Spaniards Quest Ins
 <</liveblock>>
 
 
-:: Maya Gossip Response [Done] {"position":"1150,175","size":"100,100"}
+:: Aguilar interprets Maya gossip [Done] {"position":"1150,175","size":"100,100"}
 <<liveblock>>
 You've mulled over what you heard while sweeping the temple steps.  How are you feeling right now? <br>
 <br>
@@ -6065,7 +6065,7 @@ Together, under his leadership, you may [[now continue|Spaniards Send a Letter]]
 <</liveblock>>
 
 
-:: News from the land of the Olmeca Xicalanca [Done Breaks] {"position":"2850,800","size":"100,100"}
+:: Aztecs hear rumors of strange men on the coast and send a delegation [Done Breaks] {"position":"2850,800","size":"100,100"}
 <<liveblock>>
 You return from your journey to find the city buzzing with news. One of your spies has just returned from the coast, where a band of strangers recently arrived from across the sea. The strangers are pale in skin and covered in hair. <br>
 <br>
@@ -6408,7 +6408,7 @@ Once you've completed your meeting, you gather your delegation together and <<li
 
 <<elseif $TL_Attacks is "Aztecs">>
 
-Once you've completed your meeting, you gather your delegateion together and [[head home|Tlaxcalans Attack Aztecs on return journey]].<br>
+Once you've completed your meeting, you gather your delegateion together and [[head home|Tlaxcalans decide to attack the Aztecs on their way back from the coast]].<br>
 <br>
 <<elseif $TL_Attacks is "Spanish">>
 
@@ -6496,7 +6496,7 @@ Once you've completed your meeting, you gather your delegation together and <<li
 <br>
 <<elseif $TL_Attacks is "Aztecs">>
 
-Once you've completed your meeting, you gather your delegateion together and [[head home|Tlaxcalans Attack Aztecs on return journey]].<br>
+Once you've completed your meeting, you gather your delegateion together and [[head home|Tlaxcalans decide to attack the Aztecs on their way back from the coast]].<br>
 <br>
 <<elseif $TL_Attacks is "Spanish">>
 
@@ -6862,7 +6862,7 @@ You make your way to the chair and you hear the door swing shut behind you. You 
 <</liveblock>>
 
 
-:: Rumors from the Coast [Done Breaks] {"position":"3000,800","size":"100,100"}
+:: Tlaxcalans hear rumors of strange men on the coast and decide what to do [Done Breaks] {"position":"3000,800","size":"100,100"}
 <<liveblock>>
 You return from your journey to find the village buzzing with news. One of your spies has just returned from the coast, where a band of strangers recently arrived from across the sea. The strangers are pale in skin and covered in hair. They have been giving gifts to people of the coast and winning their affection. These coastal people are allied to the Mexica, but have been brutalized by them. Like so many others in the empire, they harbor deep resentment for their Aztec overlords.<br>
 <br>
@@ -7103,13 +7103,13 @@ Vote is 2
 <</if>>
 
 <<run counter(2,"counter1","counter2","counter3")>>
-<<link "you're startled by a loud noise" "Character Identification" >><<set $counter1 = $counter1 + -1>><</link>>
+<<link "you're startled by a loud noise" "Character assignment and points selection" >><<set $counter1 = $counter1 + -1>><</link>>
 
 
 <</liveblock>>
 
 
-:: Secret Information Drop Moctezuma and Tlacaelel the Younger {"position":"4175,5925","size":"100,100"}
+:: Moctezuma and Tlacaelel decide whether to share their information {"position":"4175,5925","size":"100,100"}
 <<liveblock>>
 Moctezuma and Tlacaelel the Younger, the Spaniards are approaching your city.  As the rulers of the Empire, it is up to you to decide how to treat the strangers.  In the next scene, you and the rest of your faction will have the opportunity to get to these strangers in your city. However, at the end of the day, DAY 10, after everybody has had a chance to get to know each other, you should be prepared to advance to the next scene with a decision you have secretly made together.  Assess the situation in the next discussion board conversation, and then decide how you want to behave towards the Spaniards and their allies. 
  
@@ -7128,7 +7128,7 @@ Option 3: Order the Spaniards to leave the city.
 
 Click through to the page titled "Moctezuma Speaks", follow the link to the Go to the main discussion board, and post your decision for all to read by the beginning of DAY 11.
 
-[[Act 3, Scene 1: The Great Encounter]]
+[[Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán]]
 
 
 <</liveblock>>
@@ -7908,7 +7908,7 @@ You've just received a shocking report from Tenochtitlán: <<print $Aztec_Leader
 <</liveblock>>
 
 
-:: Spaniards Leave Cuba [Done] {"position":"1525,50","size":"100,100"}
+:: Cortes must convince his men to accompany him on the journey [Done] {"position":"1525,50","size":"100,100"}
 <<liveblock>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
@@ -7924,7 +7924,7 @@ Adjourn to the Spanish discussion board and listen to what Cortes has to say. De
 <br>
 <</switch>>
 
-When you have come to an agreement, you may  [[continue on|The Spaniards Decide to Continue]].<br>
+When you have come to an agreement, you may  [[continue on|Cortes has convinced Spaniards to carry on their journey]].<br>
 <br>
 
 
@@ -8256,7 +8256,7 @@ To your surprise, the residents of the island see you and begin shouting words t
 <br>
 You find a pair of local messengers and instruct them to find these mysterious Spanish slaves. You tell them to deliver your letter, along with a ransom of beads that they may use to pay the men's owners. <br>
 <br>
-You settle in and <<link "wait for a response" "Spaniards arrive at Yucatan">><<set $Letter="sent">><</link>>.<br>
+You settle in and <<link "wait for a response" "Aguilar’s first encounter with the Spaniards">><<set $Letter="sent">><</link>>.<br>
 <br>
 <<elseif $Span_Leader isnot $users[$userId]["role"]>>
 To your surprise, the residents of the island see you and begin shouting words that sound distinctly like “Castilan, Castilan!” You question the local people, who tell that they've heard rumors of Spaniards living as slaves two days journey inland. <<print $Span_Leader>>, excited at the news, writes a letter:<br>
@@ -8265,7 +8265,7 @@ To your surprise, the residents of the island see you and begin shouting words t
 <br>
 <<print $Span_Leader>> finds a pair of local messengers and instructs them to find these mysterious Spanish slaves. He tells them to deliver his letter, along with a ransom of beads that they may use to pay the men's owners. <br>
 <br>
-You settle in and [[wait for a response|Spaniards arrive at Yucatan]].<br>
+You settle in and [[wait for a response|Aguilar’s first encounter with the Spaniards]].<br>
 <br>
 
 <</if>>
@@ -8499,7 +8499,7 @@ After a long night, you wake to a visit from some [[Cholulan delegates|Cholula M
 <</liveblock>>
 
 
-:: Spaniards arrive at Yucatan [Done Breaks] {"position":"1450,700","size":"100,100"}
+:: Aguilar’s first encounter with the Spaniards [Done Breaks] {"position":"1450,700","size":"100,100"}
 <<liveblock>>
 <<if $users[$userId]["role"] isnot "Aguilar" and ndef $L_Received or $L_Received eq "">>
 
@@ -9159,7 +9159,7 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 <</liveblock>>
 
 
-:: The Aztec Legend of Quetzalcoatl {"position":"3125,100","size":"100,100"}
+:: Quest Intro: The Aztec Legend of Quetzalcoatl {"position":"3125,100","size":"100,100"}
 /* Sometimes the icon doesn't appear, this is a sign variables haven't been initiazlized properly,
 specifically $Start in this case. */
 <<liveblock>>
@@ -9173,7 +9173,7 @@ You must wait for all the team members to gather for gameplay to begin.<br>
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
-Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "The Aztec Quest for Legitimacy">><<set $Aztecs_currentMap=2>><</link>>.<br>
+Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "Quest: Aztec Instructions">><<set $Aztecs_currentMap=2>><</link>>.<br>
 <br>
 <</if>>
 
@@ -9181,7 +9181,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 <</liveblock>>
 
 
-:: The Aztec Quest for Legitimacy [Done] {"position":"3125,225","size":"100,100"}
+:: Quest: Aztec Instructions [Done] {"position":"3125,225","size":"100,100"}
 <<liveblock>>
 <<if $users[$userId]["role"] is "Pochteca">>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Pochteca, as a trader, you know the terrain well. It is up to you to lead your team in this quest.<br>
@@ -9353,14 +9353,14 @@ The door sticks as you try to open it, but you can tell it's not locked. You giv
 <br>
 You unload your books and make yourself comfortable--maybe a little too comfortable. You get to work on your assignment, but within a matter of minutes your eyes get heavy. You struggle to stay awake but it's impossible to focus. Maybe a ten-minute nap will help. You tell yourself that if you just get it out of your system, you'll be good to go for the rest of the night. You close your eyes and quickly slip into a deep sleep. <br>
 <br>
-Suddenly, <<link "you're startled by a loud noise" "Character Identification">><<set $Spaniards_currentMap=1>><<set $factions["Spaniards"]["stats"]["Strength"] = 7>><<set $Tlaxcalans_currentMap=1>><<set $factions["Tlaxcalans"]["stats"]["Strength"] = 7>><<set $Aztecs_currentMap=1>><<set $factions["Aztecs"]["stats"]["Strength"] = 7>><</link>>!<br>
+Suddenly, <<link "you're startled by a loud noise" "Character assignment and points selection">><<set $Spaniards_currentMap=1>><<set $factions["Spaniards"]["stats"]["Strength"] = 7>><<set $Tlaxcalans_currentMap=1>><<set $factions["Tlaxcalans"]["stats"]["Strength"] = 7>><<set $Aztecs_currentMap=1>><<set $factions["Aztecs"]["stats"]["Strength"] = 7>><</link>>!<br>
 <br>
 
 
 <</liveblock>>
 
 
-:: The Spaniards Decide to Continue [Done] {"position":"1525,175","size":"100,100"}
+:: Cortes has convinced Spaniards to carry on their journey [Done] {"position":"1525,175","size":"100,100"}
 <<liveblock>>
 Now that you've made a decision, you can move forward. <br>
 <br>
@@ -9457,7 +9457,7 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebl
 <</liveblock>>
 
 
-:: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"2975,100","size":"100,100"}
+:: Quest intro: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"2975,100","size":"100,100"}
 <<liveblock>>
 <<if $Start <=10>>
 You must wait for all the team members to gather for gameplay to begin.<br>
@@ -9468,7 +9468,7 @@ You must wait for all the team members to gather for gameplay to begin.<br>
 
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
-Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "The Tlaxcalan Quest for Legitimacy">><<set $Tlaxcalans_currentMap=2>><</link>>.<br>
+Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "Quest: Tlaxcalan instructions">><<set $Tlaxcalans_currentMap=2>><</link>>.<br>
 <br>
 <</if>>
 
@@ -9476,7 +9476,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 <</liveblock>>
 
 
-:: The Tlaxcalan Quest for Legitimacy [Done] {"position":"2975,225","size":"100,100"}
+:: Quest: Tlaxcalan instructions [Done] {"position":"2975,225","size":"100,100"}
 <<liveblock>>
 <<if $users[$userId]["role"] is "Xicotencatl_Younger">>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Xicotencatl the Younger, you have much to prove and this is your chance. It is up to you to lead your team on this quest!<br>
@@ -9667,14 +9667,14 @@ You sent a pair of indigenous messengers out ahead to announce your arrival and 
 <br>
 A day into your journey, you encounter the messengers upon the road, both of them in a state of terror. They tell you that they were imprisoned in Tlaxcala and only managed to escape because the Tlaxcalans were preoccupied preparing for your arrival. The messengers claimed that the Tlaxcalans had threatened them, saying: “Now we are going to kill those whom you call Teules, and eat their flesh, and we will see whether they are as valiant as you announce; and we shall eat your flesh too, you who come here with treasons and lies from that traitor Montezuma!” The messengers tried their best to convince the Tlaxcalans that you share an enemy in Moctezuma, but could not change their minds.<br>
 <br>
-Alert to the danger ahead, you steel yourselves for battle and thank God for his favor in sending you this news. You send your horsemen out ahead and they are able to thwart an ambush. The battle that follows is fierce and bloody, lasting many days. 45 of your men are killed on the battlefield, but your preparations serve you well and you are able to secure [[a narrow victory|A Spanish Victory]].<br>
+Alert to the danger ahead, you steel yourselves for battle and thank God for his favor in sending you this news. You send your horsemen out ahead and they are able to thwart an ambush. The battle that follows is fierce and bloody, lasting many days. 45 of your men are killed on the battlefield, but your preparations serve you well and you are able to secure [[a narrow victory|Spaniards defeat the Tlaxcalans in battle]].<br>
 <br>
 <<case "Tlaxcalans">>
 Your first communication with the foreigners comes in the form of two messengers who they send to meet you. The men inform you that the strangers are approaching your territory, but assure you that they seek no quarrel. They claim that you share a common enemy in the Mexica Emperor, Moctezuma, but you do not trust them and you take the two messengers prisoner. <br>
 <br>
 After all this time wondering what might come next, you now know that the strange men are headed your way. You begin preparing for war, leaving a crew of men to defend the homefront while the bulk of your forces advance ahead to prepare an ambush. <br>
 <br>
-The foreigners surround you, however, almost as though they knew what to expect! You've lost the element of surprise and a bloody battle ensues. It lasts many days and you kill many of their men, but their weapons are too much for you and you are overwhelmed by the giant deer that they ride into battle. Despite your best efforts, the foreigners prove to be too much and you are eventually [[forced to retreat|An Unexpected Loss for Tlaxcala]].<br>
+The foreigners surround you, however, almost as though they knew what to expect! You've lost the element of surprise and a bloody battle ensues. It lasts many days and you kill many of their men, but their weapons are too much for you and you are overwhelmed by the giant deer that they ride into battle. Despite your best efforts, the foreigners prove to be too much and you are eventually [[forced to retreat|Tlaxcalans lose battle to Spaniards and decide whether to form an alliance]].<br>
 <br>
 <</switch>>
 
@@ -10404,14 +10404,14 @@ You sent a pair of indigenous messengers out ahead to announce your arrival and 
 <br>
 You make your way quietly through the woods when one of the men sees movement up ahead. You're being watched and you glimpse the man's bow and arrow as he darts across your path. Already on edge, one of your men aims carelessly into the woods with his crossbow, launching an attack. The man fires back and an arrow whizzes past your head!<br>
 <br>
-Your horsemen run ahead and they encounter a group of Tlaxcalan soldiers, preparing for what appears to be an ambush. The battle that follows is fierce and bloody, lasting many days. 45 of your men are killed on the battlefield, but your preparations serve you well and you are able to [[secure a narrow victory|A Spanish Victory]].<br>
+Your horsemen run ahead and they encounter a group of Tlaxcalan soldiers, preparing for what appears to be an ambush. The battle that follows is fierce and bloody, lasting many days. 45 of your men are killed on the battlefield, but your preparations serve you well and you are able to [[secure a narrow victory|Spaniards defeat the Tlaxcalans in battle]].<br>
 <br>
 <<case "Tlaxcalans">>
 Your first communication with the foreigners comes in the form of two messengers who they send to meet you. The men inform you that the strangers are approaching your territory, but assure you that they seek no quarrel. They claim that you share a common enemy in the Mexica Emperor, Moctezuma. After all this time wondering what might come next, you now know that the foreigners are headed your way. You send the messengers back with your reply: you will welcome them in peace.<br>
 <br>
 You prepare for the arrival of these strange visitors and take a delegation out to meet them. One of your guards runs out ahead when he is attacked! He rushes back to the group to warn you and you quickly prepare for battle. A thunderous sound bears down upon you and soon you are confronted by a herd of giant deer! The strangers sit perched atop them and they rush upon you, tearing at you with knives! <br>
 <br>
-A bloody battle ensues. It lasts many days and you kill many of their men, but their weapons are too much for you and you are overwhelmed by the giant deer that they ride into battle. Despite your best efforts, the foreigners prove to be too much and you are eventually [[forced to retreat|An Unexpected Loss for Tlaxcala]]. <br>
+A bloody battle ensues. It lasts many days and you kill many of their men, but their weapons are too much for you and you are overwhelmed by the giant deer that they ride into battle. Despite your best efforts, the foreigners prove to be too much and you are eventually [[forced to retreat|Tlaxcalans lose battle to Spaniards and decide whether to form an alliance]]. <br>
 <br>
 <</switch>>
 
@@ -10725,7 +10725,7 @@ Do they <<link "PASS" "After the Feast">><<set $factions["Tlaxcalans"]["stats"][
 <</liveblock>>
 
 
-:: Tlaxcalans Attack Aztecs on return journey [Done Breaks] {"position":"2225,1875","size":"100,100"}
+:: Tlaxcalans decide to attack the Aztecs on their way back from the coast [Done Breaks] {"position":"2225,1875","size":"100,100"}
 <<liveblock>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -10973,13 +10973,13 @@ Go to the Tlaxcalan discussion board and decide upon your best course of action.
 <br>
 <<link "attack the Spaniards on the beach" "Tlaxcalans decide to attack the Spaniards in Veracruz">><<set $TL_Attacks="Spanish">><</link>>,<br>
 <br>
-or you can <<link "attack the Mexica on their way back to Tenochtitlan" "Tlaxcalans Attack Aztecs on return journey">><<set $TL_Attacks="Aztecs">><</link>>.
+or you can <<link "attack the Mexica on their way back to Tenochtitlan" "Tlaxcalans decide to attack the Aztecs on their way back from the coast">><<set $TL_Attacks="Aztecs">><</link>>.
 <<else>>
 [[do nothing|Tlaxcalans decide to let the Spaniards continue their journey inland]], <br>
 <br>
 [[attack the Spaniards on the beach|Tlaxcalans decide to attack the Spaniards in Veracruz]],<br>
 <br>
-or you can [[attack the Mexica on their way back to Tenochtitlan|Tlaxcalans Attack Aztecs on return journey]].
+or you can [[attack the Mexica on their way back to Tenochtitlan|Tlaxcalans decide to attack the Aztecs on their way back from the coast]].
 <</if>>
 <br>
 <br>
