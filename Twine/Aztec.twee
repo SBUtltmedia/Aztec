@@ -3389,6 +3389,9 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 	Click on a passage name to teleport there:
 	<br>
 
+	<<link "Continue Where you left off" $users[$userId]["passage"]>> <</link>>
+
+	<br>
 	<<set _temp = Story.lookupWith((p)=>{return true})>>
 	<<set _passageList = []>>
 	<<for _i to 0; _i lt _temp.length; _i ++>>
@@ -6737,7 +6740,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</if>>
 
 /* updates user's current passage */
-<<if passage() != Config.passages.start && passage() != "Home" && $users[$userId]["passage"] != passage()>>
+<<if passage() != Config.passages.start && passage() != "Home" && passage() != "Passage Teleport" && $users[$userId]["passage"] != passage()>>
 	<<set $users[$userId]["passage"] = passage()>> 
 <</if>>
 
