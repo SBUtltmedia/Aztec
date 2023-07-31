@@ -6675,12 +6675,19 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<masteraudio unmute>>
 <<if passage() != "Home">>
  	<<run showStats()>>
+	/*_currentMap=([^>]*) */
+
+	<<if ndef $users[$userId]["currentMap"] >>
+		<<set $users[$userId]["currentMap"] = 0>>
+	<</if>>
+	
 	<<run showMap()>>
+
 	<<script>>
-	let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
-	if(!$('#homeButton').length){
-	$('#story').append(homeButton);
-	}
+		let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
+		if(!$('#homeButton').length){
+			$('#story').append(homeButton);
+		}
 	<</script>>
 <br>
 <</if>>
@@ -6708,7 +6715,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 <</script>>
 <</liveblock>>
-
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
@@ -6739,6 +6745,13 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</if>>
 <</liveblock>>
 
+
+:: TestMap Passage
+<<liveblock>>
+
+	<<set Cortes_currentMap = 2>>
+
+<</liveblock>>
 
 :: Return to the Library_Another Door {"position":"2300,5775","size":"100,100"}
 <<liveblock>>
@@ -12322,6 +12335,23 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 			$chatlog
 		<</if>>
 	</div>
+
+	/* create a character limit on the textbox */
+	<<script>>
+		$(document).ready(function() {
+			var inputElement = $("#chattextbox #textbox--chattext");
+			var maxLength = 50;
+
+			inputElement.on("input", function() {
+				var inputText = $(this).val();
+
+				if (inputText.length > maxLength) {
+					$(this).val(inputText.substring(0, maxLength));
+				}
+
+			});
+		});
+	<</script>>
 
 	/* Create the area for users to send messsages to */
 	<div id="chattextarea">
