@@ -6590,7 +6590,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
-<<liveblock>>
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",
@@ -6681,7 +6680,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 		<<set $users[$userId]["currentMap"] = 0>>
 	<</if>>
 	
+	<<liveblock>>
 	<<run showMap()>>
+	<</liveblock>>
 
 	<<script>>
 		let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
@@ -6714,10 +6715,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 <</script>>
-<</liveblock>>
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
+
 
 /* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
@@ -6743,15 +6743,13 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<if _currentTime.getTime() - $users[$userId]["lastSeen"] > 10000>>
 	<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
 <</if>>
-<</liveblock>>
+
 
 
 :: TestMap Passage
-<<liveblock>>
 
-	<<set $users[$userId]["currentMap"] = 2>>
+<<set $users[$userId]["currentMap"] = 1>>
 
-<</liveblock>>
 
 :: Return to the Library_Another Door {"position":"2300,5775","size":"100,100"}
 <<liveblock>>
