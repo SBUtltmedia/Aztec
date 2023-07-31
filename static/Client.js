@@ -76,7 +76,7 @@ function showMap() {
     let userId = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]
     let role = userId.role
     let faction =  userId.faction
-    var currentMapIndex =  userId.currentMap
+    var currentMapIndex =  parseInt(userId.currentMap)
     let currentMap
 
     if (!currentMapIndex) {
