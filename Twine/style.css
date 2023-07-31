@@ -504,6 +504,7 @@ width: 200% !important;
   top: 0%;
 
   overflow-y: scroll !important;
+  
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
   font-family: roboto;
@@ -579,7 +580,7 @@ small font size: 1.7rem
   height: 1%;
 }
 
-.playerList #printFactionOnlineCount {
+.playerList .printFactionOnlineCount {
   text-indent: 11%;
 }
 
@@ -796,7 +797,6 @@ small font size: 1.7rem
 
 .player .aztecBorder, .aztecBorder {
   border-color: #6C944D !important;
-
 }
 
 .player .spaniardBorder, .spaniardBorder {
@@ -805,6 +805,10 @@ small font size: 1.7rem
 
 .player .tlaxcalanBorder, .tlaxcalanBorder {
   border-color: #D19700 !important; 
+}
+
+.player .notSeenBorder, .notSeenBorder {
+  border-color: gray !important;
 }
 
 /* .player:hover .rolePanel {
@@ -837,7 +841,7 @@ small font size: 1.7rem
 
 #info #passagesCompletedButtons {
   width: 88%;
-  height: 30%;
+  height: 29%;
   margin-left: auto;
   margin-right: auto;
   overflow: auto;
@@ -907,7 +911,7 @@ small font size: 1.7rem
 
 .info-stats-traits {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
@@ -961,20 +965,41 @@ small font size: 1.7rem
 
 #chat {
   position: relative;
-  width: 32%;
-  height: 55%;
-  top: 27.8%;
-  left: 43%;
-  
+    width: 32%;
+    height: 65%;
+    top: 17.55%;
+    left: 43%;
+    border: black solid 0.2rem;
+    display: flex;
+    flex-direction: column;
+}
 
+#chat-switch {
+  font-size: 3.5rem;
   display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#chat-switch button {
+  background-color: blanchedalmond;
+  border: 0.3rem solid black;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+#chat-switch button:hover {
+  background-color: rgb(165, 133, 85);
 }
 
 #chattextarea {
   display: flex;
 	align-items: flex-end;
   box-sizing: border-box;
+  border: 0.1rem solid black;
 }
 
 #chattextarea button {
@@ -982,7 +1007,6 @@ small font size: 1.7rem
   color: black;
   border: 0.3rem solid black;
   padding: 0.3rem;
-  border-radius: 1rem;
   display: inline-block;
   text-align: center;
   text-decoration: none;
@@ -997,7 +1021,7 @@ small font size: 1.7rem
   max-width: 90%;
   flex-grow: 1;
   background-color: transparent;
-  border: 0.2rem solid black;
+  border: 0.3rem solid black;
   resize: none;
 }
 
@@ -1008,6 +1032,8 @@ small font size: 1.7rem
   text-align: left;
   text-indent: 10px;
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #chatmessages {
@@ -1018,6 +1044,7 @@ small font size: 1.7rem
   padding-left: 10px;
   scrollbar-width: none;
 	-ms-overflow-style: none;
+  overflow-x: hidden;
   word-wrap:break-word;
 }
 
@@ -1044,5 +1071,51 @@ small font size: 1.7rem
   object-fit: contain;
 }
 
+.playerMessage {
+  display: flex;
+	flex-direction:row;
+  width: 95%;
+  line-height: 1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 0.1rem black solid;
+  margin: 0.5rem 0.2rem 0.4rem 0.2rem;
+}
+
+.playerMessageText {
+  flex-grow: 1;
+}
+
+.playerMessageLeft {
+  display: flex;
+	flex-direction:row;
+  flex-basis: 30%; 
+  flex-grow: 0;
+}
+
+.playerMessageIconDiv {
+  width: 7rem;
+  height: 5rem;
+  position: relative;
+  top: -20%;
+}
+
+.playerMesssageIcon {
+  object-fit: contain;
+}
+
+.playerMessageLeftText {
+  padding: 0px 5px 0px 5px;
+  border-right: 0.2rem black solid;
+  margin-right: 5px;
+}
+
+.playerMessageUsername {
+
+}
+
+.playerMessageTimeStamp {
+
+}
 
 
