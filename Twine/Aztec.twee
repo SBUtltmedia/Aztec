@@ -6675,12 +6675,19 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<masteraudio unmute>>
 <<if passage() != "Home">>
  	<<run showStats()>>
+	/*_currentMap=([^>]*) */
+
+	<<if ndef $users[$userId]["currentMap"] >>
+		<<set $users[$userId]["currentMap"] = 0>>
+	<</if>>
+	
 	<<run showMap()>>
+
 	<<script>>
-	let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
-	if(!$('#homeButton').length){
-	$('#story').append(homeButton);
-	}
+		let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
+		if(!$('#homeButton').length){
+			$('#story').append(homeButton);
+		}
 	<</script>>
 <br>
 <</if>>
@@ -6708,7 +6715,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 <</script>>
 <</liveblock>>
-
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
@@ -6739,6 +6745,13 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</if>>
 <</liveblock>>
 
+
+:: TestMap Passage
+<<liveblock>>
+
+	<<set Cortes_currentMap = 2>>
+
+<</liveblock>>
 
 :: Return to the Library_Another Door {"position":"2300,5775","size":"100,100"}
 <<liveblock>>
@@ -12135,7 +12148,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
+
 
 /* Creates some bookmarks to switch between pages */
 <div id="bookmarks">
@@ -12146,7 +12159,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
 		<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
-		<span>Aztec Strength: <<print $factions[$users[$userId]["faction"]]["stats"]["Strength"]>></span>
+		<span><<print $users[$userId]["faction"]>> Strength: <<print $factions[$users[$userId]["faction"]]["stats"]["Strength"]>></span>
 		
 	</div>
 	<div id="info-stats-user">
@@ -12199,6 +12212,27 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 	</div>
 </div>
+
+<<script>>
+	setTimeout(() => {
+		$("#home_bookmark_img").on('mousedown', function() {
+			$("#passagesCompletedHeader").show();
+			$("#passagesCompletedButtons").show();
+			$("#passageChevron").show();
+			$("#selectedPassageTextContainer").show();
+			
+			$("#info-stats").hide();
+		});
+		$("#stat_bookmark_img").on('mousedown', function() {
+			$("#passagesCompletedHeader").hide();
+			$("#passagesCompletedButtons").hide();
+			$("#passageChevron").hide();
+			$("#selectedPassageTextContainer").hide();
+	
+			$("#info-stats").css("display", "flex");
+		});
+	}, 200);
+<</script>>
 
 /* Prints list of previous passages for user to recollect */
 <div id="info">
@@ -12259,57 +12293,208 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 </div>
-
+<<liveblock>>
 /* Creates the chat */
 <div id="chat">
+    /* Instantiate a chatlog if it doesnt already exist*/
 	<<if ndef $chatlog>>
 		<<set $chatlog= "">>
 	<</if>>
-	<div id="chatmessages">
-		$chatlog
+
+	<<if ndef $aztecslog>>
+		<<set $aztecslog= "">>
+	<</if>>
+
+	<<if ndef $spaniardslog>>
+		<<set $spaniardslog= "">>
+	<</if>>
+
+	<<if ndef $tlaxcolanslog>>
+		<<set $tlaxcolanslog= "">>
+	<</if>>
+
+	/* Create a scope switch for Global and Faction */
+	<div id="chat-switch">
+		<<button "Global">>
+			<<set $users[$userId].currentChat = "GLOBAL">>
+		<</button>>
+		<<button $users[$userId].faction >>
+			<<set $users[$userId].currentChat = $users[$userId].faction>>
+		<</button>>
 	</div>
+
+	/* Fill #chatmessages with $chatlog */
+	<div id="chatmessages">
+		<<if $users[$userId].currentChat == "Aztecs">>
+			$aztecslog
+		<<elseif $users[$userId].currentChat == "Spaniards">>
+			$spaniardslog
+		<<elseif $users[$userId].currentChat == "Tlaxcolans">>
+			$tlaxcolanslog
+		<<else>>
+			$chatlog
+		<</if>>
+	</div>
+
+	/* create a character limit on the textbox */
+	<<script>>
+		$(document).ready(function() {
+			var inputElement = $("#chattextbox #textbox--chattext");
+			var maxLength = 50;
+
+			inputElement.on("input", function() {
+				var inputText = $(this).val();
+
+				if (inputText.length > maxLength) {
+					$(this).val(inputText.substring(0, maxLength));
+				}
+
+			});
+		});
+	<</script>>
+
+	/* Create the area for users to send messsages to */
 	<div id="chattextarea">
+		/* Type messages here */
 		<div id="chattextbox">
 			<<textbox "_chattext" "Hello!" autofocus>>
 		</div>
-		<<button "Continue">>
-			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		
+		/* Hit send here */
+		<<button "SEND">>
+			<<if $users[$userId].currentChat == "Aztecs">>
+				<<set 
+				$aztecslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$aztecslog
+			>>
+			<<elseif $users[$userId].currentChat == "Spaniards">>
+				<<set 
+				$spaniardslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$spaniardslog
+			>>
+			<<elseif $users[$userId].currentChat == "Tlaxcolans">>
+				<<set 
+				$tlaxcolanslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$tlaxcolanslog
+			>>
+			<<else>>
+				<<set 
+				$chatlog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$chatlog
+			>>
+			<</if>>
 		<</button>>
 	</div>
 </div>
-
+<</liveblock>>
 /* print play status list (discord info, role, etc.) */
 <div id="players">
 
-/* Creates arrays for each faction and offline users */
-<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
-
-<<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
-<<set _totalUsers = 0>>
-
 /* Defines border colors for each faction */
-<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder"}>>
+<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder", "notSeen": "notSeenBorder"}>>
 
-/* _id: discord id for each user
-_data: object with user properties (to access user's passage just use _data["passage"]) */
-<<for _id, _data range $users>>
-	<<set _totalUsers = _totalUsers + 1>>
+/* Creates arrays for each faction and offline users */
 
-  /* _faction: the faction of the user that is currently being iterated */
-	<<set _faction = _data["faction"]>>
-	<<if ndef _factionUsers[_faction]>>
-		<<set _factionUsers[_faction] = []>>
-	<</if>>
-
-  /* If user has not been on lately, put them in the offline group */
-	<<if new Date().getTime() - _data["lastSeen"] < 10000>>
-		<<set _factionUsers[_faction].push(_id)>>
-		<<set _userCount[_faction] = (_userCount[_faction] + 1)>>
-	<<else>>
-		<<set _factionUsers["offline"].push(_id)>>
-		<<set _userCount["offline"] = (_userCount["offline"] + 1)>>
-	<</if>>
-<</for>>
 
   /* creates sidebar with users */
   <div id = "playerClient">
@@ -12333,42 +12518,95 @@ _data: object with user properties (to access user's passage just use _data["pas
 	<<script>>
 		
 		function scaleText(x) {
-			return (-1/56) * x + 2.475
+			return -(0.024) * x + 2.884
 		}
+			
+		setTimeout(() => {
+			let element = $("#printUserRoleClient")[0];
+			if (!element) { return; }
+			let elementLength = $("#printUserRoleClient").html().length;
+			element.style.fontSize = scaleText(elementLength) + 'rem';
+		}, 100);
+		
+	<</script>>
 
+	/*
 		$(document).one(':passagerender', function (ev) {
-			$(ev.content).find("#info-stats").hide();
-
-			$(ev.content).find("#home_bookmark_img").on('mousedown', function() {
-				$(ev.content).find("#passagesCompletedHeader").show();
-				$(ev.content).find("#passagesCompletedButtons").show();
-				$(ev.content).find("#passageChevron").show();
-				$(ev.content).find("#selectedPassageTextContainer").show();
-				
-				$(ev.content).find("#info-stats").hide();
-			});
-			$(ev.content).find("#stat_bookmark_img").on('mousedown', function() {
-				$(ev.content).find("#passagesCompletedHeader").hide();
-				$(ev.content).find("#passagesCompletedButtons").hide();
-				$(ev.content).find("#passageChevron").hide();
-				$(ev.content).find("#selectedPassageTextContainer").hide();
-
-				$(ev.content).find("#info-stats").css("display", "flex");
-			});
-
 			let element = $(ev.content).find("#printUserRoleClient")[0];
 			if (!element) { return; }
 			let elementLength = $(ev.content).find("#printUserRoleClient").html().length;
-
-			
-			
 			element.style.fontSize = scaleText(elementLength) + 'rem';
-		
 		});
-	<</script>>
+	 */
+
+	/* Aztecs, Spaniards, Tlaxcalans */
+	<<set _factions = [...new Set(Object.keys(_roles).reduce(
+		(accumulator, currentValue) => {
+				
+				accumulator.push(_roles[currentValue].faction);
+				return accumulator;
+			},
+		[]
+	))]>>
+	
+	/* A count of users in each faction. Returns an array of factions, which is an array of IDs. Offline and Factions are NOT! mutually exclusive */
+	<<set _factionUsers = _factions.reduce((acc, faction) => {
+		acc[faction] = Object.keys($users).filter((user) => {
+			if (new Date().getTime() - $users[user].lastSeen > 10000) {
+				$users[user].offline = true
+			} else {
+				$users[user].offline = false
+			}
+			return $users[user].faction == faction;
+		});
+		return acc;
+	}, {})>>
+
+	<<set _totalUsers = Object.keys(_roles).length>>
+
+	<<set _totalFactionUserCount = {"Aztecs":"6", "Spaniards":"6", "Tlaxcalans":"3"}>>
+
+	/* A count of users in each faction. Returns an array of factions, which is an array of userdata. Offline and Faction are MUTUALLY EXCLUSIVE */
+	/* it is a terribly confusing system i know. to be fixed: probably someday */
+	<<set _userCount = Object.keys($users).reduce((acc, user)=>{
+		if (!acc[$users[user].faction]) {
+			acc[$users[user].faction]= []
+		}
+		if (!$users[user].offline) {
+			acc[$users[user].faction].push($users[user])
+		} else {
+			if (!acc["offline"]) {
+				acc["offline"] = []
+			}
+			acc["offline"].push($users[user])
+		}
+		return acc;
+	}, {})>>
+
+	<<for _i, _faction range _factions>>
+		<<if ndef _userCount[_faction]>>
+			<<set _userCount[_faction] = []>>
+		<</if>>
+	<</for>>
+
+	/* Users who have been seen, but are currently offline */
+	<<set _factionUsers.offline = []>>
+	<<for _id, _data range $users>>
+		<<if new Date().getTime() - _data["lastSeen"] > 10000>>
+			<<set _factionUsers["offline"].push(_id)>>
+		<</if>>
+	<</for>>
+
+	/* Users who have NEVER been seen. Never logged on. No ID associated. */
+	<<set _factionUsers.neverSeen = []>>
+	<<for _user, _id range $lookup>>
+		<<if $lookup[_user] == "notSeen">>
+			<<set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])>>
+		<</if>>
+	<</for>>
 
 	<div id="onlineCount">
-		<<print "  Total Players (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
+		<<print "  Players Online (" + (_userCount["offline"].length) + "/" + _totalUsers + ")">>
 	</div>
 
 	<div id="rolePanelDynamic">
@@ -12396,41 +12634,87 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<div id="rolePanelNotes"></div>
 	</div>
 
-	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
-		<div id="printFactionOnlineCount">
-    <<if _faction != "offline">>
-			<<print _faction + " -- (" + _userCount[_faction] + "/" + _factionUsers[_faction].length + ")">>
-    <<else>>
-			<<print "Offline" + " -- (" + _userCount["offline"] + "/" + _totalUsers + ")">>
-		<</if>>
-    </div>
+	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans"]>>
+
+		<div class="printFactionOnlineCount">
+			<<print _faction + " -- (" + _userCount[_faction].length + "/" + _totalFactionUserCount[_faction] + ")">>
+		</div>
+
 		<<for _j, _userId range _factionUsers[_faction]>>
-		
-		<div id="playerSpaceBetween"></div>
+			<<if _userId != "notSeen" || $users[_userId]["offline"] != true>>
+				<div id="playerSpaceBetween"></div>
+				<<print `
+					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
+						<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+
+						<div class = "playerText">
+							<div class="printUserRole"> 
+								`+$users[_userId]["character"]+`
+							</div>
+							<div class="printUserName">
+							<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
+								<<print "@" + $users[_userId]["username"]>>
+							</a>
+							</div>
+						</div> 
+					</div>
+				`>>
+				<div id="playerSpaceBetween"></div>
+			<</if>>
+		<</for>>
+
+		<div id="factionSpaceBetween"></div>
+	<</for>>
+
+	<div class="printFactionOnlineCount">
+		<<print "Offline" + " -- (" +  (_totalUsers - _factionUsers["offline"].length) + "/" + _totalUsers + ")">>
+	</div>
+
+	<<for _j, _userId range _factionUsers["offline"]>>
+		<<if _userId != "notSeen">>
+			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+					<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
 
-				<div class = "playerText">
-					<div class="printUserRole"> 
-						`+$users[_userId]["character"]+`
-					</div>
-					<div class="printUserName">
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+$users[_userId]["character"]+`
+						</div>
+						<div class="printUserName">
 						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
 							<<print "@" + $users[_userId]["username"]>>
 						</a>
-					</div></div> 
+						</div>
+					</div> 
 				</div>
-				`>>
-				
+			`>>
 			<div id="playerSpaceBetween"></div>
-			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
-			
-		<</for>>
-			<div id="factionSpaceBetween"></div>
+		<</if>>
 	<</for>>
 
-	
+	<<for _i, _role range _factionUsers["neverSeen"]>>
+		<<if _role != "notSeen">>
+			<div id="playerSpaceBetween"></div>
+			<<print `
+				<div class = "playerNull" id="playerInfo_notSeen_`+_role+`">			
+					<img class = "playerImage `+_factionColor["notSeen"]+`" src = "`+setup.getUserSvgPicture(_role)+`"> 
+
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+_role+`
+						</div>
+						<div class="printUserName">
+						<a href="https://discordapp.com/users/`+0+`" target="_blank">
+							<<print "@blank">>
+						</a>
+						</div>
+					</div> 
+				</div>
+			`>>
+			<div id="playerSpaceBetween"></div>
+		<</if>>
+	<</for>>
 
 </div>
 
@@ -12517,7 +12801,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 	<</script>>
 
-<</liveblock>>
+
 
 /* Use this as a template to make side passages */
 
