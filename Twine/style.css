@@ -630,11 +630,13 @@ small font size: 1.7rem
 #printUserRoleClient { 
   font-size: 2.3rem;
   white-space: normal;
-  height: 3rem;
+  height: 4rem;
+  top: 1rem;
+  position: relative;
 }
 
 #printUserNameClient {
-  font-size: 1.6rem; /* Significant FONT SIZE */
+  font-size: 0rem; /* Significant FONT SIZE */
   font-weight: 300;
   white-space: nowrap;
 }
