@@ -64,7 +64,6 @@ $(document).on(':passagestart', (ev) => {
 
 /* JavaScript code */
 
-
 function showMap() {
     var map = $('#map')
     if (!map.length) {
@@ -74,16 +73,23 @@ function showMap() {
         }))
     }
 
-    let  faction =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]["faction"]
-    var currentMap =  Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId].currentMap
-    if (!currentMap) {
+    let userId = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]
+    let role = userId.role
+    let faction =  userId.faction
+    var currentMapIndex =  parseInt(userId.currentMap)
+    let currentMap
+
+    if (!currentMapIndex) {
         let currentMapIndex = Window.SugarCubeState.getVar(`$${faction}_currentMap`) || 0;
         currentMap = `${faction}_${currentMapIndex}.png`
+    } else {
+        currentMap = `${role}_${currentMapIndex}.png`
     }
+
     let map_src = $('#map').attr("src")
 
     if (map_src != currentMap) {
-        $('#map').attr("src", `Twine/images/${currentMap}`)
+        $('#map').attr("src", `Twine/images/maps/${currentMap}`)
     }
 }
 

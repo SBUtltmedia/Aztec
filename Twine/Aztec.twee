@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "The Library",
+	"start": "TestMap Passage",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -127,9 +127,9 @@ importScripts([
 })();
 
 
-:: 0 Dakota Test Passage {"position":"100,100","size":"100,100"}
+:: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-
+<p> hey </p>
 <</liveblock>>
 
 
@@ -6644,7 +6644,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
-<<liveblock>>
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",
@@ -6729,12 +6728,21 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<masteraudio unmute>>
 <<if passage() != "Home">>
  	<<run showStats()>>
+	/*_currentMap=([^>]*) */
+
+	<<if ndef $users[$userId]["currentMap"] >>
+		<<set $users[$userId]["currentMap"] = 0>>
+	<</if>>
+	
+	<<liveblock>>
 	<<run showMap()>>
+	<</liveblock>>
+
 	<<script>>
-	let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
-	if(!$('#homeButton').length){
-	$('#story').append(homeButton);
-	}
+		let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
+		if(!$('#homeButton').length){
+			$('#story').append(homeButton);
+		}
 	<</script>>
 <br>
 <</if>>
@@ -6770,12 +6778,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 <</script>>
-<</liveblock>>
 
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
-
 /* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
 	<<if !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
@@ -6804,7 +6809,10 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<if _currentTime.getTime() - $users[$userId]["lastSeen"] > 10000>>
 	<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
 <</if>>
-<</liveblock>>
+
+
+:: TestMap Passage {"position":"350,2225","size":"100,100"}
+<<set $users[$userId]["currentMap"] = 1>>
 
 
 :: Return to the Library_Another Door {"position":"2300,5775","size":"100,100"}
@@ -12193,17 +12201,71 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
-
 /* Creates some bookmarks to switch between pages */
 <div id="bookmarks">
 	<img id="home_bookmark_img" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
 	<img id="stat_bookmark_img" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
 </div>
 
+<div id="info-stats">
+	<div id="info-stats-faction-strength">
+		<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
+		<span><<print $users[$userId]["faction"]>> Strength: <<print $factions[$users[$userId]["faction"]]["stats"]["Strength"]>></span>
+		
+	</div>
+	<div id="info-stats-user">
+		<div id="info-stats-user-title">
+			<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
+			<span>
+				<<print $users[$userId]["character"]>>
+			</span>
+		</div>
+		<div class="info-stats-traits">
+			<div class="info-stats-trait">
+				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Loyalty.png"> `>>
+				<div class="info-stats-trait-text">
+					<span>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Loyalty"]>>
+						<</if>>
+					</span>
+					<span>Loyalty</span>
+				</div>
+			</div>
+			<div class="info-stats-trait">
+				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Wisdom.png"> `>>
+				<div class="info-stats-trait-text">
+					<span>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Wisdom"]>>
+						<</if>>
+					</span>
+					<span>Wisdom</span>
+				</div>
+			</div>
+			<div class="info-stats-trait">
+				<<print `<img class="stats_image" src = "Twine/images/Stats/`+$users[$userId]["faction"]+`_Strength.png"> `>>
+				<div class="info-stats-trait-text">
+					<span>
+						<<if $users[$userId]["stats"] === undefined>>
+							<<print "N/A">>
+						<<else>>
+							<<print $users[$userId]["stats"]["Strength"]>>
+						<</if>>
+					</span>
+					<span >Strength</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <<script>>
 	setTimeout(() => {
-		$("#info-stats").hide();
 		$("#home_bookmark_img").on('mousedown', function() {
 			$("#passagesCompletedHeader").show();
 			$("#passagesCompletedButtons").show();
@@ -12217,31 +12279,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 			$("#passagesCompletedButtons").hide();
 			$("#passageChevron").hide();
 			$("#selectedPassageTextContainer").hide();
-
-			$("#info-stats").show();
+	
+			$("#info-stats").css("display", "flex");
 		});
 	}, 200);
 <</script>>
-
-<div id="info-stats">
-	<div id="info-stats-faction-strength">
-		Aztec Strength: 7
-	</div>
-	<div id="info-stats-user">
-		<div id="info-stats-user-title">
-			Your Stats:
-		</div>
-		<div id="info-stats-user-strength">
-			loyal 100
-		</div>
-		<div id="info-stats-user-wisdom">
-			wisdom dumb
-		</div>
-		<div id="info-stats-user">
-			strength arm wrestle me rn
-		</div>
-	</div>
-</div>
 
 /* Prints list of previous passages for user to recollect */
 <div id="info">
@@ -12251,7 +12293,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	
 	<<script>>
 	$(document).ready(function() {
-		var svgContent = '<img id="back_button_img" src="Twine/images/back_button.svg" alt="Back"></img>';
+		let svgContent = '<img id="back_button_img" src="Twine/images/back_button.svg" alt="Back"></img>';
 		$("#info .link-internal.macro-link").append(svgContent);
 	});
 	<</script>>
@@ -12271,7 +12313,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<div class="passagesCompletedButtonsGrid">
 			<<for _passageName, _passageText range $theyrPrivateVars[$userId]['passageHistory']>>
 				<<if $users[$userId]["passage"] == _passageName>>
-					<<print `<button class="passageButton" style="background-color:rgb(165, 133, 85);" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
+					<<print `<button class="passageButton selectedPassageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
 				<<else>>
 					<<print `<button class="passageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
 				<</if>>
@@ -12285,12 +12327,15 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<div id="selectedPassageTextContainer">
-		Select a passage from your passage history above to review it. The passages are in order of how you played them. Your current passage is highlighted.
+		Select a passage from your passage history above to review it. The passages are in order of how you played them.
 		<<script>>
 			setTimeout(() => {
 				$(".passageButton").on("click", function() {
-					var passageButtonId = $(this).attr("data-passageName");
-					var passage_text = State.getVar(`$theyrPrivateVars[$userId]['passageHistory']["${passageButtonId}"]`);
+					$(".passageButton.selectedPassageButton").removeClass("selectedPassageButton");
+					$(this).addClass("selectedPassageButton");
+
+					let passageButtonId = $(this).attr("data-passageName");
+					let passage_text = State.getVar(`$theyrPrivateVars[$userId]['passageHistory']["${passageButtonId}"]`);
 					$("#selectedPassageTextContainer").text(passage_text);
 				});
 			}, 1000);
@@ -12299,57 +12344,208 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 </div>
-
+<<liveblock>>
 /* Creates the chat */
 <div id="chat">
+    /* Instantiate a chatlog if it doesnt already exist*/
 	<<if ndef $chatlog>>
 		<<set $chatlog= "">>
 	<</if>>
-	<div id="chatmessages">
-		$chatlog
+
+	<<if ndef $aztecslog>>
+		<<set $aztecslog= "">>
+	<</if>>
+
+	<<if ndef $spaniardslog>>
+		<<set $spaniardslog= "">>
+	<</if>>
+
+	<<if ndef $tlaxcolanslog>>
+		<<set $tlaxcolanslog= "">>
+	<</if>>
+
+	/* Create a scope switch for Global and Faction */
+	<div id="chat-switch">
+		<<button "Global">>
+			<<set $users[$userId].currentChat = "GLOBAL">>
+		<</button>>
+		<<button $users[$userId].faction >>
+			<<set $users[$userId].currentChat = $users[$userId].faction>>
+		<</button>>
 	</div>
+
+	/* Fill #chatmessages with $chatlog */
+	<div id="chatmessages">
+		<<if $users[$userId].currentChat == "Aztecs">>
+			$aztecslog
+		<<elseif $users[$userId].currentChat == "Spaniards">>
+			$spaniardslog
+		<<elseif $users[$userId].currentChat == "Tlaxcolans">>
+			$tlaxcolanslog
+		<<else>>
+			$chatlog
+		<</if>>
+	</div>
+
+	/* create a character limit on the textbox */
+	<<script>>
+		$(document).ready(function() {
+			var inputElement = $("#chattextbox #textbox--chattext");
+			var maxLength = 50;
+
+			inputElement.on("input", function() {
+				var inputText = $(this).val();
+
+				if (inputText.length > maxLength) {
+					$(this).val(inputText.substring(0, maxLength));
+				}
+
+			});
+		});
+	<</script>>
+
+	/* Create the area for users to send messsages to */
 	<div id="chattextarea">
+		/* Type messages here */
 		<div id="chattextbox">
 			<<textbox "_chattext" "Hello!" autofocus>>
 		</div>
-		<<button "Continue">>
-			<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
+		
+		/* Hit send here */
+		<<button "SEND">>
+			<<if $users[$userId].currentChat == "Aztecs">>
+				<<set 
+				$aztecslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$aztecslog
+			>>
+			<<elseif $users[$userId].currentChat == "Spaniards">>
+				<<set 
+				$spaniardslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$spaniardslog
+			>>
+			<<elseif $users[$userId].currentChat == "Tlaxcolans">>
+				<<set 
+				$tlaxcolanslog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$tlaxcolanslog
+			>>
+			<<else>>
+				<<set 
+				$chatlog = 
+					"<div class='playerMessage'>" + 
+					
+						"<div class='playerMessageLeft'>" +
+
+							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+						
+							"<div class='playerMessageLeftText'>" +
+
+								"<div class='playerMessageUsername'>" +
+									$users[$userId].username + 
+								"</div>" +
+
+								"<div class='playerMessageTimeStamp'>" +
+									"2:13am" + 
+								"</div>" +
+
+							"</div>" +
+						
+						"</div>" +
+
+						"<div class='playerMessageText'>" +
+							_chattext + 
+						"</div>" +
+					
+					"</div>" + 
+				$chatlog
+			>>
+			<</if>>
 		<</button>>
 	</div>
 </div>
-
+<</liveblock>>
 /* print play status list (discord info, role, etc.) */
 <div id="players">
 
-/* Creates arrays for each faction and offline users */
-<<set _factionUsers = {"Aztecs" : [], "Spaniards":[],"Tlaxcalans":[], "offline":[]}>>
-
-<<set _userCount = {"Aztecs" : 0, "Spaniards":0,"Tlaxcalans":0, "offline":0}>>
-<<set _totalUsers = 0>>
-
 /* Defines border colors for each faction */
-<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder"}>>
+<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder", "notSeen": "notSeenBorder"}>>
 
-/* _id: discord id for each user
-_data: object with user properties (to access user's passage just use _data["passage"]) */
-<<for _id, _data range $users>>
-	<<set _totalUsers = _totalUsers + 1>>
+/* Creates arrays for each faction and offline users */
 
-  /* _faction: the faction of the user that is currently being iterated */
-	<<set _faction = _data["faction"]>>
-	<<if ndef _factionUsers[_faction]>>
-		<<set _factionUsers[_faction] = []>>
-	<</if>>
-
-  /* If user has not been on lately, put them in the offline group */
-	<<if new Date().getTime() - _data["lastSeen"] < 10000>>
-		<<set _factionUsers[_faction].push(_id)>>
-		<<set _userCount[_faction] = (_userCount[_faction] + 1)>>
-	<<else>>
-		<<set _factionUsers["offline"].push(_id)>>
-		<<set _userCount["offline"] = (_userCount["offline"] + 1)>>
-	<</if>>
-<</for>>
 
   /* creates sidebar with users */
   <div id = "playerClient">
@@ -12371,28 +12567,97 @@ _data: object with user properties (to access user's passage just use _data["pas
   </div>
 
 	<<script>>
-		$(document).ready(function() {
-			setTimeout(function() {
-				var element = document.getElementById("printUserRoleClient");
-
-				var fontSize = 2.3;
-				if (!element) {
-					return;
-				}
-				element.style.fontSize = fontSize + 'rem';
-				var width = element.clientWidth;
-				var height = element.clientHeight;
-
-				while (element.scrollWidth > width || element.scrollHeight > height) {
-					fontSize -= 0.1;
-					element.style.fontSize = fontSize + 'rem';
-				}
-			}, 100);
-		});
+		
+		function scaleText(x) {
+			return -(0.024) * x + 2.884
+		}
+			
+		setTimeout(() => {
+			let element = $("#printUserRoleClient")[0];
+			if (!element) { return; }
+			let elementLength = $("#printUserRoleClient").html().length;
+			element.style.fontSize = scaleText(elementLength) + 'rem';
+		}, 100);
+		
 	<</script>>
 
+	/*
+		$(document).one(':passagerender', function (ev) {
+			let element = $(ev.content).find("#printUserRoleClient")[0];
+			if (!element) { return; }
+			let elementLength = $(ev.content).find("#printUserRoleClient").html().length;
+			element.style.fontSize = scaleText(elementLength) + 'rem';
+		});
+	 */
+
+	/* Aztecs, Spaniards, Tlaxcalans */
+	<<set _factions = [...new Set(Object.keys(_roles).reduce(
+		(accumulator, currentValue) => {
+				
+				accumulator.push(_roles[currentValue].faction);
+				return accumulator;
+			},
+		[]
+	))]>>
+	
+	/* A count of users in each faction. Returns an array of factions, which is an array of IDs. Offline and Factions are NOT! mutually exclusive */
+	<<set _factionUsers = _factions.reduce((acc, faction) => {
+		acc[faction] = Object.keys($users).filter((user) => {
+			if (new Date().getTime() - $users[user].lastSeen > 10000) {
+				$users[user].offline = true
+			} else {
+				$users[user].offline = false
+			}
+			return $users[user].faction == faction;
+		});
+		return acc;
+	}, {})>>
+
+	<<set _totalUsers = Object.keys(_roles).length>>
+
+	<<set _totalFactionUserCount = {"Aztecs":"6", "Spaniards":"6", "Tlaxcalans":"3"}>>
+
+	/* A count of users in each faction. Returns an array of factions, which is an array of userdata. Offline and Faction are MUTUALLY EXCLUSIVE */
+	/* it is a terribly confusing system i know. to be fixed: probably someday */
+	<<set _userCount = Object.keys($users).reduce((acc, user)=>{
+		if (!acc[$users[user].faction]) {
+			acc[$users[user].faction]= []
+		}
+		if (!$users[user].offline) {
+			acc[$users[user].faction].push($users[user])
+		} else {
+			if (!acc["offline"]) {
+				acc["offline"] = []
+			}
+			acc["offline"].push($users[user])
+		}
+		return acc;
+	}, {})>>
+
+	<<for _i, _faction range _factions>>
+		<<if ndef _userCount[_faction]>>
+			<<set _userCount[_faction] = []>>
+		<</if>>
+	<</for>>
+
+	/* Users who have been seen, but are currently offline */
+	<<set _factionUsers.offline = []>>
+	<<for _id, _data range $users>>
+		<<if new Date().getTime() - _data["lastSeen"] > 10000>>
+			<<set _factionUsers["offline"].push(_id)>>
+		<</if>>
+	<</for>>
+
+	/* Users who have NEVER been seen. Never logged on. No ID associated. */
+	<<set _factionUsers.neverSeen = []>>
+	<<for _user, _id range $lookup>>
+		<<if $lookup[_user] == "notSeen">>
+			<<set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])>>
+		<</if>>
+	<</for>>
+
 	<div id="onlineCount">
-		<<print "  Total Players (" + (_totalUsers - _userCount["offline"]) + "/" + _totalUsers + ")">>
+		<<print "  Players Online (" + (_userCount["offline"].length) + "/" + _totalUsers + ")">>
 	</div>
 
 	<div id="rolePanelDynamic">
@@ -12420,61 +12685,105 @@ _data: object with user properties (to access user's passage just use _data["pas
 		<div id="rolePanelNotes"></div>
 	</div>
 
-	<<for _i,_faction   range ["Aztecs", "Spaniards","Tlaxcalans", "offline"]>>
-		<div id="printFactionOnlineCount">
-    <<if _faction != "offline">>
-			<<print _faction + " -- (" + _userCount[_faction] + "/" + _factionUsers[_faction].length + ")">>
-    <<else>>
-			<<print "Offline" + " -- (" + _userCount["offline"] + "/" + _totalUsers + ")">>
-		<</if>>
-    </div>
+	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans"]>>
+
+		<div class="printFactionOnlineCount">
+			<<print _faction + " -- (" + _userCount[_faction].length + "/" + _totalFactionUserCount[_faction] + ")">>
+		</div>
+
 		<<for _j, _userId range _factionUsers[_faction]>>
-		
-		<div id="playerSpaceBetween"></div>
+			<<if _userId != "notSeen" || $users[_userId]["offline"] != true>>
+				<div id="playerSpaceBetween"></div>
+				<<print `
+					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
+						<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+
+						<div class = "playerText">
+							<div class="printUserRole"> 
+								`+$users[_userId]["character"]+`
+							</div>
+							<div class="printUserName">
+							<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
+								<<print "@" + $users[_userId]["username"]>>
+							</a>
+							</div>
+						</div> 
+					</div>
+				`>>
+				<div id="playerSpaceBetween"></div>
+			<</if>>
+		<</for>>
+
+		<div id="factionSpaceBetween"></div>
+	<</for>>
+
+	<div class="printFactionOnlineCount">
+		<<print "Offline" + " -- (" +  (_totalUsers - _factionUsers["offline"].length) + "/" + _totalUsers + ")">>
+	</div>
+
+	<<for _j, _userId range _factionUsers["offline"]>>
+		<<if _userId != "notSeen">>
+			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-				<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+					<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
 
-				<div class = "playerText">
-					<div class="printUserRole"> 
-						`+$users[_userId]["character"]+`
-					</div>
-					<div class="printUserName">
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+$users[_userId]["character"]+`
+						</div>
+						<div class="printUserName">
 						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
 							<<print "@" + $users[_userId]["username"]>>
 						</a>
-					</div></div> 
+						</div>
+					</div> 
 				</div>
-				`>>
-				
+			`>>
 			<div id="playerSpaceBetween"></div>
-			/* <<= setup.printTime($users[_userId]["lastSeen"])>> */
-			
-		<</for>>
-			<div id="factionSpaceBetween"></div>
+		<</if>>
 	<</for>>
 
-	
+	<<for _i, _role range _factionUsers["neverSeen"]>>
+		<<if _role != "notSeen">>
+			<div id="playerSpaceBetween"></div>
+			<<print `
+				<div class = "playerNull" id="playerInfo_notSeen_`+_role+`">			
+					<img class = "playerImage `+_factionColor["notSeen"]+`" src = "`+setup.getUserSvgPicture(_role)+`"> 
+
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+_role+`
+						</div>
+						<div class="printUserName">
+						<a href="https://discordapp.com/users/`+0+`" target="_blank">
+							<<print "@blank">>
+						</a>
+						</div>
+					</div> 
+				</div>
+			`>>
+			<div id="playerSpaceBetween"></div>
+		<</if>>
+	<</for>>
 
 </div>
 
-
-
 	<<script>>
 		window.addEventListener("resize", function() {
-			var rolePanel = $("#rolePanelDynamic");
+			let rolePanel = $("#rolePanelDynamic");
 			rolePanel.css("visibility", "hidden");
 		});
 		setTimeout(() => {
 			$("#players").on('mouseleave', function() {
 				$(document).mousemove(function(event) {
-					var xPos = event.pageX;
-					var yPos = event.pageY;
-					var rolePanel = $("#rolePanelDynamic");
-					var rolePanelX = rolePanel.offset().left;
-					var rolePanelY = rolePanel.offset().top;
-					var rpHeight = parseInt(rolePanel.css("height"));
-					var rpWidth = parseInt(rolePanel.css("width"));
+					let xPos = event.pageX;
+					let yPos = event.pageY;
+					let rolePanel = $("#rolePanelDynamic");
+					let rolePanelX = rolePanel.offset().left;
+					let rolePanelY = rolePanel.offset().top;
+					let rpHeight = parseInt(rolePanel.css("height"));
+					let rpWidth = parseInt(rolePanel.css("width"));
 
 					if (!((xPos > rolePanelX) && (yPos > rolePanelY - (rolePanelY / 8)&& yPos < rolePanelY + rpHeight))) {
 						$(document).off('mousemove');
@@ -12485,20 +12794,20 @@ _data: object with user properties (to access user's passage just use _data["pas
 		}, 1500);
 		setTimeout(() => {
 			$(".player").on('mouseenter', function() {
-				var top = $(this).offset().top + window.screenY;
-				var left = $(this).offset().left + window.screenX;
-				var pageWidth = parseInt($("#story").css("width"));
-				var pageHeight = parseInt($("#story").css("height"));
+				let top = $(this).offset().top + window.screenY;
+				let left = $(this).offset().left + window.screenX;
+				let pageWidth = parseInt($("#story").css("width"));
+				let pageHeight = parseInt($("#story").css("height"));
 
-				var firstUnderscoreIndex = $(this).attr("id").indexOf("_");
-				var user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
-				var imageSource = setup.getUserSvgPicture(user);
+				let firstUnderscoreIndex = $(this).attr("id").indexOf("_");
+				let user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
+				let imageSource = setup.getUserSvgPicture(user);
 				$("#rolePanelImageDynamic").attr("src", imageSource);
 
-				var printableUser = user.replace(/_/g, " ");
+				let printableUser = user.replace(/_/g, " ");
 				$("#rolePanelPrintUserRole").text(printableUser);
 
-				var rolePanel = $("#rolePanelDynamic");
+				let rolePanel = $("#rolePanelDynamic");
 				rolePanel.css("visibility", "visible");
 
 				let notes = State.getVar("$users[$userId]['notes']");
@@ -12514,7 +12823,7 @@ _data: object with user properties (to access user's passage just use _data["pas
 				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" "${defaultText}">>`);
 				$("#textbox-usersuseridnotes" + user).val(defaultText);
 			
-				var rpHeight = parseInt(rolePanel.css("height"));
+				let rpHeight = parseInt(rolePanel.css("height"));
 
 				if (top + rpHeight > pageHeight) {
 					top = pageHeight - rpHeight - 5;
@@ -12543,12 +12852,11 @@ _data: object with user properties (to access user's passage just use _data["pas
 
 	<</script>>
 
-<</liveblock>>
 /* Use this as a template to make side passages */
 
 
-:: Side Passage Example [sidePassage Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>>>
+:: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
 	Side passage example 1
 	/* Put link to next passage  */
 	 <<link "Next passage (2)" "Side Passage Example 2">><</link>>
