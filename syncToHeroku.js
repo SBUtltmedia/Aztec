@@ -13,7 +13,6 @@ if (!app) {
 let startingAppId = process.argv[2] || 4;
 let endingAppId = process.argv[3] || 4;
 let herokuInstances = 1;
-
 let commands = [
     `git add .`,
     `git commit -m "Automated update to Heroku/Github"`
