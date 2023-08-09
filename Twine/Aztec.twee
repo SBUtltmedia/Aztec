@@ -12367,7 +12367,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					
 						"<div class='playerMessageLeft'>" +
 
-							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
+							'<div class="playerMessageIconDiv">' + setup.getUserSvgPicture($users[_userId]["role"]) + '</div>' +
 						
 							"<div class='playerMessageLeftText'>" +
 
