@@ -1092,7 +1092,7 @@ small font size: 1.7rem
   flex-basis: 30%; 
   flex-grow: 0;
 }
-
+z 
 .playerMessageIconDiv {
   width: 7rem;
   height: 5rem;
@@ -1117,5 +1117,9 @@ small font size: 1.7rem
 .playerMessageTimeStamp {
 
 }
+
+/* .error-view{
+  display: none;
+} */
 
 

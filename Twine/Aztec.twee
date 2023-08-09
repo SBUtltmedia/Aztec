@@ -3492,16 +3492,30 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<br>
 		<<textbox _twineKey _userId "Control: Variables (Users)" >>
 		<br>
-
+	<<print $users[_userId]>>
+	<<if $users[_userId]["stats"]>>
 		<<for _varKey, _varVal range _userData>>
 			<<if  _varKey == "stats">>
 				/* Goes through list of all stats */
 				<<for _statKey, _statVal range _varVal>>
+					/* Same as _statKey but with $ in front */
 					<<set _twineKey = `$users['${_userId}']["stats"]['${ _statKey}']`>>
 					<<print `${_userName}'s ${_statKey}`>>
 					<br>
-					<<textbox _twineKey _statVal >>
+					<<set _keyType = (typeof _statVal)>>
+
+					<<switch (_keyType)>>
+						<<case "number">>
+							<<numberbox _twineKey _statVal >>
+						<<case "string">>
+							<<textbox _twineKey _statVal >>
+						<<case "boolean">>
+							<<checkbox _twineKey _statVal !_statVal>>
+						<<default>>
+					<</switch>>
 					<br>
+
+
 				<</for>>
 			<<else>>
 				/* Goes through all user variables (besides stats) */
@@ -3509,13 +3523,23 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 				<<print JSON.stringify(_twineKey)>>
 				<<print`${_userName}'s ${_varKey}`>>
 				<br>
-				<<textbox _twineKey _varVal >>
+				<<set _keyType = (typeof _varVal)>>
+					<<switch (_keyType)>>
+						<<case "number">>
+							<<numberbox _twineKey _varVal >>
+						<<case "string">>
+							<<textbox _twineKey _varVal >>
+						<<case "boolean">>
+							<<checkbox _twineKey _varVal !_varVal>>
+						<<default>>
+					<</switch>>
 				<br>
 
 			<</if>>
 		<</for>>
 		<br>
 		<br>
+		<</if>>
 	<</for>>
 <</liveblock>>
 
@@ -9008,6 +9032,23 @@ they will be directed to this temp user */
 	}>>
 <</if>>
 
+<<if ndef $users["15"]>>
+<<set $users["15"] = {
+		"stats" : {
+			"Loyalty" : 0,
+			"Strength" : 0,
+			"Wisdom" : 0
+		},
+		"character" : "God",
+		"faction" : "Aztecs",
+		"isLeader" : "God",
+		"lastSeen" : 0,
+		"passage" : "Name Not Recognized",
+		"role" : "God",
+		"username" : "God"
+	}>>
+<</if>>
+
 /* Intialize faction data */
 <<if ndef $factions>>
 	<<set $factions = {
@@ -9044,7 +9085,7 @@ they will be directed to this temp user */
 
 /* inits userdata in $users */
 
-<<if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId]["role"]))>>
+<<if  $userId != 15 && (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId]["role"]))) >>
 <<set $users[$userId] = {}>>
 <script>
 console.log("new user detected")
