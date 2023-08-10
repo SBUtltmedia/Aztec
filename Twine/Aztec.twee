@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "TestMap Passage",
+	"start": "The Library",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
