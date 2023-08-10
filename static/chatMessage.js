@@ -3,12 +3,13 @@ class ChatMessage {
       this.text = text;
       this.role = role;
       this.src = imageSrc
-      this.timestamp = new Date();
+      this.timestamp = Date.now();
     }
   
     getFormattedTimestamp() {
       const options = { hour: 'numeric', minute: 'numeric', hour12: true };
-      return this.timestamp.toLocaleString('en-US', options);
+
+      return new Date(this.timestamp).toLocaleString('en-US', options);
     }
   
     render() {
@@ -62,26 +63,16 @@ class ChatMessage {
 
 
 
-function addChatMessage(textContent, userRole, svgSrc, chatContext) {
-  let newChatMessage = new ChatMessage(textContent, userRole, svgSrc)
+function addChatMessage(textContent, userRole, imgSrc, chatContext) {
+  console.log(textContent, userRole, imgSrc, chatContext)
+  let newChatMessage = new ChatMessage(textContent, userRole, imgSrc)
   newChatMessage.render()
 
-  switch(chatContext) {
-    case "Aztecs":
-      console.log("Aztecs spoke")
-      break
-    case "Spaniards":
-      console.log("Spaniards spoke")
-      break
-    case "Tlaxcalans":
-      console.log("Tlaxcalans spoke")
-      break
-    default:
-      console.log("default spoke")
-      break
-  }
-  
-  Window.SugarCubeState.variables.chatlog += newChatMessage
+  //console.log({newChatMessage, chatContext})
+
+  console.log(`${chatContext} spoke`)
+
+  Window.SugarCubeState.variables[`${chatContext}log`].push({textContent, userRole, imgSrc})
 }
 
 // This is what the structure looks like
