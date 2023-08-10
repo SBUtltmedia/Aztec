@@ -6806,11 +6806,17 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
 /* if user is on a new passage, update their current passage and add a recap of the last */
+
+<<script>>
+console.log("html", $(`#passages-passage-teleport`).innerHTML)
+<</script>>
 <<if passage() != "Home">>
 	<<if !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
 		<<set _currPassage = passage()>>
-		<<set _text = Story.get(passage()).processText()>>
+		/* <<set _text = Story.get(passage()).processText()>> */
+		<<set _text =  (' ' + $("#passages").children()[0].innerHTML).slice(1);>>
 		<<script>>
+		console.log($("#passages").children()[0].innerHTML)
 			let text = State.getVar("_text");
 			text = text.replaceAll(/\/\*[^\/]*\//ig, '');
 			text = text.replaceAll(/<<(?:.*?)>>/ig, '');
@@ -11548,7 +11554,7 @@ Your guards have seen Aztec spies running to and from the coast. Clearly [[thing
 <</liveblock>>
 
 
-:: One of the crew tries to start a mutiny[Done Breaks] {"position":"1925,1600","size":"100,100"}
+:: One of the crew tries to start a mutiny [Done Breaks] {"position":"1925,1600","size":"100,100"}
 <<liveblock>>
 
 <<switch $users[$userId]["role"]>>
