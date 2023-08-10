@@ -12296,26 +12296,30 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 /* Creates the chat */
 <div id="chat">
     /* Instantiate a chatlog if it doesnt already exist*/
+	<<if ndef $users[$userId].currentChat>>
+		<<set $users[$userId].currentChat ="chat">>
+	<</if>>
+	
 	<<if ndef $chatlog>>
-		<<set $chatlog= "">>
+		<<set $chatlog= []>>
 	<</if>>
 
-	<<if ndef $aztecslog>>
-		<<set $aztecslog= "">>
+	<<if ndef $Aztecslog>>
+		<<set $Aztecslog= []>>
 	<</if>>
 
-	<<if ndef $spaniardslog>>
-		<<set $spaniardslog= "">>
+	<<if ndef $Spaniardslog>>
+		<<set $Spaniardslog= []>>
 	<</if>>
 
-	<<if ndef $tlaxcolanslog>>
-		<<set $tlaxcolanslog= "">>
+	<<if ndef $Tlaxcalanslog>>
+		<<set $Tlaxcalanslog= []>>
 	<</if>>
 
 	/* Create a scope switch for Global and Faction */
 	<div id="chat-switch">
 		<<button "Global">>
-			<<set $users[$userId].currentChat = "GLOBAL">>
+			<<set $users[$userId].currentChat = "chat">>
 		<</button>>
 		<<button $users[$userId].faction >>
 			<<set $users[$userId].currentChat = $users[$userId].faction>>
@@ -12324,15 +12328,23 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 	/* Fill #chatmessages with $chatlog */
 	<div id="chatmessages">
-		<<if $users[$userId].currentChat == "Aztecs">>
-			$aztecslog
+
+		<<for _id, _chatmsg range State.getVar(`$${$users[$userId].currentChat}log`)>>
+			<<run addChatMessage(_chatmsg.textContent, _chatmsg.userRole, _chatmsg.imgSrc, $users[$userId].currentChat)>>
+		<</for>>
+
+
+		/* <<if $users[$userId].currentChat == "Aztecs">>
+			
+			$Aztecslog
 		<<elseif $users[$userId].currentChat == "Spaniards">>
-			$spaniardslog
-		<<elseif $users[$userId].currentChat == "Tlaxcolans">>
-			$tlaxcolanslog
+			$Spaniardslog
+		<<elseif $users[$userId].currentChat == "Tlaxcalans">>
+			$Tlaxcalanslog
 		<<else>>
 			$chatlog
-		<</if>>
+		<</if>> */
+
 	</div>
 
 	/* create a character limit on the textbox */
@@ -12361,7 +12373,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<print addChatMessage(_chattext, $users[$userId].role, setup.getUserSvgPicture($users[_userId]["role"]), $users[$userId].currentChat)>>
+			<<run addChatMessage(_chattext, $users[$userId].role, setup.getUserSvgPicture($users[_userId]["role"]), $users[$userId].currentChat)>>
 		<</button>>
 	</div>
 </div>
