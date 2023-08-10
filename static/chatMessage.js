@@ -1,6 +1,8 @@
 class ChatMessage {
-    constructor(text) {
+    constructor(text, role, imageSrc) {
       this.text = text;
+      this.role = role;
+      this.src = imageSrc
       this.timestamp = new Date();
     }
   
@@ -10,28 +12,94 @@ class ChatMessage {
     }
   
     render() {
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('chat-message');
-      if (this.isSentByUser) {
-        messageDiv.classList.add('user-message');
-      } else {
-        messageDiv.classList.add('bot-message');
-      }
+      // create each div that makes our message look nicely structured
+      let playerMessage = document.createElement('div');
+      playerMessage.classList.add('playerMessage');
+
+      let playerMessageLeft = document.createElement('div');
+      playerMessageLeft.classList.add('playerMessageLeft');
+
+      let playerMessageIconImg = document.createElement('img');
+      playerMessageIconImg.classList.add('playerMessageIconImg');
+
+      let playerMessageLeftText = document.createElement('div');
+      playerMessageLeftText.classList.add('playerMessageLeftText');
+
+      let playerMessageUsername = document.createElement('div');
+      playerMessageUsername.classList.add('playerMessageUsername');
+
+      let playerMessageText = document.createElement('div');
+      playerMessageText.classList.add('playerMessageText');
   
-      const messageText = document.createElement('p');
-      messageText.textContent = this.text;
+      // add the time
+      let playerMessageTimeStamp = document.createElement('div');
+      playerMessageTimeStamp.classList.add('playerMessageTimeStamp');
+      playerMessageTimeStamp.textContent = this.getFormattedTimestamp();
+      
+      // add in the message
+      playerMessageText.textContent = this.text;
   
-      const timestamp = document.createElement('span');
-      timestamp.classList.add('timestamp');
-      timestamp.textContent = this.getFormattedTimestamp();
+      // add in the players role
+      playerMessageUsername.textContent = this.role;
+
+      // adds in the players role icon
+      playerMessageIconImg.src = this.src;
   
-      messageDiv.appendChild(messageText);
-      messageDiv.appendChild(timestamp);
-  
-      return messageDiv;
+      // construct the message
+      playerMessage.appendChild(playerMessageLeft);
+      playerMessage.appendChild(playerMessageText);
+
+      playerMessageLeft.appendChild(playerMessageIconImg);
+      playerMessageLeft.appendChild(playerMessageLeftText);
+
+      playerMessageLeftText.appendChild(playerMessageUsername);
+      playerMessageLeftText.appendChild(playerMessageTimeStamp);
+
+      $('#chatmessages').prepend(playerMessage);
+      return playerMessage
     }
-  }
-
-function addChatMessage(message, channel) {
-
 }
+
+
+
+function addChatMessage(textContent, userRole, svgSrc, chatContext) {
+  let newChatMessage = new ChatMessage(textContent, userRole, svgSrc)
+  newChatMessage.render()
+
+  switch(chatContext) {
+    case "Aztecs":
+      console.log("Aztecs spoke")
+      break
+    case "Spaniards":
+      console.log("Spaniards spoke")
+      break
+    case "Tlaxcalans":
+      console.log("Tlaxcalans spoke")
+      break
+    default:
+      console.log("default spoke")
+      break
+  }
+  
+  Window.SugarCubeState.variables.chatlog += newChatMessage
+}
+
+// This is what the structure looks like
+/*
+<div class='playerMessage'> 
+  <div class='playerMessageLeft'>
+    <img class="playerMessageIconImg" src=imageSrc>
+    <div class='playerMessageLeftText'>
+      <div class='playerMessageUsername'>
+        username
+      </div> 
+      <div class='playerMessageTimeStamp'> 
+        time
+      </div> 
+    </div>
+  </div> 
+  <div class='playerMessageText'>
+    message
+  </div>
+</div>
+*/
