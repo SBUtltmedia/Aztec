@@ -46,6 +46,7 @@ importScripts([
 	`${urlPrefix}resize.js`,
 	`${urlPrefix}picker.js`,
 	`${urlPrefix}Client.js`,
+	`${urlPrefix}chatMessage.js`,
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js",
 	"https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js",
@@ -12360,127 +12361,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<if $users[$userId].currentChat == "Aztecs">>
-				<<set 
-				$aztecslog = 
-					"<div class='playerMessage'>" + 
-					
-						"<div class='playerMessageLeft'>" +
-
-							'<div class="playerMessageIconDiv">' + setup.getUserSvgPicture($users[_userId]["role"]) + '</div>' +
-						
-							"<div class='playerMessageLeftText'>" +
-
-								"<div class='playerMessageUsername'>" +
-									$users[$userId].username + 
-								"</div>" +
-
-								"<div class='playerMessageTimeStamp'>" +
-									"2:13am" + 
-								"</div>" +
-
-							"</div>" +
-						
-						"</div>" +
-
-						"<div class='playerMessageText'>" +
-							_chattext + 
-						"</div>" +
-					
-					"</div>" + 
-				$aztecslog
-			>>
-			<<elseif $users[$userId].currentChat == "Spaniards">>
-				<<set 
-				$spaniardslog = 
-					"<div class='playerMessage'>" + 
-					
-						"<div class='playerMessageLeft'>" +
-
-							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
-						
-							"<div class='playerMessageLeftText'>" +
-
-								"<div class='playerMessageUsername'>" +
-									$users[$userId].username + 
-								"</div>" +
-
-								"<div class='playerMessageTimeStamp'>" +
-									"2:13am" + 
-								"</div>" +
-
-							"</div>" +
-						
-						"</div>" +
-
-						"<div class='playerMessageText'>" +
-							_chattext + 
-						"</div>" +
-					
-					"</div>" + 
-				$spaniardslog
-			>>
-			<<elseif $users[$userId].currentChat == "Tlaxcolans">>
-				<<set 
-				$tlaxcolanslog = 
-					"<div class='playerMessage'>" + 
-					
-						"<div class='playerMessageLeft'>" +
-
-							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
-						
-							"<div class='playerMessageLeftText'>" +
-
-								"<div class='playerMessageUsername'>" +
-									$users[$userId].username + 
-								"</div>" +
-
-								"<div class='playerMessageTimeStamp'>" +
-									"2:13am" + 
-								"</div>" +
-
-							"</div>" +
-						
-						"</div>" +
-
-						"<div class='playerMessageText'>" +
-							_chattext + 
-						"</div>" +
-					
-					"</div>" + 
-				$tlaxcolanslog
-			>>
-			<<else>>
-				<<set 
-				$chatlog = 
-					"<div class='playerMessage'>" + 
-					
-						"<div class='playerMessageLeft'>" +
-
-							'<div class="playerMessageIconDiv"><img class="playerMessageIcon" src = ' + setup.getUserSvgPicture($users[_userId]["role"]) + '></div>' +
-						
-							"<div class='playerMessageLeftText'>" +
-
-								"<div class='playerMessageUsername'>" +
-									$users[$userId].username + 
-								"</div>" +
-
-								"<div class='playerMessageTimeStamp'>" +
-									"2:13am" + 
-								"</div>" +
-
-							"</div>" +
-						
-						"</div>" +
-
-						"<div class='playerMessageText'>" +
-							_chattext + 
-						"</div>" +
-					
-					"</div>" + 
-				$chatlog
-			>>
-			<</if>>
+			<<print addChatMessage(_chattext, $users[$userId].role, setup.getUserSvgPicture($users[_userId]["role"]), $users[$userId].currentChat)>>
 		<</button>>
 	</div>
 </div>
