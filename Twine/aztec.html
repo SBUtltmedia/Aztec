@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="173" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="232" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -3205,16 +3205,30 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		&lt;br&gt;
 		&lt;&lt;textbox _twineKey _userId &quot;Control: Variables (Users)&quot; &gt;&gt;
 		&lt;br&gt;
-
+	&lt;&lt;print $users[_userId]&gt;&gt;
+	&lt;&lt;if $users[_userId][&quot;stats&quot;]&gt;&gt;
 		&lt;&lt;for _varKey, _varVal range _userData&gt;&gt;
 			&lt;&lt;if  _varKey == &quot;stats&quot;&gt;&gt;
 				/* Goes through list of all stats */
 				&lt;&lt;for _statKey, _statVal range _varVal&gt;&gt;
+					/* Same as _statKey but with $ in front */
 					&lt;&lt;set _twineKey = `$users[&#39;${_userId}&#39;][&quot;stats&quot;][&#39;${ _statKey}&#39;]`&gt;&gt;
 					&lt;&lt;print `${_userName}&#39;s ${_statKey}`&gt;&gt;
 					&lt;br&gt;
-					&lt;&lt;textbox _twineKey _statVal &gt;&gt;
+					&lt;&lt;set _keyType = (typeof _statVal)&gt;&gt;
+
+					&lt;&lt;switch (_keyType)&gt;&gt;
+						&lt;&lt;case &quot;number&quot;&gt;&gt;
+							&lt;&lt;numberbox _twineKey _statVal &gt;&gt;
+						&lt;&lt;case &quot;string&quot;&gt;&gt;
+							&lt;&lt;textbox _twineKey _statVal &gt;&gt;
+						&lt;&lt;case &quot;boolean&quot;&gt;&gt;
+							&lt;&lt;checkbox _twineKey _statVal !_statVal&gt;&gt;
+						&lt;&lt;default&gt;&gt;
+					&lt;&lt;/switch&gt;&gt;
 					&lt;br&gt;
+
+
 				&lt;&lt;/for&gt;&gt;
 			&lt;&lt;else&gt;&gt;
 				/* Goes through all user variables (besides stats) */
@@ -3222,13 +3236,23 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 				&lt;&lt;print JSON.stringify(_twineKey)&gt;&gt;
 				&lt;&lt;print`${_userName}&#39;s ${_varKey}`&gt;&gt;
 				&lt;br&gt;
-				&lt;&lt;textbox _twineKey _varVal &gt;&gt;
+				&lt;&lt;set _keyType = (typeof _varVal)&gt;&gt;
+					&lt;&lt;switch (_keyType)&gt;&gt;
+						&lt;&lt;case &quot;number&quot;&gt;&gt;
+							&lt;&lt;numberbox _twineKey _varVal &gt;&gt;
+						&lt;&lt;case &quot;string&quot;&gt;&gt;
+							&lt;&lt;textbox _twineKey _varVal &gt;&gt;
+						&lt;&lt;case &quot;boolean&quot;&gt;&gt;
+							&lt;&lt;checkbox _twineKey _varVal !_varVal&gt;&gt;
+						&lt;&lt;default&gt;&gt;
+					&lt;&lt;/switch&gt;&gt;
 				&lt;br&gt;
 
 			&lt;&lt;/if&gt;&gt;
 		&lt;&lt;/for&gt;&gt;
 		&lt;br&gt;
 		&lt;br&gt;
+		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;
 
@@ -6172,6 +6196,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
 		&lt;&lt;set _text = Story.get(passage()).processText()&gt;&gt;
 		&lt;&lt;script&gt;&gt;
+		// console.log($(&quot;#passages&quot;).children()[0].innerHTML)
 			let text = State.getVar(&quot;_text&quot;);
 			text = text.replaceAll(/\/\*[^\/]*\//ig, &#39;&#39;);
 			text = text.replaceAll(/&lt;&lt;(?:.*?)&gt;&gt;/ig, &#39;&#39;);
@@ -8201,6 +8226,23 @@ they will be directed to this temp user */
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;&lt;if ndef $users[&quot;15&quot;]&gt;&gt;
+&lt;&lt;set $users[&quot;15&quot;] = {
+		&quot;stats&quot; : {
+			&quot;Loyalty&quot; : 0,
+			&quot;Strength&quot; : 0,
+			&quot;Wisdom&quot; : 0
+		},
+		&quot;character&quot; : &quot;God&quot;,
+		&quot;faction&quot; : &quot;Aztecs&quot;,
+		&quot;isLeader&quot; : &quot;God&quot;,
+		&quot;lastSeen&quot; : 0,
+		&quot;passage&quot; : &quot;Name Not Recognized&quot;,
+		&quot;role&quot; : &quot;God&quot;,
+		&quot;username&quot; : &quot;God&quot;
+	}&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 /* Intialize faction data */
 &lt;&lt;if ndef $factions&gt;&gt;
 	&lt;&lt;set $factions = {
@@ -8237,7 +8279,7 @@ they will be directed to this temp user */
 
 /* inits userdata in $users */
 
-&lt;&lt;if ndef $users[$userId] || !(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))&gt;&gt;
+&lt;&lt;if  $userId != 15 &amp;&amp; (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))) &gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
 &lt;script&gt;
 console.log(&quot;new user detected&quot;)
