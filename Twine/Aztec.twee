@@ -7061,10 +7061,10 @@ You have already completed your quest to Malinalco, and you have offered all the
 
 Your team has accumulated <<print $Quest_Points_A>> points. <br>
 <br>
-<<if $Quest_Points_A >=5>>
+<<if $Quest_Points_A >=10>>
 Congratulations! You've gathered all the materials necessary for your journey.  You may now travel to <<link "Cholula" "Cholula">><<set $Aztecs_currentMap=4>><</link>>.<br>
 <br>
-<<elseif $Quest_Points_A <=4>>
+<<elseif $Quest_Points_A <=9>>
 You cannot yet travel to Cholula, continue your quest to gather all the items necessary to travel.<br>
 <br>
 <</if>>
@@ -7115,10 +7115,10 @@ You have already completed your quest to Malinalco, and you have offered all the
 
 Your team has accumulated <<print $Quest_Points_T>> points. <br>
 <br>
-<<if $Quest_Points_T >=4>>
+<<if $Quest_Points_T >=8>>
 Congratulations! You've gathered all the materials necessary for your journey.  You may now travel to <<link "Cholula" "Cholula">><<set $Tlaxcalans_currentMap=4>><</link>>.<br>
 <br>
-<<elseif $Quest_Points_T <=3>>
+<<elseif $Quest_Points_T <=7>>
 You cannot yet travel to Cholula, continue your quest to gather all the items necessary to travel.<br>
 <br>
 <</if>>
@@ -9223,7 +9223,7 @@ You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Start >=12>>
+<<elseif $Start >=10>>
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
@@ -9518,7 +9518,7 @@ You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Start >=12>>
+<<elseif $Start >=10>>
 
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
