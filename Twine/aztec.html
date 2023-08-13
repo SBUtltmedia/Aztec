@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -6414,10 +6414,10 @@ You have already completed your quest to Malinalco, and you have offered all the
 
 Your team has accumulated &lt;&lt;print $Quest_Points_A&gt;&gt; points. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Quest_Points_A &gt;=5&gt;&gt;
+&lt;&lt;if $Quest_Points_A &gt;=10&gt;&gt;
 Congratulations! You&#39;ve gathered all the materials necessary for your journey.  You may now travel to &lt;&lt;link &quot;Cholula&quot; &quot;Cholula&quot;&gt;&gt;&lt;&lt;set $Aztecs_currentMap=4&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Quest_Points_A &lt;=4&gt;&gt;
+&lt;&lt;elseif $Quest_Points_A &lt;=9&gt;&gt;
 You cannot yet travel to Cholula, continue your quest to gather all the items necessary to travel.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
@@ -6468,10 +6468,10 @@ You have already completed your quest to Malinalco, and you have offered all the
 
 Your team has accumulated &lt;&lt;print $Quest_Points_T&gt;&gt; points. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Quest_Points_T &gt;=4&gt;&gt;
+&lt;&lt;if $Quest_Points_T &gt;=8&gt;&gt;
 Congratulations! You&#39;ve gathered all the materials necessary for your journey.  You may now travel to &lt;&lt;link &quot;Cholula&quot; &quot;Cholula&quot;&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=4&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Quest_Points_T &lt;=3&gt;&gt;
+&lt;&lt;elseif $Quest_Points_T &lt;=7&gt;&gt;
 You cannot yet travel to Cholula, continue your quest to gather all the items necessary to travel.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
@@ -8404,7 +8404,7 @@ You must wait for all the team members to gather for gameplay to begin.&lt;br&gt
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=12&gt;&gt;
+&lt;&lt;elseif $Start &gt;=10&gt;&gt;
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.&lt;br&gt;
 &lt;br&gt;
@@ -8643,7 +8643,7 @@ You must wait for all the team members to gather for gameplay to begin.&lt;br&gt
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Start &gt;=12&gt;&gt;
+&lt;&lt;elseif $Start &gt;=10&gt;&gt;
 
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. &lt;br&gt;
 &lt;br&gt;
