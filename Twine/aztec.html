@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -10916,7 +10916,9 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="324" name="Home" tags="Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="324" name="Home" tags="Done Breaks" position="338,1151" size="100,100">[[Chat]]
+
+/* Creates some bookmarks to switch between pages */
 &lt;div id=&quot;bookmarks&quot;&gt;
 	&lt;img id=&quot;home_bookmark_img&quot; src=&quot;Twine/images/Home/bookmark_home.svg&quot; alt=&quot;Bookmark&quot;&gt;
 	&lt;img id=&quot;stat_bookmark_img&quot; src=&quot;Twine/images/Home/bookmark_star.svg&quot; alt=&quot;Bookmark&quot;&gt;
@@ -11082,7 +11084,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;&lt;if ndef $Tlaxcalanslog&gt;&gt;
 		&lt;&lt;set $Tlaxcalanslog= []&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-
+	
 	/* Create a scope switch for Global and Faction */
 	&lt;div id=&quot;chat-switch&quot;&gt;
 		&lt;&lt;button &quot;Global&quot;&gt;&gt;
@@ -11096,21 +11098,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	/* Fill #chatmessages with $chatlog */
 	&lt;div id=&quot;chatmessages&quot;&gt;
 
-		&lt;&lt;for _id, _chatmsg range State.getVar(`$${$users[$userId].currentChat}log`)&gt;&gt;
-			&lt;&lt;run addChatMessage(_chatmsg.textContent, _chatmsg.userRole, _chatmsg.imgSrc, $users[$userId].currentChat)&gt;&gt;
-		&lt;&lt;/for&gt;&gt;
-
-
-		/* &lt;&lt;if $users[$userId].currentChat == &quot;Aztecs&quot;&gt;&gt;
-			
-			$Aztecslog
-		&lt;&lt;elseif $users[$userId].currentChat == &quot;Spaniards&quot;&gt;&gt;
-			$Spaniardslog
-		&lt;&lt;elseif $users[$userId].currentChat == &quot;Tlaxcalans&quot;&gt;&gt;
-			$Tlaxcalanslog
-		&lt;&lt;else&gt;&gt;
-			$chatlog
-		&lt;&lt;/if&gt;&gt; */
+		&lt;&lt;run displayChatMessages(State.getVar(`$${$users[$userId].currentChat}log`))&gt;&gt;
 
 	&lt;/div&gt;
 
@@ -11483,16 +11471,44 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 
 
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="325" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="325" name="Chat" tags="" position="350,101" size="100,100">&lt;&lt;if ndef $chattlog &gt;&gt;
+	&lt;&lt;set $chattlog= {}&gt;&gt;
+	&lt;&lt;for _i,_faction range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;chat&quot;]&gt;&gt;
+		&lt;&lt;set $chattlog[_faction] = []&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+	&lt;&lt;set $users[$userId].currentChat = &quot;chat&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;div id=&quot;chat-switch&quot;&gt;
+	&lt;&lt;button &quot;Global&quot;&gt;&gt;
+		&lt;&lt;set $users[$userId].currentChat = &quot;chat&quot;&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
+	&lt;&lt;button $users[$userId].faction &gt;&gt;
+		&lt;&lt;set $users[$userId].currentChat = $users[$userId].faction&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
+&lt;/div&gt;
+
+&lt;&lt;liveblock&gt;&gt;
+	&lt;&lt;for _i, _msg range $chattlog[$users[$userId].currentChat]&gt;&gt;
+		&lt;&lt;print _msg.message&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+	
+&lt;&lt;/liveblock&gt;&gt;
+
+&lt;&lt;textbox &quot;_chattext&quot; &quot;&quot; autofocus&gt;&gt; 
+
+&lt;&lt;button &quot;Continue&quot;&gt;&gt;
+	&lt;&lt;set $chattlog[$users[$userId].currentChat].push({user:$users[$userId].username, message:_chattext})&gt;&gt;
+&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 	 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 2
 	/* Put link to next passage  */
 	&lt;&lt;link &quot;Next passage (final)&quot; &quot;Side Passage Example Final&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Side Passage Example Final" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="328" name="Side Passage Example Final" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example Final
 	&lt;&lt;print $users[$userId][&quot;sidePassageReturn&quot;]&gt;&gt;
 	
@@ -11501,7 +11517,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;/liveblock&gt;&gt;
 
 
-/* Use this to send users to side passages */</tw-passagedata><tw-passagedata pid="328" name="Side Passage Control" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+/* Use this to send users to side passages */</tw-passagedata><tw-passagedata pid="329" name="Side Passage Control" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	&lt;&lt;set _role = &quot;Aztec_Priest&quot;&gt;&gt;
 	&lt;&lt;set _passage = &quot;Side Passage Control&quot;&gt;&gt;
 
