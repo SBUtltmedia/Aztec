@@ -57,22 +57,26 @@ class ChatMessage {
       playerMessageLeftText.appendChild(playerMessageTimeStamp);
 
       $('#chatmessages').prepend(playerMessage);
-      return playerMessage
     }
 }
 
 
 
 function addChatMessage(textContent, userRole, imgSrc, chatContext) {
-  console.log(textContent, userRole, imgSrc, chatContext)
   let newChatMessage = new ChatMessage(textContent, userRole, imgSrc)
   newChatMessage.render()
-
-  //console.log({newChatMessage, chatContext})
-
-  console.log(`${chatContext} spoke`)
-
+  
   Window.SugarCubeState.variables[`${chatContext}log`].push({textContent, userRole, imgSrc})
+  socket.emit('difference',  Window.SugarCubeState.variables)
+}
+
+function displayChatMessages(chatlog) {
+  setTimeout(() => {
+    chatlog.forEach(function(msgObj) {
+      let newChatMessage = new ChatMessage(msgObj.textContent, msgObj.userRole, msgObj.imgSrc)
+      newChatMessage.render()
+    });
+  }, 100);
 }
 
 // This is what the structure looks like

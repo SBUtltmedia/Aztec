@@ -12147,7 +12147,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
-
+[[Chat]]
 
 /* Creates some bookmarks to switch between pages */
 <div id="bookmarks">
@@ -12315,7 +12315,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<<if ndef $Tlaxcalanslog>>
 		<<set $Tlaxcalanslog= []>>
 	<</if>>
-
+	
 	/* Create a scope switch for Global and Faction */
 	<div id="chat-switch">
 		<<button "Global">>
@@ -12329,21 +12329,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	/* Fill #chatmessages with $chatlog */
 	<div id="chatmessages">
 
-		<<for _id, _chatmsg range State.getVar(`$${$users[$userId].currentChat}log`)>>
-			<<run addChatMessage(_chatmsg.textContent, _chatmsg.userRole, _chatmsg.imgSrc, $users[$userId].currentChat)>>
-		<</for>>
-
-
-		/* <<if $users[$userId].currentChat == "Aztecs">>
-			
-			$Aztecslog
-		<<elseif $users[$userId].currentChat == "Spaniards">>
-			$Spaniardslog
-		<<elseif $users[$userId].currentChat == "Tlaxcalans">>
-			$Tlaxcalanslog
-		<<else>>
-			$chatlog
-		<</if>> */
+		<<run displayChatMessages(State.getVar(`$${$users[$userId].currentChat}log`))>>
 
 	</div>
 
@@ -12717,6 +12703,38 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 /* Use this as a template to make side passages */
+
+:: Chat {"position":"350,101","size":"100,100"}
+<<if ndef $chattlog >>
+	<<set $chattlog= {}>>
+	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
+		<<set $chattlog[_faction] = []>>
+	<</for>>
+	<<set $users[$userId].currentChat = "chat">>
+<</if>>
+
+<div id="chat-switch">
+	<<button "Global">>
+		<<set $users[$userId].currentChat = "chat">>
+	<</button>>
+	<<button $users[$userId].faction >>
+		<<set $users[$userId].currentChat = $users[$userId].faction>>
+	<</button>>
+</div>
+
+<<liveblock>>
+	<<for _i, _msg range $chattlog[$users[$userId].currentChat]>>
+		<<print _msg.message>>
+	<</for>>
+	
+<</liveblock>>
+
+<<textbox "_chattext" "" autofocus>> 
+
+<<button "Continue">>
+	<<set $chattlog[$users[$userId].currentChat].push({user:$users[$userId].username, message:_chattext})>>
+<</button>>
+
 
 :: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
 >>
