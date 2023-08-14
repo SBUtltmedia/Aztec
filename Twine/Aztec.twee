@@ -8903,29 +8903,18 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 :: StoryInit {"position":"4600,1200","size":"100,100"}
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
+<<if ndef $flags>>
+<<set $flags={}>>
+<</if>>
+
 <!-- <<masteraudio volume 0>> -->
 
 /* Gets discord info  */
 
 /* prevents $userId from interacting with multiplayer system */
-<<if ndef $flags>>
-<<set $flags={}>>
-<</if>>
-
-:: StoryInterface
-<!-- https://www.motoslave.net/sugarcube/2/docs/#special-passage-storyinterface --> 
-<!-- take note of 'data-init-passage' and 'data-passage' --> 
-<div id="interface">
-	<div id="menu" data-init-passage="menu"></div>
-	<div id="notifications" data-passage="notifications"></div>
-
-	<!-- you must have one element with #id of 'passages' --> 
-	<div id="passages"></div>
-	<div id="" data-passage=""></div>
-</div>>>
 <<theyrException $userId>>
 <<script>>
-	const loc = location.search
+	const loc = location.search;
 	const searchParams = new URLSearchParams(loc);
 	// State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
