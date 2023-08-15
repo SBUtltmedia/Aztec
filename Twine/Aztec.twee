@@ -4333,14 +4333,6 @@ When you have come to an understanding, you may [[decide how to deal with the st
 
 :: Discuss these options with your men [Done Breaks] {"position":"2450,1150","size":"100,100"}
 <<liveblock>>
-You have discussed these options with your men, and together you have decided you will:<br>
-<br>
-1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $flags["gifts"]="Attack">><</link>>.<br>
-<br>
-2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>><br>
-<br>
-3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>><br>
-<br>
 
 <<switch $users[$userId]["role"]>>
 <<case "Tlacaelel">>
@@ -4348,9 +4340,9 @@ You have discussed these options with your men, and together you have decided yo
 <br>
 1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $flags["gifts"]="Attack">><</link>>.<br>
 <br>
-2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>><br>
+2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>>.<br>
 <br>
- 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>><br>
+ 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>>.<br>
 <br>
 <<case "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
 
@@ -7006,8 +6998,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 <<if ndef $Quest_Points_A >>
 <<set$Quest_Points_A=0 >>
 <</if>>
-Your team has accumulated <<print $Quest_Points_A>> points. <br>
-<br>
+
 Click each of the following glyphs to visit key sites around the Aztec Empire. Once you have read the clue and figured out your location, your quest leader must enter the name of the place into the text box provided. When you have obtained enough resources to survive your journey, you will be given the location of Quetzalcoatl's heart. <br>
 <br>
 Remember: You must enter the proper Nahuatl name and you must use the correct spelling! The text box will remain available until you enter the correct response.<br>
@@ -7015,6 +7006,10 @@ Remember: You must enter the proper Nahuatl name and you must use the correct sp
 
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
+
+Your team has accumulated <<print $Quest_Points_A>> points. <br>
+<br>
+
 <<if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq "" or $Xochimilco_Ans_A isnot "xochimilco">> 
 
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]<br>
@@ -7070,6 +7065,13 @@ You cannot yet travel to Cholula, continue your quest to gather all the items ne
 <</if>>
 
 <<case "Tlaxcalans">>
+<<if ndef $Quest_Points_T >>
+<<set$Quest_Points_T=0 >>
+<</if>>
+
+Your team has accumulated <<print $Quest_Points_T>> points. <br>
+<br>
+
 <<if ndef $Xochimilco_Ans_T or $Xochimilco_Ans_T eq "" or $Xochimilco_Ans_T isnot "xochimilco">> 
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]<br>
 <br>
