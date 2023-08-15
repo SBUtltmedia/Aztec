@@ -3958,14 +3958,6 @@ When you have come to an understanding, you may [[decide how to deal with the st
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="Discuss these options with your men" tags="Done Breaks" position="2450,1150" size="100,100">&lt;&lt;liveblock&gt;&gt;
-You have discussed these options with your men, and together you have decided you will:&lt;br&gt;
-&lt;br&gt;
-1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
-&lt;br&gt;
-2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-&lt;br&gt;
 
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
@@ -3973,9 +3965,9 @@ You have discussed these options with your men, and together you have decided yo
 &lt;br&gt;
 1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
- 3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+ 3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
 
@@ -6359,8 +6351,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 &lt;&lt;if ndef $Quest_Points_A &gt;&gt;
 &lt;&lt;set$Quest_Points_A=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
-Your team has accumulated &lt;&lt;print $Quest_Points_A&gt;&gt; points. &lt;br&gt;
-&lt;br&gt;
+
 Click each of the following glyphs to visit key sites around the Aztec Empire. Once you have read the clue and figured out your location, your quest leader must enter the name of the place into the text box provided. When you have obtained enough resources to survive your journey, you will be given the location of Quetzalcoatl&#39;s heart. &lt;br&gt;
 &lt;br&gt;
 Remember: You must enter the proper Nahuatl name and you must use the correct spelling! The text box will remain available until you enter the correct response.&lt;br&gt;
@@ -6368,6 +6359,10 @@ Remember: You must enter the proper Nahuatl name and you must use the correct sp
 
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
+
+Your team has accumulated &lt;&lt;print $Quest_Points_A&gt;&gt; points. &lt;br&gt;
+&lt;br&gt;
+
 &lt;&lt;if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq &quot;&quot; or $Xochimilco_Ans_A isnot &quot;xochimilco&quot;&gt;&gt; 
 
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]&lt;br&gt;
@@ -6423,6 +6418,13 @@ You cannot yet travel to Cholula, continue your quest to gather all the items ne
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;&lt;if ndef $Quest_Points_T &gt;&gt;
+&lt;&lt;set$Quest_Points_T=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+Your team has accumulated &lt;&lt;print $Quest_Points_T&gt;&gt; points. &lt;br&gt;
+&lt;br&gt;
+
 &lt;&lt;if ndef $Xochimilco_Ans_T or $Xochimilco_Ans_T eq &quot;&quot; or $Xochimilco_Ans_T isnot &quot;xochimilco&quot;&gt;&gt; 
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]&lt;br&gt;
 &lt;br&gt;
