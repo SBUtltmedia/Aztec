@@ -9088,9 +9088,9 @@ they will be directed to this temp user */
 
 <<if  $userId != 15 && (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId]["role"]))) >>
 <<set $users[$userId] = {}>>
-<script>
+<<script>>
 console.log("new user detected")
-</script>
+<</script>>
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
 <<set $users[$userId]["lastSeen"] = 0>>
@@ -9141,7 +9141,7 @@ console.log("new user detected")
 		Engine.show();
 	}
 	$("body").css({opacity:1})
-<</script>>
+<</>>
 
 
 :: Tenochtitlan New Spanish Leader {"position":"2675,9300","size":"100,100"}
