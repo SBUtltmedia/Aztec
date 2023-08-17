@@ -47,17 +47,17 @@ function statPickerInit() {
         
         $("#submitButton").on("click", submitStats)
         $('#stats input[type="number"]').niceNumber({
-            onIncrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, settings, 1),
-            onDecrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, settings, -1),
+            onIncrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, 1),
+            onDecrement: ($currentInput, amount, settings) => changeHelper($currentInput, amount, -1),
         });
 
         disableButtons();
         
-    }, 0);
+    }, 500);
     return ""
 }
 
-function changeHelper($currentInput, amount, settings, direction) {
+function changeHelper($currentInput, amount, direction) {
     if (amount < 0) {
         $currentInput.val($currentInput.val() - direction);
         return

@@ -3,8 +3,13 @@
 import { execSync } from 'child_process';
 import { createRequire } from "module";
 import { exit } from 'process';
+import gitApiIO from './gitApiIO.js';
+
 const require = createRequire(import.meta.url);
 const configObj = require('./config.json')
+const base64 = require('base-64');
+let content = require('./initVars.json');
+content = base64.encode(JSON.stringify(content));
 
 // Checks command line arguments for app name
 const app =configObj.serverconf.fileName;
@@ -56,7 +61,10 @@ for (let i = startingAppId ; i <=  endingAppId; i++) {
         commands.push(command);
        // console.log `${key}=${configVars[key]}`;
     }
-console.log(configVars)
+
+    //creates json files on github repo for backup purposes
+    let gitApi = new gitApiIO({...configObj.serverConf, appIndex: i});
+    gitApi.setupFileAPI(content);
 
     // Execute commands
     for (let command of commands) {
