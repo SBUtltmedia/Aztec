@@ -21,6 +21,7 @@ class gitApiIO{
     **/
     constructor(serverConf, isTest=false) {
         this.serverConf = serverConf
+        this.serverConf.fileName = `${this.serverConf.fileName}-${this.serverConf.appIndex}.json`
         this.test = isTest;
         console.log("config is", serverConf)
         console.log("isTest", isTest)
@@ -90,7 +91,7 @@ class gitApiIO{
             }})
     }
 
-    /**Retrieves file specified by serverConf on github 
+    /**Retrieves file specified by serverConf on github via REST api
      * 
      * @returns {object} response containing last saved game state in the form of a JSON. To be loaded
      * into SugarCubeState.variables
@@ -101,6 +102,8 @@ class gitApiIO{
             let data = fs.readFileSync(testFile)
             res(data)
         }else{
+
+        //to update a file, it's sha must be retrieved first
         var configGetFile = {
             method: 'get',
             url: `https://api.github.com/repos/${this.serverConf.githubUser}/${this.serverConf.githubRepo}/contents/${this.serverConf.fileName}`,
@@ -119,7 +122,9 @@ class gitApiIO{
         }})
     }
 
-    async setupFileAPI(){
+    //for creating new json files
+    async setupFileAPI(content){
+        console.log(content);
         return new Promise((res,rej)=> {
             if(this.test){
                 console.log("resolved")
@@ -127,53 +132,34 @@ class gitApiIO{
                 res()
             }else{
             let serverConf = this.serverConf
-            var configGetFile = {
-                method: 'get',
+            // console.log(response.data.sha);
+            var data = JSON.stringify({
+                "message": "txt file",
+                "content": `${content}`,
+            });
+            var configPutFile = {
+                method: 'put',
                 url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
                 headers: {
                     'Authorization': `Bearer ${serverConf.githubToken}`,
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+
+                },
+                message: "Commit message",
+                data: data,
             };
-
-            let sha = ""
-            axios(configGetFile)
+            axios(configPutFile)
                 .then(function (response) {
-                    // console.log(response.data.sha);
-                    sha = response.data.sha
-                    
-                    var data = JSON.stringify({
-                        "message": "txt file",
-                        "content": `${content}`,
-                        "sha": sha,
-                    });
-                    var configPutFile = {
-                        method: 'put',
-                        url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
-                        headers: {
-                            'Authorization': `Bearer ${serverConf.githubToken}`,
-                            'Content-Type': 'application/json',
-
-                        },
-                        message: "Commit message",
-                        data: data,
-                    };
-                    axios(configPutFile)
-                        .then(function (response) {
-                            console.log("ffinished")
-                            // console.log(response);
-                            res()
-                        })
-                        .catch(function (error) {
-                            console.log(error)
-                            rej(error)
-
-                        });
-                    })
+                    console.log("ffinished")
+                    // console.log(response);
+                    res()
+                })
                 .catch(function (error) {
                     console.log(error)
                     rej(error)
+
                 });
+
             }})
     }
 }
