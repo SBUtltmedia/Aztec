@@ -4341,14 +4341,6 @@ When you have come to an understanding, you may [[decide how to deal with the st
 
 :: Discuss these options with your men [Done Breaks] {"position":"2450,1150","size":"100,100"}
 <<liveblock>>
-You have discussed these options with your men, and together you have decided you will:<br>
-<br>
-1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $gifts="Attack">><</link>>.<br>
-<br>
-2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $gifts="No">><</link>><br>
-<br>
-3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $gifts="Yes">><</link>><br>
-<br>
 
 <<switch $users[$userId]["role"]>>
 <<case "Tlacaelel">>
@@ -4356,9 +4348,9 @@ You have discussed these options with your men, and together you have decided yo
 <br>
 1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $gifts="Attack">><</link>>.<br>
 <br>
-2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $gifts="No">><</link>><br>
+2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>>.<br>
 <br>
- 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $gifts="Yes">><</link>><br>
+ 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>>.<br>
 <br>
 <<case "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
 
@@ -6819,7 +6811,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 		<<set _currPassage = passage()>>
 		<<set _text = Story.get(passage()).processText()>>
 		<<script>>
-		console.log($("#passages").children()[0].innerHTML)
+		// console.log($("#passages").children()[0].innerHTML)
 			let text = State.getVar("_text");
 			text = text.replaceAll(/\/\*[^\/]*\//ig, '');
 			text = text.replaceAll(/<<(?:.*?)>>/ig, '');
@@ -7014,8 +7006,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 <<if ndef $Quest_Points_A >>
 <<set$Quest_Points_A=0 >>
 <</if>>
-Your team has accumulated <<print $Quest_Points_A>> points. <br>
-<br>
+
 Click each of the following glyphs to visit key sites around the Aztec Empire. Once you have read the clue and figured out your location, your quest leader must enter the name of the place into the text box provided. When you have obtained enough resources to survive your journey, you will be given the location of Quetzalcoatl's heart. <br>
 <br>
 Remember: You must enter the proper Nahuatl name and you must use the correct spelling! The text box will remain available until you enter the correct response.<br>
@@ -7023,6 +7014,10 @@ Remember: You must enter the proper Nahuatl name and you must use the correct sp
 
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
+
+Your team has accumulated <<print $Quest_Points_A>> points. <br>
+<br>
+
 <<if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq "" or $Xochimilco_Ans_A isnot "xochimilco">> 
 
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]<br>
@@ -7069,15 +7064,22 @@ You have already completed your quest to Malinalco, and you have offered all the
 
 Your team has accumulated <<print $Quest_Points_A>> points. <br>
 <br>
-<<if $Quest_Points_A >=5>>
+<<if $Quest_Points_A >=10>>
 Congratulations! You've gathered all the materials necessary for your journey.  You may now travel to <<link "Cholula" "Cholula">><<set $Aztecs_currentMap=4>><</link>>.<br>
 <br>
-<<elseif $Quest_Points_A <=4>>
+<<elseif $Quest_Points_A <=9>>
 You cannot yet travel to Cholula, continue your quest to gather all the items necessary to travel.<br>
 <br>
 <</if>>
 
 <<case "Tlaxcalans">>
+<<if ndef $Quest_Points_T >>
+<<set$Quest_Points_T=0 >>
+<</if>>
+
+Your team has accumulated <<print $Quest_Points_T>> points. <br>
+<br>
+
 <<if ndef $Xochimilco_Ans_T or $Xochimilco_Ans_T eq "" or $Xochimilco_Ans_T isnot "xochimilco">> 
 [img[Twine/images/Glyphs/city_6.png][Xochimilco]]<br>
 <br>
@@ -7123,10 +7125,10 @@ You have already completed your quest to Malinalco, and you have offered all the
 
 Your team has accumulated <<print $Quest_Points_T>> points. <br>
 <br>
-<<if $Quest_Points_T >=4>>
+<<if $Quest_Points_T >=8>>
 Congratulations! You've gathered all the materials necessary for your journey.  You may now travel to <<link "Cholula" "Cholula">><<set $Tlaxcalans_currentMap=4>><</link>>.<br>
 <br>
-<<elseif $Quest_Points_T <=3>>
+<<elseif $Quest_Points_T <=7>>
 You cannot yet travel to Cholula, continue your quest to gather all the items necessary to travel.<br>
 <br>
 <</if>>
@@ -8911,6 +8913,10 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 :: StoryInit {"position":"4600,1200","size":"100,100"}
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
+<<if ndef $flags>>
+<<set $flags={}>>
+<</if>>
+
 <!-- <<masteraudio volume 0>> -->
 
 /* Gets discord info  */
@@ -8918,7 +8924,7 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 /* prevents $userId from interacting with multiplayer system */
 <<theyrException $userId>>
 <<script>>
-	const loc = location.search
+	const loc = location.search;
 	const searchParams = new URLSearchParams(loc);
 	// State.setVar("$userId", searchParams.get('id') || userData.authData.id)
 	State.setVar("$userId", searchParams.get('id') || userData.authData.id)
@@ -9231,7 +9237,7 @@ You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Start >=12>>
+<<elseif $Start >=10>>
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
@@ -9526,7 +9532,7 @@ You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Start >=12>>
+<<elseif $Start >=10>>
 
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
