@@ -1040,7 +1040,7 @@ small font size: 1.7rem
 
 #chatmessages {
 	flex-grow: 1;
-	overflow-y: auto;
+	overflow-y: auto !important;
   display: flex;
   flex-direction: column-reverse;
   padding-left: 10px;
@@ -1050,10 +1050,7 @@ small font size: 1.7rem
   word-wrap:break-word;
 }
 
-#chatmessages::-webkit-scrollbar {
-	width: 0;
-	height: 0;
-}
+
 
 #bookmarks {
   position: absolute;
@@ -1114,5 +1111,3 @@ small font size: 1.7rem
 .playerMessageTimeStamp {
   width: 8rem;
 }
-
-
