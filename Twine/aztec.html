@@ -119,6 +119,7 @@ importScripts([
 	`${urlPrefix}resize.js`,
 	`${urlPrefix}picker.js`,
 	`${urlPrefix}Client.js`,
+	`${urlPrefix}chatMessage.js`,
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js",
 	"https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js",
@@ -197,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="A Friendly Invitation" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -11058,47 +11059,26 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 
 &lt;/div&gt;
-&lt;&lt;liveblock&gt;&gt;
+
 /* Creates the chat */
 &lt;div id=&quot;chat&quot;&gt;
     /* Instantiate a chatlog if it doesnt already exist*/
-	&lt;&lt;if ndef $chatlog&gt;&gt;
-		&lt;&lt;set $chatlog= &quot;&quot;&gt;&gt;
+	&lt;&lt;if ndef $chattlog &gt;&gt;
+		&lt;&lt;set $chattlog= {}&gt;&gt;
+		&lt;&lt;for _i,_faction range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;chat&quot;]&gt;&gt;
+			&lt;&lt;set $chattlog[_faction] = []&gt;&gt;
+		&lt;&lt;/for&gt;&gt;
+		&lt;&lt;set $users[$userId].currentChat = &quot;chat&quot;&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-
-	&lt;&lt;if ndef $aztecslog&gt;&gt;
-		&lt;&lt;set $aztecslog= &quot;&quot;&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-
-	&lt;&lt;if ndef $spaniardslog&gt;&gt;
-		&lt;&lt;set $spaniardslog= &quot;&quot;&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-
-	&lt;&lt;if ndef $tlaxcolanslog&gt;&gt;
-		&lt;&lt;set $tlaxcolanslog= &quot;&quot;&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-
+	
 	/* Create a scope switch for Global and Faction */
 	&lt;div id=&quot;chat-switch&quot;&gt;
 		&lt;&lt;button &quot;Global&quot;&gt;&gt;
-			&lt;&lt;set $users[$userId].currentChat = &quot;GLOBAL&quot;&gt;&gt;
+			&lt;&lt;set $users[$userId].currentChat = &quot;chat&quot;&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 		&lt;&lt;button $users[$userId].faction &gt;&gt;
 			&lt;&lt;set $users[$userId].currentChat = $users[$userId].faction&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
-	&lt;/div&gt;
-
-	/* Fill #chatmessages with $chatlog */
-	&lt;div id=&quot;chatmessages&quot;&gt;
-		&lt;&lt;if $users[$userId].currentChat == &quot;Aztecs&quot;&gt;&gt;
-			$aztecslog
-		&lt;&lt;elseif $users[$userId].currentChat == &quot;Spaniards&quot;&gt;&gt;
-			$spaniardslog
-		&lt;&lt;elseif $users[$userId].currentChat == &quot;Tlaxcolans&quot;&gt;&gt;
-			$tlaxcolanslog
-		&lt;&lt;else&gt;&gt;
-			$chatlog
-		&lt;&lt;/if&gt;&gt;
 	&lt;/div&gt;
 
 	/* create a character limit on the textbox */
@@ -11118,6 +11098,13 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		});
 	&lt;&lt;/script&gt;&gt;
 
+	/* Fill #chatmessages with $chatlog */
+	&lt;&lt;liveblock&gt;&gt;
+	&lt;div id=&quot;chatmessages&quot;&gt;
+		&lt;&lt;run displayChatMessages(State.getVar(`$chattlog[$users[$userId].currentChat]`))&gt;&gt;
+	&lt;/div&gt;
+	&lt;&lt;/liveblock&gt;&gt;
+
 	/* Create the area for users to send messsages to */
 	&lt;div id=&quot;chattextarea&quot;&gt;
 		/* Type messages here */
@@ -11127,131 +11114,11 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		
 		/* Hit send here */
 		&lt;&lt;button &quot;SEND&quot;&gt;&gt;
-			&lt;&lt;if $users[$userId].currentChat == &quot;Aztecs&quot;&gt;&gt;
-				&lt;&lt;set 
-				$aztecslog = 
-					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
-					
-						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
-
-							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
-						
-							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
-									$users[$userId].username + 
-								&quot;&lt;/div&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
-									&quot;2:13am&quot; + 
-								&quot;&lt;/div&gt;&quot; +
-
-							&quot;&lt;/div&gt;&quot; +
-						
-						&quot;&lt;/div&gt;&quot; +
-
-						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
-							_chattext + 
-						&quot;&lt;/div&gt;&quot; +
-					
-					&quot;&lt;/div&gt;&quot; + 
-				$aztecslog
-			&gt;&gt;
-			&lt;&lt;elseif $users[$userId].currentChat == &quot;Spaniards&quot;&gt;&gt;
-				&lt;&lt;set 
-				$spaniardslog = 
-					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
-					
-						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
-
-							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
-						
-							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
-									$users[$userId].username + 
-								&quot;&lt;/div&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
-									&quot;2:13am&quot; + 
-								&quot;&lt;/div&gt;&quot; +
-
-							&quot;&lt;/div&gt;&quot; +
-						
-						&quot;&lt;/div&gt;&quot; +
-
-						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
-							_chattext + 
-						&quot;&lt;/div&gt;&quot; +
-					
-					&quot;&lt;/div&gt;&quot; + 
-				$spaniardslog
-			&gt;&gt;
-			&lt;&lt;elseif $users[$userId].currentChat == &quot;Tlaxcolans&quot;&gt;&gt;
-				&lt;&lt;set 
-				$tlaxcolanslog = 
-					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
-					
-						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
-
-							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
-						
-							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
-									$users[$userId].username + 
-								&quot;&lt;/div&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
-									&quot;2:13am&quot; + 
-								&quot;&lt;/div&gt;&quot; +
-
-							&quot;&lt;/div&gt;&quot; +
-						
-						&quot;&lt;/div&gt;&quot; +
-
-						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
-							_chattext + 
-						&quot;&lt;/div&gt;&quot; +
-					
-					&quot;&lt;/div&gt;&quot; + 
-				$tlaxcolanslog
-			&gt;&gt;
-			&lt;&lt;else&gt;&gt;
-				&lt;&lt;set 
-				$chatlog = 
-					&quot;&lt;div class=&#39;playerMessage&#39;&gt;&quot; + 
-					
-						&quot;&lt;div class=&#39;playerMessageLeft&#39;&gt;&quot; +
-
-							&#39;&lt;div class=&quot;playerMessageIconDiv&quot;&gt;&lt;img class=&quot;playerMessageIcon&quot; src = &#39; + setup.getUserSvgPicture($users[_userId][&quot;role&quot;]) + &#39;&gt;&lt;/div&gt;&#39; +
-						
-							&quot;&lt;div class=&#39;playerMessageLeftText&#39;&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageUsername&#39;&gt;&quot; +
-									$users[$userId].username + 
-								&quot;&lt;/div&gt;&quot; +
-
-								&quot;&lt;div class=&#39;playerMessageTimeStamp&#39;&gt;&quot; +
-									&quot;2:13am&quot; + 
-								&quot;&lt;/div&gt;&quot; +
-
-							&quot;&lt;/div&gt;&quot; +
-						
-						&quot;&lt;/div&gt;&quot; +
-
-						&quot;&lt;div class=&#39;playerMessageText&#39;&gt;&quot; +
-							_chattext + 
-						&quot;&lt;/div&gt;&quot; +
-					
-					&quot;&lt;/div&gt;&quot; + 
-				$chatlog
-			&gt;&gt;
-			&lt;&lt;/if&gt;&gt;
+			&lt;&lt;set $chattlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext})&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/liveblock&gt;&gt;
+
 /* print play status list (discord info, role, etc.) */
 &lt;div id=&quot;players&quot;&gt;
 
@@ -11283,15 +11150,37 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;&lt;script&gt;&gt;
 		
 		function scaleText(x) {
-			return -(0.024) * x + 2.884
+			return -0.00054 * x + 2.6
+		}
+
+		function getLetterWidth(string) {
+			const letterMapSingle = new Map([[&quot; &quot;,24.766],[&quot;!&quot;,25.734],[&quot;\&quot;&quot;,31.984],[&quot;#&quot;,61.578],[&quot;$&quot;,56.156],[&quot;%&quot;,73.25],[&quot;&amp;&quot;,62.172],[&quot;&#39;&quot;,17.438],[&quot;(&quot;,34.188],[&quot;)&quot;,34.766],[&quot;*&quot;,43.078],[&quot;+&quot;,56.703],[&quot;,&quot;,19.641],[&quot;-&quot;,27.594],[&quot;.&quot;,26.328],[&quot;/&quot;,41.219],[&quot;0&quot;,56.156],[&quot;1&quot;,56.156],[&quot;2&quot;,56.156],[&quot;3&quot;,56.156],[&quot;4&quot;,56.156],[&quot;5&quot;,56.156],[&quot;6&quot;,56.156],[&quot;7&quot;,56.156],[&quot;8&quot;,56.156],[&quot;9&quot;,56.156],[&quot;:&quot;,24.219],[&quot;;&quot;,21.156],[&quot;&lt;&quot;,50.844],[&quot;=&quot;,54.891],[&quot;&gt;&quot;,52.25],[&quot;?&quot;,47.219],[&quot;@&quot;,89.797],[&quot;A&quot;,65.234],[&quot;B&quot;,62.266],[&quot;C&quot;,65.094],[&quot;D&quot;,65.578],[&quot;E&quot;,56.844],[&quot;F&quot;,55.281],[&quot;G&quot;,68.125],[&quot;H&quot;,71.297],[&quot;I&quot;,27.203],[&quot;J&quot;,55.188],[&quot;K&quot;,62.703],[&quot;L&quot;,53.813],[&quot;M&quot;,87.313],[&quot;N&quot;,71.297],[&quot;O&quot;,68.75],[&quot;P&quot;,63.094],[&quot;Q&quot;,68.75],[&quot;R&quot;,61.578],[&quot;S&quot;,59.328],[&quot;T&quot;,59.672],[&quot;U&quot;,64.844],[&quot;V&quot;,63.625],[&quot;W&quot;,88.734],[&quot;X&quot;,62.703],[&quot;Y&quot;,60.063],[&quot;Z&quot;,59.875],[&quot;[&quot;,26.516],[&quot;\\&quot;,41.016],[&quot;]&quot;,26.516],[&quot;^&quot;,41.797],[&quot;_&quot;,45.125],[&quot;`&quot;,30.922],[&quot;a&quot;,54.406],[&quot;b&quot;,56.109],[&quot;c&quot;,52.344],[&quot;d&quot;,56.406],[&quot;e&quot;,52.984],[&quot;f&quot;,34.719],[&quot;g&quot;,56.109],[&quot;h&quot;,55.078],[&quot;i&quot;,24.281],[&quot;j&quot;,23.891],[&quot;k&quot;,50.688],[&quot;l&quot;,24.281],[&quot;m&quot;,87.656],[&quot;n&quot;,55.188],[&quot;o&quot;,57.031],[&quot;p&quot;,56.109],[&quot;q&quot;,56.844],[&quot;r&quot;,33.844],[&quot;s&quot;,51.563],[&quot;t&quot;,32.672],[&quot;u&quot;,55.141],[&quot;v&quot;,48.438],[&quot;w&quot;,75.156],[&quot;x&quot;,49.563],[&quot;y&quot;,47.328],[&quot;z&quot;,49.563],[&quot;{&quot;,33.844],[&quot;|&quot;,24.375],[&quot;}&quot;,33.844],[&quot;~&quot;,68.031],[&quot;_median&quot;,55.281]]);
+			const letterMapKern = new Map([[&quot; T&quot;,-1.954],[&quot;\&quot;\&quot;&quot;,-5.218],[&quot;\&quot;&#39;&quot;,-5.219],[&quot;\&quot;A&quot;,-5.859],[&quot;\&quot;a&quot;,-2.453],[&quot;\&quot;c&quot;,-2.875],[&quot;\&quot;d&quot;,-2.89],[&quot;\&quot;e&quot;,-2.874],[&quot;\&quot;g&quot;,-2.874],[&quot;\&quot;m&quot;,-0.984],[&quot;\&quot;n&quot;,-0.984],[&quot;\&quot;o&quot;,-2.968],[&quot;\&quot;p&quot;,-0.984],[&quot;\&quot;q&quot;,-2.891],[&quot;\&quot;s&quot;,-3.906],[&quot;\&quot;w&quot;,0.532],[&quot;&#39;\&quot;&quot;,-5.219],[&quot;&#39;&#39;&quot;,-5.235],[&quot;&#39;A&quot;,-5.859],[&quot;&#39;a&quot;,-2.453],[&quot;&#39;c&quot;,-2.876],[&quot;&#39;d&quot;,-2.891],[&quot;&#39;e&quot;,-2.891],[&quot;&#39;g&quot;,-2.891],[&quot;&#39;m&quot;,-0.985],[&quot;&#39;n&quot;,-0.985],[&quot;&#39;o&quot;,-2.985],[&quot;&#39;p&quot;,-0.984],[&quot;&#39;q&quot;,-2.891],[&quot;&#39;s&quot;,-3.907],[&quot;&#39;w&quot;,0.531],[&quot;(V&quot;,0.968],[&quot;(W&quot;,0.859],[&quot;(Y&quot;,1.061],[&quot;,\&quot;&quot;,-8.313],[&quot;,&#39;&quot;,-8.313],[&quot;.\&quot;&quot;,-8.312],[&quot;.&#39;&quot;,-8.313],[&quot;//&quot;,-10.954],[&quot;A\&quot;&quot;,-5.859],[&quot;A&#39;&quot;,-5.859],[&quot;A?&quot;,-2.969],[&quot;AC&quot;,-0.531],[&quot;AG&quot;,-0.546],[&quot;AO&quot;,-0.531],[&quot;AQ&quot;,-0.531],[&quot;AT&quot;,-6.297],[&quot;AU&quot;,-0.828],[&quot;AV&quot;,-4.25],[&quot;AW&quot;,-3.374],[&quot;AY&quot;,-4.594],[&quot;Ao&quot;,-0.577],[&quot;At&quot;,-0.828],[&quot;Au&quot;,-0.547],[&quot;Av&quot;,-2.438],[&quot;Aw&quot;,-1.609],[&quot;Ay&quot;,-2.453],[&quot;Az&quot;,0.594],[&quot;BT&quot;,-1.329],[&quot;BV&quot;,-1.172],[&quot;BY&quot;,-2.688],[&quot;C)&quot;,-1.266],[&quot;CT&quot;,-1.422],[&quot;C]&quot;,-0.594],[&quot;C}&quot;,-0.829],[&quot;D,&quot;,-4.985],[&quot;D.&quot;,-4.984],[&quot;DA&quot;,-1.015],[&quot;DT&quot;,-1.313],[&quot;DV&quot;,-1.078],[&quot;DX&quot;,-1.078],[&quot;DY&quot;,-2.094],[&quot;DZ&quot;,-1.125],[&quot;ET&quot;,0.968],[&quot;Ec&quot;,-0.922],[&quot;Ed&quot;,-0.938],[&quot;Ee&quot;,-0.937],[&quot;Ef&quot;,-0.876],[&quot;Eg&quot;,-0.937],[&quot;Eo&quot;,-0.922],[&quot;Eq&quot;,-0.938],[&quot;Eu&quot;,-0.844],[&quot;Ev&quot;,-1.266],[&quot;Ew&quot;,-1.078],[&quot;Ey&quot;,-1.281],[&quot;F,&quot;,-11.438],[&quot;F.&quot;,-11.437],[&quot;FA&quot;,-8.296],[&quot;FJ&quot;,-12.906],[&quot;FT&quot;,0.969],[&quot;Fa&quot;,-1.671],[&quot;Fc&quot;,-1.031],[&quot;Fd&quot;,-1.031],[&quot;Fe&quot;,-1.031],[&quot;Fg&quot;,-1.031],[&quot;Fo&quot;,-1.031],[&quot;Fq&quot;,-1.031],[&quot;Fr&quot;,-1.281],[&quot;Fu&quot;,-1.094],[&quot;Fv&quot;,-1.172],[&quot;Fy&quot;,-1.187],[&quot;HA&quot;,0.875],[&quot;HT&quot;,-1.422],[&quot;HX&quot;,0.828],[&quot;HY&quot;,-1.376],[&quot;IA&quot;,0.876],[&quot;IT&quot;,-1.422],[&quot;IX&quot;,0.828],[&quot;IY&quot;,-1.375],[&quot;JA&quot;,-1.078],[&quot;K-&quot;,-3.125],[&quot;KC&quot;,-1.516],[&quot;KG&quot;,-1.531],[&quot;KO&quot;,-1.516],[&quot;KQ&quot;,-1.516],[&quot;Kc&quot;,-1.266],[&quot;Kd&quot;,-1.281],[&quot;Ke&quot;,-1.281],[&quot;Kg&quot;,-1.281],[&quot;Km&quot;,-1.14],[&quot;Kn&quot;,-1.141],[&quot;Ko&quot;,-1.312],[&quot;Kp&quot;,-1.125],[&quot;Kq&quot;,-1.281],[&quot;Ku&quot;,-1.141],[&quot;Kv&quot;,-1.954],[&quot;Kw&quot;,-3.093],[&quot;Ky&quot;,-1.969],[&quot;L\&quot;&quot;,-16.406],[&quot;L&#39;&quot;,-16.407],[&quot;LA&quot;,0.937],[&quot;LC&quot;,-3.173],[&quot;LG&quot;,-3.188],[&quot;LO&quot;,-3.172],[&quot;LQ&quot;,-3.172],[&quot;LT&quot;,-13.422],[&quot;LU&quot;,-2.641],[&quot;LV&quot;,-8.547],[&quot;LW&quot;,-7],[&quot;LY&quot;,-11.673],[&quot;Lu&quot;,-2.157],[&quot;Lv&quot;,-6.485],[&quot;Lw&quot;,-4.5],[&quot;Ly&quot;,-6.5],[&quot;MA&quot;,0.875],[&quot;MT&quot;,-1.423],[&quot;MX&quot;,0.828],[&quot;MY&quot;,-1.376],[&quot;NA&quot;,0.875],[&quot;NT&quot;,-1.422],[&quot;NX&quot;,0.828],[&quot;NY&quot;,-1.376],[&quot;O,&quot;,-4.985],[&quot;O.&quot;,-4.984],[&quot;OA&quot;,-1.015],[&quot;OT&quot;,-1.313],[&quot;OV&quot;,-1.063],[&quot;OX&quot;,-1.078],[&quot;OY&quot;,-2.094],[&quot;OZ&quot;,-1.125],[&quot;P,&quot;,-15.829],[&quot;P.&quot;,-15.828],[&quot;PA&quot;,-6.734],[&quot;PJ&quot;,-9.782],[&quot;PX&quot;,-1.516],[&quot;PZ&quot;,-1.281],[&quot;Pa&quot;,-0.547],[&quot;Pc&quot;,-0.641],[&quot;Pd&quot;,-0.641],[&quot;Pe&quot;,-0.641],[&quot;Pg&quot;,-0.641],[&quot;Po&quot;,-0.641],[&quot;Pq&quot;,-0.641],[&quot;Pt&quot;,0.672],[&quot;Pv&quot;,0.734],[&quot;Py&quot;,0.719],[&quot;QT&quot;,-2.094],[&quot;QV&quot;,-1.359],[&quot;QW&quot;,-0.984],[&quot;QY&quot;,-1.704],[&quot;RT&quot;,-3.906],[&quot;RV&quot;,-0.922],[&quot;RY&quot;,-2.344],[&quot;T &quot;,-1.954],[&quot;T,&quot;,-10.657],[&quot;T-&quot;,-11.328],[&quot;T.&quot;,-10.656],[&quot;TA&quot;,-3.859],[&quot;TC&quot;,-1.375],[&quot;TG&quot;,-1.375],[&quot;TJ&quot;,-11.735],[&quot;TO&quot;,-1.359],[&quot;TQ&quot;,-1.359],[&quot;TS&quot;,-0.781],[&quot;TT&quot;,0.781],[&quot;TV&quot;,0.781],[&quot;TW&quot;,0.719],[&quot;TY&quot;,0.781],[&quot;Ta&quot;,-5.531],[&quot;Tc&quot;,-4.828],[&quot;Td&quot;,-4.844],[&quot;Te&quot;,-4.844],[&quot;Tg&quot;,-4.844],[&quot;Tm&quot;,-5.328],[&quot;Tn&quot;,-5.329],[&quot;To&quot;,-4.828],[&quot;Tp&quot;,-5.328],[&quot;Tq&quot;,-4.844],[&quot;Tr&quot;,-3.672],[&quot;Ts&quot;,-5.657],[&quot;Tu&quot;,-4.657],[&quot;Tv&quot;,-3.516],[&quot;Tw&quot;,-2.797],[&quot;Tx&quot;,-3.766],[&quot;Ty&quot;,-3.531],[&quot;Tz&quot;,-2.922],[&quot;UA&quot;,-1.062],[&quot;V)&quot;,0.984],[&quot;V,&quot;,-11],[&quot;V-&quot;,-1.813],[&quot;V.&quot;,-10.984],[&quot;VA&quot;,-3.656],[&quot;VC&quot;,-0.641],[&quot;VG&quot;,-0.641],[&quot;VO&quot;,-0.625],[&quot;VQ&quot;,-0.625],[&quot;V]&quot;,0.828],[&quot;Va&quot;,-2.25],[&quot;Vc&quot;,-2.141],[&quot;Vd&quot;,-2.156],[&quot;Ve&quot;,-2.156],[&quot;Vg&quot;,-2.156],[&quot;Vo&quot;,-2.234],[&quot;Vq&quot;,-2.156],[&quot;Vr&quot;,-1.469],[&quot;Vu&quot;,-1.375],[&quot;Vv&quot;,-0.532],[&quot;Vy&quot;,-0.547],[&quot;V}&quot;,0.922],[&quot;W)&quot;,0.719],[&quot;W,&quot;,-6.031],[&quot;W-&quot;,-2.937],[&quot;W.&quot;,-6.015],[&quot;WA&quot;,-2.109],[&quot;WT&quot;,0.672],[&quot;W]&quot;,0.578],[&quot;Wa&quot;,-1.624],[&quot;Wc&quot;,-1.516],[&quot;Wd&quot;,-1.531],[&quot;We&quot;,-1.53],[&quot;Wg&quot;,-1.53],[&quot;Wo&quot;,-1.515],[&quot;Wq&quot;,-1.531],[&quot;Wr&quot;,-1.031],[&quot;Wu&quot;,-0.953],[&quot;W}&quot;,0.672],[&quot;X-&quot;,-2.25],[&quot;XC&quot;,-1.234],[&quot;XG&quot;,-1.234],[&quot;XO&quot;,-1.219],[&quot;XQ&quot;,-1.219],[&quot;XV&quot;,0.688],[&quot;Xc&quot;,-1.266],[&quot;Xd&quot;,-1.281],[&quot;Xe&quot;,-1.281],[&quot;Xg&quot;,-1.281],[&quot;Xo&quot;,-1.031],[&quot;Xq&quot;,-1.281],[&quot;Xu&quot;,-1.047],[&quot;Xv&quot;,-1.516],[&quot;Xy&quot;,-1.531],[&quot;Y&amp;&quot;,-1.469],[&quot;Y)&quot;,0.983],[&quot;Y*&quot;,-2.407],[&quot;Y,&quot;,-10.313],[&quot;Y-&quot;,-2.548],[&quot;Y.&quot;,-10.313],[&quot;YA&quot;,-4.594],[&quot;YC&quot;,-1.423],[&quot;YG&quot;,-1.422],[&quot;YJ&quot;,-4.704],[&quot;YO&quot;,-1.407],[&quot;YQ&quot;,-1.407],[&quot;YS&quot;,-0.782],[&quot;YT&quot;,0.828],[&quot;YU&quot;,-4.688],[&quot;YV&quot;,0.874],[&quot;YW&quot;,0.812],[&quot;YX&quot;,0.625],[&quot;YY&quot;,0.874],[&quot;Y]&quot;,0.874],[&quot;Ya&quot;,-3.578],[&quot;Yc&quot;,-3.173],[&quot;Yd&quot;,-3.188],[&quot;Ye&quot;,-3.172],[&quot;Yf&quot;,-1.079],[&quot;Yg&quot;,-3.172],[&quot;Ym&quot;,-1.953],[&quot;Yn&quot;,-1.97],[&quot;Yo&quot;,-3.172],[&quot;Yp&quot;,-1.953],[&quot;Yq&quot;,-3.173],[&quot;Yr&quot;,-1.954],[&quot;Ys&quot;,-2.829],[&quot;Yt&quot;,-1.079],[&quot;Yu&quot;,-1.923],[&quot;Yv&quot;,-0.97],[&quot;Yx&quot;,-1.126],[&quot;Yy&quot;,-0.985],[&quot;Yz&quot;,-1.47],[&quot;Y}&quot;,0.921],[&quot;ZA&quot;,0.625],[&quot;ZC&quot;,-1.281],[&quot;ZG&quot;,-1.281],[&quot;ZO&quot;,-1.281],[&quot;ZQ&quot;,-1.281],[&quot;Zc&quot;,-1.031],[&quot;Zd&quot;,-1.047],[&quot;Ze&quot;,-1.031],[&quot;Zg&quot;,-1.031],[&quot;Zo&quot;,-1.031],[&quot;Zq&quot;,-1.031],[&quot;Zu&quot;,-0.953],[&quot;Zv&quot;,-1.329],[&quot;Zw&quot;,-1.328],[&quot;Zy&quot;,-1.344],[&quot;[J&quot;,-0.892],[&quot;[U&quot;,-0.876],[&quot;a\&quot;&quot;,-3.281],[&quot;a&#39;&quot;,-3.281],[&quot;av&quot;,-0.735],[&quot;ay&quot;,-0.75],[&quot;b\&quot;&quot;,-1.421],[&quot;b&#39;&quot;,-1.422],[&quot;bv&quot;,-0.531],[&quot;bx&quot;,-0.734],[&quot;by&quot;,-0.546],[&quot;bz&quot;,-0.734],[&quot;c\&quot;&quot;,-0.531],[&quot;c&#39;&quot;,-0.532],[&quot;e\&quot;&quot;,-0.687],[&quot;e&#39;&quot;,-0.688],[&quot;ev&quot;,-0.641],[&quot;ey&quot;,-0.64],[&quot;f\&quot;&quot;,0.781],[&quot;f&#39;&quot;,0.781],[&quot;f)&quot;,0.984],[&quot;f]&quot;,0.874],[&quot;fc&quot;,-1.172],[&quot;fd&quot;,-1.172],[&quot;fe&quot;,-1.172],[&quot;fg&quot;,-1.172],[&quot;fi&quot;,-3.625],[&quot;fl&quot;,-2.203],[&quot;fq&quot;,-1.172],[&quot;f}&quot;,0.921],[&quot;h\&quot;&quot;,-5.078],[&quot;h&#39;&quot;,-5.079],[&quot;kc&quot;,-0.97],[&quot;kd&quot;,-0.985],[&quot;ke&quot;,-0.984],[&quot;kg&quot;,-0.984],[&quot;kq&quot;,-0.985],[&quot;m\&quot;&quot;,-5.078],[&quot;m&#39;&quot;,-5.094],[&quot;n\&quot;&quot;,-5.078],[&quot;n&#39;&quot;,-5.095],[&quot;o\&quot;&quot;,-6.64],[&quot;o&#39;&quot;,-6.641],[&quot;ov&quot;,-0.719],[&quot;ox&quot;,-1.016],[&quot;oy&quot;,-0.734],[&quot;oz&quot;,-0.781],[&quot;p\&quot;&quot;,-1.421],[&quot;p&#39;&quot;,-1.422],[&quot;pv&quot;,-0.531],[&quot;px&quot;,-0.734],[&quot;py&quot;,-0.546],[&quot;pz&quot;,-0.734],[&quot;r\&quot;&quot;,0.781],[&quot;r&#39;&quot;,0.781],[&quot;r,&quot;,-6.016],[&quot;r.&quot;,-6.016],[&quot;ra&quot;,-1.969],[&quot;rc&quot;,-0.922],[&quot;rd&quot;,-0.938],[&quot;re&quot;,-0.937],[&quot;rf&quot;,0.734],[&quot;rg&quot;,-0.937],[&quot;ro&quot;,-0.969],[&quot;rq&quot;,-0.938],[&quot;rt&quot;,2.437],[&quot;rv&quot;,0.874],[&quot;rw&quot;,0.828],[&quot;ry&quot;,0.859],[&quot;to&quot;,-0.969],[&quot;v\&quot;&quot;,0.734],[&quot;v&#39;&quot;,0.733],[&quot;v,&quot;,-5.235],[&quot;v.&quot;,-5.235],[&quot;va&quot;,-0.735],[&quot;vc&quot;,-0.626],[&quot;vd&quot;,-0.641],[&quot;ve&quot;,-0.641],[&quot;vf&quot;,0.64],[&quot;vg&quot;,-0.641],[&quot;vo&quot;,-0.719],[&quot;vq&quot;,-0.641],[&quot;w,&quot;,-6.063],[&quot;w.&quot;,-6.062],[&quot;xc&quot;,-0.97],[&quot;xd&quot;,-0.985],[&quot;xe&quot;,-0.984],[&quot;xg&quot;,-0.984],[&quot;xo&quot;,-0.969],[&quot;xq&quot;,-0.985],[&quot;y\&quot;&quot;,0.719],[&quot;y&#39;&quot;,0.718],[&quot;y,&quot;,-5.25],[&quot;y.&quot;,-5.234],[&quot;ya&quot;,-0.75],[&quot;yc&quot;,-0.641],[&quot;yd&quot;,-0.656],[&quot;ye&quot;,-0.64],[&quot;yf&quot;,0.625],[&quot;yg&quot;,-0.64],[&quot;yo&quot;,-0.734],[&quot;yq&quot;,-0.656],[&quot;zc&quot;,-0.782],[&quot;zd&quot;,-0.781],[&quot;ze&quot;,-0.781],[&quot;zg&quot;,-0.781],[&quot;zo&quot;,-0.781],[&quot;zq&quot;,-0.782],[&quot;{J&quot;,-0.985],[&quot;{U&quot;,-0.969]]);
+
+			let letterWidth = 0;
+
+			const letterSplit = [...string];
+
+			for (const [key, letter] of letterSplit.entries()) {
+				letterWidth += letterMapSingle.get(letter) || letterMapSingle.get(&#39;_median&#39;);
+
+				if (key !== letterSplit.length - 1) {
+					letterWidth += letterMapKern.get(`${letter}${letterSplit[key+1]}`) || 0;
+				}
+			}
+
+			console.log(letterWidth);
+			return letterWidth;
 		}
 			
 		setTimeout(() =&gt; {
 			let element = $(&quot;#printUserRoleClient&quot;)[0];
 			if (!element) { return; }
-			let elementLength = $(&quot;#printUserRoleClient&quot;).html().length;
+			let elementLength = getLetterWidth($(&quot;#printUserRoleClient&quot;).html());
 			element.style.fontSize = scaleText(elementLength) + &#39;rem&#39;;
 		}, 100);
+
+		
 		
 	&lt;&lt;/script&gt;&gt;
 
