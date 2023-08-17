@@ -422,7 +422,7 @@ Read his account here:
 HOW DO WE ADD DIAZ'S ACCOUNT?  LINK TO A GOOGLE BOOK VERSION?
 
  
-Spaniards and Tlaxcalans, based on everything you've just read, what would you like to ask the Aztecs? Go to the Go to the main discussion board, where each of you must post at least one question to your hosts.
+Spaniards and Tlaxcalans, based on everything you've just read, what would you like to ask the Aztecs? Go to the main discussion board, where each of you must post at least one question to your hosts.
 Aztecs, you must respond to all questions in order to advance to the next stage of the game. This must be complete by 11:59 pm DAY 14.
 Remember, your journey is far from over, and this is a rare opportunity for everybody to gather information about the other factions. What you ask--or answer--now could make all the difference between life or death, glory or sacrifice, later.
 
@@ -2428,7 +2428,7 @@ The battle is like nothing you've seen before. The stakes are high and this will
 
 
 :: Back to the Library Yet Again {"position":"2300,8675","size":"100,100"}
-<<theyr>>
+
 Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an 'A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there's the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].<br>
@@ -4941,8 +4941,7 @@ This city is <<textbox "$Malinalco_Ans_T" "">><br>
 
 
 :: Malinalco 2 [Done Breaks] {"position":"2675,300","size":"100,100"}
-<<theyr>>
-<<theyr>>
+
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Malinalco_Ans_A>><br>
@@ -4985,7 +4984,7 @@ Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to
 <br>
 <</if>>
 <</switch>>
-<</theyr>>
+
 
 
 :: Malinche Answers {"position":"1800,275","size":"100,100"}
@@ -5984,6 +5983,13 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 
 :: Spaniards decide whether to mutiny {"position":"1775,1750","size":"100,100"}
 <<liveblock>>
+<<if ndef $Mut_Cor>>
+<<set $Mut_Cor=0 >>
+<</if>>
+<<if ndef $Mutiny_Voted>>
+<<set $Mutiny_Voted=0 >>
+<</if>>
+
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?<br>
 <br>
 
@@ -5997,6 +6003,12 @@ Vote <<link "Olid" "Mutiny Outcome">><<set $Mut_Olid = $Mut_Olid + 1>><<set $Mut
 
 :: Mutiny in Veracruz [Done Breaks] {"position":"1525,1675","size":"100,100"}
 <<liveblock>>
+<<if ndef $Mutiny>>
+<<set $Mutiny=0 >>
+<</if>>
+<<if ndef $Mutiny_Voted>>
+<<set $Mutiny_Voted=0 >>
+<</if>>
 <<switch $users[$userId]["role"]>>
 <<case "Olid">>
 
@@ -6480,7 +6492,7 @@ Your curiosity about these frightful Mexica is finally satisfied when a delegati
 <br>
 <<print $Span_Leader>> responds to the men. He tells them that you've traveled many miles to meet their great and powerful prince and you have no fear of the journey that lies ahead. He gives the men gifts of beads and linen shirts to take back and asks that they convey his request for a meeting.<br>
 <br>
-Go to the Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.<br>
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.<br>
 <br>
 <<if $TL_Attacks is "No">>
 Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
@@ -6516,7 +6528,7 @@ You first lay eyes upon the strangers at the beach, and they are precisely as yo
 <br>
 Having decided not to deliver Moctezuma's gifts, you simply deliver his message, advising the strangers not to make the journey inland. It is known that they want to meet your leader in person, but such a meeting is not necessary, you tell them. The road is long and dangerous. The strangers refuse your warning, however, and ask you to deliver their request to Moctezuma. They present you with gifts of beads and fine cloth to take back upon your return. <br>
 <br>
-Go to the Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.<br>
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.<br>
 <br>
 <<if $TL_Attacks is "No">>
 
@@ -7058,7 +7070,7 @@ You have already completed your quest to Azcapotzalco, and you have all the slav
 [img[Twine/images/Glyphs/city_4.png][Malinalco]]<br>
 <br>
 <<elseif $Malinalco_Ans_A is "malinalco">>
-You have already completed your quest to Malinalco, and you have offered all the blood you can afford to loose.<br>
+You have already completed your quest to Malinalco, and you have offered all the blood you can afford to lose.<br>
 <br>
 <</if>>
 
@@ -11359,7 +11371,7 @@ You attack the foreigners, but you've moved too soon! You cannot overpower the s
 <br>
 Hopefully, this doesn't leave you vulnerable down the road! If only you had been more patient!<br>
 <br>
-<<link "Return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>> and regroup.<br>
+<<link "Return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=1>><</link>> and regroup.<br>
 <br>
 
 <</switch>>
