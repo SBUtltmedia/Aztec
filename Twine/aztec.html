@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -368,23 +368,23 @@ Since arriving at the coast of Veracruz, you&#39;ve been visited by emissaries f
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $gifts is &quot;Attack&quot;&gt;&gt;
 
 One day, you hear rumors of a [[delegation approaching|Attack On a Beach in Veracruz]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;No&quot;&gt;&gt;
 
 One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: No Gifts]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;Yes&quot;&gt;&gt;
 
 One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: Gifts]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Talk&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;Talk&quot;&gt;&gt;
 
 You wonder what the next day will bring. Return here to find out.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif ndef $flags[&quot;gifts&quot;] or $flags[&quot;gifts&quot;] eq &quot;&quot;&gt;&gt;
+&lt;&lt;elseif ndef $gifts or $gifts eq &quot;&quot;&gt;&gt;
 
 You wonder what the next day will bring. Return here to find out.&lt;br&gt;
 &lt;br&gt;
@@ -3144,7 +3144,16 @@ New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Maxixcatl&#39;]][&#39;pa
 			&lt;&lt;set _twineKey = `$${ _tempKey}`&gt;&gt;
 			&lt;&lt;print _tempKey&gt;&gt;
 			&lt;br&gt;
-			&lt;&lt;textbox _twineKey _tempVal &quot;Control: Variables&quot; &gt;&gt;
+			&lt;&lt;set _keyType = (typeof _twineKey)&gt;&gt;
+					&lt;&lt;switch (_keyType)&gt;&gt;
+						&lt;&lt;case &quot;number&quot;&gt;&gt;
+							&lt;&lt;numberbox _twineKey _tempVal &gt;&gt;
+						&lt;&lt;case &quot;string&quot;&gt;&gt;
+							&lt;&lt;textbox _twineKey _tempVal &gt;&gt;
+						&lt;&lt;case &quot;boolean&quot;&gt;&gt;
+							&lt;&lt;checkbox _twineKey _tempVal !_tempVal&gt;&gt;
+						&lt;&lt;default&gt;&gt;
+					&lt;&lt;/switch&gt;&gt;
 			&lt;br&gt;
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
@@ -3158,7 +3167,7 @@ New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Maxixcatl&#39;]][&#39;pa
 		&lt;&lt;textbox _twineKey _tempVal &quot;Control: Lookup&quot; &gt;&gt;
 		&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="Side Passage Control" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="Control: Side Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	&lt;&lt;set _role = &quot;Aztec_Priest&quot;&gt;&gt;
 	&lt;&lt;set _newSidePassage = &quot;Side Passage Control&quot;&gt;&gt;
 
@@ -3233,7 +3242,6 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 			&lt;&lt;else&gt;&gt;
 				/* Goes through all user variables (besides stats) */
 				&lt;&lt;set _twineKey = `$users[&#39;${_userId}&#39;][&#39;${ _varKey}&#39;]`&gt;&gt;
-				&lt;&lt;print JSON.stringify(_twineKey)&gt;&gt;
 				&lt;&lt;print`${_userName}&#39;s ${_varKey}`&gt;&gt;
 				&lt;br&gt;
 				&lt;&lt;set _keyType = (typeof _varVal)&gt;&gt;
@@ -3394,8 +3402,8 @@ Tlaxcalan Omens is currently set to:  &lt;&lt;print $Tl_Omens&gt;&gt;.&lt;br&gt;
 Has the hold been cleared? &lt;b&gt;&lt;&lt;if $Tl_Omens eq &quot;&quot; or ndef $Tl_Omens&gt;&gt; No &lt;&lt;else&gt;&gt; Yes&lt;&lt;/if&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
 &lt;b&gt;Aztecs meet the Spaniards:&lt;/b&gt; &lt;i&gt;This holds players until the Aztecs decide how to approach the Spaniards on the beach, with gifts, emptyhanded, or aggressively.&lt;/i&gt;&lt;br&gt;
-Gifts is currently set to:  &lt;&lt;print $flags[&quot;gifts&quot;]&gt;&gt;.&lt;br&gt;
-Has the hold been cleared? &lt;b&gt;&lt;&lt;if $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt; No &lt;&lt;else&gt;&gt; Yes&lt;&lt;/if&gt;&gt;&lt;/b&gt;&lt;br&gt;
+Gifts is currently set to:  &lt;&lt;print $gifts&gt;&gt;.&lt;br&gt;
+Has the hold been cleared? &lt;b&gt;&lt;&lt;if $gifts eq &quot;&quot; or ndef $gifts&gt;&gt; No &lt;&lt;else&gt;&gt; Yes&lt;&lt;/if&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
 &lt;b&gt;The Mutiny:&lt;/b&gt; &lt;i&gt;Tallies the number of votes that have been cast and whether for or against the Mutiny. Players are held until all 5 Spaniards have voted on whether or not to mutiny.&lt;/i&gt;&lt;br&gt;
 Mutiny Status: &lt;&lt;print $Mutiny&gt;&gt;. &lt;i&gt;If the total is greater than 3, there is a mutiny and a new leader.  If the total is less than -6, the leader of the mutiny chickened out. Otherwise, gameplay continues with the current leader in place.&lt;/i&gt;
@@ -3960,39 +3968,39 @@ When you have come to an understanding, you may [[decide how to deal with the st
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="Discuss these options with your men" tags="Done Breaks" position="2450,1150" size="100,100">&lt;&lt;liveblock&gt;&gt;
 You have discussed these options with your men, and together you have decided you will:&lt;br&gt;
 &lt;br&gt;
-1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
 You have discussed these options with your men, and together you have decided you will:&lt;br&gt;
 &lt;br&gt;
-1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
- 3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+ 3. &lt;&lt;link &quot;Approach with the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
 
-&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $gifts is &quot;Attack&quot;&gt;&gt;
 
 You have discussed it and together decided you will attack. You are wary of the strangers and believes the course of action is to catch them off guard. These pale men will surely be overwhelmed by a [[show of Aztec force|Attack On a Beach in Veracruz]].&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;No&quot;&gt;&gt;
 You have discussed it and together decided you question Moctezuma&#39;s decision to offer gifts.  You will approach the strangers and inquire about their intentions, but you will not offer the gifts. You [[approach the strangers|On a Beach in Veracruz: No Gifts]] with empty hands and nervous hearts.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;Yes&quot;&gt;&gt;
 You have discussed it and together decided to follow Moctezuma&#39;s directions. You will offer the gifts and gather as much information as you can about the pale men and their intentions. You [[approach the strangers|On a Beach in Veracruz: Gifts]] with the gifts Moctezuma provided you with.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt;
+&lt;&lt;elseif $gifts eq &quot;&quot; or ndef $gifts&gt;&gt;
 Tlacaelel has not yet entered your decision.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
@@ -6192,18 +6200,18 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
-	&lt;&lt;if !Object.keys($theyrPrivateVars[$userId][&quot;passageHistory&quot;]).includes(passage())&gt;&gt;
+	&lt;&lt;if $theyrPrivateVars[$userId] &amp;&amp; !Object.keys($theyrPrivateVars[$userId][&quot;passageHistory&quot;]).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
 		&lt;&lt;set _text = Story.get(passage()).processText()&gt;&gt;
 		&lt;&lt;script&gt;&gt;
-		// console.log($(&quot;#passages&quot;).children()[0].innerHTML)
+		console.log($(&quot;#passages&quot;).children()[0].innerHTML)
 			let text = State.getVar(&quot;_text&quot;);
 			text = text.replaceAll(/\/\*[^\/]*\//ig, &#39;&#39;);
 			text = text.replaceAll(/&lt;&lt;(?:.*?)&gt;&gt;/ig, &#39;&#39;);
 			text = text.replaceAll(/&lt;[^&gt;]*&gt;/ig, &#39;&#39;);
 			State.setVar(&quot;_text&quot;, text);
 		&lt;&lt;/script&gt;&gt;
-		&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${State.getVar(&quot;_text&quot;)}`)&gt;&gt;
+			&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${State.getVar(&quot;_text&quot;)}`)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 &lt;&lt;for _i, _passageEnd range Story.lookup(&quot;tags&quot;,&quot;sidePassageEnd&quot;)&gt;&gt;
@@ -8108,7 +8116,7 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 	// State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
-	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick)
+	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString(&#39;en-US&#39;, {
@@ -8281,9 +8289,9 @@ they will be directed to this temp user */
 
 &lt;&lt;if  $userId != 15 &amp;&amp; (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId][&quot;role&quot;]))) &gt;&gt;
 &lt;&lt;set $users[$userId] = {}&gt;&gt;
-&lt;script&gt;
+&lt;&lt;script&gt;&gt;
 console.log(&quot;new user detected&quot;)
-&lt;/script&gt;
+&lt;&lt;/script&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;role&quot;] = _role&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;username&quot;] = _username&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;lastSeen&quot;] = 0&gt;&gt;
@@ -8490,13 +8498,13 @@ Tlacaelel, you lead the delegation on a long and dangerous journey to the coast.
 &lt;br&gt;
 You must decide how you will proceed if you find the strange men you seek. Choose from the following options:&lt;br&gt;
 &lt;br&gt;
-1.  You trust Moctezuma&#39;s instincts and will follow his instructions. You will &lt;&lt;link &quot;offer the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and gather as much information as you can about the pale men and their intentions.&lt;br&gt;
+1.  You trust Moctezuma&#39;s instincts and will follow his instructions. You will &lt;&lt;link &quot;offer the gifts&quot; &quot;On a Beach in Veracruz: Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and gather as much information as you can about the pale men and their intentions.&lt;br&gt;
 &lt;br&gt;
-2. You agree with Moctezuma&#39;s decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will &lt;&lt;link &quot;not offer the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+2. You agree with Moctezuma&#39;s decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will &lt;&lt;link &quot;not offer the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-3.  You disagree with Moctezuma&#39;s plan. You are wary of the strangers and believe the smartest move is to catch them off guard with &lt;&lt;link &quot;an immediate attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;run changeStats(&quot;Tlacaelel&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cuauhtemoc&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cacamatzin&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Pochteca&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+3.  You disagree with Moctezuma&#39;s plan. You are wary of the strangers and believe the smartest move is to catch them off guard with &lt;&lt;link &quot;an immediate attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;run changeStats(&quot;Tlacaelel&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cuauhtemoc&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Cacamatzin&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;run changeStats(&quot;Pochteca&quot;,{&quot;Wisdom&quot;:0,&quot;Loyalty&quot;:0,&quot;Strength&quot;:-1})&gt;&gt;&lt;&lt;set $gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
  &lt;br&gt;
-4.  You are wary of making a hasty decision and &lt;&lt;link &quot;seek the counsel of your men&quot; &quot;Discuss these options with your men&quot;&gt;&gt;&lt;&lt;set $flags[&quot;gifts&quot;]=&quot;Talk&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+4.  You are wary of making a hasty decision and &lt;&lt;link &quot;seek the counsel of your men&quot; &quot;Discuss these options with your men&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Talk&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
 
@@ -8504,19 +8512,19 @@ You have been ordered by Moctezuma to make the long and dangerous journey to the
 &lt;br&gt;
 As Moctezuma&#39;s second in command and the highest ranking among you, it is up to Tlacaelel Xocoyotl to decide how you will proceed if you encounter these strangers. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $gifts is &quot;Attack&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl disagrees with Moctezuma&#39;s plan and prepares you for an attack. He is wary of the strangers and believes the course of action is to catch them off guard. These pale men will surely be overwhelmed by a [[show of Aztec force|Attack On a Beach in Veracruz]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;No&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl questions Moctezuma&#39;s decision to offer gifts.  You will approach the strangers and inquire about their intentions, but you will not offer the gifts. You [[approach the strangers|On a Beach in Veracruz: No Gifts]] with empty hands and nervous hearts.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;Yes&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl instructs you to follow Moctezuma&#39;s directions. You will offer the gifts and gather as much information as you can about the pale men and their intentions. You [[approach the strangers|On a Beach in Veracruz: Gifts]] with the gifts Moctezuma provided you with.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Talk&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;Talk&quot;&gt;&gt;
 
 Tlacaelel Xocoyotl has a difficult decision to make and has decided to seek your counsel. Go to your faction discussion board and decide on the best course of action. You will need to decide from among the following options:&lt;br&gt;
 &lt;br&gt;
@@ -8528,7 +8536,7 @@ Tlacaelel Xocoyotl has a difficult decision to make and has decided to seek your
 &lt;br&gt;
 After you have come to a conclusion on the discussion board, you may [[proceed|Discuss these options with your men]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt;
+&lt;&lt;elseif $gifts eq &quot;&quot; or ndef $gifts&gt;&gt;
 
 You anxiously await his instructions, wondering what lies ahead.&lt;br&gt;
 &lt;br&gt;
@@ -9654,22 +9662,22 @@ The enemy exits the mountain pass. You can barely believe your eyes as they make
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="272" name="Tlaxcala sends spies to Veracruz" tags="Done Breaks" position="2850,1325" size="100,100">&lt;&lt;liveblock&gt;&gt;
 You disguise yourselves as Huastec traders, and you head to the coast of Veracruz.  There, you observe the meeting of the Mexica and the bearded strangers from afar.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $flags[&quot;gifts&quot;] is &quot;Attack&quot;&gt;&gt;
+&lt;&lt;if $gifts is &quot;Attack&quot;&gt;&gt;
 [[You watch your enemies the Mexica attack|Attack On a Beach in Veracruz]] the strangers.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;No&quot;&gt;&gt;
 
 [[You watch an awkward and uncomfortable meeting|On a Beach in Veracruz: No Gifts]] between your enemies and the strangers.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;Yes&quot;&gt;&gt;
 
 [[You watch a friendly meeting|On a Beach in Veracruz: Gifts]] between your enemies and the strangers.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] is &quot;Talk&quot;&gt;&gt;
+&lt;&lt;elseif $gifts is &quot;Talk&quot;&gt;&gt;
 
 All is quiet on the coast.  But keep watch, you sense something will happen.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $flags[&quot;gifts&quot;] eq &quot;&quot; or ndef $flags[&quot;gifts&quot;]&gt;&gt;
+&lt;&lt;elseif $gifts eq &quot;&quot; or ndef $gifts&gt;&gt;
 
 All is quiet on the coast.  But keep watch, you sense something will happen.&lt;br&gt;
 &lt;br&gt;
@@ -11663,7 +11671,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 	&lt;&lt;/script&gt;&gt;
 
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="327" name="Side Passage Example" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="327" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;

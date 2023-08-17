@@ -3415,7 +3415,16 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 			<<set _twineKey = `$${ _tempKey}`>>
 			<<print _tempKey>>
 			<br>
-			<<textbox _twineKey _tempVal "Control: Variables" >>
+			<<set _keyType = (typeof _twineKey)>>
+					<<switch (_keyType)>>
+						<<case "number">>
+							<<numberbox _twineKey _tempVal >>
+						<<case "string">>
+							<<textbox _twineKey _tempVal >>
+						<<case "boolean">>
+							<<checkbox _twineKey _tempVal !_tempVal>>
+						<<default>>
+					<</switch>>
 			<br>
 		<</if>>
 	<</for>>
@@ -3436,7 +3445,7 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 <</liveblock>>
 
 
-:: Side Passage Control [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Control: Side Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 	<<set _role = "Aztec_Priest">>
 	<<set _newSidePassage = "Side Passage Control">>
@@ -3520,7 +3529,6 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 			<<else>>
 				/* Goes through all user variables (besides stats) */
 				<<set _twineKey = `$users['${_userId}']['${ _varKey}']`>>
-				<<print JSON.stringify(_twineKey)>>
 				<<print`${_userName}'s ${_varKey}`>>
 				<br>
 				<<set _keyType = (typeof _varVal)>>
@@ -6807,18 +6815,18 @@ Along your journey, you have met many people. Some have been willing allies of t
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
 /* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
-	<<if !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
+	<<if $theyrPrivateVars[$userId] && !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
 		<<set _currPassage = passage()>>
 		<<set _text = Story.get(passage()).processText()>>
 		<<script>>
-		// console.log($("#passages").children()[0].innerHTML)
+		console.log($("#passages").children()[0].innerHTML)
 			let text = State.getVar("_text");
 			text = text.replaceAll(/\/\*[^\/]*\//ig, '');
 			text = text.replaceAll(/<<(?:.*?)>>/ig, '');
 			text = text.replaceAll(/<[^>]*>/ig, '');
 			State.setVar("_text", text);
 		<</script>>
-		<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${State.getVar("_text")}`)>>
+			<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${State.getVar("_text")}`)>>
 	<</if>>
 	
 <<for _i, _passageEnd range Story.lookup("tags","sidePassageEnd")>>
@@ -9141,7 +9149,7 @@ console.log("new user detected")
 		Engine.show();
 	}
 	$("body").css({opacity:1})
-<</>>
+<</script>>
 
 
 :: Tenochtitlan New Spanish Leader {"position":"2675,9300","size":"100,100"}
@@ -12897,7 +12905,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 /* Use this as a template to make side passages */
 
 
-:: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Side Passage Example [sidePassage Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 	Side passage example 1
 	/* Put link to next passage  */
