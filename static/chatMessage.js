@@ -72,10 +72,10 @@ function addChatMessage(textContent, userRole, imgSrc, chatContext) {
 
 function displayChatMessages(chatlog) {
   setTimeout(() => {
-    chatlog.forEach(function(msgObj) {
-      let newChatMessage = new ChatMessage(msgObj.textContent, msgObj.userRole, msgObj.imgSrc)
+    for (let i = 0; i < chatlog.length; i++) {
+      let newChatMessage = new ChatMessage(chatlog[i]['message'], chatlog[i]['user'], "Twine/images/characters/"+chatlog[i]['user']+".svg")
       newChatMessage.render()
-    });
+    }
   }, 100);
 }
 

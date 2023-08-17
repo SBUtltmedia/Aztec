@@ -12147,8 +12147,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
-[[Chat]]
-
 /* Creates some bookmarks to switch between pages */
 <div id="bookmarks">
 	<img id="home_bookmark_img" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
@@ -12292,28 +12290,16 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 </div>
-<<liveblock>>
+
 /* Creates the chat */
 <div id="chat">
     /* Instantiate a chatlog if it doesnt already exist*/
-	<<if ndef $users[$userId].currentChat>>
-		<<set $users[$userId].currentChat ="chat">>
-	<</if>>
-	
-	<<if ndef $chatlog>>
-		<<set $chatlog= []>>
-	<</if>>
-
-	<<if ndef $Aztecslog>>
-		<<set $Aztecslog= []>>
-	<</if>>
-
-	<<if ndef $Spaniardslog>>
-		<<set $Spaniardslog= []>>
-	<</if>>
-
-	<<if ndef $Tlaxcalanslog>>
-		<<set $Tlaxcalanslog= []>>
+	<<if ndef $chattlog >>
+		<<set $chattlog= {}>>
+		<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
+			<<set $chattlog[_faction] = []>>
+		<</for>>
+		<<set $users[$userId].currentChat = "chat">>
 	<</if>>
 	
 	/* Create a scope switch for Global and Faction */
@@ -12324,13 +12310,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<<button $users[$userId].faction >>
 			<<set $users[$userId].currentChat = $users[$userId].faction>>
 		<</button>>
-	</div>
-
-	/* Fill #chatmessages with $chatlog */
-	<div id="chatmessages">
-
-		<<run displayChatMessages(State.getVar(`$${$users[$userId].currentChat}log`))>>
-
 	</div>
 
 	/* create a character limit on the textbox */
@@ -12350,6 +12329,13 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		});
 	<</script>>
 
+	/* Fill #chatmessages with $chatlog */
+	<<liveblock>>
+	<div id="chatmessages">
+		<<run displayChatMessages(State.getVar(`$chattlog[$users[$userId].currentChat]`))>>
+	</div>
+	<</liveblock>>
+
 	/* Create the area for users to send messsages to */
 	<div id="chattextarea">
 		/* Type messages here */
@@ -12359,11 +12345,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<run addChatMessage(_chattext, $users[$userId].role, setup.getUserSvgPicture($users[_userId]["role"]), $users[$userId].currentChat)>>
+			<<set $chattlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext})>>
 		<</button>>
 	</div>
 </div>
-<</liveblock>>
+
 /* print play status list (discord info, role, etc.) */
 <div id="players">
 
@@ -12703,37 +12689,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 /* Use this as a template to make side passages */
-
-:: Chat {"position":"350,101","size":"100,100"}
-<<if ndef $chattlog >>
-	<<set $chattlog= {}>>
-	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
-		<<set $chattlog[_faction] = []>>
-	<</for>>
-	<<set $users[$userId].currentChat = "chat">>
-<</if>>
-
-<div id="chat-switch">
-	<<button "Global">>
-		<<set $users[$userId].currentChat = "chat">>
-	<</button>>
-	<<button $users[$userId].faction >>
-		<<set $users[$userId].currentChat = $users[$userId].faction>>
-	<</button>>
-</div>
-
-<<liveblock>>
-	<<for _i, _msg range $chattlog[$users[$userId].currentChat]>>
-		<<print _msg.message>>
-	<</for>>
-	
-<</liveblock>>
-
-<<textbox "_chattext" "" autofocus>> 
-
-<<button "Continue">>
-	<<set $chattlog[$users[$userId].currentChat].push({user:$users[$userId].username, message:_chattext})>>
-<</button>>
 
 
 :: Side Passage Example [Done Breaks] {"position":"338,1151","size":"100,100"}
