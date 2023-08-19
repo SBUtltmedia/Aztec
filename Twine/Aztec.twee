@@ -5648,24 +5648,24 @@ These rumors <<link "make you sad" "Sad">><<set $users[$lookup["Aguilar"]]["stat
 
 :: Moctezuma Confidence Vote [Done] {"position":"2375,3250","size":"100,100"}
 <<liveblock>>
-<<if $Moc_Mut_Vote isnot 5>>
+<<if $Moc_Mut_Vote < 5>>
 You wait while your fellow counselors cast their vote.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Moc_Mut_Vote is 5 and $MocMut_Moc is 5>>">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">>
+<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc is 5>>">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">>
 
-<<elseif $Moc_Mut_Vote is 5 and $MocMut_Tla is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">>
+<<elseif $Moc_Mut_Vote is >=5 and $MocMut_Tla is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">>
 
-<<elseif $Moc_Mut_Vote is 5 and $MocMut_Cua is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">>
+<<elseif $Moc_Mut_Vote >=5 and $MocMut_Cua is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">>
 
-<<elseif $Moc_Mut_Vote is 5 and $MocMut_Moc >=3>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">>
+<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc >=3>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">>
 
-<<elseif $Moc_Mut_Vote is 5 and $MocMut_Tla >=3>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">>
+<<elseif $Moc_Mut_Vote >=5 and $MocMut_Tla >=3>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">>
 
-<<elseif $Moc_Mut_Vote is 5 and $MocMut_Cua >=3>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">>
+<<elseif $Moc_Mut_Vote >=5 and $MocMut_Cua >=3>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">>
 
-<<elseif $Moc_Mut_Vote is 5 and $MocMut_Moc <=2 and $MocMut_Tla <=2 and $MocMut_Cua <=2>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Draw">>
+<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc <=2 and $MocMut_Tla <=2 and $MocMut_Cua <=2>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Draw">>
 
 <</if>>
 
