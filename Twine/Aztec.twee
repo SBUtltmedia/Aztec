@@ -2170,7 +2170,7 @@ You wake to the buzz of people talking. You haven't even opened your eyes when y
 <br>
 You get up from your sleeping mat and excitedly make your way outside, where someone informs you that you've called a council meeting tonight. The strangers are on their way to Tenochtitlán and you must decide how to deal with them. To guide you in your decision, you seek the counsel of all those who have been party to recent events.<br>
 <br>
-[[Continue to the Council Meeting|Aztecs Hold a Council Meeting]].  All of your counselors will offer prepared statements, and then you may discuss their positions with them before declaring your intentions.<br>
+<<link "Continue to the Council Meeting" "Aztecs Hold a Council Meeting">><<set $Moc_Proc="0">><</link>>. All of your counselors will offer prepared statements, and then you may discuss their positions with them before declaring your intentions.<br>
 <br>
 <<case "Tlacaelel" or "Cuauhtemoc" or "Cacamatzin" or "Pochteca" or "Aztec_Priest">>
 You wake to the buzz of people talking. You haven't even opened your eyes when you catch the scent of tortillas cooking over an open fire and you know you're back in Tenochtitlán!<br>
