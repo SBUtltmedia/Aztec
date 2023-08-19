@@ -2028,6 +2028,11 @@ When you are satisfied you have heard everything <<print $Aztec_Leader>> has to 
 
 
 :: Aztecs Hold a Council Meeting [Done] {"position":"2375,2975","size":"100,100"}
+
+<<if ndef $Moc_Mut_Vote >>
+<<set $Moc_Mut_Vote=0 >>
+<</if>>
+
 Tlacaelel's Statement: <<print $Tlac_Statement>><br>
 <br>
 Cuauhtemoc's Statement: <<print $Cuauh_Statement>><br>
@@ -5853,6 +5858,22 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 
 :: Moctezuma Makes his Proclamation [Done] {"position":"2375,3125","size":"100,100"}
 <<liveblock>>
+
+<<if ndef $MocMut_Moc>>
+<<set $MocMut_Moc=0>>
+<</if>>
+<<if ndef $MocMut_Tla>>
+<<set $MocMut_Tla=0>>
+<</if>>
+<<if ndef $MocMut_Cua>>
+<<set $MocMut_Cua=0>>
+<</if>>
+<<if ndef $Moc_Mut_Vote>>
+<<set $Moc_Mut_Vote=0>>
+<</if>>
+
+
+
 You may read Moctezuma's Proclamation here:  <<print $Moc_Proc>><br>
 <br>
 <br>
