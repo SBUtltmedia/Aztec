@@ -2427,7 +2427,7 @@ The battle is like nothing you've seen before. The stakes are high and this will
 <</liveblock>>
 
 
-:: Back to the Library Yet Again {"position":"2300,8675","size":"100,100"}
+:: Back to the Library Yet Again Act Four {"position":"2300,8675","size":"100,100"}
 
 Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an 'A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
@@ -6852,7 +6852,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<set $users[$userId]["currentMap"] = 1>>
 
 
-:: Return to the Library_Another Door {"position":"2300,5775","size":"100,100"}
+:: Return to the Library Act Three {"position":"2300,5775","size":"100,100"}
 <<liveblock>>
 <<audio "Library" play>>
 
@@ -6878,7 +6878,7 @@ You hurry toward the library, make your way to the top floor, and there it is: t
 <</liveblock>>
 
 
-:: Return to the Library_Door [Done] {"position":"1975,2700","size":"100,100"}
+:: Return to the Library Act Two [Done] {"position":"1975,2700","size":"100,100"}
 <<liveblock>>
 <<audio "Library" play>>
 
@@ -9422,7 +9422,7 @@ You are waiting for Tlacaelel to input his decision.<br>
 <</liveblock>>
 
 
-:: The Library [Done] {"position":"3875,1275","size":"100,100"}
+:: The Library[Done] {"position":"3875,1275","size":"100,100"}
 <<liveblock>>
 
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
@@ -11157,6 +11157,10 @@ When your work is complete, you may continue <<link "on to the feast" "Everyone 
 
 :: Tlaxcalans Vote on Attacking Spaniards [Done] {"position":"2175,3075","size":"100,100"}
 <<liveblock>>
+<<if ndef $TL_St_Voted >>
+<<set $TL_St_Voted=0 >>
+<</if>>
+
 You sit in the council chamber weighing the arguments made by the other two men.  You measure their wisdom and ambition against your own. Whose statement is most compelling?<br>
 <br>
 <<link "Xicotencatl the Elder" "Tlaxcalan Wisdom Check">><<run changeStats("Xicotencatl_Elder",{"Wisdom":3,"Loyalty":0,"Strength":0})>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>> <br>
