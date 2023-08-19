@@ -2921,6 +2921,10 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 
 
 :: Character assignment and points selection [Done] {"position":"4025,1200","size":"100,100"}
+<<if ndef $Start>>
+<<set$Start=0 >>
+<</if>>
+
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
 You open your eyes and find yourself on a ship. The boom you heard was the sound of cannon fire and you startle as another shot tears through the sky. <br>

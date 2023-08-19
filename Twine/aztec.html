@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -2689,7 +2689,11 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;if ndef $Start&gt;&gt;
+&lt;&lt;set$Start=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
 You open your eyes and find yourself on a ship. The boom you heard was the sound of cannon fire and you startle as another shot tears through the sky. &lt;br&gt;
 &lt;br&gt;
