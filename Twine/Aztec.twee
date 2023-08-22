@@ -6803,22 +6803,41 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 <</script>>
 
+/* <<script>>
+setTimeout(() => {
+	let ret = DOMTest();
+	console.log(ret);
+}, 1000);
+
+// setTimeout(() => {
+// 	console.log($("#passages").children()[0].innerHTML)
+// }, 1000)
+<</script>> */
+
 
 :: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
 /* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
 	<<if $theyrPrivateVars[$userId] && !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
 		<<set _currPassage = passage()>>
-		<<set _text = Story.get(passage()).processText()>>
-		<<script>>
-		// console.log($("#passages").children()[0].innerHTML)
-			let text = State.getVar("_text");
-			text = text.replaceAll(/\/\*[^\/]*\//ig, '');
-			text = text.replaceAll(/<<(?:.*?)>>/ig, '');
-			text = text.replaceAll(/<[^>]*>/ig, '');
-			State.setVar("_text", text);
-		<</script>>
-			<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = (`${passage()}: \n ${State.getVar("_text")}`)>>
+		/* <<set _text = "">> */
+		/* <<set _text = Story.get(passage()).processText()>>
+		/* <<set _text = Scripting.evalTwineScript(_text)>> */
+		/* <<script>>
+
+			console.log("adding history");
+			DOMTest("test");
+
+			// DOMTest();
+			// text = text.replaceAll(/\/\*[^\/]*\//ig, '');
+			// text = text.replaceAll(/<<(?:.*?)>>/ig, '');
+			// text = text.replaceAll(/<[^>]*>/ig, '');
+			
+		<</script>> */ */
+			<<set _text = "">>
+			<<timed 500ms>>
+			<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = $("#passages").children()[0].innerHTML>>
+			<</timed>>
 	<</if>>
 	
 <<for _i, _passageEnd range Story.lookup("tags","sidePassageEnd")>>

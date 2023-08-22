@@ -217,7 +217,7 @@ function changeStats(rolePlay, newStats) {
     let usersObj= Window.SugarCubeState.variables.users;
     let currentUserId = Object.keys(usersObj).find(userId => usersObj[userId].role == rolePlay)
     if(currentUserId == undefined){
-        currentUserId = "test"
+        currentUserId = "NotSeen"
     }
     console.log("user:" , currentUserId)
     let currentUser =usersObj[currentUserId]
@@ -237,6 +237,14 @@ function changeStats(rolePlay, newStats) {
     
     socket.emit('difference', diff);
 }
+
+function DOMTest(passage){
+    let obj = {theyrPrivateVars: {[Window.SugarCubeState.variables.userId] : {passageHistory: {[passage] : "test"}}}};
+    console.log("in dom test", obj)
+    socket.emit("difference", obj)
+}
+
+
 
 
 

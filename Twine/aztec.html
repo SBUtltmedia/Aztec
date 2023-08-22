@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -6190,20 +6190,39 @@ Along your journey, you have met many people. Some have been willing allies of t
 	)
 
 
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
+&lt;&lt;/script&gt;&gt;
+
+/* &lt;&lt;script&gt;&gt;
+setTimeout(() =&gt; {
+	let ret = DOMTest();
+	console.log(ret);
+}, 1000);
+
+// setTimeout(() =&gt; {
+// 	console.log($(&quot;#passages&quot;).children()[0].innerHTML)
+// }, 1000)
+&lt;&lt;/script&gt;&gt; */</tw-passagedata><tw-passagedata pid="172" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
 	&lt;&lt;if $theyrPrivateVars[$userId] &amp;&amp; !Object.keys($theyrPrivateVars[$userId][&quot;passageHistory&quot;]).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
-		&lt;&lt;set _text = Story.get(passage()).processText()&gt;&gt;
-		&lt;&lt;script&gt;&gt;
-		// console.log($(&quot;#passages&quot;).children()[0].innerHTML)
-			let text = State.getVar(&quot;_text&quot;);
-			text = text.replaceAll(/\/\*[^\/]*\//ig, &#39;&#39;);
-			text = text.replaceAll(/&lt;&lt;(?:.*?)&gt;&gt;/ig, &#39;&#39;);
-			text = text.replaceAll(/&lt;[^&gt;]*&gt;/ig, &#39;&#39;);
-			State.setVar(&quot;_text&quot;, text);
-		&lt;&lt;/script&gt;&gt;
-			&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = (`${passage()}: \n ${State.getVar(&quot;_text&quot;)}`)&gt;&gt;
+		/* &lt;&lt;set _text = &quot;&quot;&gt;&gt; */
+		/* &lt;&lt;set _text = Story.get(passage()).processText()&gt;&gt;
+		/* &lt;&lt;set _text = Scripting.evalTwineScript(_text)&gt;&gt; */
+		/* &lt;&lt;script&gt;&gt;
+
+			console.log(&quot;adding history&quot;);
+			DOMTest(&quot;test&quot;);
+
+			// DOMTest();
+			// text = text.replaceAll(/\/\*[^\/]*\//ig, &#39;&#39;);
+			// text = text.replaceAll(/&lt;&lt;(?:.*?)&gt;&gt;/ig, &#39;&#39;);
+			// text = text.replaceAll(/&lt;[^&gt;]*&gt;/ig, &#39;&#39;);
+			
+		&lt;&lt;/script&gt;&gt; */ */
+			&lt;&lt;set _text = &quot;&quot;&gt;&gt;
+			&lt;&lt;timed 500ms&gt;&gt;
+			&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = $(&quot;#passages&quot;).children()[0].innerHTML&gt;&gt;
+			&lt;&lt;/timed&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 &lt;&lt;for _i, _passageEnd range Story.lookup(&quot;tags&quot;,&quot;sidePassageEnd&quot;)&gt;&gt;
