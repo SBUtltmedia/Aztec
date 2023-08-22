@@ -6820,20 +6820,6 @@ setTimeout(() => {
 <<if passage() != "Home">>
 	<<if $theyrPrivateVars[$userId] && !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
 		<<set _currPassage = passage()>>
-		/* <<set _text = "">> */
-		/* <<set _text = Story.get(passage()).processText()>>
-		/* <<set _text = Scripting.evalTwineScript(_text)>> */
-		/* <<script>>
-
-			console.log("adding history");
-			DOMTest("test");
-
-			// DOMTest();
-			// text = text.replaceAll(/\/\*[^\/]*\//ig, '');
-			// text = text.replaceAll(/<<(?:.*?)>>/ig, '');
-			// text = text.replaceAll(/<[^>]*>/ig, '');
-			
-		<</script>> */ */
 			<<set _text = "">>
 			<<timed 500ms>>
 			<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = $("#passages").children()[0].innerHTML>>
@@ -12411,7 +12397,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 					let passageButtonId = $(this).attr("data-passageName");
 					let passage_text = State.getVar(`$theyrPrivateVars[$userId]['passageHistory']["${passageButtonId}"]`);
-					$("#selectedPassageTextContainer").text(passage_text);
+					$("#selectedPassageTextContainer").html(passage_text);
 				});
 			}, 1000);
 		<</script>>
