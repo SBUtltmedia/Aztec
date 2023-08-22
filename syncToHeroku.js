@@ -43,11 +43,16 @@ for (let i = startingAppId; i <= endingAppId; i++) {
     delete configVars['discordChannels']
 
     for (let key of Object.keys(configVars)) {
-        let remoteVal = execSync(`heroku config:get -a ${app}-${i} ${key}`).toString();
+        let remoteVal = execSync(`heroku config:get -a ${app}-${i} ${key}`).toString().trim();
+    
         if (configVars[key] != remoteVal) {
+            console.log("compare",configVars[key],remoteVal)
             let command = `heroku config:set -a ${app}-${i} ${key}=${configVars[key]}`;
             commands.push(command);
             console.log(`${key}=${configVars[key]}`);
+        }
+        else{
+           console.log(`${key} is same`) 
         }
     }
 
