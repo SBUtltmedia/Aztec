@@ -966,7 +966,7 @@ small font size: 1.7rem
 }
 
 #chat {
-  position: relative;
+  position: absolute;
     width: 32%;
     height: 65%;
     top: 17.55%;
