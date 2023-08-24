@@ -197,7 +197,11 @@ importScripts([
 			}
 		}
 	});
+<<<<<<< HEAD
 })();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+=======
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+>>>>>>> elizabeth
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -447,7 +451,7 @@ Read his account here:
 HOW DO WE ADD DIAZ&#39;S ACCOUNT?  LINK TO A GOOGLE BOOK VERSION?
 
  
-Spaniards and Tlaxcalans, based on everything you&#39;ve just read, what would you like to ask the Aztecs? Go to the Go to the main discussion board, where each of you must post at least one question to your hosts.
+Spaniards and Tlaxcalans, based on everything you&#39;ve just read, what would you like to ask the Aztecs? Go to the main discussion board, where each of you must post at least one question to your hosts.
 Aztecs, you must respond to all questions in order to advance to the next stage of the game. This must be complete by 11:59 pm DAY 14.
 Remember, your journey is far from over, and this is a rare opportunity for everybody to gather information about the other factions. What you ask--or answer--now could make all the difference between life or death, glory or sacrifice, later.
 
@@ -1925,7 +1929,11 @@ When you are satisfied you have heard everything &lt;&lt;print $Aztec_Leader&gt;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="Aztecs Hold a Council Meeting" tags="Done" position="2375,2975" size="100,100">Tlacaelel&#39;s Statement: &lt;&lt;print $Tlac_Statement&gt;&gt;&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="Aztecs Hold a Council Meeting" tags="Done" position="2375,2975" size="100,100">&lt;&lt;if ndef $Moc_Mut_Vote &gt;&gt;
+&lt;&lt;set $Moc_Mut_Vote=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+Tlacaelel&#39;s Statement: &lt;&lt;print $Tlac_Statement&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Cuauhtemoc&#39;s Statement: &lt;&lt;print $Cuauh_Statement&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -2055,7 +2063,7 @@ You wake to the buzz of people talking. You haven&#39;t even opened your eyes wh
 &lt;br&gt;
 You get up from your sleeping mat and excitedly make your way outside, where someone informs you that you&#39;ve called a council meeting tonight. The strangers are on their way to Tenochtitlán and you must decide how to deal with them. To guide you in your decision, you seek the counsel of all those who have been party to recent events.&lt;br&gt;
 &lt;br&gt;
-[[Continue to the Council Meeting|Aztecs Hold a Council Meeting]].  All of your counselors will offer prepared statements, and then you may discuss their positions with them before declaring your intentions.&lt;br&gt;
+&lt;&lt;link &quot;Continue to the Council Meeting&quot; &quot;Aztecs Hold a Council Meeting&quot;&gt;&gt;&lt;&lt;set $Moc_Proc=&quot;0&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;. All of your counselors will offer prepared statements, and then you may discuss their positions with them before declaring your intentions.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Tlacaelel&quot; or &quot;Cuauhtemoc&quot; or &quot;Cacamatzin&quot; or &quot;Pochteca&quot; or &quot;Aztec_Priest&quot;&gt;&gt;
 You wake to the buzz of people talking. You haven&#39;t even opened your eyes when you catch the scent of tortillas cooking over an open fire and you know you&#39;re back in Tenochtitlán!&lt;br&gt;
@@ -2285,8 +2293,7 @@ The battle is like nothing you&#39;ve seen before. The stakes are high and this 
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="Back to the Library Yet Again" tags="" position="2300,8675" size="100,100">&lt;&lt;theyr&gt;&gt;
-Your plan worked! It&#39;s only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you&#39;re now an &#39;A&#39; student, she didn&#39;t seem surprised that you would want to get ahead.&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="Back to the Library Yet Again Act Four" tags="" position="2300,8675" size="100,100">Your plan worked! It&#39;s only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you&#39;re now an &#39;A&#39; student, she didn&#39;t seem surprised that you would want to get ahead.&lt;br&gt;
 &lt;br&gt;
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there&#39;s the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].&lt;br&gt;
 &lt;br&gt;
@@ -2690,7 +2697,11 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;if ndef $Start&gt;&gt;
+&lt;&lt;set$Start=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
 You open your eyes and find yourself on a ship. The boom you heard was the sound of cannon fire and you startle as another shot tears through the sky. &lt;br&gt;
 &lt;br&gt;
@@ -4445,12 +4456,28 @@ You wait for &lt;&lt;print $Aztec_Leader&gt;&gt; to make a decision about how to
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
+&lt;&lt;elseif $role is $Aztec_Leader and $Cholula_Attack is &quot;Yes&quot;&gt;&gt;
+You have decided that the best course of action is to go on the offensive! These strangers are a threat and they must be dealt with. &lt;br&gt;
+&lt;br&gt;
+Luckily for you, an opportunity has presented itself. Your spies have informed you that the strangers have made friends with your Tlaxcalan enemies and together they are headed for the city of Cholula. It was not so long ago that the Cholulans were friends of Tlaxcala, but there is now bad blood between them, for Cholula has sworn allegiance to you. It&#39;s time to put this new friendship to use.&lt;br&gt;
+&lt;br&gt;
+You send word to Cholula, telling them of the strangers who have befriended their Tlaxcalan foe. Together, &lt;&lt;link &quot;you lay plans for a trap&quot; &quot;Aztecs Lay a Trap in Cholula&quot;&gt;&gt;&lt;&lt;set $Aztecs_currentMap=4&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+
 &lt;&lt;elseif $Cholula_Attack is &quot;Yes&quot;&gt;&gt;
 &lt;&lt;print $Aztec_Leader&gt;&gt; has decided that the best course of action is to go on the offensive! These strangers are a threat and they must be dealt with. &lt;br&gt;
 &lt;br&gt;
 Luckily for you, an opportunity has presented itself. Your spies have informed you that the strangers have made friends with your Tlaxcalan enemies and together they are headed for the city of Cholula. It was not so long ago that the Cholulans were friends of Tlaxcala, but there is now bad blood between them, for Cholula has sworn allegiance to you. It&#39;s time to put this new friendship to use.&lt;br&gt;
 &lt;br&gt;
 You send word to Cholula, telling them of the strangers who have befriended their Tlaxcalan foe. Together, &lt;&lt;link &quot;you lay plans for a trap&quot; &quot;Aztecs Lay a Trap in Cholula&quot;&gt;&gt;&lt;&lt;set $Aztecs_currentMap=4&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;elseif $role is $Aztec_Leader and $Cholula_Attack is &quot;No&quot;&gt;&gt;
+&lt;&lt;print $Aztec_Leader&gt;&gt; has decided that the best course of action is to be patient! You have not yet gathered sufficient information about the strangers.&lt;br&gt;
+&lt;br&gt;
+Luckily for you, an opportunity has presented itself. Your spies have informed you that the strangers have made friends with your Tlaxcalan enemies and together they are headed for the city of Cholula. It was not so long ago that the Cholulans were friends of Tlaxcala, but there is now bad blood between them, for Cholula has sworn allegiance to you. It&#39;s time to put this new friendship to use.&lt;br&gt;
+&lt;br&gt;
+You send word to Cholula, telling them of the strangers who have befriended their Tlaxcalan foe. &lt;&lt;link &quot;You enlist their help to gain intelligence&quot; &quot;Aztecs Gather Intelligence in Cholula&quot;&gt;&gt;&lt;&lt;set $Aztecs_currentMap=4&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Cholula_Attack is &quot;No&quot;&gt;&gt;
 &lt;&lt;print $Aztec_Leader&gt;&gt; has decided that the best course of action is to be patient! You have not yet gathered sufficient information about the strangers.&lt;br&gt;
@@ -4486,9 +4513,7 @@ This city is &lt;&lt;textbox &quot;$Malinalco_Ans_T&quot; &quot;&quot;&gt;&gt;&l
 &lt;&lt;print $Quest_Leader_T&gt;&gt; must answer this question. Please work on the discussion board to help him solve the riddle.  When he has input the answer, [[see if you&#39;ve solved the puzzle|Malinalco 2]] &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="132" name="Malinalco 2" tags="Done Breaks" position="2675,300" size="100,100">&lt;&lt;theyr&gt;&gt;
-&lt;&lt;theyr&gt;&gt;
-&lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="132" name="Malinalco 2" tags="Done Breaks" position="2675,300" size="100,100">&lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;print $Malinalco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -4529,8 +4554,7 @@ Congratulations! You have found the correct answer! The Gods have given their bl
 Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/theyr&gt;&gt;</tw-passagedata><tw-passagedata pid="133" name="Malinche Answers" tags="" position="1800,275" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="133" name="Malinche Answers" tags="" position="1800,275" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aguilar&quot;&gt;&gt;
 &lt;&lt;if $Malinche_1 is &quot;No&quot; and $Malinche_2 is &quot;No&quot; and $Malinche_3 is &quot;No&quot;&gt;&gt;
@@ -5117,24 +5141,24 @@ These rumors &lt;&lt;link &quot;make you sad&quot; &quot;Sad&quot;&gt;&gt;&lt;&l
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="149" name="Moctezuma Confidence Vote" tags="Done" position="2375,3250" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Moc_Mut_Vote isnot 5&gt;&gt;
+&lt;&lt;if $Moc_Mut_Vote &lt; 5&gt;&gt;
 You wait while your fellow counselors cast their vote.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Moc is 5&gt;&gt;&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote &gt;= 4 and $MocMut_Moc is 5&gt;&gt;&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Tla is 5&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote &gt;= 5 and $MocMut_Tla is 5&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Cua is 5&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote &gt;= 5 and $MocMut_Cua is 5&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Moc &gt;=3&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote &gt;=5 and $MocMut_Moc &gt;=3&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Tla &gt;=3&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote &gt;=5 and $MocMut_Tla &gt;=3&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Cua &gt;=3&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote &gt;=5 and $MocMut_Cua &gt;=3&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5 and $MocMut_Moc &lt;=2 and $MocMut_Tla &lt;=2 and $MocMut_Cua &lt;=2&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Draw&quot;&gt;&gt;
+&lt;&lt;elseif $Moc_Mut_Vote &gt;=5 and $MocMut_Moc &lt;=2 and $MocMut_Tla &lt;=2 and $MocMut_Cua &lt;=2&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Draw&quot;&gt;&gt;
 
 &lt;&lt;/if&gt;&gt;
 
@@ -5318,11 +5342,29 @@ Moctezuma has lost the faith of his people! You have put your trust in &lt;&lt;p
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
+&lt;&lt;if $Moc_Mut_Vote &gt;=5&gt;&gt;
 With this decided, how will you [[engage with the strangers|Aztec Leader Makes a Choice]].&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="Moctezuma Makes his Proclamation" tags="Done" position="2375,3125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+
+&lt;&lt;if ndef $MocMut_Moc&gt;&gt;
+&lt;&lt;set $MocMut_Moc=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocMut_Tla&gt;&gt;
+&lt;&lt;set $MocMut_Tla=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocMut_Cua&gt;&gt;
+&lt;&lt;set $MocMut_Cua=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Moc_Mut_Vote&gt;&gt;
+&lt;&lt;set $Moc_Mut_Vote=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+
 You may read Moctezuma&#39;s Proclamation here:  &lt;&lt;print $Moc_Proc&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
@@ -5437,6 +5479,13 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="155" name="Spaniards decide whether to mutiny" tags="" position="1775,1750" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Mut_Cor&gt;&gt;
+&lt;&lt;set $Mut_Cor=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Mutiny_Voted&gt;&gt;
+&lt;&lt;set $Mutiny_Voted=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?&lt;br&gt;
 &lt;br&gt;
 
@@ -5446,6 +5495,12 @@ Vote &lt;&lt;link &quot;Olid&quot; &quot;Mutiny Outcome&quot;&gt;&gt;&lt;&lt;set
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="156" name="Mutiny in Veracruz" tags="Done Breaks" position="1525,1675" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Mutiny&gt;&gt;
+&lt;&lt;set $Mutiny=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Mutiny_Voted&gt;&gt;
+&lt;&lt;set $Mutiny_Voted=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Olid&quot;&gt;&gt;
 
@@ -5881,7 +5936,7 @@ Your curiosity about these frightful Mexica is finally satisfied when a delegati
 &lt;br&gt;
 &lt;&lt;print $Span_Leader&gt;&gt; responds to the men. He tells them that you&#39;ve traveled many miles to meet their great and powerful prince and you have no fear of the journey that lies ahead. He gives the men gifts of beads and linen shirts to take back and asks that they convey his request for a meeting.&lt;br&gt;
 &lt;br&gt;
-Go to the Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you&#39;ve heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.&lt;br&gt;
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you&#39;ve heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if $TL_Attacks is &quot;No&quot;&gt;&gt;
 Once you&#39;ve completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].&lt;br&gt;
@@ -5917,7 +5972,7 @@ You first lay eyes upon the strangers at the beach, and they are precisely as yo
 &lt;br&gt;
 Having decided not to deliver Moctezuma&#39;s gifts, you simply deliver his message, advising the strangers not to make the journey inland. It is known that they want to meet your leader in person, but such a meeting is not necessary, you tell them. The road is long and dangerous. The strangers refuse your warning, however, and ask you to deliver their request to Moctezuma. They present you with gifts of beads and fine cloth to take back upon your return. &lt;br&gt;
 &lt;br&gt;
-Go to the Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you&#39;ve heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.&lt;br&gt;
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you&#39;ve heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if $TL_Attacks is &quot;No&quot;&gt;&gt;
 
@@ -6223,7 +6278,7 @@ setTimeout(() =&gt; {
 &lt;&lt;set _currentTime=new Date()&gt;&gt;
 &lt;&lt;if _currentTime.getTime() - $users[$userId][&quot;lastSeen&quot;] &gt; 10000&gt;&gt;
 	&lt;&lt;set $users[$userId][&quot;lastSeen&quot;]=_currentTime.getTime()&gt;&gt;  
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="173" name="TestMap Passage" tags="" position="350,2225" size="100,100">&lt;&lt;set $users[$userId][&quot;currentMap&quot;] = 1&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="Return to the Library_Another Door" tags="" position="2300,5775" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="173" name="TestMap Passage" tags="" position="350,2225" size="100,100">&lt;&lt;set $users[$userId][&quot;currentMap&quot;] = 1&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="Return to the Library Act Three" tags="" position="2300,5775" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;audio &quot;Library&quot; play&gt;&gt;
 
 You&#39;ve stopped by the library multiple times a day for the last two weeks, but the door has yet to appear. You try not to obsess about it this time, because last time this happened it nearly drove you crazy. That&#39;s easier said than done, however, because you&#39;re dying to know what happens next! You&#39;ve become invested in this dream you&#39;ve been having and you&#39;re getting desperate to go back.&lt;br&gt;
@@ -6245,7 +6300,7 @@ You hurry toward the library, make your way to the top floor, and there it is: t
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="175" name="Return to the Library_Door" tags="Done" position="1975,2700" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="175" name="Return to the Library Act Two" tags="Done" position="1975,2700" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;audio &quot;Library&quot; play&gt;&gt;
 
 A week has passed and every day you&#39;ve gone back to the library after class, looking for the mysterious room. You&#39;ve explored every inch of the building, growing increasingly desperate with every day that goes by. Every night you&#39;ve lain awake for hours, trying to figure out what happened and whether you just imagined the whole thing. You wonder if you&#39;re losing your mind, because it sure feels like it.&lt;br&gt;
@@ -6416,7 +6471,7 @@ You have already completed your quest to Azcapotzalco, and you have all the slav
 [img[Twine/images/Glyphs/city_4.png][Malinalco]]&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Malinalco_Ans_A is &quot;malinalco&quot;&gt;&gt;
-You have already completed your quest to Malinalco, and you have offered all the blood you can afford to loose.&lt;br&gt;
+You have already completed your quest to Malinalco, and you have offered all the blood you can afford to lose.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -10075,6 +10130,10 @@ Your Insider&#39;s Guide is:  &lt;&lt;textbox &quot;$Tl_IG&quot; &quot;&quot;&gt
 
 When your work is complete, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;set $Feast = $Feast + 1&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
 &lt;br&gt;</tw-passagedata><tw-passagedata pid="287" name="Tlaxcalans Vote on Attacking Spaniards" tags="Done" position="2175,3075" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $TL_St_Voted &gt;&gt;
+&lt;&lt;set $TL_St_Voted=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 You sit in the council chamber weighing the arguments made by the other two men.  You measure their wisdom and ambition against your own. Whose statement is most compelling?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;link &quot;Xicotencatl the Elder&quot; &quot;Tlaxcalan Wisdom Check&quot;&gt;&gt;&lt;&lt;run changeStats(&quot;Xicotencatl_Elder&quot;,{&quot;Wisdom&quot;:3,&quot;Loyalty&quot;:0,&quot;Strength&quot;:0})&gt;&gt;&lt;&lt;set $TL_St_Voted = $TL_St_Voted + 1&gt;&gt;&lt;&lt;/link&gt;&gt; &lt;br&gt;
@@ -10261,7 +10320,7 @@ You attack the foreigners, but you&#39;ve moved too soon! You cannot overpower t
 &lt;br&gt;
 Hopefully, this doesn&#39;t leave you vulnerable down the road! If only you had been more patient!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Return to Tlaxcala&quot; &quot;The Spaniards Head Inland&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt; and regroup.&lt;br&gt;
+&lt;&lt;link &quot;Return to Tlaxcala&quot; &quot;The Spaniards Head Inland&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt; and regroup.&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;/switch&gt;&gt;
