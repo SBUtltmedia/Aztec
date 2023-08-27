@@ -2267,10 +2267,14 @@ Your men have finally returned from the coast and you anxiously await their repo
 <br>
 Go to the Aztec discussion board to hear what transpired. What do you make of this news?<br>
 <br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
+<br>
 <<else>>
 Your men have finally returned from the coast and you anxiously await their report. <br>
 <br>
 Go to the Aztec discussion board to hear what transpired. What do you make of this news?<br>
+<br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
 <br>
 <</if>>
 
@@ -2284,10 +2288,14 @@ The delegation has returned from the coast and Moctezuma is eager to hear their 
 <br>
 Go to the Aztec discussion board to hear what transpired. What does Moctezuma make of this news?<br>
 <br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
+<br>
 <<else>>
 The delegation has returned from the coast and Moctezuma is eager to hear their report.<br>
 <br>
 Go to the Aztec discussion board </a> to hear what transpired. What does Moctezuma make of this news?<br>
+<br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
 <br>
 <</if>>
 
@@ -2296,10 +2304,11 @@ You return to Tenochtitlán, where Moctezuma awaits your report. <br>
 <br>
 Go to the Aztec discussion board to inform him of all that transpired on your journey. How do you think he will respond to the news?<br>
 <br>
-<</switch>>
-
 When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
 <br>
+<</switch>>
+
+
 
 
 <</liveblock>>
