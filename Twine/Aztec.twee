@@ -2029,7 +2029,6 @@ When you are satisfied you have heard everything <<print $Aztec_Leader>> has to 
 
 
 :: Aztecs Hold a Council Meeting [Done] {"position":"2375,2975","size":"100,100"}
-
 <<if ndef $Moc_Mut_Vote >>
 <<set $Moc_Mut_Vote=0 >>
 <</if>>
@@ -2434,7 +2433,6 @@ The battle is like nothing you've seen before. The stakes are high and this will
 
 
 :: Back to the Library Yet Again Act Four {"position":"2300,8675","size":"100,100"}
-
 Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an 'A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there's the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].<br>
@@ -4967,7 +4965,6 @@ This city is <<textbox "$Malinalco_Ans_T" "">><br>
 
 
 :: Malinalco 2 [Done Breaks] {"position":"2675,300","size":"100,100"}
-
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
 <<print $Malinalco_Ans_A>><br>
@@ -5010,7 +5007,6 @@ Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to
 <br>
 <</if>>
 <</switch>>
-
 
 
 :: Malinche Answers {"position":"1800,275","size":"100,100"}
@@ -9116,7 +9112,7 @@ they will be directed to this temp user */
 			"Wisdom" : 0
 		},
 		"character" : "God",
-		"faction" : "Aztecs",
+		"faction" : "undefined",
 		"isLeader" : "God",
 		"lastSeen" : 0,
 		"passage" : "Name Not Recognized",
@@ -9471,7 +9467,7 @@ You are waiting for Tlacaelel to input his decision.<br>
 <</liveblock>>
 
 
-:: The Library[Done] {"position":"3875,1275","size":"100,100"}
+:: The Library [Done] {"position":"3875,1275","size":"100,100"}
 <<liveblock>>
 
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
@@ -12701,7 +12697,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 
 		<<for _j, _userId range _factionUsers[_faction]>>
-			<<if _userId != "notSeen" || $users[_userId]["offline"] != true>>
+			<<if   _userId != "God" &&  _userId != "notSeen" || $users[_userId]["offline"] != true>>
 				<div id="playerSpaceBetween"></div>
 				<<print `
 					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
@@ -12731,7 +12727,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<<for _j, _userId range _factionUsers["offline"]>>
-		<<if _userId != "notSeen">>
+		<<if _userId != "notSeen" &&  _role != "God">>
 			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
@@ -12754,7 +12750,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<</for>>
 
 	<<for _i, _role range _factionUsers["neverSeen"]>>
-		<<if _role != "notSeen">>
+		<<if _role != "notSeen" &&  _role != "God">>
 			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "playerNull" id="playerInfo_notSeen_`+_role+`">			
@@ -12864,6 +12860,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 
 /* Use this as a template to make side passages */
+
 
 :: Side Passage Example [sidePassage Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
