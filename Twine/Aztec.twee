@@ -12469,10 +12469,10 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 /* Creates the chat */
 <div id="chat">
     /* Instantiate a chatlog if it doesnt already exist*/
-	<<if ndef $chattlog >>
-		<<set $chattlog= {}>>
+	<<if ndef $chatlog >>
+		<<set $chatlog= {}>>
 		<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
-			<<set $chattlog[_faction] = []>>
+			<<set $chatlog[_faction] = []>>
 		<</for>>
 		<<set $users[$userId].currentChat = "chat">>
 	<</if>>
@@ -12507,7 +12507,19 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	/* Fill #chatmessages with $chatlog */
 	<<liveblock>>
 	<div id="chatmessages">
-		<<run displayChatMessages(State.getVar(`$chattlog[$users[$userId].currentChat]`))>>
+		/* <<run displayChatMessages(State.getVar(`$chatlog[$users[$userId].currentChat]`))>> */
+		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
+			<div class="playerMessage">
+				<div class="playerMessageLeft">
+					<img class="playerMessageIconImg" src="Twine/images/characters/Tlacaelel.svg">
+					<div class="playerMessageLeftText">
+						<div class="playerMessageUsername">_msg["user"]</div>
+						<div class="playerMessageTimeStamp"><<print setup.printTime(100)>></div>
+					</div>
+				</div>
+				<div class="playerMessageText">_msg["message"]</div>
+			</div>
+		<</for>>
 	</div>
 	<</liveblock>>
 
@@ -12520,7 +12532,8 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<set $chattlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext})>>
+			<<set $chatlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext})>>
+			
 		<</button>>
 	</div>
 </div>
