@@ -9052,7 +9052,6 @@ List of valid roles and their info */
     "isLeader": "FALSE"
   },
   "Cacamatzin": {
-    "faction": "Aztecs",
     "Character": "Cacamatz&#xed;n",
     "isLeader": "FALSE"
   },
@@ -9112,12 +9111,13 @@ they will be directed to this temp user */
 			"Wisdom" : 0
 		},
 		"character" : "God",
-		"faction" : "undefined",
+		"faction" : "Aztecs",
 		"isLeader" : "God",
 		"lastSeen" : 0,
 		"passage" : "Name Not Recognized",
 		"role" : "God",
-		"username" : "God"
+		"username" : "God",
+		"offline" : true
 	}>>
 <</if>>
 
