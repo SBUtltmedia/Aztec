@@ -8994,11 +8994,17 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString('en-US', {
-    timeZone: 'America/New_York',
-  });
+			timeZone: 'America/New_York',
+		});
 	};
 	setup.getUserSvgPicture = function(role) {
 		return `Twine/images/characters/${role}.svg`
+	}
+	setup.scrollToBottom = function(elementId) {
+		setTimeout(() => {
+			var element = document.getElementById(elementId);
+			element.scrollTop = element.scrollHeight;
+		}, 0);
 	}
 <</script>>
 
@@ -12514,7 +12520,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					<img class="playerMessageIconImg" src="Twine/images/characters/Tlacaelel.svg">
 					<div class="playerMessageLeftText">
 						<div class="playerMessageUsername">_msg["user"]</div>
-						<div class="playerMessageTimeStamp"><<print setup.printTime(100)>></div>
+						<div class="playerMessageTimeStamp">_msg["time"]</div>
 					</div>
 				</div>
 				<div class="playerMessageText">_msg["message"]</div>
@@ -12532,8 +12538,13 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<set $chatlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext})>>
-			
+			<<set $chatlog[$users[$userId].currentChat].unshift({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })})>>
+			  /* ^^^ .unshift() */
+			/*
+				column + push + scroll = slight flashing
+				reverse + unshift = long delay (unshift time complexity)
+				reverse + push? would be perfect
+			 */
 		<</button>>
 	</div>
 </div>

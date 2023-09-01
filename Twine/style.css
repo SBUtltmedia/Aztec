@@ -1045,10 +1045,11 @@ small font size: 1.7rem
 	/* flex-grow: 1; */
 	overflow-y: auto !important;
   position: absolute;
+  width: 90%;
   top: 14%;
   height: 75%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   padding-left: 10px;
   scrollbar-width: none;
 	-ms-overflow-style: none;
@@ -1081,7 +1082,7 @@ small font size: 1.7rem
 .playerMessage {
   display: flex;
 	flex-direction:row;
-  width: 95%;
+  width: 99%;
   line-height: 1;
   padding-top: 1rem;
   padding-bottom: 1rem;
