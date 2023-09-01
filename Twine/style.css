@@ -1,3 +1,7 @@
+.error-view{
+  display: none;
+}
+
 .error-view>.error{
   color: white;
 }
