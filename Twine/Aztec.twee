@@ -12514,16 +12514,17 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<<liveblock>>
 	<div id="chatmessages">
 		/* <<run displayChatMessages(State.getVar(`$chatlog[$users[$userId].currentChat]`))>> */
-		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
+		/* for _i to $arrayInventory.length-1; _i gt -1; _i */
+		<<for _i to $chatlog.length-1; _i gt -1; _i>>
 			<div class="playerMessage">
 				<div class="playerMessageLeft">
 					<img class="playerMessageIconImg" src="Twine/images/characters/Tlacaelel.svg">
 					<div class="playerMessageLeftText">
-						<div class="playerMessageUsername">_msg["user"]</div>
-						<div class="playerMessageTimeStamp">_msg["time"]</div>
+						<div class="playerMessageUsername">$chatlog[_i]["user"]</div>
+						<div class="playerMessageTimeStamp">$chatlog[_i]["time"]</div>
 					</div>
 				</div>
-				<div class="playerMessageText">_msg["message"]</div>
+				<div class="playerMessageText">$chatlog[_i]["message"]</div>
 			</div>
 		<</for>>
 	</div>
