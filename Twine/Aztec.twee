@@ -8990,11 +8990,17 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString('en-US', {
-    timeZone: 'America/New_York',
-  });
+			timeZone: 'America/New_York',
+		});
 	};
 	setup.getUserSvgPicture = function(role) {
 		return `Twine/images/characters/${role}.svg`
+	}
+	setup.scrollToBottom = function(elementId) {
+		setTimeout(() => {
+			var element = document.getElementById(elementId);
+			element.scrollTop = element.scrollHeight;
+		}, 0);
 	}
 <</script>>
 
@@ -12465,10 +12471,10 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 /* Creates the chat */
 <div id="chat">
     /* Instantiate a chatlog if it doesnt already exist*/
-	<<if ndef $chattlog >>
-		<<set $chattlog= {}>>
+	<<if ndef $chatlog >>
+		<<set $chatlog= {}>>
 		<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
-			<<set $chattlog[_faction] = []>>
+			<<set $chatlog[_faction] = []>>
 		<</for>>
 		<<set $users[$userId].currentChat = "chat">>
 	<</if>>
@@ -12503,7 +12509,20 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	/* Fill #chatmessages with $chatlog */
 	<<liveblock>>
 	<div id="chatmessages">
-		<<run displayChatMessages(State.getVar(`$chattlog[$users[$userId].currentChat]`))>>
+		/* <<run displayChatMessages(State.getVar(`$chatlog[$users[$userId].currentChat]`))>> */
+		/* for _i to $arrayInventory.length-1; _i gt -1; _i */
+		<<for _i to $chatlog.length-1; _i gt -1; _i>>
+			<div class="playerMessage">
+				<div class="playerMessageLeft">
+					<img class="playerMessageIconImg" src="Twine/images/characters/Tlacaelel.svg">
+					<div class="playerMessageLeftText">
+						<div class="playerMessageUsername">$chatlog[_i]["user"]</div>
+						<div class="playerMessageTimeStamp">$chatlog[_i]["time"]</div>
+					</div>
+				</div>
+				<div class="playerMessageText">$chatlog[_i]["message"]</div>
+			</div>
+		<</for>>
 	</div>
 	<</liveblock>>
 
@@ -12516,7 +12535,13 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<set $chattlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext})>>
+			<<set $chatlog[$users[$userId].currentChat].unshift({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })})>>
+			  /* ^^^ .unshift() */
+			/*
+				column + push + scroll = slight flashing
+				reverse + unshift = long delay (unshift time complexity)
+				reverse + push? would be perfect
+			 */
 		<</button>>
 	</div>
 </div>
