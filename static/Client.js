@@ -238,10 +238,9 @@ function changeStats(rolePlay, newStats) {
     socket.emit('difference', diff);
 }
 
-function DOMTest(passage){
-    let obj = {theyrPrivateVars: {[Window.SugarCubeState.variables.userId] : {passageHistory: {[passage] : "test"}}}};
-    console.log("in dom test", obj)
-    socket.emit("difference", obj)
+function DOMTest(){
+    setTimeout({})
+   return $("#passages").children()[0].innerHTML
 }
 
 
