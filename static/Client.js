@@ -238,6 +238,11 @@ function changeStats(rolePlay, newStats) {
     socket.emit('difference', diff);
 }
 
+function fullReset(){
+    console.log("reset start")
+    socket.emit('fullReset', '');
+}
+
 function DOMTest(){
     setTimeout({})
    return $("#passages").children()[0].innerHTML
@@ -341,6 +346,13 @@ function initTheyr(lockInfo) {
 
         $(document).trigger(":liveupdate");
     })
+
+    socket.on('reset', (diff) => {
+        console.log("updating sugarcube", diff);
+        resetSugarCubeState(diff)
+
+        $(document).trigger(":liveupdate");
+    })
 }
 
     // Updates client's SugarCube State when state changes are received from the server
@@ -349,6 +361,13 @@ function initTheyr(lockInfo) {
     
         $(document).trigger(":liveupdate");
     }
+
+    // Updates client's SugarCube State when state changes are received from the server
+    function resetSugarCubeState(new_state) {
+        Window.SugarCubeState.variables =  new_state
+     
+         $(document).trigger(":liveupdate");
+     }
 
 //Exceptions are global variables that shouldn't be shared between users
 function addTheyrException(varName){

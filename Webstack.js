@@ -7,6 +7,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const _ = require("lodash"); 
+const initVars = require("./initVars.json");
 var base64 = require('base-64');
 
 
@@ -98,8 +99,11 @@ class Webstack {
 				let temp = _.merge(state, action.payload);
 				// console.log("temp:", JSON.stringify(temp.users))
 				return temp;
-				default:
-					return state
+
+			case 'REPLACE':
+				return action.payload;
+			default:
+				return state
 		}
 	}
 	
@@ -138,6 +142,17 @@ class Webstack {
 				if(!Object.keys(diff).includes("theyrPrivateVars")){
 					socket.broadcast.emit('difference', diff)
 				}
+			})
+
+
+			socket.on('fullReset', ()=>{
+				console.log("reset start 2")
+				this.serverStore.dispatch({
+					type: 'REPLACE',
+					payload: initVars
+				})
+				socket.emit('reset', this.serverStore.getState())
+				socket.broadcast.emit('reset', this.serverStore.getState())
 			})
 
 		});
