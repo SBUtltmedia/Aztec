@@ -3600,6 +3600,15 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</liveblock>>
 
+:: Control: Full Reset {"position":"4275,375","size":"100,100"}
+
+WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
+<br>
+<<button "Reset">>
+	<<script>>
+		fullReset();
+	<</script>>
+<</button>>
 
 :: Control: Player Status {"position":"4275,375","size":"100,100"}
 <<liveblock>>
