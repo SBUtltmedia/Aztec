@@ -12539,7 +12539,9 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
+			<<set _arrayLength = $chatlog[$users[$userId].currentChat].length>>
 			<<set $chatlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })})>>
+			<<set $chatlog[$users[$userId].currentChat].splice(0, _arrayLength + 1 - 5)>> /* history is 5 recent messages */
 		<</button>>
 	</div>
 </div>
