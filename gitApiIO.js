@@ -99,6 +99,9 @@ class gitApiIO{
     async retrieveFileAPI() {
         return new Promise((res,rej)=> {
         if(this.test){
+            if(!fs.existsSync(testFile)){
+                fs.writeFileSync(testFile, fs.readFileSync("./initVars.json"))
+            }
             let data = fs.readFileSync(testFile)
             res(data)
         }else{
