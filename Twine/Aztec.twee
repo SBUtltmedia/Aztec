@@ -9001,10 +9001,10 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 		return `Twine/images/characters/${role}.svg`
 	}
 	setup.scrollToBottom = function(elementId) {
-		setTimeout(() => {
+		requestAnimationFrame(() => {
 			var element = document.getElementById(elementId);
 			element.scrollTop = element.scrollHeight;
-		}, 0);
+		});
 	}
 <</script>>
 
@@ -12513,20 +12513,20 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	/* Fill #chatmessages with $chatlog */
 	<<liveblock>>
 	<div id="chatmessages">
-		/* <<run displayChatMessages(State.getVar(`$chatlog[$users[$userId].currentChat]`))>> */
-		/* for _i to $arrayInventory.length-1; _i gt -1; _i */
-		<<for _i to $chatlog.length-1; _i gt -1; _i>>
+		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
 			<div class="playerMessage">
 				<div class="playerMessageLeft">
 					<img class="playerMessageIconImg" src="Twine/images/characters/Tlacaelel.svg">
 					<div class="playerMessageLeftText">
-						<div class="playerMessageUsername">$chatlog[_i]["user"]</div>
-						<div class="playerMessageTimeStamp">$chatlog[_i]["time"]</div>
+						<div class="playerMessageUsername">_msg["user"]</div>
+						<div class="playerMessageTimeStamp">_msg["time"]</div>
 					</div>
 				</div>
-				<div class="playerMessageText">$chatlog[_i]["message"]</div>
+				<div class="playerMessageText">_msg["message"]</div>
 			</div>
 		<</for>>
+		<<run setup.scrollToBottom("chatmessages") >>
+		<div id="chatmessagesanchor"></div>
 	</div>
 	<</liveblock>>
 
@@ -12539,13 +12539,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<set $chatlog[$users[$userId].currentChat].unshift({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })})>>
-			  /* ^^^ .unshift() */
-			/*
-				column + push + scroll = slight flashing
-				reverse + unshift = long delay (unshift time complexity)
-				reverse + push? would be perfect
-			 */
+			<<set $chatlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })})>>
 		<</button>>
 	</div>
 </div>
@@ -12726,7 +12720,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 
 		<<for _j, _userId range _factionUsers[_faction]>>
-			<<if _userId != "notSeen" || $users[_userId]["offline"] != true>>
+			<<if !["notSeen", "15"].includes(_userId) || $users[_userId]["offline"] != true>>
 				<div id="playerSpaceBetween"></div>
 				<<print `
 					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
@@ -12756,7 +12750,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<<for _j, _userId range _factionUsers["offline"]>>
-		<<if _userId != "notSeen">>
+		<<if !["notSeen", "15"].includes(_userId) >>
 			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
