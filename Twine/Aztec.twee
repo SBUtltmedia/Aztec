@@ -1159,7 +1159,7 @@ You are forced to retreat, hanging your heads in shame and strategizing for your
 <br>
 <<elseif $TL_Attacks is "Spanish">>
 
-You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>> and wonder how you will explain this to Moctezuma.v
+You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>> and wonder how you will explain this to Moctezuma.
 <br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
@@ -2267,10 +2267,14 @@ Your men have finally returned from the coast and you anxiously await their repo
 <br>
 Go to the Aztec discussion board to hear what transpired. What do you make of this news?<br>
 <br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
+<br>
 <<else>>
 Your men have finally returned from the coast and you anxiously await their report. <br>
 <br>
 Go to the Aztec discussion board to hear what transpired. What do you make of this news?<br>
+<br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
 <br>
 <</if>>
 
@@ -2284,10 +2288,14 @@ The delegation has returned from the coast and Moctezuma is eager to hear their 
 <br>
 Go to the Aztec discussion board to hear what transpired. What does Moctezuma make of this news?<br>
 <br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
+<br>
 <<else>>
 The delegation has returned from the coast and Moctezuma is eager to hear their report.<br>
 <br>
-Go to the Aztec discussion board </a> to hear what transpired. What does Moctezuma make of this news?<br>
+Go to the Aztec discussion board to hear what transpired. What does Moctezuma make of this news?<br>
+<br>
+When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
 <br>
 <</if>>
 
@@ -2296,10 +2304,11 @@ You return to Tenochtitlán, where Moctezuma awaits your report. <br>
 <br>
 Go to the Aztec discussion board to inform him of all that transpired on your journey. How do you think he will respond to the news?<br>
 <br>
-<</switch>>
-
 When your satisfied with your discussion, [[head home|The Spaniards Head Inland]] for a well-deserved and much needed rest.<br>
 <br>
+<</switch>>
+
+
 
 
 <</liveblock>>
@@ -7401,6 +7410,65 @@ You continue inland, [[following behind|Spaniards Meet Marina]] the native messe
 
 :: Spaniards learn their leader beached the ships {"position":"1925,2025","size":"100,100"}
 <<liveblock>>
+<<if ndef $TL_Attacks or $TL_Attacks eq "">>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalans to do something.<br>
+<br>
+<<elseif $TL_Attacks is "Spanish">>
+<<switch $users[$userId]["role"]>>
+<<case "Cortes">>
+<<if $Span_Leader is "Cortes">>
+It turns out that your bold decision may not have been the best course of action! Rumors of a mutiny were unfounded and your crew were shocked when they saw what you had done to the ships. Despite their desire to keep moving forward, this discovery has a significant impact on team morale.<br>
+<br>
+Head to the Spanish discussion board and explain yourself. How can you rebuild their trust after what you have done?<br>
+<br>
+When you have made your case, [[you may carry on|Tlaxcalans decide to attack the Spaniards in Veracruz]].<br>
+<br>
+<<elseif $Span_Leader is "Olid">>
+Your bold decision has paid off! When they saw what you did to the ships, you could see the horror on their faces. You have left them with no choice but to forge onward, though you must now concede to Olid's authority. <br>
+<br>
+Head to the Spanish discussion board and explain yourself. Can you rebuild their trust after what you have done?<br>
+<br>
+When you have made your case, [[you may carry on|Tlaxcalans decide to attack the Spaniards in Veracruz]].<br>
+<br>
+<</if>>
+<<case "Olid">>
+<<if $Span_Leader is "Cortes">>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+<br>
+Clearly, your desire to lead was not misplaced! Perhaps now, your teammates will begin to see Cortes for who he really is.<br>
+<br>
+There is little choice now but to forge onward. Head to the Spanish discussion board to hear what Cortes has to say about this. How will the team move forward with so many betrayals? How will you play this relationship [[moving forward|Tlaxcalans decide to attack the Spaniards in Veracruz]]?<br>
+<br>
+<<elseif $Span_Leader is "Olid">>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+<br>
+Clearly, your desire to lead and your teammates trust in you were both warranted!<br>
+<br>
+There is little choice now but to forge onward. Head to the Spanish discussion board to hear what Cortes has to say about this. How will the team move forward with so many betrayals? As the new leader, it is your responsibility to get everybody working together [[if you are going to survive|Tlaxcalans decide to attack the Spaniards in Veracruz]].<br>
+<br>
+<</if>>
+<<case "Marina" or "Aguilar" or "Garrido" or "Alvarado">>
+<<if $Span_Leader is "Cortes">>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+<br>
+Maybe you should have listened to Olid!<br>
+<br>
+There is little choice now but to forge onward. Head to the Spanish discussion board to hear what Cortes has to say about this. How will the team move forward with [[so many betrayals|Tlaxcalans decide to attack the Spaniards in Veracruz]]?<br>
+<br>
+
+<<elseif $Span_Leader is "Olid">>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+<br>
+Clearly, you've made the right decision in electing Olid as your new winner.<br>
+<br>
+There is little choice now but to forge onward. Head to the Spanish discussion board to hear what Cortes has to say about this. How will the team move forward with so [[many betrayals|Tlaxcalans decide to attack the Spaniards in Veracruz]]?<br>
+<br>
+<</if>>
+<</switch>>
+
+<<else>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
 <<if $Span_Leader is "Cortes">>
@@ -7452,6 +7520,9 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 <br>
 <</if>>
 <</switch>>
+<</if>>
+
+
 
 
 <</liveblock>>
@@ -11422,14 +11493,14 @@ You host the troops for the night and see them on their way the next morning, [[
 <<case "Spaniards">>
 The Tlaxcalans have decided to take the offensive and launch an attack! They made their move, but it was too soon and they were ill prepared to confront your weapons. The battle ends in a draw, but you have been weakened and must remain wary of these new foes. <br>
 <br>
-You regroup and <<link "settle into your basecamp" "The Spaniards Head Inland">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>> for the night.<br>
+You regroup and <<link "settle into your basecamp" "The Spaniards Head Inland">><<set $factions["Spaniards"]["stats"]["Strength"]-=2>><</link>> for the night.<br>
 <br>
 <<case "Tlaxcalans">>
 You attack the foreigners, but you've moved too soon! You cannot overpower the strangers with their powerful weapons. The battle ends in a draw, but your side has been weakened and you have put the Spaniards on high alert.  <br>
 <br>
 Hopefully, this doesn't leave you vulnerable down the road! If only you had been more patient!<br>
 <br>
-<<link "Return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=1>><</link>> and regroup.<br>
+<<link "Return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=2>><</link>> and regroup.<br>
 <br>
 
 <</switch>>
@@ -11661,7 +11732,7 @@ Once you have decided where your loyalty lies, [[continue to the next screen|Spa
 <<case "Marina">>
 After your encounter with the Mexica, the mood amongst the men has shifted. There is excitement about the riches that may well lie inland, but there is also a clear current of unease. You have learned a great deal about your companions during these last weeks and it seems there is deep distrust among them.<br>
 <br>
-Go Discord to see what is being said. Will you support Cortés? Or would you rather place your trust in someone else? You may be approached in private, so keep an eye on your DMs. If the men do not yet perceive you as a member of the team, now might be a good time to prove your allegiance.<br>
+Go to Discord to see what is being said. Will you support Cortés? Or would you rather place your trust in someone else? You may be approached in private, so keep an eye on your DMs. If the men do not yet perceive you as a member of the team, now might be a good time to prove your allegiance.<br>
 <br>
 Once you have decided where your loyalty lies, [[continue to the next screen|Spaniards decide whether to mutiny]].<br>
 <br>
