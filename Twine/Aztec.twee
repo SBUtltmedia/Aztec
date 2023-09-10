@@ -5682,6 +5682,9 @@ These rumors <<link "make you sad" "Sad">><<set $users[$lookup["Aguilar"]]["stat
 <<if $Moc_Mut_Vote <= 4>>
 You wait while your fellow counselors cast their vote.<br>
 <br>
+<<print $Moc_Mut_Vote>> votes have been cast.<br>
+<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
 <<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc is 5>>">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">>
