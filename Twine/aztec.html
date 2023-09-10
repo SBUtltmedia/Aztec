@@ -2962,6 +2962,24 @@ After much angry debate , you finally determine that &lt;&lt;print $Span_Leader&
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="Cholula Spanish Leadership Challenge" tags="" position="1875,4950" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Vote&gt;&gt;
+&lt;&lt;set$Sp_Ld_Vote=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Cor&gt;&gt;
+&lt;&lt;set$Sp_Ld_Cor=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Alv&gt;&gt;
+&lt;&lt;set$Sp_Ld_Alv=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Agu&gt;&gt;
+&lt;&lt;set$Sp_Ld_Agu=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Gar&gt;&gt;
+&lt;&lt;set$Sp_Ld_Gar=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Oli&gt;&gt;
+&lt;&lt;set$Sp_Ld_Oli=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
 You have made your decisions and led your people through a complicated situation, but do they still believe in your leadership? &lt;br&gt;
 &lt;br&gt;
@@ -2991,10 +3009,14 @@ Option 4: &lt;&lt;link &quot;Olid&quot; &quot;Cholula Spanish Leadership Results
 &lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;] and $Sp_Ld_Vote isnot 5&gt;&gt;
 You wait nervously for your team to deliberate.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;print $Sp_Ld_Vote&gt;&gt; votes have been cast. &lt;br&gt;
+&lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
 &lt;&lt;elseif $Span_Leader isnot $users[$userId][&quot;role&quot;] and $Sp_Ld_Vote isnot 5&gt;&gt;
 When everyone has voted, you will deliver the news to &lt;&lt;print $Span_Leader&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;print $Sp_Ld_Vote&gt;&gt; votes have been cast. &lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
@@ -4938,7 +4960,7 @@ Go to the Spanish discussion board and decide what you will do next. You have tw
 &lt;br&gt;
 Do you remain quiet,&lt;&lt;link &quot;concealing this knowledge from your hosts and waiting to see what unfolds&quot; &quot;Cholulans Don&#39;t Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Mal_Span is &quot;Yes&quot; and $users[$userId][&quot;role&quot;] isnot $Span_Leader&gt;&gt;
@@ -4977,9 +4999,9 @@ A mysterious woman has informed you that the Aztecs have laid a trap in Cholula.
 &lt;br&gt;
 Go to the Spanish discussion board and decide what you will do next. You have two options:&lt;br&gt;
 &lt;br&gt;
-Do you remain quiet, &lt;&lt;link &quot;concealing this knowledge from your hosts and waiting to see what unfolds&quot; &quot;Cholulans Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Do you remain quiet, &lt;&lt;link &quot;concealing this knowledge from your hosts and waiting to see what unfolds&quot; &quot;Cholulans Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=5&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5)&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Or do you launch a preemptive attack, &lt;&lt;link &quot;laying siege to the Cholulans who laid the trap&quot; &quot;Spaniards Attack&quot;&gt;&gt;&lt;&lt;set $Span_Cho_Att=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;elseif $Mal_Span is &quot;Yes&quot; and $users[$userId][&quot;role&quot;] isnot $Span_Leader&gt;&gt;
@@ -10226,12 +10248,14 @@ You watch your allies enter the city of Cholula where they will consort with you
 &lt;br&gt;
 You remain at camp, curious to learn what&#39;s going on inside the city walls. Your spies have yet to return. You wait anxiously for news.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if ndef $Cholula_Attack or $Cholula_Attack eq &quot;&quot; and ndef $Mal_Share or $Mal_Share eq &quot;&quot;&gt;&gt;
+
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
 Both the Aztecs and Marina need to do something for this block to clear.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;if $Cholula_Attack is &quot;Yes&quot; and $Mal_Share is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cholula_Attack is &quot;Yes&quot; and $Mal_Share is &quot;No&quot;&gt;&gt;
 The first day and night pass quietly, with little news from inside. The next morning, however, your spies come running back to camp just as you hear the sound of screaming from inside the city.&lt;br&gt;
 &lt;br&gt;
 The Aztecs have laid a trap and attacked the Spaniards! This will surely be a massacre and an Aztec victory would not be to your benefit. You rush through the city gates and engage your enemies in battle. You fight your way back out of the city with your Spanish allies at your side. They made it out alive, but barely. &lt;br&gt;

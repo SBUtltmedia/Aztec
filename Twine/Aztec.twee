@@ -3209,6 +3209,24 @@ After much angry debate , you finally determine that <<print $Span_Leader>> has 
 
 :: Cholula Spanish Leadership Challenge {"position":"1875,4950","size":"100,100"}
 <<liveblock>>
+<<if ndef $Sp_Ld_Vote>>
+<<set$Sp_Ld_Vote=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Cor>>
+<<set$Sp_Ld_Cor=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Alv>>
+<<set$Sp_Ld_Alv=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Agu>>
+<<set$Sp_Ld_Agu=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Gar>>
+<<set$Sp_Ld_Gar=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Oli>>
+<<set$Sp_Ld_Oli=0 >>
+<</if>>
 <<if $Span_Leader is $users[$userId]["role"]>>
 You have made your decisions and led your people through a complicated situation, but do they still believe in your leadership? <br>
 <br>
@@ -3242,10 +3260,14 @@ Option 4: <<link "Olid" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Oli =
 <<if $Span_Leader is $users[$userId]["role"] and $Sp_Ld_Vote isnot 5>>
 You wait nervously for your team to deliberate.<br>
 <br>
+<<print $Sp_Ld_Vote>> votes have been cast. <br>
+<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
 <<elseif $Span_Leader isnot $users[$userId]["role"] and $Sp_Ld_Vote isnot 5>>
 When everyone has voted, you will deliver the news to <<print $Span_Leader>>.<br>
+<br>
+<<print $Sp_Ld_Vote>> votes have been cast. <br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
@@ -5420,7 +5442,7 @@ Go to the Spanish discussion board and decide what you will do next. You have tw
 <br>
 Do you remain quiet,<<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Don't Attack">><<set $Span_Cho_Att="No">><</link>>?<br>
 <br>
-Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5)>><</link>>?<br>
+Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5>><</link>>?<br>
 <br>
 
 <<elseif $Mal_Span is "Yes" and $users[$userId]["role"] isnot $Span_Leader>>
@@ -5463,9 +5485,9 @@ A mysterious woman has informed you that the Aztecs have laid a trap in Cholula.
 <br>
 Go to the Spanish discussion board and decide what you will do next. You have two options:<br>
 <br>
-Do you remain quiet, <<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Attack">><<set $Span_Cho_Att="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=5)>><</link>>?<br>
+Do you remain quiet, <<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Attack">><<set $Span_Cho_Att="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=5>><</link>>?<br>
 <br>
-Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5)>><</link>>?<br>
+Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5>><</link>>?<br>
 <br>
 
 <<elseif $Mal_Span is "Yes" and $users[$userId]["role"] isnot $Span_Leader>>
@@ -11308,12 +11330,14 @@ You watch your allies enter the city of Cholula where they will consort with you
 <br>
 You remain at camp, curious to learn what's going on inside the city walls. Your spies have yet to return. You wait anxiously for news.<br>
 <br>
+<<if ndef $Cholula_Attack or $Cholula_Attack eq "" and ndef $Mal_Share or $Mal_Share eq "">>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 Both the Aztecs and Marina need to do something for this block to clear.<br>
 <br>
 
-<<if $Cholula_Attack is "Yes" and $Mal_Share is "No">>
+<<elseif $Cholula_Attack is "Yes" and $Mal_Share is "No">>
 The first day and night pass quietly, with little news from inside. The next morning, however, your spies come running back to camp just as you hear the sound of screaming from inside the city.<br>
 <br>
 The Aztecs have laid a trap and attacked the Spaniards! This will surely be a massacre and an Aztec victory would not be to your benefit. You rush through the city gates and engage your enemies in battle. You fight your way back out of the city with your Spanish allies at your side. They made it out alive, but barely. <br>
