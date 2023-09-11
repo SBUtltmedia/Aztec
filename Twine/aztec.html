@@ -11279,9 +11279,10 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;&lt;liveblock&gt;&gt;
 	&lt;div id=&quot;chatmessages&quot;&gt;
 		&lt;&lt;for _id, _msg range $chatlog[$users[$userId].currentChat]&gt;&gt;
+		&lt;&lt;print `
 			&lt;div class=&quot;playerMessage&quot;&gt;
 				&lt;div class=&quot;playerMessageLeft&quot;&gt;
-					&lt;img class=&quot;playerMessageIconImg&quot; src=&quot;Twine/images/characters/Tlacaelel.svg&quot;&gt;
+					&lt;img class=&quot;playerMessageIconImg&quot; src=&quot;`+setup.getUserSvgPicture(_msg[&#39;user&#39;])+`&quot;&gt;
 					&lt;div class=&quot;playerMessageLeftText&quot;&gt;
 						&lt;div class=&quot;playerMessageUsername&quot;&gt;_msg[&quot;user&quot;]&lt;/div&gt;
 						&lt;div class=&quot;playerMessageTimeStamp&quot;&gt;_msg[&quot;time&quot;]&lt;/div&gt;
@@ -11289,6 +11290,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 				&lt;/div&gt;
 				&lt;div class=&quot;playerMessageText&quot;&gt;_msg[&quot;message&quot;]&lt;/div&gt;
 			&lt;/div&gt;
+		`&gt;&gt;
 		&lt;&lt;/for&gt;&gt;
 		&lt;&lt;run setup.scrollToBottom(&quot;chatmessages&quot;) &gt;&gt;
 		&lt;div id=&quot;chatmessagesanchor&quot;&gt;&lt;/div&gt;
@@ -11305,7 +11307,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		/* Hit send here */
 		&lt;&lt;button &quot;SEND&quot;&gt;&gt;
 			&lt;&lt;set _arrayLength = $chatlog[$users[$userId].currentChat].length&gt;&gt;
-			&lt;&lt;set $chatlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString(&#39;en-US&#39;, { hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; })})&gt;&gt;
+			&lt;&lt;set $chatlog[$users[$userId].currentChat].push({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString(&#39;en-US&#39;, { month: &#39;2-digit&#39;, day: &#39;2-digit&#39;, hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; }).replace(&quot;,&quot;, &quot;&quot;)})&gt;&gt;
 			&lt;&lt;set $chatlog[$users[$userId].currentChat].splice(0, _arrayLength + 1 - 5)&gt;&gt; /* history is 5 recent messages */
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
