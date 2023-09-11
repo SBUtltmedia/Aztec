@@ -198,23 +198,7 @@ importScripts([
 			}
 		}
 	});
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-=======
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
->>>>>>> 5baf4066af6f036741b660eda9210353937effb9
-=======
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
->>>>>>> chatbox
-=======
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
->>>>>>> newchat
-=======
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
->>>>>>> elizabeth
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -6284,14 +6268,13 @@ setTimeout(() =&gt; {
 // setTimeout(() =&gt; {
 // 	console.log($(&quot;#passages&quot;).children()[0].innerHTML)
 // }, 1000)
-&lt;&lt;/script&gt;&gt; */</tw-passagedata><tw-passagedata pid="173" name="PassageFooter" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
+&lt;&lt;/script&gt;&gt; */</tw-passagedata><tw-passagedata pid="173" name="PassageDone" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
 	&lt;&lt;if $theyrPrivateVars[$userId] &amp;&amp; !Object.keys($theyrPrivateVars[$userId][&quot;passageHistory&quot;]).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
 			&lt;&lt;set _text = &quot;&quot;&gt;&gt;
-			&lt;&lt;timed 500ms&gt;&gt;
 			&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = $(&quot;#passages&quot;).children()[0].innerHTML&gt;&gt;
-			&lt;&lt;/timed&gt;&gt;
+
 	&lt;&lt;/if&gt;&gt;
 	
 &lt;&lt;for _i, _passageEnd range Story.lookup(&quot;tags&quot;,&quot;sidePassageEnd&quot;)&gt;&gt;
@@ -6747,10 +6730,7 @@ You continue inland, [[following behind|Spaniards Meet Marina]] the native messe
 &lt;br&gt;
 
 
-<<<<<<< HEAD
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="188" name="Spaniards learn their leader beached the ships" tags="" position="1925,2025" size="100,100">&lt;&lt;liveblock&gt;&gt;
-=======
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="187" name="Spaniards learn their leader beached the ships" tags="" position="1925,2025" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $TL_Attacks or $TL_Attacks eq &quot;&quot;&gt;&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -6810,7 +6790,6 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 &lt;&lt;/switch&gt;&gt;
 
 &lt;&lt;else&gt;&gt;
->>>>>>> 9060528dca9d34394f7a6e3e804199f8743db756
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is &quot;Cortes&quot;&gt;&gt;
