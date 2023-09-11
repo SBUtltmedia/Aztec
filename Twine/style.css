@@ -1123,5 +1123,7 @@ small font size: 1.7rem
 
 .playerMessageTimeStamp {
   width: 8rem;
+  font-size: 1.6rem;
+    margin-top: 2px;
 }
 
