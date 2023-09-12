@@ -89,7 +89,10 @@ app.post('/discordbot', urlencodedParser, function (req, res) {
 	discordBot.sendNotif(req.body.channel, req.body.message)
 })
 
-
+app.get('/updateGit', async ({ query }, res) => {
+	res.send({});
+	webstackInstance.updateGit(false);
+})
 // Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
 	const { code, state, test, nick } = query;
