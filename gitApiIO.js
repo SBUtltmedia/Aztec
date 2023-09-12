@@ -22,7 +22,7 @@ class gitApiIO{
     constructor(serverConf, isTest=false) {
         this.serverConf = serverConf
         this.serverConf.fileName = `${this.serverConf.fileName}-${this.serverConf.appIndex}.json`
-        this.test = isTest;
+        this.test = false;
         console.log("config is", serverConf)
         console.log("isTest", isTest)
 	}
