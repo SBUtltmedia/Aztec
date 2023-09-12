@@ -65,10 +65,11 @@ class ChatMessage {
     }
 }
 
-
+let globalMessageStore = []
 
 function addChatMessage(textContent, userRole, imgSrc, chatContext) {
   let newChatMessage = new ChatMessage(textContent, userRole, imgSrc)
+  globalMessageStore.push(newChatMessage)
   newChatMessage.render()
   
   Window.SugarCubeState.variables[`${chatContext}log`].push({textContent, userRole, imgSrc})
@@ -77,6 +78,7 @@ function addChatMessage(textContent, userRole, imgSrc, chatContext) {
 
 function displayChatMessages(chatlog) {
   setTimeout(() => {
+    console.log({globalMessageStore})
     for (let i = 0; i < chatlog.length; i++) {
       let newChatMessage = new ChatMessage(chatlog[i]['message'], chatlog[i]['user'], "Twine/images/characters/"+chatlog[i]['user']+".svg")
       newChatMessage.render()

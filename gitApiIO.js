@@ -32,10 +32,10 @@ class gitApiIO{
     *  since Heroku is ephemeral
     * @param {object} content: The last saved Sugarcube.State.variables taken from serverstore
     **/
-    async uploadFileApi(content) {
+    async uploadFileApi(content, isTest) {
         console.log("IN UPLOAD")
         return new Promise((res,rej)=> {
-            if(this.test){
+            if(isTest){
                 console.log("resolved")
                 fs.writeFileSync(testFile, base64.decode(content))
                 res()
@@ -99,6 +99,9 @@ class gitApiIO{
     async retrieveFileAPI() {
         return new Promise((res,rej)=> {
         if(this.test){
+            if(!fs.existsSync(testFile)){
+                fs.writeFileSync(testFile, fs.readFileSync("./initVars.json"))
+            }
             let data = fs.readFileSync(testFile)
             res(data)
         }else{
