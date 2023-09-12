@@ -8,7 +8,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const _ = require("lodash"); 
 const initVars = require("./initVars.json");
-var base64 = require('base-64');
+var base64 = require('js-base64');
 
 
 
