@@ -6856,7 +6856,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</script>>
 
 /* <<script>>
-setTimeout(() => {
+(() => {
 	let ret = DOMTest();
 	console.log(ret);
 }, 1000);
