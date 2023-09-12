@@ -6885,15 +6885,14 @@ setTimeout(() => {
 <</script>> */
 
 
-:: PassageFooter [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: PassageDone [Done Breaks] {"position":"338,1151","size":"100,100"}
 /* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
 	<<if $theyrPrivateVars[$userId] && !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
 		<<set _currPassage = passage()>>
 			<<set _text = "">>
-			<<timed 500ms>>
 			<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = $("#passages").children()[0].innerHTML>>
-			<</timed>>
+
 	<</if>>
 	
 <<for _i, _passageEnd range Story.lookup("tags","sidePassageEnd")>>
