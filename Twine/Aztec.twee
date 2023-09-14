@@ -3609,8 +3609,8 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</liveblock>>
 
-:: Control: Full Reset {"position":"4275,375","size":"100,100"}
 
+:: Control: Full Reset {"position":"4275,375","size":"100,100"}
 WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
 <br>
 <<button "Reset">>
@@ -3618,6 +3618,7 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 		fullReset();
 	<</script>>
 <</button>>
+
 
 :: Control: Player Status {"position":"4275,375","size":"100,100"}
 <<liveblock>>
@@ -9079,7 +9080,9 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 	setup.scrollToBottom = function(elementId) {
 		requestAnimationFrame(() => {
 			var element = document.getElementById(elementId);
-			element.scrollTop = element.scrollHeight;
+			if(element){
+				element.scrollTop = element.scrollHeight;
+			}
 		});
 	}
 <</script>>
