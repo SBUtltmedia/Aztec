@@ -3274,6 +3274,7 @@ When everyone has voted, you will deliver the news to <<print $Span_Leader>>.<br
 <<elseif $Sp_Ld_Vote is 5>>
 You have chosen a leader. <br>
 <br>
+<</if>>
 <<if $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Olid and $Sp_Ld_Cor is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Cortes">><</link>> and take note of your team strength points!<br>
 <br>
@@ -3305,7 +3306,7 @@ The group has made a decision, and your team has shown great unity of purpose.  
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 <</if>>
-<</if>>
+
 
 
 <</liveblock>>
