@@ -4480,6 +4480,8 @@ Now that your quest is complete, <<link "you return home exhausted" "Tlaxcalans 
 It is rude to start eating before all the guests have arrived! You'll just have to wait, no matter how hungry you are!<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Feast>> guests have arrived.<br>
+<br>
 
 <<else>>
 <<switch $users[$userId]["faction"]>>
@@ -7266,6 +7268,10 @@ Click through to the page titled "Moctezuma Speaks", follow the link to the Go t
 
 
 :: Set up for the Feast {"position":"2450,7175","size":"100,100"}
+<<if ndef $Feast>>
+<<set $Feast=0>>
+<</if>>
+
 While your guests are off exploring the city, it's time to prepare for the greatest feast this city has ever seen! <br>
 <br>
 
@@ -8468,6 +8474,9 @@ You settle in and [[wait for a response|Aguilar’s first encounter with the Spa
 
 
 :: Spaniards Tour Tenochtitlan {"position":"2150,7175","size":"100,100"}
+<<if ndef $Feast>>
+<<set $Feast=0>>
+<</if>>
 You settle in quickly, eager to see everything this remarkable city has to offer. Moctezuma has sent a group of Aztec nobles to be your guides and they have presented you with an itinerary:<br>
 <br>
 
@@ -11236,6 +11245,9 @@ Once your statement is prepared, paste a link here to share with your fellow Cou
 
 
 :: Tlaxcalans Visit Tlatelolco {"position":"2300,7175","size":"100,100"}
+<<if ndef $Feast>>
+<<set $Feast=0>>
+<</if>>
 <<if $users[$userId]["role"] is "Pochteca">>
 You set out for the market with your Tlaxcalan guests in tow. They are eager to visit the legendary Tlatelolco Market and, as one of the most important agents of the market, you can't help but take pride in their excitement. You are halfway to your destination when you are approached by a messenger. He has come to assign your guests a task.<br>
 <br>
