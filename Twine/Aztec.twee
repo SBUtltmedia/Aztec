@@ -3275,34 +3275,34 @@ When everyone has voted, you will deliver the news to <<print $Span_Leader>>.<br
 You have chosen a leader. <br>
 <br>
 <</if>>
-<<if $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Olid and $Sp_Ld_Cor is 5>>
+<<if $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Oli and $Sp_Ld_Cor is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Cortes">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Olid and $Sp_Ld_Cor isnot 5>>
+<<elseif $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Oli and $Sp_Ld_Cor isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Cortes">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Olid and $Sp_Ld_Alv is 5>>
+<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Oli and $Sp_Ld_Alv is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Alvarado">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Olid and $Sp_Ld_Alv isnot 5>>
+<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Oli and $Sp_Ld_Alv isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Olid and $Sp_Ld_Agu is 5>>
+<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Oli and $Sp_Ld_Agu is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Aguilar">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Olid and $Sp_Ld_Agu isnot 5>>
+<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Oli and $Sp_Ld_Agu isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Olid and $Sp_Ld_Gar is 5>>
+<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Oli and $Sp_Ld_Gar is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Garrido">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Olid and $Sp_Ld_Gar isnot 5>>
+<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Oli and $Sp_Ld_Gar isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Olid >=$Sp_Ld_Cor and $Sp_Ld_Olid >=$Sp_Ld_Alv and $Sp_Ld_Olid >=$Sp_Ld_Agu and $Sp_Ld_Olid >=$Sp_Ld_Gar and $Sp_Ld_Olid is 5>>
+<<elseif $Sp_Ld_Oli >=$Sp_Ld_Cor and $Sp_Ld_Oli >=$Sp_Ld_Alv and $Sp_Ld_Oli >=$Sp_Ld_Agu and $Sp_Ld_Oli >=$Sp_Ld_Gar and $Sp_Ld_Oli is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Garrido">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Olid >=$Sp_Ld_Cor and $Sp_Ld_Olid >=$Sp_Ld_Alv and $Sp_Ld_Olid >=$Sp_Ld_Agu and $Sp_Ld_Olid >=$Sp_Ld_Gar and $Sp_Ld_Olid isnot 5>>
+<<elseif $Sp_Ld_Oli >=$Sp_Ld_Cor and $Sp_Ld_Oli >=$Sp_Ld_Alv and $Sp_Ld_Oli >=$Sp_Ld_Agu and $Sp_Ld_Oli >=$Sp_Ld_Gar and $Sp_Ld_Oli isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 <</if>>
