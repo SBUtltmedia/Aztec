@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -4090,6 +4090,8 @@ Now that your quest is complete, &lt;&lt;link &quot;you return home exhausted&qu
 It is rude to start eating before all the guests have arrived! You&#39;ll just have to wait, no matter how hungry you are!&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;&lt;print $Feast&gt;&gt; guests have arrived.&lt;br&gt;
+&lt;br&gt;
 
 &lt;&lt;else&gt;&gt;
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
@@ -5218,7 +5220,7 @@ The group has made a decision. Continue to the next page to find out &lt;&lt;lin
 
 You enter the chamber, where your council awaits. They have considered your proclamation and all are in agreement with it. &lt;br&gt;
 &lt;br&gt;
-Your people have great faith in you! Not only do you maintain your place as their trusted leader, you also earn 5 loyalty points.&lt;br&gt;
+Your people have great faith in you! Not only do you maintain your place as their trusted leader, you also earn 5 loyalty points!&lt;br&gt;
 &lt;br&gt;
 Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.&lt;br&gt;
 &lt;br&gt;
@@ -6600,7 +6602,11 @@ Click through to the page titled &quot;Moctezuma Speaks&quot;, follow the link t
 [[Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán]]
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="Set up for the Feast" tags="" position="2450,7175" size="100,100">While your guests are off exploring the city, it&#39;s time to prepare for the greatest feast this city has ever seen! &lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="Set up for the Feast" tags="" position="2450,7175" size="100,100">&lt;&lt;if ndef $Feast&gt;&gt;
+&lt;&lt;set $Feast=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+While your guests are off exploring the city, it&#39;s time to prepare for the greatest feast this city has ever seen! &lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;if $Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
@@ -7694,7 +7700,10 @@ You settle in and [[wait for a response|Aguilar’s first encounter with the Spa
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="212" name="Spaniards Tour Tenochtitlan" tags="" position="2150,7175" size="100,100">You settle in quickly, eager to see everything this remarkable city has to offer. Moctezuma has sent a group of Aztec nobles to be your guides and they have presented you with an itinerary:&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="212" name="Spaniards Tour Tenochtitlan" tags="" position="2150,7175" size="100,100">&lt;&lt;if ndef $Feast&gt;&gt;
+&lt;&lt;set $Feast=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+You settle in quickly, eager to see everything this remarkable city has to offer. Moctezuma has sent a group of Aztec nobles to be your guides and they have presented you with an itinerary:&lt;br&gt;
 &lt;br&gt;
 
 1:00-1:30		Tour the Kitchen Palace&lt;br&gt;
@@ -10158,7 +10167,10 @@ Once your statement is prepared, paste a link here to share with your fellow Cou
 [[The Aztecs Regroup]]
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="288" name="Tlaxcalans Visit Tlatelolco" tags="" position="2300,7175" size="100,100">&lt;&lt;if $users[$userId][&quot;role&quot;] is &quot;Pochteca&quot;&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="288" name="Tlaxcalans Visit Tlatelolco" tags="" position="2300,7175" size="100,100">&lt;&lt;if ndef $Feast&gt;&gt;
+&lt;&lt;set $Feast=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $users[$userId][&quot;role&quot;] is &quot;Pochteca&quot;&gt;&gt;
 You set out for the market with your Tlaxcalan guests in tow. They are eager to visit the legendary Tlatelolco Market and, as one of the most important agents of the market, you can&#39;t help but take pride in their excitement. You are halfway to your destination when you are approached by a messenger. He has come to assign your guests a task.&lt;br&gt;
 &lt;br&gt;
 The messenger informs you that the Spaniards have decided to create a guide to the city that will provide useful advice to future explorers. Given the importance of Tlatelolco Market, it must occupy a central place in the guide. However, the Spaniards worry that they will be unfamiliar with many of the riches to be found there and that their description may not do it justice. They would like to enlist the help of the Tlaxcalans. As the market expert, you must assist them in their task.  As compensation for this work, however, the Spaniards have decided to include you in their dinner invitation at Moctezuma&#39;s Palace tonight, where there will be a spectacular feast!&lt;br&gt;
