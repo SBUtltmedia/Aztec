@@ -3300,10 +3300,10 @@ The group has made a decision, and your team has shown great unity of purpose.  
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 <<elseif $Sp_Ld_Oli >=$Sp_Ld_Cor and $Sp_Ld_Oli >=$Sp_Ld_Alv and $Sp_Ld_Oli >=$Sp_Ld_Agu and $Sp_Ld_Oli >=$Sp_Ld_Gar and $Sp_Ld_Oli is 5>>
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Garrido">><</link>> and take note of your team strength points!<br>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Olid">><</link>> and take note of your team strength points!<br>
 <br>
 <<elseif $Sp_Ld_Oli >=$Sp_Ld_Cor and $Sp_Ld_Oli >=$Sp_Ld_Alv and $Sp_Ld_Oli >=$Sp_Ld_Agu and $Sp_Ld_Oli >=$Sp_Ld_Gar and $Sp_Ld_Oli isnot 5>>
-The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
+The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
 <</if>>
 
