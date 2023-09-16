@@ -5710,25 +5710,41 @@ You wait while your fellow counselors cast their vote.<br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc is 5>>">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Tla is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Cua is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc >=3>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Tla >=3>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Cua >=3>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc <=2 and $MocMut_Tla <=2 and $MocMut_Cua <=2>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Draw">>
-
+<<elseif $Moc_Mut_Vote is 5>>
+You have chosen a leader.<br>
+<br>
 <</if>>
 
+<<if $MocMut_Moc is 5>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif $MocMut_Tla is 5>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif $MocMut_Cua is 5>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif $MocMut_Moc >=3>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+
+<<elseif $MocMut_Tla >=3>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+
+<<elseif $MocMut_Cua >=3>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+<</if>>
+
+
+:: Moctezuma Confidence Vote 2
 <<switch $users[$userId]["role"]>>
 <<case "Moctezuma">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 
 You enter the chamber, where your council awaits. They have considered your proclamation and all are in agreement with it. <br>
 <br>
@@ -5737,21 +5753,13 @@ Your people have great faith in you! Not only do you maintain your place as thei
 Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You enter the chamber, where your council awaits. They have considered your proclamation and have voted in favor, though not all are in agreement.<br>
 <br>
 You will continue to lead your people, though you do not have the loyalty of everyone. You have gained 1 loyalty point for every team member who supports you.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it.<br> 
-<br>
-You have lost the faith of your people! You're in luck, however, for no-one else has earned their loyalty. You will continue to lead, but your position is tenuous.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it. <br>
 <br>
 You have lost the faith of your people! They have put their trust in <<print $Aztec_Leader>> instead.<br>
@@ -5759,7 +5767,7 @@ You have lost the faith of your people! They have put their trust in <<print $Az
 Though your people have turned against you, they are united in their decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
 You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it. <br>
 <br>
 You have lost the faith of your people! They have put their trust in <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
@@ -5768,27 +5776,19 @@ You have lost the faith of your people! They have put their trust in <<print $Az
 <</if>>
 
 <<case "Tlacaelel">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
 <br>
 You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
 <br>
 Moctezuma will continue to lead, though it is possible that some would rather look to you. If so, your loyalty points will reflect this.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it.<br>
-<br>
-Moctezuma has lost the faith of his people, but there is no clear leader to take his place and he remains in power. Though some would rather look to you, it is not yet a majority. Your loyalty points will indicate where you stand.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, and have done so unanimously. You have gained 5 loyalty points.<br>
@@ -5796,13 +5796,13 @@ Moctezuma has lost the faith of his people! They have put their trust in you ins
 Though your people have overthrown their emperor, they are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Azted_Leader>> instead.<br>
@@ -5810,7 +5810,7 @@ Moctezuma has lost the faith of his people! You have put your trust in <<print $
 Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
@@ -5819,27 +5819,19 @@ Moctezuma has lost the faith of his people! They have put their trust <<print $A
 <</if>>
 
 <<case "Cuauhtemoc">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
 <br>
 You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
 <br>
 Moctezuma will continue to lead, though it is possible that some would rather look to you. If so, your loyalty points will reflect this.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it.<br>
-<br>
-Moctezuma has lost the faith of his people, but there is no clear leader to take his place and he remains in power. Though some would rather look to you, it is not yet a majority. Your loyalty points will indicate where you stand.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, and have done so unanimously. You have gained 5 loyalty points.<br>
@@ -5847,13 +5839,13 @@ Moctezuma has lost the faith of his people! They have put their trust in you ins
 Though your people have overthrown their emperor, they are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
+<<elseif and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead. <br>
@@ -5861,7 +5853,7 @@ Moctezuma has lost the faith of his people! You have put your trust in <<print $
 Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
@@ -5870,27 +5862,19 @@ Moctezuma has lost the faith of his people! They have put their trust <<print $A
 <</if>>
 
 <<case "Aztec_Priest" or "Cacamatzin" or "Pochteca">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
 <br>
 You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
 <br>
 Moctezuma will continue to lead, though some of you may wish otherwise.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it.<br>
-<br>
-Moctezuma has lost the faith of his people, but there is no clear leader to take his place. He maintains his position, for now.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead.<br>
@@ -5898,18 +5882,15 @@ Moctezuma has lost the faith of his people! You have put your trust in <<print $
 Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead, but not all are in agreement. <<print $Aztec_Leader>> will take power...for now.<br>
 <br>
 <</if>>
 <</switch>>
-
-<<if $Moc_Mut_Vote >=5>>
 With this decided, how will you [[engage with the strangers|Aztec Leader Makes a Choice]].<br>
 <br>
-<</if>>
 
 
 <</liveblock>>
@@ -5956,6 +5937,8 @@ You wait, on edge, wondering what the reception of your proclamation will be. Yo
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 You are waiting for your team members to all vote.<br>
+<br>
+<<print $Moc_Mut_Vote>> votes have been cast.<br>
 <br>
 
 <<elseif $Moc_Mut_Vote is 5>>
