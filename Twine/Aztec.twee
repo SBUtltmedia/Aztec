@@ -272,6 +272,25 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 
 :: Absent Cortes Leadership Challenge {"position":"2675,9050","size":"100,100"}
 <<liveblock>>
+<<if ndef $Sp_Ld_Vote_Teno>>
+<<set$Sp_Ld_Vote_Teno=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Mar_Teno>>
+<<set$Sp_Ld_Mar_Teno=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Alv_Teno>>
+<<set$Sp_Ld_Alv_Teno=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Agu_Teno>>
+<<set$Sp_Ld_Agu_Teno=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Gar_Teno>>
+<<set$Sp_Ld_Gar_Teno=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Oli_Teno>>
+<<set$Sp_Ld_Oli_Teno=0 >>
+<</if>>
+
 <<if $Span_Leader is "Cortes">>
 
 <<print $Span_Leader>> has led you through months of delicate negotations with <<print $Aztec_Leader>>, but with his departure, it is now time to designate someone you trust as your temporary leader?<br>
@@ -3851,18 +3870,18 @@ Even if your men have turned against you, there's [[no going back|Mutiny Outcome
 <<case "Spaniards">>
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace. <br>
 <br>
-As you struggle to maintain your forces, you wish you had more manpower and wonder why Cortes has [[not yet returned from the coast|Aztec Leader gives a speech]].<br>
+As you struggle to maintain your forces, you wish you had more manpower and wonder why Cortes has [[not yet returned from the coast|Aztec Leader Gives a Speech]].<br>
 <br>
 <<case "Aztecs">>
 <<if $users[$userId]["role"] is $Aztec_Leader>>
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. With Cortes gone, a much smaller Spanish force remains and you wonder if he and his Tlaxcalan allies will return. You know the route to the coast well and it's clear that he should have returned by now. <br>
 <br>
-[[You hope this will work to your advantage|Aztec Leader gives a speech]].<br>
+[[You hope this will work to your advantage|Aztec Leader Gives a Speech]].<br>
 <br>
 <<else>>
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. With Cortes gone, a much smaller Spanish force remains. Messengers have made their way to the city in recent days, reporting on his demise. It seems Cortes was defeated at the coast and neither he nor his Tlaxcalan allies will be returning. <br>
 <br>
-This turn of events gives you hope as you [[continue your preparations|Aztec Leader gives a speech]].<br>
+This turn of events gives you hope as you [[continue your preparations|Aztec Leader Gives a Speech]].<br>
 <br>
 <</if>>
 <<case "Tlaxcalans">>
@@ -3874,7 +3893,7 @@ Just today, you received yet another piece of news: Cortés has been killed at t
 <br>
 Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?<br>
 <br>
-Once you have discussed the present situation, [[you may move forward|Aztec Leader gives a speech]].<br>
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].<br>
 <br>
 
 
@@ -4019,14 +4038,14 @@ It seems that things have descended into chaos during your absence. Your compani
 <br>
 While you were achieving victory on the coast, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse. <br>
 <br>
-It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <<else>>
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.<br>
 <br>
 It's late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast with a much larger force than he took with him. Not only was he able to defeat Velazquez' forces, but he won them over to your side and claimed their weapons.<br>
 <br>
-When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased  to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased  to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <</if>>
 
@@ -4034,12 +4053,12 @@ When you recount the events that transpired during his absence, Cortes is livid.
 <<if $users[$userId]["role"] is $Aztec_Leader>>
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.<br>
 <br>
-This new turn of events makes you nervous and you [[wonder what is in store for you|Aztec Leader gives a speech]].<br>
+This new turn of events makes you nervous and you [[wonder what is in store for you|Aztec Leader Gives a Speech]].<br>
 <br>
 <<else>>
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.<br>
 <br>
-The people are restless and this new turn of events [[makes you nervous|Aztec Leader gives a speech]].<br>
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].<br>
 <br>
 <</if>>
 <<case "Tlaxcalans">>
@@ -4071,14 +4090,14 @@ It seems that things have descended into chaos during your absence. Your compani
 <br>
 You gather your men and force your way through the city and into the palace with little resistance. Once inside you angrily confront the rest of the Spanish forces, wondering how they could have let things go so horribly wrong. While you were barely escaping the coast with your life, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse.<br>
 <br>
-It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <<else>>
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.<br>
 <br>
 It's late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast, though you are dismayed when you realize that he has brought with him a much smaller force than that with which he left. <br>
 <br>
-When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <</if>>
 
@@ -4086,12 +4105,12 @@ When you recount the events that transpired during his absence, Cortes is livid.
 <<if $users[$userId]["role"] is $Aztec_Leader>>
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast, though you note that he is accompanied by a much smaller army than he took with him when he left.<br>
 <br>
-This new turn of events makes you nervous and you wonder [[what is in store for you|Aztec Leader gives a speech]].<br>
+This new turn of events makes you nervous and you wonder [[what is in store for you|Aztec Leader Gives a Speech]].<br>
 <br>
 <<else>>
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city, though you note that he is accompanied by a much smaller army than he took with him when he left.<br>
 <br>
-The people are restless and this new turn of events [[makes you nervous|Aztec Leader gives a speech]].<br>
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].<br>
 <br>
 <</if>>
 
@@ -4104,7 +4123,7 @@ Just today, you received yet another piece of news: Cortés has returned from th
 <br>
 Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?<br>
 <br>
-Once you have discussed the present situation, [[you may move forward|Aztec Leader gives a speech]].<br>
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].<br>
 <br>
 
 <</switch>>

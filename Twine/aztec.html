@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -321,6 +321,25 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Absent Cortes Leadership Challenge" tags="" position="2675,9050" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Vote_Teno&gt;&gt;
+&lt;&lt;set$Sp_Ld_Vote_Teno=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Mar_Teno&gt;&gt;
+&lt;&lt;set$Sp_Ld_Mar_Teno=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Alv_Teno&gt;&gt;
+&lt;&lt;set$Sp_Ld_Alv_Teno=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Agu_Teno&gt;&gt;
+&lt;&lt;set$Sp_Ld_Agu_Teno=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Gar_Teno&gt;&gt;
+&lt;&lt;set$Sp_Ld_Gar_Teno=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;set$Sp_Ld_Oli_Teno=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;if $Span_Leader is &quot;Cortes&quot;&gt;&gt;
 
 &lt;&lt;print $Span_Leader&gt;&gt; has led you through months of delicate negotations with &lt;&lt;print $Aztec_Leader&gt;&gt;, but with his departure, it is now time to designate someone you trust as your temporary leader?&lt;br&gt;
@@ -3537,18 +3556,18 @@ Even if your men have turned against you, there&#39;s [[no going back|Mutiny Out
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace. &lt;br&gt;
 &lt;br&gt;
-As you struggle to maintain your forces, you wish you had more manpower and wonder why Cortes has [[not yet returned from the coast|Aztec Leader gives a speech]].&lt;br&gt;
+As you struggle to maintain your forces, you wish you had more manpower and wonder why Cortes has [[not yet returned from the coast|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $users[$userId][&quot;role&quot;] is $Aztec_Leader&gt;&gt;
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. With Cortes gone, a much smaller Spanish force remains and you wonder if he and his Tlaxcalan allies will return. You know the route to the coast well and it&#39;s clear that he should have returned by now. &lt;br&gt;
 &lt;br&gt;
-[[You hope this will work to your advantage|Aztec Leader gives a speech]].&lt;br&gt;
+[[You hope this will work to your advantage|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. With Cortes gone, a much smaller Spanish force remains. Messengers have made their way to the city in recent days, reporting on his demise. It seems Cortes was defeated at the coast and neither he nor his Tlaxcalan allies will be returning. &lt;br&gt;
 &lt;br&gt;
-This turn of events gives you hope as you [[continue your preparations|Aztec Leader gives a speech]].&lt;br&gt;
+This turn of events gives you hope as you [[continue your preparations|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
@@ -3560,7 +3579,7 @@ Just today, you received yet another piece of news: Cortés has been killed at t
 &lt;br&gt;
 Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?&lt;br&gt;
 &lt;br&gt;
-Once you have discussed the present situation, [[you may move forward|Aztec Leader gives a speech]].&lt;br&gt;
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 
 
@@ -3685,14 +3704,14 @@ It seems that things have descended into chaos during your absence. Your compani
 &lt;br&gt;
 While you were achieving victory on the coast, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, &lt;&lt;print $Span_Leader&gt;&gt; remains in charge, for better for worse. &lt;br&gt;
 &lt;br&gt;
-It seems the one good thing the rest of your men did in your absence was to take &lt;&lt;print $Aztec_Leader&gt;&gt; prisoner. [[You must now use him to your advantage|Aztec Leader gives a speech]]. &lt;br&gt;
+It seems the one good thing the rest of your men did in your absence was to take &lt;&lt;print $Aztec_Leader&gt;&gt; prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.&lt;br&gt;
 &lt;br&gt;
 It&#39;s late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast with a much larger force than he took with him. Not only was he able to defeat Velazquez&#39; forces, but he won them over to your side and claimed their weapons.&lt;br&gt;
 &lt;br&gt;
-When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased  to learn the news that &lt;&lt;print $Aztec_Leader&gt;&gt; is now your hostage. [[You must now use him to your advantage|Aztec Leader gives a speech]]. &lt;br&gt;
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased  to learn the news that &lt;&lt;print $Aztec_Leader&gt;&gt; is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -3700,12 +3719,12 @@ When you recount the events that transpired during his absence, Cortes is livid.
 &lt;&lt;if $users[$userId][&quot;role&quot;] is $Aztec_Leader&gt;&gt;
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.&lt;br&gt;
 &lt;br&gt;
-This new turn of events makes you nervous and you [[wonder what is in store for you|Aztec Leader gives a speech]].&lt;br&gt;
+This new turn of events makes you nervous and you [[wonder what is in store for you|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.&lt;br&gt;
 &lt;br&gt;
-The people are restless and this new turn of events [[makes you nervous|Aztec Leader gives a speech]].&lt;br&gt;
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
@@ -3733,14 +3752,14 @@ It seems that things have descended into chaos during your absence. Your compani
 &lt;br&gt;
 You gather your men and force your way through the city and into the palace with little resistance. Once inside you angrily confront the rest of the Spanish forces, wondering how they could have let things go so horribly wrong. While you were barely escaping the coast with your life, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, &lt;&lt;print $Span_Leader&gt;&gt; remains in charge, for better for worse.&lt;br&gt;
 &lt;br&gt;
-It seems the one good thing the rest of your men did in your absence was to take &lt;&lt;print $Aztec_Leader&gt;&gt; prisoner. [[You must now use him to your advantage|Aztec Leader gives a speech]]. &lt;br&gt;
+It seems the one good thing the rest of your men did in your absence was to take &lt;&lt;print $Aztec_Leader&gt;&gt; prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.&lt;br&gt;
 &lt;br&gt;
 It&#39;s late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast, though you are dismayed when you realize that he has brought with him a much smaller force than that with which he left. &lt;br&gt;
 &lt;br&gt;
-When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased to learn the news that &lt;&lt;print $Aztec_Leader&gt;&gt; is now your hostage. [[You must now use him to your advantage|Aztec Leader gives a speech]]. &lt;br&gt;
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased to learn the news that &lt;&lt;print $Aztec_Leader&gt;&gt; is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -3748,12 +3767,12 @@ When you recount the events that transpired during his absence, Cortes is livid.
 &lt;&lt;if $users[$userId][&quot;role&quot;] is $Aztec_Leader&gt;&gt;
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast, though you note that he is accompanied by a much smaller army than he took with him when he left.&lt;br&gt;
 &lt;br&gt;
-This new turn of events makes you nervous and you wonder [[what is in store for you|Aztec Leader gives a speech]].&lt;br&gt;
+This new turn of events makes you nervous and you wonder [[what is in store for you|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city, though you note that he is accompanied by a much smaller army than he took with him when he left.&lt;br&gt;
 &lt;br&gt;
-The people are restless and this new turn of events [[makes you nervous|Aztec Leader gives a speech]].&lt;br&gt;
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -3766,7 +3785,7 @@ Just today, you received yet another piece of news: Cortés has returned from th
 &lt;br&gt;
 Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?&lt;br&gt;
 &lt;br&gt;
-Once you have discussed the present situation, [[you may move forward|Aztec Leader gives a speech]].&lt;br&gt;
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;/switch&gt;&gt;
