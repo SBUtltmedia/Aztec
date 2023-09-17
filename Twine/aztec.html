@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -1253,6 +1253,29 @@ Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="Aztec Leader Dies and Aztecs Choose a Leader Riot" tags="" position="2375,10625" size="100,100">&lt;&lt;liveblock&gt;&gt;
+
+&lt;&lt;if ndef $Moc_Riot_Vote&gt;&gt;
+&lt;&lt;set $Moc_Riot_Vote=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Tla&gt;&gt;
+&lt;&lt;set $MocRiot_Tla=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Cua&gt;&gt;
+&lt;&lt;set $MocRiot_Cua=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Cac&gt;&gt;
+&lt;&lt;set $MocRiot_Cac=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_AzP&gt;&gt;
+&lt;&lt;set $MocRiot_AzP=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Poc&gt;&gt;
+&lt;&lt;set $MocRiot_Poc=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Moc&gt;&gt;
+&lt;&lt;set $MocRiot_Moc=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 Overcome by grief, you gather for a council meeting. Now is not the time for mourning; that must wait. The first task at hand is to elect a new leader, but who among you is capable of leading your people in this difficult moment? Who do you trust? &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if $Aztec_Leader is &quot;Moctezuma&quot;&gt;&gt;
@@ -1333,6 +1356,16 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Aztec Leader Gives a Speech" tags="" position="2725,9925" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Riot_Vote&gt;&gt;
+&lt;&lt;set $Riot_Vote=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Riot_Vote_sum&gt;&gt;
+&lt;&lt;set $Riot_Vote_sum=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Riot_sum&gt;&gt;
+&lt;&lt;set $Riot_sum=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 After days of eerie quiet, the Mexica resume their assault on the palace. You are hungry and outnumbered. Desperate to bring the siege to an end so you can make your escape, you decide to deploy the best weapon you have at your disposal: &lt;&lt;print $Aztec_Leader&gt;&gt;.&lt;br&gt;
@@ -1414,6 +1447,29 @@ You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].&lt;br&gt;
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="Aztec Leader Lives and Aztecs Choose a Leader Riot" tags="" position="2525,10625" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Moc_Riot_Vote&gt;&gt;
+&lt;&lt;set $Moc_Riot_Vote=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Tla&gt;&gt;
+&lt;&lt;set $MocRiot_Tla=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Cua&gt;&gt;
+&lt;&lt;set $MocRiot_Cua=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Cac&gt;&gt;
+&lt;&lt;set $MocRiot_Cac=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_AzP&gt;&gt;
+&lt;&lt;set $MocRiot_AzP=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Poc&gt;&gt;
+&lt;&lt;set $MocRiot_Poc=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $MocRiot_Moc&gt;&gt;
+&lt;&lt;set $MocRiot_Moc=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
 You gather for a council meeting and decide to elect a new leader. Who among you is capable of leading your people in this difficult moment? Who do you trust? &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if $Aztec_Leader is &quot;Moctezuma&quot;&gt;&gt;
@@ -7008,7 +7064,7 @@ You wait and [[wonder what the Spaniards will do next|Spaniards Retreat to Tlaxc
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="191" name="Spaniards Decide Whether to Retreat to Tlaxcala" tags="" position="2525,11250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $users[$userId][&quot;role&quot;] is $Span_Leader&gt;&gt;
 &lt;&lt;if $Hostage_Exch is &quot;Yes&quot;&gt;&gt;
-As you exit the causeway and the city of Tenochtitlán fades into the distance, you breathe a sigh of relief. You spent seven long months inside the city, surrounded by your enemies and acutely aware of your own vulnerability. The path before you may not yet be clear or free of danger, but your sense of security has ithemproved considerably.&lt;br&gt;
+As you exit the causeway and the city of Tenochtitlán fades into the distance, you breathe a sigh of relief. You spent seven long months inside the city, surrounded by your enemies and acutely aware of your own vulnerability. The path before you may not yet be clear or free of danger, but your sense of security has improved considerably.&lt;br&gt;
 &lt;br&gt;
 It is now time to decide just what that path will be, however. You gather your most trusted counselors to weigh your options. Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. &lt;br&gt;
 &lt;br&gt;
