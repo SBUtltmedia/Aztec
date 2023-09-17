@@ -4279,7 +4279,10 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Start>> players have joined the game.<br>
+<br>
 
 <<else>>
 <<audio "Gulls_and_waves__5min_" play>>
@@ -5577,7 +5580,10 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 <<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Start>> players have joined the game.<br>
+<br>
 
 <<else>>
 
