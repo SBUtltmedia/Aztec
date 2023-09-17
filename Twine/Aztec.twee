@@ -340,11 +340,18 @@ One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: G
 
 You wonder what the next day will bring. Return here to find out.<br>
 <br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Tlacaelel to make a decision.<br>
+<br>
 <<elseif ndef $gifts or $gifts eq "">>
 
 You wonder what the next day will bring. Return here to find out.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Tlacaelel to make a decision.<br>
+<br>
 
 <</if>>
 
@@ -468,7 +475,8 @@ Now that your leader has been chosen, it's time to confront [[the bigger questio
 You have cast your vote, but others are less decisive. You wait for the rest of the council to make their choice.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
+<<print $Moc_Riot_Vote>> votes have been cast.<br>
+<br>
 <<else>>
 
 <<if $MocRiot_Moc >=$MocRiot_Tla and $MocRiot_Moc >=$MocRiot_Cua and $MocRiot_Moc >=$MocRiot_Cac and $MocRiot_Moc >=$MocRiot_AzP and $MocRiot_Moc >=$MocRiot_Poc>>
@@ -528,13 +536,16 @@ The votes have been cast, click through to find out who your <<link "next leader
 
 :: Aguilar overhears Maya gossip [Done] {"position":"1925,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Start>> players have joined the game.<br>
+<br>
 
-<<elseif $Start >=5>>
+<<else>>
 It's been eight years since you were shipwrecked on the way to Santo Domingo; eight years that you've been living as a slave among the Maya. All this time, you've remained loyal to your vows as a Franciscan Friar, refusing to take a wife and fully embrace the Mayan culture. After all these years, however, you have become fluent in the Yucatec Maya language. <br>
 <br>
 This morning began like any other, but things take a turn when you overhear some rather interesting news. As you sweep the entrance to the temple, you overhear a conversation between two of the most important men in the village. <br>
@@ -1706,12 +1717,17 @@ Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $Az_Ld_Cac = $Az
 <<if $Aztec_Leader is $users[$userId]["role"] and $Az_Ld_Vote isnot 4>>
 You wait nervously for your advisors to deliberate.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Az_Ld_Vote>> votes have been cast.
 
 <<elseif $Aztec_Leader isnot $users[$userId]["role"] and $Az_Ld_Vote isnot 4>>
 When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Az_Ld_Vote>> votes have been cast.<br>
+<br>
 
 <<elseif $Az_Ld_Vote is 4>>
 
@@ -1889,7 +1905,10 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 <<if $Riot_Vote isnot 5>>
 You wait while the rest of your team casts their vote. <br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Riot_Vote>> votes have been cast.<br>
+<br>
 <<else>>
 
 <<if $Riot >0>>
@@ -2276,7 +2295,10 @@ You put up a valiant fight, but it was not enough. The Tlaxcalans had the Gods o
 <<if ndef $TL_Attacks or $TL_Attacks eq "">>
 You wait in the palace for your men to return from the coast.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalans to do something.<br>
+<br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
 Your men have finally returned from the coast and you anxiously await their report. <br>
@@ -2762,7 +2784,7 @@ Double-click this passage to edit it.
 <<liveblock>>
 <<if $Mutiny_Voted isnot 5>>
 
-The members of the faction are still mulling over their decisions. Return here when everybody has voted.<br>
+The members of the faction are still mulling over their decisions. <<print $Mutiny_Voted>> votes have been cast. Return here when everybody has voted.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
@@ -3737,9 +3759,9 @@ Strength: <<print $users[$lookup["Maxixcatl"]]["stats"]["Strength"]>>   Wisdom: 
 <<liveblock>>
 <b>STATUS OF VOTES AND HOLDS</b><br>
 <b> Act 1</b><br>
-<b>Start:</b>  <i>This holds players after the Character Page at the beginning of the game. Players cannot continue until all 15 have set their Character Statistics and joined the game.</i><br>
-Number of Votes Cast:  <<print $Start>> out of 15 votes.<br>
-Has the hold been cleared? <b><<if $Start eq "15">> Yes <<else>> No<</if>></b><br>
+<b>Start:</b>  <i>This holds players after the Character Page at the beginning of the game. Players cannot continue until at least 12 have set their Character Statistics and joined the game.</i><br>
+Number of Votes Cast:  <<print $Start>> out of 12 votes.<br>
+Has the hold been cleared? <b><<if $Start > 12>> Yes <<else>> No<</if>></b><br>
 Players who have already cast a vote: <<if $Start eq "" or ndef $Start>> Nobody has voted yet. <<else>><<script>>$(output).append(showCounterRoles("Start_ctr"));<</script>><</if>>
 <br>
 
@@ -3882,7 +3904,10 @@ As you are thrown in chains into the hold of another ship, you wonder why <<link
 <<if $Cuba_Voted isnot 3>>
 You wait nervously to see how your men respond.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Cuba_Voted>> votes have been cast.<br>
+<br>
 
 <<elseif $Cuba_Voted is 3 and $users[$lookup["Cortes"]]["stats"]["Loyalty"] < 1>><<set $users[$lookup["Cortes"]]["stats"]["Strength"]=0>><<set $users[$lookup["Cortes"]]["stats"]["Wisdom"]=0>>
 
@@ -3908,8 +3933,9 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 <<if $Cuba_Voted isnot 3>>
 You wait nervously to see how the other men respond.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Cuba_Voted>> vostes have been cast.
 <<elseif $Cuba_Voted is 3 and $users[$lookup["Cortes"]]["stats"]["Loyalty"] < 1>>
 
 Cortes has lost your confidence, and you mutiny against him! You band together and take control of the ship. One amongst you will rise to the top and lead the group. <br>
@@ -3938,13 +3964,17 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 
 :: Cortes sets sail from Cuba [Done] {"position":"2200,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Start>> players have joined the game.<br>
+<br>
 
-<<elseif $Start >=5>>
+
+<<else>>
 <<audio "Gulls_and_waves__5min_" play>>
 November 18th, 1519. Just off the shore of Cuba.<br>
 <br>
@@ -4246,12 +4276,12 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 
 :: Spaniards set sail from Cuba [Done] {"position":"2050,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Start >=5>>
+<<else>>
 <<audio "Gulls_and_waves__5min_" play>>
 November 18th, 1519.  Just off the shore of Cuba. <br>
 <br>
@@ -5544,12 +5574,12 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 
 :: Marina hears gossip in the market [Done] {"position":"2350,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Start >=5>>
+<<else>>
 
 You have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were respected in your community for your wit and intelligence even at a young age. Among the many things you have acquired in your years as a slave is a facility with the Mayan language, so different from the Nahuatl with which you were raised.<br>
 <br>
@@ -6016,7 +6046,10 @@ Option 2: Return to Tlaxcala.
 <<if $Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>> votes have been cast.<br>
+<br>
 
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
@@ -6032,7 +6065,9 @@ It seems your efforts have failed. There has been a mutiny! Olid has taken contr
 <<if $Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie. <br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>> votes have been cast.
 
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
@@ -6048,8 +6083,9 @@ You have convinced the men to mutiny! You watch in glee as Cortés learns the ne
 <<if $Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>>votes have been cast.
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
 You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards learn their leader beached the ships]].<br>
@@ -6150,8 +6186,13 @@ Maxixcatl
 
 :: New Aztec Leader {"position":"2450,7050","size":"100,100"}
 <<liveblock>>
-After much angry debate in the Council Room, you finally determine that <<print $Aztec_Leader>> has the greatest loyalty of his men, and you [[move forward under his leadership|Set up for the Feast]]
 
+<<if $Aztec_Leader is $users[$userId]["role"]>>
+After much angry debate in the Council Room, you find that you have been elected leader. You have the greatest loyalty of the men, and you [[move forward as Tlatoani|Set up for the Feast]].
+
+<<elseif $Aztec_Leader isnot $users[$userId]["role"]>>
+After much angry debate in the Council Room, you finally determine that <<print $Aztec_Leader>> has the greatest loyalty of his men, and you [[move forward under his leadership|Set up for the Feast]]
+<</if>>
 
 <</liveblock>>
 
@@ -6661,6 +6702,8 @@ You will [[continue to observe these developments closely|Tlaxcalans observe the
 You must wait for all players to gather before you can continue.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Causeway>> players have arrived on the Causeway.<br>
+<br>
 
 <<else>>
 <<switch $users[$userId]["faction"]>>
@@ -9345,7 +9388,7 @@ When everyone has voted, you will find out who will lead you now.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-You are waiting for the rest of your team to vote.<br>
+You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> players have voted.<br>
 <br>
 
 <<else>>
@@ -9402,13 +9445,14 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 /* Sometimes the icon doesn't appear, this is a sign variables haven't been initiazlized properly,
 specifically $Start in this case. */
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
-<<elseif $Start >=10>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Start>> players have joined the game.
+<<else>>
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
@@ -9698,12 +9742,14 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebl
 
 :: Quest intro: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"2975,100","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Start>> players have joined the game.
 
-<<elseif $Start >=10>>
+<<else>>
 
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
@@ -10889,7 +10935,10 @@ You are waiting for the Aztecs to make a move.<br>
 <<if $TL_St_Voted <3>>
 You wait nervously while the others deliberate. <br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $TL_St_Voted>> players have voted.<br>
+<br>
 
 <<elseif $TL_St_Voted is 3 and $users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"] >=$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"] and $users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"] >=$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Tlax_Leader="Xicotencatl_Elder">>
 You and your fellow council members have weighed each other's arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. <br>
@@ -11730,7 +11779,10 @@ You <<link "head back to Tlaxcala" "The Spaniards Head Inland">><<run changeStat
 <<<<if $Mutiny_Voted <3>>>>
 All is quiet in Tlaxcala and you find yourself bored, wondering what could possibly be happening on the coast. Unfortunately, your decision not to send spies means that you've lost track of the foreigners and have no idea what's going on.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>> players have voted.<br>
+<br>
 <<elseif $Mutiny_Voted >=3 and $Mut_Cor >=2>>
 You wait anxiously for news from the coast. [[Any news at all|Tlaxcalans keep waiting]].<br>
 <br>
