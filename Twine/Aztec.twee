@@ -1296,6 +1296,29 @@ Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return
 
 :: Aztec Leader Dies and Aztecs Choose a Leader Riot {"position":"2375,10625","size":"100,100"}
 <<liveblock>>
+
+<<if ndef $Moc_Riot_Vote>>
+<<set $Moc_Riot_Vote=0>>
+<</if>>
+<<if ndef $MocRiot_Tla>>
+<<set $MocRiot_Tla=0>>
+<</if>>
+<<if ndef $MocRiot_Cua>>
+<<set $MocRiot_Cua=0>>
+<</if>>
+<<if ndef $MocRiot_Cac>>
+<<set $MocRiot_Cac=0>>
+<</if>>
+<<if ndef $MocRiot_AzP>>
+<<set $MocRiot_AzP=0>>
+<</if>>
+<<if ndef $MocRiot_Poc>>
+<<set $MocRiot_Poc=0>>
+<</if>>
+<<if ndef $MocRiot_Moc>>
+<<set $MocRiot_Moc=0>>
+<</if>>
+
 Overcome by grief, you gather for a council meeting. Now is not the time for mourning; that must wait. The first task at hand is to elect a new leader, but who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
 <<if $Aztec_Leader is "Moctezuma">>
@@ -1380,6 +1403,16 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 
 :: Aztec Leader Gives a Speech {"position":"2725,9925","size":"100,100"}
 <<liveblock>>
+<<if ndef $Riot_Vote>>
+<<set $Riot_Vote=0>>
+<</if>>
+<<if ndef $Riot_Vote_sum>>
+<<set $Riot_Vote_sum=0>>
+<</if>>
+<<if ndef $Riot_sum>>
+<<set $Riot_sum=0>>
+<</if>>
+
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
 After days of eerie quiet, the Mexica resume their assault on the palace. You are hungry and outnumbered. Desperate to bring the siege to an end so you can make your escape, you decide to deploy the best weapon you have at your disposal: <<print $Aztec_Leader>>.<br>
@@ -1465,6 +1498,29 @@ You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
 
 :: Aztec Leader Lives and Aztecs Choose a Leader Riot {"position":"2525,10625","size":"100,100"}
 <<liveblock>>
+<<if ndef $Moc_Riot_Vote>>
+<<set $Moc_Riot_Vote=0>>
+<</if>>
+<<if ndef $MocRiot_Tla>>
+<<set $MocRiot_Tla=0>>
+<</if>>
+<<if ndef $MocRiot_Cua>>
+<<set $MocRiot_Cua=0>>
+<</if>>
+<<if ndef $MocRiot_Cac>>
+<<set $MocRiot_Cac=0>>
+<</if>>
+<<if ndef $MocRiot_AzP>>
+<<set $MocRiot_AzP=0>>
+<</if>>
+<<if ndef $MocRiot_Poc>>
+<<set $MocRiot_Poc=0>>
+<</if>>
+<<if ndef $MocRiot_Moc>>
+<<set $MocRiot_Moc=0>>
+<</if>>
+
+
 You gather for a council meeting and decide to elect a new leader. Who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
 <<if $Aztec_Leader is "Moctezuma">>
@@ -7698,7 +7754,7 @@ You wait and [[wonder what the Spaniards will do next|Spaniards Retreat to Tlaxc
 <<liveblock>>
 <<if $users[$userId]["role"] is $Span_Leader>>
 <<if $Hostage_Exch is "Yes">>
-As you exit the causeway and the city of Tenochtitlán fades into the distance, you breathe a sigh of relief. You spent seven long months inside the city, surrounded by your enemies and acutely aware of your own vulnerability. The path before you may not yet be clear or free of danger, but your sense of security has ithemproved considerably.<br>
+As you exit the causeway and the city of Tenochtitlán fades into the distance, you breathe a sigh of relief. You spent seven long months inside the city, surrounded by your enemies and acutely aware of your own vulnerability. The path before you may not yet be clear or free of danger, but your sense of security has improved considerably.<br>
 <br>
 It is now time to decide just what that path will be, however. You gather your most trusted counselors to weigh your options. Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. <br>
 <br>
