@@ -1659,6 +1659,22 @@ As <<print $Aztec_Leader>> gathers a welcoming party and gets ready to <<link "m
 
 :: Aztec Leadership Challenge Again {"position":"2450,6800","size":"100,100"}
 <<liveblock>>
+<<if ndef $Az_Ld_Vote>>
+<<set$Az_Ld_Vote=0 >>
+<</if>>
+<<if ndef $Az_Ld_Moc>>
+<<set$Az_Ld_Moc=0 >>
+<</if>>
+<<if ndef $Az_Ld_Tla>>
+<<set$Az_Ld_Tla=0 >>
+<</if>>
+<<if ndef $Az_Ld_Cua>>
+<<set$Az_Ld_Cua=0 >>
+<</if>>
+<<if ndef $Az_Ld_Cac>>
+<<set$Az_Ld_Cac=0 >>
+<</if>>
+
 <<if $Aztec_Leader is $users[$userId]["role"]>>
 You have made your case to the council and retire from the council chamber, confident that they will trust in your infinite wisdom. <br>
 <br>

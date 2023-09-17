@@ -1592,6 +1592,22 @@ As &lt;&lt;print $Aztec_Leader&gt;&gt; gathers a welcoming party and gets ready 
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="Aztec Leadership Challenge Again" tags="" position="2450,6800" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Az_Ld_Vote&gt;&gt;
+&lt;&lt;set$Az_Ld_Vote=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Az_Ld_Moc&gt;&gt;
+&lt;&lt;set$Az_Ld_Moc=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Az_Ld_Tla&gt;&gt;
+&lt;&lt;set$Az_Ld_Tla=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Az_Ld_Cua&gt;&gt;
+&lt;&lt;set$Az_Ld_Cua=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Az_Ld_Cac&gt;&gt;
+&lt;&lt;set$Az_Ld_Cac=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;if $Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
 You have made your case to the council and retire from the council chamber, confident that they will trust in your infinite wisdom. &lt;br&gt;
 &lt;br&gt;
