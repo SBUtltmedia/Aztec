@@ -1,3 +1,8 @@
+// This file is now useless but is being
+// left here for no reason at all other than
+// legacy I guess. feel free to safely delete
+// at any moment. (and remove library from other files)
+
 class ChatMessage {
     constructor(text, role, imageSrc) {
       this.text = text;

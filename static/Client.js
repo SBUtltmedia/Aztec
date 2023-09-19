@@ -57,7 +57,6 @@ function fade(el, destination) {
 
 
 $(document).on(':passagestart', (ev) => {
-
     fade($("#passages"), 1);
 })
 

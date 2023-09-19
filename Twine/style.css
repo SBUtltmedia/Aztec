@@ -1050,19 +1050,17 @@ small font size: 1.7rem
 	overflow-y: auto !important;
   position: absolute;
   width: 90%;
-  top: 14%;
-  height: 75%;
+  bottom: 12%;
+  height: 75%; 
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding-left: 10px;
-  scrollbar-width: none;
-	-ms-overflow-style: none;
+  /* scrollbar-width: none; */
+	/* -ms-overflow-style: none; */
   overflow-x: hidden;
   word-wrap:break-word;
+  overflow-anchor: auto;
 }
-
-
-
 
 
 #bookmarks {
@@ -1094,6 +1092,12 @@ small font size: 1.7rem
   margin: 0.5rem 0.2rem 0.4rem 0.2rem;
 }
 
+#chatmessagesanchor {
+  overflow-anchor: auto;
+  width: 2px;
+  height: 2px;
+}
+
 .playerMessageText {
   flex-grow: 1;
 }
@@ -1123,5 +1127,7 @@ small font size: 1.7rem
 
 .playerMessageTimeStamp {
   width: 8rem;
+  font-size: 1.6rem;
+    margin-top: 2px;
 }
 

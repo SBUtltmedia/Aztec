@@ -3609,8 +3609,8 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</liveblock>>
 
-:: Control: Full Reset {"position":"4275,375","size":"100,100"}
 
+:: Control: Full Reset {"position":"4275,375","size":"100,100"}
 WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
 <br>
 <<button "Reset">>
@@ -3618,6 +3618,7 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 		fullReset();
 	<</script>>
 <</button>>
+
 
 :: Control: Player Status {"position":"4275,375","size":"100,100"}
 <<liveblock>>
@@ -6874,7 +6875,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <</script>>
 
 /* <<script>>
-setTimeout(() => {
+(() => {
 	let ret = DOMTest();
 	console.log(ret);
 }, 1000);
@@ -9076,10 +9077,12 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 		return `Twine/images/characters/${role}.svg`
 	}
 	setup.scrollToBottom = function(elementId) {
-		setTimeout(() => {
+		requestAnimationFrame(() => {
 			var element = document.getElementById(elementId);
-			element.scrollTop = element.scrollHeight;
-		}, 0);
+			if(element){
+				element.scrollTop = element.scrollHeight;
+			}
+		});
 	}
 <</script>>
 
@@ -12588,20 +12591,22 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	/* Fill #chatmessages with $chatlog */
 	<<liveblock>>
 	<div id="chatmessages">
-		/* <<run displayChatMessages(State.getVar(`$chatlog[$users[$userId].currentChat]`))>> */
-		/* for _i to $arrayInventory.length-1; _i gt -1; _i */
-		<<for _i to $chatlog.length-1; _i gt -1; _i>>
+		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
+		<<print `
 			<div class="playerMessage">
 				<div class="playerMessageLeft">
-					<img class="playerMessageIconImg" src="Twine/images/characters/Tlacaelel.svg">
+					<img class="playerMessageIconImg" src="`+setup.getUserSvgPicture(_msg['user'])+`">
 					<div class="playerMessageLeftText">
-						<div class="playerMessageUsername">$chatlog[_i]["user"]</div>
-						<div class="playerMessageTimeStamp">$chatlog[_i]["time"]</div>
+						<div class="playerMessageUsername">_msg["user"]</div>
+						<div class="playerMessageTimeStamp">_msg["time"]</div>
 					</div>
 				</div>
-				<div class="playerMessageText">$chatlog[_i]["message"]</div>
+				<div class="playerMessageText">_msg["message"]</div>
 			</div>
+		`>>
 		<</for>>
+		<<run setup.scrollToBottom("chatmessages") >>
+		<div id="chatmessagesanchor"></div>
 	</div>
 	<</liveblock>>
 
@@ -12614,13 +12619,19 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		
 		/* Hit send here */
 		<<button "SEND">>
-			<<set $chatlog[$users[$userId].currentChat].unshift({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })})>>
-			  /* ^^^ .unshift() */
-			/*
-				column + push + scroll = slight flashing
-				reverse + unshift = long delay (unshift time complexity)
-				reverse + push? would be perfect
-			 */
+			<<set _arrayLength = $chatlog[$users[$userId].currentChat].length>>
+			<<set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")}>>
+			<<if _arrayLength >= 5>>
+				<<set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)>>
+				<<set _tempArr[4] = _msg>>
+				<<set $chatlog[$users[$userId].currentChat] = _tempArr>>
+				
+			<<else>>
+				<<set $chatlog[$users[$userId].currentChat][_arrayLength] = _msg>>
+			<</if>>
+
+				
+
 		<</button>>
 	</div>
 </div>
@@ -12801,7 +12812,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 
 		<<for _j, _userId range _factionUsers[_faction]>>
-			<<if   _userId != "God" &&  _userId != "notSeen" || $users[_userId]["offline"] != true>>
+			<<if !["notSeen", "15"].includes(_userId) || $users[_userId]["offline"] != true>>
 				<div id="playerSpaceBetween"></div>
 				<<print `
 					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
@@ -12831,7 +12842,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<<for _j, _userId range _factionUsers["offline"]>>
-		<<if _userId != "notSeen" &&  _role != "God">>
+		<<if !["notSeen", "15"].includes(_userId) >>
 			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
