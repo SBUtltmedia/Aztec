@@ -269,7 +269,7 @@ function createHandler(path = []){
         if(path.length == 0 && key != `variables`){
             return target[key];
         }
-        if (typeof target[key] === 'object' && target[key] !== null) {
+        if (typeof target[key] === 'object' && Array.isArray(target[key]) ==false &&  target[key] !== null) {
         return new Proxy(target[key], createHandler([...path,key]))
         } else {
         return target[key];
