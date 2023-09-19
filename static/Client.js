@@ -137,7 +137,7 @@ function showStats() {
     let factions =  Window.SugarCubeState.variables['factions']
     let twineVar = factions[faction]['stats']['Strength'];
 
-    if (twineVar) {
+    if (twineVar != null) {
         let statString = `${faction}: ${twineVar} `;
         if (!$('#factionStrength').length) {
 
