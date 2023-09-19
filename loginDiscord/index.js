@@ -93,6 +93,10 @@ app.get('/updateGit', async ({ query }, res) => {
 	res.send({});
 	webstackInstance.updateGit(false);
 })
+
+app.get('/dump', async ({ query }, res) => {
+	res.send(webstackInstance.serverStore.getState());
+})
 // Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
 	const { code, state, test, nick } = query;

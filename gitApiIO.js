@@ -32,7 +32,7 @@ class gitApiIO{
     *  since Heroku is ephemeral
     * @param {object} content: The last saved Sugarcube.State.variables taken from serverstore
     **/
-    async uploadFileApi(content, isTest) {
+    async uploadFileApi(content, isTest=this.test) {
         console.log("IN UPLOAD")
         return new Promise((res,rej)=> {
             if(isTest){
