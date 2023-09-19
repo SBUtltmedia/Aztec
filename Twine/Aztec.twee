@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "The Library",
+	"start": "Introduction to your assigned faction",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -12558,9 +12558,12 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
 			<<set $chatlog[_faction] = []>>
 		<</for>>
-		<<set $users[$userId].currentChat = "chat">>
 	<</if>>
 	
+	<<if ndef $users[$userId].currentChat >>
+		<<set $users[$userId].currentChat = "chat">>
+	<</if>>
+
 	/* Create a scope switch for Global and Faction */
 	<div id="chat-switch">
 		<<button "Global">>
@@ -12949,7 +12952,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				left = left - pageWidth * 0.22;
 
 				rolePanel.css("top", top + "px");
-				rolePanel.css("left", left + "px");
+				rolePanel.css("left", left/10 + "%");
 
 				let usernameDiv = $("#rolePanelPrintUserName");
 				let username = State.getVar(`$users[$lookup["${user}"]]["username"]`);
