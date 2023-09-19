@@ -199,10 +199,14 @@ importScripts([
 		}
 	});
 <<<<<<< HEAD
+<<<<<<< HEAD
 })();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 =======
 })();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 >>>>>>> develop
+=======
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+>>>>>>> newchat
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -6264,7 +6268,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;/script&gt;&gt;
 
 /* &lt;&lt;script&gt;&gt;
-setTimeout(() =&gt; {
+(() =&gt; {
 	let ret = DOMTest();
 	console.log(ret);
 }, 1000);
@@ -8270,10 +8274,12 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 		return `Twine/images/characters/${role}.svg`
 	}
 	setup.scrollToBottom = function(elementId) {
-		setTimeout(() =&gt; {
+		requestAnimationFrame(() =&gt; {
 			var element = document.getElementById(elementId);
-			element.scrollTop = element.scrollHeight;
-		}, 0);
+			if(element){
+				element.scrollTop = element.scrollHeight;
+			}
+		});
 	}
 &lt;&lt;/script&gt;&gt;
 
@@ -11358,20 +11364,22 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	/* Fill #chatmessages with $chatlog */
 	&lt;&lt;liveblock&gt;&gt;
 	&lt;div id=&quot;chatmessages&quot;&gt;
-		/* &lt;&lt;run displayChatMessages(State.getVar(`$chatlog[$users[$userId].currentChat]`))&gt;&gt; */
-		/* for _i to $arrayInventory.length-1; _i gt -1; _i */
-		&lt;&lt;for _i to $chatlog.length-1; _i gt -1; _i&gt;&gt;
+		&lt;&lt;for _id, _msg range $chatlog[$users[$userId].currentChat]&gt;&gt;
+		&lt;&lt;print `
 			&lt;div class=&quot;playerMessage&quot;&gt;
 				&lt;div class=&quot;playerMessageLeft&quot;&gt;
-					&lt;img class=&quot;playerMessageIconImg&quot; src=&quot;Twine/images/characters/Tlacaelel.svg&quot;&gt;
+					&lt;img class=&quot;playerMessageIconImg&quot; src=&quot;`+setup.getUserSvgPicture(_msg[&#39;user&#39;])+`&quot;&gt;
 					&lt;div class=&quot;playerMessageLeftText&quot;&gt;
-						&lt;div class=&quot;playerMessageUsername&quot;&gt;$chatlog[_i][&quot;user&quot;]&lt;/div&gt;
-						&lt;div class=&quot;playerMessageTimeStamp&quot;&gt;$chatlog[_i][&quot;time&quot;]&lt;/div&gt;
+						&lt;div class=&quot;playerMessageUsername&quot;&gt;_msg[&quot;user&quot;]&lt;/div&gt;
+						&lt;div class=&quot;playerMessageTimeStamp&quot;&gt;_msg[&quot;time&quot;]&lt;/div&gt;
 					&lt;/div&gt;
 				&lt;/div&gt;
-				&lt;div class=&quot;playerMessageText&quot;&gt;$chatlog[_i][&quot;message&quot;]&lt;/div&gt;
+				&lt;div class=&quot;playerMessageText&quot;&gt;_msg[&quot;message&quot;]&lt;/div&gt;
 			&lt;/div&gt;
+		`&gt;&gt;
 		&lt;&lt;/for&gt;&gt;
+		&lt;&lt;run setup.scrollToBottom(&quot;chatmessages&quot;) &gt;&gt;
+		&lt;div id=&quot;chatmessagesanchor&quot;&gt;&lt;/div&gt;
 	&lt;/div&gt;
 	&lt;&lt;/liveblock&gt;&gt;
 
@@ -11384,13 +11392,19 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		
 		/* Hit send here */
 		&lt;&lt;button &quot;SEND&quot;&gt;&gt;
-			&lt;&lt;set $chatlog[$users[$userId].currentChat].unshift({user:$users[$userId].role, message:_chattext, time:new Date().toLocaleTimeString(&#39;en-US&#39;, { hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; })})&gt;&gt;
-			  /* ^^^ .unshift() */
-			/*
-				column + push + scroll = slight flashing
-				reverse + unshift = long delay (unshift time complexity)
-				reverse + push? would be perfect
-			 */
+			&lt;&lt;set _arrayLength = $chatlog[$users[$userId].currentChat].length&gt;&gt;
+			&lt;&lt;set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString(&#39;en-US&#39;, { month: &#39;2-digit&#39;, day: &#39;2-digit&#39;, hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; }).replace(&quot;,&quot;, &quot;&quot;)}&gt;&gt;
+			&lt;&lt;if _arrayLength &gt;= 5&gt;&gt;
+				&lt;&lt;set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)&gt;&gt;
+				&lt;&lt;set _tempArr[4] = _msg&gt;&gt;
+				&lt;&lt;set $chatlog[$users[$userId].currentChat] = _tempArr&gt;&gt;
+				
+			&lt;&lt;else&gt;&gt;
+				&lt;&lt;set $chatlog[$users[$userId].currentChat][_arrayLength] = _msg&gt;&gt;
+			&lt;&lt;/if&gt;&gt;
+
+				
+
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
@@ -11571,7 +11585,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;/div&gt;
 
 		&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
-			&lt;&lt;if   _userId != &quot;God&quot; &amp;&amp;  _userId != &quot;notSeen&quot; || $users[_userId][&quot;offline&quot;] != true&gt;&gt;
+			&lt;&lt;if ![&quot;notSeen&quot;, &quot;15&quot;].includes(_userId) || $users[_userId][&quot;offline&quot;] != true&gt;&gt;
 				&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 				&lt;&lt;print `
 					&lt;div class = &quot;player&quot; id=&quot;playerInfo_`+$users[_userId][&quot;role&quot;]+`&quot;&gt;			
@@ -11601,7 +11615,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;/div&gt;
 
 	&lt;&lt;for _j, _userId range _factionUsers[&quot;offline&quot;]&gt;&gt;
-		&lt;&lt;if _userId != &quot;notSeen&quot; &amp;&amp;  _role != &quot;God&quot;&gt;&gt;
+		&lt;&lt;if ![&quot;notSeen&quot;, &quot;15&quot;].includes(_userId) &gt;&gt;
 			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;playerInfo_`+$users[_userId][&quot;role&quot;]+`&quot;&gt;			
