@@ -11386,14 +11386,12 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;&lt;button &quot;SEND&quot;&gt;&gt;
 			&lt;&lt;set _arrayLength = $chatlog[$users[$userId].currentChat].length&gt;&gt;
 			&lt;&lt;set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString(&#39;en-US&#39;, { month: &#39;2-digit&#39;, day: &#39;2-digit&#39;, hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; }).replace(&quot;,&quot;, &quot;&quot;)}&gt;&gt;
-			&lt;&lt;if _arrayLength &gt;= 5&gt;&gt;
+
 				&lt;&lt;set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)&gt;&gt;
-				&lt;&lt;set _tempArr[4] = _msg&gt;&gt;
+				&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
 				&lt;&lt;set $chatlog[$users[$userId].currentChat] = _tempArr&gt;&gt;
 				
-			&lt;&lt;else&gt;&gt;
-				&lt;&lt;set $chatlog[$users[$userId].currentChat][_arrayLength] = _msg&gt;&gt;
-			&lt;&lt;/if&gt;&gt;
+
 
 				
 
