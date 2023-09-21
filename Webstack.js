@@ -8,7 +8,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const _ = require("lodash"); 
 const initVars = require("./initVars.json");
-var base64 = require('base-64');
+var base64 = require('js-base64');
 
 
 
@@ -17,6 +17,7 @@ class Webstack {
 	constructor(serverConf) {
 		this.appIndex = serverConf.appIndex
 		this.serverConf = serverConf
+		this.isTest = !process.env.port;
 		//I'm not sure if this actually saves to GIT because we don't call the function.
 		this.port=serverConf.port;
 		app.use("/static", express.static('./static/'));
@@ -26,7 +27,7 @@ class Webstack {
 		this.serverStore = Redux.createStore(this.reducer);
 		this.initIO();
 
-		this.gitApi = new gitApiIO(serverConf, !process.env.port)
+		this.gitApi = new gitApiIO(serverConf, this.isTest)
 		this.gitApi.retrieveFileAPI().then((gameData) => {
 			let state = JSON.parse(gameData)
 			this.serverStore.dispatch({
@@ -77,9 +78,9 @@ class Webstack {
 			return (err) => {
 			 console.log('shutting down', signal)
 
-			let content = {"signal":signal, ...this.serverStore.getState()};
 			
-			  this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content))).then(
+			
+			this.updateGit(this.isTest).then(
 				() => {
 					console.log(err)
 					process.exit(err ? 1 : 0);
@@ -88,7 +89,13 @@ class Webstack {
 					process.exit()
 				})
 			 }
-			};
+			}
+
+			updateGit(isTest){
+				let content = {...this.serverStore.getState()};
+				return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)),isTest)
+
+			}
 	  
 	//Controller for serverStore
 	reducer(state, action) {
