@@ -6896,7 +6896,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 			<<set _ajaxData = {user: $userId,
 							   passageName: _currPassage,
 							   passageData: _passageData}>>
-			<<set $passageHistory= _passageData>>
+			<<set $passageHistory[passageName]= _passageData>>
 			<<script>>
 				$.post(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,State.getVar("_ajaxData"))
 			<</script>>
