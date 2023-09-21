@@ -100,7 +100,7 @@ position:absolute;
 }
 
 #factionStrengthLabel {
-top:84%;
+top:87%;
 font-size: 3.5rem;
 width:30%;
 text-align: center;
@@ -123,7 +123,7 @@ width:3rem;
 #factionStrength {
 margin:0;
 padding:0;
-top: 78%;
+top: 81%;
 
 border:.2rem solid rgb(58, 57, 0);
 position: absolute;         
@@ -588,7 +588,7 @@ small font size: 1.7rem
   text-indent: 11%;
 }
 
-.playerList  #map, #factionStrength, #factionStrengthLabel, #homeButton, #displayStats{
+.playerList  #map, .playerList #factionStrength,.playerList #factionStrengthLabel,.playerList #homeButton,.playerList #displayStats{
   display:none;
 }
 
@@ -765,9 +765,8 @@ small font size: 1.7rem
   visibility: hidden;
 
   position: fixed;
-  left: 5px;
-  top: 5px;
 
+  z-index: 1000;
   display: flex;
   flex-direction: column;
 }
@@ -1050,19 +1049,17 @@ small font size: 1.7rem
 	overflow-y: auto !important;
   position: absolute;
   width: 90%;
-  top: 14%;
-  height: 75%;
+  bottom: 12%;
+  height: 75%; 
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding-left: 10px;
-  scrollbar-width: none;
-	-ms-overflow-style: none;
+  /* scrollbar-width: none; */
+	/* -ms-overflow-style: none; */
   overflow-x: hidden;
   word-wrap:break-word;
+  overflow-anchor: auto;
 }
-
-
-
 
 
 #bookmarks {
@@ -1094,6 +1091,12 @@ small font size: 1.7rem
   margin: 0.5rem 0.2rem 0.4rem 0.2rem;
 }
 
+#chatmessagesanchor {
+  overflow-anchor: auto;
+  width: 2px;
+  height: 2px;
+}
+
 .playerMessageText {
   flex-grow: 1;
 }
@@ -1123,5 +1126,7 @@ small font size: 1.7rem
 
 .playerMessageTimeStamp {
   width: 8rem;
+  font-size: 1.6rem;
+    margin-top: 2px;
 }
 

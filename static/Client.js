@@ -57,7 +57,6 @@ function fade(el, destination) {
 
 
 $(document).on(':passagestart', (ev) => {
-
     fade($("#passages"), 1);
 })
 
@@ -138,7 +137,7 @@ function showStats() {
     let factions =  Window.SugarCubeState.variables['factions']
     let twineVar = factions[faction]['stats']['Strength'];
 
-    if (twineVar) {
+    if (twineVar != null) {
         let statString = `${faction}: ${twineVar} `;
         if (!$('#factionStrength').length) {
 
@@ -270,7 +269,7 @@ function createHandler(path = []){
         if(path.length == 0 && key != `variables`){
             return target[key];
         }
-        if (typeof target[key] === 'object' && target[key] !== null) {
+        if (typeof target[key] === 'object' && Array.isArray(target[key]) ==false &&  target[key] !== null) {
         return new Proxy(target[key], createHandler([...path,key]))
         } else {
         return target[key];
