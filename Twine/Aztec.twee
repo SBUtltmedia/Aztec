@@ -9484,23 +9484,26 @@ You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> pl
 
 <<if $Sp_Ld_Mar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno>=$Sp_Ld_Oli_Teno>>
 
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
+<<if $Sp_Ld_Mar_Teno = 5 or $Sp_Ld_Alv_Teno = 5 or $Sp_Ld_Agu_Teno = 5 or $Sp_Ld_Gar_Teno = 5 or $Sp_Ld_Oli_Teno = 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Marina">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
 <br>
 <</if>>
+
 <<elseif $Sp_Ld_Alv_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Oli_Teno>>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
+
+<<if $Sp_Ld_Mar_Teno = 5 or $Sp_Ld_Alv_Teno = 5 or $Sp_Ld_Agu_Teno = 5 or $Sp_Ld_Gar_Teno = 5 or $Sp_Ld_Oli_Teno = 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Alvarado">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
 <</if>>
+
 <<elseif $Sp_Ld_Agu_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Alv and $Sp_Ld_Agu_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Oli_Teno>><<set $Span_Leader="Aguilar">>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
+<<if $Sp_Ld_Mar_Teno = 5 or $Sp_Ld_Alv_Teno = 5 or $Sp_Ld_Agu_Teno = 5 or $Sp_Ld_Gar_Teno = 5 or $Sp_Ld_Oli_Teno = 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Aguilar">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -9508,7 +9511,7 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 <br>
 <</if>>
 <<elseif $Sp_Ld_Gar_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Alv and $Sp_Ld_Gar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Oli_Teno>>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
+<<if $Sp_Ld_Mar_Teno = 5 or $Sp_Ld_Alv_Teno = 5 or $Sp_Ld_Agu_Teno = 5 or $Sp_Ld_Gar_Teno = 5 or $Sp_Ld_Oli_Teno = 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Garrido">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -9516,7 +9519,7 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 <br>
 <</if>>
 <<elseif $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno >>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
+<<if $Sp_Ld_Mar_Teno = 5 or $Sp_Ld_Alv_Teno = 5 or $Sp_Ld_Agu_Teno = 5 or $Sp_Ld_Gar_Teno = 5 or $Sp_Ld_Oli_Teno = 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Olid">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
