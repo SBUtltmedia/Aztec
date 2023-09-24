@@ -1419,7 +1419,7 @@ After days of eerie quiet, the Mexica resume their assault on the palace. You ar
 <br>
 You take him to the roof of the palace and demand that he bring a stop to the assault. <<print $Aztec_Leader>> steps to the edge of the roof and the volley of rocks and arrows comes to a halt. He speaks to his people, pleading with them to put down their weapons. They are no match for your weapons, he tells them, and this can only end in tragedy. <br>
 <br>
-<<if $Riot_Vote_sum < 4>>
+<<if $Riot_Vote < 4>>
 You observe warily, trying to gauge the crowd's response.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -1427,10 +1427,10 @@ You observe warily, trying to gauge the crowd's response.<br>
 You are waiting for the Aztecs to do something.<br>
 <br>
 <<else>>
-<<if $Riot_sum >= 0>>
+<<if $Riot >= 0>>
 You observe warily, trying to gauge [[the crowd's response|Aztecs Riot]]! <br>
 <br>
-<<elseif $Riot_sum < 0>>
+<<elseif $Riot < 0>>
 You observe warily, trying to gauge [[the crowd's response|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
@@ -1441,7 +1441,7 @@ After days of eerie quiet, your people resume their assault on the palace. The S
 <br>
 They take you to the roof of the palace and demand that you bring a stop to the assault. As you step to the edge of the roof, the volley of rocks and arrows comes to a halt. You speak to your people, pleading with them to put down their weapons. They are no match for the Spanish weapons, you tell them. This can only end in tragedy. <br>
 <br>
-<<if $Riot_Vote_sum < 4>>
+<<if $Riot_Vote < 4>>
 You observe the crowd warily and await their response.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -1449,10 +1449,10 @@ You observe the crowd warily and await their response.<br>
 You are waiting for the Aztecs to do something.<br>
 <br>
 <<else>>
-<<if $Riot_sum >=0>>
+<<if $Riot >=0>>
 You observe the crowd warily and [[await their response|Aztecs Riot]]. <br>
 <br>
-<<elseif $Riot_sum <0>>
+<<elseif $Riot <0>>
 You observe the crowd warily and [[await their response|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
@@ -1474,7 +1474,7 @@ Option 2: Oppose <<print $Aztec_Leader>>, who is clearly weak and no longer repr
 <br>
 <</if>>
 <<case "Tlaxcalans">>
-<<if $Riot_Vote_sum < 4>>
+<<if $Riot_Vote < 4>>
 You wonder what is happening in Tenochtitlan.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -1482,10 +1482,10 @@ You wonder what is happening in Tenochtitlan.<br>
 You are waiting for the Aztecs to do something.<br>
 <br>
 <<else>>
-<<if $Riot_sum >0>>
+<<if $Riot >0>>
 You wonder what is [[happening in Tenochtitlan|Aztecs Riot]]! <br>
 <br>
-<<elseif $Riot_sum <0>>
+<<elseif $Riot <0>>
 You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
