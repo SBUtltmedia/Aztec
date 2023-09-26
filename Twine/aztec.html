@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -6277,7 +6277,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 			&lt;&lt;set _ajaxData = {user: $userId,
 							   passageName: _currPassage,
 							   passageData: _passageData}&gt;&gt;
-			&lt;&lt;set $passageHistory= _passageData&gt;&gt;
+			&lt;&lt;set $passageHistory[_currPassage]= _passageData&gt;&gt;
 			&lt;&lt;script&gt;&gt;
 				$.post(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,State.getVar(&quot;_ajaxData&quot;))
 			&lt;&lt;/script&gt;&gt;
@@ -8341,6 +8341,7 @@ List of valid roles and their info */
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Cacamatzin&quot;: {
+	&quot;faction&quot;: &quot;Aztecs&quot;,
     &quot;Character&quot;: &quot;Cacamatz&amp;#xed;n&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
@@ -11333,9 +11334,12 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;&lt;for _i,_faction range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;chat&quot;]&gt;&gt;
 			&lt;&lt;set $chatlog[_faction] = []&gt;&gt;
 		&lt;&lt;/for&gt;&gt;
-		&lt;&lt;set $users[$userId].currentChat = &quot;chat&quot;&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
+	&lt;&lt;if ndef $users[$userId].currentChat &gt;&gt;
+		&lt;&lt;set $users[$userId].currentChat = &quot;chat&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
 	/* Create a scope switch for Global and Faction */
 	&lt;div id=&quot;chat-switch&quot;&gt;
 		&lt;&lt;button &quot;Global&quot;&gt;&gt;
@@ -11724,7 +11728,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 				left = left - pageWidth * 0.22;
 
 				rolePanel.css(&quot;top&quot;, top + &quot;px&quot;);
-				rolePanel.css(&quot;left&quot;, left + &quot;px&quot;);
+				rolePanel.css(&quot;left&quot;, left/10 + &quot;%&quot;);
 
 				let usernameDiv = $(&quot;#rolePanelPrintUserName&quot;);
 				let username = State.getVar(`$users[$lookup[&quot;${user}&quot;]][&quot;username&quot;]`);

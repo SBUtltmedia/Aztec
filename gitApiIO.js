@@ -22,7 +22,7 @@ class gitApiIO{
     constructor(serverConf, isTest=false) {
         this.serverConf = serverConf
         this.serverConf.fileName = `${this.serverConf.fileName}-${this.serverConf.appIndex}.json`
-        this.test = false;
+        this.test = isTest;
         console.log("config is", serverConf)
         console.log("isTest", isTest)
 	}
@@ -97,6 +97,7 @@ class gitApiIO{
      * into SugarCubeState.variables
      */
     async retrieveFileAPI() {
+        console.log("is test1",this.test)
         return new Promise((res,rej)=> {
         if(this.test){
             if(!fs.existsSync(testFile)){
