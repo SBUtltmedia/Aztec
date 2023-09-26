@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="117" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="233" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -11270,13 +11270,17 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;div id=&quot;info&quot;&gt;
 
   	/* button to go back to other passages */
-	&lt;&lt;link &quot;&quot; $users[$userId][&quot;passage&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;&lt;link &quot;&quot; $users[$userId][&quot;passage&quot;]&gt;&gt;
+		&lt;&lt;script&gt;&gt;
+			$(document).off(&quot;keydown&quot;) 
+		&lt;&lt;/script&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
 	
 	&lt;&lt;script&gt;&gt;
-	$(document).ready(function() {
+	requestAnimationFrame(()=&gt; {
 		let svgContent = &#39;&lt;img id=&quot;back_button_img&quot; src=&quot;Twine/images/back_button.svg&quot; alt=&quot;Back&quot;&gt;&lt;/img&gt;&#39;;
 		$(&quot;#info .link-internal.macro-link&quot;).append(svgContent);
-	});
+	})
 	&lt;&lt;/script&gt;&gt;
 
 	/* prints current passage
@@ -11310,7 +11314,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;div id=&quot;selectedPassageTextContainer&quot;&gt;
 		Select a passage from your passage history above to review it. The passages are in order of how you played them.
 		&lt;&lt;script&gt;&gt;
-			setTimeout(() =&gt; {
+			requestAnimationFrame(() =&gt; {
 				$(&quot;.passageButton&quot;).on(&quot;click&quot;, function() {
 					$(&quot;.passageButton.selectedPassageButton&quot;).removeClass(&quot;selectedPassageButton&quot;);
 					$(this).addClass(&quot;selectedPassageButton&quot;);
@@ -11319,7 +11323,11 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 					let passage_text = State.getVar(`$passageHistory[&quot;${passageButtonId}&quot;]`);
 					$(&quot;#selectedPassageTextContainer&quot;).html(passage_text);
 				});
-			}, 1000);
+				$(&quot;#chat-switch .macro-button&quot;).on(&quot;click&quot;, function() {
+					$(&quot;#chat-switch .selectedChatButton&quot;).removeClass(&quot;selectedChatButton&quot;);
+					$(this).addClass(&quot;selectedChatButton&quot;);
+				});
+			});
 		&lt;&lt;/script&gt;&gt;
 	&lt;/div&gt;
 
@@ -11350,22 +11358,6 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
 
-	/* create a character limit on the textbox */
-	&lt;&lt;script&gt;&gt;
-		$(document).ready(function() {
-			var inputElement = $(&quot;#chattextbox #textbox--chattext&quot;);
-			var maxLength = 50;
-
-			inputElement.on(&quot;input&quot;, function() {
-				var inputText = $(this).val();
-
-				if (inputText.length &gt; maxLength) {
-					$(this).val(inputText.substring(0, maxLength));
-				}
-
-			});
-		});
-	&lt;&lt;/script&gt;&gt;
 
 	/* Fill #chatmessages with $chatlog */
 	&lt;&lt;liveblock&gt;&gt;
@@ -11393,24 +11385,38 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;div id=&quot;chattextarea&quot;&gt;
 		/* Type messages here */
 		&lt;div id=&quot;chattextbox&quot;&gt;
-			&lt;&lt;textbox &quot;_chattext&quot; &quot;Hello!&quot; autofocus&gt;&gt;
+			&lt;&lt;textbox &quot;_chattext&quot; &quot;&quot; autofocus&gt;&gt;
 		&lt;/div&gt;
 		
 		/* Hit send here */
-		&lt;&lt;button &quot;SEND&quot;&gt;&gt;
+		&lt;&lt;button &quot;Enter&quot;&gt;&gt;
 			&lt;&lt;set _arrayLength = $chatlog[$users[$userId].currentChat].length&gt;&gt;
 			&lt;&lt;set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString(&#39;en-US&#39;, { month: &#39;2-digit&#39;, day: &#39;2-digit&#39;, hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; }).replace(&quot;,&quot;, &quot;&quot;)}&gt;&gt;
-
-				&lt;&lt;set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)&gt;&gt;
-				&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
+			&lt;&lt;set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)&gt;&gt;
+			&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
+			&lt;&lt;if _chattext != &quot;&quot;&gt;&gt;
 				&lt;&lt;set $chatlog[$users[$userId].currentChat] = _tempArr&gt;&gt;
-				
-
-
-				
-
+			&lt;&lt;/if&gt;&gt;
+			&lt;&lt;script&gt;&gt;
+				$(&quot;#chattextbox input&quot;).val(&quot;&quot;);
+			&lt;&lt;/script&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/div&gt;
+
+	&lt;&lt;script&gt;&gt;
+	$(document).on(&quot;keydown&quot;, function (evt) {
+		if (evt.which === 13) {
+			
+			requestAnimationFrame(()=&gt;{
+				$(&quot;#chattextarea .macro-button&quot;).trigger(&quot;click&quot;);
+			})
+			
+		}
+		var inputElement = $(&quot;#chattextbox #textbox--chattext&quot;);
+		var maxLength = 50;
+		inputElement.val(inputElement.val().substring(0, maxLength));
+	});
+	&lt;&lt;/script&gt;&gt;
 &lt;/div&gt;
 
 /* print play status list (discord info, role, etc.) */
@@ -11570,12 +11576,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;div id=&quot;rolePanelDetails&quot;&gt;
 			&lt;ul id=&quot;rolePanelDetailsText&quot;&gt;
 				&lt;&lt;print &quot;&lt;li id=&#39;rolePanelLastSeen&#39;&gt;Last Active: &quot; + moment(new Date(parseInt($users[$userId][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
-				&lt;li&gt;Details
-					&lt;ul&gt;
-						&lt;li&gt;hardcoded detail 1&lt;/li&gt;
-						&lt;li&gt;hardcoded detail 2&lt;/li&gt;
-					&lt;/ul&gt;
-				&lt;/li&gt;
+				
 			&lt;/ul&gt;
 		&lt;/div&gt;
 		&lt;div id=&quot;rolePanelNotesLabel&quot;&gt;Notes&lt;/div&gt;
