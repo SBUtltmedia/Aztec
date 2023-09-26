@@ -12505,13 +12505,17 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="info">
 
   	/* button to go back to other passages */
-	<<link "" $users[$userId]["passage"]>><</link>>
+	<<link "" $users[$userId]["passage"]>>
+		<<script>>
+			$(document).off("keydown") 
+		<</script>>
+	<</link>>
 	
 	<<script>>
-	$(document).ready(function() {
+	requestAnimationFrame(()=> {
 		let svgContent = '<img id="back_button_img" src="Twine/images/back_button.svg" alt="Back"></img>';
 		$("#info .link-internal.macro-link").append(svgContent);
-	});
+	})
 	<</script>>
 
 	/* prints current passage
@@ -12545,7 +12549,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<div id="selectedPassageTextContainer">
 		Select a passage from your passage history above to review it. The passages are in order of how you played them.
 		<<script>>
-			setTimeout(() => {
+			requestAnimationFrame(() => {
 				$(".passageButton").on("click", function() {
 					$(".passageButton.selectedPassageButton").removeClass("selectedPassageButton");
 					$(this).addClass("selectedPassageButton");
@@ -12554,7 +12558,11 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					let passage_text = State.getVar(`$passageHistory["${passageButtonId}"]`);
 					$("#selectedPassageTextContainer").html(passage_text);
 				});
-			}, 1000);
+				$("#chat-switch .macro-button").on("click", function() {
+					$("#chat-switch .selectedChatButton").removeClass("selectedChatButton");
+					$(this).addClass("selectedChatButton");
+				});
+			});
 		<</script>>
 	</div>
 
@@ -12635,17 +12643,24 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<<button "SEND">>
 			<<set _arrayLength = $chatlog[$users[$userId].currentChat].length>>
 			<<set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")}>>
-
-				<<set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)>>
-				<<set _tempArr[_tempArr.length] = _msg>>
-				<<set $chatlog[$users[$userId].currentChat] = _tempArr>>
-				
-
-
-				
-
+			<<set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)>>
+			<<set _tempArr[_tempArr.length] = _msg>>
+			<<set $chatlog[$users[$userId].currentChat] = _tempArr>>
 		<</button>>
 	</div>
+
+	<<script>>
+	$(document).on("keydown", function (evt) {
+		console.log("hey");
+		if (evt.which === 13) {
+			
+			requestAnimationFrame(()=>{
+				$(".macro-button").trigger("click");
+			}) 
+			
+		}
+	});
+	<</script>>
 </div>
 
 /* print play status list (discord info, role, etc.) */
