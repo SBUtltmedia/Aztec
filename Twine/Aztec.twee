@@ -12593,22 +12593,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<</button>>
 	</div>
 
-	/* create a character limit on the textbox */
-	<<script>>
-		$(document).ready(function() {
-			var inputElement = $("#chattextbox #textbox--chattext");
-			var maxLength = 50;
-
-			inputElement.on("input", function() {
-				var inputText = $(this).val();
-
-				if (inputText.length > maxLength) {
-					$(this).val(inputText.substring(0, maxLength));
-				}
-
-			});
-		});
-	<</script>>
 
 	/* Fill #chatmessages with $chatlog */
 	<<liveblock>>
@@ -12645,7 +12629,9 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 			<<set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")}>>
 			<<set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)>>
 			<<set _tempArr[_tempArr.length] = _msg>>
-			<<set $chatlog[$users[$userId].currentChat] = _tempArr>>
+			<<if _chattext != "">>
+				<<set $chatlog[$users[$userId].currentChat] = _tempArr>>
+			<</if>>
 			<<script>>
 				$("#chattextbox input").val("");
 			<</script>>
@@ -12657,14 +12643,13 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		if (evt.which === 13) {
 			
 			requestAnimationFrame(()=>{
-				$(".macro-button").trigger("click");
-
-			}) 
+				$("#chattextarea .macro-button").trigger("click");
+			})
 			
 		}
-	});
-	$("#chattextbox #textbox--chattext").on("focus", () => {
-		$(this).val("");
+		var inputElement = $("#chattextbox #textbox--chattext");
+		var maxLength = 50;
+		inputElement.val(inputElement.val().substring(0, maxLength));
 	});
 	<</script>>
 </div>
