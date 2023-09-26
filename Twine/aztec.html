@@ -6417,11 +6417,17 @@ Along your journey, you have met many people. Some have been willing allies of t
 // }, 1000)
 &lt;&lt;/script&gt;&gt; */</tw-passagedata><tw-passagedata pid="174" name="PassageDone" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
 &lt;&lt;if passage() != &quot;Home&quot;&gt;&gt;
-	&lt;&lt;if $theyrPrivateVars[$userId] &amp;&amp; !Object.keys($theyrPrivateVars[$userId][&quot;passageHistory&quot;]).includes(passage())&gt;&gt;
+	&lt;&lt;if $passageHistory &amp;&amp; !Object.keys($passageHistory).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
 			&lt;&lt;set _text = &quot;&quot;&gt;&gt;
-			&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;][_currPassage] = $(&quot;#passages&quot;).children()[0].innerHTML&gt;&gt;
-
+			&lt;&lt;set _passageData = $(&quot;#passages&quot;).children()[0].innerHTML&gt;&gt;
+			&lt;&lt;set _ajaxData = {user: $userId,
+							   passageName: _currPassage,
+							   passageData: _passageData}&gt;&gt;
+			&lt;&lt;set $passageHistory[_currPassage]= _passageData&gt;&gt;
+			&lt;&lt;script&gt;&gt;
+				$.post(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,State.getVar(&quot;_ajaxData&quot;))
+			&lt;&lt;/script&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	
 &lt;&lt;for _i, _passageEnd range Story.lookup(&quot;tags&quot;,&quot;sidePassageEnd&quot;)&gt;&gt;
@@ -8403,6 +8409,7 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 
 /* prevents $userId from interacting with multiplayer system */
 &lt;&lt;theyrException $userId&gt;&gt;
+&lt;&lt;theyrException $passageHistory&gt;&gt;
 &lt;&lt;script&gt;&gt;
 	const loc = location.search;
 	const searchParams = new URLSearchParams(loc);
@@ -8427,6 +8434,11 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 			}
 		});
 	}
+
+	$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${searchParams.get(&#39;id&#39;) || userData.authData.id}`, function(data){
+		console.log(&quot;getting history&quot;, JSON.parse(data))
+		State.setVar(&quot;$passageHistory&quot;, JSON.parse(data))
+	})
 &lt;&lt;/script&gt;&gt;
 
 /* 
@@ -8483,6 +8495,7 @@ List of valid roles and their info */
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
   &quot;Cacamatzin&quot;: {
+	&quot;faction&quot;: &quot;Aztecs&quot;,
     &quot;Character&quot;: &quot;Cacamatz&amp;#xed;n&quot;,
     &quot;isLeader&quot;: &quot;FALSE&quot;
   },
@@ -8601,8 +8614,6 @@ console.log(&quot;new user detected&quot;)
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
-&lt;&lt;set $theyrPrivateVars[$userId] = {}&gt;&gt;
-&lt;&lt;set $theyrPrivateVars[$userId][&quot;passageHistory&quot;] = {}&gt;&gt;
 &lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -11456,7 +11467,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 	&lt;div id=&quot;passagesCompletedButtons&quot;&gt;
 		&lt;div class=&quot;passagesCompletedButtonsGrid&quot;&gt;
-			&lt;&lt;for _passageName, _passageText range $theyrPrivateVars[$userId][&#39;passageHistory&#39;]&gt;&gt;
+			&lt;&lt;for _passageName, _passageText range $passageHistory&gt;&gt;
 				&lt;&lt;if $users[$userId][&quot;passage&quot;] == _passageName&gt;&gt;
 					&lt;&lt;print `&lt;button class=&quot;passageButton selectedPassageButton&quot; data-passageName=&quot;${_passageName}&quot;&gt; `+_passageName+` &lt;/button&gt;`&gt;&gt;
 				&lt;&lt;else&gt;&gt;
@@ -11480,7 +11491,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 					$(this).addClass(&quot;selectedPassageButton&quot;);
 
 					let passageButtonId = $(this).attr(&quot;data-passageName&quot;);
-					let passage_text = State.getVar(`$theyrPrivateVars[$userId][&#39;passageHistory&#39;][&quot;${passageButtonId}&quot;]`);
+					let passage_text = State.getVar(`$passageHistory[&quot;${passageButtonId}&quot;]`);
 					$(&quot;#selectedPassageTextContainer&quot;).html(passage_text);
 				});
 			}, 1000);
