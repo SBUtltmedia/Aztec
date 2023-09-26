@@ -7,7 +7,7 @@ Spanish Aztec War Ver 1.0.1
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "Introduction to your assigned faction",
+	"start": "The Library",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -6889,11 +6889,17 @@ Along your journey, you have met many people. Some have been willing allies of t
 :: PassageDone [Done Breaks] {"position":"338,1151","size":"100,100"}
 /* if user is on a new passage, update their current passage and add a recap of the last */
 <<if passage() != "Home">>
-	<<if $theyrPrivateVars[$userId] && !Object.keys($theyrPrivateVars[$userId]["passageHistory"]).includes(passage())>>
+	<<if $passageHistory && !Object.keys($passageHistory).includes(passage())>>
 		<<set _currPassage = passage()>>
 			<<set _text = "">>
-			<<set $theyrPrivateVars[$userId]["passageHistory"][_currPassage] = $("#passages").children()[0].innerHTML>>
-
+			<<set _passageData = $("#passages").children()[0].innerHTML>>
+			<<set _ajaxData = {user: $userId,
+							   passageName: _currPassage,
+							   passageData: _passageData}>>
+			<<set $passageHistory[_currPassage]= _passageData>>
+			<<script>>
+				$.post(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,State.getVar("_ajaxData"))
+			<</script>>
 	<</if>>
 	
 <<for _i, _passageEnd range Story.lookup("tags","sidePassageEnd")>>
@@ -9060,6 +9066,7 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 
 /* prevents $userId from interacting with multiplayer system */
 <<theyrException $userId>>
+<<theyrException $passageHistory>>
 <<script>>
 	const loc = location.search;
 	const searchParams = new URLSearchParams(loc);
@@ -9084,6 +9091,11 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 			}
 		});
 	}
+
+	$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${searchParams.get('id') || userData.authData.id}`, function(data){
+		console.log("getting history", JSON.parse(data))
+		State.setVar("$passageHistory", JSON.parse(data))
+	})
 <</script>>
 
 /* 
@@ -9140,6 +9152,7 @@ List of valid roles and their info */
     "isLeader": "FALSE"
   },
   "Cacamatzin": {
+	"faction": "Aztecs",
     "Character": "Cacamatz&#xed;n",
     "isLeader": "FALSE"
   },
@@ -9258,8 +9271,6 @@ console.log("new user detected")
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
-<<set $theyrPrivateVars[$userId] = {}>>
-<<set $theyrPrivateVars[$userId]["passageHistory"] = {}>>
 <<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
@@ -12516,7 +12527,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 	<div id="passagesCompletedButtons">
 		<div class="passagesCompletedButtonsGrid">
-			<<for _passageName, _passageText range $theyrPrivateVars[$userId]['passageHistory']>>
+			<<for _passageName, _passageText range $passageHistory>>
 				<<if $users[$userId]["passage"] == _passageName>>
 					<<print `<button class="passageButton selectedPassageButton" data-passageName="${_passageName}"> `+_passageName+` </button>`>>
 				<<else>>
@@ -12540,7 +12551,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					$(this).addClass("selectedPassageButton");
 
 					let passageButtonId = $(this).attr("data-passageName");
-					let passage_text = State.getVar(`$theyrPrivateVars[$userId]['passageHistory']["${passageButtonId}"]`);
+					let passage_text = State.getVar(`$passageHistory["${passageButtonId}"]`);
 					$("#selectedPassageTextContainer").html(passage_text);
 				});
 			}, 1000);
