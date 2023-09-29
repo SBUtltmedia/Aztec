@@ -5,7 +5,7 @@ const require = createRequire(import.meta.url);
 var axios = require('axios');
 var fs = require('fs');
 var testFile = "loginDiscord/testVars.json"
-var base64 = require('base-64');
+var base64 = require('js-base64');
 
 /**
  * Allows the sending an retrieving of git files based on .env file intended for backing up state after 
