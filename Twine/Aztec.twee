@@ -6792,7 +6792,7 @@ You must wait for all players to gather before you can continue.<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 <<print $Causeway>> players have arrived on the Causeway.<br>
 <br>
-
+S
 <<else>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
