@@ -5877,7 +5877,7 @@ The group has made a decision. Continue to the next page to find out <<link "who
 <</if>>
 
 
-:: Moctezuma Confidence Vote 2
+:: Moctezuma Confidence Vote 2 {"position":"100,1975","size":"100,100"}
 <<switch $users[$userId]["role"]>>
 <<case "Moctezuma">>
 <<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
