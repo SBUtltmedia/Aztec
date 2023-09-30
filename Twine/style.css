@@ -944,8 +944,8 @@ small font size: 1.7rem
   font: 1.6rem;
 }
 
-.selectedPassageButton {
-  background-color:rgb(165, 133, 85);
+.selectedPassageButton, .selectedChatButton {
+  background-color:rgb(165, 133, 85) !important;
 }
 
 #passageChevron {
