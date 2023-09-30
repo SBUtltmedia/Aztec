@@ -559,10 +559,11 @@ The votes have been cast, click through to find out who your <<link "next leader
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
+<<print $Start>> players have joined the game.<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Start>> players have joined the game.<br>
-<br>
+
 
 <<else>>
 It's been eight years since you were shipwrecked on the way to Santo Domingo; eight years that you've been living as a slave among the Maya. All this time, you've remained loyal to your vows as a Franciscan Friar, refusing to take a wife and fully embrace the Mayan culture. After all these years, however, you have become fluent in the Yucatec Maya language. <br>
@@ -4046,10 +4047,11 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
+<<print $Start>> players have joined the game.<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Start>> players have joined the game.<br>
-<br>
+
 
 
 <<else>>
@@ -4357,10 +4359,11 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
+<<print $Start>> players have joined the game.<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Start>> players have joined the game.<br>
-<br>
+
 
 <<else>>
 <<audio "Gulls_and_waves__5min_" play>>
@@ -5658,10 +5661,11 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 <<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
+<<print $Start>> players have joined the game.<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Start>> players have joined the game.<br>
-<br>
+
 
 <<else>>
 
@@ -9558,9 +9562,11 @@ specifically $Start in this case. */
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
+<<print $Start>> players have joined the game.<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Start>> players have joined the game.
+
 <<else>>
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
@@ -9854,9 +9860,10 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebl
 <<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
+<<print $Start>> players have joined the game.<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Start>> players have joined the game.
 
 <<else>>
 
