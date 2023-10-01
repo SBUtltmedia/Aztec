@@ -1990,8 +1990,6 @@ You wait while the rest of your team casts their vote. <br>
 <br>
 
 <<else>>
-<<print $Riot_Vote>><br>
-<<print $Riot>><br>
 <<if $Riot >0>>
 You have decided [[to fight|Aztecs Riot]]! <br>
 <br>
@@ -6499,7 +6497,7 @@ Your messenger arrives [[empty-handed|Aztecs Decide Whether to Make an Exchange]
 <<case "Spaniards">>
 You have decided that <<print $Aztec_Leader>> is nothing more than a burden at this point and it is time to dispose of him. As you drive the knife into the once-powerful Mexica leader, you wonder if you will pay for your crime in the afterlife.<br>
 <br>
-Once the deed is done, you decide that your best chance of escape is to leave by cover of night. You will need to be quick and silent, so you decide carefully what is worth taking. After all this time coveting Moctezuma's treasure, however, you can't help but fill your pockets with all the gold and valuables you can find. You hope they won't weigh you down as you <<link "make your escape" "Noche Triste">><<set $Noche="Yes">><</link>>!<br>
+Once the deed is done, you decide that your best chance of escape is to leave by cover of night. You will need to be quick and silent, so you decide carefully what is worth taking. After all this time coveting Moctezuma's treasure, however, you can't help but fill your pockets with all the gold and valuables you can find. You hope they won't weigh you down as you <<link "make your escape" "Noche Triste">><<set $Noche="Yes">><<set $Hostage_Exch = "No">>.<</link>>!<br>
 <br>
 
 <<case "Aztecs">>
