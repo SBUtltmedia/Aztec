@@ -8401,7 +8401,7 @@ Tension grips the city and you listen as your captors plot their escape. It seem
 <</if>>
 
 <<case "Tlaxcalans">>
-<<if ndef $Hostage or $Hostage eq "">>
+<<if ndef $Az_Ld_Dead or $Az_Ld_Dead eq "">>
 Again, you are without news. What could be happening?<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
