@@ -1981,8 +1981,6 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 
 :: Aztecs Decide About The Riot {"position":"2875,10050","size":"100,100"}
 <<liveblock>>
-<<print $Riot_Vote>>
-<<print $Riot>>
 <<if $Riot_Vote isnot 5>>
 You wait while the rest of your team casts their vote. <br>
 <br>
@@ -1992,8 +1990,8 @@ You wait while the rest of your team casts their vote. <br>
 <br>
 
 <<else>>
-<<print $Riot_Vote>>
-<<print $Riot>>
+<<print $Riot_Vote>><br>
+<<print $Riot>><br>
 <<if $Riot >0>>
 You have decided [[to fight|Aztecs Riot]]! <br>
 <br>
