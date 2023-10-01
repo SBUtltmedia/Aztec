@@ -481,9 +481,18 @@ After an eventful evening full of food, pulque and heated debate about your docu
 <<liveblock>>
 Your new leader is <<print $New_Aztec_Leader>>.<br>
 <br>
-Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish]].<br>
+<<if ndef $Az_Ld_Dead or $Az_Ld_Dead eq "">>
+You are waiting for <<print $Span_Leader to make a decision>>
+
+<<elseif $Az_Ld_Dead is "No">>
+
+Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish Leader Alive]].<br>
 <br>
 
+<<elseif $Az_Ld_Dead is "Yes">>
+Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish Leader Dead]].<br>
+<br>
+<</if>>
 
 <</liveblock>>
 
@@ -2229,9 +2238,9 @@ Your men have wisely decided not to give chase, for the strangers travel with th
 <</liveblock>>
 
 
-:: Aztecs Plot Against the Spanish {"position":"2450,11000","size":"100,100"}
+:: Aztecs Plot Against the Spanish Leader Alive {"position":"2450,11000","size":"100,100"}
 <<liveblock>>
-<<if ndef $Hostage or $Hostage eq "" or ndef $Az_Ld_Dead or $Az_Ld_Dead eq "">>
+<<if ndef $Hostage or $Hostage eq "">>
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
 Your deliberations last late into the night. <br>
@@ -2240,7 +2249,7 @@ Your deliberations last late into the night. <br>
 <br>
 You are waiting for <<print $Span_Leader>> to do something.<br>
 <br>
-<<elseif $Hostage is "Yes" and $Az_Ld_Dead is "No">>
+<<elseif $Hostage is "Yes">>
 <<if $users[$userId]["role"] is $New_Aztec_Leader>>
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
@@ -2269,14 +2278,15 @@ Option 2: Refuse the deal. <<print $Aztec_Leader>> has proven an ineffective lea
 When you have made your choice, <<print $New_Aztec_Leader>> must enter your decision. When this is done, [[you may carry on to learn your fate|Aztecs Decide Whether to Make an Exchange]].<br>
 <br>
 <</if>>
-<<elseif $Hostage is "No">>
+<</if>>
+:: Aztecs Plot Against the Spanish Leader Dead
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
 Unable to reach a decision, the members of the council debate into the quietest hours of the night. With the city asleep beyond the chamber walls, a young boy comes rushing into the room. He has just seen the foreigners sneaking out of the palace, carrying all their worldly goods, their pockets loaded with gold and treasures!<br>
 <br>
 You and the other members of the council spring into action. The streets ring out with your war cries as the residents of the city flood the streets, determined to [[prevent your enemies from making their escape|Noche Triste]]!<br>
 <br>
-<</if>>
+
 
 
 <</liveblock>>
