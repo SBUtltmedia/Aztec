@@ -7781,32 +7781,18 @@ As you exit the causeway and the city of Tenochtitlán fades into the distance, 
 <br>
 It is now time to decide just what that path will be, however. You gather your most trusted counselors to weigh your options. Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. <br>
 <br>
-There is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly, relying on the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
-<br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, input your choice below.<br>
-<br>
-You may then move forward with your plan.
+There is no choice but to return to Tlaxcala and attempt <<link "to rebuild your army" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
 <br>
 <br>
-Option 1: <<link "Attack Alone" "Spaniards Fight the Aztecs Alone">><<set $NT_Fight="Yes">><</link>>.<br>
-<br>
-Option 2: <<link "Retreat to Tlaxcala" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
-<br>
-
 <<elseif $Hostage_Exch is "No">>
 You drag yourself to shore, eager to get beyond reach of the city that almost became your grave. You can't believe you escaped with your life! Many others were not so lucky-a fact that becomes starkly clear as you take stock of the men who now walk beside you. <br>
 <br>
 When you feel you have reached a safe distance, you call out to your compatriots to stop and recommend they rest a while. As the ragged soldiers settle in and create a makeshift camp with what little supplies they have, you gather your most trusted counselors to weigh your options. <br>
 <br>
-Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. You inform your men that there is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly. You have suffered enormous damages in your escape from the city, but you would  have the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
+Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. You inform your men that there is no choice but to lay siege to the city. It is now time to decide just what that path will be, however. You gather your most trusted counselors to weigh your options. Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. <br>
 <br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, input your choice below.<br>
+There is no choice but to return to Tlaxcala and attempt <<link "to rebuild your army" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
 <br>
-You may then move forward with your plan.<br>
-<br>
-Option 1: <<link "Attack Alone" "Spaniards Fight the Aztecs Alone">><<set $NT_Fight="Yes">><</link>>.<br>
-<br>
-Option 2: <<link "Retreat to Tlaxcala" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
 <br>
 <</if>>
 
@@ -7818,7 +7804,7 @@ It is now time to decide just what that path will be, however. <<print $Span_Lea
 <br>
 There is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly, relying on the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
 <br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Decide How to Proceed]].<br>
+Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Retreat to Tlaxcala]].<br>
 <br>
 <<elseif $Hostage_Exch is "No">>
 You drag yourself to shore, eager to get beyond reach of the city that almost became your grave. You can't believe you escaped with your life! Many others were not so lucky-a fact that becomes starkly clear as you take stock of the men who now walk beside you. <br>
@@ -7827,7 +7813,7 @@ When you feel you have reached a safe distance, <<print $Span_Leader>> calls out
 <br>
 Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. You inform your men that there is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly. You have suffered enormous damages in your escape from the city, but you would  have the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
 <br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Decide How to Proceed]].<br>
+Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Retreat to Tlaxcala]].<br>
 <br>
 <</if>>
 <</if>>
