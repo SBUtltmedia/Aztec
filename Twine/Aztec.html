@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -1894,8 +1894,6 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Aztecs Decide About The Riot" tags="" position="2875,10050" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;print $Riot_Vote&gt;&gt;
-&lt;&lt;print $Riot&gt;&gt;
 &lt;&lt;if $Riot_Vote isnot 5&gt;&gt;
 You wait while the rest of your team casts their vote. &lt;br&gt;
 &lt;br&gt;
@@ -1905,8 +1903,8 @@ You wait while the rest of your team casts their vote. &lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;else&gt;&gt;
-&lt;&lt;print $Riot_Vote&gt;&gt;
-&lt;&lt;print $Riot&gt;&gt;
+&lt;&lt;print $Riot_Vote&gt;&gt;&lt;br&gt;
+&lt;&lt;print $Riot&gt;&gt;&lt;br&gt;
 &lt;&lt;if $Riot &gt;0&gt;&gt;
 You have decided [[to fight|Aztecs Riot]]! &lt;br&gt;
 &lt;br&gt;
