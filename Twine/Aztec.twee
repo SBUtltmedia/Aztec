@@ -2240,7 +2240,7 @@ Your deliberations last late into the night. <br>
 <br>
 You are waiting for <<print $Span_Leader>> to do something.<br>
 <br>
-<<elseif $Hostage is "Yes">>
+<<elseif $Hostage is "Yes" and $Az_Ld_Dead is "No">>
 <<if $users[$userId]["role"] is $New_Aztec_Leader>>
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
