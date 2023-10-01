@@ -7805,7 +7805,6 @@ You have decided that your best course of action is to return to Tlaxcala. There
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
-Is Cortes dead? &lt;&lt;print $Cortes_Dead&gt;&gt;&lt;br&gt;
 &lt;&lt;if $Cortes_Dead is &quot;Yes&quot;&gt;&gt;
 Your spies warn you that [[the Spaniards approach|Spaniards in Tlaxcala Cortes Dead]].&lt;br&gt;
 &lt;br&gt;
@@ -9300,7 +9299,7 @@ You must wait for &lt;&lt;print $Tlax_Leader&gt;&gt; to do something.&lt;br&gt;
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="252" name="Tlaxcala Decides What To Do" tags="" position="2850,12325" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Final_Aztec Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
+&lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
 You wait for your options to become clear.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
