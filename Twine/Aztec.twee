@@ -9625,7 +9625,10 @@ Well, this explains a lot. You knew you couldn't have written those papers--they
 You rise up out of the chair, knees shaking. You know what you must do...<br>
 <br>
 
-
+Final Game Score:<br>
+Aztecs: <<print $Final_Aztec_Points>><br>
+Spaniards:  <<print $Final_Spanish_Points>><br>
+Tlaxcalans: <<print $Final_Tlaxcalan_Points>><br>
 <</liveblock>>
 
 
