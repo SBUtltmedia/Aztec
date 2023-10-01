@@ -9505,7 +9505,7 @@ When everyone has voted, you will find out who will lead you now.<br>
 You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> players have voted.<br>
 <br>
 
-<<else>>
+<<elseif $Sp_Ld_Vote_Teno = 5>>
 
 <<if $Sp_Ld_Mar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno>=$Sp_Ld_Oli_Teno>>
 
