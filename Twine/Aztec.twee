@@ -9507,7 +9507,11 @@ You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> pl
 
 <<elseif $Sp_Ld_Vote_Teno is 5>>
 Why is this not working? <br>
-<<if $Sp_Ld_Mar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno>=$Sp_Ld_Oli_Teno>>
+<<if $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno>>
+
+The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
+<br>
+<<elseif $Sp_Ld_Mar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno>=$Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
 <br>

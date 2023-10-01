@@ -8684,7 +8684,11 @@ You are waiting for the rest of your team to vote. &lt;&lt;print $Sp_Ld_Vote_Ten
 
 &lt;&lt;elseif $Sp_Ld_Vote_Teno is 5&gt;&gt;
 Why is this not working? &lt;br&gt;
-&lt;&lt;if $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno&gt;=$Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;if $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Alv and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Gar_Teno&gt;&gt;
+
+The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno&gt;=$Sp_Ld_Oli_Teno&gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Marina&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
