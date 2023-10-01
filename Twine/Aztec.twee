@@ -2444,7 +2444,7 @@ After consulting with your compatriots, you have decided to:<br>
 <br>
 OPTION 1: Keep <<print $Aztec_Leader>> <<link "alive as your prisoner" "Spaniards Keep Aztec Leader Alive Riot">><<set $Az_Ld_Dead="No">><</link>>.<br>
 <br>
-OPTION 2: Send <<print $Aztec_Leader>><<link "to meet his Gods" "Spaniards Kill Aztec Leader Riot">><<set $Az_Ld_Dead="Yes">><</link>>.<br>
+OPTION 2: Send <<print $Aztec_Leader>><<link "to meet his Gods" "Spaniards Kill Aztec Leader Riot">><<set $Az_Ld_Dead="Yes">><<set $Hostage_Exch = "No">><</link>>.<br>
 <br>
 <<else>>
 It appears that the crowd has lost faith in their leader. Despite his pleas, the crowd below has begun to riot, hurling stones towards the rooftop. You watch <<print $Aztec_Leader>> fall to his knees as he is struck in the head.<br>
