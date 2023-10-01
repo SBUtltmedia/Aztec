@@ -8238,7 +8238,6 @@ You send a messenger to the roof of the palace to inform the residents of Tenoch
 <br>
 <<case "Aztecs">>
 <<if $users[$userId]["role"] is $Aztec_Leader>>
-<<print $Aztec_Leader>>
 Someone is carrying you back into the palace. Even in your confusion, you can feel the tension in the air. Your captors seem nervous and have been whispering excitedly amongst themselves. <br>
 <br>
 As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods [[could have forsaken you so|The End]].<br>
@@ -8250,13 +8249,12 @@ You yourself watched him fall on the rooftop, but could this really have been hi
 <br>
 The council gathers in haste. [[Decisions must be made|Aztec Leader Dies and Aztecs Choose a Leader Riot]]!<br>
 <br>
+<</if>>
 <<case "Tlaxcalans">>
 You've just received a shocking report from Tenochtitlán: <<print $Aztec_Leader>> is dead! You can hardly believe the news! It seems there was a riot among the citizens of Tenochtitlán. The Spaniards sent the captive <<print $Aztec_Leader>> out to calm the crowd but they turned on him! He struck in the head with a rock. Your spies report that he was still alive when the strangers carried him back into the palace and no one has seen the body. However, shortly thereafter, the Spaniards sent a messenger out to the roof to inform the residents of the city that their Emperor was dead.<br>
 <br>
 <<print $Aztec_Leader>> was your enemy, but he was the most powerful man in the world. Will the Gods forgive the Spaniards for this crime? [[Only time will tell|Spaniards Plot their Departure]].<br>
 <br>
-
-<</if>>
 <</switch>>
 
 

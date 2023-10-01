@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -7499,7 +7499,6 @@ You send a messenger to the roof of the palace to inform the residents of Tenoch
 &lt;br&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $users[$userId][&quot;role&quot;] is $Aztec_Leader&gt;&gt;
-&lt;&lt;print $Aztec_Leader&gt;&gt;
 Someone is carrying you back into the palace. Even in your confusion, you can feel the tension in the air. Your captors seem nervous and have been whispering excitedly amongst themselves. &lt;br&gt;
 &lt;br&gt;
 As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods [[could have forsaken you so|The End]].&lt;br&gt;
@@ -7511,13 +7510,12 @@ You yourself watched him fall on the rooftop, but could this really have been hi
 &lt;br&gt;
 The council gathers in haste. [[Decisions must be made|Aztec Leader Dies and Aztecs Choose a Leader Riot]]!&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
 You&#39;ve just received a shocking report from Tenochtitlán: &lt;&lt;print $Aztec_Leader&gt;&gt; is dead! You can hardly believe the news! It seems there was a riot among the citizens of Tenochtitlán. The Spaniards sent the captive &lt;&lt;print $Aztec_Leader&gt;&gt; out to calm the crowd but they turned on him! He struck in the head with a rock. Your spies report that he was still alive when the strangers carried him back into the palace and no one has seen the body. However, shortly thereafter, the Spaniards sent a messenger out to the roof to inform the residents of the city that their Emperor was dead.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;print $Aztec_Leader&gt;&gt; was your enemy, but he was the most powerful man in the world. Will the Gods forgive the Spaniards for this crime? [[Only time will tell|Spaniards Plot their Departure]].&lt;br&gt;
 &lt;br&gt;
-
-&lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
