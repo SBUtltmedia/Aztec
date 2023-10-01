@@ -2231,7 +2231,7 @@ Your men have wisely decided not to give chase, for the strangers travel with th
 
 :: Aztecs Plot Against the Spanish {"position":"2450,11000","size":"100,100"}
 <<liveblock>>
-<<if ndef $Hostage or $Hostage eq "">>
+<<if ndef $Hostage or $Hostage eq "" or $Az_Ld_Dead is "Yes">>
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
 Your deliberations last late into the night. <br>
