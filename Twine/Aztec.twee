@@ -8238,6 +8238,7 @@ You send a messenger to the roof of the palace to inform the residents of Tenoch
 <br>
 <<case "Aztecs">>
 <<if $users[$userId]["role"] is $Aztec_Leader>>
+<<print $Aztec_Leader>>
 Someone is carrying you back into the palace. Even in your confusion, you can feel the tension in the air. Your captors seem nervous and have been whispering excitedly amongst themselves. <br>
 <br>
 As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods [[could have forsaken you so|The End]].<br>
