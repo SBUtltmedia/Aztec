@@ -8570,7 +8570,7 @@ You have decided that your best course of action is to return to Tlaxcala. There
 <br>
 <</if>>
 <<case "Tlaxcalans">>
-<<print $Cortes_Dead>>
+Is Cortes dead? <<print $Cortes_Dead>><br>
 <<if $Cortes_Dead is "Yes">>
 Your spies warn you that [[the Spaniards approach|Spaniards in Tlaxcala Cortes Dead]].<br>
 <br>
@@ -11764,7 +11764,7 @@ You will honor an existing but secret alliance with the Aztecs and <<link "enter
 <<if $users[$userId]["role"] is $Tlax_Leader>>
 Select your team's decision from the options below.<br>
 <br>
-<b>Option 1:</b> <<link "You agree to go to battle with Cortes" "Tlaxcalans agree to fight">><<set $Tlax_Alliance="Veracruz">><</link>>.<br>
+<b>Option 1:</b> <<link "You agree to go to battle with Cortes" "Tlaxcalans agree to fight">><<set $Tlax_Alliance="Veracruz">><<set $Cortes_Dead="No">><</link>>.<br>
 <br>
 <b>Option 2:</b> <<link "You will not go to battle with Cortes and you will tell him this before you reach Tlaxcala, so that you might leave the war party and go home" "Tlaxcalans announce their departure">><<set $Tlax_Alliance="Home">><</link>>.<br>
 <br>
