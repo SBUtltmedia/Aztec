@@ -276,19 +276,19 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 <<set$Sp_Ld_Vote_Teno=0>>
 <</if>>
 <<if ndef $Sp_Ld_Mar_Teno>>
-<<set$Sp_Ld_Mar_Teno=1>>
+<<set$Sp_Ld_Mar_Teno=0>>
 <</if>>
 <<if ndef $Sp_Ld_Alv_Teno>>
-<<set$Sp_Ld_Alv_Teno=1>>
+<<set$Sp_Ld_Alv_Teno=0>>
 <</if>>
 <<if ndef $Sp_Ld_Agu_Teno>>
-<<set$Sp_Ld_Agu_Teno=1>>
+<<set$Sp_Ld_Agu_Teno=0>>
 <</if>>
 <<if ndef $Sp_Ld_Gar_Teno>>
-<<set$Sp_Ld_Gar_Teno=1>>
+<<set$Sp_Ld_Gar_Teno=0>>
 <</if>>
 <<if ndef $Sp_Ld_Oli_Teno>>
-<<set$Sp_Ld_Oli_Teno=1>>
+<<set$Sp_Ld_Oli_Teno=0>>
 <</if>>
 
 <<if $Span_Leader is "Cortes">>
@@ -1413,6 +1413,9 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 <<if ndef $Riot_sum>>
 <<set $Riot_sum=0>>
 <</if>>
+<<if ndef $riot>>
+<<set $Riot=0>>
+<</if>>
 
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
@@ -1978,6 +1981,7 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 
 :: Aztecs Decide About The Riot {"position":"2875,10050","size":"100,100"}
 <<liveblock>>
+
 <<if $Riot_Vote isnot 5>>
 You wait while the rest of your team casts their vote. <br>
 <br>
@@ -1985,6 +1989,7 @@ You wait while the rest of your team casts their vote. <br>
 <br>
 <<print $Riot_Vote>> votes have been cast.<br>
 <br>
+
 <<else>>
 
 <<if $Riot >0>>
@@ -9489,13 +9494,6 @@ After much  debate , you finally determine that <<print $Span_Leader>> has the g
 
 :: Tenochtitlan Spanish Leadership Results {"position":"2675,9175","size":"100,100"}
 <<liveblock>>
-
-Vote total: <<print $Sp_Ld_Vote_Teno>><br>
-Marina Votes: <<print $Sp_Ld_Mar_Teno>><br>
-Alvarado Votes: <<print $Sp_Ld_Alv_Teno>><br>
-Aguilar Votes: <<print $Sp_Ld_Agu_Teno>><br>
-Garrido Votes: <<print $Sp_Ld_Gar_Teno>><br>
-Olid Votes: <<print $Sp_Ld_Oli_Teno>><br>
 
 <<if $Sp_Ld_Vote_Teno <= 4>>
 When everyone has voted, you will find out who will lead you now.<br>
