@@ -1413,7 +1413,7 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 <<if ndef $Riot_sum>>
 <<set $Riot_sum=0>>
 <</if>>
-<<if ndef $riot>>
+<<if ndef $Riot>>
 <<set $Riot=0>>
 <</if>>
 
