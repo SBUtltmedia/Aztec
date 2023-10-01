@@ -12084,7 +12084,7 @@ You watch as <<print $Span_Leader>> raises his sword and [[strikes the final blo
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs and Tlaxcalans versus Spaniards">><<set $Final_Aztec_Players=$users[$lookup["Moctezuma"]]["stats"]["Strength"]+$users[$lookup["Moctezuma"]]["stats"]["Loyalty"]+$users[$lookup["Moctezuma"]]["stats"]["Wisdom"]+$users[$lookup["Tlacaelel"]]["stats"]["Strength"]+$users[$lookup["Tlacaelel"]]["stats"]["Loyalty"]+$users[$lookup["Tlacaelel"]]["stats"]["Wisdom"]+$users[$lookup["Cuauhtemoc"]]["stats"]["Strength"]+$users[$lookup["Cuauhtemoc"]]["stats"]["Loyalty"]+$users[$lookup["Cuauhtemoc"]]["stats"]["Wisdom"]+$users[$lookup["Cacamatzin"]]["stats"]["Strength"]+$users[$lookup["Cacamatzin"]]["stats"]["Loyalty"]+$users[$lookup["Cacamatzin"]]["stats"]["Wisdom"]+$users[$lookup["Aztec_Priest"]]["stats"]["Strength"]+$users[$lookup["Aztec_Priest"]]["stats"]["Loyalty"]+$users[$lookup["Aztec_Priest"]]["stats"]["Wisdom"]+$users[$lookup["Pochteca"]]["stats"]["Strength"]+$users[$lookup["Pochteca"]]["stats"]["Loyalty"]+$users[$lookup["Pochteca"]]["stats"]["Wisdom"]>><<set $Final_Aztec_Players/=6>><<set $Final_Aztec_Points=$factions["Aztecs"]["stats"]["Strength"]+$Final_Aztec_Players>><</link>>. <br>
 <br>
 <<else>>
-You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the final blow|Aztecs and Tlaxcalans versus Spaniards]].<br>
+You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs and Tlaxcalans versus Spaniards]].<br>
 <br>
 
 <</if>>
