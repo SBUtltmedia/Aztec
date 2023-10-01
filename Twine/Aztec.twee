@@ -8570,6 +8570,7 @@ You have decided that your best course of action is to return to Tlaxcala. There
 <br>
 <</if>>
 <<case "Tlaxcalans">>
+<<print $Cortes_Dead>>
 <<if $Cortes_Dead is "Yes">>
 Your spies warn you that [[the Spaniards approach|Spaniards in Tlaxcala Cortes Dead]].<br>
 <br>
