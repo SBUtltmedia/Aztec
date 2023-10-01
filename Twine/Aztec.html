@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -1873,8 +1873,14 @@ You send another spy out, [[hoping for news|Spaniards Kill Aztec Leader]].&lt;br
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="Aztecs Accept Peace Treaty" tags="" position="4675,13525" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;&lt;if $Tlax_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
+The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be &lt;&lt;link &quot;from this moment on&quot; &quot;The End&quot;&gt;&gt;&lt;&lt;set  
+$Final_Tlaxcalan_Players=$users[$lookup[&quot;Xicotencatl_Elder&quot;]][&quot;stats&quot;][&quot;Strength&quot;]+$users[$lookup[&quot;Xicotencatl_Elder&quot;]][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[$lookup[&quot;Xicotencatl_Elder&quot;]][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[$lookup[&quot;Xicotencatl_Younger&quot;]][&quot;stats&quot;][&quot;Strength&quot;]+$users[$lookup[&quot;Xicotencatl_Younger&quot;]][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[$lookup[&quot;Xicotencatl_Younger&quot;]][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[$lookup[&quot;Maxixcatl&quot;]][&quot;stats&quot;][&quot;Strength&quot;]+$users[$lookup[&quot;Maxixcatl&quot;]][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[$lookup[&quot;Maxixcatl&quot;]][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $Final_Tlaxcalan_Players/=3&gt;&gt;&lt;&lt;set $Final_Tlaxcalan_Points=$factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$Final_Tlaxcalan_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;else&gt;&gt;
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
 &lt;&lt;/switch&gt;&gt;
@@ -9442,8 +9448,15 @@ Your two sides are evenly matched, as usual, but only one [[can claim victory|Vi
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="256" name="Tlaxcala Does Nothing Aztecs Accept Peace Treaty" tags="" position="2875,13050" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;&lt;if $Tlax_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
+The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be &lt;&lt;link &quot;from this moment on&quot; &quot;The End&quot;&gt;&gt;&lt;&lt;set  
+$Final_Tlaxcalan_Players=$users[$lookup[&quot;Xicotencatl_Elder&quot;]][&quot;stats&quot;][&quot;Strength&quot;]+$users[$lookup[&quot;Xicotencatl_Elder&quot;]][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[$lookup[&quot;Xicotencatl_Elder&quot;]][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[$lookup[&quot;Xicotencatl_Younger&quot;]][&quot;stats&quot;][&quot;Strength&quot;]+$users[$lookup[&quot;Xicotencatl_Younger&quot;]][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[$lookup[&quot;Xicotencatl_Younger&quot;]][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[$lookup[&quot;Maxixcatl&quot;]][&quot;stats&quot;][&quot;Strength&quot;]+$users[$lookup[&quot;Maxixcatl&quot;]][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[$lookup[&quot;Maxixcatl&quot;]][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $Final_Tlaxcalan_Players/=3&gt;&gt;&lt;&lt;set $Final_Tlaxcalan_Points=$factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$Final_Tlaxcalan_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;else&gt;&gt;
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
 &lt;&lt;/switch&gt;&gt;
