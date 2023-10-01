@@ -9490,10 +9490,7 @@ After much  debate , you finally determine that <<print $Span_Leader>> has the g
 :: Tenochtitlan Spanish Leadership Results {"position":"2675,9175","size":"100,100"}
 <<liveblock>>
 
-<<print $Sp_Ld_Vote_Teno>>
-<<print $Sp_Ld_Agu_Teno>>
-
-<<if $Sp_Ld_Vote_Teno isnot 5>>
+<<if $Sp_Ld_Vote_Teno <= 4>>
 When everyone has voted, you will find out who will lead you now.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
