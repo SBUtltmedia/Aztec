@@ -9506,8 +9506,8 @@ You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> pl
 <br>
 
 <<elseif $Sp_Ld_Vote_Teno is 5>>
-Why is this not working? <br>
-<<if $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno>>
+
+<<if $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
@@ -9521,16 +9521,16 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
 
-<<elseif $Sp_Ld_Agu_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Alv and $Sp_Ld_Agu_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Oli_Teno>><<set $Span_Leader="Aguilar">>
+<<elseif $Sp_Ld_Agu_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Oli_Teno>><<set $Span_Leader="Aguilar">>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
 <br>
 
-<<elseif $Sp_Ld_Gar_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Alv and $Sp_Ld_Gar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Oli_Teno>>
+<<elseif $Sp_Ld_Gar_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 
-<<elseif $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno >>
+<<elseif $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno >>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
