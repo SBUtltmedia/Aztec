@@ -1952,8 +1952,14 @@ You send another spy out, [[hoping for news|Spaniards Kill Aztec Leader]].<br>
 <<liveblock>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
+<<if $Tlax_Leader is $users[$userId]["role"]>>
+The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be <<link "from this moment on" "The End">><<set  
+$Final_Tlaxcalan_Players=$users[$lookup["Xicotencatl_Elder"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"]+$users[$lookup["Maxixcatl"]]["stats"]["Strength"]+$users[$lookup["Maxixcatl"]]["stats"]["Loyalty"]+$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
+<br> 
+<<else>>
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].<br>
 <br>
+<</if>>
 <<case "Aztecs">>
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
 <</switch>>
@@ -10391,8 +10397,15 @@ Your two sides are evenly matched, as usual, but only one [[can claim victory|Vi
 <<liveblock>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
+<<if $Tlax_Leader is $users[$userId]["role"]>>
+The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be <<link "from this moment on" "The End">><<set  
+$Final_Tlaxcalan_Players=$users[$lookup["Xicotencatl_Elder"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"]+$users[$lookup["Maxixcatl"]]["stats"]["Strength"]+$users[$lookup["Maxixcatl"]]["stats"]["Loyalty"]+$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
+<br> 
+<<else>>
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].<br>
 <br>
+<</if>>
+
 <<case "Aztecs">>
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
 <</switch>>
