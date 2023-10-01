@@ -273,22 +273,22 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 :: Absent Cortes Leadership Challenge {"position":"2675,9050","size":"100,100"}
 <<liveblock>>
 <<if ndef $Sp_Ld_Vote_Teno>>
-<<set$Sp_Ld_Vote_Teno=0 >>
+<<set$Sp_Ld_Vote_Teno=0>>
 <</if>>
 <<if ndef $Sp_Ld_Mar_Teno>>
-<<set$Sp_Ld_Mar_Teno=0 >>
+<<set$Sp_Ld_Mar_Teno=1>>
 <</if>>
 <<if ndef $Sp_Ld_Alv_Teno>>
-<<set$Sp_Ld_Alv_Teno=0 >>
+<<set$Sp_Ld_Alv_Teno=1>>
 <</if>>
 <<if ndef $Sp_Ld_Agu_Teno>>
-<<set$Sp_Ld_Agu_Teno=0 >>
+<<set$Sp_Ld_Agu_Teno=1>>
 <</if>>
 <<if ndef $Sp_Ld_Gar_Teno>>
-<<set$Sp_Ld_Gar_Teno=0 >>
+<<set$Sp_Ld_Gar_Teno=1>>
 <</if>>
 <<if ndef $Sp_Ld_Oli_Teno>>
-<<set$Sp_Ld_Oli_Teno=0 >>
+<<set$Sp_Ld_Oli_Teno=1>>
 <</if>>
 
 <<if $Span_Leader is "Cortes">>
@@ -9505,7 +9505,7 @@ When everyone has voted, you will find out who will lead you now.<br>
 You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> players have voted.<br>
 <br>
 
-<<elseif $Sp_Ld_Vote_Teno = 5>>
+<<else
 
 <<if $Sp_Ld_Mar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno>=$Sp_Ld_Oli_Teno>>
 
