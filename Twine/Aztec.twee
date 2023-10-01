@@ -8570,7 +8570,6 @@ You have decided that your best course of action is to return to Tlaxcala. There
 <br>
 <</if>>
 <<case "Tlaxcalans">>
-Is Cortes dead? <<print $Cortes_Dead>><br>
 <<if $Cortes_Dead is "Yes">>
 Your spies warn you that [[the Spaniards approach|Spaniards in Tlaxcala Cortes Dead]].<br>
 <br>
@@ -10233,7 +10232,7 @@ You must wait for <<print $Tlax_Leader>> to do something.<br>
 
 :: Tlaxcala Decides What To Do {"position":"2850,12325","size":"100,100"}
 <<liveblock>>
-<<if $Final_Aztec Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
+<<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for your options to become clear.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
