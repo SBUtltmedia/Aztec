@@ -3616,7 +3616,9 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 <<button "Reset">>
 	<<script>>
 		fullReset();
+		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,{type : 'DELETE'})
 	<</script>>
+	<<set $passageHistory = {}>>
 <</button>>
 
 
