@@ -6741,6 +6741,18 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
+
+<<if ndef $gitUpdate>>
+	<<set $gitUpdate = new Date().getTime()>>
+	<</if>>
+
+<<if $gitUpdate + 300000 < new Date().getTime()>>
+	<<script>>
+		$.get("/updateGit", {});
+		console.log("updating git");
+	<</script>>
+	<<set $gitUpdate = new Date().getTime()>>
+<</if>>
 <<set _roles = {
   "Marina": {
     "faction": "Spaniards",
