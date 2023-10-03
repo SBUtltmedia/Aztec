@@ -12562,7 +12562,13 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					$("#chat-switch .selectedChatButton").removeClass("selectedChatButton");
 					$(this).addClass("selectedChatButton");
 				});
+				if (State.getVar("$users")[State.getVar("$userId")].currentChat == "chat") {
+					$("#chat-switch .macro-button:nth-child(1)").addClass("selectedChatButton");
+				} else {
+					$("#chat-switch .macro-button:nth-child(2)").addClass("selectedChatButton");
+				}
 			});
+			
 		<</script>>
 	</div>
 
