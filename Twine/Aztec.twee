@@ -2283,7 +2283,9 @@ When you have made your choice, <<print $New_Aztec_Leader>> must enter your deci
 <br>
 <</if>>
 <</if>>
-:: Aztecs Plot Against the Spanish Leader Dead
+
+
+:: Aztecs Plot Against the Spanish Leader Dead {"position":"850,600","size":"100,100"}
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
 Unable to reach a decision, the members of the council debate into the quietest hours of the night. With the city asleep beyond the chamber walls, a young boy comes rushing into the room. He has just seen the foreigners sneaking out of the palace, carrying all their worldly goods, their pockets loaded with gold and treasures!<br>
@@ -6913,10 +6915,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
-
 <<if ndef $gitUpdate>>
 	<<set $gitUpdate = new Date().getTime()>>
-	<</if>>
+<</if>>
 
 <<if $gitUpdate + 300000 < new Date().getTime()>>
 	<<script>>
