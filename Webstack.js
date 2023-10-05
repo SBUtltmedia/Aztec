@@ -154,6 +154,9 @@ class Webstack {
 
 			socket.on('fullReset', ()=>{
 				console.log("reset start 2")
+				app.post('/updateGit',(req, res) => {
+					res.send({})
+				  })
 				this.serverStore.dispatch({
 					type: 'REPLACE',
 					payload: initVars
