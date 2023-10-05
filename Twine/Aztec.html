@@ -3476,11 +3476,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,{type : &#39;DELETE&#39;})
 	&lt;&lt;/script&gt;&gt;
 	&lt;&lt;set $passageHistory = {}&gt;&gt;
-<<<<<<< HEAD:Twine/Aztec.html
 &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="Control: Player Status" tags="" position="4275,375" size="100,100">&lt;&lt;liveblock&gt;&gt;
-=======
-&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="Control: Player Status" tags="" position="4275,375" size="100,100">&lt;&lt;liveblock&gt;&gt;
->>>>>>> develop:Twine/aztec.html
 &lt;b&gt;CURRENT STATUS OF TEAMS AND PLAYERS&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;b&gt;Current Team Leader and Strength&lt;/b&gt;&lt;br&gt;
@@ -6296,12 +6292,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;/if&gt;&gt;
 
 
-<<<<<<< HEAD:Twine/Aztec.html
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;set _roles = {
-=======
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;if ndef $gitUpdate&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;if ndef $gitUpdate&gt;&gt;
 	&lt;&lt;set $gitUpdate = new Date().getTime()&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $gitUpdate + 300000 &lt; new Date().getTime()&gt;&gt;
 	&lt;&lt;script&gt;&gt;
@@ -6311,7 +6304,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 	&lt;&lt;set $gitUpdate = new Date().getTime()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set _roles = {
->>>>>>> develop:Twine/aztec.html
   &quot;Marina&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
     &quot;Character&quot;: &quot;Doña Marina/Malinche&quot;,
