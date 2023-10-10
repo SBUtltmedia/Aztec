@@ -1690,6 +1690,13 @@ You are confident that [[they will prepare the city for war|Cortes Returns Weake
 <<elseif $Tlax_Alliance is "Home" and $Cortes_Dead is "Yes">>
 You are confident that [[they will prepare the city for war|Cortes Doesn't Return]].<br>
 <br>
+<<elseif $Tlax_Alliance is "Home" and ndef $Cortes_Dead or $Cortes_Dead eq "">>
+Things are eerily calm and you wait.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalans to do something.<br>
+<br>
 <<elseif $Tlax_Alliance is "Betray">>
 You are confident that [[they will prepare the city for war|Cortes Doesn't Return]].<br>
 <br>
