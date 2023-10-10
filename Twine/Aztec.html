@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -1630,6 +1630,13 @@ You are confident that [[they will prepare the city for war|Cortes Returns Weake
 &lt;br&gt;
 &lt;&lt;elseif $Tlax_Alliance is &quot;Home&quot; and $Cortes_Dead is &quot;Yes&quot;&gt;&gt;
 You are confident that [[they will prepare the city for war|Cortes Doesn&#39;t Return]].&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Tlax_Alliance is &quot;Home&quot; and ndef $Cortes_Dead or $Cortes_Dead eq &quot;&quot;&gt;&gt;
+Things are eerily calm and you wait.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
+&lt;br&gt;
+You are waiting for the Tlaxcalans to do something.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Tlax_Alliance is &quot;Betray&quot;&gt;&gt;
 You are confident that [[they will prepare the city for war|Cortes Doesn&#39;t Return]].&lt;br&gt;
@@ -3476,11 +3483,7 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,{type : &#39;DELETE&#39;})
 	&lt;&lt;/script&gt;&gt;
 	&lt;&lt;set $passageHistory = {}&gt;&gt;
-<<<<<<< HEAD:Twine/Aztec.html
 &lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="Control: Player Status" tags="" position="4275,375" size="100,100">&lt;&lt;liveblock&gt;&gt;
-=======
-&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="Control: Player Status" tags="" position="4275,375" size="100,100">&lt;&lt;liveblock&gt;&gt;
->>>>>>> develop:Twine/aztec.html
 &lt;b&gt;CURRENT STATUS OF TEAMS AND PLAYERS&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;b&gt;Current Team Leader and Strength&lt;/b&gt;&lt;br&gt;
@@ -6296,10 +6299,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;/if&gt;&gt;
 
 
-<<<<<<< HEAD:Twine/Aztec.html
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;set _roles = {
-=======
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;if ndef $gitUpdate&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="PassageHeader" tags="" position="138,11" size="100,100">&lt;&lt;if ndef $gitUpdate&gt;&gt;
 	&lt;&lt;set $gitUpdate = new Date().getTime()&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 
@@ -6311,7 +6311,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 	&lt;&lt;set $gitUpdate = new Date().getTime()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set _roles = {
->>>>>>> develop:Twine/aztec.html
   &quot;Marina&quot;: {
     &quot;faction&quot;: &quot;Spaniards&quot;,
     &quot;Character&quot;: &quot;Doña Marina/Malinche&quot;,
