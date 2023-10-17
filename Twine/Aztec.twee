@@ -6741,7 +6741,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
-
 <<if ndef $gitUpdate>>
 	<<set $gitUpdate = new Date().getTime()>>
 	<</if>>
@@ -12968,8 +12967,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				
 				$("#rolePanelNotes").empty().wiki(`<<textarea "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
 				
-				
-				
+				rolePanel.css("left", "61%");
 
 				let yPos = event.pageY;
 				let rpHeight = parseInt(rolePanel.css("height"));
