@@ -76,3 +76,5 @@ git push heroku master
     - alexlau347@gmail.com
 - [@Timothy Hsu](https://github.com/timothyhsu8)
     - timothy.hsu@stonybrook.edu
+- [@Jonathan Chan](https://github.com/timothyhsu8)
+  - timothy.hsu@stonybrook.edu
