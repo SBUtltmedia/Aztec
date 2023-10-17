@@ -3219,75 +3219,30 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Control: Change Passage" tags="" position="3525,400" size="100,100">&lt;b&gt;CHANGE THE LOCATION OF PLAYERS&lt;/b&gt;&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Control: Change Passage" tags="" position="3525,400" size="100,100">&lt;&lt;liveblock&gt;&gt;
+	&lt;&lt;set _role = &quot;Aztec_Priest&quot;&gt;&gt;
+	&lt;&lt;set _newSidePassage = $users[$lookup[_role]][&quot;passage&quot;]&gt;&gt;
 
-&lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
-Cortes&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Cortes&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Cortes&#39;]][&#39;passage&#39;]&quot; $users[$lookup[&#39;Cortes&#39;]][&#39;passage&#39;] &quot;The Library&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Alvarado&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Garrido&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Garrido&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Garrido&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Alvarado&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Alvarado&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Olid&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Olid&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Olid&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Aguilar&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Aguilar&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Aguilar&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Marina&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Marina&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Marina&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
-Moctezuma&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Moctezuma&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Moctezuma&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Tlacaelel&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Tlacaelel&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Tlacaelel&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Cuauhtemoc&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Cuauhtemoc&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Cuauhtemoc&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Cacamatzin&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Cacamatzin&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Cacamatzin&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Aztec_Priest&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Aztec_Priest&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt; 
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Aztec_Priest&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Pochteca&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Pochteca&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Pochteca&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Tlaxcalans&lt;/b&gt;&lt;br&gt;
-Xicotencatl_Elder&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Xicotencatl_Elder&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Xicotencatl_Elder&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Xicotencatl_Younger&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Xicotencatl_Younger&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Xicotencatl_Younger&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Maxixcatl&lt;br&gt;
-Current Location: &lt;&lt;print $users[$lookup[&#39;Maxixcatl&#39;]][&#39;passage&#39;]&gt;&gt;&lt;br&gt;
-New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Maxixcatl&#39;]][&#39;passage&#39;]&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-[[Check Player and Team Status and Location|Control: Player Status]]&lt;br&gt;
-[[Check the Status of Holds and Votes|Control: Votes]]&lt;br&gt;
-[[Return to the Dashboard|Dashboard]]&lt;br&gt;</tw-passagedata><tw-passagedata pid="86" name="Passage Teleport" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+	/* Add the starting passage of every side passge to this  */
+	&lt;&lt;set _passages = Story.lookup()&gt;&gt;
+	&lt;&lt;set _sidePassages = []&gt;&gt;
+	&lt;&lt;for _i, _p range _passages&gt;&gt;
+		&lt;&lt;set _sidePassages.push(_p.title)&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+
+	&lt;&lt;listbox &quot;_role&quot; autoselect&gt;&gt;
+		&lt;&lt;optionsfrom Object.keys($lookup)&gt;&gt;
+	
+	&lt;&lt;/listbox&gt;&gt;
+	&lt;&lt;listbox &quot;_newSidePassage&quot; autoselect&gt;&gt;
+		&lt;&lt;optionsfrom Object.values(_sidePassages)&gt;&gt;
+		
+	&lt;&lt;/listbox&gt;&gt;
+
+	&lt;&lt;button &quot;send&quot;&gt;&gt;
+		&lt;&lt;set $users[$lookup[_role]][&quot;passage&quot;] = _newSidePassage&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Passage Teleport" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Click on a passage name to teleport there:
 	&lt;br&gt;
 
@@ -3306,14 +3261,18 @@ New Location: &lt;&lt;textbox &quot;$users[$lookup[&#39;Maxixcatl&#39;]][&#39;pa
 		&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="Control: Variables" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;set _test = &quot;3&quot;&gt;&gt;
+&lt;&lt;if _test == 3&gt;&gt;
+	testbx
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;set _initVars = State.variables&gt;&gt;
 	&lt;&lt;for _tempKey, _tempVal range _initVars&gt;&gt;
 		&lt;&lt;if typeof _tempVal != &quot;object&quot;&gt;&gt;
 
 			&lt;&lt;set _twineKey = `$${ _tempKey}`&gt;&gt;
-			&lt;&lt;print _tempKey&gt;&gt;
 			&lt;br&gt;
-			&lt;&lt;set _keyType = (typeof _twineKey)&gt;&gt;
+			&lt;&lt;set _keyType = (typeof _tempVal)&gt;&gt;
+			&lt;&lt;print _keyType&gt;&gt;
 					&lt;&lt;switch (_keyType)&gt;&gt;
 						&lt;&lt;case &quot;number&quot;&gt;&gt;
 							&lt;&lt;numberbox _twineKey _tempVal &gt;&gt;
