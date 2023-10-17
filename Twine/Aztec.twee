@@ -12835,7 +12835,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<</for>>
 
 	<div id="onlineCount">
-		<<print "  Players Online (" + (_userCount["offline"].length) + "/" + _totalUsers + ")">>
+		<<print "  Players Online (" + (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length) + "/" + _totalUsers + ")">>
 	</div>
 
 	
@@ -12847,7 +12847,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 
 		<<for _j, _userId range _factionUsers[_faction]>>
-			<<if !["notSeen", "15"].includes(_userId) || $users[_userId]["offline"] != true>>
+			<<if !["notSeen", "15"].includes(_userId) && $users[_userId]["offline"] != true>>
 				<div id="playerSpaceBetween"></div>
 				<<print `
 					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
@@ -12873,7 +12873,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<</for>>
 
 	<div class="printFactionOnlineCount">
-		<<print "Offline" + " -- (" +  (_totalUsers - _factionUsers["offline"].length) + "/" + _totalUsers + ")">>
+		<<print "Offline" + " -- (" +  (_totalUsers - (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length)) + "/" + _totalUsers + ")">>
 	</div>
 
 	<<for _j, _userId range _factionUsers["offline"]>>
