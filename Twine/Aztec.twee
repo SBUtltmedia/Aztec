@@ -3619,13 +3619,6 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 	<</button>>
 <</liveblock>>
 
-
-:: Diff Test {"position":"600,100","size":"100,100"}
-<<if ndef $users[$userId]["stats"]>>
-	<<set $users[$userId]["stats"] = {}>> 
-	<</if>>
-<<set $users[$userId]["stats"]["strength"] =7>>
-
 /* control panel for users stats */
 
 
