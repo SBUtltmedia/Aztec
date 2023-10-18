@@ -198,7 +198,11 @@ importScripts([
 			}
 		}
 	});
+<<<<<<< HEAD
 })();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+=======
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+>>>>>>> 088a8a3d505cbfcc324a370b4d4d1044db12f309
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -3340,19 +3344,21 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 &lt;&lt;set $users[$userId][&quot;stats&quot;][&quot;strength&quot;] =7&gt;&gt;
 
 /* control panel for users stats */</tw-passagedata><tw-passagedata pid="91" name="Control: Variables (Users)" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-Only modify stats and passages if you aren&#39;t 100% sure what you are doing
-
+Only modify stats and passages if you are 100% sure what you are doing
+&lt;br&gt;
 
 	&lt;&lt;for _role, _userId range $lookup&gt;&gt; 
 		/* Goes through list of all Variables */
 
 		&lt;&lt;set _userData = $users[_userId]&gt;&gt;
 		&lt;&lt;set _userName = _role&gt;&gt;
-		&lt;&lt;print `${_userName} (userId: ${_userId})`&gt;&gt;
 		&lt;br&gt;
 
 		&lt;&lt;set _twineKey = `$lookup[&quot;${ _role}&quot;]`&gt;&gt;
 		&lt;&lt;print `${_userName}&#39;s id#`&gt;&gt;
+		&lt;&lt;if _userId == &quot;notSeen&quot; || _userId &lt; 20&gt;&gt;
+			&#39;&#39;`_role is not assigned to a real player`&#39;&#39;
+		&lt;&lt;/if&gt;&gt;
 		&lt;br&gt;
 		&lt;&lt;textbox _twineKey _userId &quot;Control: Variables (Users)&quot; &gt;&gt;
 		&lt;br&gt;
@@ -8604,7 +8610,10 @@ console.log(&quot;new user detected&quot;)
 &lt;&lt;set $users[$userId][&quot;character&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.Character || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
-&lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if Object.keys(_roles).includes(_role)&gt;&gt;
+	&lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = $userId&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 /* for testing discord macro: */

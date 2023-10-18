@@ -3619,31 +3619,26 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 	<</button>>
 <</liveblock>>
 
-
-:: Diff Test {"position":"600,100","size":"100,100"}
-<<if ndef $users[$userId]["stats"]>>
-	<<set $users[$userId]["stats"] = {}>> 
-	<</if>>
-<<set $users[$userId]["stats"]["strength"] =7>>
-
 /* control panel for users stats */
 
 
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-Only modify stats and passages if you aren't 100% sure what you are doing
-
+Only modify stats and passages if you are 100% sure what you are doing
+<br>
 
 	<<for _role, _userId range $lookup>> 
 		/* Goes through list of all Variables */
 
 		<<set _userData = $users[_userId]>>
 		<<set _userName = _role>>
-		<<print `${_userName} (userId: ${_userId})`>>
 		<br>
 
 		<<set _twineKey = `$lookup["${ _role}"]`>>
 		<<print `${_userName}'s id#`>>
+		<<if _userId == "notSeen" || _userId < 20>>
+			''`_role is not assigned to a real player`''
+		<</if>>
 		<br>
 		<<textbox _twineKey _userId "Control: Variables (Users)" >>
 		<br>
@@ -3751,7 +3746,7 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 <</button>>
 
 
-:: Control: Player Status {"position":"4275,375","size":"100,100"}
+/* :: Control: Player Status {"position":"4275,375","size":"100,100"}
 <<liveblock>>
 <b>CURRENT STATUS OF TEAMS AND PLAYERS</b><br>
 <br>
@@ -3823,69 +3818,7 @@ Strength: <<print $users[$lookup["Maxixcatl"]]["stats"]["Strength"]>>   Wisdom: 
 [[Return to the Dashboard|Dashboard]]<br>
 
 
-<</liveblock>>
-
-
-:: Control: Votes {"position":"4075,225","size":"100,100"}
-<<liveblock>>
-<b>STATUS OF VOTES AND HOLDS</b><br>
-<b> Act 1</b><br>
-<b>Start:</b>  <i>This holds players after the Character Page at the beginning of the game. Players cannot continue until at least 12 have set their Character Statistics and joined the game.</i><br>
-Number of Votes Cast:  <<print $Start>> out of 12 votes.<br>
-Has the hold been cleared? <b><<if $Start > 12>> Yes <<else>> No<</if>></b><br>
-Players who have already cast a vote: <<if $Start eq "" or ndef $Start>> Nobody has voted yet. <<else>><<script>>$(output).append(showCounterRoles("Start_ctr"));<</script>><</if>>
-<br>
-
-<b>Cuba Voted:</b>  <i>This holds players until all three of Cortes' men have decided why they are continuing on from Cuba and into the unknown.</i><br>
-Number of Votes Cast:  <<print $Cuba_Voted>> out of 3 votes.<br>
-Has the hold been cleared? <b><<if $Cuba_Voted eq "3">> Yes <<else>> No<</if>></b><br>
-Players who have already cast a vote: <<if $Cuba_Voted eq "" or ndef $Cuba_Voted>> Nobody has voted yet. <<else>><<script>>$(output).append(showCounterRoles("Cuba_Voted_ctr"));<</script>><</if>>
-<br>
-
-<b>Letter Sent:</b>  <i>This holds Aguilar until the Spaniards have arrived at Yucatan and Cortes has sent his letter to Aguilar.</i><br>
-Letter is currently set to: <<print $Letter>><br>
-Has the hold been cleared? <b><<if $Letter eq "sent">> Yes <<else>> No<</if>></b><br>
-
-<b>Letter Received:</b>  <i>This holds Spaniards until Aguilar has recieved the letter sent by Cortes.</i><br>
-Letter received is currently set to:  <<print $L_Received>>.<br>
-Has the hold been cleared? <b><<if $L_Received eq "Yes">> Yes <<else>> No<</if>></b><br>
-
-<b>Spaniards Meet Malinche:</b> <i>This holds Spaniards until Malinche has submitted her introduction link.</i><br>
-Malinche's story is currently set to:  <<print $Mal_Story>>.<br>
-Has the hold been cleared? <b><<if $Mal_Story eq "" or ndef $Mal_Story>> No <<else>> Yes<</if>></b><br>
-
-<b>Tlaxcalans at the Time of the Omens:</b> <i>This holds Aztecs and Tlaxcalans until Tlaxcalans decide how to play the remainder of Act 1, allying with the Aztecs, spying on the Spaniards, or having a long nap.</i><br>
-Tlaxcalan Omens is currently set to:  <<print $Tl_Omens>>.<br>
-Has the hold been cleared? <b><<if $Tl_Omens eq "" or ndef $Tl_Omens>> No <<else>> Yes<</if>></b><br>
-
-<b>Aztecs meet the Spaniards:</b> <i>This holds players until the Aztecs decide how to approach the Spaniards on the beach, with gifts, emptyhanded, or aggressively.</i><br>
-Gifts is currently set to:  <<print $gifts>>.<br>
-Has the hold been cleared? <b><<if $gifts eq "" or ndef $gifts>> No <<else>> Yes<</if>></b><br>
-
-<b>The Mutiny:</b> <i>Tallies the number of votes that have been cast and whether for or against the Mutiny. Players are held until all 5 Spaniards have voted on whether or not to mutiny.</i><br>
-Mutiny Status: <<print $Mutiny>>. <i>If the total is greater than 3, there is a mutiny and a new leader.  If the total is less than -6, the leader of the mutiny chickened out. Otherwise, gameplay continues with the current leader in place.</i>
-Number of Votes Cast:  <<print $Mutiny_Voted>> out of 5 votes.<br>
-Has the hold been cleared? <b><<if $Mutiny_Voted eq "5">> Yes <<else>> No<</if>></b><br>
-Players who have already cast a vote: <<if $Mutiny eq "" or ndef $Mutiny>> Nobody has voted yet. <<else>><<script>>$(output).append(showCounterRoles("Mutiny_Voted_ctr"));<</script>><</if>>
-<br>
-
-<b>Tlaxcalans Attack in Veracruz:</b> <i>If the Tlaxcalans decide to spy on the Aztecs and the Spaniards, this holds everybody until Tlaxcalans decide whether to attack the Spaniards, the Aztecs, or nobody.</i><br>
-Tlaxcalans Attack is currently set to:  <<print $TL_Attacks>>.<br>
-Has the hold been cleared? <b><<if $TL_Attacks eq "" or ndef $TL_Attacks>> No <<else>> Yes<</if>></b><br>
-<br>
-
-<b> Act 2</b><br>
-
-<b> Act 3</b><br>
-
-<b> Act 4</b><br>
-
-[[Check Player and Team Status and Location|Control: Player Status]]<br>
-[[Change Player Location|Control: Change Passage]]<br>
-[[Return to the Dashboard|Dashboard]]<br>
-
-
-<</liveblock>>
+<</liveblock>> */
 
 
 :: Cortes Attacks Narvaez {"position":"2175,9675","size":"100,100"}
@@ -9423,7 +9356,10 @@ console.log("new user detected")
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
-<<set $lookup[$users[$userId]["role"]] = $userId>>
+<</if>>
+
+<<if Object.keys(_roles).includes(_role)>>
+	<<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
 /* for testing discord macro: */
