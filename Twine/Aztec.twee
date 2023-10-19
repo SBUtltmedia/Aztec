@@ -3520,8 +3520,14 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		
 	<</listbox>>
 
-	<<button "send">>
+	<<button send>>
 		<<set $users[$lookup[_role]]["passage"] = _newSidePassage>>
+	<</button>>
+	<br>
+	<br>
+	click this button to send selected user to the furthest passage they've visited
+	<<button SendBack>>
+		<<set $users[$lookup[_role]]["passage"] = Object.keys($passageHistory)[Object.keys($passageHistory).length - 1]>>
 	<</button>>
 <</liveblock>>
 
@@ -3550,18 +3556,14 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-<<set _test = "3">>
-<<if _test == 3>>
-	testbx
-<</if>>
 <<set _initVars = State.variables>>
 	<<for _tempKey, _tempVal range _initVars>>
 		<<if typeof _tempVal != "object">>
 
 			<<set _twineKey = `$${ _tempKey}`>>
 			<br>
+			<<print _tempKey>>
 			<<set _keyType = (typeof _tempVal)>>
-			<<print _keyType>>
 					<<switch (_keyType)>>
 						<<case "number">>
 							<<numberbox _twineKey _tempVal >>
