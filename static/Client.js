@@ -7,12 +7,15 @@ var lastStats = [];
 
 function init() {
     // $('#passages').html($('#passages').html().replace(/<br><br>/gm, ""));
-    $("body").on("click", () => {
-        $("body").addClass("blur")
-        fade($("body"), 1);
+    console.log("initing")
+    $("body").addClass("blur")
+    $("body").one("click", () => {
+        $("body").removeClass("blur")
     });
     // setInterval(checkDif, 1000)
 }
+
+
 
 /**
  * Loads twine background based on the player's faction
@@ -23,7 +26,7 @@ function setBackground() {
     if (faction) {
         imageURL = `url('Twine/images/Borders/${faction}.jpg')`
     }
-
+    
     $(() => {
         $('#story').css({
             'background-image': imageURL,
@@ -57,7 +60,8 @@ function fade(el, destination) {
 
 
 $(document).on(':passagestart', (ev) => {
-    fade($("#passages"), 1);
+    init()
+    //fade($("#passages"), 1);
 })
 
 

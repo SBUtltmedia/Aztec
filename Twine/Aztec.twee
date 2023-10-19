@@ -12552,6 +12552,28 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<img id="stat_bookmark_img" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
 </div>
 
+<div id="rolePanelDynamic">
+	<div id="rolePanelDynamicHeader">
+		<img id="rolePanelImageDynamic" src="Twine/images/characters/icon_placeholder.png"> 
+		<div id="rolePanelTextDynamic" >
+			<div id="rolePanelPrintUserRole">
+				user role
+			</div>
+			<div id="rolePanelPrintUserName">
+				@username
+			</div>
+		</div>
+	</div>
+	<div id="rolePanelDetails">
+		<ul id="rolePanelDetailsText">
+			<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
+			
+		</ul>
+	</div>
+	<div id="rolePanelNotesLabel">Notes</div>
+	<div id="rolePanelNotes"></div>
+</div>
+
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
 		<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
@@ -12691,7 +12713,13 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 					$("#chat-switch .selectedChatButton").removeClass("selectedChatButton");
 					$(this).addClass("selectedChatButton");
 				});
+				if (State.getVar("$users")[State.getVar("$userId")].currentChat == "chat") {
+					$("#chat-switch .macro-button:nth-child(1)").addClass("selectedChatButton");
+				} else {
+					$("#chat-switch .macro-button:nth-child(2)").addClass("selectedChatButton");
+				}
 			});
+			
 		<</script>>
 	</div>
 
@@ -12833,7 +12861,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				}
 			}
 
-			console.log(letterWidth);
 			return letterWidth;
 		}
 			
@@ -12924,28 +12951,10 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<</for>>
 
 	<div id="onlineCount">
-		<<print "  Players Online (" + (_userCount["offline"].length) + "/" + _totalUsers + ")">>
+		<<print "  Players Online (" + (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length) + "/" + _totalUsers + ")">>
 	</div>
 
-	<div id="rolePanelDynamic">
-		<img id="rolePanelImageDynamic" src="Twine/images/characters/icon_placeholder.png"> 
-		<div id="rolePanelTextDynamic" >
-			<div id="rolePanelPrintUserRole">
-				user role
-			</div>
-			<div id="rolePanelPrintUserName">
-				@username
-			</div>
-		</div>
-		<div id="rolePanelDetails">
-			<ul id="rolePanelDetailsText">
-				<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
-				
-			</ul>
-		</div>
-		<div id="rolePanelNotesLabel">Notes</div>
-		<div id="rolePanelNotes"></div>
-	</div>
+	
 
 	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans"]>>
 
@@ -12954,7 +12963,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 
 		<<for _j, _userId range _factionUsers[_faction]>>
-			<<if !["notSeen", "15"].includes(_userId) || $users[_userId]["offline"] != true>>
+			<<if !["notSeen", "15"].includes(_userId) && $users[_userId]["offline"] != true>>
 				<div id="playerSpaceBetween"></div>
 				<<print `
 					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
@@ -12980,7 +12989,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<</for>>
 
 	<div class="printFactionOnlineCount">
-		<<print "Offline" + " -- (" +  (_totalUsers - _factionUsers["offline"].length) + "/" + _totalUsers + ")">>
+		<<print "Offline" + " -- (" +  (_totalUsers - (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length)) + "/" + _totalUsers + ")">>
 	</div>
 
 	<<for _j, _userId range _factionUsers["offline"]>>
@@ -13055,12 +13064,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 			});
 		}, 1500);
 		setTimeout(() => {
-			$(".player").on('mouseenter', function() {
-				let top = $(this).offset().top + window.screenY;
-				let left = $(this).offset().left + window.screenX;
-				let pageWidth = parseInt($("#story").css("width"));
-				let pageHeight = parseInt($("#story").css("height"));
-
+			$(".player").on('mouseenter', function(event) {
 				let firstUnderscoreIndex = $(this).attr("id").indexOf("_");
 				let user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
 				let imageSource = setup.getUserSvgPicture(user);
@@ -13076,24 +13080,20 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				if (!notes)  {
 					State.setVar("$users[$userId]['notes']", {});
 				}
-
-				let defaultText = State.getVar(`$users[$userId]['notes']['${user}']`);
-				if (!defaultText) {
-					defaultText = "Click here to add notes";
-				} 
 				
-				$("#rolePanelNotes").empty().wiki(`<<textbox "$users[$userId]['notes']['${user}']" "${defaultText}">>`);
-				$("#textbox-usersuseridnotes" + user).val(defaultText);
-			
+				$("#rolePanelNotes").empty().wiki(`<<textarea "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
+				
+				rolePanel.css("left", "61%");
+
+				let yPos = event.pageY;
 				let rpHeight = parseInt(rolePanel.css("height"));
+				let windowHeight = parseInt($("#story").css("height"));
 
-				if (top + rpHeight > pageHeight) {
-					top = pageHeight - rpHeight - 5;
+				rolePanel.css("top", ((yPos)/windowHeight)*100 + "%");
+
+				if (yPos > windowHeight - rpHeight) {
+					console.log("rolePanel testing");
 				}
-				left = left - pageWidth * 0.22;
-
-				rolePanel.css("top", top + "px");
-				rolePanel.css("left", left/10 + "%");
 
 				let usernameDiv = $("#rolePanelPrintUserName");
 				let username = State.getVar(`$users[$lookup["${user}"]]["username"]`);
