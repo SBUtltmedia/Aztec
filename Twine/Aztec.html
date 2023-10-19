@@ -3253,8 +3253,14 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		
 	&lt;&lt;/listbox&gt;&gt;
 
-	&lt;&lt;button &quot;send&quot;&gt;&gt;
+	&lt;&lt;button send&gt;&gt;
 		&lt;&lt;set $users[$lookup[_role]][&quot;passage&quot;] = _newSidePassage&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
+	&lt;br&gt;
+	&lt;br&gt;
+	click this button to send selected user to the furthest passage they&#39;ve visited
+	&lt;&lt;button SendBack&gt;&gt;
+		&lt;&lt;set $users[$lookup[_role]][&quot;passage&quot;] = Object.keys($passageHistory)[Object.keys($passageHistory).length - 1]&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Passage Teleport" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Click on a passage name to teleport there:
@@ -3275,18 +3281,14 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="Control: Variables" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;set _test = &quot;3&quot;&gt;&gt;
-&lt;&lt;if _test == 3&gt;&gt;
-	testbx
-&lt;&lt;/if&gt;&gt;
 &lt;&lt;set _initVars = State.variables&gt;&gt;
 	&lt;&lt;for _tempKey, _tempVal range _initVars&gt;&gt;
 		&lt;&lt;if typeof _tempVal != &quot;object&quot;&gt;&gt;
 
 			&lt;&lt;set _twineKey = `$${ _tempKey}`&gt;&gt;
 			&lt;br&gt;
+			&lt;&lt;print _tempKey&gt;&gt;
 			&lt;&lt;set _keyType = (typeof _tempVal)&gt;&gt;
-			&lt;&lt;print _keyType&gt;&gt;
 					&lt;&lt;switch (_keyType)&gt;&gt;
 						&lt;&lt;case &quot;number&quot;&gt;&gt;
 							&lt;&lt;numberbox _twineKey _tempVal &gt;&gt;
