@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do" tags="" position="4200,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Causeway leading into Tenochtitlán, November 8th, 1519
@@ -11321,6 +11321,28 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;img id=&quot;stat_bookmark_img&quot; src=&quot;Twine/images/Home/bookmark_star.svg&quot; alt=&quot;Bookmark&quot;&gt;
 &lt;/div&gt;
 
+&lt;div id=&quot;rolePanelDynamic&quot;&gt;
+	&lt;div id=&quot;rolePanelDynamicHeader&quot;&gt;
+		&lt;img id=&quot;rolePanelImageDynamic&quot; src=&quot;Twine/images/characters/icon_placeholder.png&quot;&gt; 
+		&lt;div id=&quot;rolePanelTextDynamic&quot; &gt;
+			&lt;div id=&quot;rolePanelPrintUserRole&quot;&gt;
+				user role
+			&lt;/div&gt;
+			&lt;div id=&quot;rolePanelPrintUserName&quot;&gt;
+				@username
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div id=&quot;rolePanelDetails&quot;&gt;
+		&lt;ul id=&quot;rolePanelDetailsText&quot;&gt;
+			&lt;&lt;print &quot;&lt;li id=&#39;rolePanelLastSeen&#39;&gt;Last Active: &quot; + moment(new Date(parseInt($users[$userId][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
+			
+		&lt;/ul&gt;
+	&lt;/div&gt;
+	&lt;div id=&quot;rolePanelNotesLabel&quot;&gt;Notes&lt;/div&gt;
+	&lt;div id=&quot;rolePanelNotes&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
 &lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
@@ -11460,7 +11482,13 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 					$(&quot;#chat-switch .selectedChatButton&quot;).removeClass(&quot;selectedChatButton&quot;);
 					$(this).addClass(&quot;selectedChatButton&quot;);
 				});
+				if (State.getVar(&quot;$users&quot;)[State.getVar(&quot;$userId&quot;)].currentChat == &quot;chat&quot;) {
+					$(&quot;#chat-switch .macro-button:nth-child(1)&quot;).addClass(&quot;selectedChatButton&quot;);
+				} else {
+					$(&quot;#chat-switch .macro-button:nth-child(2)&quot;).addClass(&quot;selectedChatButton&quot;);
+				}
 			});
+			
 		&lt;&lt;/script&gt;&gt;
 	&lt;/div&gt;
 
@@ -11602,7 +11630,6 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 				}
 			}
 
-			console.log(letterWidth);
 			return letterWidth;
 		}
 			
@@ -11693,28 +11720,10 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 
 	&lt;div id=&quot;onlineCount&quot;&gt;
-		&lt;&lt;print &quot;  Players Online (&quot; + (_userCount[&quot;offline&quot;].length) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
+		&lt;&lt;print &quot;  Players Online (&quot; + (_userCount[&quot;Aztecs&quot;].length + _userCount[&quot;Spaniards&quot;].length + _userCount[&quot;Tlaxcalans&quot;].length) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
 	&lt;/div&gt;
 
-	&lt;div id=&quot;rolePanelDynamic&quot;&gt;
-		&lt;img id=&quot;rolePanelImageDynamic&quot; src=&quot;Twine/images/characters/icon_placeholder.png&quot;&gt; 
-		&lt;div id=&quot;rolePanelTextDynamic&quot; &gt;
-			&lt;div id=&quot;rolePanelPrintUserRole&quot;&gt;
-				user role
-			&lt;/div&gt;
-			&lt;div id=&quot;rolePanelPrintUserName&quot;&gt;
-				@username
-			&lt;/div&gt;
-		&lt;/div&gt;
-		&lt;div id=&quot;rolePanelDetails&quot;&gt;
-			&lt;ul id=&quot;rolePanelDetailsText&quot;&gt;
-				&lt;&lt;print &quot;&lt;li id=&#39;rolePanelLastSeen&#39;&gt;Last Active: &quot; + moment(new Date(parseInt($users[$userId][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
-				
-			&lt;/ul&gt;
-		&lt;/div&gt;
-		&lt;div id=&quot;rolePanelNotesLabel&quot;&gt;Notes&lt;/div&gt;
-		&lt;div id=&quot;rolePanelNotes&quot;&gt;&lt;/div&gt;
-	&lt;/div&gt;
+	
 
 	&lt;&lt;for _i,_faction range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;]&gt;&gt;
 
@@ -11723,7 +11732,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;/div&gt;
 
 		&lt;&lt;for _j, _userId range _factionUsers[_faction]&gt;&gt;
-			&lt;&lt;if ![&quot;notSeen&quot;, &quot;15&quot;].includes(_userId) || $users[_userId][&quot;offline&quot;] != true&gt;&gt;
+			&lt;&lt;if ![&quot;notSeen&quot;, &quot;15&quot;].includes(_userId) &amp;&amp; $users[_userId][&quot;offline&quot;] != true&gt;&gt;
 				&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 				&lt;&lt;print `
 					&lt;div class = &quot;player&quot; id=&quot;playerInfo_`+$users[_userId][&quot;role&quot;]+`&quot;&gt;			
@@ -11749,7 +11758,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 
 	&lt;div class=&quot;printFactionOnlineCount&quot;&gt;
-		&lt;&lt;print &quot;Offline&quot; + &quot; -- (&quot; +  (_totalUsers - _factionUsers[&quot;offline&quot;].length) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
+		&lt;&lt;print &quot;Offline&quot; + &quot; -- (&quot; +  (_totalUsers - (_userCount[&quot;Aztecs&quot;].length + _userCount[&quot;Spaniards&quot;].length + _userCount[&quot;Tlaxcalans&quot;].length)) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
 	&lt;/div&gt;
 
 	&lt;&lt;for _j, _userId range _factionUsers[&quot;offline&quot;]&gt;&gt;
@@ -11824,12 +11833,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 			});
 		}, 1500);
 		setTimeout(() =&gt; {
-			$(&quot;.player&quot;).on(&#39;mouseenter&#39;, function() {
-				let top = $(this).offset().top + window.screenY;
-				let left = $(this).offset().left + window.screenX;
-				let pageWidth = parseInt($(&quot;#story&quot;).css(&quot;width&quot;));
-				let pageHeight = parseInt($(&quot;#story&quot;).css(&quot;height&quot;));
-
+			$(&quot;.player&quot;).on(&#39;mouseenter&#39;, function(event) {
 				let firstUnderscoreIndex = $(this).attr(&quot;id&quot;).indexOf(&quot;_&quot;);
 				let user = $(this).attr(&quot;id&quot;).substring(firstUnderscoreIndex + 1);
 				let imageSource = setup.getUserSvgPicture(user);
@@ -11845,24 +11849,20 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 				if (!notes)  {
 					State.setVar(&quot;$users[$userId][&#39;notes&#39;]&quot;, {});
 				}
-
-				let defaultText = State.getVar(`$users[$userId][&#39;notes&#39;][&#39;${user}&#39;]`);
-				if (!defaultText) {
-					defaultText = &quot;Click here to add notes&quot;;
-				} 
 				
-				$(&quot;#rolePanelNotes&quot;).empty().wiki(`&lt;&lt;textbox &quot;$users[$userId][&#39;notes&#39;][&#39;${user}&#39;]&quot; &quot;${defaultText}&quot;&gt;&gt;`);
-				$(&quot;#textbox-usersuseridnotes&quot; + user).val(defaultText);
-			
+				$(&quot;#rolePanelNotes&quot;).empty().wiki(`&lt;&lt;textarea &quot;$users[$userId][&#39;notes&#39;][&#39;${user}&#39;]&quot; $users[$userId][&#39;notes&#39;][&#39;${user}&#39;]&gt;&gt;`);
+				
+				rolePanel.css(&quot;left&quot;, &quot;61%&quot;);
+
+				let yPos = event.pageY;
 				let rpHeight = parseInt(rolePanel.css(&quot;height&quot;));
+				let windowHeight = parseInt($(&quot;#story&quot;).css(&quot;height&quot;));
 
-				if (top + rpHeight &gt; pageHeight) {
-					top = pageHeight - rpHeight - 5;
+				rolePanel.css(&quot;top&quot;, ((yPos)/windowHeight)*100 + &quot;%&quot;);
+
+				if (yPos &gt; windowHeight - rpHeight) {
+					console.log(&quot;rolePanel testing&quot;);
 				}
-				left = left - pageWidth * 0.22;
-
-				rolePanel.css(&quot;top&quot;, top + &quot;px&quot;);
-				rolePanel.css(&quot;left&quot;, left/10 + &quot;%&quot;);
 
 				let usernameDiv = $(&quot;#rolePanelPrintUserName&quot;);
 				let username = State.getVar(`$users[$lookup[&quot;${user}&quot;]][&quot;username&quot;]`);
