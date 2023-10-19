@@ -3527,7 +3527,16 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 	<br>
 	click this button to send selected user to the furthest passage they've visited
 	<<button SendBack>>
-		<<set $users[$lookup[_role]]["passage"] = Object.keys($passageHistory)[Object.keys($passageHistory).length - 1]>>
+		<<set _tempPassage = {}>>
+		<<set _tempId = $lookup[_role]>>
+		<<script>>
+		let id = State.getVar("_tempId");
+		$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${id}`, function(data){
+		console.log("getting history", JSON.parse(data));
+		State.setVar("$users[$lookup[_role]]['passage']", Object.keys(JSON.parse(data))[Object.keys(JSON.parse(data)).length - 1]);
+		})
+		<</script>>
+		/* <<set $users[$lookup[_role]]["passage"] = Object.keys(_tempPassage)[Object.keys(_tempPassage).length - 1]>> */
 	<</button>>
 <</liveblock>>
 
@@ -3540,6 +3549,26 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 	<<link "Continue Where you left off" $users[$userId]["passage"]>> <</link>>
 
 	<br>
+
+	<<link "Control: Variables" "Control: Variables">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Users)" "Control: Variables (Users)">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Factions)" "Control: Variables (Factions)">> <</link>>
+	<br>
+
+	<<link "Control: Change Passage" "Control: Change Passage">> <</link>>
+	<br>
+
+	<<link "Control: Lookup" "Control: Lookup">> <</link>>
+	<br>
+
+	<<link "Control: Full Reset" "Control: Full Reset">> <</link>>
+	<br>
+	<br>
+
 	<<set _temp = Story.lookupWith((p)=>{return true})>>
 	<<set _passageList = []>>
 	<<for _i to 0; _i lt _temp.length; _i ++>>
