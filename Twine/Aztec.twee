@@ -3543,6 +3543,13 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 :: Passage Teleport [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
+	<<if ndef $users[$userId]["stats"]>>
+		<<set $users[$userId]["stats"] = {
+			"Strength": 0,
+			"Wisdom": 0,
+			"Loyalty": 0
+		}>>
+	<</if>>
 	Click on a passage name to teleport there:
 	<br>
 
@@ -3584,7 +3591,6 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
 <<set _initVars = State.variables>>
 	<<for _tempKey, _tempVal range _initVars>>
 		<<if typeof _tempVal != "object">>
@@ -3605,8 +3611,6 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 			<br>
 		<</if>>
 	<</for>>
-<</liveblock>>
-
 /* allows admin to update lookup. This allows roles to be played by different users */
 
 
