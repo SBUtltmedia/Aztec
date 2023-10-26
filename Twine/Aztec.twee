@@ -131,6 +131,10 @@ importScripts([
 :: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 <p> hey </p>
+<<if ndef $incrementTest>>
+	<<set $incrementTest = 0>>
+<</if>>
+<<set $incrementTest = $incrementTest + 1>>
 <</liveblock>>
 
 
@@ -3750,7 +3754,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 					<<set _twineKey = `$factions["stats"]["${ _statKey}"]`>>
 					<<print `${_factionName}'s ${_statKey}`>>
 					<br>
-					<<textbox _twineKey _statVal "Control: Variables (Factions)" >>
+					<<numberbox _twineKey _statVal "Control: Variables (Factions)" >>
 					<br>
 				<</for>>
 			<<else>>
