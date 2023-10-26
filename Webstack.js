@@ -140,6 +140,7 @@ class Webstack {
 
 			// When a client detects a variable being changed they send the difference signal which is
 			// caught here and sent to other clients
+			let c = 0;
 			socket.on('difference', (diff) => {
 				this.serverStore.dispatch({
 					type: 'UPDATE',
@@ -149,7 +150,13 @@ class Webstack {
 				if(!Object.keys(diff).includes("theyrPrivateVars")){
 					socket.broadcast.emit('difference', diff)
 				}
+				c++;
+				console.log({c, diff});
 			})
+
+			/**
+			 * var counter = 0; var interval = setInterval(()=>{if(counter<500) {SugarCube.State.setVar("$hammerCount", SugarCube.State.getVar("$hammerCount")+1); counter++;} else {clearInterval(interval)}}, 100)
+			 */
 
 
 			socket.on('fullReset', ()=>{
