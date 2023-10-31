@@ -12637,6 +12637,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 	/* Fill #chatmessages with $chatlog */
 	<<liveblock>>
+	$hammerCount
 	<div id="chatmessages">
 		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
 		<<print `
@@ -12838,8 +12839,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		<<print "  Players Online (" + (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length) + "/" + _totalUsers + ")">>
 	</div>
 
-	
-
 	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans"]>>
 
 		<div class="printFactionOnlineCount">
@@ -12877,7 +12876,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 	<<for _j, _userId range _factionUsers["offline"]>>
-		<<if !["notSeen", "15"].includes(_userId) >>
+		<<if !["notSeen", "15"].includes(_userId) && $users[_userId]["username"] != "test">>
 			<div id="playerSpaceBetween"></div>
 			<<print `
 				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
@@ -12976,7 +12975,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 				rolePanel.css("top", ((yPos)/windowHeight)*100 + "%");
 
 				if (yPos > windowHeight - rpHeight) {
-					console.log("rolePanel testing");
+					rolePanel.css("top", ((windowHeight - rpHeight)/windowHeight)*100 + "%");
 				}
 
 				let usernameDiv = $("#rolePanelPrintUserName");
