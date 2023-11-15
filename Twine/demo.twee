@@ -20,10 +20,6 @@ Theyr Chat Demo
 }
 
 
-:: Story Stylesheet [stylesheet]
-
-
-
 :: Story JavaScript [script]
 Save.clear()
 Config.passages.nobr = true;
@@ -43,7 +39,8 @@ importScripts([
 	]	
 )
 	.then(function() {
-	initTheyr({lockId,callback:LoadScreen.unlock})
+		initTheyr({lockId,callback:LoadScreen.unlock})
+		State = new Proxy(State, createHandler())
 	}
 );
 
@@ -71,43 +68,19 @@ importScripts([
 		}
 	});
 
-	Macro.add(['userlist'], {
-		tags: null,
-		handler: function handler() {
-			try {
-				const Discord = require('discord.js');
-				const client = new Discord.Client();
-				const list = client.guilds.cache.get("myServerID"); 
-				
-			} catch (e) {
-				return e;
-			}
-		}
-	});
-
-	Macro.add(['discord'], {
-		tags: null,
-		handler: function handler() {
-			try {
-				let message = this.payload[0].contents.trim();
-				let channel = this.payload[0].arguments;
-				$.post("/discordbot", {message, channel}, () => {});
-			} catch (e) {
-				return e;
-			}
-		}
-	});
 })();
 
 
 :: StoryInit {"position":"22,135","size":"100,100"}
 <<if ndef $lookup>>
-<<set $lookup={}>>
+	<<set $lookup={}>>
 <</if>>
 
 <<if ndef $users >>
-<<set $users={}>>
+	<<set $users={}>>
 <</if>>
+
+
 
 <<set _searchParams = new URLSearchParams(location.search) >>
 
@@ -115,33 +88,26 @@ importScripts([
 
 
 <<if ndef $users[$userId]>>
-
-<<set $users[$userId] = {}>>
-
-<<set $users[$userId]["nick"]=_searchParams.get('nick') || userData.authData.nick>>
-<<set $lookup[$users[$userId]["nick"]] = {}>>
-<<set $users[$userId]["username"]= _searchParams.get('username') || userData.authData.username>>
-
-
-<<set $lookup[$users[$userId]["nick"]] = $userId>>
-
+	<<set $users[$userId] = {}>>
+	<<set $users[$userId]["nick"]=_searchParams.get('nick') || userData.authData.nick>>
+	<<set $lookup[$users[$userId]["nick"]] = {}>>
+	<<set $lookup[$users[$userId]["nick"]] = $userId>>
 <</if>>
-
-
 
 
 :: Chat {"position":"350,101","size":"100,100"}
 <<if ndef $chatlog >>
-<<set $chatlog= "">>
+	<<set $chatlog= "">>
 <</if>>
 
-	<<liveblock>>
-	$chatlog <br>
-	<</liveblock>>
-	<<textbox "_chattext" "" autofocus>> 
+<<liveblock>>
+$chatlog <br>
+<</liveblock>>
 
-	<<button "Continue">>
-		<<set $chatlog += "<br>" + $users[$userId].username + ": " + _chattext>>
-	<</button>>
+<<textbox "_chattext" "" autofocus>> 
+
+<<button "Continue">>
+	<<set $chatlog += "<br>" + $users[$userId].nick + ": " + _chattext>>
+<</button>>
 
 
