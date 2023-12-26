@@ -114,7 +114,6 @@ let lockId= LoadScreen.lock()
 
 importScripts([
 	'/socket.io/socket.io.js',
-	'https://unpkg.com/redux@latest/dist/redux.min.js',
 	'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
 	`${urlPrefix}resize.js`,
 	`${urlPrefix}picker.js`,
@@ -198,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
 	&lt;&lt;set $incrementTest = 0&gt;&gt;
@@ -11531,6 +11530,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 	/* Fill #chatmessages with $chatlog */
 	&lt;&lt;liveblock&gt;&gt;
+	$hammerCount
 	&lt;div id=&quot;chatmessages&quot;&gt;
 		&lt;&lt;for _id, _msg range $chatlog[$users[$userId].currentChat]&gt;&gt;
 		&lt;&lt;print `
@@ -11732,8 +11732,6 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 		&lt;&lt;print &quot;  Players Online (&quot; + (_userCount[&quot;Aztecs&quot;].length + _userCount[&quot;Spaniards&quot;].length + _userCount[&quot;Tlaxcalans&quot;].length) + &quot;/&quot; + _totalUsers + &quot;)&quot;&gt;&gt;
 	&lt;/div&gt;
 
-	
-
 	&lt;&lt;for _i,_faction range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;]&gt;&gt;
 
 		&lt;div class=&quot;printFactionOnlineCount&quot;&gt;
@@ -11771,7 +11769,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;/div&gt;
 
 	&lt;&lt;for _j, _userId range _factionUsers[&quot;offline&quot;]&gt;&gt;
-		&lt;&lt;if ![&quot;notSeen&quot;, &quot;15&quot;].includes(_userId) &gt;&gt;
+		&lt;&lt;if ![&quot;notSeen&quot;, &quot;15&quot;].includes(_userId) &amp;&amp; $users[_userId][&quot;username&quot;] != &quot;test&quot;&gt;&gt;
 			&lt;div id=&quot;playerSpaceBetween&quot;&gt;&lt;/div&gt;
 			&lt;&lt;print `
 				&lt;div class = &quot;player&quot; id=&quot;playerInfo_`+$users[_userId][&quot;role&quot;]+`&quot;&gt;			
@@ -11870,7 +11868,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 				rolePanel.css(&quot;top&quot;, ((yPos)/windowHeight)*100 + &quot;%&quot;);
 
 				if (yPos &gt; windowHeight - rpHeight) {
-					console.log(&quot;rolePanel testing&quot;);
+					rolePanel.css(&quot;top&quot;, ((windowHeight - rpHeight)/windowHeight)*100 + &quot;%&quot;);
 				}
 
 				let usernameDiv = $(&quot;#rolePanelPrintUserName&quot;);
