@@ -41,7 +41,6 @@ let lockId= LoadScreen.lock()
 
 importScripts([
 	'/socket.io/socket.io.js',
-	'https://unpkg.com/redux@latest/dist/redux.min.js',
 	'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
 	`${urlPrefix}resize.js`,
 	`${urlPrefix}picker.js`,
@@ -131,6 +130,10 @@ importScripts([
 :: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 <p> hey </p>
+<<if ndef $incrementTest>>
+	<<set $incrementTest = 0>>
+<</if>>
+<<set $incrementTest = $incrementTest + 1>>
 <</liveblock>>
 
 
@@ -272,6 +275,25 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 
 :: Absent Cortes Leadership Challenge {"position":"2675,9050","size":"100,100"}
 <<liveblock>>
+<<if ndef $Sp_Ld_Vote_Teno>>
+<<set$Sp_Ld_Vote_Teno=0>>
+<</if>>
+<<if ndef $Sp_Ld_Mar_Teno>>
+<<set$Sp_Ld_Mar_Teno=0>>
+<</if>>
+<<if ndef $Sp_Ld_Alv_Teno>>
+<<set$Sp_Ld_Alv_Teno=0>>
+<</if>>
+<<if ndef $Sp_Ld_Agu_Teno>>
+<<set$Sp_Ld_Agu_Teno=0>>
+<</if>>
+<<if ndef $Sp_Ld_Gar_Teno>>
+<<set$Sp_Ld_Gar_Teno=0>>
+<</if>>
+<<if ndef $Sp_Ld_Oli_Teno>>
+<<set$Sp_Ld_Oli_Teno=0>>
+<</if>>
+
 <<if $Span_Leader is "Cortes">>
 
 <<print $Span_Leader>> has led you through months of delicate negotations with <<print $Aztec_Leader>>, but with his departure, it is now time to designate someone you trust as your temporary leader?<br>
@@ -280,15 +302,13 @@ Go to the discussion board and discuss this decision amongst yourselves.  Everyb
 <br>
 When you are satisfied with where things stand, vote for your leader.<br>
 <br>
-Option 1: <<link "Marina" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Mar_Teno = $Sp_Ld_Mar_Teno + 1>><<run changeStats("Marina",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should lead your people.<br>
+Option 1: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Alv_Teno = $Sp_Ld_Alv_Teno + 1>><<run changeStats("Alvarado",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should be in charge.<br>
 <br>
-Option 2: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Alv_Teno = $Sp_Ld_Alv_Teno + 1>><<run changeStats("Alvarado",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should be in charge.<br>
+Option 2: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Agu_Teno = $Sp_Ld_Agu_Teno + 1>><<run changeStats("Aguilar",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
 <br>
-Option 3: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Agu_Teno = $Sp_Ld_Agu_Teno + 1>><<run changeStats("Aguilar",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
+Option 3: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Gar_Teno = $Sp_Ld_Gar_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
-Option 4: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Gar_Teno = $Sp_Ld_Gar_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
-<br>
-Option 5: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Oli_Teno = $Sp_Ld_Oli_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
+Option 4: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Oli_Teno = $Sp_Ld_Oli_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
 <br>
 
 <<else>>
@@ -340,11 +360,18 @@ One day, you hear rumors of a [[delegation approaching|On a Beach in Veracruz: G
 
 You wonder what the next day will bring. Return here to find out.<br>
 <br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Tlacaelel to make a decision.<br>
+<br>
 <<elseif ndef $gifts or $gifts eq "">>
 
 You wonder what the next day will bring. Return here to find out.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Tlacaelel to make a decision.<br>
+<br>
 
 <</if>>
 
@@ -455,9 +482,18 @@ After an eventful evening full of food, pulque and heated debate about your docu
 <<liveblock>>
 Your new leader is <<print $New_Aztec_Leader>>.<br>
 <br>
-Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish]].<br>
+<<if ndef $Az_Ld_Dead or $Az_Ld_Dead eq "">>
+You are waiting for <<print $Span_Leader to make a decision>>
+
+<<elseif $Az_Ld_Dead is "No">>
+
+Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish Leader Alive]].<br>
 <br>
 
+<<elseif $Az_Ld_Dead is "Yes">>
+Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish Leader Dead]].<br>
+<br>
+<</if>>
 
 <</liveblock>>
 
@@ -468,7 +504,8 @@ Now that your leader has been chosen, it's time to confront [[the bigger questio
 You have cast your vote, but others are less decisive. You wait for the rest of the council to make their choice.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
+<<print $Moc_Riot_Vote>> votes have been cast.<br>
+<br>
 <<else>>
 
 <<if $MocRiot_Moc >=$MocRiot_Tla and $MocRiot_Moc >=$MocRiot_Cua and $MocRiot_Moc >=$MocRiot_Cac and $MocRiot_Moc >=$MocRiot_AzP and $MocRiot_Moc >=$MocRiot_Poc>>
@@ -528,13 +565,17 @@ The votes have been cast, click through to find out who your <<link "next leader
 
 :: Aguilar overhears Maya gossip [Done] {"position":"1925,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Start>> players have joined the game.<br>
 
-<<elseif $Start >=5>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+
+<<else>>
 It's been eight years since you were shipwrecked on the way to Santo Domingo; eight years that you've been living as a slave among the Maya. All this time, you've remained loyal to your vows as a Franciscan Friar, refusing to take a wife and fully embrace the Mayan culture. After all these years, however, you have become fluent in the Yucatec Maya language. <br>
 <br>
 This morning began like any other, but things take a turn when you overhear some rather interesting news. As you sweep the entrance to the temple, you overhear a conversation between two of the most important men in the village. <br>
@@ -1266,6 +1307,29 @@ Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return
 
 :: Aztec Leader Dies and Aztecs Choose a Leader Riot {"position":"2375,10625","size":"100,100"}
 <<liveblock>>
+
+<<if ndef $Moc_Riot_Vote>>
+<<set $Moc_Riot_Vote=0>>
+<</if>>
+<<if ndef $MocRiot_Tla>>
+<<set $MocRiot_Tla=0>>
+<</if>>
+<<if ndef $MocRiot_Cua>>
+<<set $MocRiot_Cua=0>>
+<</if>>
+<<if ndef $MocRiot_Cac>>
+<<set $MocRiot_Cac=0>>
+<</if>>
+<<if ndef $MocRiot_AzP>>
+<<set $MocRiot_AzP=0>>
+<</if>>
+<<if ndef $MocRiot_Poc>>
+<<set $MocRiot_Poc=0>>
+<</if>>
+<<if ndef $MocRiot_Moc>>
+<<set $MocRiot_Moc=0>>
+<</if>>
+
 Overcome by grief, you gather for a council meeting. Now is not the time for mourning; that must wait. The first task at hand is to elect a new leader, but who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
 <<if $Aztec_Leader is "Moctezuma">>
@@ -1350,13 +1414,26 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 
 :: Aztec Leader Gives a Speech {"position":"2725,9925","size":"100,100"}
 <<liveblock>>
+<<if ndef $Riot_Vote>>
+<<set $Riot_Vote=0>>
+<</if>>
+<<if ndef $Riot_Vote_sum>>
+<<set $Riot_Vote_sum=0>>
+<</if>>
+<<if ndef $Riot_sum>>
+<<set $Riot_sum=0>>
+<</if>>
+<<if ndef $Riot>>
+<<set $Riot=0>>
+<</if>>
+
 <<switch $users[$userId]["faction"]>>
 <<case "Spaniards">>
 After days of eerie quiet, the Mexica resume their assault on the palace. You are hungry and outnumbered. Desperate to bring the siege to an end so you can make your escape, you decide to deploy the best weapon you have at your disposal: <<print $Aztec_Leader>>.<br>
 <br>
 You take him to the roof of the palace and demand that he bring a stop to the assault. <<print $Aztec_Leader>> steps to the edge of the roof and the volley of rocks and arrows comes to a halt. He speaks to his people, pleading with them to put down their weapons. They are no match for your weapons, he tells them, and this can only end in tragedy. <br>
 <br>
-<<if $Riot_Vote_sum < 4>>
+<<if $Riot_Vote < 4>>
 You observe warily, trying to gauge the crowd's response.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -1364,10 +1441,10 @@ You observe warily, trying to gauge the crowd's response.<br>
 You are waiting for the Aztecs to do something.<br>
 <br>
 <<else>>
-<<if $Riot_sum >= 0>>
+<<if $Riot >= 0>>
 You observe warily, trying to gauge [[the crowd's response|Aztecs Riot]]! <br>
 <br>
-<<elseif $Riot_sum < 0>>
+<<elseif $Riot < 0>>
 You observe warily, trying to gauge [[the crowd's response|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
@@ -1378,7 +1455,7 @@ After days of eerie quiet, your people resume their assault on the palace. The S
 <br>
 They take you to the roof of the palace and demand that you bring a stop to the assault. As you step to the edge of the roof, the volley of rocks and arrows comes to a halt. You speak to your people, pleading with them to put down their weapons. They are no match for the Spanish weapons, you tell them. This can only end in tragedy. <br>
 <br>
-<<if $Riot_Vote_sum < 4>>
+<<if $Riot_Vote < 4>>
 You observe the crowd warily and await their response.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -1386,10 +1463,10 @@ You observe the crowd warily and await their response.<br>
 You are waiting for the Aztecs to do something.<br>
 <br>
 <<else>>
-<<if $Riot_sum >=0>>
+<<if $Riot >=0>>
 You observe the crowd warily and [[await their response|Aztecs Riot]]. <br>
 <br>
-<<elseif $Riot_sum <0>>
+<<elseif $Riot <0>>
 You observe the crowd warily and [[await their response|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
@@ -1411,7 +1488,7 @@ Option 2: Oppose <<print $Aztec_Leader>>, who is clearly weak and no longer repr
 <br>
 <</if>>
 <<case "Tlaxcalans">>
-<<if $Riot_Vote_sum < 4>>
+<<if $Riot_Vote < 4>>
 You wonder what is happening in Tenochtitlan.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -1419,10 +1496,10 @@ You wonder what is happening in Tenochtitlan.<br>
 You are waiting for the Aztecs to do something.<br>
 <br>
 <<else>>
-<<if $Riot_sum >0>>
+<<if $Riot >0>>
 You wonder what is [[happening in Tenochtitlan|Aztecs Riot]]! <br>
 <br>
-<<elseif $Riot_sum <0>>
+<<elseif $Riot <0>>
 You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
@@ -1435,6 +1512,29 @@ You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
 
 :: Aztec Leader Lives and Aztecs Choose a Leader Riot {"position":"2525,10625","size":"100,100"}
 <<liveblock>>
+<<if ndef $Moc_Riot_Vote>>
+<<set $Moc_Riot_Vote=0>>
+<</if>>
+<<if ndef $MocRiot_Tla>>
+<<set $MocRiot_Tla=0>>
+<</if>>
+<<if ndef $MocRiot_Cua>>
+<<set $MocRiot_Cua=0>>
+<</if>>
+<<if ndef $MocRiot_Cac>>
+<<set $MocRiot_Cac=0>>
+<</if>>
+<<if ndef $MocRiot_AzP>>
+<<set $MocRiot_AzP=0>>
+<</if>>
+<<if ndef $MocRiot_Poc>>
+<<set $MocRiot_Poc=0>>
+<</if>>
+<<if ndef $MocRiot_Moc>>
+<<set $MocRiot_Moc=0>>
+<</if>>
+
+
 You gather for a council meeting and decide to elect a new leader. Who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
 <<if $Aztec_Leader is "Moctezuma">>
@@ -1593,6 +1693,13 @@ You are confident that [[they will prepare the city for war|Cortes Returns Weake
 <<elseif $Tlax_Alliance is "Home" and $Cortes_Dead is "Yes">>
 You are confident that [[they will prepare the city for war|Cortes Doesn't Return]].<br>
 <br>
+<<elseif $Tlax_Alliance is "Home" and ndef $Cortes_Dead or $Cortes_Dead eq "">>
+Things are eerily calm and you wait.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Cortes to do something.<br>
+<br>
 <<elseif $Tlax_Alliance is "Betray">>
 You are confident that [[they will prepare the city for war|Cortes Doesn't Return]].<br>
 <br>
@@ -1620,6 +1727,13 @@ The assault on the palace proves futile and the city's nobles convince the peopl
 <br>
 <<elseif $Tlax_Alliance is "Home" and $Cortes_Dead is "Yes">>
 [[You prepare for war|Cortes Doesn't Return]].<br>
+<br>
+<<elseif $Tlax_Alliance is "Home" and ndef $Cortes_Dead or $Cortes_Dead eq "">>
+Things are eerily calm and you wait.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Cortes to do something.<br>
 <br>
 <<elseif $Tlax_Alliance is "Betray">>
 [[You prepare for war|Cortes Doesn't Return]].<br>
@@ -1659,6 +1773,22 @@ As <<print $Aztec_Leader>> gathers a welcoming party and gets ready to <<link "m
 
 :: Aztec Leadership Challenge Again {"position":"2450,6800","size":"100,100"}
 <<liveblock>>
+<<if ndef $Az_Ld_Vote>>
+<<set$Az_Ld_Vote=0 >>
+<</if>>
+<<if ndef $Az_Ld_Moc>>
+<<set$Az_Ld_Moc=0 >>
+<</if>>
+<<if ndef $Az_Ld_Tla>>
+<<set$Az_Ld_Tla=0 >>
+<</if>>
+<<if ndef $Az_Ld_Cua>>
+<<set$Az_Ld_Cua=0 >>
+<</if>>
+<<if ndef $Az_Ld_Cac>>
+<<set$Az_Ld_Cac=0 >>
+<</if>>
+
 <<if $Aztec_Leader is $users[$userId]["role"]>>
 You have made your case to the council and retire from the council chamber, confident that they will trust in your infinite wisdom. <br>
 <br>
@@ -1690,12 +1820,17 @@ Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $Az_Ld_Cac = $Az
 <<if $Aztec_Leader is $users[$userId]["role"] and $Az_Ld_Vote isnot 4>>
 You wait nervously for your advisors to deliberate.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Az_Ld_Vote>> votes have been cast.
 
 <<elseif $Aztec_Leader isnot $users[$userId]["role"] and $Az_Ld_Vote isnot 4>>
 When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Az_Ld_Vote>> votes have been cast.<br>
+<br>
 
 <<elseif $Az_Ld_Vote is 4>>
 
@@ -1834,8 +1969,14 @@ You send another spy out, [[hoping for news|Spaniards Kill Aztec Leader]].<br>
 <<liveblock>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
+<<if $Tlax_Leader is $users[$userId]["role"]>>
+The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be <<link "from this moment on" "The End">><<set  
+$Final_Tlaxcalan_Players=$users[$lookup["Xicotencatl_Elder"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"]+$users[$lookup["Maxixcatl"]]["stats"]["Strength"]+$users[$lookup["Maxixcatl"]]["stats"]["Loyalty"]+$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
+<br> 
+<<else>>
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].<br>
 <br>
+<</if>>
 <<case "Aztecs">>
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
 <</switch>>
@@ -1873,9 +2014,12 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 <<if $Riot_Vote isnot 5>>
 You wait while the rest of your team casts their vote. <br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<<else>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Riot_Vote>> votes have been cast.<br>
+<br>
 
+<<else>>
 <<if $Riot >0>>
 You have decided [[to fight|Aztecs Riot]]! <br>
 <br>
@@ -1902,7 +2046,7 @@ You wait for the Aztecs to make a decision.<br>
 <<if $users[$userId]["role"] is $Aztec_Leader>>
 It seems your people still value your life and have secured your release. The Spaniards honor their word and you join your compatriots to watch your enemies retreat from the city.<br>
 <br>
-Though you are grateful to be alive, you cannot help but wonder if your people made the right decision. That is a question for later, however. In your absence, your people elected a new leader, <<print $New_Aztec_Leader>>, and now you must help him restore order to your city.<br>
+Though you are grateful to be alive, you cannot help but wonder if your people made the right decision. That is a question for later, however. In your absence, your people elected a new leader, <<print $New_Aztec_Leader>>, and now you must help him [[restore order to your city|Smallpox in Tenochtitlán]].<br>
 <br>
 <<else>>
 You have decided that <<print $Aztec_Leader>>'s life is worth more to you than taking your revenge on the evil Spaniards.<br>
@@ -1916,7 +2060,7 @@ God has smiled upon you this day, for the Mexica have accepted your offer. Waril
 This long chapter has now come to an end and you [[wonder what comes next|Spaniards Decide Whether to Retreat to Tlaxcala]].<br>
 <br>
 <<case "Tlaxcalans">>
-Finally, news! It seems that the Spaniards [[have made it out of Tenochtitlan|Spaniards Decide Whether to Retreat to Tlaxcala]].<br>
+Finally, news! It seems that the Spaniards [[have made it out of Tenochtitlan|Spaniards Retreat to Tlaxcala]].<br>
 <br>
 <</switch>>
 
@@ -2115,7 +2259,7 @@ Your men have wisely decided not to give chase, for the strangers travel with th
 <</liveblock>>
 
 
-:: Aztecs Plot Against the Spanish {"position":"2450,11000","size":"100,100"}
+:: Aztecs Plot Against the Spanish Leader Alive {"position":"2450,11000","size":"100,100"}
 <<liveblock>>
 <<if ndef $Hostage or $Hostage eq "">>
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
@@ -2140,7 +2284,7 @@ Option 1: Accept the Spaniard's offer, welcome <<print $Aztec_Leader>> back, and
 <br>
 Option 2: Refuse the deal. <<print $Aztec_Leader>> has proven an ineffective leader, and these Spaniards <<link "must be dealt with once and for all" "Aztecs Decide Whether to Make an Exchange">><<set $Hostage_Exch="No">><<set $Az_Ld_Dead="Yes">><</link>>. <br>
 <br>
-
+<</if>>
 <<else>>
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
@@ -2155,14 +2299,18 @@ Option 2: Refuse the deal. <<print $Aztec_Leader>> has proven an ineffective lea
 When you have made your choice, <<print $New_Aztec_Leader>> must enter your decision. When this is done, [[you may carry on to learn your fate|Aztecs Decide Whether to Make an Exchange]].<br>
 <br>
 <</if>>
-<<elseif $Hostage is "No">>
+
+<</liveblock>>
+
+
+:: Aztecs Plot Against the Spanish Leader Dead {"position":"850,600","size":"100,100"}
 Having settled the matter of leadership, it is now time to confront the enemies within your gates. For weeks, the people of Tenochtitlán have been preparing for a battle like nothing the city has ever seen before. You are confident in your advantage over the foreigners, given your knowledge of the city streets and your access to vital resources. Your enemies have been weakened over the past weeks, as the people of the city have denied them food.<br>
 <br>
 Unable to reach a decision, the members of the council debate into the quietest hours of the night. With the city asleep beyond the chamber walls, a young boy comes rushing into the room. He has just seen the foreigners sneaking out of the palace, carrying all their worldly goods, their pockets loaded with gold and treasures!<br>
 <br>
 You and the other members of the council spring into action. The streets ring out with your war cries as the residents of the city flood the streets, determined to [[prevent your enemies from making their escape|Noche Triste]]!<br>
 <br>
-<</if>>
+
 
 
 <</liveblock>>
@@ -2260,7 +2408,10 @@ You put up a valiant fight, but it was not enough. The Tlaxcalans had the Gods o
 <<if ndef $TL_Attacks or $TL_Attacks eq "">>
 You wait in the palace for your men to return from the coast.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalans to do something.<br>
+<br>
 
 <<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
 Your men have finally returned from the coast and you anxiously await their report. <br>
@@ -2327,7 +2478,7 @@ After consulting with your compatriots, you have decided to:<br>
 <br>
 OPTION 1: Keep <<print $Aztec_Leader>> <<link "alive as your prisoner" "Spaniards Keep Aztec Leader Alive Riot">><<set $Az_Ld_Dead="No">><</link>>.<br>
 <br>
-OPTION 2: Send <<print $Aztec_Leader>><<link "to meet his Gods" "Spaniards Kill Aztec Leader Riot">><<set $Az_Ld_Dead="Yes">><</link>>.<br>
+OPTION 2: Send <<print $Aztec_Leader>><<link "to meet his Gods" "Spaniards Kill Aztec Leader Riot">><<set $Az_Ld_Dead="Yes">><<set $Hostage_Exch = "No">><</link>>.<br>
 <br>
 <<else>>
 It appears that the crowd has lost faith in their leader. Despite his pleas, the crowd below has begun to riot, hurling stones towards the rooftop. You watch <<print $Aztec_Leader>> fall to his knees as he is struck in the head.<br>
@@ -2441,7 +2592,7 @@ The battle is like nothing you've seen before. The stakes are high and this will
 <</liveblock>>
 
 
-:: Back to the Library Yet Again Act Four {"position":"2300,8675","size":"100,100"}
+:: 4 Back to the Library Yet Again {"position":"2300,8675","size":"100,100"}
 Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an 'A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there's the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].<br>
@@ -2746,7 +2897,7 @@ Double-click this passage to edit it.
 <<liveblock>>
 <<if $Mutiny_Voted isnot 5>>
 
-The members of the faction are still mulling over their decisions. Return here when everybody has voted.<br>
+The members of the faction are still mulling over their decisions. <<print $Mutiny_Voted>> votes have been cast. Return here when everybody has voted.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
@@ -3209,6 +3360,24 @@ After much angry debate , you finally determine that <<print $Span_Leader>> has 
 
 :: Cholula Spanish Leadership Challenge {"position":"1875,4950","size":"100,100"}
 <<liveblock>>
+<<if ndef $Sp_Ld_Vote>>
+<<set$Sp_Ld_Vote=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Cor>>
+<<set$Sp_Ld_Cor=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Alv>>
+<<set$Sp_Ld_Alv=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Agu>>
+<<set$Sp_Ld_Agu=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Gar>>
+<<set$Sp_Ld_Gar=0 >>
+<</if>>
+<<if ndef $Sp_Ld_Oli>>
+<<set$Sp_Ld_Oli=0 >>
+<</if>>
 <<if $Span_Leader is $users[$userId]["role"]>>
 You have made your decisions and led your people through a complicated situation, but do they still believe in your leadership? <br>
 <br>
@@ -3242,48 +3411,53 @@ Option 4: <<link "Olid" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Oli =
 <<if $Span_Leader is $users[$userId]["role"] and $Sp_Ld_Vote isnot 5>>
 You wait nervously for your team to deliberate.<br>
 <br>
+<<print $Sp_Ld_Vote>> votes have been cast. <br>
+<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
 <<elseif $Span_Leader isnot $users[$userId]["role"] and $Sp_Ld_Vote isnot 5>>
 When everyone has voted, you will deliver the news to <<print $Span_Leader>>.<br>
+<br>
+<<print $Sp_Ld_Vote>> votes have been cast. <br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
 <<elseif $Sp_Ld_Vote is 5>>
 You have chosen a leader. <br>
 <br>
-<<if $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Olid and $Sp_Ld_Cor is 5>>
+<</if>>
+<<if $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Oli and $Sp_Ld_Cor is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Cortes">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Olid and $Sp_Ld_Cor isnot 5>>
+<<elseif $Sp_Ld_Cor >= $Sp_Ld_Alv and $Sp_Ld_Cor >= $Sp_Ld_Agu and $Sp_Ld_Cor >= $Sp_Ld_Gar and $Sp_Ld_Cor >= $Sp_Ld_Oli and $Sp_Ld_Cor isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Cortes">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Olid and $Sp_Ld_Alv is 5>>
+<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Oli and $Sp_Ld_Alv is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Alvarado">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Olid and $Sp_Ld_Alv isnot 5>>
+<<elseif $Sp_Ld_Alv >=$Sp_Ld_Cor and $Sp_Ld_Alv >=$Sp_Ld_Agu and $Sp_Ld_Alv >=$Sp_Ld_Gar and $Sp_Ld_Alv >=$Sp_Ld_Oli and $Sp_Ld_Alv isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Olid and $Sp_Ld_Agu is 5>>
+<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Oli and $Sp_Ld_Agu is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Aguilar">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Olid and $Sp_Ld_Agu isnot 5>>
+<<elseif $Sp_Ld_Agu >=$Sp_Ld_Cor and $Sp_Ld_Agu >=$Sp_Ld_Alv and $Sp_Ld_Agu >=$Sp_Ld_Gar and $Sp_Ld_Agu >=$Sp_Ld_Oli and $Sp_Ld_Agu isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Olid and $Sp_Ld_Gar is 5>>
+<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Oli and $Sp_Ld_Gar is 5>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Garrido">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Olid and $Sp_Ld_Gar isnot 5>>
+<<elseif $Sp_Ld_Gar >=$Sp_Ld_Cor and $Sp_Ld_Gar >=$Sp_Ld_Alv and $Sp_Ld_Gar >=$Sp_Ld_Agu and $Sp_Ld_Gar >=$Sp_Ld_Oli and $Sp_Ld_Gar isnot 5>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
-<<elseif $Sp_Ld_Olid >=$Sp_Ld_Cor and $Sp_Ld_Olid >=$Sp_Ld_Alv and $Sp_Ld_Olid >=$Sp_Ld_Agu and $Sp_Ld_Olid >=$Sp_Ld_Gar and $Sp_Ld_Olid is 5>>
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Garrido">><</link>> and take note of your team strength points!<br>
+<<elseif $Sp_Ld_Oli >=$Sp_Ld_Cor and $Sp_Ld_Oli >=$Sp_Ld_Alv and $Sp_Ld_Oli >=$Sp_Ld_Agu and $Sp_Ld_Oli >=$Sp_Ld_Gar and $Sp_Ld_Oli is 5>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Olid">><</link>> and take note of your team strength points!<br>
 <br>
-<<elseif $Sp_Ld_Olid >=$Sp_Ld_Cor and $Sp_Ld_Olid >=$Sp_Ld_Alv and $Sp_Ld_Olid >=$Sp_Ld_Agu and $Sp_Ld_Olid >=$Sp_Ld_Gar and $Sp_Ld_Olid isnot 5>>
-The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
+<<elseif $Sp_Ld_Oli >=$Sp_Ld_Cor and $Sp_Ld_Oli >=$Sp_Ld_Alv and $Sp_Ld_Oli >=$Sp_Ld_Agu and $Sp_Ld_Oli >=$Sp_Ld_Gar and $Sp_Ld_Oli isnot 5>>
+The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Cholula New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
 <</if>>
-<</if>>
+
 
 
 <</liveblock>>
@@ -3330,85 +3504,82 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 
 :: Control: Change Passage {"position":"3525,400","size":"100,100"}
-<b>CHANGE THE LOCATION OF PLAYERS</b><br>
+<<liveblock>>
+	<<set _role = "Aztec_Priest">>
+	<<set _newSidePassage = $users[$lookup[_role]]["passage"]>>
 
-<b>Spaniards</b><br>
-Cortes<br>
-Current Location: <<print $users[$lookup['Cortes']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Cortes']]['passage']" $users[$lookup['Cortes']]['passage'] "The Library">><br>
-<br>
-Alvarado<br>
-Current Location: <<print $users[$lookup['Garrido']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Garrido']]['passage']" "">><br>
-<br>
-Garrido<br>
-Current Location: <<print $users[$lookup['Alvarado']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Alvarado']]['passage']" "">><br>
-<br>
-Olid<br>
-Current Location: <<print $users[$lookup['Olid']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Olid']]['passage']" "">><br>
-<br>
-Aguilar<br>
-Current Location: <<print $users[$lookup['Aguilar']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Aguilar']]['passage']" "">><br>
-<br>
-Marina<br>
-Current Location: <<print $users[$lookup['Marina']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Marina']]['passage']" "">><br>
-<br>
-<b>Aztecs</b><br>
-Moctezuma<br>
-Current Location: <<print $users[$lookup['Moctezuma']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Moctezuma']]['passage']" "">><br>
-<br>
-Tlacaelel<br>
-Current Location: <<print $users[$lookup['Tlacaelel']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Tlacaelel']]['passage']" "">><br>
-<br>
-Cuauhtemoc<br>
-Current Location: <<print $users[$lookup['Cuauhtemoc']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Cuauhtemoc']]['passage']" "">><br>
-<br>
-Cacamatzin<br>
-Current Location: <<print $users[$lookup['Cacamatzin']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Cacamatzin']]['passage']" "">><br>
-<br>
-Aztec_Priest<br>
-Current Location: <<print $users[$lookup['Aztec_Priest']]['passage']>><br> 
-New Location: <<textbox "$users[$lookup['Aztec_Priest']]['passage']" "">><br>
-<br>
-Pochteca<br>
-Current Location: <<print $users[$lookup['Pochteca']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Pochteca']]['passage']" "">><br>
-<br>
-<b>Tlaxcalans</b><br>
-Xicotencatl_Elder<br>
-Current Location: <<print $users[$lookup['Xicotencatl_Elder']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Xicotencatl_Elder']]['passage']" "">><br>
-<br>
-Xicotencatl_Younger<br>
-Current Location: <<print $users[$lookup['Xicotencatl_Younger']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Xicotencatl_Younger']]['passage']" "">><br>
-<br>
-Maxixcatl<br>
-Current Location: <<print $users[$lookup['Maxixcatl']]['passage']>><br>
-New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
-<br>
-<br>
-[[Check Player and Team Status and Location|Control: Player Status]]<br>
-[[Check the Status of Holds and Votes|Control: Votes]]<br>
-[[Return to the Dashboard|Dashboard]]<br>
+	/* Add the starting passage of every side passge to this  */
+	<<set _passages = Story.lookup()>>
+	<<set _sidePassages = []>>
+	<<for _i, _p range _passages>>
+		<<set _sidePassages.push(_p.title)>>
+	<</for>>
+
+	<<listbox "_role" autoselect>>
+		<<optionsfrom Object.keys($lookup)>>
+	
+	<</listbox>>
+	<<listbox "_newSidePassage" autoselect>>
+		<<optionsfrom Object.values(_sidePassages)>>
+		
+	<</listbox>>
+
+	<<button send>>
+		<<set $users[$lookup[_role]]["passage"] = _newSidePassage>>
+	<</button>>
+	<br>
+	<br>
+	click this button to send selected user to the furthest passage they've visited
+	<<button SendBack>>
+		<<set _tempPassage = {}>>
+		<<set _tempId = $lookup[_role]>>
+		<<script>>
+		let id = State.getVar("_tempId");
+		$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${id}`, function(data){
+		console.log("getting history", JSON.parse(data));
+		State.setVar("$users[$lookup[_role]]['passage']", Object.keys(JSON.parse(data))[Object.keys(JSON.parse(data)).length - 1]);
+		})
+		<</script>>
+		/* <<set $users[$lookup[_role]]["passage"] = Object.keys(_tempPassage)[Object.keys(_tempPassage).length - 1]>> */
+	<</button>>
+<</liveblock>>
 
 
 :: Passage Teleport [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
+	<<if ndef $users[$userId]["stats"]>>
+		<<set $users[$userId]["stats"] = {
+			"Strength": 0,
+			"Wisdom": 0,
+			"Loyalty": 0
+		}>>
+	<</if>>
 	Click on a passage name to teleport there:
 	<br>
 
 	<<link "Continue Where you left off" $users[$userId]["passage"]>> <</link>>
 
 	<br>
+
+	<<link "Control: Variables" "Control: Variables">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Users)" "Control: Variables (Users)">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Factions)" "Control: Variables (Factions)">> <</link>>
+	<br>
+
+	<<link "Control: Change Passage" "Control: Change Passage">> <</link>>
+	<br>
+
+	<<link "Control: Lookup" "Control: Lookup">> <</link>>
+	<br>
+
+	<<link "Control: Full Reset" "Control: Full Reset">> <</link>>
+	<br>
+	<br>
+
 	<<set _temp = Story.lookupWith((p)=>{return true})>>
 	<<set _passageList = []>>
 	<<for _i to 0; _i lt _temp.length; _i ++>>
@@ -3424,15 +3595,14 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 
 
 :: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
 <<set _initVars = State.variables>>
 	<<for _tempKey, _tempVal range _initVars>>
 		<<if typeof _tempVal != "object">>
 
 			<<set _twineKey = `$${ _tempKey}`>>
-			<<print _tempKey>>
 			<br>
-			<<set _keyType = (typeof _twineKey)>>
+			<<print _tempKey>>
+			<<set _keyType = (typeof _tempVal)>>
 					<<switch (_keyType)>>
 						<<case "number">>
 							<<numberbox _twineKey _tempVal >>
@@ -3445,8 +3615,6 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 			<br>
 		<</if>>
 	<</for>>
-<</liveblock>>
-
 /* allows admin to update lookup. This allows roles to be played by different users */
 
 
@@ -3490,31 +3658,26 @@ New Location: <<textbox "$users[$lookup['Maxixcatl']]['passage']" "">><br>
 	<</button>>
 <</liveblock>>
 
-
-:: Diff Test {"position":"600,100","size":"100,100"}
-<<if ndef $users[$userId]["stats"]>>
-	<<set $users[$userId]["stats"] = {}>> 
-	<</if>>
-<<set $users[$userId]["stats"]["strength"] =7>>
-
 /* control panel for users stats */
 
 
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-Only modify stats and passages if you aren't 100% sure what you are doing
-
+Only modify stats and passages if you are 100% sure what you are doing
+<br>
 
 	<<for _role, _userId range $lookup>> 
 		/* Goes through list of all Variables */
 
 		<<set _userData = $users[_userId]>>
 		<<set _userName = _role>>
-		<<print `${_userName} (userId: ${_userId})`>>
 		<br>
 
 		<<set _twineKey = `$lookup["${ _role}"]`>>
 		<<print `${_userName}'s id#`>>
+		<<if _userId == "notSeen" || _userId < 20>>
+			''`_role is not assigned to a real player`''
+		<</if>>
 		<br>
 		<<textbox _twineKey _userId "Control: Variables (Users)" >>
 		<br>
@@ -3591,7 +3754,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 					<<set _twineKey = `$factions["stats"]["${ _statKey}"]`>>
 					<<print `${_factionName}'s ${_statKey}`>>
 					<br>
-					<<textbox _twineKey _statVal "Control: Variables (Factions)" >>
+					<<numberbox _twineKey _statVal "Control: Variables (Factions)" >>
 					<br>
 				<</for>>
 			<<else>>
@@ -3622,7 +3785,7 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 <</button>>
 
 
-:: Control: Player Status {"position":"4275,375","size":"100,100"}
+/* :: Control: Player Status {"position":"4275,375","size":"100,100"}
 <<liveblock>>
 <b>CURRENT STATUS OF TEAMS AND PLAYERS</b><br>
 <br>
@@ -3694,69 +3857,7 @@ Strength: <<print $users[$lookup["Maxixcatl"]]["stats"]["Strength"]>>   Wisdom: 
 [[Return to the Dashboard|Dashboard]]<br>
 
 
-<</liveblock>>
-
-
-:: Control: Votes {"position":"4075,225","size":"100,100"}
-<<liveblock>>
-<b>STATUS OF VOTES AND HOLDS</b><br>
-<b> Act 1</b><br>
-<b>Start:</b>  <i>This holds players after the Character Page at the beginning of the game. Players cannot continue until all 15 have set their Character Statistics and joined the game.</i><br>
-Number of Votes Cast:  <<print $Start>> out of 15 votes.<br>
-Has the hold been cleared? <b><<if $Start eq "15">> Yes <<else>> No<</if>></b><br>
-Players who have already cast a vote: <<if $Start eq "" or ndef $Start>> Nobody has voted yet. <<else>><<script>>$(output).append(showCounterRoles("Start_ctr"));<</script>><</if>>
-<br>
-
-<b>Cuba Voted:</b>  <i>This holds players until all three of Cortes' men have decided why they are continuing on from Cuba and into the unknown.</i><br>
-Number of Votes Cast:  <<print $Cuba_Voted>> out of 3 votes.<br>
-Has the hold been cleared? <b><<if $Cuba_Voted eq "3">> Yes <<else>> No<</if>></b><br>
-Players who have already cast a vote: <<if $Cuba_Voted eq "" or ndef $Cuba_Voted>> Nobody has voted yet. <<else>><<script>>$(output).append(showCounterRoles("Cuba_Voted_ctr"));<</script>><</if>>
-<br>
-
-<b>Letter Sent:</b>  <i>This holds Aguilar until the Spaniards have arrived at Yucatan and Cortes has sent his letter to Aguilar.</i><br>
-Letter is currently set to: <<print $Letter>><br>
-Has the hold been cleared? <b><<if $Letter eq "sent">> Yes <<else>> No<</if>></b><br>
-
-<b>Letter Received:</b>  <i>This holds Spaniards until Aguilar has recieved the letter sent by Cortes.</i><br>
-Letter received is currently set to:  <<print $L_Received>>.<br>
-Has the hold been cleared? <b><<if $L_Received eq "Yes">> Yes <<else>> No<</if>></b><br>
-
-<b>Spaniards Meet Malinche:</b> <i>This holds Spaniards until Malinche has submitted her introduction link.</i><br>
-Malinche's story is currently set to:  <<print $Mal_Story>>.<br>
-Has the hold been cleared? <b><<if $Mal_Story eq "" or ndef $Mal_Story>> No <<else>> Yes<</if>></b><br>
-
-<b>Tlaxcalans at the Time of the Omens:</b> <i>This holds Aztecs and Tlaxcalans until Tlaxcalans decide how to play the remainder of Act 1, allying with the Aztecs, spying on the Spaniards, or having a long nap.</i><br>
-Tlaxcalan Omens is currently set to:  <<print $Tl_Omens>>.<br>
-Has the hold been cleared? <b><<if $Tl_Omens eq "" or ndef $Tl_Omens>> No <<else>> Yes<</if>></b><br>
-
-<b>Aztecs meet the Spaniards:</b> <i>This holds players until the Aztecs decide how to approach the Spaniards on the beach, with gifts, emptyhanded, or aggressively.</i><br>
-Gifts is currently set to:  <<print $gifts>>.<br>
-Has the hold been cleared? <b><<if $gifts eq "" or ndef $gifts>> No <<else>> Yes<</if>></b><br>
-
-<b>The Mutiny:</b> <i>Tallies the number of votes that have been cast and whether for or against the Mutiny. Players are held until all 5 Spaniards have voted on whether or not to mutiny.</i><br>
-Mutiny Status: <<print $Mutiny>>. <i>If the total is greater than 3, there is a mutiny and a new leader.  If the total is less than -6, the leader of the mutiny chickened out. Otherwise, gameplay continues with the current leader in place.</i>
-Number of Votes Cast:  <<print $Mutiny_Voted>> out of 5 votes.<br>
-Has the hold been cleared? <b><<if $Mutiny_Voted eq "5">> Yes <<else>> No<</if>></b><br>
-Players who have already cast a vote: <<if $Mutiny eq "" or ndef $Mutiny>> Nobody has voted yet. <<else>><<script>>$(output).append(showCounterRoles("Mutiny_Voted_ctr"));<</script>><</if>>
-<br>
-
-<b>Tlaxcalans Attack in Veracruz:</b> <i>If the Tlaxcalans decide to spy on the Aztecs and the Spaniards, this holds everybody until Tlaxcalans decide whether to attack the Spaniards, the Aztecs, or nobody.</i><br>
-Tlaxcalans Attack is currently set to:  <<print $TL_Attacks>>.<br>
-Has the hold been cleared? <b><<if $TL_Attacks eq "" or ndef $TL_Attacks>> No <<else>> Yes<</if>></b><br>
-<br>
-
-<b> Act 2</b><br>
-
-<b> Act 3</b><br>
-
-<b> Act 4</b><br>
-
-[[Check Player and Team Status and Location|Control: Player Status]]<br>
-[[Change Player Location|Control: Change Passage]]<br>
-[[Return to the Dashboard|Dashboard]]<br>
-
-
-<</liveblock>>
+<</liveblock>> */
 
 
 :: Cortes Attacks Narvaez {"position":"2175,9675","size":"100,100"}
@@ -3793,18 +3894,18 @@ Even if your men have turned against you, there's [[no going back|Mutiny Outcome
 <<case "Spaniards">>
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace. <br>
 <br>
-As you struggle to maintain your forces, you wish you had more manpower and wonder why Cortes has [[not yet returned from the coast|Aztec Leader gives a speech]].<br>
+As you struggle to maintain your forces, you wish you had more manpower and wonder why Cortes has [[not yet returned from the coast|Aztec Leader Gives a Speech]].<br>
 <br>
 <<case "Aztecs">>
 <<if $users[$userId]["role"] is $Aztec_Leader>>
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. With Cortes gone, a much smaller Spanish force remains and you wonder if he and his Tlaxcalan allies will return. You know the route to the coast well and it's clear that he should have returned by now. <br>
 <br>
-[[You hope this will work to your advantage|Aztec Leader gives a speech]].<br>
+[[You hope this will work to your advantage|Aztec Leader Gives a Speech]].<br>
 <br>
 <<else>>
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. With Cortes gone, a much smaller Spanish force remains. Messengers have made their way to the city in recent days, reporting on his demise. It seems Cortes was defeated at the coast and neither he nor his Tlaxcalan allies will be returning. <br>
 <br>
-This turn of events gives you hope as you [[continue your preparations|Aztec Leader gives a speech]].<br>
+This turn of events gives you hope as you [[continue your preparations|Aztec Leader Gives a Speech]].<br>
 <br>
 <</if>>
 <<case "Tlaxcalans">>
@@ -3816,7 +3917,7 @@ Just today, you received yet another piece of news: Cortés has been killed at t
 <br>
 Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?<br>
 <br>
-Once you have discussed the present situation, [[you may move forward|Aztec Leader gives a speech]].<br>
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].<br>
 <br>
 
 
@@ -3846,7 +3947,10 @@ As you are thrown in chains into the hold of another ship, you wonder why <<link
 <<if $Cuba_Voted isnot 3>>
 You wait nervously to see how your men respond.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Cuba_Voted>> votes have been cast.<br>
+<br>
 
 <<elseif $Cuba_Voted is 3 and $users[$lookup["Cortes"]]["stats"]["Loyalty"] < 1>><<set $users[$lookup["Cortes"]]["stats"]["Strength"]=0>><<set $users[$lookup["Cortes"]]["stats"]["Wisdom"]=0>>
 
@@ -3872,8 +3976,9 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 <<if $Cuba_Voted isnot 3>>
 You wait nervously to see how the other men respond.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Cuba_Voted>> vostes have been cast.
 <<elseif $Cuba_Voted is 3 and $users[$lookup["Cortes"]]["stats"]["Loyalty"] < 1>>
 
 Cortes has lost your confidence, and you mutiny against him! You band together and take control of the ship. One amongst you will rise to the top and lead the group. <br>
@@ -3902,13 +4007,18 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 
 :: Cortes sets sail from Cuba [Done] {"position":"2200,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Start>> players have joined the game.<br>
 
-<<elseif $Start >=5>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+
+
+<<else>>
 <<audio "Gulls_and_waves__5min_" play>>
 November 18th, 1519. Just off the shore of Cuba.<br>
 <br>
@@ -3953,14 +4063,14 @@ It seems that things have descended into chaos during your absence. Your compani
 <br>
 While you were achieving victory on the coast, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse. <br>
 <br>
-It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <<else>>
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.<br>
 <br>
 It's late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast with a much larger force than he took with him. Not only was he able to defeat Velazquez' forces, but he won them over to your side and claimed their weapons.<br>
 <br>
-When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased  to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased  to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <</if>>
 
@@ -3968,12 +4078,12 @@ When you recount the events that transpired during his absence, Cortes is livid.
 <<if $users[$userId]["role"] is $Aztec_Leader>>
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.<br>
 <br>
-This new turn of events makes you nervous and you [[wonder what is in store for you|Aztec Leader gives a speech]].<br>
+This new turn of events makes you nervous and you [[wonder what is in store for you|Aztec Leader Gives a Speech]].<br>
 <br>
 <<else>>
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.<br>
 <br>
-The people are restless and this new turn of events [[makes you nervous|Aztec Leader gives a speech]].<br>
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].<br>
 <br>
 <</if>>
 <<case "Tlaxcalans">>
@@ -4005,14 +4115,14 @@ It seems that things have descended into chaos during your absence. Your compani
 <br>
 You gather your men and force your way through the city and into the palace with little resistance. Once inside you angrily confront the rest of the Spanish forces, wondering how they could have let things go so horribly wrong. While you were barely escaping the coast with your life, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse.<br>
 <br>
-It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <<else>>
 Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.<br>
 <br>
 It's late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast, though you are dismayed when you realize that he has brought with him a much smaller force than that with which he left. <br>
 <br>
-When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader gives a speech]]. <br>
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
 <</if>>
 
@@ -4020,12 +4130,12 @@ When you recount the events that transpired during his absence, Cortes is livid.
 <<if $users[$userId]["role"] is $Aztec_Leader>>
 You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast, though you note that he is accompanied by a much smaller army than he took with him when he left.<br>
 <br>
-This new turn of events makes you nervous and you wonder [[what is in store for you|Aztec Leader gives a speech]].<br>
+This new turn of events makes you nervous and you wonder [[what is in store for you|Aztec Leader Gives a Speech]].<br>
 <br>
 <<else>>
 With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city, though you note that he is accompanied by a much smaller army than he took with him when he left.<br>
 <br>
-The people are restless and this new turn of events [[makes you nervous|Aztec Leader gives a speech]].<br>
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].<br>
 <br>
 <</if>>
 
@@ -4038,7 +4148,7 @@ Just today, you received yet another piece of news: Cortés has returned from th
 <br>
 Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?<br>
 <br>
-Once you have discussed the present situation, [[you may move forward|Aztec Leader gives a speech]].<br>
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].<br>
 <br>
 
 <</switch>>
@@ -4210,12 +4320,16 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 
 :: Spaniards set sail from Cuba [Done] {"position":"2050,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Start>> players have joined the game.<br>
 
-<<elseif $Start >=5>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+
+<<else>>
 <<audio "Gulls_and_waves__5min_" play>>
 November 18th, 1519.  Just off the shore of Cuba. <br>
 <br>
@@ -4460,6 +4574,8 @@ Now that your quest is complete, <<link "you return home exhausted" "Tlaxcalans 
 It is rude to start eating before all the guests have arrived! You'll just have to wait, no matter how hungry you are!<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Feast>> guests have arrived.<br>
+<br>
 
 <<else>>
 <<switch $users[$userId]["faction"]>>
@@ -5423,7 +5539,7 @@ Go to the Spanish discussion board and decide what you will do next. You have tw
 <br>
 Do you remain quiet,<<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Don't Attack">><<set $Span_Cho_Att="No">><</link>>?<br>
 <br>
-Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5)>><</link>>?<br>
+Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5>><</link>>?<br>
 <br>
 
 <<elseif $Mal_Span is "Yes" and $users[$userId]["role"] isnot $Span_Leader>>
@@ -5466,9 +5582,9 @@ A mysterious woman has informed you that the Aztecs have laid a trap in Cholula.
 <br>
 Go to the Spanish discussion board and decide what you will do next. You have two options:<br>
 <br>
-Do you remain quiet, <<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Attack">><<set $Span_Cho_Att="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=5)>><</link>>?<br>
+Do you remain quiet, <<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Attack">><<set $Span_Cho_Att="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=5>><</link>>?<br>
 <br>
-Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5)>><</link>>?<br>
+Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<set $Span_Cho_Att="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=5>><</link>>?<br>
 <br>
 
 <<elseif $Mal_Span is "Yes" and $users[$userId]["role"] isnot $Span_Leader>>
@@ -5506,12 +5622,16 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 
 :: Marina hears gossip in the market [Done] {"position":"2350,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Start>> players have joined the game.<br>
 
-<<elseif $Start >=5>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+
+<<else>>
 
 You have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were respected in your community for your wit and intelligence even at a young age. Among the many things you have acquired in your years as a slave is a facility with the Mayan language, so different from the Nahuatl with which you were raised.<br>
 <br>
@@ -5682,53 +5802,64 @@ These rumors <<link "make you sad" "Sad">><<set $users[$lookup["Aguilar"]]["stat
 
 :: Moctezuma Confidence Vote [Done] {"position":"2375,3250","size":"100,100"}
 <<liveblock>>
-<<if $Moc_Mut_Vote < 5>>
+<<if $Moc_Mut_Vote <= 4>>
 You wait while your fellow counselors cast their vote.<br>
 <br>
+<<print $Moc_Mut_Vote>> votes have been cast.<br>
+<br>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Moc_Mut_Vote >= 4 and $MocMut_Moc is 5>>">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">>
-
-<<elseif $Moc_Mut_Vote >= 5 and $MocMut_Tla is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">>
-
-<<elseif $Moc_Mut_Vote >= 5 and $MocMut_Cua is 5>><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc >=3>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Tla >=3>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Cua >=3>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">>
-
-<<elseif $Moc_Mut_Vote >=5 and $MocMut_Moc <=2 and $MocMut_Tla <=2 and $MocMut_Cua <=2>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Draw">>
-
+<<elseif $Moc_Mut_Vote is 5>>
+You have chosen a leader.<br>
+<br>
 <</if>>
 
+<<if $MocMut_Moc is 5>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif $MocMut_Tla is 5>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif $MocMut_Cua is 5>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif $MocMut_Moc >=3>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+
+<<elseif $MocMut_Tla >=3>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+
+<<elseif $MocMut_Cua >=3>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+<</if>>
+
+
+:: Moctezuma Confidence Vote 2 {"position":"100,1975","size":"100,100"}
 <<switch $users[$userId]["role"]>>
 <<case "Moctezuma">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 
 You enter the chamber, where your council awaits. They have considered your proclamation and all are in agreement with it. <br>
 <br>
-Your people have great faith in you! Not only do you maintain your place as their trusted leader, you also earn 5 loyalty points.<br>
+Your people have great faith in you! Not only do you maintain your place as their trusted leader, you also earn 5 loyalty points!<br>
 <br>
 Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You enter the chamber, where your council awaits. They have considered your proclamation and have voted in favor, though not all are in agreement.<br>
 <br>
 You will continue to lead your people, though you do not have the loyalty of everyone. You have gained 1 loyalty point for every team member who supports you.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it.<br> 
-<br>
-You have lost the faith of your people! You're in luck, however, for no-one else has earned their loyalty. You will continue to lead, but your position is tenuous.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it. <br>
 <br>
 You have lost the faith of your people! They have put their trust in <<print $Aztec_Leader>> instead.<br>
@@ -5736,7 +5867,7 @@ You have lost the faith of your people! They have put their trust in <<print $Az
 Though your people have turned against you, they are united in their decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
 You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it. <br>
 <br>
 You have lost the faith of your people! They have put their trust in <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
@@ -5745,27 +5876,19 @@ You have lost the faith of your people! They have put their trust in <<print $Az
 <</if>>
 
 <<case "Tlacaelel">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
 <br>
 You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
 <br>
 Moctezuma will continue to lead, though it is possible that some would rather look to you. If so, your loyalty points will reflect this.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it.<br>
-<br>
-Moctezuma has lost the faith of his people, but there is no clear leader to take his place and he remains in power. Though some would rather look to you, it is not yet a majority. Your loyalty points will indicate where you stand.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, and have done so unanimously. You have gained 5 loyalty points.<br>
@@ -5773,13 +5896,13 @@ Moctezuma has lost the faith of his people! They have put their trust in you ins
 Though your people have overthrown their emperor, they are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Azted_Leader>> instead.<br>
@@ -5787,7 +5910,7 @@ Moctezuma has lost the faith of his people! You have put your trust in <<print $
 Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
@@ -5796,27 +5919,19 @@ Moctezuma has lost the faith of his people! They have put their trust <<print $A
 <</if>>
 
 <<case "Cuauhtemoc">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
 <br>
 You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
 <br>
 Moctezuma will continue to lead, though it is possible that some would rather look to you. If so, your loyalty points will reflect this.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it.<br>
-<br>
-Moctezuma has lost the faith of his people, but there is no clear leader to take his place and he remains in power. Though some would rather look to you, it is not yet a majority. Your loyalty points will indicate where you stand.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, and have done so unanimously. You have gained 5 loyalty points.<br>
@@ -5824,13 +5939,13 @@ Moctezuma has lost the faith of his people! They have put their trust in you ins
 Though your people have overthrown their emperor, they are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
+<<elseif and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust in you instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead. <br>
@@ -5838,7 +5953,7 @@ Moctezuma has lost the faith of his people! You have put your trust in <<print $
 Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! They have put their trust <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
@@ -5847,27 +5962,19 @@ Moctezuma has lost the faith of his people! They have put their trust <<print $A
 <</if>>
 
 <<case "Aztec_Priest" or "Cacamatzin" or "Pochteca">>
-<<if $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
 <br>
 You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
 <br>
 Moctezuma will continue to lead, though some of you may wish otherwise.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Draw">>
-You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it.<br>
-<br>
-Moctezuma has lost the faith of his people, but there is no clear leader to take his place. He maintains his position, for now.<br>
-<br>
-There is dissent in your ranks. Your team has lost 5 strength points.<br>
-<br>
-
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead.<br>
@@ -5875,18 +5982,15 @@ Moctezuma has lost the faith of his people! You have put your trust in <<print $
 Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5 and $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
 You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
 <br>
 Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead, but not all are in agreement. <<print $Aztec_Leader>> will take power...for now.<br>
 <br>
 <</if>>
 <</switch>>
-
-<<if $Moc_Mut_Vote >=5>>
 With this decided, how will you [[engage with the strangers|Aztec Leader Makes a Choice]].<br>
 <br>
-<</if>>
 
 
 <</liveblock>>
@@ -5933,6 +6037,8 @@ You wait, on edge, wondering what the reception of your proclamation will be. Yo
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 You are waiting for your team members to all vote.<br>
+<br>
+<<print $Moc_Mut_Vote>> votes have been cast.<br>
 <br>
 
 <<elseif $Moc_Mut_Vote is 5>>
@@ -5992,7 +6098,10 @@ Option 2: Return to Tlaxcala.
 <<if $Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>> votes have been cast.<br>
+<br>
 
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
@@ -6008,7 +6117,9 @@ It seems your efforts have failed. There has been a mutiny! Olid has taken contr
 <<if $Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie. <br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>> votes have been cast.
 
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
@@ -6024,8 +6135,9 @@ You have convinced the men to mutiny! You watch in glee as Cortés learns the ne
 <<if $Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>>votes have been cast.
 <<elseif $Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
 You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards learn their leader beached the ships]].<br>
@@ -6126,8 +6238,13 @@ Maxixcatl
 
 :: New Aztec Leader {"position":"2450,7050","size":"100,100"}
 <<liveblock>>
-After much angry debate in the Council Room, you finally determine that <<print $Aztec_Leader>> has the greatest loyalty of his men, and you [[move forward under his leadership|Set up for the Feast]]
 
+<<if $Aztec_Leader is $users[$userId]["role"]>>
+After much angry debate in the Council Room, you find that you have been elected leader. You have the greatest loyalty of the men, and you [[move forward as Tlatoani|Set up for the Feast]].
+
+<<elseif $Aztec_Leader isnot $users[$userId]["role"]>>
+After much angry debate in the Council Room, you finally determine that <<print $Aztec_Leader>> has the greatest loyalty of his men, and you [[move forward under his leadership|Set up for the Feast]]
+<</if>>
 
 <</liveblock>>
 
@@ -6341,7 +6458,7 @@ Your messenger arrives [[empty-handed|Aztecs Decide Whether to Make an Exchange]
 <<case "Spaniards">>
 You have decided that <<print $Aztec_Leader>> is nothing more than a burden at this point and it is time to dispose of him. As you drive the knife into the once-powerful Mexica leader, you wonder if you will pay for your crime in the afterlife.<br>
 <br>
-Once the deed is done, you decide that your best chance of escape is to leave by cover of night. You will need to be quick and silent, so you decide carefully what is worth taking. After all this time coveting Moctezuma's treasure, however, you can't help but fill your pockets with all the gold and valuables you can find. You hope they won't weigh you down as you <<link "make your escape" "Noche Triste">><<set $Noche="Yes">><</link>>!<br>
+Once the deed is done, you decide that your best chance of escape is to leave by cover of night. You will need to be quick and silent, so you decide carefully what is worth taking. After all this time coveting Moctezuma's treasure, however, you can't help but fill your pockets with all the gold and valuables you can find. You hope they won't weigh you down as you <<link "make your escape" "Noche Triste">><<set $Noche="Yes">><<set $Hostage_Exch = "No">>.<</link>>!<br>
 <br>
 
 <<case "Aztecs">>
@@ -6637,7 +6754,9 @@ You will [[continue to observe these developments closely|Tlaxcalans observe the
 You must wait for all players to gather before you can continue.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
+<<print $Causeway>> players have arrived on the Causeway.<br>
+<br>
+S
 <<else>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -6743,7 +6862,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 :: PassageHeader {"position":"138,11","size":"100,100"}
 <<if ndef $gitUpdate>>
 	<<set $gitUpdate = new Date().getTime()>>
-	<</if>>
+<</if>>
 
 <<if $gitUpdate + 300000 < new Date().getTime()>>
 	<<script>>
@@ -6934,7 +7053,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<set $users[$userId]["currentMap"] = 1>>
 
 
-:: Return to the Library Act Three {"position":"2300,5775","size":"100,100"}
+:: 3 Return to the Library {"position":"2300,5775","size":"100,100"}
 <<liveblock>>
 <<audio "Library" play>>
 
@@ -6960,7 +7079,7 @@ You hurry toward the library, make your way to the top floor, and there it is: t
 <</liveblock>>
 
 
-:: Return to the Library Act Two [Done] {"position":"1975,2700","size":"100,100"}
+:: 2 Return to the Library [Done] {"position":"1975,2700","size":"100,100"}
 <<liveblock>>
 <<audio "Library" play>>
 
@@ -7276,6 +7395,10 @@ Click through to the page titled "Moctezuma Speaks", follow the link to the Go t
 
 
 :: Set up for the Feast {"position":"2450,7175","size":"100,100"}
+<<if ndef $Feast>>
+<<set $Feast=0>>
+<</if>>
+
 While your guests are off exploring the city, it's time to prepare for the greatest feast this city has ever seen! <br>
 <br>
 
@@ -7618,36 +7741,22 @@ You wait and [[wonder what the Spaniards will do next|Spaniards Retreat to Tlaxc
 <<liveblock>>
 <<if $users[$userId]["role"] is $Span_Leader>>
 <<if $Hostage_Exch is "Yes">>
-As you exit the causeway and the city of Tenochtitlán fades into the distance, you breathe a sigh of relief. You spent seven long months inside the city, surrounded by your enemies and acutely aware of your own vulnerability. The path before you may not yet be clear or free of danger, but your sense of security has ithemproved considerably.<br>
+As you exit the causeway and the city of Tenochtitlán fades into the distance, you breathe a sigh of relief. You spent seven long months inside the city, surrounded by your enemies and acutely aware of your own vulnerability. The path before you may not yet be clear or free of danger, but your sense of security has improved considerably.<br>
 <br>
 It is now time to decide just what that path will be, however. You gather your most trusted counselors to weigh your options. Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. <br>
 <br>
-There is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly, relying on the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
-<br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, input your choice below.<br>
-<br>
-You may then move forward with your plan.
+There is no choice but to return to Tlaxcala and attempt <<link "to rebuild your army" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
 <br>
 <br>
-Option 1: <<link "Attack Alone" "Spaniards Fight the Aztecs Alone">><<set $NT_Fight="Yes">><</link>>.<br>
-<br>
-Option 2: <<link "Retreat to Tlaxcala" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
-<br>
-
 <<elseif $Hostage_Exch is "No">>
 You drag yourself to shore, eager to get beyond reach of the city that almost became your grave. You can't believe you escaped with your life! Many others were not so lucky-a fact that becomes starkly clear as you take stock of the men who now walk beside you. <br>
 <br>
 When you feel you have reached a safe distance, you call out to your compatriots to stop and recommend they rest a while. As the ragged soldiers settle in and create a makeshift camp with what little supplies they have, you gather your most trusted counselors to weigh your options. <br>
 <br>
-Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. You inform your men that there is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly. You have suffered enormous damages in your escape from the city, but you would  have the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
+Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. You inform your men that there is no choice but to lay siege to the city. It is now time to decide just what that path will be, however. You gather your most trusted counselors to weigh your options. Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. <br>
 <br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, input your choice below.<br>
+There is no choice but to return to Tlaxcala and attempt <<link "to rebuild your army" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
 <br>
-You may then move forward with your plan.<br>
-<br>
-Option 1: <<link "Attack Alone" "Spaniards Fight the Aztecs Alone">><<set $NT_Fight="Yes">><</link>>.<br>
-<br>
-Option 2: <<link "Retreat to Tlaxcala" "Spaniards Retreat to Tlaxcala">><<set $NT_Fight="No">><</link>>. <br>
 <br>
 <</if>>
 
@@ -7659,7 +7768,7 @@ It is now time to decide just what that path will be, however. <<print $Span_Lea
 <br>
 There is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly, relying on the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
 <br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Decide How to Proceed]].<br>
+Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Retreat to Tlaxcala]].<br>
 <br>
 <<elseif $Hostage_Exch is "No">>
 You drag yourself to shore, eager to get beyond reach of the city that almost became your grave. You can't believe you escaped with your life! Many others were not so lucky-a fact that becomes starkly clear as you take stock of the men who now walk beside you. <br>
@@ -7668,7 +7777,7 @@ When you feel you have reached a safe distance, <<print $Span_Leader>> calls out
 <br>
 Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. You inform your men that there is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly. You have suffered enormous damages in your escape from the city, but you would  have the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
 <br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Decide How to Proceed]].<br>
+Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Retreat to Tlaxcala]].<br>
 <br>
 <</if>>
 <</if>>
@@ -8098,13 +8207,12 @@ You yourself watched him fall on the rooftop, but could this really have been hi
 <br>
 The council gathers in haste. [[Decisions must be made|Aztec Leader Dies and Aztecs Choose a Leader Riot]]!<br>
 <br>
+<</if>>
 <<case "Tlaxcalans">>
 You've just received a shocking report from Tenochtitlán: <<print $Aztec_Leader>> is dead! You can hardly believe the news! It seems there was a riot among the citizens of Tenochtitlán. The Spaniards sent the captive <<print $Aztec_Leader>> out to calm the crowd but they turned on him! He struck in the head with a rock. Your spies report that he was still alive when the strangers carried him back into the palace and no one has seen the body. However, shortly thereafter, the Spaniards sent a messenger out to the roof to inform the residents of the city that their Emperor was dead.<br>
 <br>
 <<print $Aztec_Leader>> was your enemy, but he was the most powerful man in the world. Will the Gods forgive the Spaniards for this crime? [[Only time will tell|Spaniards Plot their Departure]].<br>
 <br>
-
-<</if>>
 <</switch>>
 
 
@@ -8250,7 +8358,7 @@ Tension grips the city and you listen as your captors plot their escape. It seem
 <</if>>
 
 <<case "Tlaxcalans">>
-<<if ndef $Hostage or $Hostage eq "">>
+<<if ndef $Az_Ld_Dead or $Az_Ld_Dead eq "">>
 Again, you are without news. What could be happening?<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -8478,6 +8586,9 @@ You settle in and [[wait for a response|Aguilar’s first encounter with the Spa
 
 
 :: Spaniards Tour Tenochtitlan {"position":"2150,7175","size":"100,100"}
+<<if ndef $Feast>>
+<<set $Feast=0>>
+<</if>>
 You settle in quickly, eager to see everything this remarkable city has to offer. Moctezuma has sent a group of Aztec nobles to be your guides and they have presented you with an itinerary:<br>
 <br>
 
@@ -9284,7 +9395,10 @@ console.log("new user detected")
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
-<<set $lookup[$users[$userId]["role"]] = $userId>>
+<</if>>
+
+<<if Object.keys(_roles).includes(_role)>>
+	<<set $lookup[$users[$userId]["role"]] = $userId>>
 <</if>>
 
 /* for testing discord macro: */
@@ -9338,57 +9452,40 @@ After much  debate , you finally determine that <<print $Span_Leader>> has the g
 
 :: Tenochtitlan Spanish Leadership Results {"position":"2675,9175","size":"100,100"}
 <<liveblock>>
-<<if $Sp_Ld_Vote_Teno isnot 5>>
+
+<<if $Sp_Ld_Vote_Teno <= 4>>
 When everyone has voted, you will find out who will lead you now.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-You are waiting for the rest of your team to vote.<br>
+You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> players have voted.<br>
 <br>
 
-<<else>>
+<<elseif $Sp_Ld_Vote_Teno is 5>>
 
 <<if $Sp_Ld_Mar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno>=$Sp_Ld_Oli_Teno>>
 
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Marina">><</link>> and take note of your team strength points!<br>
-<br>
-<<else>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
 <br>
-<</if>>
+
 <<elseif $Sp_Ld_Alv_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Oli_Teno>>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Alvarado">><</link>> and take note of your team strength points!<br>
-<br>
-<<else>>
+
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
-<</if>>
-<<elseif $Sp_Ld_Agu_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Alv and $Sp_Ld_Agu_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Oli_Teno>><<set $Span_Leader="Aguilar">>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Aguilar">><</link>> and take note of your team strength points!<br>
-<br>
-<<else>>
+
+<<elseif $Sp_Ld_Agu_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Oli_Teno>><<set $Span_Leader="Aguilar">>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
 <br>
-<</if>>
-<<elseif $Sp_Ld_Gar_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Alv and $Sp_Ld_Gar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Oli_Teno>>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Garrido">><</link>> and take note of your team strength points!<br>
-<br>
-<<else>>
+
+<<elseif $Sp_Ld_Gar_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Oli_Teno>>
+
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
-<</if>>
-<<elseif $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno >>
-<<if $Sp_Ld_Mar_Teno is 5 or $Sp_Ld_Alv_Teno is 5 or $Sp_Ld_Agu_Teno is 5 or $Sp_Ld_Gar_Teno is 5 or $Sp_Ld_Oli_Teno is 5>>
-The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Span_Leader="Olid">><</link>> and take note of your team strength points!<br>
-<br>
-<<else>>
+
+<<elseif $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno >>
+
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
-<</if>>
 <</if>>
 <</if>>
 
@@ -9400,13 +9497,16 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 /* Sometimes the icon doesn't appear, this is a sign variables haven't been initiazlized properly,
 specifically $Start in this case. */
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Start>> players have joined the game.<br>
 
-<<elseif $Start >=10>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+<<else>>
 
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
@@ -9476,7 +9576,10 @@ Well, this explains a lot. You knew you couldn't have written those papers--they
 You rise up out of the chair, knees shaking. You know what you must do...<br>
 <br>
 
-
+Final Game Score:<br>
+Aztecs: <<print $Final_Aztec_Points>><br>
+Spaniards:  <<print $Final_Spanish_Points>><br>
+Tlaxcalans: <<print $Final_Tlaxcalan_Points>><br>
 <</liveblock>>
 
 
@@ -9696,12 +9799,15 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebl
 
 :: Quest intro: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"2975,100","size":"100,100"}
 <<liveblock>>
-<<if $Start <=10>>
+<<if $Start <=12>>
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print $Start>> players have joined the game.<br>
 
-<<elseif $Start >=10>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+<<else>>
 
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
@@ -10093,7 +10199,7 @@ You must wait for <<print $Tlax_Leader>> to do something.<br>
 
 :: Tlaxcala Decides What To Do {"position":"2850,12325","size":"100,100"}
 <<liveblock>>
-<<if $Final_Aztec Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
+<<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for your options to become clear.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -10252,8 +10358,15 @@ Your two sides are evenly matched, as usual, but only one [[can claim victory|Vi
 <<liveblock>>
 <<switch $users[$userId]["faction"]>>
 <<case "Tlaxcalans">>
+<<if $Tlax_Leader is $users[$userId]["role"]>>
+The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be <<link "from this moment on" "The End">><<set  
+$Final_Tlaxcalan_Players=$users[$lookup["Xicotencatl_Elder"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Strength"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Loyalty"]+$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"]+$users[$lookup["Maxixcatl"]]["stats"]["Strength"]+$users[$lookup["Maxixcatl"]]["stats"]["Loyalty"]+$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
+<br> 
+<<else>>
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].<br>
 <br>
+<</if>>
+
 <<case "Aztecs">>
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
 <</switch>>
@@ -10887,7 +11000,10 @@ You are waiting for the Aztecs to make a move.<br>
 <<if $TL_St_Voted <3>>
 You wait nervously while the others deliberate. <br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $TL_St_Voted>> players have voted.<br>
+<br>
 
 <<elseif $TL_St_Voted is 3 and $users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"] >=$users[$lookup["Xicotencatl_Younger"]]["stats"]["Wisdom"] and $users[$lookup["Xicotencatl_Elder"]]["stats"]["Wisdom"] >=$users[$lookup["Maxixcatl"]]["stats"]["Wisdom"]>><<set $Tlax_Leader="Xicotencatl_Elder">>
 You and your fellow council members have weighed each other's arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. <br>
@@ -11259,6 +11375,9 @@ Once your statement is prepared, paste a link here to share with your fellow Cou
 
 
 :: Tlaxcalans Visit Tlatelolco {"position":"2300,7175","size":"100,100"}
+<<if ndef $Feast>>
+<<set $Feast=0>>
+<</if>>
 <<if $users[$userId]["role"] is "Pochteca">>
 You set out for the market with your Tlaxcalan guests in tow. They are eager to visit the legendary Tlatelolco Market and, as one of the most important agents of the market, you can't help but take pride in their excitement. You are halfway to your destination when you are approached by a messenger. He has come to assign your guests a task.<br>
 <br>
@@ -11337,12 +11456,14 @@ You watch your allies enter the city of Cholula where they will consort with you
 <br>
 You remain at camp, curious to learn what's going on inside the city walls. Your spies have yet to return. You wait anxiously for news.<br>
 <br>
+<<if ndef $Cholula_Attack or $Cholula_Attack eq "" and ndef $Mal_Share or $Mal_Share eq "">>
+
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 Both the Aztecs and Marina need to do something for this block to clear.<br>
 <br>
 
-<<if $Cholula_Attack is "Yes" and $Mal_Share is "No">>
+<<elseif $Cholula_Attack is "Yes" and $Mal_Share is "No">>
 The first day and night pass quietly, with little news from inside. The next morning, however, your spies come running back to camp just as you hear the sound of screaming from inside the city.<br>
 <br>
 The Aztecs have laid a trap and attacked the Spaniards! This will surely be a massacre and an Aztec victory would not be to your benefit. You rush through the city gates and engage your enemies in battle. You fight your way back out of the city with your Spanish allies at your side. They made it out alive, but barely. <br>
@@ -11616,7 +11737,7 @@ You will honor an existing but secret alliance with the Aztecs and <<link "enter
 <<if $users[$userId]["role"] is $Tlax_Leader>>
 Select your team's decision from the options below.<br>
 <br>
-<b>Option 1:</b> <<link "You agree to go to battle with Cortes" "Tlaxcalans agree to fight">><<set $Tlax_Alliance="Veracruz">><</link>>.<br>
+<b>Option 1:</b> <<link "You agree to go to battle with Cortes" "Tlaxcalans agree to fight">><<set $Tlax_Alliance="Veracruz">><<set $Cortes_Dead="No">><</link>>.<br>
 <br>
 <b>Option 2:</b> <<link "You will not go to battle with Cortes and you will tell him this before you reach Tlaxcala, so that you might leave the war party and go home" "Tlaxcalans announce their departure">><<set $Tlax_Alliance="Home">><</link>>.<br>
 <br>
@@ -11723,7 +11844,10 @@ You <<link "head back to Tlaxcala" "The Spaniards Head Inland">><<run changeStat
 <<<<if $Mutiny_Voted <3>>>>
 All is quiet in Tlaxcala and you find yourself bored, wondering what could possibly be happening on the coast. Unfortunately, your decision not to send spies means that you've lost track of the foreigners and have no idea what's going on.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Mutiny_Voted>> players have voted.<br>
+<br>
 <<elseif $Mutiny_Voted >=3 and $Mut_Cor >=2>>
 You wait anxiously for news from the coast. [[Any news at all|Tlaxcalans keep waiting]].<br>
 <br>
@@ -11921,7 +12045,7 @@ You watch as <<print $Span_Leader>> raises his sword and [[strikes the final blo
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs and Tlaxcalans versus Spaniards">><<set $Final_Aztec_Players=$users[$lookup["Moctezuma"]]["stats"]["Strength"]+$users[$lookup["Moctezuma"]]["stats"]["Loyalty"]+$users[$lookup["Moctezuma"]]["stats"]["Wisdom"]+$users[$lookup["Tlacaelel"]]["stats"]["Strength"]+$users[$lookup["Tlacaelel"]]["stats"]["Loyalty"]+$users[$lookup["Tlacaelel"]]["stats"]["Wisdom"]+$users[$lookup["Cuauhtemoc"]]["stats"]["Strength"]+$users[$lookup["Cuauhtemoc"]]["stats"]["Loyalty"]+$users[$lookup["Cuauhtemoc"]]["stats"]["Wisdom"]+$users[$lookup["Cacamatzin"]]["stats"]["Strength"]+$users[$lookup["Cacamatzin"]]["stats"]["Loyalty"]+$users[$lookup["Cacamatzin"]]["stats"]["Wisdom"]+$users[$lookup["Aztec_Priest"]]["stats"]["Strength"]+$users[$lookup["Aztec_Priest"]]["stats"]["Loyalty"]+$users[$lookup["Aztec_Priest"]]["stats"]["Wisdom"]+$users[$lookup["Pochteca"]]["stats"]["Strength"]+$users[$lookup["Pochteca"]]["stats"]["Loyalty"]+$users[$lookup["Pochteca"]]["stats"]["Wisdom"]>><<set $Final_Aztec_Players/=6>><<set $Final_Aztec_Points=$factions["Aztecs"]["stats"]["Strength"]+$Final_Aztec_Players>><</link>>. <br>
 <br>
 <<else>>
-You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the final blow|Aztecs and Tlaxcalans versus Spaniards]].<br>
+You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs and Tlaxcalans versus Spaniards]].<br>
 <br>
 
 <</if>>
