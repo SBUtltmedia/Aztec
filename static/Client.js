@@ -218,13 +218,14 @@ function getRandomInt(max) {
  */
 function changeStats(rolePlay, newStats) {
     let usersObj= Window.SugarCubeState.variables.users;
-    let currentUserId = Object.keys(usersObj).find(userId => usersObj[userId].role == rolePlay)
+    let currentUserId = Window.SugarCubeState.variables.lookup[rolePlay]
     if(currentUserId == undefined){
         currentUserId = "NotSeen"
     }
     console.log("user:" , currentUserId)
     let currentUser =usersObj[currentUserId]
     let roleStats = currentUser.stats
+    console.log("stats:", roleStats)
     Object.keys(roleStats).forEach((stat, idx) => {
         console.log("stat:", stat);
         console.log( roleStats[stat])
