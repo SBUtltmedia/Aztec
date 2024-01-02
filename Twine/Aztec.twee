@@ -130,10 +130,14 @@ importScripts([
 :: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 <p> hey </p>
-<<if ndef $incrementTest>>
-	<<set $incrementTest = 0>>
+<<if ndef $users[$userId]["incrementTest"]>>
+	<<set $users[$userId]["incrementTest"] = 0>>
 <</if>>
-<<set $incrementTest = $incrementTest + 1>>
+<<button send>>
+		<<set $users[$userId]["incrementTest"] = $users[$userId]["incrementTest"] + 1>>
+	<</button>>
+$users[$userId]["incrementTest"]
+(live: 10s) test
 <</liveblock>>
 
 
@@ -3536,7 +3540,6 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		<<script>>
 		let id = State.getVar("_tempId");
 		$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${id}`, function(data){
-		console.log("getting history", JSON.parse(data));
 		State.setVar("$users[$lookup[_role]]['passage']", Object.keys(JSON.parse(data))[Object.keys(JSON.parse(data)).length - 1]);
 		})
 		<</script>>
@@ -6863,7 +6866,9 @@ Along your journey, you have met many people. Some have been willing allies of t
 <<if ndef $gitUpdate>>
 	<<set $gitUpdate = new Date().getTime()>>
 <</if>>
-
+<<script>>
+console.log("heading")
+<</script>>
 <<if $gitUpdate + 300000 < new Date().getTime()>>
 	<<script>>
 		$.get("/updateGit", {});
@@ -6981,6 +6986,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 /* adds background image to screen */
 <<script>>
+
 	let imageURL = State.getVar("$users[$userId]['faction']");
 	let controlPassages = ["Control: Variables", 
 		"Control: Variables (Users)",
@@ -7002,8 +7008,6 @@ Along your journey, you have met many people. Some have been willing allies of t
 		'backgroundImage': `url(Twine/images/Borders/${imageURL}.jpg)`
 	}
 	)
-
-
 <</script>>
 
 /* <<script>>
@@ -9217,7 +9221,6 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 	}
 
 	$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${searchParams.get('id') || userData.authData.id}`, function(data){
-		console.log("getting history", JSON.parse(data))
 		State.setVar("$passageHistory", JSON.parse(data))
 	})
 <</script>>
@@ -9382,6 +9385,7 @@ they will be directed to this temp user */
 
 /* inits userdata in $users */
 
+/* change this conditional */
 <<if  $userId != 15 && (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId]["role"]))) >>
 <<set $users[$userId] = {}>>
 <<script>>
