@@ -76,6 +76,7 @@ importScripts([
 					var $el = $("<span></span>").addClass("macro-live macro-live-block").wiki(content).appendTo(this.output);
 					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
 						$el.empty().wiki(content);
+
 					}));
 				}
 			} catch (ex) {
@@ -130,14 +131,15 @@ importScripts([
 :: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 <p> hey </p>
-<<if ndef $users[$userId]["incrementTest"]>>
-	<<set $users[$userId]["incrementTest"] = 0>>
+<<if ndef $users[$userId]["choices"]["incrementTest"]>>
+	<<set $users[$userId]["choices"]["incrementTest"] = 0>>
 <</if>>
 <<button send>>
-		<<set $users[$userId]["incrementTest"] = $users[$userId]["incrementTest"] + 1>>
+		<<set $users[$userId]["choices"]["incrementTest"] = $users[$userId]["choices"]["incrementTest"] + 1>>
 	<</button>>
-$users[$userId]["incrementTest"]
-(live: 10s) test
+<<print $users[$userId]["choices"]["incrementTest"]>>
+<<set _totalIncrements = setup.getTotalChoices("incrementTest")>>
+<<print _totalIncrements>>
 <</liveblock>>
 
 
@@ -2899,21 +2901,22 @@ Double-click this passage to edit it.
 
 :: Burning the Ships [Done Breaks] {"position":"1450,1800","size":"100,100"}
 <<liveblock>>
-<<if $Mutiny_Voted isnot 5>>
+<<set _Mutiny_Voted = setup.getTotalChoices("Mutiny_Voted")>>
+<<if _Mutiny_Voted isnot 5>>
 
-The members of the faction are still mulling over their decisions. <<print $Mutiny_Voted>> votes have been cast. Return here when everybody has voted.<br>
+The members of the faction are still mulling over their decisions. <<print _Mutiny_Voted>> votes have been cast. Return here when everybody has voted.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Mutiny_Voted is 5 and $Mutiny >=-5 and $Mutiny <=2>>
+<<elseif _Mutiny_Voted is 5 and $Mutiny >=-5 and $Mutiny <=2>>
 
 The Members of the faction have chosen [[not to mutiny|Burning the Ships: No Mutiny]].<br>
 <br>
-<<elseif $Mutiny_Voted is 5 and $Mutiny <=-6>>
+<<elseif _Mutiny_Voted is 5 and $Mutiny <=-6>>
 
 The rabblerouser [[chickened out|Burning the Ships: Failed Mutiny]]!<br>
 <br>
-<<elseif $Mutiny_Voted is 5 and $Mutiny >=3>>
+<<elseif _Mutiny_Voted is 5 and $Mutiny >=3>>
 
 [[There is a mutiny|Burning the Ships: Mutiny]]!<br>
 <br>
@@ -6096,17 +6099,18 @@ Option 2: Return to Tlaxcala.
 
 :: Mutiny Outcome {"position":"1925,1875","size":"100,100"}
 <<liveblock>>
+<<set _Mutiny_Voted = setup.getTotalChoices("Mutiny_Voted")>>
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
-<<if $Mutiny_Voted <4>>
+<<if _Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Mutiny_Voted>> votes have been cast.<br>
+<<print _Mutiny_Voted>> votes have been cast.<br>
 <br>
 
-<<elseif $Mutiny_Voted >=4>>
+<<elseif _Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
 It seems you have retained the faith of your men…for now. Perhaps you were a little impulsive when you decided to beach the ships. You hope that doesn't come back to hurt you later, but you cannot let that distract you. You wait for the rest of the crew to learn their fate as you [[begin planning your next steps|Spaniards learn their leader beached the ships]].<br>
 <br>
@@ -6117,14 +6121,14 @@ It seems your efforts have failed. There has been a mutiny! Olid has taken contr
 <</if>>
 
 <<case "Olid">>
-<<if $Mutiny_Voted <4>>
+<<if _Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie. <br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Mutiny_Voted>> votes have been cast.
+<<print _Mutiny_Voted>> votes have been cast.
 
-<<elseif $Mutiny_Voted >=4>>
+<<elseif _Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
 Your efforts have failed and the men have remained loyal to Cortés. You curse your luck and await your next opportunity. Surely the others will see him for [[the fool he is eventually|Spaniards learn their leader beached the ships]].<br>
 <br>
@@ -6135,13 +6139,13 @@ You have convinced the men to mutiny! You watch in glee as Cortés learns the ne
 <</if>>
 
 <<case "Marina" or "Aguilar" or "Garrido" or "Alvarado">>
-<<if $Mutiny_Voted <4>>
+<<if _Mutiny_Voted <4>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Mutiny_Voted>>votes have been cast.
-<<elseif $Mutiny_Voted >=4>>
+<<print _Mutiny_Voted>>votes have been cast.
+<<elseif _Mutiny_Voted >=4>>
 <<if $Mut_Cor >=2>>
 You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards learn their leader beached the ships]].<br>
 <br>
@@ -6162,16 +6166,16 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 <<if ndef $Mut_Cor>>
 <<set $Mut_Cor=0 >>
 <</if>>
-<<if ndef $Mutiny_Voted>>
-<<set $Mutiny_Voted=0 >>
+<<if ndef $users[$userId]["choices"]["Mutiny_Voted"]>>
+<<set $users[$userId]["choices"]["Mutiny_Voted"]=0 >>
 <</if>>
 
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?<br>
 <br>
 
-Vote <<link "Cortes" "Mutiny Outcome">><<set $Mut_Cor = $Mut_Cor + 1>><<set $Mutiny_Voted = $Mutiny_Voted + 1>><</link>><br>
+Vote <<link "Cortes" "Mutiny Outcome">><<set $Mut_Cor = $Mut_Cor + 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>><br>
 <br>
-Vote <<link "Olid" "Mutiny Outcome">><<set $Mut_Olid = $Mut_Olid + 1>><<set $Mutiny_Voted = $Mutiny_Voted + 1>><</link>>
+Vote <<link "Olid" "Mutiny Outcome">><<set $Mut_Olid = $Mut_Olid + 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>>
 
 
 <</liveblock>>
@@ -6182,24 +6186,24 @@ Vote <<link "Olid" "Mutiny Outcome">><<set $Mut_Olid = $Mut_Olid + 1>><<set $Mut
 <<if ndef $Mutiny>>
 <<set $Mutiny=0 >>
 <</if>>
-<<if ndef $Mutiny_Voted>>
-<<set $Mutiny_Voted=0 >>
+<<if ndef $users[$userId]["choices"]["Mutiny_Voted"]>>
+<<set $users[$userId]["choices"]["Mutiny_Voted"]=0 >>
 <</if>>
 <<switch $users[$userId]["role"]>>
 <<case "Olid">>
 
 Olid, you've talked to the men, and you've done your best to convince them to mutiny.  But how do you feel about it?  Are you going to go through with your plans?<br>
 <br>
-<<link "Yes" "Burning the Ships">><<set $Mutiny_Voted = $Mutiny_Voted + 1>><</link>> <br>
+<<link "Yes" "Burning the Ships">><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
 <br>
-<<link "No" "Burning the Ships">><<set $Mutiny = $Mutiny + -10>><<set $Mutiny_Voted = $Mutiny_Voted + 1>><</link>> <br>
+<<link "No" "Burning the Ships">><<set $Mutiny = $Mutiny + -10>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
 <br>
 <<case "Marina" or "Alvarado" or "Aguilar" or "Garrido">>
 Olid has tried to convince you to mutiny, but it is a risky path. Will you join him in his bid for power and control?<br>
 <br>
-<<link "Yes" "Burning the Ships">><<set $Mutiny = $Mutiny + 1>><<set $Mutiny_Voted = $Mutiny_Voted + 1>><</link>> <br>
+<<link "Yes" "Burning the Ships">><<set $Mutiny = $Mutiny + 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
 <br>
-<<link "No" "Burning the Ships">><<set $Mutiny_Voted = $Mutiny_Voted + 1>><</link>> <br>
+<<link "No" "Burning the Ships">><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
 <br>
 
 <</switch>>
@@ -9219,6 +9223,10 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 			}
 		});
 	}
+	setup.getTotalChoices = function(choice){
+		var users = State.getVar("$users")
+		return Object.keys(users).map((b)=>users[b]?.["choices"]?.[choice] || 0).reduce(   (accumulator, currentValue)=>accumulator+(currentValue||0),0)
+	}
 
 	$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${searchParams.get('id') || userData.authData.id}`, function(data){
 		State.setVar("$passageHistory", JSON.parse(data))
@@ -9327,6 +9335,7 @@ they will be directed to this temp user */
 		"lastSeen" : 0,
 		"passage" : "Name Not Recognized",
 		"role" : "notSeen",
+		"choices": {},
 		"username" : "notSeen"
 	}>>
 <</if>>
@@ -9345,6 +9354,7 @@ they will be directed to this temp user */
 		"passage" : "Name Not Recognized",
 		"role" : "God",
 		"username" : "God",
+		"choices": {},
 		"offline" : true
 	}>>
 <</if>>
@@ -9394,6 +9404,7 @@ console.log("new user detected")
 <<set $users[$userId]["role"] = _role>>
 <<set $users[$userId]["username"] = _username>>
 <<set $users[$userId]["lastSeen"] = 0>>
+<<set $users[$userId]["choices"] = {}>>
 <<set $users[$userId]["discriminator"] =  _discriminator>>
 <<set $users[$userId]["faction"] = _roles[$users[$userId]["role"]]?.faction || "undefined">>
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
@@ -11845,17 +11856,18 @@ You <<link "head back to Tlaxcala" "The Spaniards Head Inland">><<run changeStat
 
 :: Tlaxcalans wait [Done] {"position":"3050,925","size":"100,100"}
 <<liveblock>>
-<<<<if $Mutiny_Voted <3>>>>
+<<set _Mutiny_Voted = setup.getTotalChoices("Mutiny_Voted")>>
+<<<<if _Mutiny_Voted <3>>>>
 All is quiet in Tlaxcala and you find yourself bored, wondering what could possibly be happening on the coast. Unfortunately, your decision not to send spies means that you've lost track of the foreigners and have no idea what's going on.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Mutiny_Voted>> players have voted.<br>
+<<print _Mutiny_Voted>> players have voted.<br>
 <br>
-<<elseif $Mutiny_Voted >=3 and $Mut_Cor >=2>>
+<<elseif _Mutiny_Voted >=3 and $Mut_Cor >=2>>
 You wait anxiously for news from the coast. [[Any news at all|Tlaxcalans keep waiting]].<br>
 <br>
-<<elseif $Mutiny_Voted >=3 and $Mut_Olid >2>>
+<<elseif _Mutiny_Voted >=3 and $Mut_Olid >2>>
 Your guards have seen Aztec spies running to and from the coast. Clearly [[things are happening|Tlaxcalans keep waiting]]!<br>
 <br>
 <</if>>
@@ -12560,8 +12572,9 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 :: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
 /* Creates some bookmarks to switch between pages */
 <div id="bookmarks">
-	<img id="home_bookmark_img" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
-	<img id="stat_bookmark_img" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
+	<img id="home_bookmark_img" class="tab" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
+	<img id="stat_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
+	<img id="god_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
 </div>
 
 <div id="rolePanelDynamic">
@@ -12646,19 +12659,13 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <<script>>
 	setTimeout(() => {
 		$("#home_bookmark_img").on('mousedown', function() {
-			$("#passagesCompletedHeader").show();
-			$("#passagesCompletedButtons").show();
-			$("#passageChevron").show();
-			$("#selectedPassageTextContainer").show();
+			$("#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").show();
+
 			
 			$("#info-stats").hide();
 		});
 		$("#stat_bookmark_img").on('mousedown', function() {
-			$("#passagesCompletedHeader").hide();
-			$("#passagesCompletedButtons").hide();
-			$("#passageChevron").hide();
-			$("#selectedPassageTextContainer").hide();
-	
+			$("#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").hide();
 			$("#info-stats").css("display", "flex");
 		});
 	}, 200);
@@ -12765,7 +12772,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 	/* Fill #chatmessages with $chatlog */
 	<<liveblock>>
-	$hammerCount
 	<div id="chatmessages">
 		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
 		<<print `
