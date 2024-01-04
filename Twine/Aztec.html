@@ -140,12 +140,6 @@ importScripts([
 		$(".macro-live").trigger(":liveupdateinternal");
 	});
 
-	$(document).on('DOMNodeInserted', function(e) { 
-		if($(e.target).hasClass("macro-live")){
-      		console.log(e.target)
-		}
- });
-
 	Macro.add(['liveblock', 'lb'], {
 		tags: null,
 		handler: function handler() {
@@ -204,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;if ndef $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;]&gt;&gt;
 	&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;] = 0&gt;&gt;
@@ -11431,17 +11425,24 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
 
+
 &lt;&lt;script&gt;&gt;
 	setTimeout(() =&gt; {
 		$(&quot;#home_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
-			$(&quot;#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer&quot;).show();
+			$(&quot;#info, #passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer&quot;).show();
 
-			
+			$(&quot;#godControl&quot;).hide();
 			$(&quot;#info-stats&quot;).hide();
 		});
 		$(&quot;#stat_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
 			$(&quot;#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer&quot;).hide();
 			$(&quot;#info-stats&quot;).css(&quot;display&quot;, &quot;flex&quot;);
+			$(&quot;#godControl&quot;).hide();
+		});
+		$(&quot;#god_bookmark_img&quot;).on(&#39;mousedown&#39;, function() {
+			$(&quot;#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer&quot;).hide();
+			$(&quot;#info-stats&quot;).hide();
+			$(&quot;#godControl&quot;).show();
 		});
 	}, 200);
 &lt;&lt;/script&gt;&gt;
@@ -11518,6 +11519,34 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;/div&gt;
 
 
+&lt;/div&gt;
+
+&lt;div id=&quot;godControl&quot;&gt;
+	Click on a passage name to teleport there:
+	&lt;br&gt;
+
+	&lt;&lt;print &#39;&lt;&lt;link &quot;Continue Where you left off&quot; $users[$userId][&quot;passage&quot;]&gt;&gt; &lt;&lt;/link&gt;&gt;&#39;&gt;&gt;
+
+	&lt;br&gt;
+
+	&lt;&lt;link &quot;Control: Variables&quot; &quot;Control: Variables&quot;&gt;&gt; &lt;&lt;/link&gt;&gt;
+	&lt;br&gt;
+
+	&lt;&lt;link &quot;Control: Variables (Users)&quot; &quot;Control: Variables (Users)&quot;&gt;&gt; &lt;&lt;/link&gt;&gt;
+	&lt;br&gt;
+
+	&lt;&lt;link &quot;Control: Variables (Factions)&quot; &quot;Control: Variables (Factions)&quot;&gt;&gt; &lt;&lt;/link&gt;&gt;
+	&lt;br&gt;
+
+	&lt;&lt;link &quot;Control: Change Passage&quot; &quot;Control: Change Passage&quot;&gt;&gt; &lt;&lt;/link&gt;&gt;
+	&lt;br&gt;
+
+	&lt;&lt;link &quot;Control: Lookup&quot; &quot;Control: Lookup&quot;&gt;&gt; &lt;&lt;/link&gt;&gt;
+	&lt;br&gt;
+
+	&lt;&lt;link &quot;Control: Full Reset&quot; &quot;Control: Full Reset&quot;&gt;&gt; &lt;&lt;/link&gt;&gt;
+	&lt;br&gt;
+	&lt;br&gt;
 &lt;/div&gt;
 
 /* Creates the chat */
