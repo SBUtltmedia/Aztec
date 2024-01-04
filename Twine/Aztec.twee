@@ -12656,17 +12656,24 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 </div>
 
+
 <<script>>
 	setTimeout(() => {
 		$("#home_bookmark_img").on('mousedown', function() {
-			$("#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").show();
+			$("#info, #passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").show();
 
-			
+			$("#godControl").hide();
 			$("#info-stats").hide();
 		});
 		$("#stat_bookmark_img").on('mousedown', function() {
 			$("#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").hide();
 			$("#info-stats").css("display", "flex");
+			$("#godControl").hide();
+		});
+		$("#god_bookmark_img").on('mousedown', function() {
+			$("#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").hide();
+			$("#info-stats").hide();
+			$("#godControl").show();
 		});
 	}, 200);
 <</script>>
@@ -12743,6 +12750,35 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 
+</div>
+
+/* For the god panel */
+<div id="godControl">
+	Click on a passage name to teleport there:
+	<br>
+
+	<<print '<<link "Continue Where you left off" $users[$userId]["passage"]>> <</link>>'>>
+
+	<br>
+
+	<<link "Control: Variables" "Control: Variables">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Users)" "Control: Variables (Users)">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Factions)" "Control: Variables (Factions)">> <</link>>
+	<br>
+
+	<<link "Control: Change Passage" "Control: Change Passage">> <</link>>
+	<br>
+
+	<<link "Control: Lookup" "Control: Lookup">> <</link>>
+	<br>
+
+	<<link "Control: Full Reset" "Control: Full Reset">> <</link>>
+	<br>
+	<br>
 </div>
 
 /* Creates the chat */
