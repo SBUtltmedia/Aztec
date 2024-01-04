@@ -12574,7 +12574,9 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="bookmarks">
 	<img id="home_bookmark_img" class="tab" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
 	<img id="stat_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
+	<<if $userId == 15>>
 	<img id="god_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
+	<</if>>
 </div>
 
 <div id="rolePanelDynamic">
