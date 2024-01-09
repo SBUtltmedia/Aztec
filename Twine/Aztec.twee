@@ -3772,6 +3772,22 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 	<</for>>
 <</liveblock>>
 
+:: Control: User Spoof [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+Select a role to play as
+<br>
+<<set _role = "God">>
+
+<<listbox "_role" autoselect>>
+		<<optionsfrom Object.keys($lookup)>>
+<</listbox>>
+<br>
+<<button "spoof" >>
+	<<goto $users[$lookup[_role]]["passage"]>>
+	<<set $userId = $lookup[_role]>>
+<</button>>
+
+<</liveblock>>
 
 :: Control: Full Reset {"position":"4275,375","size":"100,100"}
 WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
@@ -12732,6 +12748,38 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 
 
+</div>
+
+/* For the god panel */
+<div id="godControl">
+	Click on a passage name to teleport there:
+	<br>
+
+	<<print '<<link "Continue Where you left off" $users[$userId]["passage"]>> <</link>>'>>
+
+	<br>
+
+	<<link "Control: Variables" "Control: Variables">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Users)" "Control: Variables (Users)">> <</link>>
+	<br>
+
+	<<link "Control: Variables (Factions)" "Control: Variables (Factions)">> <</link>>
+	<br>
+
+	<<link "Control: Change Passage" "Control: Change Passage">> <</link>>
+	<br>
+
+	<<link "Control: Lookup" "Control: Lookup">> <</link>>
+	<br>
+
+	<<link "Control: Full Reset" "Control: Full Reset">> <</link>>
+	<br>
+
+	<<link "Control: User Spoof" "Control: User Spoof">> <</link>>
+	<br>
+	<br>
 </div>
 
 /* Creates the chat */
