@@ -9238,6 +9238,18 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 	})
 <</script>>
 
+
+<<if ndef $aztecsMissing>>
+	<<set $aztecsMissing = 0>>
+<</if>>
+<<if ndef $spaniardsMissing>>
+	<<set $spaniardsMissing = 0>>
+<</if>>
+<<if ndef $tlaxMissing>>
+	<<set $tlaxMissing = 0>>
+<</if>>
+<<set $totalMissing = $aztecsMissing + $spaniardsMissing + $tlaxMissing>>
+
 /* 
 List of valid roles and their info */
 <<set _roles = {
@@ -9513,7 +9525,7 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 /* Sometimes the icon doesn't appear, this is a sign variables haven't been initiazlized properly,
 specifically $Start in this case. */
 <<liveblock>>
-<<if $Start <=12>>
+<<if $Start <=12 - $totalMissing>>
 
 You must wait for all the team members to gather for gameplay to begin.<br>
 <br>

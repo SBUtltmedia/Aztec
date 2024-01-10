@@ -197,7 +197,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
 	&lt;&lt;set $incrementTest = 0&gt;&gt;
@@ -8429,6 +8429,18 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 	})
 &lt;&lt;/script&gt;&gt;
 
+
+&lt;&lt;if ndef $aztecsMissing&gt;&gt;
+	&lt;&lt;set $aztecsMissing = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $spaniardsMissing&gt;&gt;
+	&lt;&lt;set $spaniardsMissing = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $tlaxMissing&gt;&gt;
+	&lt;&lt;set $tlaxMissing = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;set $totalMissing = $aztecsMissing + $spaniardsMissing + $tlaxMissing&gt;&gt;
+
 /* 
 List of valid roles and their info */
 &lt;&lt;set _roles = {
@@ -8692,7 +8704,7 @@ The group has made a decision.  Continue to the next page to find out &lt;&lt;li
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="224" name="Quest Intro: The Aztec Legend of Quetzalcoatl" tags="" position="3125,100" size="100,100">/* Sometimes the icon doesn&#39;t appear, this is a sign variables haven&#39;t been initiazlized properly,
 specifically $Start in this case. */
 &lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Start &lt;=12&gt;&gt;
+&lt;&lt;if $Start &lt;=12 - $totalMissing&gt;&gt;
 
 You must wait for all the team members to gather for gameplay to begin.&lt;br&gt;
 &lt;br&gt;
@@ -11517,8 +11529,6 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 &lt;/div&gt;
 
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
-=======
 /* For the god panel */
 &lt;div id=&quot;godControl&quot;&gt;
 	Click on a passage name to teleport there:
@@ -11551,7 +11561,6 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 	&lt;br&gt;
 &lt;/div&gt;
 
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes
 /* Creates the chat */
 &lt;div id=&quot;chat&quot;&gt;
     /* Instantiate a chatlog if it doesnt already exist*/
