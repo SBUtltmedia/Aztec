@@ -4,6 +4,7 @@ var stateReceived = false;
 let lockInfo = {};
 var gameVars;
 var lastStats = [];
+var buffer = [];
 
 function init() {
     // $('#passages').html($('#passages').html().replace(/<br><br>/gm, ""));
@@ -61,6 +62,11 @@ function fade(el, destination) {
 
 $(document).on(':passagestart', (ev) => {
     init()
+    //fade($("#passages"), 1);
+})
+
+$(document).ready(() => {
+    console.log("readey")
     //fade($("#passages"), 1);
 })
 
@@ -347,7 +353,7 @@ function initTheyr(lockInfo) {
     socket.on('difference', (diff) => {
         console.log("updating sugarcube", diff);
         updateSugarCubeState(diff)
-
+        _.merge(buffer, diff)
         $(document).trigger(":liveupdate");
     })
 
@@ -358,6 +364,8 @@ function initTheyr(lockInfo) {
         $(document).trigger(":liveupdate");
     })
 }
+
+
 
     // Updates client's SugarCube State when state changes are received from the server
     function updateSugarCubeState(new_state) {
