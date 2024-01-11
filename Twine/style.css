@@ -889,7 +889,7 @@ textarea {
   height: 0;
 }
 
-#info-stats {
+#info-stats, #godControl{
   display: none;
   flex-direction: column;
   position: absolute;
