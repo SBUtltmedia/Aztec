@@ -3672,9 +3672,68 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 Only modify stats and passages if you are 100% sure what you are doing
 <br>
 
+	<<switch ($godParam)>>
+		<<case "Aztecs">>
+			Leader: <<textbox "$Aztec_Leader" $Aztec_Leader "Control: Variables (Users)">>
+		<<case "Tlaxcalans">>
+			Leader: <<textbox "$Span_Leader" $Span_Leader "Control: Variables (Users)">>
+		<<case "Spaniards">>
+			Leader: <<textbox "$Tlax_Leader" $Tlax_Leader "Control: Variables (Users)">>
+	<</switch>>
+
 	<<for _role, _userId range $lookup>> 
 		/* Goes through list of all Variables */
+		<<if $users[_userId]["faction"] == $godParam>>
+		<<set _userData = $users[_userId]>>
+		<<set _userName = _role>>
+		<br>
 
+		<<set _twineKey = `$lookup["${ _role}"]`>>
+		<<print `<<link _userName "Control: Variables (UserId)">> <<set $godParam = "`+_userId+`">><</link>>`>>
+		<br>
+		<<print `${_userName}'s id#`>>
+		<<if _userId == "notSeen" || _userId < 20>>
+			''`_role is not assigned to a real player`''
+		<</if>>
+		<br>
+		<<set _statVal = `$users[${_userId}]["passage"]`>>
+		Passage: <<textbox _statVal $users[_userId]["passage"] "Control: Variables (Users)" >>
+		<br>
+
+		LastSeen: <<print new Date(parseInt($users[_userId]["lastSeen"]))>>
+		<br>
+		<br>
+		<</if>>
+	<</for>>
+
+	<<set _passages = Story.lookup()>>
+	<<set _sidePassages = []>>
+	<<for _i, _p range _passages>>
+		<<set _sidePassages.push(_p.title)>>
+	<</for>>
+	<<listbox "_newSidePassage" autoselect>>
+		<<optionsfrom Object.values(_sidePassages)>>
+		
+	<</listbox>>
+
+	<<button Send>>
+		<<for _id,_data range $users>>
+			<<if _data["faction"] == $godParam>>
+				<<set $users[_id]["passage"] = _newSidePassage>>
+			<</if>>
+		<</for>>
+	<</button>>
+
+<</liveblock>>
+
+:: Control: Variables (UserId) [Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+Only modify stats and passages if you are 100% sure what you are doing
+<br>
+
+	<<set _userId = $godParam>>
+	<<set _role = $users[_userId]["role"]>>
+		/* Goes through list of all Variables */
 		<<set _userData = $users[_userId]>>
 		<<set _userName = _role>>
 		<br>
@@ -3734,7 +3793,12 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<br>
 		<br>
 		<</if>>
-	<</for>>
+		<br>
+		Spoof User: 
+		<<button "spoof" >>
+			<<goto $users[$lookup[_role]]["passage"]>>
+			<<set $userId = $lookup[_role]>>
+		<</button>>
 <</liveblock>>
 
 /* control panel for faction stats */
@@ -3743,13 +3807,14 @@ Only modify stats and passages if you are 100% sure what you are doing
 :: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 Only modify stats and passages if you aren't 100% sure what you are doing
-
+<br>
 	/* Goes through list of all factions */
 	<<for _factionId, _factionData range $factions>> 
 		/* Goes through list of all Variables */
 
 		<<set _factionName = _factionId>>
-		<<print _factionName>>
+		<<set _factionLink = `Control: ${_factionName}`>>
+		<<print `<<link _factionName "Control: Variables (Users)">> <<set $godParam = "`+_factionId+`">><</link>>`>>
 		<br>
 
 
@@ -3777,6 +3842,7 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<br>
 	<</for>>
 <</liveblock>>
+
 
 :: Control: User Spoof [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
@@ -9214,6 +9280,8 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 
 /* prevents $userId from interacting with multiplayer system */
 <<theyrException $userId>>
+<<theyrException $god>>
+<<theyrException $godParam>>
 <<theyrException $passageHistory>>
 <<script>>
 	const loc = location.search;
@@ -9261,6 +9329,11 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 <</if>>
 <<set $totalMissing = $aztecsMissing + $spaniardsMissing + $tlaxMissing>>
 
+<<if $userId == 15>>
+	<<set $god = true>>
+<<else>>
+	<<set $god = false>>
+<</if>>
 /* 
 List of valid roles and their info */
 <<set _roles = {
@@ -12602,8 +12675,8 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="bookmarks">
 	<img id="home_bookmark_img" class="tab" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
 	<img id="stat_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
-	<<if $userId == 15>>
-	<img id="god_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
+	<<if $god == true>>
+	<img id="god_bookmark_img" class="tab" src="Twine/images/Home/godBookmarker.svg" alt="Bookmark">
 	<</if>>
 </div>
 
@@ -12786,30 +12859,32 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="godControl">
 	Click on a passage name to teleport there:
 	<br>
-
+	<<if $userId != 15>>
+		<<button "Stop Spoofing">>
+			<<goto $users[15]["passage"]>>
+			<<set $userId = 15>>
+		<</button>>
+		<br>
+	<</if>>
 	<<link "Control: Variables" "Control: Variables">> <</link>>
 	<br>
 
-	<<link "Control: Variables (Users)" "Control: Variables (Users)">> <</link>>
-	<br>
 
 	<<link "Control: Variables (Factions)" "Control: Variables (Factions)">> <</link>>
 	<br>
 
-	<<link "Control: Change Passage" "Control: Change Passage">> <</link>>
-	<br>
 
 	<<link "Control: Lookup" "Control: Lookup">> <</link>>
 	<br>
 
-	<<link "Control: Full Reset" "Control: Full Reset">> <</link>>
+	<<link "Control: NUKE" "Control: Full Reset">> <</link>>
 	<br>
 
 	<<link "Control: Passage Teleport" "Passage Teleport">> <</link>>
 	<br>
 
-	<<link "Control: User Spoof" "Control: User Spoof">> <</link>>
-	<br>
+	/* <<link "Control: User Spoof" "Control: User Spoof">> <</link>>
+	<br> */
 	<br>
 </div>
 

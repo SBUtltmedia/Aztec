@@ -68,7 +68,7 @@ width: .1em;
 }
 
 button {
-background-color:rgb(65, 24, 6);;
+background-color:rgb(210, 210, 210);;
 outline: 1px solid slategrey;
 }
 
@@ -225,6 +225,10 @@ body :not(.playerList)
 
   .passage::-webkit-scrollbar {
   display: none;
+  }
+
+  .passage input[type="text"] {
+    min-width: 25px;
   }
 
   #info::-webkit-scrollbar {
@@ -896,6 +900,12 @@ textarea {
   left: 10%;
   top: 24%;
   width: 35rem;
+  overflow: auto;
+}
+
+#info-stats, #godControl::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 #info-stats #info-stats-faction-strength {
@@ -1091,6 +1101,10 @@ textarea {
 }
 
 #stat_bookmark_img {
+  object-fit: contain;
+}
+
+#god_bookmark_img {
   object-fit: contain;
 }
 
