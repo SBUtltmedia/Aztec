@@ -3669,6 +3669,12 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 :: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
+<<set _passages = Story.lookup()>>
+<<set _sidePassages = []>>
+<<for _i, _p range _passages>>
+	<<set _sidePassages.push(_p.title)>>
+<</for>>
+
 Only modify stats and passages if you are 100% sure what you are doing
 <br>
 
@@ -3691,13 +3697,21 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<<set _twineKey = `$lookup["${ _role}"]`>>
 		<<print `<<link _userName "Control: Variables (UserId)">> <<set $godParam = "`+_userId+`">><</link>>`>>
 		<br>
-		<<print `${_userName}'s id#`>>
+		<<print `${_userName}'s id#: ${_userId}`>>
+		
 		<<if _userId == "notSeen" || _userId < 20>>
 			''`_role is not assigned to a real player`''
 		<</if>>
 		<br>
-		<<set _statVal = `$users[${_userId}]["passage"]`>>
-		Passage: <<textbox _statVal $users[_userId]["passage"] "Control: Variables (Users)" >>
+		<<set _passage = $users[_userId]["passage"]>>
+		Passage: 
+		<<listbox "_passage">>
+			<<optionsfrom Object.values(_sidePassages)>>
+		<</listbox>>
+		<<button send>>
+			<<set $users[_userId]["passage"] = _passage>>
+		<</button>>
+
 		<br>
 
 		LastSeen: <<print new Date(parseInt($users[_userId]["lastSeen"]))>>
@@ -3706,23 +3720,27 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<</if>>
 	<</for>>
 
-	<<set _passages = Story.lookup()>>
-	<<set _sidePassages = []>>
-	<<for _i, _p range _passages>>
-		<<set _sidePassages.push(_p.title)>>
-	<</for>>
 	<<listbox "_newSidePassage" autoselect>>
 		<<optionsfrom Object.values(_sidePassages)>>
-		
 	<</listbox>>
-
-	<<button Send>>
+	<<if ndef _test>>
+	<<set _test = 1>>
+	<</if>>
+	<<if _test == 2>>
+	<<button confirm>>
 		<<for _id,_data range $users>>
 			<<if _data["faction"] == $godParam>>
 				<<set $users[_id]["passage"] = _newSidePassage>>
 			<</if>>
 		<</for>>
 	<</button>>
+	<</if>>
+	<<if _test == 1>>
+		<<button SendEveryone>>
+			<<set _test = 2>>
+			<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
+		<</button>>
+	<</if>>
 
 <</liveblock>>
 
@@ -3864,13 +3882,27 @@ Select a role to play as
 :: Control: Full Reset {"position":"4275,375","size":"100,100"}
 WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
 <br>
-<<button "Reset">>
-	<<script>>
+<<liveblock>>
+<<if ndef _test>>
+	<<set _test = 1>>
+	<</if>>
+	<<if _test == 2>>
+	<<button confirm>>
+		<<script>>
 		fullReset();
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,{type : 'DELETE'})
-	<</script>>
-	<<set $passageHistory = {}>>
-<</button>>
+		<</script>>
+		<<set $passageHistory = {}>>
+		<</button>>
+	<</if>>
+	<<if _test == 1>>
+		<<button Reset>>
+			<<set _test = 2>>
+			<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
+		<</button>>
+	<</if>>
+
+<</liveblock>>
 
 
 /* :: Control: Player Status {"position":"4275,375","size":"100,100"}
