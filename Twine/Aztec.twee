@@ -3235,26 +3235,26 @@ You need to assign points to your character to continue. <br>
 
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
-Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="Pochteca">><<set $A_Q_Heart="no">><</link>>? <br>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="Pochteca">><<set $A_Q_Heart="no">><<set $users[$userId]["world"]["Aztec_Tot_Play"] = $users[$userId]["world"]["Aztec_Tot_Play"] + 1>><</link>>? <br>
 <br>
 
 <<case "Tlaxcalans">>
-Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><</link>>?<br>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><<set $users[$userId]["world"]["Tlax_Tot_Play"] = $users[$userId]["world"]["Tlax_Tot_Play"] + 1>><</link>>?<br>
 <br>
 <</switch>>
 
 <<switch $users[$userId]["role"]>>
 <<case "Alvarado" OR "Garrido" OR "Olid">><br>
-Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><<set $users[$userId]["world"]["Span_Tot_Play"] = $users[$userId]["world"]["Span_Tot_Play"] + 1>><</link>>?<br>
 <br>
 <<case "Cortes">>
-Are you ready to <<link "begin your journey" "Cortes sets sail from Cuba">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><</link>>?<br>
+Are you ready to <<link "begin your journey" "Cortes sets sail from Cuba">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><<set $users[$userId]["world"]["Span_Tot_Play"] = $users[$userId]["world"]["Span_Tot_Play"] + 1>><</link>>?<br>
 <br>
 <<case "Marina">>
-Are you ready to <<link "begin your journey" "Marina hears gossip in the market">><<set $Start = $Start + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Marina hears gossip in the market">><<set $Start = $Start + 1>><<set $users[$userId]["world"]["Span_Tot_Play"] = $users[$userId]["world"]["Span_Tot_Play"] + 1>><</link>>?<br>
 <br>
 <<case "Aguilar">>
-Are you ready to <<link "begin your journey" "Aguilar overhears Maya gossip">><<set $Start = $Start + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Aguilar overhears Maya gossip">><<set $Start = $Start + 1>><<set $users[$userId]["world"]["Span_Tot_Play"] = $users[$userId]["world"]["Span_Tot_Play"] + 1>><</link>>?<br>
 <br>
 <</switch>>
 
@@ -4095,16 +4095,23 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 
 :: Cortes sets sail from Cuba [Done] {"position":"2200,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=12>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-You must wait for all the team members to gather for gameplay to begin.<br>
+<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+
+You must wait for enough players to gather to begin.<br>
 <br>
-<<print $Start>> players have joined the game.<br>
 
+<<print "Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
+<br>
+and <<print "Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+
+and <<print "Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-
-
 
 <<else>>
 <<audio "Gulls_and_waves__5min_" play>>
@@ -4408,11 +4415,21 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 
 :: Spaniards set sail from Cuba [Done] {"position":"2050,50","size":"100,100"}
 <<liveblock>>
-<<if $Start <=12>>
-You must wait for all the team members to gather for gameplay to begin.<br>
-<br>
-<<print $Start>> players have joined the game.<br>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
+<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+
+You must wait for enough players to gather to begin.<br>
+<br>
+
+<<print "Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
+<br>
+and <<print "Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+
+and <<print "Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 
@@ -9798,7 +9815,7 @@ You are waiting for Tlacaelel to input his decision.<br>
 <</liveblock>>
 
 
-:: The Library [Done] {"position":"3875,1275","size":"100,100"}
+:: 1 The Library [Done] {"position":"3875,1275","size":"100,100"}
 <<liveblock>>
 
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
