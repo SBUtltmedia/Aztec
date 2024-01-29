@@ -3291,13 +3291,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		/* &lt;&lt;set $users[$lookup[_role]][&quot;passage&quot;] = Object.keys(_tempPassage)[Object.keys(_tempPassage).length - 1]&gt;&gt; */
 	&lt;&lt;/button&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Passage Teleport" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-	&lt;&lt;if ndef $users[$userId][&quot;stats&quot;]&gt;&gt;
-		&lt;&lt;set $users[$userId][&quot;stats&quot;] = {
-			&quot;Strength&quot;: 0,
-			&quot;Wisdom&quot;: 0,
-			&quot;Loyalty&quot;: 0
-		}&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
+
 	Click on a passage name to teleport there:
 	&lt;br&gt;
 
@@ -3391,6 +3385,12 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 &lt;&lt;/liveblock&gt;&gt;
 
 /* control panel for users stats */</tw-passagedata><tw-passagedata pid="90" name="Control: Variables (Users)" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;set _passages = Story.lookup()&gt;&gt;
+&lt;&lt;set _sidePassages = []&gt;&gt;
+&lt;&lt;for _i, _p range _passages&gt;&gt;
+	&lt;&lt;set _sidePassages.push(_p.title)&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+
 Only modify stats and passages if you are 100% sure what you are doing
 &lt;br&gt;
 
@@ -3413,13 +3413,22 @@ Only modify stats and passages if you are 100% sure what you are doing
 		&lt;&lt;set _twineKey = `$lookup[&quot;${ _role}&quot;]`&gt;&gt;
 		&lt;&lt;print `&lt;&lt;link _userName &quot;Control: Variables (UserId)&quot;&gt;&gt; &lt;&lt;set $godParam = &quot;`+_userId+`&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;`&gt;&gt;
 		&lt;br&gt;
-		&lt;&lt;print `${_userName}&#39;s id#`&gt;&gt;
+		&lt;&lt;print `${_userName}&#39;s id#: ${_userId}`&gt;&gt;
+		
 		&lt;&lt;if _userId == &quot;notSeen&quot; || _userId &lt; 20&gt;&gt;
 			&#39;&#39;`_role is not assigned to a real player`&#39;&#39;
 		&lt;&lt;/if&gt;&gt;
 		&lt;br&gt;
-		&lt;&lt;set _statVal = `$users[${_userId}][&quot;passage&quot;]`&gt;&gt;
-		Passage: &lt;&lt;textbox _statVal $users[_userId][&quot;passage&quot;] &quot;Control: Variables (Users)&quot; &gt;&gt;
+		&lt;&lt;set _passage = $users[_userId][&quot;passage&quot;]&gt;&gt;
+		Passage: 
+		&lt;&lt;listbox &quot;_passage&quot;&gt;&gt;
+			&lt;&lt;optionsfrom Object.values(_sidePassages)&gt;&gt;
+		&lt;&lt;/listbox&gt;&gt;
+		&lt;&lt;print `&lt;&lt;button send&gt;&gt;
+			&lt;&lt;set $users[`+_userId+`][&quot;passage&quot;] = _passage&gt;&gt;
+		&lt;&lt;/button&gt;&gt;`&gt;&gt;
+
+
 		&lt;br&gt;
 
 		LastSeen: &lt;&lt;print new Date(parseInt($users[_userId][&quot;lastSeen&quot;]))&gt;&gt;
@@ -3428,23 +3437,27 @@ Only modify stats and passages if you are 100% sure what you are doing
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
 
-	&lt;&lt;set _passages = Story.lookup()&gt;&gt;
-	&lt;&lt;set _sidePassages = []&gt;&gt;
-	&lt;&lt;for _i, _p range _passages&gt;&gt;
-		&lt;&lt;set _sidePassages.push(_p.title)&gt;&gt;
-	&lt;&lt;/for&gt;&gt;
 	&lt;&lt;listbox &quot;_newSidePassage&quot; autoselect&gt;&gt;
 		&lt;&lt;optionsfrom Object.values(_sidePassages)&gt;&gt;
-		
 	&lt;&lt;/listbox&gt;&gt;
-
-	&lt;&lt;button Send&gt;&gt;
+	&lt;&lt;if ndef _test&gt;&gt;
+	&lt;&lt;set _test = 1&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if _test == 2&gt;&gt;
+	&lt;&lt;button confirm&gt;&gt;
 		&lt;&lt;for _id,_data range $users&gt;&gt;
 			&lt;&lt;if _data[&quot;faction&quot;] == $godParam&gt;&gt;
 				&lt;&lt;set $users[_id][&quot;passage&quot;] = _newSidePassage&gt;&gt;
 			&lt;&lt;/if&gt;&gt;
 		&lt;&lt;/for&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if _test == 1&gt;&gt;
+		&lt;&lt;button SendEveryone&gt;&gt;
+			&lt;&lt;set _test = 2&gt;&gt;
+			&lt;&lt;set $users[$userId][&quot;lastSeen&quot;]=_currentTime.getTime()&gt;&gt;  
+		&lt;&lt;/button&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="Control: Variables (UserId)" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Only modify stats and passages if you are 100% sure what you are doing
@@ -3572,13 +3585,27 @@ Select a role to play as
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="Control: Full Reset" tags="" position="4275,375" size="100,100">WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
 &lt;br&gt;
-&lt;&lt;button &quot;Reset&quot;&gt;&gt;
-	&lt;&lt;script&gt;&gt;
+&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef _test&gt;&gt;
+	&lt;&lt;set _test = 1&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if _test == 2&gt;&gt;
+	&lt;&lt;button confirm&gt;&gt;
+		&lt;&lt;script&gt;&gt;
 		fullReset();
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,{type : &#39;DELETE&#39;})
-	&lt;&lt;/script&gt;&gt;
-	&lt;&lt;set $passageHistory = {}&gt;&gt;
-&lt;&lt;/button&gt;&gt;
+		&lt;&lt;/script&gt;&gt;
+		&lt;&lt;set $passageHistory = {}&gt;&gt;
+		&lt;&lt;/button&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if _test == 1&gt;&gt;
+		&lt;&lt;button Reset&gt;&gt;
+			&lt;&lt;set _test = 2&gt;&gt;
+			&lt;&lt;set $users[$userId][&quot;lastSeen&quot;]=_currentTime.getTime()&gt;&gt;  
+		&lt;&lt;/button&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;/liveblock&gt;&gt;
 
 
 /* :: Control: Player Status {&quot;position&quot;:&quot;4275,375&quot;,&quot;size&quot;:&quot;100,100&quot;}
