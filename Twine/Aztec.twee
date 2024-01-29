@@ -3708,9 +3708,10 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<<listbox "_passage">>
 			<<optionsfrom Object.values(_sidePassages)>>
 		<</listbox>>
-		<<button send>>
-			<<set $users[_userId]["passage"] = _passage>>
-		<</button>>
+		<<print `<<button send>>
+			<<set $users[`+_userId+`]["passage"] = _passage>>
+		<</button>>`>>
+
 
 		<br>
 
