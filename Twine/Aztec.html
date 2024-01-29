@@ -3421,9 +3421,10 @@ Only modify stats and passages if you are 100% sure what you are doing
 		&lt;&lt;listbox &quot;_passage&quot;&gt;&gt;
 			&lt;&lt;optionsfrom Object.values(_sidePassages)&gt;&gt;
 		&lt;&lt;/listbox&gt;&gt;
-		&lt;&lt;button send&gt;&gt;
-			&lt;&lt;set $users[_userId][&quot;passage&quot;] = _passage&gt;&gt;
-		&lt;&lt;/button&gt;&gt;
+		&lt;&lt;print `&lt;&lt;button send&gt;&gt;
+			&lt;&lt;set $users[`+_userId+`][&quot;passage&quot;] = _passage&gt;&gt;
+		&lt;&lt;/button&gt;&gt;`&gt;&gt;
+
 
 		&lt;br&gt;
 
