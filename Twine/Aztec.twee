@@ -3553,13 +3553,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 :: Passage Teleport [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-	<<if ndef $users[$userId]["stats"]>>
-		<<set $users[$userId]["stats"] = {
-			"Strength": 0,
-			"Wisdom": 0,
-			"Loyalty": 0
-		}>>
-	<</if>>
+
 	Click on a passage name to teleport there:
 	<br>
 
