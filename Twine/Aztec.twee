@@ -9530,7 +9530,7 @@ they will be directed to this temp user */
 			"Strength" : 7,
 
 			} 
-			"Total": 
+			 
 		},
 	
 
@@ -9539,7 +9539,7 @@ they will be directed to this temp user */
 			"Strength" : 7,
 
 			}
-			"Total": 
+			
 		},
 
 		"Tlaxcalans": {"stats": {
@@ -9547,7 +9547,7 @@ they will be directed to this temp user */
 			"Strength" : 7,
 	
 			}
-			"Total": 
+			 
 		},
 	}>>
 <</if>>
