@@ -4134,7 +4134,7 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
 
 You must wait for enough players to gather to begin.<br>
 <br>
@@ -4453,7 +4453,7 @@ The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
 
 You must wait for enough players to gather to begin.<br>
 <br>
@@ -5768,7 +5768,7 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
 
 You must wait for enough players to gather to begin.<br>
 <br>
@@ -9692,7 +9692,7 @@ specifically $Start in this case. */
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
 
 You must wait for enough players to gather to begin.<br>
 <br>
@@ -9722,7 +9722,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 <<liveblock>>
 <<if $users[$userId]["role"] is "Pochteca">>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Pochteca, as a trader, you know the terrain well. It is up to you to lead your team in this quest.<br>
-<br>d
+<br>
 Do not hesitate in this journey, for you are not the only ones seeking this treasure. Your sworn enemies, the Tlaxcalans, have fought valiantly against you for many years and have resisted conquest. They would deny you the blessing of Quetzalcoatl to claim it for themselves, a feat which would surely fuel their warriors and steel them in their struggle against you.<br>
 <br>
 When you have read the following instructions and are ready to begin your quest, click the link below to enter the palace. <br>
@@ -10003,7 +10003,7 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebl
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
 
 You must wait for enough players to gather to begin.<br>
 <br>
