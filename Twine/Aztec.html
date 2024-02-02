@@ -585,11 +585,11 @@ The votes have been cast, click through to find out who your &lt;&lt;link &quot;
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;print &quot;Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
-and &lt;&lt;print &quot;Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
-
-and &lt;&lt;print &quot;Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
+and &lt;&lt;print &quot;_Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;br&gt;
+and &lt;&lt;print &quot;_Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -3009,26 +3009,25 @@ You need to assign points to your character to continue. &lt;br&gt;
 
 &lt;&lt;switch $users[$userId][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A=&quot;Pochteca&quot;&gt;&gt;&lt;&lt;set $A_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;world&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$userId][&quot;world&quot;][&quot;Aztec_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
-&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A=&quot;Pochteca&quot;&gt;&gt;&lt;&lt;set $A_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$userId][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
 
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest intro: The Tlaxcalan Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_T=&quot;Xicotencatl_Younger&quot;&gt;&gt;&lt;&lt;set $T_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;world&quot;][&quot;Tlax_Tot_Play&quot;] = $users[$userId][&quot;world&quot;][&quot;Tlax_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest intro: The Tlaxcalan Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_T=&quot;Xicotencatl_Younger&quot;&gt;&gt;&lt;&lt;set $T_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = $users[$userId][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Alvarado&quot; OR &quot;Garrido&quot; OR &quot;Olid&quot;&gt;&gt;&lt;br&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Cortes sets sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Cortes sets sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Marina&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Marina hears gossip in the market&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Marina hears gossip in the market&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Aguilar&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Aguilar overhears Maya gossip&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;world&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Aguilar overhears Maya gossip&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$userId][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
@@ -3814,12 +3813,11 @@ For now, you may [[continue on your journey|Spaniards Send a Letter]].&lt;br&gt;
 
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
-
-&lt;&lt;print &quot;Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
-and &lt;&lt;print &quot;Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
-
-and &lt;&lt;print &quot;Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
+and &lt;&lt;print &quot;_Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;br&gt;
+and &lt;&lt;print &quot;_Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -4102,17 +4100,14 @@ The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;b
 
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
-
-&lt;&lt;print &quot;Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
-and &lt;&lt;print &quot;Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
-
-and &lt;&lt;print &quot;Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
+and &lt;&lt;print &quot;_Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;br&gt;
+and &lt;&lt;print &quot;_Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
-
-
 &lt;&lt;else&gt;&gt;
 &lt;&lt;audio &quot;Gulls_and_waves__5min_&quot; play&gt;&gt;
 November 18th, 1519.  Just off the shore of Cuba. &lt;br&gt;
@@ -4322,9 +4317,14 @@ Now that your quest is complete, &lt;&lt;link &quot;you return home exhausted&qu
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Everyone Gathers for a Feast" tags="" position="2300,7300" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Feast &lt;=12&gt;&gt;
+
+&lt;&lt;set _AllPlayers = (setup.getTotalChoices(&quot;Span_Tot_Play&quot;)+(setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;))+(setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)))&gt;&gt;
+
+&lt;&lt;if $Feast &lt;= _AllPlayers&gt;&gt;
 It is rude to start eating before all the guests have arrived! You&#39;ll just have to wait, no matter how hungry you are!&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;print $Feast&gt;&gt; guests have arrived.  You need &lt;&lt;print ($Feast-_AllPlayers)&gt;&gt;
+
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 &lt;&lt;print $Feast&gt;&gt; guests have arrived.&lt;br&gt;
 &lt;br&gt;
@@ -5282,12 +5282,11 @@ You go to bed hopeful that you have [[read the situation correctly|Cholulans Att
 
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
-
-&lt;&lt;print &quot;Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
-and &lt;&lt;print &quot;Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
-
-and &lt;&lt;print &quot;Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
+and &lt;&lt;print &quot;_Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;br&gt;
+and &lt;&lt;print &quot;_Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -8715,24 +8714,34 @@ they will be directed to this temp user */
 	&lt;&lt;set $factions = {
 		&quot;Aztecs&quot;: {&quot;stats&quot;: {
 
-			&quot;Strength&quot; : 0,
+			&quot;Strength&quot; : 7,
 
-			}
+			}, 
+			&quot;Total&quot; : 
 		},
+	
 
 		&quot;Spaniards&quot;: {&quot;stats&quot;: {
 
-			&quot;Strength&quot; : 0,
+			&quot;Strength&quot; : 7,
 
 			}
 		},
 
 		&quot;Tlaxcalans&quot;: {&quot;stats&quot;: {
 
-			&quot;Strength&quot; : 0,
+			&quot;Strength&quot; : 7,
 	
 			}
 		},
+	}&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+/* Intialize world data */
+&lt;&lt;if ndef $world&gt;&gt;
+	&lt;&lt;set $world = {
+		&quot;TotalPlayers&quot;: 0,
+
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -8860,11 +8869,11 @@ specifically $Start in this case. */
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;print &quot;Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
-and &lt;&lt;print &quot;Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
+and &lt;&lt;print &quot;_Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
 
-and &lt;&lt;print &quot;Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
+and &lt;&lt;print &quot;_Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -9115,11 +9124,11 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn&#39;t Attack in P
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;print &quot;Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
-and &lt;&lt;print &quot;Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
-
-and &lt;&lt;print &quot;Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
+and &lt;&lt;print &quot;_Aztec_Tot_Play&quot;&gt;&gt; Aztec players have joined the game. You must have at least 3 active players.&lt;br&gt;
+&lt;br&gt;
+and &lt;&lt;print &quot;_Tlax_Tot_Play&quot;&gt;&gt; Tlaxcalan players have joined the game. You must have at least 2 active players.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
