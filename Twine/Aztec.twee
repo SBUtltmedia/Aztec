@@ -3247,22 +3247,22 @@ You need to assign points to your character to continue. <br>
 Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="Pochteca">><<set $A_Q_Heart="no">><<set $users[$userId]["choices"]["Aztec_Tot_Play"] = $users[$userId]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
 
 <<case "Tlaxcalans">>
-Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><<set $users[$userId]["choices"]["Tlax_Tot_Play"] = $users[$userId]["choices"]["Tlax_Tot_Play"] + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><<set $users[$userId]["choices"]["Tlax_Tot_Play"] = $users[$userId]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <</switch>>
 
 <<switch $users[$userId]["role"]>>
 <<case "Alvarado" OR "Garrido" OR "Olid">><br>
-Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <<case "Cortes">>
-Are you ready to <<link "begin your journey" "Cortes sets sail from Cuba">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Cortes sets sail from Cuba">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <<case "Marina">>
-Are you ready to <<link "begin your journey" "Marina hears gossip in the market">><<set $Start = $Start + 1>><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Marina hears gossip in the market">><<set $Start = $Start + 1>><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <<case "Aguilar">>
-Are you ready to <<link "begin your journey" "Aguilar overhears Maya gossip">><<set $Start = $Start + 1>><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] + 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Aguilar overhears Maya gossip">><<set $Start = $Start + 1>><<set $users[$userId]["choices"]["Span_Tot_Play"] = $users[$userId]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <</switch>>
 
