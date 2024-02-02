@@ -4709,10 +4709,11 @@ Now that your quest is complete, <<link "you return home exhausted" "Tlaxcalans 
 
 <<set _AllPlayers = (setup.getTotalChoices("Span_Tot_Play")+(setup.getTotalChoices("Aztec_Tot_Play"))+(setup.getTotalChoices("Tlax_Tot_Play")))>>
 
-<<if $Feast <= _AllPlayers>>
+<<if $Feast < _AllPlayers>>
 It is rude to start eating before all the guests have arrived! You'll just have to wait, no matter how hungry you are!<br>
 <br>
-<<print $Feast>> guests have arrived.  You need <<print (_AllPlayers-$Feast)>> more.
+<<print $Feast>> guests have arrived.  You need <<print (_AllPlayers-$Feast)>> more. <br>
+<br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 <<print $Feast>> guests have arrived.<br>
