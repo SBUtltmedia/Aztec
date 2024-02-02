@@ -4712,7 +4712,7 @@ Now that your quest is complete, <<link "you return home exhausted" "Tlaxcalans 
 <<if $Feast <= _AllPlayers>>
 It is rude to start eating before all the guests have arrived! You'll just have to wait, no matter how hungry you are!<br>
 <br>
-<<print $Feast>> guests have arrived.  You need <<print ($Feast-_AllPlayers)>>
+<<print $Feast>> guests have arrived.  You need <<print (_AllPlayers-$Feast)>> more.
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 <<print $Feast>> guests have arrived.<br>
