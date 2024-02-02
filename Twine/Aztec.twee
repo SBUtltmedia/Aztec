@@ -575,7 +575,7 @@ The votes have been cast, click through to find out who your <<link "next leader
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-<<if _Span_Tot_Play <=2 and _Aztec_Tot_Play <=2 and _Tlax_Tot_Play <=1>>
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
 
 You must wait for enough players to gather to begin.<br>
 <br>
