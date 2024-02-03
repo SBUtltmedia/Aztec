@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;if ndef $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;]&gt;&gt;
 	&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;] = 0&gt;&gt;
@@ -5753,12 +5753,12 @@ You must wait until all the Spaniards have decided where their loyalties lie.&lt
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;else&gt;&gt;
-&lt;&lt;if $Mut_Cor &gt;=2&gt;&gt;
+&lt;&lt;else&lt;&lt;if _Mutiny_Voted &gt; (_Span_Tot_Play - 2)&gt;&gt;&gt;&gt;
+&lt;&lt;if _Mut_Cor &gt;= _Mut_Olid&gt;&gt;
 You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won&#39;t come to [[regret your decision|Spaniards learn their leader beached the ships]].&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Mut_Olid &gt;2&gt;&gt;
+&lt;&lt;elseif _Mut_Olid &gt; _Mut_Cor&gt;&gt;
 You have voted to mutiny! Cortés is livid at the turn of events, while Olid seems giddy. You wonder if Cortes will &lt;&lt;link &quot;part ways with the crew or concede to Olid&#39;s authority&quot; &quot;Spaniards learn their leader beached the ships&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt; 
 &lt;&lt;/if&gt;&gt;
