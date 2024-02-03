@@ -582,9 +582,9 @@ You must wait for enough players to gather to begin.<br>
 
 <<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -4140,9 +4140,9 @@ You must wait for enough players to gather to begin.<br>
 <br>
 <<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -4459,9 +4459,9 @@ You must wait for enough players to gather to begin.<br>
 <br>
 <<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -5774,9 +5774,9 @@ You must wait for enough players to gather to begin.<br>
 <br>
 <<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -6902,13 +6902,16 @@ You will [[continue to observe these developments closely|Tlaxcalans observe the
 
 :: On the Causeway {"position":"2300,6375","size":"100,100"}
 <<liveblock>>
-<<if $Causeway <=12>>
+<<set _AllPlayers = (setup.getTotalChoices("Span_Tot_Play")+(setup.getTotalChoices("Aztec_Tot_Play"))+(setup.getTotalChoices("Tlax_Tot_Play")))>>
+
+<<if $Causeway < _AllPlayers>>
 You must wait for all players to gather before you can continue.<br>
 <br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<<print $Causeway>> players have arrived on the Causeway.<br>
+<<print $Causeway>> players have arrived. You must wait for <<print (_AllPlayers - $Causeway)>> more.<br>
 <br>
-S
+
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
 <<else>>
 <<switch $users[$userId]["faction"]>>
 <<case "Aztecs">>
@@ -9699,9 +9702,9 @@ You must wait for enough players to gather to begin.<br>
 
 <<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
-
-and <<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -10010,9 +10013,9 @@ You must wait for enough players to gather to begin.<br>
 
 <<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
 <br>
-and <<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
