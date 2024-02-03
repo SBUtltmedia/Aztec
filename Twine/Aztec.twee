@@ -6302,7 +6302,7 @@ You must wait until all the Spaniards have decided where their loyalties lie.<br
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<else<<if _Mutiny_Voted > (_Span_Tot_Play - 2)>>>>
+<<elseif _Mutiny_Voted > (_Span_Tot_Play - 2)>>
 <<if _Mut_Cor >= _Mut_Olid>>
 You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards learn their leader beached the ships]].<br>
 <br>
