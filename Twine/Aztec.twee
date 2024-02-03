@@ -6265,11 +6265,11 @@ You must wait until all the Spaniards have decided where their loyalties lie.<br
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 
-<<else>>
-<<if $Mut_Cor >=2>>
+<<elseif _Mutiny_Voted >= (_Span_Tot_Play - 2)>>
+<<if _Mut_Cor >= _Mut_Olid>>
 It seems you have retained the faith of your men…for now. Perhaps you were a little impulsive when you decided to beach the ships. You hope that doesn't come back to hurt you later, but you cannot let that distract you. You wait for the rest of the crew to learn their fate as you [[begin planning your next steps|Spaniards learn their leader beached the ships]].<br>
 <br>
-<<elseif $Mut_Olid >2>>
+<<elseif _Mut_Olid > _Mut_Cor>>
 It seems your efforts have failed. There has been a mutiny! Olid has taken control of the men. You choke back your anger and take some small satisfaction in the horror that surely awaits the others when they <<link "learn what you've done" "Spaniards learn their leader beached the ships">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
 <</if>>
@@ -6283,12 +6283,11 @@ You must wait until all the Spaniards have decided where their loyalties lie. <b
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-
-<<else>>
-<<if $Mut_Cor >=2>>
+<<elseif _Mutiny_Voted >= (_Span_Tot_Play - 2)>>
+<<if _Mut_Cor >= _Mut_Olid>>
 Your efforts have failed and the men have remained loyal to Cortés. You curse your luck and await your next opportunity. Surely the others will see him for [[the fool he is eventually|Spaniards learn their leader beached the ships]].<br>
 <br>
-<<elseif $Mut_Olid >2>>
+<<elseif _Mut_Olid > _Mut_Cor>>
 You have convinced the men to mutiny! You watch in glee as Cortés learns the news and the look on his face is everything you hoped for. You begin plotting your next steps, eager to claim the rewards that <<link "await you in Tenochtitlán" "Spaniards learn their leader beached the ships">><<set $Span_Leader="Olid">><</link>>.<br>
 <br> 
 <</if>>
@@ -6302,7 +6301,7 @@ You must wait until all the Spaniards have decided where their loyalties lie.<br
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<elseif _Mutiny_Voted > (_Span_Tot_Play - 2)>>
+<<elseif _Mutiny_Voted >= (_Span_Tot_Play - 2)>>
 <<if _Mut_Cor >= _Mut_Olid>>
 You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards learn their leader beached the ships]].<br>
 <br>
