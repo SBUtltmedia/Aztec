@@ -6244,18 +6244,23 @@ Option 2: Return to Tlaxcala.
 
 :: Mutiny Outcome {"position":"1925,1875","size":"100,100"}
 <<liveblock>>
+
 <<set _Mutiny_Voted = setup.getTotalChoices("Mutiny_Voted")>>
+<<set _Mut_Cor = setup.getTotalChoices("Mut_Cor")>>
+<<set _Mut_Olid = setup.getTotalChoices ("Mut_Olid")>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
-<<if _Mutiny_Voted <4>>
+<<if _Mutiny_Voted < (_Span_Tot_Play - 2)>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
+<<print _Mutiny_Voted>> players have voted. You need <<print (_Mutiny_Voted - (_Span_Tot_Play-2))>> more players to vote.<br>
+<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print _Mutiny_Voted>> votes have been cast.<br>
-<br>
 
-<<elseif _Mutiny_Voted >=4>>
+<<else>>
 <<if $Mut_Cor >=2>>
 It seems you have retained the faith of your men…for now. Perhaps you were a little impulsive when you decided to beach the ships. You hope that doesn't come back to hurt you later, but you cannot let that distract you. You wait for the rest of the crew to learn their fate as you [[begin planning your next steps|Spaniards learn their leader beached the ships]].<br>
 <br>
@@ -6266,14 +6271,15 @@ It seems your efforts have failed. There has been a mutiny! Olid has taken contr
 <</if>>
 
 <<case "Olid">>
-<<if _Mutiny_Voted <4>>
+<<if _Mutiny_Voted < (_Span_Tot_Play - 2)>>
 You must wait until all the Spaniards have decided where their loyalties lie. <br>
+<br>
+<<print _Mutiny_Voted>> players have voted. You need <<print (_Mutiny_Voted - (_Span_Tot_Play-2))>> more players to vote.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print _Mutiny_Voted>> votes have been cast.
 
-<<elseif _Mutiny_Voted >=4>>
+<<else>>
 <<if $Mut_Cor >=2>>
 Your efforts have failed and the men have remained loyal to Cortés. You curse your luck and await your next opportunity. Surely the others will see him for [[the fool he is eventually|Spaniards learn their leader beached the ships]].<br>
 <br>
@@ -6284,13 +6290,14 @@ You have convinced the men to mutiny! You watch in glee as Cortés learns the ne
 <</if>>
 
 <<case "Marina" or "Aguilar" or "Garrido" or "Alvarado">>
-<<if _Mutiny_Voted <4>>
+<<if _Mutiny_Voted < (_Span_Tot_Play - 2)>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
+<<print _Mutiny_Voted>> players have voted. You need <<print (_Mutiny_Voted - (_Span_Tot_Play-2))>> more players to vote.<br>
+<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print _Mutiny_Voted>>votes have been cast.
-<<elseif _Mutiny_Voted >=4>>
+<<else>>
 <<if $Mut_Cor >=2>>
 You have remained loyal to Cortés. Despite his flaws, your team has chosen to leave him in charge. You hope you won't come to [[regret your decision|Spaniards learn their leader beached the ships]].<br>
 <br>
@@ -6308,19 +6315,22 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 
 :: Spaniards decide whether to mutiny {"position":"1775,1750","size":"100,100"}
 <<liveblock>>
-<<if ndef $Mut_Cor>>
-<<set $Mut_Cor=0 >>
+<<if ndef $users[$userId]["choices"]["Mut_Cor"]>>
+<<set $users[$userId]["choices"]["Mut_Cor"]=0 >>
+<</if>>
+<<if ndef $users[$userId]["choices"]["Mut_Olid"]>>
+<<set $users[$userId]["choices"]["Mut_Olid"]=0 >>
 <</if>>
 <<if ndef $users[$userId]["choices"]["Mutiny_Voted"]>>
 <<set $users[$userId]["choices"]["Mutiny_Voted"]=0 >>
 <</if>>
-
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?<br>
 <br>
 
-Vote <<link "Cortes" "Mutiny Outcome">><<set $Mut_Cor = $Mut_Cor + 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>><br>
+Vote <<link "Cortes" "Mutiny Outcome">><<set $users[$userId]["choices"]["Mut_Cor"] = $users[$userId]["choices"]["Mut_Cor"] = 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 1>><</link>><br>
 <br>
-Vote <<link "Olid" "Mutiny Outcome">><<set $Mut_Olid = $Mut_Olid + 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] + 1>><</link>>
+Vote <<link "Olid" "Mutiny Outcome">><<set $users[$userId]["choices"]["Mut_Olid"] = $users[$userId]["choices"]["Mut_Olid"] = 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 1>><</link>><br>
+<br>
 
 
 <</liveblock>>
