@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;if ndef $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;]&gt;&gt;
 	&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;] = 0&gt;&gt;
@@ -5700,6 +5700,11 @@ Option 2: Return to Tlaxcala.
 &lt;&lt;set _Mut_Cor = setup.getTotalChoices(&quot;Mut_Cor&quot;)&gt;&gt;
 &lt;&lt;set _Mut_Olid = setup.getTotalChoices (&quot;Mut_Olid&quot;)&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
+Total Votes cast: &lt;&lt;print _Mutiny_Voted&gt;&gt;&lt;br&gt;
+Votes for Cortes: &lt;&lt;print _Mut_Cor&gt;&gt;&lt;br&gt;
+Votes for Olid: &lt;&lt;print _Mut_Olid&gt;&gt;&lt;br&gt;
+Total Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;br&gt;
 
 &lt;&lt;switch $users[$userId][&quot;role&quot;]&gt;&gt;
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
