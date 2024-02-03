@@ -6249,6 +6249,11 @@ Option 2: Return to Tlaxcala.
 <<set _Mut_Cor = setup.getTotalChoices("Mut_Cor")>>
 <<set _Mut_Olid = setup.getTotalChoices ("Mut_Olid")>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+Total Votes cast: <<print _Mutiny_Voted>><br>
+Votes for Cortes: <<print _Mut_Cor>><br>
+Votes for Olid: <<print _Mut_Olid>><br>
+Total Players in Game: <<print _Span_Tot_Play>><br>
+<br>
 
 <<switch $users[$userId]["role"]>>
 <<case "Cortes">>
