@@ -6260,7 +6260,7 @@ Total Players in Game: <<print _Span_Tot_Play>><br>
 <<if _Mutiny_Voted < (_Span_Tot_Play - 2)>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
-<<print _Mutiny_Voted>> players have voted. You need <<print (_Mutiny_Voted - (_Span_Tot_Play-2))>> more players to vote.<br>
+<<print _Mutiny_Voted>> players have voted. You need <<print ((_Span_Tot_Play-2)-_Mutiny_Voted)>> more players to vote.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -6279,7 +6279,7 @@ It seems your efforts have failed. There has been a mutiny! Olid has taken contr
 <<if _Mutiny_Voted < (_Span_Tot_Play - 2)>>
 You must wait until all the Spaniards have decided where their loyalties lie. <br>
 <br>
-<<print _Mutiny_Voted>> players have voted. You need <<print (_Mutiny_Voted - (_Span_Tot_Play-2))>> more players to vote.<br>
+<<print _Mutiny_Voted>> players have voted. You need <<print ((_Span_Tot_Play-2)-_Mutiny_Voted)>> more players to vote.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
@@ -6297,7 +6297,7 @@ You have convinced the men to mutiny! You watch in glee as Cortés learns the ne
 <<if _Mutiny_Voted < (_Span_Tot_Play - 2)>>
 You must wait until all the Spaniards have decided where their loyalties lie.<br>
 <br> 
-<<print _Mutiny_Voted>> players have voted. You need <<print (_Mutiny_Voted - (_Span_Tot_Play-2))>> more players to vote.<br>
+<<print _Mutiny_Voted>> players have voted. You need <<print ((_Span_Tot_Play-2)-_Mutiny_Voted)>> more players to vote.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
