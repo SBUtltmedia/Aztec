@@ -6319,9 +6319,15 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 
 :: Spaniards decide whether to mutiny {"position":"1775,1750","size":"100,100"}
 <<liveblock>>
+
+<<if ndef $users[$userId]["choices"]["Mut_Cor"]>>
 <<set $users[$userId]["choices"]["Mut_Cor"]=0 >>
+<</if>>
+<<if ndef $users[$userId]["choices"]["Mut_Olid"]>>
 <<set $users[$userId]["choices"]["Mut_Olid"]=0 >>
-<<set $users[$userId]["choices"]["Mutiny_Voted"]=0 >>
+<</if>>
+<<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 0>>
+
 
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?<br>
 <br>
