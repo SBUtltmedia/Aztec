@@ -198,7 +198,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;p&gt; hey &lt;/p&gt;
 &lt;&lt;if ndef $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;]&gt;&gt;
 	&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;incrementTest&quot;] = 0&gt;&gt;
@@ -5711,7 +5711,7 @@ Total Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;&lt;if _Mutiny_Voted &lt; (_Span_Tot_Play - 2)&gt;&gt;
 You must wait until all the Spaniards have decided where their loyalties lie.&lt;br&gt;
 &lt;br&gt; 
-&lt;&lt;print _Mutiny_Voted&gt;&gt; players have voted. You need &lt;&lt;print (_Mutiny_Voted - (_Span_Tot_Play-2))&gt;&gt; more players to vote.&lt;br&gt;
+&lt;&lt;print _Mutiny_Voted&gt;&gt; players have voted. You need &lt;&lt;print ((_Span_Tot_Play-2)-_Mutiny_Voted)&gt;&gt; more players to vote.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -5730,7 +5730,7 @@ It seems your efforts have failed. There has been a mutiny! Olid has taken contr
 &lt;&lt;if _Mutiny_Voted &lt; (_Span_Tot_Play - 2)&gt;&gt;
 You must wait until all the Spaniards have decided where their loyalties lie. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;print _Mutiny_Voted&gt;&gt; players have voted. You need &lt;&lt;print (_Mutiny_Voted - (_Span_Tot_Play-2))&gt;&gt; more players to vote.&lt;br&gt;
+&lt;&lt;print _Mutiny_Voted&gt;&gt; players have voted. You need &lt;&lt;print ((_Span_Tot_Play-2)-_Mutiny_Voted)&gt;&gt; more players to vote.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -5748,7 +5748,7 @@ You have convinced the men to mutiny! You watch in glee as Cortés learns the ne
 &lt;&lt;if _Mutiny_Voted &lt; (_Span_Tot_Play - 2)&gt;&gt;
 You must wait until all the Spaniards have decided where their loyalties lie.&lt;br&gt;
 &lt;br&gt; 
-&lt;&lt;print _Mutiny_Voted&gt;&gt; players have voted. You need &lt;&lt;print (_Mutiny_Voted - (_Span_Tot_Play-2))&gt;&gt; more players to vote.&lt;br&gt;
+&lt;&lt;print _Mutiny_Voted&gt;&gt; players have voted. You need &lt;&lt;print ((_Span_Tot_Play-2)-_Mutiny_Voted)&gt;&gt; more players to vote.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
