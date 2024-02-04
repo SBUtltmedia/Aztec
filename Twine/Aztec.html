@@ -5773,15 +5773,17 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 &lt;&lt;if ndef $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;]&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = 0&gt;&gt;
+&lt;&lt;if ndef $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;]&gt;&gt;
+&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;]=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?&lt;br&gt;
 &lt;br&gt;
 
-Vote &lt;&lt;link &quot;Cortes&quot; &quot;Mutiny Outcome&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mut_Cor&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mut_Cor&quot;] = 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Vote &lt;&lt;link &quot;Cortes&quot; &quot;Mutiny Outcome&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mut_Cor&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mut_Cor&quot;] = 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;] = 0&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Vote &lt;&lt;link &quot;Olid&quot; &quot;Mutiny Outcome&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;] = 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Vote &lt;&lt;link &quot;Olid&quot; &quot;Mutiny Outcome&quot;&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mut_Olid&quot;] = 1&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mut_Cor&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mut_Cor&quot;] = 0&gt;&gt;&lt;&lt;set $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = $users[$userId][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 

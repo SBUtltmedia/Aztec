@@ -6326,15 +6326,17 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 <<if ndef $users[$userId]["choices"]["Mut_Olid"]>>
 <<set $users[$userId]["choices"]["Mut_Olid"]=0 >>
 <</if>>
-<<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 0>>
+<<if ndef $users[$userId]["choices"]["Mutiny_Voted"]>>
+<<set $users[$userId]["choices"]["Mutiny_Voted"]=0 >>
+<</if>>
 
 
 You have heard what Cortés and Olid had to say and now it is time to decide: which do you trust to lead you to glory?<br>
 <br>
 
-Vote <<link "Cortes" "Mutiny Outcome">><<set $users[$userId]["choices"]["Mut_Cor"] = $users[$userId]["choices"]["Mut_Cor"] = 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 1>><</link>><br>
+Vote <<link "Cortes" "Mutiny Outcome">><<set $users[$userId]["choices"]["Mut_Cor"] = $users[$userId]["choices"]["Mut_Cor"] = 1>><<set $users[$userId]["choices"]["Mut_Olid"] = $users[$userId]["choices"]["Mut_Olid"] = 0>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 1>><</link>><br>
 <br>
-Vote <<link "Olid" "Mutiny Outcome">><<set $users[$userId]["choices"]["Mut_Olid"] = $users[$userId]["choices"]["Mut_Olid"] = 1>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 1>><</link>><br>
+Vote <<link "Olid" "Mutiny Outcome">><<set $users[$userId]["choices"]["Mut_Olid"] = $users[$userId]["choices"]["Mut_Olid"] = 1>><<set $users[$userId]["choices"]["Mut_Cor"] = $users[$userId]["choices"]["Mut_Cor"] = 0>><<set $users[$userId]["choices"]["Mutiny_Voted"] = $users[$userId]["choices"]["Mutiny_Voted"] = 1>><</link>><br>
 <br>
 
 
