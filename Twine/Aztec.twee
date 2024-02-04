@@ -7725,6 +7725,8 @@ You continue inland, [[following behind|Spaniards Meet Marina]] the native messe
 
 :: Spaniards learn their leader beached the ships {"position":"1925,2025","size":"100,100"}
 <<liveblock>>
+Your current leader is: <<print $Span_Leader>>. <br>
+<br>
 <<if ndef $TL_Attacks or $TL_Attacks eq "">>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
