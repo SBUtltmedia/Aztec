@@ -8,7 +8,8 @@ var buffer = [];
 
 function init() {
     // $('#passages').html($('#passages').html().replace(/<br><br>/gm, ""));
-    console.log("initing")
+
+    console.log(Window.SugarCubeState.passage);
     $("body").addClass("blur")
     $("body").one("click", () => {
         $("body").removeClass("blur")
@@ -358,7 +359,7 @@ function initTheyr(lockInfo) {
     })
 
     socket.on('reset', (diff) => {
-        console.log("updating sugarcube", diff);
+        console.log("reseting sugarcube", diff);
         resetSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
@@ -376,8 +377,9 @@ function initTheyr(lockInfo) {
 
     // Updates client's SugarCube State when state changes are received from the server
     function resetSugarCubeState(new_state) {
+        for (var member in Window.SugarCubeState.variables) delete Window.SugarCubeState.variables[member];
         Window.SugarCubeState.variables =  new_state
-     
+        console.log(new_state, Window.SugarCubeState.variables)
          $(document).trigger(":liveupdate");
      }
 

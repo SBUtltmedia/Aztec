@@ -22,6 +22,7 @@ class Webstack {
 		this.port=serverConf.port;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
+		app.use("/audio", express.static('./static/audio'));
 
 		//serverStore stores the current game state and is backed up via gitApiIO because Heroku is ephemeral 
 		this.serverStore = Redux.createStore(this.reducer);
@@ -75,27 +76,27 @@ class Webstack {
 	// 	};
 
 		shutdown(signal) {
-			return (err) => {
-			 console.log('shutting down', signal)
+		return (err) => {
+			console.log('shutting down', signal)
 
-			
-			
-			this.updateGit(this.isTest).then(
-				() => {
-					console.log(err)
-					process.exit(err ? 1 : 0);
-				}).catch(err=>{
-					console.log(err)
-					process.exit()
-				})
-			 }
+		
+		
+		this.updateGit(this.isTest).then(
+			() => {
+				console.log(err)
+				process.exit(err ? 1 : 0);
+			}).catch(err=>{
+				console.log(err)
+				process.exit()
+			})
 			}
+		}
 
-			updateGit(isTest){
-				let content = {...this.serverStore.getState()};
-				return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)),isTest)
+		updateGit(isTest, ){
+			let content = {...this.serverStore.getState()};
+			return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)),isTest)
 
-			}
+		}
 	  
 	//Controller for serverStore
 	reducer(state, action) {
@@ -154,15 +155,15 @@ class Webstack {
 
 			socket.on('fullReset', ()=>{
 				console.log("reset start 2")
-				app.post('/updateGit',(req, res) => {
-					res.send({})
-				  })
 				this.serverStore.dispatch({
 					type: 'REPLACE',
 					payload: initVars
 				})
-				socket.emit('reset', this.serverStore.getState())
-				socket.broadcast.emit('reset', this.serverStore.getState())
+				app.post('/updateGit',(req, res) => {
+					res.send({})
+				  })
+				socket.emit('reset',{})
+				socket.broadcast.emit('reset', {})
 			})
 
 		});
