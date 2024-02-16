@@ -27,6 +27,7 @@ animation-fill-mode: forwards;
 animation-timing-function: ease-in-out; */
 filter: blur(1.5rem);
 }
+
 #lastSeen_Box{
 border: 1px solid black;
 position: absolute;
@@ -55,6 +56,12 @@ text-decoration: underline;
 color: rgb(65, 24, 6);
 }
 
+button.link-internal,a {
+  font-size: 3rem;
+  text-decoration: underline;
+  color: rgb(193, 193, 193);
+}
+
 .link-internal:hover,a:hover {
 color: rgb(75, 34, 16);
 }
@@ -68,7 +75,7 @@ width: .1em;
 }
 
 button {
-background-color:rgb(210, 210, 210);;
+background-color:rgb(65, 24, 6);
 outline: 1px solid slategrey;
 }
 
@@ -484,7 +491,7 @@ font-size: 12px;
 color: #fff;
 }
 
-.home, #passage-home{
+.home, .control, #passage-home{
 position: absolute!important;
 left: 0!important;
 top: 0!important;
@@ -894,7 +901,7 @@ textarea {
 }
 
 #info-stats, #godControl{
-  display: none;
+  display: flex;
   flex-direction: column;
   position: absolute;
   left: 10%;
@@ -903,7 +910,7 @@ textarea {
   overflow: auto;
 }
 
-#info-stats, #godControl::-webkit-scrollbar {
+#info-stats::-webkit-scrollbar, #godControl::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
