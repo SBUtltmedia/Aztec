@@ -144,6 +144,9 @@
         html: role,
       }).on("click", function () {
         let pickedRole = $(this).data("role");
+        if(pickedRole == "God"){
+          index = "god"
+        }
         location.assign(
             `/?test=true&id=${index}&nick=${pickedRole}&username=test&discriminator=1234`
           );

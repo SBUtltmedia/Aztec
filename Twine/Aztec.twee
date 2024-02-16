@@ -84,24 +84,6 @@ importScripts([
 			}
 		}
 	});
-
-	//creates a historyButton div with a button to open/close it
-	//arg[0] = button text
-	//arg[1] = historyButton div text
-	//arg[2] = historyButton div id
-	Macro.add('historyButton', {
-    handler: function() {
-        let id = this.args[2];
-		let wikiText = this.args[1].replaceAll(/\/\*[^\/]*\//gm, '');
-		wikiText = wikiText.replaceAll( /<<[^>>]*>>/ig, '');
-		wikiText = wikiText.replaceAll( /<[^br>]*>/ig, '');
-	
-        var output = `<<link "${this.args[0]}">><<toggleclass "#${id}" "hide">><</link>>
-				 	<div id="${id}" class="hide">"${wikiText}"</div>`;
-					
-        $(this.output).wiki(output);
-    }
-	});
 	
 
 	/*	Designates a global variable as an exeception, preventing it from being sent to other clients
@@ -130,16 +112,29 @@ importScripts([
 
 :: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-<p> hey </p>
+As a global var:
+<br>
+<<if ndef $incrementTest>>
+	<<set $incrementTest = 0>>
+<</if>>
+<<button "send">>
+		<<set $incrementTest = $incrementTest + 1>>
+	<</button>>
+<<print $incrementTest>>
+<br>
+
+As character var:
+<br>
+
 <<if ndef $users[$userId]["choices"]["incrementTest"]>>
 	<<set $users[$userId]["choices"]["incrementTest"] = 0>>
 <</if>>
-<<button send>>
+<<button "send_everyone">>
 		<<set $users[$userId]["choices"]["incrementTest"] = $users[$userId]["choices"]["incrementTest"] + 1>>
 	<</button>>
 <<print $users[$userId]["choices"]["incrementTest"]>>
 <<set _totalIncrements = setup.getTotalChoices("incrementTest")>>
-<<print _totalIncrements>>
+ total: <<print _totalIncrements>>
 <</liveblock>>
 
 
@@ -3510,50 +3505,11 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 <</liveblock>>
 
 
-:: Control: Change Passage {"position":"3525,400","size":"100,100"}
+
+:: Passage Teleport [Control Done Breaks] {"position":"338,1151","size":"100,100"}
+/* <<audio "Gulls_and_waves__5min_" volume 0.01 play >> */
 <<liveblock>>
-	<<set _role = "Aztec_Priest">>
-	<<set _newSidePassage = $users[$lookup[_role]]["passage"]>>
-
-	/* Add the starting passage of every side passge to this  */
-	<<set _passages = Story.lookup()>>
-	<<set _sidePassages = []>>
-	<<for _i, _p range _passages>>
-		<<set _sidePassages.push(_p.title)>>
-	<</for>>
-
-	<<listbox "_role" autoselect>>
-		<<optionsfrom Object.keys($lookup)>>
-	
-	<</listbox>>
-	<<listbox "_newSidePassage" autoselect>>
-		<<optionsfrom Object.values(_sidePassages)>>
-		
-	<</listbox>>
-
-	<<button send>>
-		<<set $users[$lookup[_role]]["passage"] = _newSidePassage>>
-	<</button>>
-	<br>
-	<br>
-	click this button to send selected user to the furthest passage they've visited
-	<<button SendBack>>
-		<<set _tempPassage = {}>>
-		<<set _tempId = $lookup[_role]>>
-		<<script>>
-		let id = State.getVar("_tempId");
-		$.get(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${id}`, function(data){
-		State.setVar("$users[$lookup[_role]]['passage']", Object.keys(JSON.parse(data))[Object.keys(JSON.parse(data)).length - 1]);
-		})
-		<</script>>
-		/* <<set $users[$lookup[_role]]["passage"] = Object.keys(_tempPassage)[Object.keys(_tempPassage).length - 1]>> */
-	<</button>>
-<</liveblock>>
-
-
-:: Passage Teleport [Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
-
+<div id="info">
 	Click on a passage name to teleport there:
 	<br>
 
@@ -3568,9 +3524,6 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 	<br>
 
 	<<link "Control: Variables (Factions)" "Control: Variables (Factions)">> <</link>>
-	<br>
-
-	<<link "Control: Change Passage" "Control: Change Passage">> <</link>>
 	<br>
 
 	<<link "Control: Lookup" "Control: Lookup">> <</link>>
@@ -3591,10 +3544,11 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		<<link _name _name>> <</link>>
 		<br>
 	<</for>>
+	</div>
 <</liveblock>>
 
 
-:: Control: Variables [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Control: Variables [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<set _initVars = State.variables>>
 	<<for _tempKey, _tempVal range _initVars>>
 		<<if typeof _tempVal != "object">>
@@ -3618,7 +3572,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 /* allows admin to update lookup. This allows roles to be played by different users */
 
 
-:: Control: Lookup [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Control: Lookup [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 	<<for _tempKey, _tempVal range $lookup>>
 		<<set _twineKey = `$lookup["${ _tempKey}"]`>>
@@ -3630,7 +3584,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 <</liveblock>>
 
 
-:: Control: Side Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Control: Side Passage [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 	<<set _role = "Aztec_Priest">>
 	<<set _newSidePassage = "Side Passage Control">>
@@ -3661,8 +3615,9 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 /* control panel for users stats */
 
 
-:: Control: Variables (Users) [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Control: Variables (Users) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
+<div id="info">
 <<set _passages = Story.lookup()>>
 <<set _sidePassages = []>>
 <<for _i, _p range _passages>>
@@ -3736,11 +3691,13 @@ Only modify stats and passages if you are 100% sure what you are doing
 			<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
 		<</button>>
 	<</if>>
-
+</div>
 <</liveblock>>
 
-:: Control: Variables (UserId) [Done Breaks] {"position":"338,1151","size":"100,100"}
+
+:: Control: Variables (UserId) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
+<div id="info">
 Only modify stats and passages if you are 100% sure what you are doing
 <br>
 
@@ -3812,13 +3769,15 @@ Only modify stats and passages if you are 100% sure what you are doing
 			<<goto $users[$lookup[_role]]["passage"]>>
 			<<set $userId = $lookup[_role]>>
 		<</button>>
+</div>
 <</liveblock>>
 
 /* control panel for faction stats */
 
 
-:: Control: Variables (Factions) [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Control: Variables (Factions) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
+<div id="info">
 Only modify stats and passages if you aren't 100% sure what you are doing
 <br>
 	/* Goes through list of all factions */
@@ -3854,10 +3813,16 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<br>
 		<br>
 	<</for>>
+	<<link "Control: nuke button" "Control: Full Reset">>
+		<</link>>
+
+	<br>
+	<<link "Teleport passage" "Passage Teleport">> <</link>>
+</div>
 <</liveblock>>
 
 
-:: Control: User Spoof [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Control: User Spoof [Done Breaks Control] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 Select a role to play as
 <br>
@@ -3874,10 +3839,12 @@ Select a role to play as
 
 <</liveblock>>
 
-:: Control: Full Reset {"position":"4275,375","size":"100,100"}
+
+:: Control: Full Reset [Control] {"position":"4275,375","size":"100,100"}
 WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
 <br>
 <<liveblock>>
+<div id="info">
 <<if ndef _test>>
 	<<set _test = 1>>
 	<</if>>
@@ -3893,10 +3860,10 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 	<<if _test == 1>>
 		<<button Reset>>
 			<<set _test = 2>>
-			<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
+			<<set $users[$userId]["lastSeen"]=_currentTime.getTime() + 1>>  
 		<</button>>
 	<</if>>
-
+</div>
 <</liveblock>>
 
 
@@ -6976,12 +6943,11 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 
 :: PassageHeader {"position":"138,11","size":"100,100"}
+/* 
+Updates git backup */
 <<if ndef $gitUpdate>>
 	<<set $gitUpdate = new Date().getTime()>>
 <</if>>
-<<script>>
-console.log("heading")
-<</script>>
 <<if $gitUpdate + 300000 < new Date().getTime()>>
 	<<script>>
 		$.get("/updateGit", {});
@@ -7071,7 +7037,7 @@ console.log("heading")
 /* <<audio ":all" stop>> */
 <!-- <<masteraudio mute>> -->
 <<masteraudio unmute>>
-<<if passage() != "Home">>
+<<if !tags().includes("Home") && !tags().includes("Control")>>
  	<<run showStats()>>
 	/*_currentMap=([^>]*) */
 
@@ -7093,7 +7059,7 @@ console.log("heading")
 <</if>>
 
 /* updates user's current passage */
-<<if passage() != Config.passages.start && passage() != "Home" && passage() != "Passage Teleport" && $users[$userId]["passage"] != passage()>>
+<<if !tags().includes("Control") && !tags().includes("Home")  && $users[$userId]["passage"] != passage()>>
 	<<set $users[$userId]["passage"] = passage()>> 
 <</if>>
 
@@ -7101,19 +7067,12 @@ console.log("heading")
 <<script>>
 
 	let imageURL = State.getVar("$users[$userId]['faction']");
-	let controlPassages = ["Control: Variables", 
-		"Control: Variables (Users)",
-		"Control: Variables (factions)",
-		"Control: Lookup",
-		"Teleport Passage"];
 
-	if(State.passage == "Home"){
+	if(tags().includes("Control") || tags().includes("Home")){
+		 $('.passage').addClass('passage-home');
 		$("#story").addClass("playerList");
 		imageURL = "Home";
 	}else{
-		if(controlPassages.includes(State.passage)){
-			imageURL = "Control";
-		}
 		$("#story").removeClass("playerList");
 	}
 
@@ -7122,17 +7081,436 @@ console.log("heading")
 	}
 	)
 <</script>>
+<<if tags().includes("Home")>>
+/* Creates the chat */
+<div id="chat">
+    /* Instantiate a chatlog if it doesnt already exist*/
+	<<if ndef $chatlog >>
+		<<set $chatlog= {}>>
+		<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
+			<<set $chatlog[_faction] = []>>
+		<</for>>
+	<</if>>
+	
+	<<if ndef $users[$userId].currentChat >>
+		<<set $users[$userId].currentChat = "chat">>
+	<</if>>
 
-/* <<script>>
-(() => {
-	let ret = DOMTest();
-	console.log(ret);
-}, 1000);
+	/* Create a scope switch for Global and Faction */
+	<div id="chat-switch">
+		<<button "Global">>
+			<<set $users[$userId].currentChat = "chat">>
+		<</button>>
+		<<button $users[$userId].faction >>
+			<<set $users[$userId].currentChat = $users[$userId].faction>>
+		<</button>>
+	</div>
 
-// setTimeout(() => {
-// 	console.log($("#passages").children()[0].innerHTML)
-// }, 1000)
-<</script>> */
+
+	/* Fill #chatmessages with $chatlog */
+	<<liveblock>>
+	<div id="chatmessages">
+		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
+		<<print `
+			<div class="playerMessage">
+				<div class="playerMessageLeft">
+					<img class="playerMessageIconImg" src="`+setup.getUserSvgPicture(_msg['user'])+`">
+					<div class="playerMessageLeftText">
+						<div class="playerMessageUsername">_msg["user"]</div>
+						<div class="playerMessageTimeStamp">_msg["time"]</div>
+					</div>
+				</div>
+				<div class="playerMessageText">_msg["message"]</div>
+			</div>
+		`>>
+		<</for>>
+		<<run setup.scrollToBottom("chatmessages") >>
+		<div id="chatmessagesanchor"></div>
+	</div>
+	<</liveblock>>
+
+	/* Create the area for users to send messsages to */
+	<div id="chattextarea">
+		/* Type messages here */
+		<div id="chattextbox">
+			<<textbox "_chattext" "" autofocus>>
+		</div>
+		
+		/* Hit send here */
+		<<button "Enter">>
+			<<set _arrayLength = $chatlog[$users[$userId].currentChat].length>>
+			<<set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")}>>
+			<<set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)>>
+			<<set _tempArr[_tempArr.length] = _msg>>
+			<<if _chattext != "">>
+				<<set $chatlog[$users[$userId].currentChat] = _tempArr>>
+			<</if>>
+			<<script>>
+				$("#chattextbox input").val("");
+			<</script>>
+		<</button>>
+	</div>
+
+	<<script>>
+	$(document).on("keydown", function (evt) {
+		if (evt.which === 13) {
+			
+			requestAnimationFrame(()=>{
+				$("#chattextarea .macro-button").trigger("click");
+			})
+			
+		}
+		var inputElement = $("#chattextbox #textbox--chattext");
+		var maxLength = 50;
+		inputElement.val(inputElement.val().substring(0, maxLength));
+	});
+	<</script>>
+</div>
+<</if>>
+<<if tags().includes("Control")>>
+<</if>>
+
+<<if (tags().includes("Home") || tags().includes("Control"))>>
+		<div id="bookmarks">
+	<img id="home_bookmark_img" class="tab" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
+	<img id="stat_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
+	<img id="god_bookmark_img" class="tab" src="Twine/images/Home/godBookmarker.svg" alt="Bookmark">
+</div>
+	<<script>>
+	setTimeout(() => {
+		$("#home_bookmark_img").on('click', function() {
+			Engine.play("Home")
+		});
+		$("#stat_bookmark_img").on('click', function() {
+			Engine.play("Home: Stats")
+		});
+		$("#god_bookmark_img").on('click', function() {
+			Engine.play("Control: Variables (Factions)")
+		});
+	}, 200);
+<</script>>
+<div id="rolePanelDynamic">
+	<div id="rolePanelDynamicHeader">
+		<img id="rolePanelImageDynamic" src="Twine/images/characters/icon_placeholder.png"> 
+		<div id="rolePanelTextDynamic" >
+			<div id="rolePanelPrintUserRole">
+				user role
+			</div>
+			<div id="rolePanelPrintUserName">
+				@username
+			</div>
+		</div>
+	</div>
+	<div id="rolePanelDetails">
+		<ul id="rolePanelDetailsText">
+			<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
+			
+		</ul>
+	</div>
+	<div id="rolePanelNotesLabel">Notes</div>
+	<div id="rolePanelNotes"></div>
+</div>
+
+<div id="players">
+
+/* Defines border colors for each faction */
+<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder", "notSeen": "notSeenBorder"}>>
+
+/* Creates arrays for each faction and offline users */
+
+
+  /* creates sidebar with users */
+  <div id = "playerClient">
+  	<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[$userId]["role"])+`"> `>>
+      
+	<div id = "playerTextClient">
+	<div id="printUserRoleClient">
+		<<print $users[$userId]["character"]>>
+	</div>
+	<div id="printUserNameClient">
+	<<if $users[$userId]["discriminator"] == 0>>
+		<<print "@" + $users[$userId]["username"]>>
+	<<else>>
+		<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
+	<</if>>
+		
+	</div>
+	</div>
+  </div>
+
+	<<script>>
+		
+		function scaleText(x) {
+			return -0.00054 * x + 2.6
+		}
+
+		function getLetterWidth(string) {
+			const letterMapSingle = new Map([[" ",24.766],["!",25.734],["\"",31.984],["#",61.578],["$",56.156],["%",73.25],["&",62.172],["'",17.438],["(",34.188],[")",34.766],["*",43.078],["+",56.703],[",",19.641],["-",27.594],[".",26.328],["/",41.219],["0",56.156],["1",56.156],["2",56.156],["3",56.156],["4",56.156],["5",56.156],["6",56.156],["7",56.156],["8",56.156],["9",56.156],[":",24.219],[";",21.156],["<",50.844],["=",54.891],[">",52.25],["?",47.219],["@",89.797],["A",65.234],["B",62.266],["C",65.094],["D",65.578],["E",56.844],["F",55.281],["G",68.125],["H",71.297],["I",27.203],["J",55.188],["K",62.703],["L",53.813],["M",87.313],["N",71.297],["O",68.75],["P",63.094],["Q",68.75],["R",61.578],["S",59.328],["T",59.672],["U",64.844],["V",63.625],["W",88.734],["X",62.703],["Y",60.063],["Z",59.875],["[",26.516],["\\",41.016],["]",26.516],["^",41.797],["_",45.125],["`",30.922],["a",54.406],["b",56.109],["c",52.344],["d",56.406],["e",52.984],["f",34.719],["g",56.109],["h",55.078],["i",24.281],["j",23.891],["k",50.688],["l",24.281],["m",87.656],["n",55.188],["o",57.031],["p",56.109],["q",56.844],["r",33.844],["s",51.563],["t",32.672],["u",55.141],["v",48.438],["w",75.156],["x",49.563],["y",47.328],["z",49.563],["{",33.844],["|",24.375],["}",33.844],["~",68.031],["_median",55.281]]);
+			const letterMapKern = new Map([[" T",-1.954],["\"\"",-5.218],["\"'",-5.219],["\"A",-5.859],["\"a",-2.453],["\"c",-2.875],["\"d",-2.89],["\"e",-2.874],["\"g",-2.874],["\"m",-0.984],["\"n",-0.984],["\"o",-2.968],["\"p",-0.984],["\"q",-2.891],["\"s",-3.906],["\"w",0.532],["'\"",-5.219],["''",-5.235],["'A",-5.859],["'a",-2.453],["'c",-2.876],["'d",-2.891],["'e",-2.891],["'g",-2.891],["'m",-0.985],["'n",-0.985],["'o",-2.985],["'p",-0.984],["'q",-2.891],["'s",-3.907],["'w",0.531],["(V",0.968],["(W",0.859],["(Y",1.061],[",\"",-8.313],[",'",-8.313],[".\"",-8.312],[".'",-8.313],["//",-10.954],["A\"",-5.859],["A'",-5.859],["A?",-2.969],["AC",-0.531],["AG",-0.546],["AO",-0.531],["AQ",-0.531],["AT",-6.297],["AU",-0.828],["AV",-4.25],["AW",-3.374],["AY",-4.594],["Ao",-0.577],["At",-0.828],["Au",-0.547],["Av",-2.438],["Aw",-1.609],["Ay",-2.453],["Az",0.594],["BT",-1.329],["BV",-1.172],["BY",-2.688],["C)",-1.266],["CT",-1.422],["C]",-0.594],["C}",-0.829],["D,",-4.985],["D.",-4.984],["DA",-1.015],["DT",-1.313],["DV",-1.078],["DX",-1.078],["DY",-2.094],["DZ",-1.125],["ET",0.968],["Ec",-0.922],["Ed",-0.938],["Ee",-0.937],["Ef",-0.876],["Eg",-0.937],["Eo",-0.922],["Eq",-0.938],["Eu",-0.844],["Ev",-1.266],["Ew",-1.078],["Ey",-1.281],["F,",-11.438],["F.",-11.437],["FA",-8.296],["FJ",-12.906],["FT",0.969],["Fa",-1.671],["Fc",-1.031],["Fd",-1.031],["Fe",-1.031],["Fg",-1.031],["Fo",-1.031],["Fq",-1.031],["Fr",-1.281],["Fu",-1.094],["Fv",-1.172],["Fy",-1.187],["HA",0.875],["HT",-1.422],["HX",0.828],["HY",-1.376],["IA",0.876],["IT",-1.422],["IX",0.828],["IY",-1.375],["JA",-1.078],["K-",-3.125],["KC",-1.516],["KG",-1.531],["KO",-1.516],["KQ",-1.516],["Kc",-1.266],["Kd",-1.281],["Ke",-1.281],["Kg",-1.281],["Km",-1.14],["Kn",-1.141],["Ko",-1.312],["Kp",-1.125],["Kq",-1.281],["Ku",-1.141],["Kv",-1.954],["Kw",-3.093],["Ky",-1.969],["L\"",-16.406],["L'",-16.407],["LA",0.937],["LC",-3.173],["LG",-3.188],["LO",-3.172],["LQ",-3.172],["LT",-13.422],["LU",-2.641],["LV",-8.547],["LW",-7],["LY",-11.673],["Lu",-2.157],["Lv",-6.485],["Lw",-4.5],["Ly",-6.5],["MA",0.875],["MT",-1.423],["MX",0.828],["MY",-1.376],["NA",0.875],["NT",-1.422],["NX",0.828],["NY",-1.376],["O,",-4.985],["O.",-4.984],["OA",-1.015],["OT",-1.313],["OV",-1.063],["OX",-1.078],["OY",-2.094],["OZ",-1.125],["P,",-15.829],["P.",-15.828],["PA",-6.734],["PJ",-9.782],["PX",-1.516],["PZ",-1.281],["Pa",-0.547],["Pc",-0.641],["Pd",-0.641],["Pe",-0.641],["Pg",-0.641],["Po",-0.641],["Pq",-0.641],["Pt",0.672],["Pv",0.734],["Py",0.719],["QT",-2.094],["QV",-1.359],["QW",-0.984],["QY",-1.704],["RT",-3.906],["RV",-0.922],["RY",-2.344],["T ",-1.954],["T,",-10.657],["T-",-11.328],["T.",-10.656],["TA",-3.859],["TC",-1.375],["TG",-1.375],["TJ",-11.735],["TO",-1.359],["TQ",-1.359],["TS",-0.781],["TT",0.781],["TV",0.781],["TW",0.719],["TY",0.781],["Ta",-5.531],["Tc",-4.828],["Td",-4.844],["Te",-4.844],["Tg",-4.844],["Tm",-5.328],["Tn",-5.329],["To",-4.828],["Tp",-5.328],["Tq",-4.844],["Tr",-3.672],["Ts",-5.657],["Tu",-4.657],["Tv",-3.516],["Tw",-2.797],["Tx",-3.766],["Ty",-3.531],["Tz",-2.922],["UA",-1.062],["V)",0.984],["V,",-11],["V-",-1.813],["V.",-10.984],["VA",-3.656],["VC",-0.641],["VG",-0.641],["VO",-0.625],["VQ",-0.625],["V]",0.828],["Va",-2.25],["Vc",-2.141],["Vd",-2.156],["Ve",-2.156],["Vg",-2.156],["Vo",-2.234],["Vq",-2.156],["Vr",-1.469],["Vu",-1.375],["Vv",-0.532],["Vy",-0.547],["V}",0.922],["W)",0.719],["W,",-6.031],["W-",-2.937],["W.",-6.015],["WA",-2.109],["WT",0.672],["W]",0.578],["Wa",-1.624],["Wc",-1.516],["Wd",-1.531],["We",-1.53],["Wg",-1.53],["Wo",-1.515],["Wq",-1.531],["Wr",-1.031],["Wu",-0.953],["W}",0.672],["X-",-2.25],["XC",-1.234],["XG",-1.234],["XO",-1.219],["XQ",-1.219],["XV",0.688],["Xc",-1.266],["Xd",-1.281],["Xe",-1.281],["Xg",-1.281],["Xo",-1.031],["Xq",-1.281],["Xu",-1.047],["Xv",-1.516],["Xy",-1.531],["Y&",-1.469],["Y)",0.983],["Y*",-2.407],["Y,",-10.313],["Y-",-2.548],["Y.",-10.313],["YA",-4.594],["YC",-1.423],["YG",-1.422],["YJ",-4.704],["YO",-1.407],["YQ",-1.407],["YS",-0.782],["YT",0.828],["YU",-4.688],["YV",0.874],["YW",0.812],["YX",0.625],["YY",0.874],["Y]",0.874],["Ya",-3.578],["Yc",-3.173],["Yd",-3.188],["Ye",-3.172],["Yf",-1.079],["Yg",-3.172],["Ym",-1.953],["Yn",-1.97],["Yo",-3.172],["Yp",-1.953],["Yq",-3.173],["Yr",-1.954],["Ys",-2.829],["Yt",-1.079],["Yu",-1.923],["Yv",-0.97],["Yx",-1.126],["Yy",-0.985],["Yz",-1.47],["Y}",0.921],["ZA",0.625],["ZC",-1.281],["ZG",-1.281],["ZO",-1.281],["ZQ",-1.281],["Zc",-1.031],["Zd",-1.047],["Ze",-1.031],["Zg",-1.031],["Zo",-1.031],["Zq",-1.031],["Zu",-0.953],["Zv",-1.329],["Zw",-1.328],["Zy",-1.344],["[J",-0.892],["[U",-0.876],["a\"",-3.281],["a'",-3.281],["av",-0.735],["ay",-0.75],["b\"",-1.421],["b'",-1.422],["bv",-0.531],["bx",-0.734],["by",-0.546],["bz",-0.734],["c\"",-0.531],["c'",-0.532],["e\"",-0.687],["e'",-0.688],["ev",-0.641],["ey",-0.64],["f\"",0.781],["f'",0.781],["f)",0.984],["f]",0.874],["fc",-1.172],["fd",-1.172],["fe",-1.172],["fg",-1.172],["fi",-3.625],["fl",-2.203],["fq",-1.172],["f}",0.921],["h\"",-5.078],["h'",-5.079],["kc",-0.97],["kd",-0.985],["ke",-0.984],["kg",-0.984],["kq",-0.985],["m\"",-5.078],["m'",-5.094],["n\"",-5.078],["n'",-5.095],["o\"",-6.64],["o'",-6.641],["ov",-0.719],["ox",-1.016],["oy",-0.734],["oz",-0.781],["p\"",-1.421],["p'",-1.422],["pv",-0.531],["px",-0.734],["py",-0.546],["pz",-0.734],["r\"",0.781],["r'",0.781],["r,",-6.016],["r.",-6.016],["ra",-1.969],["rc",-0.922],["rd",-0.938],["re",-0.937],["rf",0.734],["rg",-0.937],["ro",-0.969],["rq",-0.938],["rt",2.437],["rv",0.874],["rw",0.828],["ry",0.859],["to",-0.969],["v\"",0.734],["v'",0.733],["v,",-5.235],["v.",-5.235],["va",-0.735],["vc",-0.626],["vd",-0.641],["ve",-0.641],["vf",0.64],["vg",-0.641],["vo",-0.719],["vq",-0.641],["w,",-6.063],["w.",-6.062],["xc",-0.97],["xd",-0.985],["xe",-0.984],["xg",-0.984],["xo",-0.969],["xq",-0.985],["y\"",0.719],["y'",0.718],["y,",-5.25],["y.",-5.234],["ya",-0.75],["yc",-0.641],["yd",-0.656],["ye",-0.64],["yf",0.625],["yg",-0.64],["yo",-0.734],["yq",-0.656],["zc",-0.782],["zd",-0.781],["ze",-0.781],["zg",-0.781],["zo",-0.781],["zq",-0.782],["{J",-0.985],["{U",-0.969]]);
+
+			let letterWidth = 0;
+
+			const letterSplit = [...string];
+
+			for (const [key, letter] of letterSplit.entries()) {
+				letterWidth += letterMapSingle.get(letter) || letterMapSingle.get('_median');
+
+				if (key !== letterSplit.length - 1) {
+					letterWidth += letterMapKern.get(`${letter}${letterSplit[key+1]}`) || 0;
+				}
+			}
+
+			return letterWidth;
+		}
+			
+		setTimeout(() => {
+			let element = $("#printUserRoleClient")[0];
+			if (!element) { return; }
+			let elementLength = getLetterWidth($("#printUserRoleClient").html());
+			element.style.fontSize = scaleText(elementLength) + 'rem';
+		}, 100);
+
+		
+		
+	<</script>>
+
+	/*
+		$(document).one(':passagerender', function (ev) {
+			let element = $(ev.content).find("#printUserRoleClient")[0];
+			if (!element) { return; }
+			let elementLength = $(ev.content).find("#printUserRoleClient").html().length;
+			element.style.fontSize = scaleText(elementLength) + 'rem';
+		});
+	 */
+
+	/* Aztecs, Spaniards, Tlaxcalans */
+	<<set _factions = [...new Set(Object.keys(_roles).reduce(
+		(accumulator, currentValue) => {
+				
+				accumulator.push(_roles[currentValue].faction);
+				return accumulator;
+			},
+		[]
+	))]>>
+	
+	/* A count of users in each faction. Returns an array of factions, which is an array of IDs. Offline and Factions are NOT! mutually exclusive */
+	<<set _factionUsers = _factions.reduce((acc, faction) => {
+		acc[faction] = Object.keys($users).filter((user) => {
+			if (new Date().getTime() - $users[user].lastSeen > 10000) {
+				$users[user].offline = true
+			} else {
+				$users[user].offline = false
+			}
+			return $users[user].faction == faction;
+		});
+		return acc;
+	}, {})>>
+
+	<<set _totalUsers = Object.keys(_roles).length>>
+
+	<<set _totalFactionUserCount = {"Aztecs":"6", "Spaniards":"6", "Tlaxcalans":"3"}>>
+
+	/* A count of users in each faction. Returns an array of factions, which is an array of userdata. Offline and Faction are MUTUALLY EXCLUSIVE */
+	/* it is a terribly confusing system i know. to be fixed: probably someday */
+	<<set _userCount = Object.keys($users).reduce((acc, user)=>{
+		if (!acc[$users[user].faction]) {
+			acc[$users[user].faction]= []
+		}
+		if (!$users[user].offline) {
+			acc[$users[user].faction].push($users[user])
+		} else {
+			if (!acc["offline"]) {
+				acc["offline"] = []
+			}
+			acc["offline"].push($users[user])
+		}
+		return acc;
+	}, {})>>
+
+	<<for _i, _faction range _factions>>
+		<<if ndef _userCount[_faction]>>
+			<<set _userCount[_faction] = []>>
+		<</if>>
+	<</for>>
+
+	/* Users who have been seen, but are currently offline */
+	<<set _factionUsers.offline = []>>
+	<<for _id, _data range $users>>
+		<<if new Date().getTime() - _data["lastSeen"] > 10000>>
+			<<set _factionUsers["offline"].push(_id)>>
+		<</if>>
+	<</for>>
+
+	/* Users who have NEVER been seen. Never logged on. No ID associated. */
+	<<set _factionUsers.neverSeen = []>>
+	<<for _user, _id range $lookup>>
+		<<if $lookup[_user] == "notSeen">>
+			<<set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])>>
+		<</if>>
+	<</for>>
+
+	<div id="onlineCount">
+		<<print "  Players Online (" + (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length) + "/" + _totalUsers + ")">>
+	</div>
+
+	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans"]>>
+
+		<div class="printFactionOnlineCount">
+			<<print _faction + " -- (" + _userCount[_faction].length + "/" + _totalFactionUserCount[_faction] + ")">>
+		</div>
+
+		<<for _j, _userId range _factionUsers[_faction]>>
+			<<if !["notSeen", "god"].includes(_userId) && $users[_userId]["offline"] != true>>
+				<div id="playerSpaceBetween"></div>
+				<<print `
+					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
+						<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+
+						<div class = "playerText">
+							<div class="printUserRole"> 
+								`+$users[_userId]["character"]+`
+							</div>
+							<div class="printUserName">
+							<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
+								<<print "@" + $users[_userId]["username"]>>
+							</a>
+							</div>
+						</div> 
+					</div>
+				`>>
+				<div id="playerSpaceBetween"></div>
+			<</if>>
+		<</for>>
+
+		<div id="factionSpaceBetween"></div>
+	<</for>>
+
+	<div class="printFactionOnlineCount">
+		<<print "Offline" + " -- (" +  (_totalUsers - (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length)) + "/" + _totalUsers + ")">>
+	</div>
+
+	<<for _j, _userId range _factionUsers["offline"]>>
+		<<if !["notSeen", "god"].includes(_userId) && $users[_userId]["username"] != "test">>
+			<div id="playerSpaceBetween"></div>
+			<<print `
+				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
+					<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
+
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+$users[_userId]["character"]+`
+						</div>
+						<div class="printUserName">
+						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
+							<<print "@" + $users[_userId]["username"]>>
+						</a>
+						</div>
+					</div> 
+				</div>
+			`>>
+			<div id="playerSpaceBetween"></div>
+		<</if>>
+	<</for>>
+
+	<<for _i, _role range _factionUsers["neverSeen"]>>
+		<<if _role != "notSeen" &&  _role != "God">>
+			<div id="playerSpaceBetween"></div>
+			<<print `
+				<div class = "playerNull" id="playerInfo_notSeen_`+_role+`">			
+					<img class = "playerImage `+_factionColor["notSeen"]+`" src = "`+setup.getUserSvgPicture(_role)+`"> 
+
+					<div class = "playerText">
+						<div class="printUserRole"> 
+							`+_role+`
+						</div>
+						<div class="printUserName">
+						<a href="https://discordapp.com/users/`+0+`" target="_blank">
+							<<print "@blank">>
+						</a>
+						</div>
+					</div> 
+				</div>
+			`>>
+			<div id="playerSpaceBetween"></div>
+		<</if>>
+	<</for>>
+
+</div>
+
+	<<script>>
+		window.addEventListener("resize", function() {
+			let rolePanel = $("#rolePanelDynamic");
+			rolePanel.css("visibility", "hidden");
+		});
+		setTimeout(() => {
+			$("#players").on('mouseleave', function() {
+				$(document).mousemove(function(event) {
+					let xPos = event.pageX;
+					let yPos = event.pageY;
+					let rolePanel = $("#rolePanelDynamic");
+					let rolePanelX = rolePanel.offset().left;
+					let rolePanelY = rolePanel.offset().top;
+					let rpHeight = parseInt(rolePanel.css("height"));
+					let rpWidth = parseInt(rolePanel.css("width"));
+
+					if (!((xPos > rolePanelX) && (yPos > rolePanelY - (rolePanelY / 8)&& yPos < rolePanelY + rpHeight))) {
+						$(document).off('mousemove');
+						rolePanel.css("visibility", "hidden");
+					}
+				});
+			});
+		}, 1500);
+		setTimeout(() => {
+			$(".player").on('mouseenter', function(event) {
+				let firstUnderscoreIndex = $(this).attr("id").indexOf("_");
+				let user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
+				let imageSource = setup.getUserSvgPicture(user);
+				$("#rolePanelImageDynamic").attr("src", imageSource);
+
+				let printableUser = user.replace(/_/g, " ");
+				$("#rolePanelPrintUserRole").text(printableUser);
+
+				let rolePanel = $("#rolePanelDynamic");
+				rolePanel.css("visibility", "visible");
+
+				let notes = State.getVar("$users[$userId]['notes']");
+				if (!notes)  {
+					State.setVar("$users[$userId]['notes']", {});
+				}
+				
+				$("#rolePanelNotes").empty().wiki(`<<textarea "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
+				
+				rolePanel.css("left", "61%");
+
+				let yPos = event.pageY;
+				let rpHeight = parseInt(rolePanel.css("height"));
+				let windowHeight = parseInt($("#story").css("height"));
+
+				rolePanel.css("top", ((yPos)/windowHeight)*100 + "%");
+
+				if (yPos > windowHeight - rpHeight) {
+					rolePanel.css("top", ((windowHeight - rpHeight)/windowHeight)*100 + "%");
+				}
+
+				let usernameDiv = $("#rolePanelPrintUserName");
+				let username = State.getVar(`$users[$lookup["${user}"]]["username"]`);
+				usernameDiv.text("@" + username);
+
+				let lastSeen = $("#rolePanelLastSeen");
+				let lastSeenText = "Last Active: ";
+				let milli = State.getVar(`$users[$lookup["${user}"]]["lastSeen"]`);
+				let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
+				let dateObject = new Date();
+				if (Math.abs(dateObject.getTime() - milli) < 120000) {
+					lastSeenTime = "Right now"
+				}
+				lastSeenText += lastSeenTime;
+				lastSeen.text(lastSeenText);
+			})
+		}, 1500);
+
+	<</script>>
+	<</if>>
 
 
 :: PassageDone [Done Breaks] {"position":"338,1151","size":"100,100"}
@@ -9297,9 +9675,6 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 :: StoryInit {"position":"4600,1200","size":"100,100"}
 <<cacheaudio "Gulls_and_waves__5min_" "audio/Gulls_and_waves__5min_.mp3">>
 <<cacheaudio "Library" "audio/Library.mp3">>
-<<if ndef $flags>>
-<<set $flags={}>>
-<</if>>
 
 <!-- <<masteraudio volume 0>> -->
 
@@ -9356,7 +9731,7 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 <</if>>
 <<set $totalMissing = $aztecsMissing + $spaniardsMissing + $tlaxMissing>>
 
-<<if $userId == 15>>
+<<if $userId == "god">>
 	<<set $god = true>>
 <<else>>
 	<<set $god = false>>
@@ -9438,6 +9813,11 @@ List of valid roles and their info */
     "faction": "Tlaxcalans",
     "Character": "Maxixcatl",
     "isLeader": "FALSE"
+  },
+  "God":{
+	"faction": "Aztecs",
+	"Character": "God",
+	"isLeader" : "TRUE"
   }
 }
 		>>
@@ -9468,24 +9848,6 @@ they will be directed to this temp user */
 	}>>
 <</if>>
 
-<<if ndef $users["15"]>>
-<<set $users["15"] = {
-		"stats" : {
-			"Loyalty" : 0,
-			"Strength" : 0,
-			"Wisdom" : 0
-		},
-		"character" : "God",
-		"faction" : "Aztecs",
-		"isLeader" : "God",
-		"lastSeen" : 0,
-		"passage" : "Name Not Recognized",
-		"role" : "God",
-		"username" : "God",
-		"choices": {},
-		"offline" : true
-	}>>
-<</if>>
 
 /* Intialize faction data */
 <<if ndef $factions>>
@@ -9496,18 +9858,15 @@ they will be directed to this temp user */
 
 			}
 		},
-
-		"Spaniards": {"stats": {
-
+		"Spaniards": {
+		"stats": {
 			"Strength" : 0,
-
 			}
 		},
 
-		"Tlaxcalans": {"stats": {
-
+		"Tlaxcalans": {
+			"stats": {
 			"Strength" : 0,
-	
 			}
 		},
 	}>>
@@ -9524,7 +9883,7 @@ they will be directed to this temp user */
 /* inits userdata in $users */
 
 /* change this conditional */
-<<if  $userId != 15 && (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId]["role"]))) >>
+<<if  (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId]["role"]))) >>
 <<set $users[$userId] = {}>>
 <<script>>
 console.log("new user detected")
@@ -9538,6 +9897,7 @@ console.log("new user detected")
 <<set $users[$userId]["character"] = _roles[$users[$userId]["role"]]?.Character || "undefined">>
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
+<<set $users[$userId]["active"] = true>>
 <</if>>
 
 <<if Object.keys(_roles).includes(_role)>>
@@ -12696,39 +13056,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 <</liveblock>>
 
-
-:: Home [Done Breaks] {"position":"338,1151","size":"100,100"}
-/* Creates some bookmarks to switch between pages */
-<div id="bookmarks">
-	<img id="home_bookmark_img" class="tab" src="Twine/images/Home/bookmark_home.svg" alt="Bookmark">
-	<img id="stat_bookmark_img" class="tab" src="Twine/images/Home/bookmark_star.svg" alt="Bookmark">
-	<<if $god == true>>
-	<img id="god_bookmark_img" class="tab" src="Twine/images/Home/godBookmarker.svg" alt="Bookmark">
-	<</if>>
-</div>
-
-<div id="rolePanelDynamic">
-	<div id="rolePanelDynamicHeader">
-		<img id="rolePanelImageDynamic" src="Twine/images/characters/icon_placeholder.png"> 
-		<div id="rolePanelTextDynamic" >
-			<div id="rolePanelPrintUserRole">
-				user role
-			</div>
-			<div id="rolePanelPrintUserName">
-				@username
-			</div>
-		</div>
-	</div>
-	<div id="rolePanelDetails">
-		<ul id="rolePanelDetailsText">
-			<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$userId]["lastSeen"]))).fromNow()+"</li>">>
-			
-		</ul>
-	</div>
-	<div id="rolePanelNotesLabel">Notes</div>
-	<div id="rolePanelNotes"></div>
-</div>
-
+:: Home: Stats [Done Breaks Home] {"position":"338,1151","size":"100,100"}
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
 		<img class="info_img" src="Twine/images/Home/info.svg" alt="info-icon">
@@ -12786,26 +13114,18 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	</div>
 </div>
 
+:: Home [Home Done Breaks] {"position":"338,1151","size":"100,100"}
+/* Creates some bookmarks to switch between pages */
+
 
 <<script>>
-	setTimeout(() => {
+	requestAnimationFrame(() => {
 		$("#home_bookmark_img").on('mousedown', function() {
-			$("#info, #passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").show();
+			$("#info, #chat").show();
 
-			$("#godControl").hide();
-			$("#info-stats").hide();
+			$("#godControl, #info-stats").hide();
 		});
-		$("#stat_bookmark_img").on('mousedown', function() {
-			$("#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").hide();
-			$("#info-stats").css("display", "flex");
-			$("#godControl").hide();
-		});
-		$("#god_bookmark_img").on('mousedown', function() {
-			$("#passagesCompletedHeader, #passagesCompletedButtons, #passageChevron, #selectedPassageTextContainer").hide();
-			$("#info-stats").hide();
-			$("#godControl").show();
-		});
-	}, 200);
+	});
 <</script>>
 
 /* Prints list of previous passages for user to recollect */
@@ -12886,10 +13206,10 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <div id="godControl">
 	Click on a passage name to teleport there:
 	<br>
-	<<if $userId != 15>>
+	<<if $userId != "god">>
 		<<button "Stop Spoofing">>
-			<<goto $users[15]["passage"]>>
-			<<set $userId = 15>>
+			<<goto $users["god"]["passage"]>>
+			<<set $userId = "god">>
 		<</button>>
 		<br>
 	<</if>>
@@ -12915,391 +13235,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 	<br>
 </div>
 
-/* Creates the chat */
-<div id="chat">
-    /* Instantiate a chatlog if it doesnt already exist*/
-	<<if ndef $chatlog >>
-		<<set $chatlog= {}>>
-		<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
-			<<set $chatlog[_faction] = []>>
-		<</for>>
-	<</if>>
-	
-	<<if ndef $users[$userId].currentChat >>
-		<<set $users[$userId].currentChat = "chat">>
-	<</if>>
 
-	/* Create a scope switch for Global and Faction */
-	<div id="chat-switch">
-		<<button "Global">>
-			<<set $users[$userId].currentChat = "chat">>
-		<</button>>
-		<<button $users[$userId].faction >>
-			<<set $users[$userId].currentChat = $users[$userId].faction>>
-		<</button>>
-	</div>
-
-
-	/* Fill #chatmessages with $chatlog */
-	<<liveblock>>
-	<div id="chatmessages">
-		<<for _id, _msg range $chatlog[$users[$userId].currentChat]>>
-		<<print `
-			<div class="playerMessage">
-				<div class="playerMessageLeft">
-					<img class="playerMessageIconImg" src="`+setup.getUserSvgPicture(_msg['user'])+`">
-					<div class="playerMessageLeftText">
-						<div class="playerMessageUsername">_msg["user"]</div>
-						<div class="playerMessageTimeStamp">_msg["time"]</div>
-					</div>
-				</div>
-				<div class="playerMessageText">_msg["message"]</div>
-			</div>
-		`>>
-		<</for>>
-		<<run setup.scrollToBottom("chatmessages") >>
-		<div id="chatmessagesanchor"></div>
-	</div>
-	<</liveblock>>
-
-	/* Create the area for users to send messsages to */
-	<div id="chattextarea">
-		/* Type messages here */
-		<div id="chattextbox">
-			<<textbox "_chattext" "" autofocus>>
-		</div>
-		
-		/* Hit send here */
-		<<button "Enter">>
-			<<set _arrayLength = $chatlog[$users[$userId].currentChat].length>>
-			<<set _msg = {user:$users[$userId].role, message:_chattext, time:new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")}>>
-			<<set _tempArr = $chatlog[$users[$userId].currentChat].slice(-4)>>
-			<<set _tempArr[_tempArr.length] = _msg>>
-			<<if _chattext != "">>
-				<<set $chatlog[$users[$userId].currentChat] = _tempArr>>
-			<</if>>
-			<<script>>
-				$("#chattextbox input").val("");
-			<</script>>
-		<</button>>
-	</div>
-
-	<<script>>
-	$(document).on("keydown", function (evt) {
-		if (evt.which === 13) {
-			
-			requestAnimationFrame(()=>{
-				$("#chattextarea .macro-button").trigger("click");
-			})
-			
-		}
-		var inputElement = $("#chattextbox #textbox--chattext");
-		var maxLength = 50;
-		inputElement.val(inputElement.val().substring(0, maxLength));
-	});
-	<</script>>
-</div>
-
-/* print play status list (discord info, role, etc.) */
-<div id="players">
-
-/* Defines border colors for each faction */
-<<set _factionColor = {"Aztecs": "aztecBorder", "Spaniards": "spaniardBorder", "Tlaxcalans": "tlaxcalanBorder", "notSeen": "notSeenBorder"}>>
-
-/* Creates arrays for each faction and offline users */
-
-
-  /* creates sidebar with users */
-  <div id = "playerClient">
-  	<<print `<img id = "playerImageClient" class="`+_factionColor[$users[$userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[$userId]["role"])+`"> `>>
-      
-	<div id = "playerTextClient">
-	<div id="printUserRoleClient">
-		<<print $users[$userId]["character"]>>
-	</div>
-	<div id="printUserNameClient">
-	<<if $users[$userId]["discriminator"] == 0>>
-		<<print "@" + $users[$userId]["username"]>>
-	<<else>>
-		<<print $users[$userId]["username"] + "#" + $users[$userId]["discriminator"]>>
-	<</if>>
-		
-	</div>
-	</div>
-  </div>
-
-	<<script>>
-		
-		function scaleText(x) {
-			return -0.00054 * x + 2.6
-		}
-
-		function getLetterWidth(string) {
-			const letterMapSingle = new Map([[" ",24.766],["!",25.734],["\"",31.984],["#",61.578],["$",56.156],["%",73.25],["&",62.172],["'",17.438],["(",34.188],[")",34.766],["*",43.078],["+",56.703],[",",19.641],["-",27.594],[".",26.328],["/",41.219],["0",56.156],["1",56.156],["2",56.156],["3",56.156],["4",56.156],["5",56.156],["6",56.156],["7",56.156],["8",56.156],["9",56.156],[":",24.219],[";",21.156],["<",50.844],["=",54.891],[">",52.25],["?",47.219],["@",89.797],["A",65.234],["B",62.266],["C",65.094],["D",65.578],["E",56.844],["F",55.281],["G",68.125],["H",71.297],["I",27.203],["J",55.188],["K",62.703],["L",53.813],["M",87.313],["N",71.297],["O",68.75],["P",63.094],["Q",68.75],["R",61.578],["S",59.328],["T",59.672],["U",64.844],["V",63.625],["W",88.734],["X",62.703],["Y",60.063],["Z",59.875],["[",26.516],["\\",41.016],["]",26.516],["^",41.797],["_",45.125],["`",30.922],["a",54.406],["b",56.109],["c",52.344],["d",56.406],["e",52.984],["f",34.719],["g",56.109],["h",55.078],["i",24.281],["j",23.891],["k",50.688],["l",24.281],["m",87.656],["n",55.188],["o",57.031],["p",56.109],["q",56.844],["r",33.844],["s",51.563],["t",32.672],["u",55.141],["v",48.438],["w",75.156],["x",49.563],["y",47.328],["z",49.563],["{",33.844],["|",24.375],["}",33.844],["~",68.031],["_median",55.281]]);
-			const letterMapKern = new Map([[" T",-1.954],["\"\"",-5.218],["\"'",-5.219],["\"A",-5.859],["\"a",-2.453],["\"c",-2.875],["\"d",-2.89],["\"e",-2.874],["\"g",-2.874],["\"m",-0.984],["\"n",-0.984],["\"o",-2.968],["\"p",-0.984],["\"q",-2.891],["\"s",-3.906],["\"w",0.532],["'\"",-5.219],["''",-5.235],["'A",-5.859],["'a",-2.453],["'c",-2.876],["'d",-2.891],["'e",-2.891],["'g",-2.891],["'m",-0.985],["'n",-0.985],["'o",-2.985],["'p",-0.984],["'q",-2.891],["'s",-3.907],["'w",0.531],["(V",0.968],["(W",0.859],["(Y",1.061],[",\"",-8.313],[",'",-8.313],[".\"",-8.312],[".'",-8.313],["//",-10.954],["A\"",-5.859],["A'",-5.859],["A?",-2.969],["AC",-0.531],["AG",-0.546],["AO",-0.531],["AQ",-0.531],["AT",-6.297],["AU",-0.828],["AV",-4.25],["AW",-3.374],["AY",-4.594],["Ao",-0.577],["At",-0.828],["Au",-0.547],["Av",-2.438],["Aw",-1.609],["Ay",-2.453],["Az",0.594],["BT",-1.329],["BV",-1.172],["BY",-2.688],["C)",-1.266],["CT",-1.422],["C]",-0.594],["C}",-0.829],["D,",-4.985],["D.",-4.984],["DA",-1.015],["DT",-1.313],["DV",-1.078],["DX",-1.078],["DY",-2.094],["DZ",-1.125],["ET",0.968],["Ec",-0.922],["Ed",-0.938],["Ee",-0.937],["Ef",-0.876],["Eg",-0.937],["Eo",-0.922],["Eq",-0.938],["Eu",-0.844],["Ev",-1.266],["Ew",-1.078],["Ey",-1.281],["F,",-11.438],["F.",-11.437],["FA",-8.296],["FJ",-12.906],["FT",0.969],["Fa",-1.671],["Fc",-1.031],["Fd",-1.031],["Fe",-1.031],["Fg",-1.031],["Fo",-1.031],["Fq",-1.031],["Fr",-1.281],["Fu",-1.094],["Fv",-1.172],["Fy",-1.187],["HA",0.875],["HT",-1.422],["HX",0.828],["HY",-1.376],["IA",0.876],["IT",-1.422],["IX",0.828],["IY",-1.375],["JA",-1.078],["K-",-3.125],["KC",-1.516],["KG",-1.531],["KO",-1.516],["KQ",-1.516],["Kc",-1.266],["Kd",-1.281],["Ke",-1.281],["Kg",-1.281],["Km",-1.14],["Kn",-1.141],["Ko",-1.312],["Kp",-1.125],["Kq",-1.281],["Ku",-1.141],["Kv",-1.954],["Kw",-3.093],["Ky",-1.969],["L\"",-16.406],["L'",-16.407],["LA",0.937],["LC",-3.173],["LG",-3.188],["LO",-3.172],["LQ",-3.172],["LT",-13.422],["LU",-2.641],["LV",-8.547],["LW",-7],["LY",-11.673],["Lu",-2.157],["Lv",-6.485],["Lw",-4.5],["Ly",-6.5],["MA",0.875],["MT",-1.423],["MX",0.828],["MY",-1.376],["NA",0.875],["NT",-1.422],["NX",0.828],["NY",-1.376],["O,",-4.985],["O.",-4.984],["OA",-1.015],["OT",-1.313],["OV",-1.063],["OX",-1.078],["OY",-2.094],["OZ",-1.125],["P,",-15.829],["P.",-15.828],["PA",-6.734],["PJ",-9.782],["PX",-1.516],["PZ",-1.281],["Pa",-0.547],["Pc",-0.641],["Pd",-0.641],["Pe",-0.641],["Pg",-0.641],["Po",-0.641],["Pq",-0.641],["Pt",0.672],["Pv",0.734],["Py",0.719],["QT",-2.094],["QV",-1.359],["QW",-0.984],["QY",-1.704],["RT",-3.906],["RV",-0.922],["RY",-2.344],["T ",-1.954],["T,",-10.657],["T-",-11.328],["T.",-10.656],["TA",-3.859],["TC",-1.375],["TG",-1.375],["TJ",-11.735],["TO",-1.359],["TQ",-1.359],["TS",-0.781],["TT",0.781],["TV",0.781],["TW",0.719],["TY",0.781],["Ta",-5.531],["Tc",-4.828],["Td",-4.844],["Te",-4.844],["Tg",-4.844],["Tm",-5.328],["Tn",-5.329],["To",-4.828],["Tp",-5.328],["Tq",-4.844],["Tr",-3.672],["Ts",-5.657],["Tu",-4.657],["Tv",-3.516],["Tw",-2.797],["Tx",-3.766],["Ty",-3.531],["Tz",-2.922],["UA",-1.062],["V)",0.984],["V,",-11],["V-",-1.813],["V.",-10.984],["VA",-3.656],["VC",-0.641],["VG",-0.641],["VO",-0.625],["VQ",-0.625],["V]",0.828],["Va",-2.25],["Vc",-2.141],["Vd",-2.156],["Ve",-2.156],["Vg",-2.156],["Vo",-2.234],["Vq",-2.156],["Vr",-1.469],["Vu",-1.375],["Vv",-0.532],["Vy",-0.547],["V}",0.922],["W)",0.719],["W,",-6.031],["W-",-2.937],["W.",-6.015],["WA",-2.109],["WT",0.672],["W]",0.578],["Wa",-1.624],["Wc",-1.516],["Wd",-1.531],["We",-1.53],["Wg",-1.53],["Wo",-1.515],["Wq",-1.531],["Wr",-1.031],["Wu",-0.953],["W}",0.672],["X-",-2.25],["XC",-1.234],["XG",-1.234],["XO",-1.219],["XQ",-1.219],["XV",0.688],["Xc",-1.266],["Xd",-1.281],["Xe",-1.281],["Xg",-1.281],["Xo",-1.031],["Xq",-1.281],["Xu",-1.047],["Xv",-1.516],["Xy",-1.531],["Y&",-1.469],["Y)",0.983],["Y*",-2.407],["Y,",-10.313],["Y-",-2.548],["Y.",-10.313],["YA",-4.594],["YC",-1.423],["YG",-1.422],["YJ",-4.704],["YO",-1.407],["YQ",-1.407],["YS",-0.782],["YT",0.828],["YU",-4.688],["YV",0.874],["YW",0.812],["YX",0.625],["YY",0.874],["Y]",0.874],["Ya",-3.578],["Yc",-3.173],["Yd",-3.188],["Ye",-3.172],["Yf",-1.079],["Yg",-3.172],["Ym",-1.953],["Yn",-1.97],["Yo",-3.172],["Yp",-1.953],["Yq",-3.173],["Yr",-1.954],["Ys",-2.829],["Yt",-1.079],["Yu",-1.923],["Yv",-0.97],["Yx",-1.126],["Yy",-0.985],["Yz",-1.47],["Y}",0.921],["ZA",0.625],["ZC",-1.281],["ZG",-1.281],["ZO",-1.281],["ZQ",-1.281],["Zc",-1.031],["Zd",-1.047],["Ze",-1.031],["Zg",-1.031],["Zo",-1.031],["Zq",-1.031],["Zu",-0.953],["Zv",-1.329],["Zw",-1.328],["Zy",-1.344],["[J",-0.892],["[U",-0.876],["a\"",-3.281],["a'",-3.281],["av",-0.735],["ay",-0.75],["b\"",-1.421],["b'",-1.422],["bv",-0.531],["bx",-0.734],["by",-0.546],["bz",-0.734],["c\"",-0.531],["c'",-0.532],["e\"",-0.687],["e'",-0.688],["ev",-0.641],["ey",-0.64],["f\"",0.781],["f'",0.781],["f)",0.984],["f]",0.874],["fc",-1.172],["fd",-1.172],["fe",-1.172],["fg",-1.172],["fi",-3.625],["fl",-2.203],["fq",-1.172],["f}",0.921],["h\"",-5.078],["h'",-5.079],["kc",-0.97],["kd",-0.985],["ke",-0.984],["kg",-0.984],["kq",-0.985],["m\"",-5.078],["m'",-5.094],["n\"",-5.078],["n'",-5.095],["o\"",-6.64],["o'",-6.641],["ov",-0.719],["ox",-1.016],["oy",-0.734],["oz",-0.781],["p\"",-1.421],["p'",-1.422],["pv",-0.531],["px",-0.734],["py",-0.546],["pz",-0.734],["r\"",0.781],["r'",0.781],["r,",-6.016],["r.",-6.016],["ra",-1.969],["rc",-0.922],["rd",-0.938],["re",-0.937],["rf",0.734],["rg",-0.937],["ro",-0.969],["rq",-0.938],["rt",2.437],["rv",0.874],["rw",0.828],["ry",0.859],["to",-0.969],["v\"",0.734],["v'",0.733],["v,",-5.235],["v.",-5.235],["va",-0.735],["vc",-0.626],["vd",-0.641],["ve",-0.641],["vf",0.64],["vg",-0.641],["vo",-0.719],["vq",-0.641],["w,",-6.063],["w.",-6.062],["xc",-0.97],["xd",-0.985],["xe",-0.984],["xg",-0.984],["xo",-0.969],["xq",-0.985],["y\"",0.719],["y'",0.718],["y,",-5.25],["y.",-5.234],["ya",-0.75],["yc",-0.641],["yd",-0.656],["ye",-0.64],["yf",0.625],["yg",-0.64],["yo",-0.734],["yq",-0.656],["zc",-0.782],["zd",-0.781],["ze",-0.781],["zg",-0.781],["zo",-0.781],["zq",-0.782],["{J",-0.985],["{U",-0.969]]);
-
-			let letterWidth = 0;
-
-			const letterSplit = [...string];
-
-			for (const [key, letter] of letterSplit.entries()) {
-				letterWidth += letterMapSingle.get(letter) || letterMapSingle.get('_median');
-
-				if (key !== letterSplit.length - 1) {
-					letterWidth += letterMapKern.get(`${letter}${letterSplit[key+1]}`) || 0;
-				}
-			}
-
-			return letterWidth;
-		}
-			
-		setTimeout(() => {
-			let element = $("#printUserRoleClient")[0];
-			if (!element) { return; }
-			let elementLength = getLetterWidth($("#printUserRoleClient").html());
-			element.style.fontSize = scaleText(elementLength) + 'rem';
-		}, 100);
-
-		
-		
-	<</script>>
-
-	/*
-		$(document).one(':passagerender', function (ev) {
-			let element = $(ev.content).find("#printUserRoleClient")[0];
-			if (!element) { return; }
-			let elementLength = $(ev.content).find("#printUserRoleClient").html().length;
-			element.style.fontSize = scaleText(elementLength) + 'rem';
-		});
-	 */
-
-	/* Aztecs, Spaniards, Tlaxcalans */
-	<<set _factions = [...new Set(Object.keys(_roles).reduce(
-		(accumulator, currentValue) => {
-				
-				accumulator.push(_roles[currentValue].faction);
-				return accumulator;
-			},
-		[]
-	))]>>
-	
-	/* A count of users in each faction. Returns an array of factions, which is an array of IDs. Offline and Factions are NOT! mutually exclusive */
-	<<set _factionUsers = _factions.reduce((acc, faction) => {
-		acc[faction] = Object.keys($users).filter((user) => {
-			if (new Date().getTime() - $users[user].lastSeen > 10000) {
-				$users[user].offline = true
-			} else {
-				$users[user].offline = false
-			}
-			return $users[user].faction == faction;
-		});
-		return acc;
-	}, {})>>
-
-	<<set _totalUsers = Object.keys(_roles).length>>
-
-	<<set _totalFactionUserCount = {"Aztecs":"6", "Spaniards":"6", "Tlaxcalans":"3"}>>
-
-	/* A count of users in each faction. Returns an array of factions, which is an array of userdata. Offline and Faction are MUTUALLY EXCLUSIVE */
-	/* it is a terribly confusing system i know. to be fixed: probably someday */
-	<<set _userCount = Object.keys($users).reduce((acc, user)=>{
-		if (!acc[$users[user].faction]) {
-			acc[$users[user].faction]= []
-		}
-		if (!$users[user].offline) {
-			acc[$users[user].faction].push($users[user])
-		} else {
-			if (!acc["offline"]) {
-				acc["offline"] = []
-			}
-			acc["offline"].push($users[user])
-		}
-		return acc;
-	}, {})>>
-
-	<<for _i, _faction range _factions>>
-		<<if ndef _userCount[_faction]>>
-			<<set _userCount[_faction] = []>>
-		<</if>>
-	<</for>>
-
-	/* Users who have been seen, but are currently offline */
-	<<set _factionUsers.offline = []>>
-	<<for _id, _data range $users>>
-		<<if new Date().getTime() - _data["lastSeen"] > 10000>>
-			<<set _factionUsers["offline"].push(_id)>>
-		<</if>>
-	<</for>>
-
-	/* Users who have NEVER been seen. Never logged on. No ID associated. */
-	<<set _factionUsers.neverSeen = []>>
-	<<for _user, _id range $lookup>>
-		<<if $lookup[_user] == "notSeen">>
-			<<set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])>>
-		<</if>>
-	<</for>>
-
-	<div id="onlineCount">
-		<<print "  Players Online (" + (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length) + "/" + _totalUsers + ")">>
-	</div>
-
-	<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans"]>>
-
-		<div class="printFactionOnlineCount">
-			<<print _faction + " -- (" + _userCount[_faction].length + "/" + _totalFactionUserCount[_faction] + ")">>
-		</div>
-
-		<<for _j, _userId range _factionUsers[_faction]>>
-			<<if !["notSeen", "15"].includes(_userId) && $users[_userId]["offline"] != true>>
-				<div id="playerSpaceBetween"></div>
-				<<print `
-					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-						<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
-
-						<div class = "playerText">
-							<div class="printUserRole"> 
-								`+$users[_userId]["character"]+`
-							</div>
-							<div class="printUserName">
-							<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
-								<<print "@" + $users[_userId]["username"]>>
-							</a>
-							</div>
-						</div> 
-					</div>
-				`>>
-				<div id="playerSpaceBetween"></div>
-			<</if>>
-		<</for>>
-
-		<div id="factionSpaceBetween"></div>
-	<</for>>
-
-	<div class="printFactionOnlineCount">
-		<<print "Offline" + " -- (" +  (_totalUsers - (_userCount["Aztecs"].length + _userCount["Spaniards"].length + _userCount["Tlaxcalans"].length)) + "/" + _totalUsers + ")">>
-	</div>
-
-	<<for _j, _userId range _factionUsers["offline"]>>
-		<<if !["notSeen", "15"].includes(_userId) && $users[_userId]["username"] != "test">>
-			<div id="playerSpaceBetween"></div>
-			<<print `
-				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-					<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
-
-					<div class = "playerText">
-						<div class="printUserRole"> 
-							`+$users[_userId]["character"]+`
-						</div>
-						<div class="printUserName">
-						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
-							<<print "@" + $users[_userId]["username"]>>
-						</a>
-						</div>
-					</div> 
-				</div>
-			`>>
-			<div id="playerSpaceBetween"></div>
-		<</if>>
-	<</for>>
-
-	<<for _i, _role range _factionUsers["neverSeen"]>>
-		<<if _role != "notSeen" &&  _role != "God">>
-			<div id="playerSpaceBetween"></div>
-			<<print `
-				<div class = "playerNull" id="playerInfo_notSeen_`+_role+`">			
-					<img class = "playerImage `+_factionColor["notSeen"]+`" src = "`+setup.getUserSvgPicture(_role)+`"> 
-
-					<div class = "playerText">
-						<div class="printUserRole"> 
-							`+_role+`
-						</div>
-						<div class="printUserName">
-						<a href="https://discordapp.com/users/`+0+`" target="_blank">
-							<<print "@blank">>
-						</a>
-						</div>
-					</div> 
-				</div>
-			`>>
-			<div id="playerSpaceBetween"></div>
-		<</if>>
-	<</for>>
-
-</div>
-
-	<<script>>
-		window.addEventListener("resize", function() {
-			let rolePanel = $("#rolePanelDynamic");
-			rolePanel.css("visibility", "hidden");
-		});
-		setTimeout(() => {
-			$("#players").on('mouseleave', function() {
-				$(document).mousemove(function(event) {
-					let xPos = event.pageX;
-					let yPos = event.pageY;
-					let rolePanel = $("#rolePanelDynamic");
-					let rolePanelX = rolePanel.offset().left;
-					let rolePanelY = rolePanel.offset().top;
-					let rpHeight = parseInt(rolePanel.css("height"));
-					let rpWidth = parseInt(rolePanel.css("width"));
-
-					if (!((xPos > rolePanelX) && (yPos > rolePanelY - (rolePanelY / 8)&& yPos < rolePanelY + rpHeight))) {
-						$(document).off('mousemove');
-						rolePanel.css("visibility", "hidden");
-					}
-				});
-			});
-		}, 1500);
-		setTimeout(() => {
-			$(".player").on('mouseenter', function(event) {
-				let firstUnderscoreIndex = $(this).attr("id").indexOf("_");
-				let user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
-				let imageSource = setup.getUserSvgPicture(user);
-				$("#rolePanelImageDynamic").attr("src", imageSource);
-
-				let printableUser = user.replace(/_/g, " ");
-				$("#rolePanelPrintUserRole").text(printableUser);
-
-				let rolePanel = $("#rolePanelDynamic");
-				rolePanel.css("visibility", "visible");
-
-				let notes = State.getVar("$users[$userId]['notes']");
-				if (!notes)  {
-					State.setVar("$users[$userId]['notes']", {});
-				}
-				
-				$("#rolePanelNotes").empty().wiki(`<<textarea "$users[$userId]['notes']['${user}']" $users[$userId]['notes']['${user}']>>`);
-				
-				rolePanel.css("left", "61%");
-
-				let yPos = event.pageY;
-				let rpHeight = parseInt(rolePanel.css("height"));
-				let windowHeight = parseInt($("#story").css("height"));
-
-				rolePanel.css("top", ((yPos)/windowHeight)*100 + "%");
-
-				if (yPos > windowHeight - rpHeight) {
-					rolePanel.css("top", ((windowHeight - rpHeight)/windowHeight)*100 + "%");
-				}
-
-				let usernameDiv = $("#rolePanelPrintUserName");
-				let username = State.getVar(`$users[$lookup["${user}"]]["username"]`);
-				usernameDiv.text("@" + username);
-
-				let lastSeen = $("#rolePanelLastSeen");
-				let lastSeenText = "Last Active: ";
-				let milli = State.getVar(`$users[$lookup["${user}"]]["lastSeen"]`);
-				let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
-				let dateObject = new Date();
-				if (Math.abs(dateObject.getTime() - milli) < 120000) {
-					lastSeenTime = "Right now"
-				}
-				lastSeenText += lastSeenTime;
-				lastSeen.text(lastSeenText);
-			})
-		}, 1500);
-
-	<</script>>
 
 
 
