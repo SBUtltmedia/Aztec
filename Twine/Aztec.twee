@@ -3539,7 +3539,6 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 
 :: Passage Teleport [Control Done Breaks] {"position":"338,1151","size":"100,100"}
-<<audio "Gulls_and_waves__5min_" volume 0.2 play >>
 <<liveblock>>
 <div id="info">
 	Click on a passage name to teleport there:
