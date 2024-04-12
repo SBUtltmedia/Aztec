@@ -538,10 +538,76 @@ width: 200% !important;
 
 .playerList #info{
   position: absolute;
-  left: 5%;
+  left: 6%;
   width: 34%;
   height: 70%;
   top: 13%;
+  overflow: hidden;
+  overflow-y: auto ;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+.playerList #control{
+  display: flex;
+  position: absolute;
+  left: 6%;
+  width: 72%;
+  height: 70%;
+  top: 15%;
+  overflow: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin: auto;
+  flex-direction: row;
+}
+
+#control-factions{
+  width: 40%;
+  height: 100%;
+  top: 7%;
+  overflow: hidden;
+  overflow-y: auto ;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+#control-page{
+  width: 25%;
+  position: fixed;
+}
+
+#send-everyone{
+  text-align: center;
+}
+
+#control-page > [data-passage="Control: Variables (Factions)"], #control-page > [data-passage="Control: Variables (Users)"]{
+  background-color: #D19700;
+  padding: 1rem;
+  border-radius: 20%;
+}
+
+#control-userId > [data-passage="Control: Variables (Factions)"], #control-userId > [data-passage="Control: Variables (Users)"]{
+  background-color: #D19700;
+  padding: 1rem;
+  border-radius: 20%;
+}
+
+#control-users{
+  left: 50%;
+  position: absolute;
+}
+
+
+
+
+#factions-extra{
+  position: absolute;
+  left: 75%;
+  width: 30%;
+  height: 100%;
+  top: 7%;
   overflow: hidden;
   overflow-y: auto ;
   -ms-overflow-style: none;  
