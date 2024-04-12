@@ -84,6 +84,34 @@ importScripts([
 			}
 		}
 	});
+
+	Macro.add('userInfo', {
+		handler: function() {
+			let userId = this.args[0];
+			let role = this.args[1];
+			let color = this.args[2];
+			let  image = setup.getUserSvgPicture(role);
+			let character = this.args[3];
+			let discordId = this.args[4];
+			let 	content = `<div id="playerSpaceBetween"></div><div class = "player" id="playerInfo_`+role+`"><img class = "playerImage `+color+`" src = "`+image+`"><div class = "playerText"><div class="printUserRole">`+character+`</div><div class="printUserName"><a href="https://discordapp.com/users/`+userId+`" target="_blank">@`+discordId+`</a></div></div></div><div id="playerSpaceBetween"></div>`
+				$(this.output).wiki(content)
+		}
+	});
+
+	Macro.add('passageList', {
+		handler: function(){
+			
+			let content = `<<set _passages = Story.lookup()>>
+							<<set _sidePassages = {}>>
+							<<for _i, _p range _passages>>
+								<<set _key = _p.title.slice(0,30)>>
+								<<if _p.title.length > 30>>
+									<<set _key = _key + "...">>
+								<</if>>
+								<<set _sidePassages[_key] = _p.title>>
+							<</for>>`
+		}
+	})
 	
 
 	/*	Designates a global variable as an exeception, preventing it from being sent to other clients
@@ -93,6 +121,8 @@ importScripts([
 			addTheyrException(this.args.full)
     	}
 	});
+
+
 
 
 	Macro.add(['discord'], {
@@ -3513,15 +3543,14 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 <</liveblock>>
 
 
-
 :: Passage Teleport [Control Done Breaks] {"position":"338,1151","size":"100,100"}
-/* <<audio "Gulls_and_waves__5min_" volume 0.01 play >> */
+<<audio "Gulls_and_waves__5min_" volume 0.2 play >>
 <<liveblock>>
 <div id="info">
 	Click on a passage name to teleport there:
 	<br>
 
-	<<link "Continue Where you left off" $users[$userId]["passage"]>> <</link>>
+	/* <<link "Continue Where you left off" $users[$userId]["passage"]>> <</link>>
 
 	<br>
 
@@ -3538,9 +3567,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 	<br>
 
 	<<link "Control: Full Reset" "Control: Full Reset">> <</link>>
-	<br>
-	<br>
-
+	<br> */
 	<<set _temp = Story.lookupWith((p)=>{return true})>>
 	<<set _passageList = []>>
 	<<for _i to 0; _i lt _temp.length; _i ++>>
@@ -3578,21 +3605,9 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		<</if>>
 	<</for>>
 /* allows admin to update lookup. This allows roles to be played by different users */
+/* For side passages, in development */
 
-
-:: Control: Lookup [Control Done Breaks] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
-	<<for _tempKey, _tempVal range $lookup>>
-		<<set _twineKey = `$lookup["${ _tempKey}"]`>>
-		<<print _tempKey>>
-		<br>
-		<<textbox _twineKey _tempVal "Control: Lookup" >>
-		<br>
-	<</for>>
-<</liveblock>>
-
-
-:: Control: Side Passage [Control Done Breaks] {"position":"338,1151","size":"100,100"}
+/* :: Control: Side Passage [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 	<<set _role = "Aztec_Priest">>
 	<<set _newSidePassage = "Side Passage Control">>
@@ -3609,7 +3624,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 	
 	<</listbox>>
 	<<listbox "_newSidePassage" autoselect>>
-		<<optionsfrom Object.values(_sidePassages)>>
+		<<optionsfrom _sidePassages>>
 		
 	<</listbox>>
 
@@ -3618,32 +3633,93 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 		<<set $users[$lookup[_role]]["sidePassageReturn"] = $users[$lookup[_role]]["passage"]>>
 		<<set $users[$lookup[_role]]["passage"] = _newSidePassage>>
 	<</button>>
-<</liveblock>>
+<</liveblock>> */
 
 /* control panel for users stats */
 
 
 :: Control: Variables (Users) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-<div id="info">
+<div id="control">
+<div id="control-page">
 <<set _passages = Story.lookup()>>
-<<set _sidePassages = []>>
+<<set _sidePassages = {}>>
 <<for _i, _p range _passages>>
-	<<set _sidePassages.push(_p.title)>>
+	<<set _key = _p.title.slice(0,30)>>
+	<<if _p.title.length > 30>>
+		<<set _key = _key + "...">>
+	<</if>>
+	<<set _sidePassages[_key] = _p.title>>
 <</for>>
 
+<<link "Back" "Control: Variables (Factions)">> <</link>>
+
+<br>
 Only modify stats and passages if you are 100% sure what you are doing
 <br>
+<br>	
+Leader:
+<<set _leaders = {}>>
+<<for _id, _data range $lookup>>
+	<<set _leaders[_id] = _id>>
+<</for>>
 
-	<<switch ($godParam)>>
-		<<case "Aztecs">>
-			Leader: <<textbox "$Aztec_Leader" $Aztec_Leader "Control: Variables (Users)">>
-		<<case "Tlaxcalans">>
-			Leader: <<textbox "$Span_Leader" $Span_Leader "Control: Variables (Users)">>
-		<<case "Spaniards">>
-			Leader: <<textbox "$Tlax_Leader" $Tlax_Leader "Control: Variables (Users)">>
-	<</switch>>
+<<switch ($godParam)>>
+	<<case "Aztecs">>
+		<<set _currLeader = $Aztec_Leader>>
+		<<listbox "_currLeader" autoselect>>
+			<<optionsfrom _leaders>>
+		<</listbox>>
+		<<button Set>>
+			<<set $Aztec_Leader = _currLeader>>
+		<</button>>
+	<<case "Tlaxcalans">>
+		<<set _currLeader = $tlax_Leader>>
+		<<listbox "_currLeader" autoselect>>
+			<<optionsfrom _leaders>>
+		<</listbox>>
+		<<button Set>>
+			<<set $tlax_Leader = _currLeader>>
+		<</button>>
+	<<case "Spaniards">>
+		<<set _currLeader = $Span_Leader>>
+		<<listbox "_currLeader" autoselect>>
+			<<optionsfrom _leaders>>
+		<</listbox>>
+		<<button Set>>
+			<<set $Span_Leader = _currLeader>>
+		<</button>>
+<</switch>>
+	<br>
+	<br>
 
+	<div id="send-everyone">
+	<<listbox "_newSidePassage" autoselect>>
+		<<optionsfrom _sidePassages>>
+	<</listbox>>
+	<<if ndef _confirm>>
+		<<set _confirm = 1>>
+	<</if>>
+	<<if _confirm == 2>>
+	<<button confirm>>
+		<<for _id,_data range $users>>
+			<<if _data["faction"] == $godParam>>
+				<<set _confirm = 1>>
+				<<set $users[_id]["passage"] = _newSidePassage>>
+			<</if>>
+		<</for>>
+	<</button>>
+	<</if>>
+	<<if _confirm == 1>>
+		<<button SendEveryone>>
+			<<set _confirm = 2>>
+			<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
+		<</button>>
+	<</if>>
+	</div>
+	<br>	
+	</div>
+	<div id ="control-users">
 	<<for _role, _userId range $lookup>> 
 		/* Goes through list of all Variables */
 		<<if $users[_userId]["faction"] == $godParam>>
@@ -3656,14 +3732,14 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<br>
 		<<print `${_userName}'s id#: ${_userId}`>>
 		
+		<br>		
 		<<if _userId == "notSeen" || _userId < 20>>
-			''`_role is not assigned to a real player`''
+			''_role is not assigned to a real player''
+			<br>
 		<</if>>
-		<br>
 		<<set _passage = $users[_userId]["passage"]>>
-		Passage: 
 		<<listbox "_passage">>
-			<<optionsfrom Object.values(_sidePassages)>>
+			<<optionsfrom _sidePassages>>
 		<</listbox>>
 		<<print `<<button send>>
 			<<set $users[`+_userId+`]["passage"] = _passage>>
@@ -3674,38 +3750,23 @@ Only modify stats and passages if you are 100% sure what you are doing
 
 		LastSeen: <<print new Date(parseInt($users[_userId]["lastSeen"]))>>
 		<br>
-		<br>
 		<</if>>
 	<</for>>
-
-	<<listbox "_newSidePassage" autoselect>>
-		<<optionsfrom Object.values(_sidePassages)>>
-	<</listbox>>
-	<<if ndef _test>>
-	<<set _test = 1>>
-	<</if>>
-	<<if _test == 2>>
-	<<button confirm>>
-		<<for _id,_data range $users>>
-			<<if _data["faction"] == $godParam>>
-				<<set $users[_id]["passage"] = _newSidePassage>>
-			<</if>>
-		<</for>>
-	<</button>>
-	<</if>>
-	<<if _test == 1>>
-		<<button SendEveryone>>
-			<<set _test = 2>>
-			<<set $users[$userId]["lastSeen"]=_currentTime.getTime()>>  
-		<</button>>
-	<</if>>
+	</div>
 </div>
 <</liveblock>>
 
 
 :: Control: Variables (UserId) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-<div id="info">
+<div id="control">
+<div id ="control-userId">
+<<link "Back to Factions" "Control: Variables (Factions)">> <</link>>
+&nbsp;
+...
+&nbsp;
+<<print `<<link "Back to Users" "Control: Variables (Users)">> <<set $godParam = "`+$users[$godParam]["faction"]+`">><</link>>`>>
+<br>
 Only modify stats and passages if you are 100% sure what you are doing
 <br>
 
@@ -3719,12 +3780,11 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<<set _twineKey = `$lookup["${ _role}"]`>>
 		<<print `${_userName}'s id#`>>
 		<<if _userId == "notSeen" || _userId < 20>>
-			''`_role is not assigned to a real player`''
+			''_role is not assigned to a real player''
 		<</if>>
 		<br>
 		<<textbox _twineKey _userId "Control: Variables (Users)" >>
 		<br>
-	<<print $users[_userId]>>
 	<<if $users[_userId]["stats"]>>
 		<<for _varKey, _varVal range _userData>>
 			<<if  _varKey == "stats">>
@@ -3777,6 +3837,7 @@ Only modify stats and passages if you are 100% sure what you are doing
 			<<goto $users[$lookup[_role]]["passage"]>>
 			<<set $userId = $lookup[_role]>>
 		<</button>>
+		</div>
 </div>
 <</liveblock>>
 
@@ -3785,13 +3846,27 @@ Only modify stats and passages if you are 100% sure what you are doing
 
 :: Control: Variables (Factions) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
-<div id="info">
+<div id="control">
+<div>
 Only modify stats and passages if you aren't 100% sure what you are doing
 <br>
+<br>
+<<link "Control: Full Reset" "Control: Full Reset">><</link>>
+<br>
+<<link "Control: Passage Teleport" "Passage Teleport">><</link>>
+<br>
+<<if $userId != "god">>
+	<<button "unspoof" >>
+		<<goto "Control: Variables (Factions)">>
+		<<set $userId = "god">>
+	<</button>>
+<</if>>
+<br>
+</div>
 	/* Goes through list of all factions */
 	<<for _factionId, _factionData range $factions>> 
 		/* Goes through list of all Variables */
-
+		<span id="control-factions">
 		<<set _factionName = _factionId>>
 		<<set _factionLink = `Control: ${_factionName}`>>
 		<<print `<<link _factionName "Control: Variables (Users)">> <<set $godParam = "`+_factionId+`">><</link>>`>>
@@ -3820,57 +3895,38 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 		<</for>>
 		<br>
 		<br>
+		</span>
 	<</for>>
-	<<link "Control: nuke button" "Control: Full Reset">>
-		<</link>>
-
-	<br>
-	<<link "Teleport passage" "Passage Teleport">> <</link>>
 </div>
 <</liveblock>>
 
-
-:: Control: User Spoof [Done Breaks Control] {"position":"338,1151","size":"100,100"}
-<<liveblock>>
-Select a role to play as
-<br>
-<<set _role = "God">>
-
-<<listbox "_role" autoselect>>
-		<<optionsfrom Object.keys($lookup)>>
-<</listbox>>
-<br>
-<<button "spoof" >>
-	<<goto $users[$lookup[_role]]["passage"]>>
-	<<set $userId = $lookup[_role]>>
-<</button>>
-
-<</liveblock>>
 
 
 :: Control: Full Reset [Control] {"position":"4275,375","size":"100,100"}
 WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
 <br>
 <<liveblock>>
-<div id="info">
-<<if ndef _test>>
-	<<set _test = 1>>
+<div id="control">
+<div>
+<<if ndef _confirm>>
+	<<set _confirm = 1>>
 	<</if>>
-	<<if _test == 2>>
+	<<if _confirm == 2>>
 	<<button confirm>>
 		<<script>>
 		fullReset();
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,{type : 'DELETE'})
-		<</script>>
+		<</sc>>
 		<<set $passageHistory = {}>>
 		<</button>>
 	<</if>>
-	<<if _test == 1>>
+	<<if _confirm == 1>>
 		<<button Reset>>
-			<<set _test = 2>>
+			<<set _confirm = 2>>
 			<<set $users[$userId]["lastSeen"]=_currentTime.getTime() + 1>>  
 		<</button>>
 	<</if>>
+	</div>
 </div>
 <</liveblock>>
 
@@ -7218,7 +7274,7 @@ Updates git backup */
 		}
 		var inputElement = $("#chattextbox #textbox--chattext");
 		var maxLength = 50;
-		inputElement.val(inputElement.val().substring(0, maxLength));
+		inputElement.val(inputElement.val()?.substring(0, maxLength));
 	});
 	<</script>>
 </div>
@@ -7416,25 +7472,9 @@ Updates git backup */
 		</div>
 
 		<<for _j, _userId range _factionUsers[_faction]>>
-			<<if !["notSeen", "god"].includes(_userId) && $users[_userId]["offline"] != true>>
-				<div id="playerSpaceBetween"></div>
-				<<print `
-					<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-						<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
 
-						<div class = "playerText">
-							<div class="printUserRole"> 
-								`+$users[_userId]["character"]+`
-							</div>
-							<div class="printUserName">
-							<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
-								<<print "@" + $users[_userId]["username"]>>
-							</a>
-							</div>
-						</div> 
-					</div>
-				`>>
-				<div id="playerSpaceBetween"></div>
+			<<if !["notSeen", "god"].includes(_userId) && $users[_userId]["offline"] != true>>
+				<<userInfo _userId $users[_userId]["role"] _factionColor[$users[_userId]["faction"]] $users[_userId]["role"] _userId>>
 			<</if>>
 		<</for>>
 
@@ -7447,47 +7487,14 @@ Updates git backup */
 
 	<<for _j, _userId range _factionUsers["offline"]>>
 		<<if !["notSeen", "god"].includes(_userId) && $users[_userId]["username"] != "test">>
-			<div id="playerSpaceBetween"></div>
-			<<print `
-				<div class = "player" id="playerInfo_`+$users[_userId]["role"]+`">			
-					<img class = "playerImage `+_factionColor[$users[_userId]["faction"]]+`" src = "`+setup.getUserSvgPicture($users[_userId]["role"])+`"> 
-
-					<div class = "playerText">
-						<div class="printUserRole"> 
-							`+$users[_userId]["character"]+`
-						</div>
-						<div class="printUserName">
-						<a href="https://discordapp.com/users/`+_userId+`" target="_blank">
-							<<print "@" + $users[_userId]["username"]>>
-						</a>
-						</div>
-					</div> 
-				</div>
-			`>>
-			<div id="playerSpaceBetween"></div>
+			<<userInfo _userId $users[_userId]["role"] _factionColor[$users[_userId]["faction"]] $users[_userId]["role"] _userId>>
 		<</if>>
 	<</for>>
 
 	<<for _i, _role range _factionUsers["neverSeen"]>>
 		<<if _role != "notSeen" &&  _role != "God">>
-			<div id="playerSpaceBetween"></div>
-			<<print `
-				<div class = "playerNull" id="playerInfo_notSeen_`+_role+`">			
-					<img class = "playerImage `+_factionColor["notSeen"]+`" src = "`+setup.getUserSvgPicture(_role)+`"> 
+			<<userInfo "notSeen" _role _factionColor["notSeen"] _role "">>
 
-					<div class = "playerText">
-						<div class="printUserRole"> 
-							`+_role+`
-						</div>
-						<div class="printUserName">
-						<a href="https://discordapp.com/users/`+0+`" target="_blank">
-							<<print "@blank">>
-						</a>
-						</div>
-					</div> 
-				</div>
-			`>>
-			<div id="playerSpaceBetween"></div>
 		<</if>>
 	<</for>>
 
@@ -7519,7 +7526,7 @@ Updates git backup */
 		setTimeout(() => {
 			$(".player").on('mouseenter', function(event) {
 				let firstUnderscoreIndex = $(this).attr("id").indexOf("_");
-				let user = $(this).attr("id").substring(firstUnderscoreIndex + 1);
+				let user = $(this).attr("id")?.substring(firstUnderscoreIndex + 1);
 				let imageSource = setup.getUserSvgPicture(user);
 				$("#rolePanelImageDynamic").attr("src", imageSource);
 
@@ -9953,6 +9960,9 @@ they will be directed to this temp user */
 	<</for>>
 <</if>>
 
+<<if $lookup[_role] != "notSeen">>
+	<<set $users[$userId] = $users[$lookup[_role]]>>
+<</if>>
 /* inits userdata in $users */
 
 /* change this conditional */
@@ -13148,6 +13158,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 <</liveblock>>
 
+
 :: Home: Stats [Done Breaks Home] {"position":"338,1151","size":"100,100"}
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
@@ -13205,6 +13216,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 	</div>
 </div>
+
 
 :: Home [Home Done Breaks] {"position":"338,1151","size":"100,100"}
 /* Creates some bookmarks to switch between pages */
@@ -13294,38 +13306,6 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 </div>
 
-/* For the god panel */
-<div id="godControl">
-	Click on a passage name to teleport there:
-	<br>
-	<<if $userId != "god">>
-		<<button "Stop Spoofing">>
-			<<goto $users["god"]["passage"]>>
-			<<set $userId = "god">>
-		<</button>>
-		<br>
-	<</if>>
-	<<link "Control: Variables" "Control: Variables">> <</link>>
-	<br>
-
-
-	<<link "Control: Variables (Factions)" "Control: Variables (Factions)">> <</link>>
-	<br>
-
-
-	<<link "Control: Lookup" "Control: Lookup">> <</link>>
-	<br>
-
-	<<link "Control: NUKE" "Control: Full Reset">> <</link>>
-	<br>
-
-	<<link "Control: Passage Teleport" "Passage Teleport">> <</link>>
-	<br>
-
-	/* <<link "Control: User Spoof" "Control: User Spoof">> <</link>>
-	<br> */
-	<br>
-</div>
 
 
 

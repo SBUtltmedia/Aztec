@@ -330,7 +330,9 @@ function diffSet(pathArr, value){
 }
 
 function initTheyr(lockInfo) {
+
     updateSugarCubeState(userData.gameState);
+
     socket = io();
     // Receive state from server upon connecting, then update all other clients that you've connected
     socket.on('connect', () => {
