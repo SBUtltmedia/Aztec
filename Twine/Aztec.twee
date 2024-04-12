@@ -501,48 +501,63 @@ Now that your leader has been chosen, it's time to confront [[the bigger questio
 
 :: After the Riot Vote {"position":"2450,10750","size":"100,100"}
 <<liveblock>>
-<<if $Moc_Riot_Vote isnot 5>>
+
+<<set _Moc_Riot_Vote = setup.getTotalChoices("Moc_Riot_Vote")>>
+<<set _MocRiot_Moc = setup.getTotalChoices("MocRiot_Moc")>>
+<<set _MocRiot_Tla = setup.getTotalChoices("MocRiot_Tla")>>
+<<set _MocRiot_Cua = setup.getTotalChoices("MocRiot_Cua")>>
+<<set _MocRiot_Cac = setup.getTotalChoices("MocRiot_Cac")>>
+<<set _MocRiot_AzP = setup.getTotalChoices("MocRiot_AzP")>>
+<<set _MocRiot_Poc = setup.getTotalChoices("MocRiot_Poc")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+Total Votes cast: <<print _Moc_Riot_Vote>><br>
+<br>
+Total Players in Game: <<print _Aztec_Tot_Play>><br>
+<br>
+
+
+<<if _Moc_Riot_Vote < (_Aztec_Tot_Play - 1)>>
 You have cast your vote, but others are less decisive. You wait for the rest of the council to make their choice.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<<print $Moc_Riot_Vote>> votes have been cast.<br>
+<<print _Moc_Riot_Vote>> votes have been cast.<br>
 <br>
 <<else>>
 
-<<if $MocRiot_Moc >=$MocRiot_Tla and $MocRiot_Moc >=$MocRiot_Cua and $MocRiot_Moc >=$MocRiot_Cac and $MocRiot_Moc >=$MocRiot_AzP and $MocRiot_Moc >=$MocRiot_Poc>>
-<<if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5>>
+<<if _MocRiot_Moc >=_MocRiot_Tla and _MocRiot_Moc >=_MocRiot_Cua and _MocRiot_Moc >=_MocRiot_Cac and _MocRiot_Moc >=_MocRiot_AzP and _MocRiot_Moc >=_MocRiot_Poc>>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
 The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Moctezuma">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
 The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Moctezuma">><</link>>.<br>
 <br>
 <</if>>
-<<elseif $MocRiot_Tla >=$MocRiot_Moc and $MocRiot_Tla >=$MocRiot_Cua and $MocRiot_Tla >=$MocRiot_Cac and $MocRiot_Tla >=$MocRiot_AzP and $MocRiot_Tla >=$MocRiot_Poc>><<set $New_Aztec_Leader="Tlacaelel">>
-<<if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5>>
+<<elseif _MocRiot_Tla >=_MocRiot_Moc and _MocRiot_Tla >=_MocRiot_Cua and _MocRiot_Tla >=_MocRiot_Cac and _MocRiot_Tla >=_MocRiot_AzP and _MocRiot_Tla >=_MocRiot_Poc>><<set _New_Aztec_Leader="Tlacaelel">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
 The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Tlacaelel">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
 The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Tlacaelel">><</link>>.<br>
 <br>
 <</if>>
-<<elseif $MocRiot_Cua >=$MocRiot_Moc and $MocRiot_Cua >=$MocRiot_Tla and $MocRiot_Cua >=$MocRiot_Cac and $MocRiot_Cua >=$MocRiot_AzP and $MocRiot_Cua >=$MocRiot_Poc>><<set $New_Aztec_Leader="Cuauhtemoc">>
-<<if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5>>
+<<elseif _MocRiot_Cua >=_MocRiot_Moc and _MocRiot_Cua >=_MocRiot_Tla and _MocRiot_Cua >=_MocRiot_Cac and _MocRiot_Cua >=_MocRiot_AzP and _MocRiot_Cua >=_MocRiot_Poc>><<set $New_Aztec_Leader="Cuauhtemoc">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
 The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Cuauhtemoc">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
 The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Cuauhtemoc">><</link>>.<br>
 <br>
 <</if>>
-<<elseif $MocRiot_Cac >=$MocRiot_Moc and $MocRiot_Cac >=$MocRiot_Tla and $MocRiot_Cac >=$MocRiot_Cua and $MocRiot_Cac >=$MocRiot_AzP and $MocRiot_Cac >=$MocRiot_Poc>><<set $New_Aztec_Leader="Cacamatzin">>
-<<if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5>>
+<<elseif _MocRiot_Cac >=_MocRiot_Moc and _MocRiot_Cac >=_MocRiot_Tla and _MocRiot_Cac >=_MocRiot_Cua and _MocRiot_Cac >=_MocRiot_AzP and _MocRiot_Cac >=_MocRiot_Poc>><<set _New_Aztec_Leader="Cacamatzin">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
  The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Cacamatzin">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
 The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Cacamatzin">><</link>>.<br>
 <br>
 <</if>>
-<<elseif $MocRiot_AzP >=$MocRiot_Moc and $MocRiot_AzP >=$MocRiot_Tla and $MocRiot_AzP >=$MocRiot_Cua and $MocRiot_AzP >=$MocRiot_Cac and $MocRiot_AzP >=$MocRiot_Poc>><<set $New_Aztec_Leader="Aztec_Priest">>
-<<if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5>>
+<<elseif _MocRiot_AzP >=_MocRiot_Moc and _MocRiot_AzP >=_MocRiot_Tla and _MocRiot_AzP >=_MocRiot_Cua and _MocRiot_AzP >=_MocRiot_Cac and _MocRiot_AzP >=_MocRiot_Poc>><<set $New_Aztec_Leader="Aztec_Priest">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
  The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Aztec_Priest">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -1128,37 +1143,11 @@ Prepare yourself, the Spaniards are [[entering your city|Tlaxcalans Negotiate Pe
 <</liveblock>>
 
 
-:: Angry [Done] {"position":"950,300","size":"100,100"}
-<<liveblock>>
-You've lost a wisdom point! Your wisdom is now <<print $users[$lookup["Aguilar"]]["stats"]["Wisdom"]>>. <br>
-<br>
-A ship full of bearded men has been seen off the coast of Tulum. <br>
-<br>
-After all these years among the Maya, you should have a better grasp of their language. You might want to brush up on your translation skills, because they're going to be key to your survival very soon! Your fortunes are about to change. <br>
-<br>
-Translation: <br>
-<b>Yich'ak-k'ak':</b> <i>Yesterday, I was in the park where I met a man from Tulum. A few days ago, he was looking out to sea and saw a big house appear in the water. The house came closer and closer and the men of the city gathered to see the house. When the house got close they could see that it was full of men with pale skin and lots of hair. Tulum's men didn't know where this house came from, but they saw trouble. They made noise and fired rocks into the sea. The house turned back and disappeared.</i><br>
-<br>
-<b>Chak-balam:</b> <i>Did they see the house another time? Do they know where it came from?</i><br>
-<br>
-<b>Yich'ak-k'ak':</b> <i>No. It is strange. I think we should keep watch.</i><br>
-<br>
-<b>Chak-balam:</b> <i>Our men will go to the water to wait. If the house arrives on our water we will make them leave.</i><br>
-<br>
-Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up and flee the village alone.<br>
-<br>
-
-
-<</liveblock>>
-
-
 :: Assignments Summary {"position":"4500,400","size":"100,100"}
 <<liveblock>>
 [[Check Player and Team Status and Location|Control: Player Status]]<br>
 [[Check the Status of Holds and Votes|Control: Votes]]<br>
 [[Return to the Dashboard|Dashboard]]<br>
-
-
 <</liveblock>>
 
 
@@ -1318,103 +1307,107 @@ Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return
 :: Aztec Leader Dies and Aztecs Choose a Leader Riot {"position":"2375,10625","size":"100,100"}
 <<liveblock>>
 
-<<if ndef $Moc_Riot_Vote>>
-<<set $Moc_Riot_Vote=0>>
+<<if ndef $users[$userId]["choices"]["Moc_Riot_Vote"]>>
+<<set $users[$userId]["choices"]["Moc_Riot_Vote"]=0>>
 <</if>>
-<<if ndef $MocRiot_Tla>>
-<<set $MocRiot_Tla=0>>
+<<if ndef $users[$userId]["choices"]["MocRiot_Tla"]>>
+<<set $users[$userId]["choices"]["MocRiot_Tla"]=0>>
 <</if>>
-<<if ndef $MocRiot_Cua>>
-<<set $MocRiot_Cua=0>>
+<<if ndef $users[$userId]["choices"]["MocRiot_Cua"]>>
+<<set $users[$userId]["choices"]["MocRiot_Cua"]=0>>
 <</if>>
-<<if ndef $MocRiot_Cac>>
-<<set $MocRiot_Cac=0>>
+<<if ndef $users[$userId]["choices"]["MocRiot_Cac"]>>
+<<set $users[$userId]["choices"]["MocRiot_Cac"]=0>>
 <</if>>
-<<if ndef $MocRiot_AzP>>
-<<set $MocRiot_AzP=0>>
+<<if ndef $users[$userId]["choices"]["MocRiot_AzP"]>>
+<<set $users[$userId]["choices"]["MocRiot_AzP"]=0>>
 <</if>>
-<<if ndef $MocRiot_Poc>>
-<<set $MocRiot_Poc=0>>
+<<if ndef $users[$userId]["choices"]["MocRiot_Poc"]>>
+<<set $users[$userId]["choices"]["MocRiot_Poc"]=0>>
 <</if>>
-<<if ndef $MocRiot_Moc>>
-<<set $MocRiot_Moc=0>>
+<<if ndef $users[$userId]["choices"]["MocRiot_Moc"]>>
+<<set $users[$userId]["choices"]["MocRiot_Moc"]=0>>
 <</if>>
 
 Overcome by grief, you gather for a council meeting. Now is not the time for mourning; that must wait. The first task at hand is to elect a new leader, but who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
+
 <<if $Aztec_Leader is "Moctezuma">>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 
 <<elseif $Aztec_Leader is "Tlacaelel">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 
 
 <<elseif $Aztec_Leader is "Cuauhtemoc">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 
 
 <<elseif $Aztec_Leader is "Cacamatzin">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+
 
 
 <<elseif $Aztec_Leader is "Aztec_Priest">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 
+
 <<elseif $Aztec_Leader is "Pochteca">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 <</if>>
 
@@ -1548,81 +1541,83 @@ You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
 You gather for a council meeting and decide to elect a new leader. Who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
 <<if $Aztec_Leader is "Moctezuma">>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 
 <<elseif $Aztec_Leader is "Tlacaelel">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 
 
 <<elseif $Aztec_Leader is "Cuauhtemoc">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 
 
 <<elseif $Aztec_Leader is "Cacamatzin">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+
 
 
 <<elseif $Aztec_Leader is "Aztec_Priest">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Pochteca" "After the Riot Vote">><<set $MocRiot_Poc = $MocRiot_Poc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Pochteca" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Poc"] = $users[$userId]["choices"]["MocRiot_Poc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+
 
 <<elseif $Aztec_Leader is "Pochteca">>
-<<link "Moctezuma" "After the Riot Vote">><<set $MocRiot_Moc = $MocRiot_Moc + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Moctezuma" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Moc"] = $users[$userId]["choices"]["MocRiot_Moc"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Tlacaelel" "After the Riot Vote">><<set $MocRiot_Tla = $MocRiot_Tla + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Tlacaelel" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Tla"] = $users[$userId]["choices"]["MocRiot_Tla"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cuauhtemoc" "After the Riot Vote">><<set $MocRiot_Cua = $MocRiot_Cua + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cua"] = $users[$userId]["choices"]["MocRiot_Cua"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Cacamatzin" "After the Riot Vote">><<set $MocRiot_Cac = $MocRiot_Cac + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Cacamatzin" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_Cac"] = $users[$userId]["choices"]["MocRiot_Cac"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-<<link "Aztec_Priest" "After the Riot Vote">><<set $MocRiot_AzP = $MocRiot_AzP + 1>><<set $Moc_Riot_Vote = $Moc_Riot_Vote + 1>><<run changeStats("Aztec_Priest",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>><br>
+<<link "Aztec_Priest" "After the Riot Vote">><<set $users[$userId]["choices"]["MocRiot_AzP"] = $users[$userId]["choices"]["MocRiot_AzP"] = 1>><<set $users[$userId]["choices"]["Moc_Riot_Vote"] = $users[$userId]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
 <</if>>
-
 
 <</liveblock>>
 
@@ -3511,7 +3506,6 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 
 <</liveblock>>
-
 
 
 :: Passage Teleport [Control Done Breaks] {"position":"338,1151","size":"100,100"}
@@ -13148,6 +13142,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 
 <</liveblock>>
 
+
 :: Home: Stats [Done Breaks Home] {"position":"338,1151","size":"100,100"}
 <div id="info-stats">
 	<div id="info-stats-faction-strength">
@@ -13205,6 +13200,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 		</div>
 	</div>
 </div>
+
 
 :: Home [Home Done Breaks] {"position":"338,1151","size":"100,100"}
 /* Creates some bookmarks to switch between pages */
