@@ -9960,7 +9960,7 @@ they will be directed to this temp user */
 /* inits userdata in $users */
 
 /* change this conditional */
-<<if  (ndef $users[$userId] ||!(Object.keys(_roles).includes($users[$userId]["role"]))) >>
+<<if  (ndef $users[$userId] ||!(Object.keys(_roles).includes(_role))) >>
 <<set $users[$userId] = {}>>
 <<script>>
 console.log("new user detected")
