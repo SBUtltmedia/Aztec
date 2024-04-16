@@ -210,7 +210,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -8957,6 +8957,7 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 	State.setVar(&quot;_username&quot;, searchParams.get(&#39;username&#39;) || userData.authData.username)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
+	console.log(searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString(&#39;en-US&#39;, {
 			timeZone: &#39;America/New_York&#39;,
@@ -9159,7 +9160,7 @@ they will be directed to this temp user */
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $lookup[_role] != &quot;notSeen&quot;&gt;&gt;
+&lt;&lt;if $lookup[_role] != &quot;notSeen&quot; &gt;&gt;
 	&lt;&lt;set $users[$userId] = $users[$lookup[_role]]&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 /* inits userdata in $users */
@@ -9180,6 +9181,14 @@ console.log(&quot;new user detected&quot;)
 &lt;&lt;set $users[$userId][&quot;isLeader&quot;] = _roles[$users[$userId][&quot;role&quot;]]?.isLeader || &quot;undefined&quot;&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;passage&quot;] = Config.passages.start&gt;&gt;
 &lt;&lt;set $users[$userId][&quot;active&quot;] = true&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+&lt;&lt;if Object.keys(_roles).includes(_role) &amp;&amp; _role != $users[$userId][&quot;role&quot;] &gt;&gt;
+	&lt;&lt;set _now = Date.now()&gt;&gt;
+	&lt;&lt;set $lookup[$users[$userId][&quot;role&quot;]] = _now&gt;&gt;
+	&lt;&lt;set $users[_now] = Object.assign({}, $users[$userId])&gt;&gt;
+	&lt;&lt;set $users[$userId] =  Object.assign({},$users[$lookup[_role]])&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if Object.keys(_roles).includes(_role)&gt;&gt;
