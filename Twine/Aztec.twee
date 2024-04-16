@@ -9753,6 +9753,7 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 	State.setVar("_username", searchParams.get('username') || userData.authData.username)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick || userData.authData.global_name)
 	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
+	console.log(searchParams.get('nick') || userData.authData.nick || userData.authData.global_name)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString('en-US', {
 			timeZone: 'America/New_York',
@@ -9955,7 +9956,7 @@ they will be directed to this temp user */
 	<</for>>
 <</if>>
 
-<<if $lookup[_role] != "notSeen">>
+<<if $lookup[_role] != "notSeen" >>
 	<<set $users[$userId] = $users[$lookup[_role]]>>
 <</if>>
 /* inits userdata in $users */
@@ -9976,6 +9977,14 @@ console.log("new user detected")
 <<set $users[$userId]["isLeader"] = _roles[$users[$userId]["role"]]?.isLeader || "undefined">>
 <<set $users[$userId]["passage"] = Config.passages.start>>
 <<set $users[$userId]["active"] = true>>
+<</if>>
+
+
+<<if Object.keys(_roles).includes(_role) && _role != $users[$userId]["role"] >>
+	<<set _now = Date.now()>>
+	<<set $lookup[$users[$userId]["role"]] = _now>>
+	<<set $users[_now] = Object.assign({}, $users[$userId])>>
+	<<set $users[$userId] =  Object.assign({},$users[$lookup[_role]])>>
 <</if>>
 
 <<if Object.keys(_roles).includes(_role)>>
