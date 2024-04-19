@@ -1,6 +1,6 @@
 function statPickerInit() {
     var statNames = ["Strength", "Wisdom", "Loyalty"]
-    var userId = SugarCube.State.getVar("$userId");
+    var userId = SugarCube.State.getVar("$role");
     var user = SugarCube.State.getVar("$users")[userId];
 
     let stats = SugarCube.State.variables.users[userId]["stats"];
