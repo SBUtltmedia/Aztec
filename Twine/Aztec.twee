@@ -3625,7 +3625,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 
 	<<button "send">>
 
-		<<set $users[_role]["sidePassageReturn"] = $users[$lookup[_role]]["passage"]>>
+		<<set $users[_role]["sidePassageReturn"] = $users[_role]["passage"]>>
 		<<set $users[_role]["passage"] = _newSidePassage>>
 	<</button>>
 <</liveblock>> */
