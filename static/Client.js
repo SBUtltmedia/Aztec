@@ -83,10 +83,10 @@ function showMap() {
         }))
     }
 
-    let userId = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.userId]
-    let role = userId.role
-    let faction =  userId.faction
-    var currentMapIndex =  parseInt(userId.currentMap)
+    let user = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.role]
+    let role = user.role
+    let faction =  user.faction
+    var currentMapIndex =  parseInt(user.currentMap)
     let currentMap
 
     if (!currentMapIndex) {
@@ -118,8 +118,7 @@ function showStats() {
         "id": "displayStats",
     })
 
-    let userId =  Window.SugarCubeState.variables.userId
-    let twineStats =  Window.SugarCubeState.variables.users[userId].stats
+    let twineStats =  Window.SugarCubeState.variables.users[role].stats
 
     if (twineStats) {
         Object.keys(stats).forEach((stat, idx) => {
@@ -193,8 +192,8 @@ function setFactionStrength(rawValue) {
  * @param {object} statsIn: a player's default stats
  */
 function makeRoleStats(statsIn) {
-    let userId = Window.SugarCubeState.variables.userId;
-    let user = Window.SugarCubeState.variables.users[userId]
+    let role = Window.SugarCubeState.variables.role;
+    let user = Window.SugarCubeState.variables.users[role]
     var output = "";
 
     user["stats"] = statsIn;
@@ -225,7 +224,7 @@ function getRandomInt(max) {
  */
 function changeStats(rolePlay, newStats) {
     let usersObj= Window.SugarCubeState.variables.users;
-    let currentUserId = Window.SugarCubeState.variables.lookup[rolePlay]
+    let currentUserId = Window.SugarCubeState.variables.role
     if(currentUserId == undefined){
         currentUserId = "NotSeen"
     }
@@ -268,7 +267,7 @@ function DOMTest(){
 
 // Returns the role of the current player
 function getUser() {
-    let userId = Window.SugarCubeState.getVar("$userId");
+    let userId = Window.SugarCubeState.getVar("$role");
     let user =  Window.SugarCubeState.getVar("$users")[userId];
     return user;
 }
