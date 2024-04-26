@@ -7248,7 +7248,7 @@ Updates git backup */
 		/* Hit send here */
 		<<button "Enter">>
 			<<set _arrayLength = $chatlog[$users[$role].currentChat].length>>
-			<<set _msg = {user:$users[$role].role, message:_chattext, time:new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")}>>
+			<<set _msg = {user: $role, message:_chattext, time:new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")}>>
 			<<set _tempArr = $chatlog[$users[$role].currentChat].slice(-4)>>
 			<<set _tempArr[_tempArr.length] = _msg>>
 			<<if _chattext != "">>
@@ -7455,7 +7455,7 @@ Updates git backup */
 	/* Users who have NEVER been seen. Never logged on. No ID associated. */
 	<<set _factionUsers.neverSeen = []>>
 	<<for _user, _id range $users>>
-		<<if $users[_user] == "notSeen">>
+		<<if $users[_user]["username"] == "notSeen">>
 			<<set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])>>
 		<</if>>
 	<</for>>
