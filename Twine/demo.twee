@@ -34,7 +34,6 @@ let lockId= LoadScreen.lock()
 
 importScripts([
 	'/socket.io/socket.io.js',
-	'https://unpkg.com/redux@latest/dist/redux.min.js',
 	'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
 	`${urlPrefix}Client.js`,
 	"https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js",
@@ -43,7 +42,9 @@ importScripts([
 	]	
 )
 	.then(function() {
-	initTheyr({lockId,callback:LoadScreen.unlock})
+		initTheyr({lockId,callback:LoadScreen.unlock})
+
+		State = new Proxy(State, createHandler())
 	}
 );
 
@@ -132,7 +133,7 @@ importScripts([
 
 :: Chat {"position":"350,101","size":"100,100"}
 <<if ndef $chatlog >>
-<<set $chatlog= "">>
+<<set $chatlog= "Chat:">>
 <</if>>
 
 	<<liveblock>>
