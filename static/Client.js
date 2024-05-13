@@ -107,7 +107,6 @@ function showMap() {
  * Displays player's stats widget
  */
 function showStats() {
-    let { role, faction } = getUser();
     var stats = {
         "Strength": 0,
         "Wisdom": 0,
@@ -117,8 +116,9 @@ function showStats() {
     var displayStats = $('<div/>', {
         "id": "displayStats",
     })
-
-    let twineStats =  Window.SugarCubeState.variables.users[role].stats
+    let user = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.role];
+    let twineStats =  user.stats;
+    let faction = user["faction"];
 
     if (twineStats) {
         Object.keys(stats).forEach((stat, idx) => {

@@ -210,11 +210,7 @@ importScripts([
 			}
 		}
 	});
-<<<<<<< HEAD
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-=======
 })();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
->>>>>>> b476e0aa6609071c1e3daae97a1238f6fe04655f
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -3280,12 +3276,7 @@ The next day proceeds much as the last. It seems you were right and the rumor wa
 &lt;&lt;/if&gt;&gt;
 
 
-<<<<<<< HEAD
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Passage Teleport" tags="Control Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
-=======
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Passage Teleport" tags="Control Done Breaks" position="338,1151" size="100,100">&lt;&lt;audio &quot;Gulls_and_waves__5min_&quot; volume 0.2 play &gt;&gt;
-&lt;&lt;liveblock&gt;&gt;
->>>>>>> b476e0aa6609071c1e3daae97a1238f6fe04655f
 &lt;div id=&quot;info&quot;&gt;
 	Click on a passage name to teleport there:
 	&lt;br&gt;
@@ -3582,12 +3573,10 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 &lt;br&gt;
 &lt;&lt;link &quot;Control: Passage Teleport&quot; &quot;Passage Teleport&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;br&gt;
-&lt;&lt;if $userId != &quot;god&quot;&gt;&gt;
-	&lt;&lt;button &quot;unspoof&quot; &gt;&gt;
-		&lt;&lt;goto &quot;Control: Variables (Factions)&quot;&gt;&gt;
-		&lt;&lt;set $userId = &quot;god&quot;&gt;&gt;
-	&lt;&lt;/button&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;button &quot;unspoof&quot; &gt;&gt;
+	&lt;&lt;goto &quot;Control: Variables (Factions)&quot;&gt;&gt;
+	&lt;&lt;set $role = &quot;God&quot;&gt;&gt;
+&lt;&lt;/button&gt;&gt;
 &lt;br&gt;
 &lt;/div&gt;
 	/* Goes through list of all factions */
@@ -4460,7 +4449,6 @@ Now let&#39;s [[learn about your role|The Library]]!
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="Game Over: Aztecs Win La Noche Triste" tags="" position="4475,9850" size="100,100">&lt;&lt;liveblock&gt;&gt;
-<<<<<<< HEAD
 Double-click this passage to edit it.
 
 
@@ -4468,15 +4456,6 @@ Double-click this passage to edit it.
 Double-click this passage to edit it.
 
 
-=======
-Double-click this passage to edit it.
-
-
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="114" name="Game Over: Aztecs Win the Battle on the Causeway" tags="" position="3725,6700" size="100,100">&lt;&lt;liveblock&gt;&gt;
-Double-click this passage to edit it.
-
-
->>>>>>> b476e0aa6609071c1e3daae97a1238f6fe04655f
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="Game Setup" tags="" position="3725,725" size="100,100">&lt;&lt;liveblock&gt;&gt;
 [[Check Player and Team Status and Location|Control: Player Status]]&lt;br&gt;
 [[Check the Status of Holds and Votes|Control: Votes]]&lt;br&gt;
@@ -6874,7 +6853,7 @@ Updates git backup */
 	/* Users who have NEVER been seen. Never logged on. No ID associated. */
 	&lt;&lt;set _factionUsers.neverSeen = []&gt;&gt;
 	&lt;&lt;for _user, _id range $users&gt;&gt;
-		&lt;&lt;if $users[_user] == &quot;notSeen&quot;&gt;&gt;
+		&lt;&lt;if $users[_user][&quot;username&quot;] == &quot;notSeen&quot;&gt;&gt;
 			&lt;&lt;set _factionUsers.neverSeen = _factionUsers.neverSeen.concat([_user])&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;
@@ -6890,7 +6869,7 @@ Updates git backup */
 		&lt;/div&gt;
 
 		&lt;&lt;for _i, _userId range _factionUsers[_faction]&gt;&gt;
-			&lt;&lt;if ![&quot;notSeen&quot;, &quot;god&quot;].includes(_userId) &amp;&amp; $users[_userId][&quot;offline&quot;] != true&gt;&gt;
+			&lt;&lt;if ![&quot;notSeen&quot;, &quot;God&quot;].includes(_userId) &amp;&amp; $users[_userId][&quot;offline&quot;] != true &amp;&amp; $god == false&gt;&gt;
 				&lt;&lt;userInfo $users[_userId][&quot;userId&quot;] _userId _factionColor[$users[_userId][&quot;faction&quot;]] _userId $users[_userId][&quot;userId&quot;]&gt;&gt;
 			&lt;&lt;/if&gt;&gt;
 		&lt;&lt;/for&gt;&gt;
@@ -6903,7 +6882,7 @@ Updates git backup */
 	&lt;/div&gt;
 
 	&lt;&lt;for _j, _userId range _factionUsers[&quot;offline&quot;]&gt;&gt;
-		&lt;&lt;if ![&quot;notSeen&quot;, &quot;god&quot;].includes(_userId) &amp;&amp; $users[_userId][&quot;username&quot;] != &quot;test&quot;&gt;&gt;
+		&lt;&lt;if ![&quot;notSeen&quot;, &quot;God&quot;].includes(_userId) &amp;&amp; $users[_userId][&quot;username&quot;] != &quot;test&quot;&gt;&gt;
 			&lt;&lt;userInfo _userId $users[_userId][&quot;role&quot;] _factionColor[$users[_userId][&quot;faction&quot;]] $users[_userId][&quot;role&quot;] _userId&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/for&gt;&gt;

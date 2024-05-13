@@ -3852,12 +3852,10 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 <br>
 <<link "Control: Passage Teleport" "Passage Teleport">><</link>>
 <br>
-<<if $userId != "god">>
-	<<button "unspoof" >>
-		<<goto "Control: Variables (Factions)">>
-		<<set $userId = "god">>
-	<</button>>
-<</if>>
+<<button "unspoof" >>
+	<<goto "Control: Variables (Factions)">>
+	<<set $role = "God">>
+<</button>>
 <br>
 </div>
 	/* Goes through list of all factions */
@@ -7470,7 +7468,7 @@ Updates git backup */
 		</div>
 
 		<<for _i, _userId range _factionUsers[_faction]>>
-			<<if !["notSeen", "god"].includes(_userId) && $users[_userId]["offline"] != true>>
+			<<if !["notSeen", "God"].includes(_userId) && $users[_userId]["offline"] != true && $god == false>>
 				<<userInfo $users[_userId]["userId"] _userId _factionColor[$users[_userId]["faction"]] _userId $users[_userId]["userId"]>>
 			<</if>>
 		<</for>>
@@ -7483,7 +7481,7 @@ Updates git backup */
 	</div>
 
 	<<for _j, _userId range _factionUsers["offline"]>>
-		<<if !["notSeen", "god"].includes(_userId) && $users[_userId]["username"] != "test">>
+		<<if !["notSeen", "God"].includes(_userId) && $users[_userId]["username"] != "test">>
 			<<userInfo _userId $users[_userId]["role"] _factionColor[$users[_userId]["faction"]] $users[_userId]["role"] _userId>>
 		<</if>>
 	<</for>>
