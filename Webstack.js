@@ -94,7 +94,8 @@ class Webstack {
 
 		updateGit(isTest, ){
 			let content = {...this.serverStore.getState()};
-			return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)),isTest)
+			console.log("is Test:", this.isTest)
+			return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)),this.isTest)
 
 		}
 	  

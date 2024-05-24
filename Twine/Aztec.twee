@@ -27,6 +27,7 @@ Spanish Aztec War Ver 1.0.1
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
 @import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+@import url(".initVars.json");
 @import url("Twine/style.css");
 
 
@@ -3766,7 +3767,7 @@ Only modify stats and passages if you are 100% sure what you are doing
 <br>
 
 	<<set _userId = $godParam>>
-	<<set _role = _userId>>
+	<<set _role = $godParam>>
 	/* Goes through list of all Variables */
 	<<set _userData = $users[_userId]>>
 	<<set _userName = $users[_userId]["username"]>>
@@ -3830,9 +3831,12 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<</if>>
 		<br>
 		Spoof User: 
+		<<set _selectedRole = _role>>
 		<<button "spoof" >>
-			<<goto $users[_role]["passage"]>>
-			<<set $role = _role>>
+			<<script>>
+				State.setVar("$role", State.getVar("_selectedRole"))
+			<</script>>
+			<<goto $users[_selectedRole]["passage"]>>
 		<</button>>
 		</div>
 </div>
@@ -3912,6 +3916,9 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,{type : 'DELETE'})
 		<</script>>
 		<<set $passageHistory = {}>>
+		<<script>>
+				location.reload();
+		<</script>>
 	<</button>>
 	<</if>>
 	<<if _confirm == 1>>
@@ -9973,14 +9980,14 @@ List of valid roles and their info */
 	const searchParams = new URLSearchParams(loc);
 
 	var passage =  State.getVar("$users[$role]['passage']")  
-	var role = State.getVar("$role");
+	var currRole = State.getVar("$role");
 
 	if(searchParams.get('test')){
 		passage = "Passage Teleport"
 	}  
 
 	// If not using test user and role is not recognized, go to Name not Recognized passage
-	if(!searchParams.get('test') && !(role in State.getVar("_roles"))) passage = "Name Not Recognized"
+	if(!searchParams.get('test') && !(currRole in State.getVar("_roles"))) passage = "Name Not Recognized"
 
 	if((passage)){
 		setTimeout(() => {

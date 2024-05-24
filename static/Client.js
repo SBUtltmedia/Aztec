@@ -379,7 +379,6 @@ function initTheyr(lockInfo) {
     // Updates client's SugarCube State when state changes are received from the server
     function resetSugarCubeState(new_state) {
         for (var member in Window.SugarCubeState.variables) delete Window.SugarCubeState.variables[member];
-        Window.SugarCubeState.variables =  new_state
         console.log(new_state, Window.SugarCubeState.variables)
          $(document).trigger(":liveupdate");
      }
