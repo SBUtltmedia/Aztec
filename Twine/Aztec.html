@@ -104,6 +104,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
 @import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+@import url(".initVars.json");
 @import url("Twine/style.css");</style><script role="script" id="twine-user-script" type="text/twine-javascript">Save.clear()
 Config.passages.nobr = true;
 
@@ -3491,7 +3492,7 @@ Only modify stats and passages if you are 100% sure what you are doing
 &lt;br&gt;
 
 	&lt;&lt;set _userId = $godParam&gt;&gt;
-	&lt;&lt;set _role = _userId&gt;&gt;
+	&lt;&lt;set _role = $godParam&gt;&gt;
 	/* Goes through list of all Variables */
 	&lt;&lt;set _userData = $users[_userId]&gt;&gt;
 	&lt;&lt;set _userName = $users[_userId][&quot;username&quot;]&gt;&gt;
@@ -3555,9 +3556,12 @@ Only modify stats and passages if you are 100% sure what you are doing
 		&lt;&lt;/if&gt;&gt;
 		&lt;br&gt;
 		Spoof User: 
+		&lt;&lt;set _selectedRole = _role&gt;&gt;
 		&lt;&lt;button &quot;spoof&quot; &gt;&gt;
-			&lt;&lt;goto $users[_role][&quot;passage&quot;]&gt;&gt;
-			&lt;&lt;set $role = _role&gt;&gt;
+			&lt;&lt;script&gt;&gt;
+				State.setVar(&quot;$role&quot;, State.getVar(&quot;_selectedRole&quot;))
+			&lt;&lt;/script&gt;&gt;
+			&lt;&lt;goto $users[_selectedRole][&quot;passage&quot;]&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 		&lt;/div&gt;
 &lt;/div&gt;
@@ -3629,6 +3633,9 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,{type : &#39;DELETE&#39;})
 		&lt;&lt;/script&gt;&gt;
 		&lt;&lt;set $passageHistory = {}&gt;&gt;
+		&lt;&lt;script&gt;&gt;
+				location.reload();
+		&lt;&lt;/script&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;&lt;if _confirm == 1&gt;&gt;
@@ -9178,14 +9185,14 @@ List of valid roles and their info */
 	const searchParams = new URLSearchParams(loc);
 
 	var passage =  State.getVar(&quot;$users[$role][&#39;passage&#39;]&quot;)  
-	var role = State.getVar(&quot;$role&quot;);
+	var currRole = State.getVar(&quot;$role&quot;);
 
 	if(searchParams.get(&#39;test&#39;)){
 		passage = &quot;Passage Teleport&quot;
 	}  
 
 	// If not using test user and role is not recognized, go to Name not Recognized passage
-	if(!searchParams.get(&#39;test&#39;) &amp;&amp; !(role in State.getVar(&quot;_roles&quot;))) passage = &quot;Name Not Recognized&quot;
+	if(!searchParams.get(&#39;test&#39;) &amp;&amp; !(currRole in State.getVar(&quot;_roles&quot;))) passage = &quot;Name Not Recognized&quot;
 
 	if((passage)){
 		setTimeout(() =&gt; {
