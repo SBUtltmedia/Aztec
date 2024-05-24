@@ -12,8 +12,8 @@ if (!app) {
     exit(0);
 }
 
-let startingAppId = process.argv[2] || 4;
-let endingAppId = process.argv[3] || 4;
+let startingAppId = process.argv[2] || 1;
+let endingAppId = process.argv[3] || 1;
 let herokuInstances = 1;
 let commands = [
     `git add .`,
@@ -32,15 +32,6 @@ for (let i = startingAppId; i <= endingAppId; i++) {
     configVars['redirectURL'] = redirectURL;
     configVars['herokuURL'] = `https://${app}-${i}.herokuapp.com`;
     configVars['appIndex'] = i;
-    configVars['discordChannelNames'] = Object.keys(configVars['discordChannels']).reduce(
-        (accumulator, currentValue) => `${accumulator},${currentValue}`,
-        '')
-
-    // converts discordChannel nested object into .env format
-    for (const [key, value] of Object.entries(configVars["discordChannels"])) {
-        configVars[key] = value
-    }
-    delete configVars['discordChannels']
 
     for (let key of Object.keys(configVars)) {
         let remoteVal = execSync(`heroku config:get -a ${app}-${i} ${key}`).toString().trim();
