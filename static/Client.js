@@ -380,6 +380,7 @@ function initTheyr(lockInfo) {
     function resetSugarCubeState(new_state) {
         for (var member in Window.SugarCubeState.variables) delete Window.SugarCubeState.variables[member];
         console.log(new_state, Window.SugarCubeState.variables)
+        location.reload()
          $(document).trigger(":liveupdate");
      }
 

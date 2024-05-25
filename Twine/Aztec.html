@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -3492,16 +3492,16 @@ Only modify stats and passages if you are 100% sure what you are doing
 &lt;br&gt;
 
 	&lt;&lt;set _userId = $godParam&gt;&gt;
-	&lt;&lt;set _role = $godParam&gt;&gt;
+	&lt;&lt;set _currRole = $godParam&gt;&gt;
 	/* Goes through list of all Variables */
 	&lt;&lt;set _userData = $users[_userId]&gt;&gt;
 	&lt;&lt;set _userName = $users[_userId][&quot;username&quot;]&gt;&gt;
 	&lt;br&gt;
 
-	&lt;&lt;set _twineKey = `$${ _role}`&gt;&gt;
-	&lt;&lt;print `${_role}&#39;s id#`&gt;&gt;
+	&lt;&lt;set _twineKey = `$${ _currRole}`&gt;&gt;
+	&lt;&lt;print `${_currRole}&#39;s id#`&gt;&gt;
 	&lt;&lt;if _username&gt;&gt;
-		&#39;&#39;_role is not assigned to a real player&#39;&#39;
+		&#39;&#39;_currRole is not assigned to a real player&#39;&#39;
 	&lt;&lt;else&gt;&gt;
 		&lt;&lt;print _userName&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
@@ -3556,11 +3556,10 @@ Only modify stats and passages if you are 100% sure what you are doing
 		&lt;&lt;/if&gt;&gt;
 		&lt;br&gt;
 		Spoof User: 
-		&lt;&lt;set _selectedRole = _role&gt;&gt;
+		&lt;&lt;set _selectedRole = _currRole&gt;&gt;
 		&lt;&lt;button &quot;spoof&quot; &gt;&gt;
-			&lt;&lt;script&gt;&gt;
-				State.setVar(&quot;$role&quot;, State.getVar(&quot;_selectedRole&quot;))
-			&lt;&lt;/script&gt;&gt;
+			&lt;&lt;set $role = _currRole&gt;&gt;
+			&lt;&lt;print $role&gt;&gt;
 			&lt;&lt;goto $users[_selectedRole][&quot;passage&quot;]&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 		&lt;/div&gt;
@@ -3618,11 +3617,11 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		&lt;/span&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;/div&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="Control: Full Reset" tags="Control" position="4275,375" size="100,100">WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
-&lt;br&gt;
-&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="Control: Full Reset" tags="Control" position="4275,375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;div id=&quot;control&quot;&gt;
 &lt;div&gt;
+WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
+&lt;br&gt;
 &lt;&lt;if ndef _confirm&gt;&gt;
 	&lt;&lt;set _confirm = 1&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
@@ -3633,9 +3632,6 @@ Only modify stats and passages if you aren&#39;t 100% sure what you are doing
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,{type : &#39;DELETE&#39;})
 		&lt;&lt;/script&gt;&gt;
 		&lt;&lt;set $passageHistory = {}&gt;&gt;
-		&lt;&lt;script&gt;&gt;
-				location.reload();
-		&lt;&lt;/script&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;&lt;if _confirm == 1&gt;&gt;
@@ -6459,6 +6455,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="PassageHeader" tags="" position="138,11" size="100,100">/* 
 Updates git backup */
+
 &lt;&lt;if ndef $gitUpdate&gt;&gt;
 	&lt;&lt;set $gitUpdate = new Date().getTime()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -9007,6 +9004,9 @@ Option 4: &lt;&lt;link &quot;Garrido&quot; &quot;Generic Spanish Leadership Resu
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set $totalMissing = $aztecsMissing + $spaniardsMissing + $tlaxMissing&gt;&gt;
 
+&lt;&lt;if $role == &quot;Ometeotl&quot; || $role == &quot;Tlaloc&quot;&gt;&gt;
+	&lt;&lt;set $role = &quot;God&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $role.toLowerCase() == &quot;god&quot;&gt;&gt;
 	&lt;&lt;set $god = true&gt;&gt;
 &lt;&lt;else&gt;&gt;
