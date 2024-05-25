@@ -3767,16 +3767,16 @@ Only modify stats and passages if you are 100% sure what you are doing
 <br>
 
 	<<set _userId = $godParam>>
-	<<set _role = $godParam>>
+	<<set _currRole = $godParam>>
 	/* Goes through list of all Variables */
 	<<set _userData = $users[_userId]>>
 	<<set _userName = $users[_userId]["username"]>>
 	<br>
 
-	<<set _twineKey = `$${ _role}`>>
-	<<print `${_role}'s id#`>>
+	<<set _twineKey = `$${ _currRole}`>>
+	<<print `${_currRole}'s id#`>>
 	<<if _username>>
-		''_role is not assigned to a real player''
+		''_currRole is not assigned to a real player''
 	<<else>>
 		<<print _userName>>
 	<</if>>
@@ -3831,11 +3831,10 @@ Only modify stats and passages if you are 100% sure what you are doing
 		<</if>>
 		<br>
 		Spoof User: 
-		<<set _selectedRole = _role>>
+		<<set _selectedRole = _currRole>>
 		<<button "spoof" >>
-			<<script>>
-				State.setVar("$role", State.getVar("_selectedRole"))
-			<</script>>
+			<<set $role = _currRole>>
+			<<print $role>>
 			<<goto $users[_selectedRole]["passage"]>>
 		<</button>>
 		</div>
@@ -3901,11 +3900,11 @@ Only modify stats and passages if you aren't 100% sure what you are doing
 
 
 :: Control: Full Reset [Control] {"position":"4275,375","size":"100,100"}
-WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
-<br>
 <<liveblock>>
 <div id="control">
 <div>
+WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
+<br>
 <<if ndef _confirm>>
 	<<set _confirm = 1>>
 	<</if>>
@@ -3916,9 +3915,6 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,{type : 'DELETE'})
 		<</script>>
 		<<set $passageHistory = {}>>
-		<<script>>
-				location.reload();
-		<</script>>
 	<</button>>
 	<</if>>
 	<<if _confirm == 1>>
@@ -7058,6 +7054,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 :: PassageHeader {"position":"138,11","size":"100,100"}
 /* 
 Updates git backup */
+
 <<if ndef $gitUpdate>>
 	<<set $gitUpdate = new Date().getTime()>>
 <</if>>
@@ -9802,6 +9799,9 @@ Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Ga
 <</if>>
 <<set $totalMissing = $aztecsMissing + $spaniardsMissing + $tlaxMissing>>
 
+<<if $role == "Ometeotl" || $role == "Tlaloc">>
+	<<set $role = "God">>
+<</if>>
 <<if $role.toLowerCase() == "god">>
 	<<set $god = true>>
 <<else>>

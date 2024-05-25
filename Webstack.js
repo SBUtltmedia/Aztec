@@ -110,6 +110,7 @@ class Webstack {
 				return temp;
 
 			case 'REPLACE':
+				console.log("replacing everything with:", action.payload)
 				return action.payload;
 			default:
 				return state
@@ -158,7 +159,7 @@ class Webstack {
 				console.log("reset start 2")
 				this.serverStore.dispatch({
 					type: 'REPLACE',
-					payload: initVars
+					payload: Object.assign({}, initVars)
 				})
 				app.post('/updateGit',(req, res) => {
 					res.send({})
