@@ -4647,9 +4647,9 @@ You have discussed these options with your men, and together you have decided yo
 <br>
 1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $gifts="Attack">><</link>>.<br>
 <br>
-2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $flags["gifts"]="No">><</link>>.<br>
+2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $gifts="No">><</link>>.<br>
 <br>
- 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $flags["gifts"]="Yes">><</link>>.<br>
+ 3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $gifts="Yes">><</link>>.<br>
 <br>
 <<case "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
 
