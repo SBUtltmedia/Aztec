@@ -11908,12 +11908,32 @@ Go to the Tlaxcalan discussion board and decide upon your best course of action.
 <<link "attack the Spaniards on the beach" "Tlaxcalans decide to attack the Spaniards in Veracruz">><<set $TL_Attacks="Spanish">><</link>>,<br>
 <br>
 or you can <<link "attack the Mexica on their way back to Tenochtitlan" "Tlaxcalans decide to attack the Aztecs on their way back from the coast">><<set $TL_Attacks="Aztecs">><</link>>.
+
 <<else>>
-[[do nothing|Tlaxcalans decide to let the Spaniards continue their journey inland]], <br>
+
+<<if ndef $TL_Attacks or $TL_Attacks eq "">>
+1. do nothing.<br>
 <br>
-[[attack the Spaniards on the beach|Tlaxcalans decide to attack the Spaniards in Veracruz]],<br>
+2. attack the Spaniards on the beach.<br>
 <br>
-or you can [[attack the Mexica on their way back to Tenochtitlan|Tlaxcalans decide to attack the Aztecs on their way back from the coast]].
+or<br>
+<br>
+3. attack the Mexica on their way back to Tenochtilán. <br>
+<br>
+<br>
+You must wait for <<print $Tlax_Leader>> to make a decision.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<elseif $TL_Attacks is "No">>
+You have decided to [[do nothing|Tlaxcalans decide to let the Spaniards continue their journey inland]].<br>
+<br>
+<<elseif $TL_Attacks is "Spanish">>
+You have decided to [[attack the Spaniards on the beach|Tlaxcalans decide to attack the Spaniards in Veracruz]],<br>
+<br>
+<<elseif $TL_Attacks is "Aztecs">>
+You have decided to [[attack the Mexica on their way back to Tenochtitlan|Tlaxcalans decide to attack the Aztecs on their way back from the coast]].
+<</if>>
 <</if>>
 <br>
 <br>
