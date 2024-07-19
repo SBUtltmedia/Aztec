@@ -12247,7 +12247,7 @@ You host the troops for the night and see them on their way the next morning, [[
 <br>
 The Tlaxcalans have decided to take the offensive and launch an attack! They made their move, but it was too soon and they were ill prepared to confront your weapons. The battle ends in a draw, but you have been weakened and must remain wary of these new foes. <br>
 <br>
-You regroup and <<link "settle into your basecamp" "The Spaniards Head Inland">><<set $factions["Spaniards"]["stats"]["Strength"]-=2>><</link>> for the night.<br>
+You regroup and <<link "settle into your basecamp" "The Spaniards Head Inland">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>> for the night.<br>
 <br>
 <<case "Tlaxcalans">>
 You attack the foreigners, but you've moved too soon! You cannot overpower the strangers with their powerful weapons. The battle ends in a draw, but your side has been weakened and you have put the Spaniards on high alert.  <br>
