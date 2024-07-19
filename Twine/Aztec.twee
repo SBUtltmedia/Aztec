@@ -7638,7 +7638,7 @@ You hurry toward the library, make your way to the top floor, and there it is: t
 <<liveblock>>
 <<audio "Library" play>>
 
-A month has passed and every day you've gone back to the library after class, looking for the mysterious room. You've explored every inch of the building, growing increasingly desperate with every day that goes by. Every night you've lain awake for hours, trying to figure out what happened and whether you just imagined the whole thing. You wonder if you're losing your mind, because it sure feels like it.<br>
+A week has passed and every day you've gone back to the library after class, looking for the mysterious room. You've explored every inch of the building, growing increasingly desperate with every day that goes by. Every night you've lain awake for hours, trying to figure out what happened and whether you just imagined the whole thing. You wonder if you're losing your mind, because it sure feels like it.<br>
 <br>
 Your history teacher didn't help the situation when she handed back your assignment today. It turns out you really did write it. And you got an A. You now have another assignment due next week and you're extra stressed because now the bar is way too high! Your teacher is going to expect A-level work from you every time and you're just not sure it's in you.<br>
 <br>
@@ -12243,6 +12243,8 @@ You host the troops for the night and see them on their way the next morning, [[
 <<liveblock>>
 <<switch $users[$role]["faction"]>>
 <<case "Spaniards">>
+<b>YOU'VE BEEN ATTACKED!!!!</b><br>
+<br>
 The Tlaxcalans have decided to take the offensive and launch an attack! They made their move, but it was too soon and they were ill prepared to confront your weapons. The battle ends in a draw, but you have been weakened and must remain wary of these new foes. <br>
 <br>
 You regroup and <<link "settle into your basecamp" "The Spaniards Head Inland">><<set $factions["Spaniards"]["stats"]["Strength"]-=2>><</link>> for the night.<br>
@@ -12252,7 +12254,7 @@ You attack the foreigners, but you've moved too soon! You cannot overpower the s
 <br>
 Hopefully, this doesn't leave you vulnerable down the road! If only you had been more patient!<br>
 <br>
-<<link "Return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=2>><</link>> and regroup.<br>
+<<link "Return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=1>><</link>> and regroup.<br>
 <br>
 
 <</switch>>
