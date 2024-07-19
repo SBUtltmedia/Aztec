@@ -4168,7 +4168,6 @@ You must wait for enough players to gather to begin.<br>
 <br>
 
 <<else>>
-<<audio "Gulls_and_waves__5min_" play>>
 November 18th, 1519. Just off the shore of Cuba.<br>
 <br>
 You stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught the sails, and the ship creaks as it begins to heel. You can barely hear Velázquez yelling into the wind, yelling at you to turn around and come back.<br>
@@ -4486,7 +4485,6 @@ You must wait for enough players to gather to begin.<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 <<else>>
-<<audio "Gulls_and_waves__5min_" play>>
 November 18th, 1519.  Just off the shore of Cuba. <br>
 <br>
 You stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon.  The wind has caught the sails, and the ship creaks as it begins to heel.  You can barely hear Velázquez yelling into the wind, yelling at Cortés to turn around and come back.
