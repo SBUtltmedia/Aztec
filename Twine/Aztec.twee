@@ -2368,9 +2368,7 @@ You get up from your sleeping mat and excitedly make your way outside, where you
 <br>
 In order to prepare for the meeting, you must write a formal statement that you will present to the emperor. In your statement, you must recount your observations so far and your interpretation of all that has come to pass. Finally, you must advise the emperor on the best course of action in dealing with the strangers. <br>
 <br>
-Go to your site and start a new page titled “Council Meeting.” Prepare your statement here.<br>
-<br>
-Once you have composed your statement, you must paste the link below to share with the rest of the Mexica Council. Make sure you've set it so that everyone with the link can read it. Once you've done this, you may [[continue to the meeting|Aztecs Hold a Council Meeting]].<br>
+Compose your statement and then paste it in the box below to share with the rest of the Mexica Council. Make sure you've set it so that everyone with the link can read it.<br>
 <br>
 <</switch>>
 
@@ -2386,7 +2384,10 @@ Once you have composed your statement, you must paste the link below to share wi
 <<case "Aztec_Priest">>
 <<textbox "$AzPr_Statement" "">>
 <</switch>>
-
+<br>
+<br>
+Once you've done this, you may [[continue to the meeting|Aztecs Hold a Council Meeting]].<br>
+<br>
 
 :: Aztecs Refuse Peace Treaty and Attack Tlaxcala {"position":"3925,12650","size":"100,100"}
 <<liveblock>>
@@ -10076,7 +10077,6 @@ You must wait for enough players to gather to begin.<br>
 <br>
 
 <<else>>
-
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
 Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "Quest: Aztec Instructions">><<set $Aztecs_currentMap=2>><</link>>.<br>
@@ -11947,9 +11947,8 @@ You get up from your sleeping mat and excitedly make your way outside, where you
 <br>
 In order to prepare for the meeting, you must write a formal statement of your position, which you will present to the rest of the council. In your statement, you must make a clear and logical case for why you believe the Tlaxcalan people should or should not attack the intruders. Weigh your decision carefully, as this is not to be taken lightly.<br>
 <br>
-Go to your site and start a new page titled “Council Meeting.” Prepare your statement here.<br>
-<br>
-Once your statement is prepared, paste a link here to share with your fellow Council Members. Make sure you've set it so that everyone with the link can read it. When this is finished [[continue on to the council meeting|Tlaxcalans Hold for a Council Meeting]]<br>
+
+Once your statement is prepared, paste it in the box below to share with your fellow Council Members. Make sure you've set it so that everyone with the link can read it. <br>
 <br>
 <<switch $role>>
 <<case "Xicotencatl_Elder">>
@@ -11959,7 +11958,10 @@ Once your statement is prepared, paste a link here to share with your fellow Cou
 <<case "Maxixcatl">>
 <<textbox "$Max_Statement" "">>
 <</switch>>
-
+<br>
+<br>
+When this is finished [[continue on to the council meeting|Tlaxcalans Hold for a Council Meeting]]<br>
+<br>
 
 :: Tlaxcalans Respond to La Noche Triste {"position":"4300,9700","size":"100,100"}
 <<liveblock>>
@@ -13135,7 +13137,7 @@ It is not yet time to tell your people what all of this means, but that time wil
 <br>
 <<if $Tl_Omens is "Yes">>
 
-As you contemplate the meaning of the signs, you receive some surprising news. It seems that a delegation of Tlaxcalans, your sworn enemies, have arrived in Tenochtitlán 	and they wish to speak with you. You take your priest with you as you go to [[hear what they have to say|Tlaxcalans and Aztecs meet]].<br>
+As you contemplate the meaning of the signs, you receive some surprising news. It seems that a delegation of Tlaxcalans, your sworn enemies, have arrived in Tenochtitlán and they wish to speak with you. You take your priest with you as you go to [[hear what they have to say|Tlaxcalans and Aztecs meet]].<br>
 <br>
 <<elseif $Tl_Omens is "Nothing" or "Spies">>
 
