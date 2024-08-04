@@ -2213,15 +2213,15 @@ When you are satisfied you have heard everything <<print $Aztec_Leader>> has to 
 <<set $Moc_Mut_Vote=0 >>
 <</if>>
 
-Tlacaelel's Statement: <<print $Tlac_Statement>><br>
+<b>Tlacaelel's Statement:</b> <<print $Tlac_Statement>><br>
 <br>
-Cuauhtemoc's Statement: <<print $Cuauh_Statement>><br>
+<b>Cuauhtemoc's Statement:</b> <<print $Cuauh_Statement>><br>
 <br>
-Cacamatzin's Statement: <<print $Cac_Statement>><br>
+<b>Cacamatzin's Statement:</b> <<print $Cac_Statement>><br>
 <br>
-Pochteca's Statement:  <<print $Poch_Statement>><br>
+<b>Pochteca's Statement:</b>  <<print $Poch_Statement>><br>
 <br>
-Aztec Priest's Statement:  <<print $AzPr_Statement>><br>
+<b>Aztec Priest's Statement:</b>  <<print $AzPr_Statement>><br>
 <br>
 <<switch $role>>
 <<case "Moctezuma">>
