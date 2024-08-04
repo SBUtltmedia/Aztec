@@ -6184,7 +6184,7 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 
 
 
-You may read Moctezuma's Proclamation here:  <<print $Moc_Proc>><br>
+<b>Moctezuma's Proclamation:</b>  <<print $Moc_Proc>><br>
 <br>
 <br>
 
