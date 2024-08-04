@@ -2209,6 +2209,7 @@ When you are satisfied you have heard everything <<print $Aztec_Leader>> has to 
 
 
 :: Aztecs Hold a Council Meeting [Done] {"position":"2375,2975","size":"100,100"}
+<<liveblock>>
 <<if ndef $Moc_Mut_Vote >>
 <<set $Moc_Mut_Vote=0 >>
 <</if>>
@@ -2248,7 +2249,7 @@ When Moctezuma has come to a decision, you may continue on to [[read his proclam
 <br>
 <</if>>
 <</switch>>
-
+<</liveblock>>
 
 :: Aztecs Lay a Trap in Cholula [Done] {"position":"2625,5225","size":"100,100"}
 <<liveblock>>
@@ -11768,9 +11769,9 @@ The sight that lies ahead has [[a much different meaning for you|Tlaxcalans cons
 <<liveblock>>
 You gather together with the other two members of your leadership council. All of you have prepared your statements, which you share with the others. <br>
 <br>
-Xicotencatl the Elder's Statement: <<print $XE_Statement>><br>
-Xicotencatl the Younger's Statement: <<print $XY_Statement>><br>
-Maxixcatl's Statement: <<print $Max_Statement>><br>
+<b>Xicotencatl the Elder's Statement:</b> <<print $XE_Statement>><br>
+<b>Xicotencatl the Younger's Statement:</b> <<print $XY_Statement>><br>
+<b>Maxixcatl's Statement:</b> <<print $Max_Statement>><br>
 <br>
 Once you have composed your statement, you must present it to the rest of the council on the Tlaxcalan discussion board. After all council members have presented their statements, you will vote on the most convincing argument.<br>
 <br>
@@ -11948,7 +11949,7 @@ You get up from your sleeping mat and excitedly make your way outside, where you
 In order to prepare for the meeting, you must write a formal statement of your position, which you will present to the rest of the council. In your statement, you must make a clear and logical case for why you believe the Tlaxcalan people should or should not attack the intruders. Weigh your decision carefully, as this is not to be taken lightly.<br>
 <br>
 
-Once your statement is prepared, paste it in the box below to share with your fellow Council Members. Make sure you've set it so that everyone with the link can read it. <br>
+Once your statement is prepared, paste it in the box below to share with your fellow Council Members. <br>
 <br>
 <<switch $role>>
 <<case "Xicotencatl_Elder">>
