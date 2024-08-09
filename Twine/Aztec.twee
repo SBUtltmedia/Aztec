@@ -9241,61 +9241,58 @@ Your compatriot Bernal Diaz later recalled the sight as such:<br>
 The sight before you is unlike anything you've ever seen and you only wish that your loved ones could share this experience with you. You decide to capture the moment and sit down to write a letter home.<br>
 <br>
 
-Go to your site and create a new page titled “Letter from Iztapalapan.” Write a letter home in which you share your feelings at what you have just seen. Create an image to accompany your letter. How will you convey the enormity of this experience?<br>
+Write a letter home in which you share your feelings at what you have just seen. How will you convey the enormity of this experience? If you feel like it, you may illustrate your letter.<br>
 <br>
 
-When your letter is complete, input your link in the box below. Make sure you've set it so that everyone with the link can read it. <br>
-<br>
-<<textbox "$Cortes_Let_Hm" "">><br>
+Of course, this raises an issue.  You've been so busy with conquest and discovery, you haven't yet had time to set up a reliable post system. When your letter is complete, you may submit it to the Gods.  They will ensure that your loved ones back home receive it.<br>
 <br>
 <<case "Marina">>
-From a young age, you have heard tales of the great city of Tenochtitlán, but never before have you laid eyes upon it. And what a sight it is! You cannot help but feel the weight of this moment and you are overwhelmed by the sense that a new chapter is about to unfold before you. You decide to capture the moment and add it to your story.<br>
+From a young age, you have heard tales of the great city of Tenochtitlán, but never before have you laid eyes upon it. And what a sight it is! You cannot help but feel the weight of this moment and you are overwhelmed by the sense that a new chapter is about to unfold before you. You decide to capture the moment. <br>
 <br>
-Go to your site and create a new page titled “Arriving at Tenochtitlán.” Add a new chapter to your story, in which you share your feelings of all that you have just seen. Create an image to accompany your account. How will you convey the enormity of this experience?<br>
+You decide to write a letter to the parents who sold you into slavery. How will you convey the enormity of this experience? If you feel like it, you may illustrate your letter.<br>
 <br>
-When your story is complete, you may carry on your journey.<br>
-<br>
-<<textbox "$Marina_Let_Hm" "">><br>
+
+Of course, you don't know where those parents are. When your letter is complete, you may put your faith in the Gods and submit it to them.  They will ensure that it lands in the right hands.<br>
 <br>
 <<case "Alvarado">>
 The sight before you is unlike anything you've ever seen and you only wish that your loved ones could share this experience with you. You decide to capture the moment and sit down to write a letter home.<br>
 <br>
-Go to your site and create a new page titled “Letter from Iztapalapan.” Write a letter home in which you share your feelings at what you have just seen. Create an image to accompany your letter. How will you convey the enormity of this experience?<br>
+
+Write a letter home in which you share your feelings at what you have just seen. How will you convey the enormity of this experience? If you feel like it, you may illustrate your letter.<br>
 <br>
-When your letter is complete, input your link in the box below. Make sure you've set it so that everyone with the link can read it. <br>
-<br>
-<<textbox "$Alvarado_Let_Hm" "">><br>
+
+Of course, this raises an issue.  You've been so busy with conquest and discovery, you haven't yet had time to set up a reliable post system. When your letter is complete, you may submit it to the Gods.  They will ensure that your loved ones back home receive it.<br>
 <br>
 <<case "Aguilar">>
 The sight before you is unlike anything you've ever seen and you only wish that your loved ones could share this experience with you. You decide to capture the moment and sit down to write a letter home.<br>
 <br>
-Go to your site and create a new page titled “Letter from Iztapalapan.” Write a letter home in which you share your feelings at what you have just seen. Create an image to accompany your letter. How will you convey the enormity of this experience?<br>
+
+Write a letter home in which you share your feelings at what you have just seen. How will you convey the enormity of this experience? If you feel like it, you may illustrate your letter.<br>
 <br>
-When your letter is complete, input your link in the box below. Make sure you've set it so that everyone with the link can read it. <br>
-<br>
-<<textbox "$Aguilar_Let_Hm" "">><br>
+
+Of course, this raises an issue.  You've been so busy with conquest and discovery, you haven't yet had time to set up a reliable post system. When your letter is complete, you may submit it to the Gods.  They will ensure that your loved ones back home receive it.<br>
 <br>
 <<case "Garrido">>
 The sight before you is unlike anything you've ever seen and you only wish that your loved ones could share this experience with you. You decide to capture the moment and sit down to write a letter home.<br>
 <br>
-Go to your site and create a new page titled “Letter from Iztapalapan.” Write a letter home in which you share your feelings at what you have just seen. Create an image to accompany your letter. How will you convey the enormity of this experience?<br>
+
+Write a letter home in which you share your feelings at what you have just seen. How will you convey the enormity of this experience? If you feel like it, you may illustrate your letter.<br>
 <br>
-When your letter is complete, input your link in the box below. Make sure you've set it so that everyone with the link can read it. <br>
-<br>
-<<textbox "$Garrido_Let_Hm" "">><br>
+
+Of course, this raises an issue.  You've been so busy with conquest and discovery, you haven't yet had time to set up a reliable post system. When your letter is complete, you may submit it to the Gods.  They will ensure that your loved ones back home receive it.<br>
 <br>
 <<case "Olid">>
 The sight before you is unlike anything you've ever seen and you only wish that your loved ones could share this experience with you. You decide to capture the moment and sit down to write a letter home.<br>
 <br>
-Go to your site and create a new page titled “Letter from Iztapalapan.” Write a letter home in which you share your feelings at what you have just seen. Create an image to accompany your letter. How will you convey the enormity of this experience?<br>
+
+Write a letter home in which you share your feelings at what you have just seen. How will you convey the enormity of this experience? If you feel like it, you may illustrate your letter.<br>
 <br>
-When your letter is complete, input your link in the box below. Make sure you've set it so that everyone with the link can read it. <br>
-<br>
-<<textbox "$Olid_Let_Hm" "">><br>
+
+Of course, this raises an issue.  You've been so busy with conquest and discovery, you haven't yet had time to set up a reliable post system. When your letter is complete, you may submit it to the Gods.  They will ensure that your loved ones back home receive it.<br>
 <br>
 <</switch>>
 
-Once you have entered your link, you may <<link "continue your journey" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Spaniards_currentMap=10>><</link>>?<br>
+Once you have sent your letter, you may <<link "continue your journey" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Spaniards_currentMap=10>><</link>>?<br>
 <br>
 
 
