@@ -4597,44 +4597,24 @@ Your answer is incorrect.  You may [[try again|Cuauhnahuac]], or you may return 
 <<liveblock>>
 <<switch $role>>
 <<case "Moctezuma">>
-<<if ndef $Omens or $Omens eq "">>
-You wait for the Priest to prepare his presentation.<br><br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
-<<else>>
-You can find the link to the Priest's presentation here:  <<print $Omens>><br>
-<br>
-Now that the priest has shared his work, go to the Aztec discussion board. Explain your interpretation and hear what your people have to say. Do they agree with you?<br>
+Explain your interpretation and hear what your people have to say. Do they agree with you?<br>
 <br>
 When you have come to an understanding with the rest of your counselors, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. <br><br>
-<</if>>
 
 <<case "Aztec_Priest">>
-<<if ndef $Omens or $Omens eq "">>
-You did not enter your link.  [[Return to the previous page and complete your assignment|Discussing the Omens]]<br><br>
-<<else>>
-Now that you have completed your task,  go to the Aztec discussion board. Explain your interpretation and hear what your people have to say. Do they agree with you?<br>
+Explain your interpretation and hear what your people have to say. Do they agree with you?<br>
 <br>
-When you have come to an understanding with the rest of Moctezuma's counselors, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. <br><br>
-<</if>>
+When you have come to an understanding with the rest of the counselors, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. <br><br>
+
 
 <<case "Tlacaelel" OR "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
-<<if ndef $Omens or $Omens eq "">>
-You wait in front of the temple, anxious to hear the news. Moctezuma is present, but he seems to be waiting on the priest.
-<br><br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<else>>
-Moctezuma stands before the temple, a priest at his side. He tells you that many moons ago, there was a series of omens--omens that may help to explain these strange events that have fallen upon you. He asks the priest to interpret the omens, and this what the priest tells you: <br>
+Moctezuma stands before the temple, a priest at his side. He tells you that many moons ago, there was a series of omens--omens that may help to explain these strange events that have fallen upon you.<br>
 <br>
-<<print $Omens>> <br> Note: Copy and paste the link to read about the Omens.<br>
-<br>
-When you have heard what the priest has to say, go to the Aztec discussion board. Share your thoughts with Moctezuma and the priest. Do you agree with their interpretation?<br>
+When you have heard what they have to say, share your own thoughts. Do you agree with their interpretation?<br>
 <br>
 When you have come to an understanding, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. <br><br>
-<</if>>
 <</switch>>
-
 
 <</liveblock>>
 
@@ -4687,20 +4667,16 @@ You wake to find yourself exactly where you hoped: back in Tenochtitlán! An arm
 <<case "Moctezuma">>
 You have decided that now is the time to revisit the omens. You hope they might provide some hint of what's to come.<br>
 <br>
-Meet with the priest and review your previous interpretation. What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, have the priest share your conclusions with the rest of your team.<br>
+Review your previous interpretation. What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, share your conclusions with the rest of your team.<br>
 <br>
-The priest will be asked to share his web page. Only he can share this information. When you are ready, [[gather the rest of your advisors|Debating the Omens]].<br><br>
+When you are ready, [[gather the rest of your advisors|Debating the Omens]].<br><br>
 
 <<case "Aztec_Priest">>
 Moctezuma has decided that it's time to revisit the omens. He hopes they might provide some hint of what's to come.<br>
 <br>
-Meet with Moctezuma and review your previous interpretation.  What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, share your conclusions with the rest of your team. You are the only one who can complete this task.<br>
+Meet with Moctezuma and review your previous interpretation.  What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, share your conclusions with the rest of your team. <br>
 <br>
-Enter a link to your strike in the box below. Make sure you've set it so that everyone with the link can read it.<br>
-<br>
-Interpretation of the Omens:  <<textbox "$Omens" "">><br>
-<br>
-Once you have entered the link, you may [[gather with Moctezuma and the rest of his advisors|Debating the Omens]].<br><br>
+Once you have shared with the rest of your team, you may [[gather with Moctezuma and the rest of his advisors|Debating the Omens]].<br><br>
 
 <<case "Tlacaelel" OR "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
 Your nerves are frayed, wondering what lies ahead, but Moctezuma has informed you that he has important news! [[He gathers a group of his closest advisors|Debating the Omens]] to the Templo Mayor.<br><br>
