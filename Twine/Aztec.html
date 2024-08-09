@@ -4244,44 +4244,24 @@ Your answer is incorrect.  You may [[try again|Cuauhnahuac]], or you may return 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="Debating the Omens" tags="" position="2000,5900" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
-&lt;&lt;if ndef $Omens or $Omens eq &quot;&quot;&gt;&gt;
-You wait for the Priest to prepare his presentation.&lt;br&gt;&lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
-
-&lt;&lt;else&gt;&gt;
-You can find the link to the Priest&#39;s presentation here:  &lt;&lt;print $Omens&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Now that the priest has shared his work, go to the Aztec discussion board. Explain your interpretation and hear what your people have to say. Do they agree with you?&lt;br&gt;
+Explain your interpretation and hear what your people have to say. Do they agree with you?&lt;br&gt;
 &lt;br&gt;
 When you have come to an understanding with the rest of your counselors, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. &lt;br&gt;&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;case &quot;Aztec_Priest&quot;&gt;&gt;
-&lt;&lt;if ndef $Omens or $Omens eq &quot;&quot;&gt;&gt;
-You did not enter your link.  [[Return to the previous page and complete your assignment|Discussing the Omens]]&lt;br&gt;&lt;br&gt;
-&lt;&lt;else&gt;&gt;
-Now that you have completed your task,  go to the Aztec discussion board. Explain your interpretation and hear what your people have to say. Do they agree with you?&lt;br&gt;
+Explain your interpretation and hear what your people have to say. Do they agree with you?&lt;br&gt;
 &lt;br&gt;
-When you have come to an understanding with the rest of Moctezuma&#39;s counselors, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. &lt;br&gt;&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
+When you have come to an understanding with the rest of the counselors, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. &lt;br&gt;&lt;br&gt;
+
 
 &lt;&lt;case &quot;Tlacaelel&quot; OR &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
-&lt;&lt;if ndef $Omens or $Omens eq &quot;&quot;&gt;&gt;
-You wait in front of the temple, anxious to hear the news. Moctezuma is present, but he seems to be waiting on the priest.
-&lt;br&gt;&lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;else&gt;&gt;
-Moctezuma stands before the temple, a priest at his side. He tells you that many moons ago, there was a series of omens--omens that may help to explain these strange events that have fallen upon you. He asks the priest to interpret the omens, and this what the priest tells you: &lt;br&gt;
+Moctezuma stands before the temple, a priest at his side. He tells you that many moons ago, there was a series of omens--omens that may help to explain these strange events that have fallen upon you.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;print $Omens&gt;&gt; &lt;br&gt; Note: Copy and paste the link to read about the Omens.&lt;br&gt;
-&lt;br&gt;
-When you have heard what the priest has to say, go to the Aztec discussion board. Share your thoughts with Moctezuma and the priest. Do you agree with their interpretation?&lt;br&gt;
+When you have heard what they have to say, share your own thoughts. Do you agree with their interpretation?&lt;br&gt;
 &lt;br&gt;
 When you have come to an understanding, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. &lt;br&gt;&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="Discuss these options with your men" tags="Done Breaks" position="2450,1150" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
@@ -4326,20 +4306,16 @@ Tlacaelel has not yet entered your decision.&lt;br&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
 You have decided that now is the time to revisit the omens. You hope they might provide some hint of what&#39;s to come.&lt;br&gt;
 &lt;br&gt;
-Meet with the priest and review your previous interpretation. What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, have the priest share your conclusions with the rest of your team.&lt;br&gt;
+Review your previous interpretation. What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, share your conclusions with the rest of your team.&lt;br&gt;
 &lt;br&gt;
-The priest will be asked to share his web page. Only he can share this information. When you are ready, [[gather the rest of your advisors|Debating the Omens]].&lt;br&gt;&lt;br&gt;
+When you are ready, [[gather the rest of your advisors|Debating the Omens]].&lt;br&gt;&lt;br&gt;
 
 &lt;&lt;case &quot;Aztec_Priest&quot;&gt;&gt;
 Moctezuma has decided that it&#39;s time to revisit the omens. He hopes they might provide some hint of what&#39;s to come.&lt;br&gt;
 &lt;br&gt;
-Meet with Moctezuma and review your previous interpretation.  What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, share your conclusions with the rest of your team. You are the only one who can complete this task.&lt;br&gt;
+Meet with Moctezuma and review your previous interpretation.  What do these signs mean? What do they portend for the future? When you are satisfied that you understand what the signs are telling you, share your conclusions with the rest of your team. &lt;br&gt;
 &lt;br&gt;
-Enter a link to your strike in the box below. Make sure you&#39;ve set it so that everyone with the link can read it.&lt;br&gt;
-&lt;br&gt;
-Interpretation of the Omens:  &lt;&lt;textbox &quot;$Omens&quot; &quot;&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Once you have entered the link, you may [[gather with Moctezuma and the rest of his advisors|Debating the Omens]].&lt;br&gt;&lt;br&gt;
+Once you have shared with the rest of your team, you may [[gather with Moctezuma and the rest of his advisors|Debating the Omens]].&lt;br&gt;&lt;br&gt;
 
 &lt;&lt;case &quot;Tlacaelel&quot; OR &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
 Your nerves are frayed, wondering what lies ahead, but Moctezuma has informed you that he has important news! [[He gathers a group of his closest advisors|Debating the Omens]] to the Templo Mayor.&lt;br&gt;&lt;br&gt;
