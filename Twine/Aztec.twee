@@ -1871,7 +1871,8 @@ When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<b
 <br>
 
 <<else>>
-
+<<print $Az_Ld_Vote>> votes have been cast.<br>
+<br>
 <<if $Az_Ld_Moc >=$Az_Ld_Tla and $Az_Ld_Moc >=$Az_Ld_Cua and $Az_Ld_Moc >=$Az_Ld_Cac>>
 <<if $Az_Ld_Moc = (_Aztec_Tot_Play-2)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><</link>> and take note of your team strength points!<br>
