@@ -1873,7 +1873,7 @@ When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<b
 <<else>>
 
 <<if $Az_Ld_Moc >=$Az_Ld_Tla and $Az_Ld_Moc >=$Az_Ld_Cua and $Az_Ld_Moc >=$Az_Ld_Cac>>
-<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
+<<if $Az_Ld_Moc = (_Aztec_Tot_Play-2)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -1881,7 +1881,7 @@ The council has made a decision.  Continue to the next page to find out <<link "
 <br>
 <</if>>
 <<elseif $Az_Ld_Tla >=$Az_Ld_Moc and $Az_Ld_Tla >=$Az_Ld_Cua and $Az_Ld_Tla >=$Az_Ld_Cac>><<set $Aztec_Leader="Tlacaelel">>
-<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
+<<if $Az_Ld_Tla = (_Aztec_Tot_Play-2)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Tlacaelel">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -1889,7 +1889,7 @@ The council has made a decision.  Continue to the next page to find out <<link "
 <br>
 <</if>>
 <<elseif $Az_Ld_Cua >=$Az_Ld_Moc and $Az_Ld_Cua >=$Az_Ld_Tla and $Az_Ld_Cua >=$Az_Ld_Cac>><<set $Aztec_Leader="Cuauhtemoc">>
-<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
+<<if $Az_Ld_Cua = (_Aztec_Tot_Play-2)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Cuauhtemoc">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -1897,7 +1897,7 @@ The council has made a decision.  Continue to the next page to find out <<link "
 <br>
 <</if>>
 <<elseif $Az_Ld_Cac >=$Az_Ld_Moc and $Az_Ld_Cac >=$Az_Ld_Tla and $Az_Ld_Cac >=$Az_Ld_Cua>><<set $Aztec_Leader="Cacamatzin">>
-<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
+<<if $Az_Ld_Cac = (_Aztec_Tot_Play-2)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Cacamatzin">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
