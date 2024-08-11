@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -1735,11 +1735,13 @@ You are waiting for The Tlaxcalans to do something.&lt;br&gt;
 &lt;&lt;if $Aztec_Leader is $role&gt;&gt;
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and it is now time to decide how you will deal with them. You have weighed all your options, you have considered the omens carefully, and you have decided that the best course of action is to invite the strangers into your city.&lt;br&gt;&lt;br&gt;
 
+Your first task is to face the rest of your team, and to explain to them why, in spite of the Omens and the potential dangers that lie ahead, you are going to invite the strangers in. Not everybody will be in support of this decision, so frame your justifications carefully.&lt;br&gt;
+&lt;br&gt;
 You gather a welcoming party and get ready to &lt;&lt;link &quot;meet the strangers face-to-face&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=5&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and you wonder how &lt;&lt;print $Aztec_Leader&gt;&gt; will deal with them. &lt;br&gt;&lt;br&gt;
 
-He makes his announcement, telling you that he has weighed all the options and considered the omens carefully. The best course of action, he declares, is to invite the strangers into your city.&lt;br&gt;&lt;br&gt;
+He makes his announcement, telling you that he has weighed all the options and considered the omens carefully. The best course of action, he declares, is to invite the strangers into your city. This is your last chance to ask him to explain his decision before the strangers enter the city as guests.&lt;br&gt;&lt;br&gt;
 
 As &lt;&lt;print $Aztec_Leader&gt;&gt; gathers a welcoming party and gets ready to &lt;&lt;link &quot;meet the strangers face-to-face&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=5&gt;&gt;&lt;&lt;/link&gt;&gt;, you contemplate this decision. Is it the right choice?&lt;br&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
@@ -1786,14 +1788,14 @@ Option 4: &lt;&lt;link &quot;Cacamatzin&quot; &quot;Aztec Leadership Results&quo
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="Aztec Leadership Results" tags="" position="2450,6925" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Aztec_Leader is $role and $Az_Ld_Vote isnot 4&gt;&gt;
+&lt;&lt;if $Aztec_Leader is $role and $Az_Ld_Vote &lt; (_Aztec_Tot_Play -2)&gt;&gt;
 You wait nervously for your advisors to deliberate.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;print $Az_Ld_Vote&gt;&gt; votes have been cast.
 
-&lt;&lt;elseif $Aztec_Leader isnot $role and $Az_Ld_Vote isnot 4&gt;&gt;
+&lt;&lt;elseif $Aztec_Leader isnot $role and $Az_Ld_Vote &lt; (_Aztec_Tot_Play -2)&gt;&gt;
 When everyone has voted, you will deliver the news to &lt;&lt;print $Aztec_Leader&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
@@ -1801,10 +1803,10 @@ When everyone has voted, you will deliver the news to &lt;&lt;print $Aztec_Leade
 &lt;&lt;print $Az_Ld_Vote&gt;&gt; votes have been cast.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Az_Ld_Vote is 4&gt;&gt;
+&lt;&lt;else&gt;&gt;
 
 &lt;&lt;if $Az_Ld_Moc &gt;=$Az_Ld_Tla and $Az_Ld_Moc &gt;=$Az_Ld_Cua and $Az_Ld_Moc &gt;=$Az_Ld_Cac&gt;&gt;
-&lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
+&lt;&lt;if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)&gt;&gt;
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
@@ -1812,7 +1814,7 @@ The council has made a decision.  Continue to the next page to find out &lt;&lt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Az_Ld_Tla &gt;=$Az_Ld_Moc and $Az_Ld_Tla &gt;=$Az_Ld_Cua and $Az_Ld_Tla &gt;=$Az_Ld_Cac&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;
-&lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
+&lt;&lt;if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)&gt;&gt;
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
@@ -1820,7 +1822,7 @@ The council has made a decision.  Continue to the next page to find out &lt;&lt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Az_Ld_Cua &gt;=$Az_Ld_Moc and $Az_Ld_Cua &gt;=$Az_Ld_Tla and $Az_Ld_Cua &gt;=$Az_Ld_Cac&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;
-&lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
+&lt;&lt;if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)&gt;&gt;
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
@@ -1828,7 +1830,7 @@ The council has made a decision.  Continue to the next page to find out &lt;&lt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;elseif $Az_Ld_Cac &gt;=$Az_Ld_Moc and $Az_Ld_Cac &gt;=$Az_Ld_Tla and $Az_Ld_Cac &gt;=$Az_Ld_Cua&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;
-&lt;&lt;if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4&gt;&gt;
+&lt;&lt;if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)&gt;&gt;
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;New Aztec Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=5&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;

@@ -1794,11 +1794,13 @@ You are waiting for The Tlaxcalans to do something.<br>
 <<if $Aztec_Leader is $role>>
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and it is now time to decide how you will deal with them. You have weighed all your options, you have considered the omens carefully, and you have decided that the best course of action is to invite the strangers into your city.<br><br>
 
+Your first task is to face the rest of your team, and to explain to them why, in spite of the Omens and the potential dangers that lie ahead, you are going to invite the strangers in. Not everybody will be in support of this decision, so frame your justifications carefully.<br>
+<br>
 You gather a welcoming party and get ready to <<link "meet the strangers face-to-face" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Aztecs_currentMap=5>><</link>>. <br><br>
 <<else>>
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and you wonder how <<print $Aztec_Leader>> will deal with them. <br><br>
 
-He makes his announcement, telling you that he has weighed all the options and considered the omens carefully. The best course of action, he declares, is to invite the strangers into your city.<br><br>
+He makes his announcement, telling you that he has weighed all the options and considered the omens carefully. The best course of action, he declares, is to invite the strangers into your city. This is your last chance to ask him to explain his decision before the strangers enter the city as guests.<br><br>
 
 As <<print $Aztec_Leader>> gathers a welcoming party and gets ready to <<link "meet the strangers face-to-face" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Aztecs_currentMap=5>><</link>>, you contemplate this decision. Is it the right choice?<br><br>
 <</if>>
@@ -1853,14 +1855,14 @@ Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $Az_Ld_Cac = $Az
 
 :: Aztec Leadership Results {"position":"2450,6925","size":"100,100"}
 <<liveblock>>
-<<if $Aztec_Leader is $role and $Az_Ld_Vote isnot 4>>
+<<if $Aztec_Leader is $role and $Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
 You wait nervously for your advisors to deliberate.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 <<print $Az_Ld_Vote>> votes have been cast.
 
-<<elseif $Aztec_Leader isnot $role and $Az_Ld_Vote isnot 4>>
+<<elseif $Aztec_Leader isnot $role and $Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
 When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -1868,10 +1870,10 @@ When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<b
 <<print $Az_Ld_Vote>> votes have been cast.<br>
 <br>
 
-<<elseif $Az_Ld_Vote is 4>>
+<<else>>
 
 <<if $Az_Ld_Moc >=$Az_Ld_Tla and $Az_Ld_Moc >=$Az_Ld_Cua and $Az_Ld_Moc >=$Az_Ld_Cac>>
-<<if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4>>
+<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Moctezuma">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -1879,7 +1881,7 @@ The council has made a decision.  Continue to the next page to find out <<link "
 <br>
 <</if>>
 <<elseif $Az_Ld_Tla >=$Az_Ld_Moc and $Az_Ld_Tla >=$Az_Ld_Cua and $Az_Ld_Tla >=$Az_Ld_Cac>><<set $Aztec_Leader="Tlacaelel">>
-<<if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4>>
+<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Tlacaelel">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -1887,7 +1889,7 @@ The council has made a decision.  Continue to the next page to find out <<link "
 <br>
 <</if>>
 <<elseif $Az_Ld_Cua >=$Az_Ld_Moc and $Az_Ld_Cua >=$Az_Ld_Tla and $Az_Ld_Cua >=$Az_Ld_Cac>><<set $Aztec_Leader="Cuauhtemoc">>
-<<if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4>>
+<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Cuauhtemoc">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
@@ -1895,7 +1897,7 @@ The council has made a decision.  Continue to the next page to find out <<link "
 <br>
 <</if>>
 <<elseif $Az_Ld_Cac >=$Az_Ld_Moc and $Az_Ld_Cac >=$Az_Ld_Tla and $Az_Ld_Cac >=$Az_Ld_Cua>><<set $Aztec_Leader="Cacamatzin">>
-<<if $Az_Ld_Moc is 4 or $Az_Ld_Tla is 4 or $Az_Ld_Cua is 4 or $Az_Ld_Cac is 4>>
+<<if $Az_Ld_Moc = (_Aztec_Tot_Play) or $Az_Ld_Tla = (_Aztec_Tot_Play) or $Az_Ld_Cua = (_Aztec_Tot_Play) or $Az_Ld_Cac = (_Aztec_Tot_Play)>>
 The council has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=5>><<set $Aztec_Leader="Cacamatzin">><</link>> and take note of your team strength points!<br>
 <br>
 <<else>>
