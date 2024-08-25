@@ -10010,8 +10010,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 <<liveblock>>
 Your Quest Leader is: <<print $Quest_Leader_A>><br>
 <br>
-Hello!
-<<if $Quest_Leader_A = "None">>
+<<if $Quest_Leader_A is "None">>
 <<if $role is "Moctezuma">>
 Before you can begin your quest, you must choose a teammate to lead your people. <br>
 <br>
