@@ -10008,9 +10008,9 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 
 :: Quest: Aztec Instructions [Done] {"position":"3125,225","size":"100,100"}
 <<liveblock>>
-<print $Quest_Leader_A><br>
-Hello!
+Your Quest Leader is: <<print $Quest_Leader_A>><br>
 <br>
+Hello!
 <<if $Quest_Leader_A = "None">>
 <<if $role is "Moctezuma">>
 Before you can begin your quest, you must choose a teammate to lead your people. <br>
