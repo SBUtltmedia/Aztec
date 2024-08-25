@@ -334,13 +334,13 @@ Go to the discussion board and discuss this decision amongst yourselves.  Everyb
 <br>
 When you are satisfied with where things stand, vote for your leader.<br>
 <br>
-Option 1: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Alv_Teno = $Sp_Ld_Alv_Teno + 1>><<run changeStats("Alvarado",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should be in charge.<br>
+Option 1: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Alv_Teno = $Sp_Ld_Alv_Teno + 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should be in charge.<br>
 <br>
-Option 2: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Agu_Teno = $Sp_Ld_Agu_Teno + 1>><<run changeStats("Aguilar",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
+Option 2: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Agu_Teno = $Sp_Ld_Agu_Teno + 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
 <br>
-Option 3: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Gar_Teno = $Sp_Ld_Gar_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+Option 3: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Gar_Teno = $Sp_Ld_Gar_Teno + 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
-Option 4: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Oli_Teno = $Sp_Ld_Oli_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
+Option 4: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Oli_Teno = $Sp_Ld_Oli_Teno + 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
 <br>
 
 <<else>>
@@ -350,15 +350,15 @@ Go to the discussion board and discuss this decision amongst yourselves.  Everyb
 <br>
 When you are satisfied with where things stand, vote for your leader.<br>
 <br>
-Option 1: <<link "Marina" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Mar_Teno = $Sp_Ld_Mar_Teno + 1>><<run changeStats("Marina",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should lead your people.<br>
+Option 1: <<link "Marina" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Mar_Teno = $Sp_Ld_Mar_Teno + 1>><<set $users["Marina"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should lead your people.<br>
 <br>
-Option 2: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Alv_Teno = $Sp_Ld_Alv_Teno + 1>><<run changeStats("Alvarado",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should be in charge.<br>
+Option 2: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Alv_Teno = $Sp_Ld_Alv_Teno + 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should be in charge.<br>
 <br>
-Option 3: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Agu_Teno = $Sp_Ld_Agu_Teno + 1>><<run changeStats("Aguilar",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
+Option 3: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Agu_Teno = $Sp_Ld_Agu_Teno + 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
 <br>
-Option 4: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Gar_Teno = $Sp_Ld_Gar_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+Option 4: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Gar_Teno = $Sp_Ld_Gar_Teno + 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
-Option 5: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Oli_Teno = $Sp_Ld_Oli_Teno + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
+Option 5: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $Sp_Ld_Oli_Teno = $Sp_Ld_Oli_Teno + 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
 <br>
 
 <</if>>
@@ -1051,7 +1051,7 @@ Alvarado's entry is:  <<print "$Al_TG">><br>
 <br>
 Aguilar's entry is:  <<print "$Ag_TG">><br>
 <br>
-Does he <<link "PASS" "Olid's Contribution">><<run changeStats("Aguilar",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Olid's Contribution">><<run changeStats("Aguilar",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Olid's Contribution">><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Olid's Contribution">><<set $users["Aguilar"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Olid's entry is:  <<print "$Ol_TG">><br>
 <br>
@@ -1080,7 +1080,7 @@ Cuauhtemoc's entry is:  <<print "$Cu_Rec">><br>
 <br>
 Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
 <br>
-Does he <<link "PASS" "Olid's Contribution">><<run changeStats("Cacamatzin",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Olid's Contribution">><<run changeStats("Cacamatzin",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <br>
@@ -1108,7 +1108,7 @@ Cortes' entry is:  <<print "$Co_TG">><br>
 <br>
 Alvarado's entry is:  <<print "$Al_TG">><br>
 <br>
-Does he <<link "PASS" "Aguilar's Contribution">><<run changeStats("Alvarado",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Aguilar's Contribution">><<run changeStats("Alvarado",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Aguilar's Contribution">><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Aguilar's Contribution">><<set $users["Alvarado"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Aguilar's entry is:  <<print "$Ag_TG">><br>
 <br>
@@ -1135,7 +1135,7 @@ Tlacaelel's entry is:  <<print "$Tlc_Rec">><br>
 <br>
 Cuauhtemoc's entry is:  <<print "$Cu_Rec">><br>
 <br>
-Does he <<link "PASS" "Aguilar's Contribution">><<run changeStats("Cuauhtemoc",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Aguilar's Contribution">><<run changeStats("Cuauhtemoc",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Aguilar's Contribution">><<set $users["Cuauhtemoc"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Aguilar's Contribution">><<set $users["Cuauhtemoc"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
 <br>
@@ -1839,13 +1839,13 @@ You have made your case to the council and retire from the council chamber, conf
 He leaves the chamber and each member of the council votes. When it is your turn, you make your choice.  Should <<print $Aztec_Leader>> remain in power? Or should one of the other elegible nobels take over?  Vote for your leader below.<br>
 <br>
 
-Option 1: <<link "Moctezuma" "Aztec Leadership Results">><<set $Az_Ld_Moc = $Az_Ld_Moc + 1>><<run changeStats("Moctezuma",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> should lead your people.<br>
+Option 1: <<link "Moctezuma" "Aztec Leadership Results">><<set $Az_Ld_Moc = $Az_Ld_Moc + 1>><<set $users["Moctezuma"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> should lead your people.<br>
 <br>
-Option 2: <<link "Tlacaelel" "Aztec Leadership Results">><<set $Az_Ld_Tla = $Az_Ld_Tla + 1>><<run changeStats("Tlacaelel",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> should be in charge.<br>
+Option 2: <<link "Tlacaelel" "Aztec Leadership Results">><<set $Az_Ld_Tla = $Az_Ld_Tla + 1>><<set $users["Tlacaelel"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> should be in charge.<br>
 <br>
-Option 3: <<link "Cuauhtemoc" "Aztec Leadership Results">><<set $Az_Ld_Cua = $Az_Ld_Cua + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> is best suited to lead in these difficult times.<br>
+Option 3: <<link "Cuauhtemoc" "Aztec Leadership Results">><<set $Az_Ld_Cua = $Az_Ld_Cua + 1>><<set $users["Cuauhtemoc"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> is best suited to lead in these difficult times.<br>
 <br>
-Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $Az_Ld_Cac = $Az_Ld_Cac + 1>><<run changeStats("Cacamatzin",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $Az_Ld_Cac = $Az_Ld_Cac + 1>><<set $users["Cacamatzin"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
 <</if>>
 
@@ -3418,15 +3418,15 @@ You have made your decisions and led your people through a complicated situation
 He leaves the group to debate and each member of the group must vote. When it is your turn, you make your choice.  Should <<print $Span_Leader>> remain in power? Or should one of the other elegible conquistadors take over?  Vote for your leader below.<br>
 <br>
 
-Option 1: <<link "Cortes" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Cor = $Sp_Ld_Cor + 1>><<run changeStats("Cortes",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should lead your people.<br>
+Option 1: <<link "Cortes" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Cor = $Sp_Ld_Cor + 1>><<set $users["Cortes"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should lead your people.<br>
 <br>
-Option 2: <<link "Alvarado" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Alv = $Sp_Ld_Alv + 1>><<run changeStats("Alvarado",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should be in charge.<br>
+Option 2: <<link "Alvarado" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Alv = $Sp_Ld_Alv + 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should be in charge.<br>
 <br>
-Option 3: <<link "Aguilar" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Agu = $Sp_Ld_Agu + 1>><<run changeStats("Aguilar",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is best suited to lead in these difficult times.<br>
+Option 3: <<link "Aguilar" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Agu = $Sp_Ld_Agu + 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is best suited to lead in these difficult times.<br>
 <br>
-Option 4: <<link "Garrido" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Gar = $Sp_Ld_Gar + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+Option 4: <<link "Garrido" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Gar = $Sp_Ld_Gar + 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
-Option 4: <<link "Olid" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Oli = $Sp_Ld_Oli + 1>><<run changeStats("Olid",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is your choice.<br>
+Option 5: <<link "Olid" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Oli = $Sp_Ld_Oli + 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is your choice.<br>
 <br>
 <</if>>
 
@@ -4160,6 +4160,8 @@ You must wait for enough players to gather to begin.<br>
 <br>
 
 <<else>>
+<b> Your Team Leader is: <<print $Span_Leader>></b><br>
+<br>
 November 18th, 1519. Just off the shore of Cuba.<br>
 <br>
 You stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught the sails, and the ship creaks as it begins to heel. You can barely hear Velázquez yelling into the wind, yelling at you to turn around and come back.<br>
@@ -4418,7 +4420,7 @@ Marina's introduction is:  <<print "$Ma_TG">><br>
 <br>
 Cortes' entry is:  <<print "$Co_TG">><br>
 <br>
-Does he <<link "PASS" "Alvarado's Contribution">><<run changeStats("Cortes",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Alvarado's Contribution">><<run changeStats("Cortes",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Alvarado's Contribution">><<set $users["Cortes"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Alvarado's Contribution">><<set $users["Cortes"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Alvarado's entry is:  <<print "$Al_TG">><br>
 <br>
@@ -4443,7 +4445,7 @@ Moctezuma's recipe is:  <<print "$Moc_Rec">><br>
 <br>
 Tlacaelel's entry is:  <<print "$Tlc_Rec">><br>
 <br>
-Does he <<link "PASS" "Alvarado's Contribution">><<run changeStats("Tlacaelel",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Alvarado's Contribution">><<run changeStats("Tlacaelel",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Alvarado's Contribution">><<set $users["Tlacaelel"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Alvarado's Contribution">><<set $users["Tlacaelel"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Cuauhtemoc's entry is:  <<print "$Cu_Rec">><br>
 <br>
@@ -4477,6 +4479,8 @@ You must wait for enough players to gather to begin.<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 <<else>>
+<b> Your Team Leader is: <<print $Span_Leader>></b><br>
+<br>	
 November 18th, 1519.  Just off the shore of Cuba. <br>
 <br>
 You stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon.  The wind has caught the sails, and the ship creaks as it begins to heel.  You can barely hear Velázquez yelling into the wind, yelling at Cortés to turn around and come back.
@@ -4851,7 +4855,7 @@ Olid's entry is:  <<print "$Ol_TG">><br>
 <br>
 Garrido's entry is:  <<print "$Ga_TG">><br>
 <br>
-Does he <<link "PASS" "Tlaxcalan's Contribution">><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Tlaxcalan's Contribution">><<run changeStats("Garrido",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Tlaxcalan's Contribution">><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Tlaxcalan's Contribution">><<set $users["Garrido"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 The Tlaxcalan's Insider's Guide is:  <<print "$Tl_IG">><br>
 <br>
@@ -5042,7 +5046,7 @@ As you evaluate their work, they are also evaluating yours. Keep an eye on your 
 <br>
 Moctezuma's recipe is:  <<print "$Moc_Rec">><br>
 <br>
-Does he <<link "PASS" "Cortes' Contribution">><<run changeStats("Moctezuma",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Cortes' Contribution">><<run changeStats("Moctezuma",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Cortes' Contribution">><<set $users["Moctezuma"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Cortes' Contribution">><<set $users["Moctezuma"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Tlacaelel's entry is:  <<print "$Tlc_Rec">><br>
 <br>
@@ -5061,7 +5065,7 @@ As you evaluate their work, they are also evaluating yours. Keep an eye on your 
 <br>
 Marina's introduction is:  <<print "$Ma_TG">><br>
 <br>
-Does she <<link "PASS" "Cortes' Contribution">><<run changeStats("Marina",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Cortes' Contribution">><<run changeStats("Marina",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does she <<link "PASS" "Cortes' Contribution">><<set $users["Marina"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Cortes' Contribution">><<set $users["Marina"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Cortes' entry is:  <<print "$Co_TG">><br>
 <br>
@@ -5085,7 +5089,7 @@ As you evaluate their work, they are also evaluating yours. Keep an eye on your 
 <br>
 Moctezuma's recipe is:  <<print "$Moc_Rec">><br>
 <br>
-Does he <<link "PASS" "Cortes' Contribution">><<run changeStats("Moctezuma",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Cortes' Contribution">><<run changeStats("Moctezuma",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Cortes' Contribution">><<set $users["Moctezuma"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Cortes' Contribution">><<set $users["Moctezuma"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Tlacaelel's entry is:  <<print "$Tlc_Rec">><br>
 <br>
@@ -5797,10 +5801,10 @@ Once you have figured out what they said, you may continue. But [[make note of t
 :: Marina responds to the attack [Done] {"position":"1850,4400","size":"100,100"}
 <<liveblock>>
 <<if $Mal_Share is "No">>
-You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "A Trap in Cholula">><<run changeStats("Marina",{"Wisdom":-3,"Loyalty":-3,"Strength":0})>><</link>>.<br>
+You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "A Trap in Cholula">><<set $users["Marina"]["stats"]["Wisdom"]-=3>><<set $users["Marina"]["stats"]["Loyalty"]-=3>><</link>>.<br>
 <br>
 <<elseif $Mal_Share is "Yes">>
-You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters <<link "and quietly rouse them" "A Trap in Cholula">><<run changeStats("Marina",{"Wisdom":3,"Loyalty":3,"Strength":0})>><</link>>, careful not to wake your Cholulan hosts.<br>
+You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters <<link "and quietly rouse them" "A Trap in Cholula">><<set $users["Marina"]["stats"]["Wisdom"]+=3>><<set $users["Marina"]["stats"]["Loyalty"]+=3>><</link>>, careful not to wake your Cholulan hosts.<br>
 <br>
 <</if>>
 
@@ -5811,10 +5815,10 @@ You have decided to share the rumor with your Spanish friends. You make your way
 :: Marina responds to the rumor [Done] {"position":"2050,4400","size":"100,100"}
 <<liveblock>>
 <<if $Mal_Share is "No">>
-You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "No Trap in Cholula">><<run changeStats("Marina",{"Wisdom":3,"Loyalty":-3,"Strength":0})>><</link>>.<br>
+You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "No Trap in Cholula">><<set $users["Marina"]["stats"]["Wisdom"]+=3>><<set $users["Marina"]["stats"]["Loyalty"]-=3>><</link>>.<br>
 <br>
 <<elseif $Mal_Share is "Yes">>
-You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters <<link "and quietly rouse them" "No Trap in Cholula">><<run changeStats("Marina",{"Wisdom":-3,"Loyalty":3,"Strength":0})>><</link>>,  careful not to wake your Cholulan hosts.<br>
+You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters <<link "and quietly rouse them" "No Trap in Cholula">><<set $users["Marina"]["stats"]["Wisdom"]-=3>><<set $users["Marina"]["stats"]["Loyalty"]+=3>><</link>>,  careful not to wake your Cholulan hosts.<br>
 <br>
 <</if>>
 
@@ -6161,11 +6165,11 @@ You read Moctezuma's Proclamation, and you gather together in Council, this time
 <br>
 The arrival of the strangers and mysterious omens have left everybody unsettled. How should you proceed? Does Moctezuma's Proclamation inspire confidence, or is it time to choose a new leader? In this strange new world, who will you follow?<br>
 <br>
-<<link "Moctezuma" "Moctezuma Confidence Vote">><<set $MocMut_Moc = $MocMut_Moc + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<run changeStats("Moctezuma",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>> retains your loyalty, you trust his leadership. <br>
+<<link "Moctezuma" "Moctezuma Confidence Vote">><<set $MocMut_Moc = $MocMut_Moc + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Moctezuma"]["stats"]["Loyalty"]+=1>><</link>> retains your loyalty, you trust his leadership. <br>
 <br>
-<<link "Tlacaelel" "Moctezuma Confidence Vote">><<set $MocMut_Tla = $MocMut_Tla + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>> has shown great leadership. You vote for him. <br>
+<<link "Tlacaelel" "Moctezuma Confidence Vote">><<set $MocMut_Tla = $MocMut_Tla + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Tlacaelel"]["stats"]["Loyalty"]+=1>><</link>> has shown great leadership. You vote for him. <br>
 <br>
-<<link "Cuauhtemoc" "Moctezuma Confidence Vote">><<set $MocMut_Cua = $MocMut_Cua + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":1,"Strength":0})>><</link>> is clearly the one to lead you through these strange times. 
+<<link "Cuauhtemoc" "Moctezuma Confidence Vote">><<set $MocMut_Cua = $MocMut_Cua + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Cuauhtemoc"]["stats"]["Loyalty"]+=1>><</link>> is clearly the one to lead you through these strange times. 
 
 <<case "Moctezuma">>
 <<if $Moc_Mut_Vote isnot 5>>
@@ -6660,7 +6664,7 @@ Aguilar's entry is:  <<print "$Ag_TG">><br>
 <br>
 Olid's entry is:  <<print "$Ol_TG">><br>
 <br>
-Does he <<link "PASS" "Garrido's Contribution">><<run changeStats("Olid",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "Garrido's Contribution">><<run changeStats("Olid",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "Garrido's Contribution">><<set $users["Olid"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Garrido's Contribution">><<set $users["Olid"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 Garrido's entry is:  <<print "$Ga_TG">><br>
 <br>
@@ -6690,7 +6694,7 @@ Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
 <br>
 The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <br>
-Does he <<link "PASS" "After the Feast">><<run changeStats("Aztec_Priest",{"Wisdom":2,"Loyalty":0,"Strength":0})>><</link>> or <<link "FAIL" "After the Feast">><<run changeStats("Aztec_Priest",{"Wisdom":-2,"Loyalty":0,"Strength":0})>><</link>>?<br>
+Does he <<link "PASS" "After the Feast">><<set $users["Aztec_Priest"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "After the Feast">><<set $users["Aztec_Priest"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 <</switch>>
 
@@ -8767,65 +8771,6 @@ When you have come to an agreement, you may  [[continue on|Cortes has convinced 
 <</liveblock>>
 
 
-:: Spaniards Meet Marina [Done Breaks] {"position":"1525,975","size":"100,100"}
-<<liveblock>>
-<<switch $role>>
-<<case "Marina">>
-<<if ndef $Mal_Story or $Mal_Story eq "">> 
-You haven't told the Spaniards your story.  Please [[return|Marina Tells Her Story]] and complete your task.<br>
-<br>
-<<elseif  ndef $L_Received or $L_Received eq "">>
-You wait, wondering what will happen next.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
-<<elseif $L_Received is "Yes">> 
-Marina, the last few days have seen a flurry of activity in the village. The Chontal leaders have been gathering food and jewelry to offer the strangers in a show of peace and friendship. Their greatest offering, however, will be a group of twenty women. These will not be the sisters or the daughters of powerful families, offered in marriage to secure alliances; instead they will be slave women, with whom the foreigners might do what they choose. The master of your house has informed you that you will be included in the offering and you are sent to join the others.<br>
-<br>
-When you are brought before the foreigners, one of the men performs a ceremony, speaking strange words that you cannot understand and sprinkling water over your head. He points at you while repeating the word “Marina” over and over. You understand that this is what they will call you.<br>
-<br>
-[[Click through|Spaniards and Marina Talk]] to see what comes of this encounter.<br>
-<br>
-<</if>>
-
-<<case "Cortes" OR "Alvarado" OR "Aguilar" OR "Garrido" OR "Olid">>
-
-<<if ndef $Mal_Story or $Mal_Story eq "">>
-
-You arrive at the village. You sense that something important is going to happen. Keep an eye on this page.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-
-<<else>>
-
-The next morning you meet with the local chiefs and you are delighted to learn that they have chosen to accept your offer of peace. They present you with a number of gifts, among them a number of gold ornaments shaped like dogs and lizards. You are excited to see the gold, but the rest of the gifts are of little value, with one exception: a group of twenty slave women.<br>
-<br>
-After baptizing the women and assigning each of them a Christian name, the one named Marina comes forward to present you with her story.  Copy and paste this link: <br>
-<br>
-<b><<print $Mal_Story>></b><br>
-<br>
-to learn more about her.<br>
-<br>
-Based on her story, what is your gut reaction to Marina? Choose one of the following:<br>
-<br>
-You <<link "admire her strength" "Spaniards and Marina Talk">><<run changeStats("Marina",{"Wisdom":1,"Loyalty":0,"Strength":1})>><</link>>. <br>
-<br>
-You <<link "wonder why she didn't fight back against her captors" "Spaniards and Marina Talk">><<run changeStats("Marina",{"Wisdom":-1,"Loyalty":0,"Strength":-1})>><</link>>. <br>
-<br>
-She's <<link "clearly very intelligent" "Spaniards and Marina Talk">><<run changeStats("Marina",{"Wisdom":1,"Loyalty":1,"Strength":0})>><</link>>. You wonder how you might use her to your advantage. <br>
-<br>
-You <<link "would rather leave her behind" "Spaniards and Marina Talk">><<run changeStats("Marina",{"Wisdom":-1,"Loyalty":-1,"Strength":0})>><</link>>. Resources are already scarce and she will be one more mouth to feed.<br>
-<br>
-You <<link "don't trust her" "Spaniards and Marina Talk">><<run changeStats("Marina",{"Wisdom":-1,"Loyalty":-1,"Strength":-1})>><</link>>.<br>
-<br>
-<</if>>
-
-<</switch>>
-
-
-<</liveblock>>
-
-
 :: Spaniards Plot their Departure {"position":"2975,10725","size":"100,100"}
 <<liveblock>>
 <<switch $users[$role]["faction"]>>
@@ -9675,13 +9620,13 @@ You have made your decisions and led your people through a complicated situation
 He leaves the group to debate and each member of the group must vote. When it is your turn, you make your choice.  Should <<print $Span_Leader>> remain in power? Or should one of the other elegible conquistadors take over?  Vote for your leader below.<br>
 <br>
 
-Option 1: <<link "Cortes" "Generic Spanish Leadership Results">><<set $Sp_Ld_Cor = $Sp_Ld_Cor + 1>><<run changeStats("Cortes",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should lead your people.<br>
+Option 1: <<link "Cortes" "Generic Spanish Leadership Results">><<set $Sp_Ld_Cor = $Sp_Ld_Cor + 1>><<set $users["Cortes"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should lead your people.<br>
 <br>
-Option 2: <<link "Alvarado" "Generic Spanish Leadership Results">><<set $Sp_Ld_Alv = $Sp_Ld_Alv + 1>><<run changeStats("Alvarado",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should be in charge.<br>
+Option 2: <<link "Alvarado" "Generic Spanish Leadership Results">><<set $Sp_Ld_Alv = $Sp_Ld_Alv + 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> should be in charge.<br>
 <br>
-Option 3: <<link "Aguilar" "Generic Spanish Leadership Results">><<set $Sp_Ld_Agu = $Sp_Ld_Agu + 1>><<run changeStats("Aguilar",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is best suited to lead in these difficult times.<br>
+Option 3: <<link "Aguilar" "Generic Spanish Leadership Results">><<set $Sp_Ld_Agu = $Sp_Ld_Agu + 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is best suited to lead in these difficult times.<br>
 <br>
-Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Gar = $Sp_Ld_Gar + 1>><<run changeStats("Garrido",{"Wisdom":2,"Loyalty":0,"Strength":0})>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+Option 4: <<link "Garrido" "Generic Spanish Leadership Results">><<set $Sp_Ld_Gar = $Sp_Ld_Gar + 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote = $Sp_Ld_Vote + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
 <</if>>
 
@@ -10041,6 +9986,9 @@ You must wait for enough players to gather to begin.<br>
 <br>
 
 <<else>>
+
+<b> Your Team Leader is: <<print $Aztec_Leader>></b><br>
+<br>	
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
 Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "Quest: Aztec Instructions">><<set $Aztecs_currentMap=2>><</link>>.<br>
@@ -10164,7 +10112,7 @@ You must decide how you will proceed if you find the strange men you seek. Choos
 <br>
 2. You agree with Moctezuma's decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will <<link "not offer the gifts" "On a Beach in Veracruz: No Gifts">><<set $gifts="No">><</link>>.<br>
 <br>
-3.  You disagree with Moctezuma's plan. You are wary of the strangers and believe the smartest move is to catch them off guard with <<link "an immediate attack" "Attack On a Beach in Veracruz">><<run changeStats("Tlacaelel",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Cuauhtemoc",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Cacamatzin",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<run changeStats("Pochteca",{"Wisdom":0,"Loyalty":0,"Strength":-1})>><<set $gifts="Attack">><</link>>.<br>
+3.  You disagree with Moctezuma's plan. You are wary of the strangers and believe the smartest move is to catch them off guard with <<link "an immediate attack" "Attack On a Beach in Veracruz">><<set $users["Tlacaelel"]["stats"]["Strength"]-=2>><<set $users["Cuauhtemoc"]["stats"]["Strength"]-=2>><<set $users["Cacamatzin"]["stats"]["Strength"]-=2>><<set $users["Pochteca"]["stats"]["Strength"]-=2>><<set $gifts="Attack">><</link>>.<br>
  <br>
 4.  You are wary of making a hasty decision and <<link "seek the counsel of your men" "Discuss these options with your men">><<set $gifts="Talk">><</link>>.<br>
 <br>
@@ -10242,13 +10190,13 @@ Now that you've made a decision, you can move forward. <br>
 
 But why are you moving forward? <br>
 <br>
-Cortés has <<link "totally inspired you" "Cortes Leadership Check">><<run changeStats("Cortes",{"Wisdom":0,"Loyalty":1,"Strength":0})>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>> with his vision for what lays ahead! <br>
+Cortés has <<link "totally inspired you" "Cortes Leadership Check">><<set $users["Cortes"]["stats"]["Loyalty"]+=1>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>> with his vision for what lays ahead! <br>
 <br>
-Cortés is clearly <<link "much smarter than Velazquez" "Cortes Leadership Check">><<run changeStats("Cortes",{"Wisdom":1,"Loyalty":1,"Strength":0})>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>> and he knows the path forward is filled with glory and riches! <br>
+Cortés is clearly <<link "much smarter than Velazquez" "Cortes Leadership Check">><<set $users["Cortes"]["stats"]["Loyalty"]+=1>><<set $users["Cortes"]["stats"]["Wisdom"]+=1>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>> and he knows the path forward is filled with glory and riches! <br>
 <br>
-Cortés has <<link "threatened you" "Cortes Leadership Check">><<run changeStats("Cortes",{"Wisdom":-1,"Loyalty":0,"Strength":1})>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>> with what he will do to you if you don't follow! <br>
+Cortés has <<link "threatened you" "Cortes Leadership Check">><<set $users["Cortes"]["stats"]["Strength"]+=1>><<set $users["Cortes"]["stats"]["Wisdom"]-=1>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>> with what he will do to you if you don't follow! <br>
 <br>
-Cortés has not <<link "convinced you" "Cortes Leadership Check">><<run changeStats("Cortes",{"Wisdom":-1,"Loyalty":-1,"Strength":0})>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>>  but now you are stuck on this boat and outnumbered!<br>
+Cortés has not <<link "convinced you" "Cortes Leadership Check">><<set $users["Cortes"]["stats"]["Loyalty"]-=1>><<set $users["Cortes"]["stats"]["Wisdom"]-=1>><<set $Cuba_Voted = $Cuba_Voted + 1>><<set $Cuba_Voted = $Cuba_Voted + 1>><</link>>  but now you are stuck on this boat and outnumbered!<br>
 <br>
 
 <<case "Cortes">>
@@ -10351,7 +10299,8 @@ You must wait for enough players to gather to begin.<br>
 <br>
 
 <<else>>
-
+<b> Your Team Leader is: <<print $Tlax_Leader>></b><br>
+<br>
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
 Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "Quest: Tlaxcalan instructions">><<set $Tlaxcalans_currentMap=2>><</link>>.<br>
@@ -11547,8 +11496,6 @@ You wait nervously while the others deliberate. <br>
 <br>
 <<print $TL_St_Voted>> players have voted.<br>
 <br>
-Your leader is <<print $Tlax_Leader>>.<br>
-<br>
 
 
 <<elseif $TL_St_Voted is 3 and $users["Xicotencatl_Elder"]["stats"]["Wisdom"] >=$users["Xicotencatl_Younger"]["stats"]["Wisdom"] and $users["Xicotencatl_Elder"]["stats"]["Wisdom"] >=$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $Tlax_Leader="Xicotencatl_Elder">>
@@ -11830,19 +11777,19 @@ Once you have heard everything they have to say, do you trust them?<br>
 <br>
 
 <<if $users[$role]["faction"] is "Spaniards" and $Tlax_Leader is "Xicotencatl_Elder">>
-<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<run changeStats("Xicotencatl_Elder",{"Wisdom":1,"Loyalty":0,"Strength":0})>><<set $Spaniards_currentMap=7>><</link>> <br>
+<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<set $users["Xicotencatl_Elder"]["stats"]["Wisdom"]+=1>><<set $Spaniards_currentMap=7>><</link>> <br>
 <br>
-<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<run changeStats("Xicotencatl_Elder",{"Wisdom":-1,"Loyalty":0,"Strength":0})>><<set $Spaniards_currentMap=7>><</link>><br>
+<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<set $users["Xicotencatl_Elder"]["stats"]["Wisdom"]-=1>><<set $Spaniards_currentMap=7>><</link>><br>
 <br>
 <<elseif $users[$role]["faction"] is "Spaniards" and $Tlax_Leader is "Xicotencatl_Younger">>
-<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<run changeStats("Xicotencatl_Younger",{"Wisdom":1,"Loyalty":0,"Strength":0})>><<set $Spaniards_currentMap=7>><</link>> <br>
+<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<set $users["Xicotencatl_Younger"]["stats"]["Wisdom"]+=1>><<set $Spaniards_currentMap=7>><</link>> <br>
 <br>
-<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<run changeStats("Xicotencatl_Younger",{"Wisdom":-1,"Loyalty":0,"Strength":0})>><<set $Spaniards_currentMap=7>><</link>><br>
+<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<set $users["Xicotencatl_Younger"]["stats"]["Wisdom"]-=1>><<set $Spaniards_currentMap=7>><</link>><br>
 <br>
 <<elseif $users[$role]["faction"] is "Spaniards" and $Tlax_Leader is "Maxixcatl">>
-<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<run changeStats("Maxixcatl",{"Wisdom":1,"Loyalty":0,"Strength":0})>><<set $Spaniards_currentMap=7>><</link>> <br>
+<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<set $users["Maxixcatl"]["stats"]["Wisdom"]+=1>><<set $Spaniards_currentMap=7>><</link>> <br>
 <br>
-<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<run changeStats("Maxixcatl",{"Wisdom":-1,"Loyalty":0,"Strength":0})>><<set $Spaniards_currentMap=7>><</link>><br>
+<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<set $users["Maxixcatl"]["stats"]["Wisdom"]-=1>><<set $Spaniards_currentMap=7>><</link>><br>
 <br>
 <</if>>
 
@@ -12007,11 +11954,11 @@ When your work is complete, you may continue <<link "on to the feast" "Everyone 
 
 You sit in the council chamber weighing the arguments made by the other two men.  You measure their wisdom and ambition against your own. Whose statement is most compelling?<br>
 <br>
-<<link "Xicotencatl the Elder" "Tlaxcalan Wisdom Check">><<run changeStats("Xicotencatl_Elder",{"Wisdom":3,"Loyalty":0,"Strength":0})>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>> <br>
+<<link "Xicotencatl the Elder" "Tlaxcalan Wisdom Check">><<set $users["Xicotencatl_Elder"]["stats"]["Wisdom"]+=2>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>> <br>
 <br>
 <<link "Xicotencatl the Younger" "Tlaxcalan Wisdom Check">><<set $users["Xicotencatl_Younger"]["stats"]["Wisdom"]+=2>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>><br>
 <br>
-<<link "Maxixcatl" "Tlaxcalan Wisdom Check">><<run changeStats("Maxixcatl",{"Wisdom":3,"Loyalty":0,"Strength":0})>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>><br>
+<<link "Maxixcatl" "Tlaxcalan Wisdom Check">><<set $users["Maxixcatl"]["stats"]["Wisdom"]+=2>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>><br>
 <br>
 
 
@@ -12402,7 +12349,7 @@ At midnight, Cortes makes the signal to attack, hoping to catch the enemy forces
 <<liveblock>>
 You have decided that it's best to remain patient. You will leave both groups to carry on their journeys undisturbed, watching carefully and waiting for your opening.<br>
 <br>
-You <<link "head back to Tlaxcala" "The Spaniards Head Inland">><<run changeStats("Xicotencatl_Elder",{"Wisdom":1,"Loyalty":0,"Strength":0})>><<run changeStats("Xicotencatl_Younger",{"Wisdom":1,"Loyalty":0,"Strength":0})>><<run changeStats("Maxixcatl",{"Wisdom":1,"Loyalty":0,"Strength":0})>><</link>> wondering what the future holds.<br>
+You <<link "head back to Tlaxcala" "The Spaniards Head Inland">><<set $users["Xicotencatl_Elder"]["stats"]["Wisdom"]+1>><<set $users["Xicotencatl_Younger"]["stats"]["Wisdom"]+1>><<set $users["Maxixcatl"]["stats"]["Wisdom"]+1>><</link>> wondering what the future holds.<br>
 <br>
 
 
