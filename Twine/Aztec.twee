@@ -10316,7 +10316,9 @@ You must wait for enough players to gather to begin.<br>
 <<else>>
 <b> Your Team Leader is: <<print $Tlax_Leader>></b><br>
 <br>
-Xicotencatl the Elder's Strength is <print $users["Xicotencatl_Elder"]["stats"]["Strength"]>
+Xicotencatl the Elder's Strength is <$users["Xicotencatl_Elder"]["stats"]["Strength"]><br>
+<br>
+And Olid's Strength is <$users["Olid"]["stats"]["Strength"]>
 <br>
 <br>
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
