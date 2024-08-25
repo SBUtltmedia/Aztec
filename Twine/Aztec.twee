@@ -10008,8 +10008,6 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 
 :: Quest: Aztec Instructions [Done] {"position":"3125,225","size":"100,100"}
 <<liveblock>>
-Your Quest Leader is: <<print $Quest_Leader_A>><br>
-<br>
 <<if $Quest_Leader_A is "None">>
 <<if $role is "Moctezuma">>
 Before you can begin your quest, you must choose a teammate to lead your people. <br>
@@ -10017,6 +10015,14 @@ Before you can begin your quest, you must choose a teammate to lead your people.
 You choose: <br>
 <br>
 <<link "Tlacaelel">><<set $Quest_Leader_A = "Tlacaelel">><</link>>.<br>
+<br>
+<<link "Cuauhtemoc">><<set $Quest_Leader_A = "Cuauhtemoc">><</link>>.<br>
+<br>
+<<link "Cacamatzín">><<set $Quest_Leader_A = "Cacamatzin">><</link>>.<br>
+<br>
+<<link "Aztec_Priest">><<set $Quest_Leader_A = "Aztec_Priest">><</link>>.<br>
+<br>
+<<link "Pochteca">><<set $Quest_Leader_A = "Pochteca">><</link>>.<br>
 <br>
 <<else>>
 You must wait for Moctezuma to choose a quest leader. <br>
@@ -10026,7 +10032,9 @@ You must wait for Moctezuma to choose a quest leader. <br>
 <</if>>
 <<else>>
 <<if $role is $Quest_Leader_A>>
-You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Pochteca, as a trader, you know the terrain well. It is up to you to lead your team in this quest.<br>
+<b><<print $Quest_Leader_A>>, you are quest leader.</b><br>
+<br>
+You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. <<print $Aztec_Leader>> clearly has great confidence in you.  He has chosen you to lead your team in this quest.<br>
 <br>
 Do not hesitate in this journey, for you are not the only ones seeking this treasure. Your sworn enemies, the Tlaxcalans, have fought valiantly against you for many years and have resisted conquest. They would deny you the blessing of Quetzalcoatl to claim it for themselves, a feat which would surely fuel their warriors and steel them in their struggle against you.<br>
 <br>
