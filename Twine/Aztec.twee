@@ -10316,11 +10316,14 @@ You must wait for enough players to gather to begin.<br>
 <<else>>
 <b> Your Team Leader is: <<print $Tlax_Leader>></b><br>
 <br>
+<if $users["Xicotencatl_Elder"]["stats"]["Strength"] = 5> 
 Xicotencatl the Elder's Strength is <$users["Xicotencatl_Elder"]["stats"]["Strength"]><br>
 <br>
-And Olid's Strength is <$users["Olid"]["stats"]["Strength"]>
+<else>
+Olid's Strength is <$users["Olid"]["stats"]["Strength"]>
 <br>
 <br>
+</if>
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
 Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "Quest: Tlaxcalan instructions">><<set $Tlaxcalans_currentMap=2>><</link>>.<br>
