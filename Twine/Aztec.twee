@@ -3258,13 +3258,13 @@ You need to assign points to your character to continue. <br>
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <<if $role is "Moctezuma">>
-Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A>><<set $A_Q_Heart="no">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="None">><<set $A_Q_Heart="no">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
 <<else>>
 Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
 <</if>>
 <<case "Tlaxcalans">>
 <<if $role is "Xicotencatl_Elder">>
-Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $T_Q_Heart="no">><<set $Quest_Leader_T = 0>><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $T_Q_Heart="no">><<set $Quest_Leader_T = "None">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
 <<else>>
 Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
 <</if>>
@@ -10010,7 +10010,7 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 <<liveblock>>
 <print $Quest_Leader_A><br>
 <br>
-<<if ndef $Quest_Leader_A or $Quest_Leader_A=0>>
+<<if $Quest_Leader_A = "None">>
 <<if $role is "Moctezuma">>
 Before you can begin your quest, you must choose a teammate to lead your people. <br>
 <br>
