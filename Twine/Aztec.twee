@@ -12006,7 +12006,7 @@ You sit in the council chamber weighing the arguments made by the other two men.
 <br>
 <<link "Xicotencatl the Elder" "Tlaxcalan Wisdom Check">><<run changeStats("Xicotencatl_Elder",{"Wisdom":3,"Loyalty":0,"Strength":0})>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>> <br>
 <br>
-<<link "Xicotencatl the Younger" "Tlaxcalan Wisdom Check">><<run changeStats("Xicotencatl_Younger",{"Wisdom":3,"Loyalty":0,"Strength":0})>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>><br>
+<<link "Xicotencatl the Younger" "Tlaxcalan Wisdom Check">><<set $users["Xicotencatl_Younger"]["stats"]["Wisdom"]+=2>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>><br>
 <br>
 <<link "Maxixcatl" "Tlaxcalan Wisdom Check">><<run changeStats("Maxixcatl",{"Wisdom":3,"Loyalty":0,"Strength":0})>><<set $TL_St_Voted = $TL_St_Voted + 1>><</link>><br>
 <br>
