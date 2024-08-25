@@ -10021,7 +10021,9 @@ You must wait for Moctezuma to choose a quest leader. <br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<if $role is "Pochteca">>
+<</if>>
+<<else>>
+<<if $role is $Quest_Leader_A>>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Pochteca, as a trader, you know the terrain well. It is up to you to lead your team in this quest.<br>
 <br>
 Do not hesitate in this journey, for you are not the only ones seeking this treasure. Your sworn enemies, the Tlaxcalans, have fought valiantly against you for many years and have resisted conquest. They would deny you the blessing of Quetzalcoatl to claim it for themselves, a feat which would surely fuel their warriors and steel them in their struggle against you.<br>
@@ -10036,6 +10038,8 @@ Enter the palace and <<link "begin your quest" "Scavenger Hunt Hub">><<set $Ques
 <br>
 <br>
 <<else>>
+<b> Your Quest Leader is <<print $Quest_Leader_A>>.</b><br>
+<br>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Because the Pochteca is a trader, he knows the terrain well. It is up to him to lead your team in this quest.<br>
 <br>
 Do not hesitate in this journey, for you are not the only ones seeking this treasure. Your sworn enemies, the Tlaxcalans, have fought valiantly against you for many years and have resisted conquest. They would deny you the blessing of Quetzalcoatl to claim it for themselves, a feat which would surely fuel their warriors and steel them in their struggle against you.<br>
@@ -10050,7 +10054,7 @@ Enter the palace and [[begin your quest|Scavenger Hunt Hub]].<br>
 <br>
 <</if>>
 <</if>>
-<</if>>
+
 
 <</liveblock>>
 
