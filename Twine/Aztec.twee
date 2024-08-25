@@ -11547,6 +11547,9 @@ You wait nervously while the others deliberate. <br>
 <br>
 <<print $TL_St_Voted>> players have voted.<br>
 <br>
+Your leader is <<print $Tlax_Leader>>.<br>
+<br>
+
 
 <<elseif $TL_St_Voted is 3 and $users["Xicotencatl_Elder"]["stats"]["Wisdom"] >=$users["Xicotencatl_Younger"]["stats"]["Wisdom"] and $users["Xicotencatl_Elder"]["stats"]["Wisdom"] >=$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $Tlax_Leader="Xicotencatl_Elder">>
 You and your fellow council members have weighed each other's arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. <br>
