@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -9459,11 +9459,14 @@ You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;b&gt; Your Team Leader is: &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;if $users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Strength&quot;] = 5&gt; 
 Xicotencatl the Elder&#39;s Strength is &lt;$users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&lt;br&gt;
 &lt;br&gt;
-And Olid&#39;s Strength is &lt;$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;
+&lt;else&gt;
+Olid&#39;s Strength is &lt;$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;
 &lt;br&gt;
 &lt;br&gt;
+&lt;/if&gt;
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. &lt;br&gt;
 &lt;br&gt;
 Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl&#39;s brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant &lt;&lt;link &quot;the blessing that you seek&quot; &quot;Quest: Tlaxcalan instructions&quot;&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=2&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
