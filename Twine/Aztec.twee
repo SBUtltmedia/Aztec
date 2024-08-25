@@ -3257,10 +3257,17 @@ You need to assign points to your character to continue. <br>
 
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
-Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="Pochteca">><<set $A_Q_Heart="no">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
-
+<<if $role is "Moctezuma">>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A>><<set $A_Q_Heart="no">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+<<else>>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+<</if>>
 <<case "Tlaxcalans">>
-Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+<<if $role is "Xicotencatl_Elder">>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $T_Q_Heart="no">><<set $Quest_Leader_T = 0>><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+<<else>>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+<</if>>
 <br>
 <</switch>>
 
@@ -10001,6 +10008,14 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 
 :: Quest: Aztec Instructions [Done] {"position":"3125,225","size":"100,100"}
 <<liveblock>>
+<<if ndef $Quest_Leader_A or $Quest_Leader_A = 0>>
+<<if $role is "Moctezuma">>
+Before you can begin your quest, you must choose a teammate to lead your people.  
+<<else>>
+You must wait for Moctezuma to choose a quest leader. <br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
 <<if $role is "Pochteca">>
 You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Pochteca, as a trader, you know the terrain well. It is up to you to lead your team in this quest.<br>
 <br>
@@ -10029,7 +10044,7 @@ When you have obtained enough resources to survive your journey, you will be all
 Enter the palace and [[begin your quest|Scavenger Hunt Hub]].<br>
 <br>
 <</if>>
-
+<</if>>
 
 <</liveblock>>
 
@@ -10300,6 +10315,9 @@ You must wait for enough players to gather to begin.<br>
 
 <<else>>
 <b> Your Team Leader is: <<print $Tlax_Leader>></b><br>
+<br>
+Xicotencatl the Elder's Strength is <print $users["Xicotencatl_Elder"]["stats"]["Strength"]>
+<br>
 <br>
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
