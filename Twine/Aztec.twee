@@ -3264,7 +3264,7 @@ Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Q
 <</if>>
 <<case "Tlaxcalans">>
 <<if $role is "Xicotencatl_Elder">>
-Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $T_Q_Heart="no">><<set $Quest_Leader_T = "None">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $T_Q_Heart="no">><<set $Quest_Leader_T ="None">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
 <<else>>
 Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
 <</if>>
@@ -10044,13 +10044,13 @@ In the palace you will find 6 place glyphs. Each of these glyphs represents a si
 <br>
 When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have further to travel, they must gather 5 goods, while the Tlaxcalans only require 4. <br>
 <br>
-Enter the palace and <<link "begin your quest" "Scavenger Hunt Hub">><<set $Quest_Leader_A="Pochteca">><<set $A_Q_Heart="no">><</link>>.<br>
+Enter the palace and <<link "begin your quest" "Scavenger Hunt Hub">><<set $A_Q_Heart="no">><</link>>.<br>
 <br>
 <br>
 <<else>>
 <b> Your Quest Leader is <<print $Quest_Leader_A>>.</b><br>
 <br>
-You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Because the Pochteca is a trader, he knows the terrain well. It is up to him to lead your team in this quest.<br>
+You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. <<print $Quest_Leader_A>> will be your leader, he knows the terrain well. <br>
 <br>
 Do not hesitate in this journey, for you are not the only ones seeking this treasure. Your sworn enemies, the Tlaxcalans, have fought valiantly against you for many years and have resisted conquest. They would deny you the blessing of Quetzalcoatl to claim it for themselves, a feat which would surely fuel their warriors and steel them in their struggle against you.<br>
 <br>
@@ -10348,8 +10348,27 @@ Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth an
 
 :: Quest: Tlaxcalan instructions [Done] {"position":"2975,225","size":"100,100"}
 <<liveblock>>
-<<if $role is "Xicotencatl_Younger">>
-You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Xicotencatl the Younger, you have much to prove and this is your chance. It is up to you to lead your team on this quest!<br>
+<<if $Quest_Leader_T is "None">>
+<<if $role is "Xicotencatl_Elder">>
+Before you can begin your quest, you must choose a teammate to lead your people. <br>
+<br>
+You choose: <br>
+<br>
+<<link "Xicotencatl the Younger">><<set $Quest_Leader_T = "Xicotencatl_Younger">><</link>>.<br>
+<br>
+<<link "Maxixcatl">><<set $Quest_Leader_T = "Maxixcatl">><</link>>.<br>
+<br>
+<<else>>
+You must wait for Xicotencatl the Elder to choose a quest leader. <br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<</if>>
+<<else>>
+<<if $role is $Quest_Leader_T>>
+<b><<print $Quest_Leader_T>>, you are quest leader.</b><br>
+<br>
+You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. You have much to prove to Xicotencatl the Elder, and this is your chance. It is up to you to lead your team on this quest!<br>
 <br>
 If you succeed, you will deny legitimacy to the Mexica and maintain the balance of power in central Mexico. The blessing of Quetzalcoatl will surely fuel your warriors and steel you in your struggle against the Mexica. Do not hesitate in this quest, for you are in a race against the most powerful warriors of the Aztec Empire.<br>
 <br>
@@ -10359,10 +10378,12 @@ In the palace you will find 6 place glyphs. Each of these glyphs represents a si
 <br>
 When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have further to travel, they must gather 5 goods, while you only require 4.<br>
 <br>
-Enter the palace and <<link "begin your quest" "Scavenger Hunt Hub">><<set $Tlaxcalans_currentMap=2>><<set $Quest_Leader_T="Xicotencatl_Younger">><<set $T_Q_Heart="no">><</link>>.<br>
+Enter the palace and <<link "begin your quest" "Scavenger Hunt Hub">><<set $Tlaxcalans_currentMap=2>><<set $T_Q_Heart="no">><</link>>.<br>
 <br>
 <<else>>
-You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. Xicotencatl the Younger is young and strong, and he will lead this quest.<br>
+<b> Your Quest Leader is <<print $Quest_Leader_T>>.</b><br>
+<br>
+You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. <<print $Quest_Leader_T>>, and he will lead this quest.<br>
 <br>
 If you succeed, you will deny legitimacy to the Mexica and maintain the balance of power in central Mexico. The blessing of Quetzalcoatl will surely fuel your warriors and steel you in your struggle against the Mexica. Do not hesitate in this quest, for you are in a race against the most powerful warriors of the Aztec Empire.<br>
 <br>
