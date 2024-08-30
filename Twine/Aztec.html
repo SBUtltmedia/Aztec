@@ -7425,7 +7425,7 @@ You continue inland, [[following behind|Spaniards Meet Marina]] the native messe
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="Spaniards learn their leader beached the ships" tags="" position="1925,2025" size="100,100">&lt;&lt;liveblock&gt;&gt;
-Your current leader is: &lt;&lt;print $Span_Leader&gt;&gt;. &lt;br&gt;
+&lt;b&gt;Your current leader is: &lt;&lt;print $Span_Leader&gt;&gt;. &lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if ndef $TL_Attacks or $TL_Attacks eq &quot;&quot;&gt;&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
@@ -7452,7 +7452,7 @@ When you have made your case, [[you may carry on|Tlaxcalans decide to attack the
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Olid&quot;&gt;&gt;
 &lt;&lt;if $Span_Leader is &quot;Cortes&quot;&gt;&gt;
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. &lt;br&gt;
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. &lt;b&gt;In a bid to force the group inland, he beached your ships!&lt;/b&gt; Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. &lt;br&gt;
 &lt;br&gt;
 Clearly, your desire to lead was not misplaced! Perhaps now, your teammates will begin to see Cortes for who he really is.&lt;br&gt;
 &lt;br&gt;
@@ -10556,7 +10556,7 @@ You wait nervously while the others deliberate. &lt;br&gt;
 &lt;&lt;elseif $TL_St_Voted is 3 and $users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] &gt;=$users[&quot;Xicotencatl_Younger&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] and $users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] &gt;=$users[&quot;Maxixcatl&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;
 You and your fellow council members have weighed each other&#39;s arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. &lt;br&gt;
 &lt;br&gt;
-The Tlaxcalan leader is &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;
+&lt;b&gt;The Tlaxcalan leader is &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
 Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Decides]]?&lt;br&gt;
 &lt;br&gt;
