@@ -13065,7 +13065,7 @@ It is not yet time to tell your people what all of this means, but that time wil
 <br>
 <<if $Tl_Omens is "Yes">>
 
-As you contemplate the meaning of the signs, you receive some surprising news. It seems that a delegation of Tlaxcalans, your sworn enemies, have arrived in Tenochtitlán to seek an audience with Moctezuma. He invites you to accompany him [[to the meeting|Tlaxcalans and Aztecs meet]].<br>
+<b>As you contemplate the meaning of the signs, you receive some surprising news. It seems that a delegation of Tlaxcalans, your sworn enemies, have arrived in Tenochtitlán to seek an audience with Moctezuma. He invites you to accompany him [[to the meeting|Tlaxcalans and Aztecs meet]].</b><br>
 <br>
 <<elseif $Tl_Omens is "Nothing" or "Spies">>
 
@@ -13107,7 +13107,7 @@ It is not yet time to tell your people what all of this means, but that time wil
 <br>
 <<if $Tl_Omens is "Yes">>
 
-As you contemplate the meaning of the signs, you receive some surprising news. It seems that a delegation of Tlaxcalans, your sworn enemies, have arrived in Tenochtitlán and they wish to speak with you. You take your priest with you as you go to [[hear what they have to say|Tlaxcalans and Aztecs meet]].<br>
+<b>As you contemplate the meaning of the signs, you receive some surprising news. It seems that a delegation of Tlaxcalans, your sworn enemies, have arrived in Tenochtitlán and they wish to speak with you. You take your priest with you as you go to [[hear what they have to say|Tlaxcalans and Aztecs meet]].</b><br>
 <br>
 <<elseif $Tl_Omens is "Nothing" or "Spies">>
 
