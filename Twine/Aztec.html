@@ -5433,40 +5433,50 @@ These rumors &lt;&lt;link &quot;make you sad&quot; &quot;Sad&quot;&gt;&gt;&lt;&l
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="145" name="Moctezuma Confidence Vote" tags="Done" position="2375,3250" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Moc_Mut_Vote &lt;= 4&gt;&gt;
-You wait while your fellow counselors cast their vote.&lt;br&gt;
+&lt;&lt;set _Moc_Mut_Vote = setup.getTotalChoices(&quot;Moc_Mut_Vote&quot;)&gt;&gt;
+&lt;&lt;set _MocMut_Moc = setup.getTotalChoices(&quot;MocMut_Moc&quot;)&gt;&gt;
+&lt;&lt;set _MocMut_Tla = setup.getTotalChoices (&quot;MocMut_Tla&quot;)&gt;&gt;
+&lt;&lt;set _MocMut_Cua = setup.getTotalChoices (&quot;MocMut_Cua&quot;)&gt;&gt;
+&lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
+Total Votes cast: &lt;&lt;print _Moc_Mut_Vote&gt;&gt;&lt;br&gt;
+Votes for Moctezuma: &lt;&lt;print _MocMut_Moc&gt;&gt;&lt;br&gt;
+Votes for Tlacaelel: &lt;&lt;print _MocMut_Tla&gt;&gt;&lt;br&gt;
+Votes for Cuauhtemoc: &lt;&lt;print _MocMut_Cua&gt;&gt;&lt;br&gt;
+Total Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;print $Moc_Mut_Vote&gt;&gt; votes have been cast.&lt;br&gt;
+
+&lt;&lt;if _Moc_Mut_Vote &lt; (_Aztec_Tot_Play - 1)&gt;&gt;
+You wait while your fellow counselors cast their vote.&lt;br&gt;
 &lt;br&gt;
 
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1)&gt;&gt;
 You have chosen a leader.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $MocMut_Moc is 5&gt;&gt;
+&lt;&lt;if _MocMut_Moc is (_Aztec_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $MocMut_Tla is 5&gt;&gt;
+&lt;&lt;elseif _MocMut_Tla is (_Aztec_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $MocMut_Cua is 5&gt;&gt;
+&lt;&lt;elseif _MocMut_Cua is (_Aztec_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $MocMut_Moc &gt;=3&gt;&gt;
+&lt;&lt;elseif _MocMut_Moc &gt;= _MocMut_Tla and _MocMut_Moc &gt;= _MocMut_Cua&gt;&gt;
 The group has made a decision. Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $MocMut_Tla &gt;=3&gt;&gt;
+&lt;&lt;elseif _MocMut_Tla &gt; _MocMut_Moc and _MocMut_Tla &gt; _MocMut_Cua&gt;&gt;
 The group has made a decision. Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $MocMut_Cua &gt;=3&gt;&gt;
+&lt;&lt;elseif _MocMut_Cua &gt; _MocMut_Moc and _MocMut_Cua &gt; _MocMut_Tla&gt;&gt;
 The group has made a decision. Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="Moctezuma Confidence Vote 2" tags="" position="100,1975" size="100,100">&lt;&lt;switch $role&gt;&gt;
@@ -5622,17 +5632,17 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="147" name="Moctezuma Makes his Proclamation" tags="Done" position="2375,3125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
-&lt;&lt;if ndef $MocMut_Moc&gt;&gt;
-&lt;&lt;set $MocMut_Moc=0&gt;&gt;
+&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;if ndef $MocMut_Tla&gt;&gt;
-&lt;&lt;set $MocMut_Tla=0&gt;&gt;
+&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;if ndef $MocMut_Cua&gt;&gt;
-&lt;&lt;set $MocMut_Cua=0&gt;&gt;
+&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;if ndef $Moc_Mut_Vote&gt;&gt;
-&lt;&lt;set $Moc_Mut_Vote=0&gt;&gt;
+&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;switch $role&gt;&gt;
@@ -5653,24 +5663,25 @@ You read Moctezuma&#39;s Proclamation, and you gather together in Council, this 
 &lt;br&gt;
 The arrival of the strangers and mysterious omens have left everybody unsettled. How should you proceed? Does Moctezuma&#39;s Proclamation inspire confidence, or is it time to choose a new leader? In this strange new world, who will you follow?&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Moctezuma&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $MocMut_Moc = $MocMut_Moc + 1&gt;&gt;&lt;&lt;set $Moc_Mut_Vote = $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; retains your loyalty, you trust his leadership. &lt;br&gt;
+
+&lt;&lt;link &quot;Moctezuma&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;set $Moc_Mut_Vote = $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt;retains your loyalty, you trust his leadership. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Tlacaelel&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $MocMut_Tla = $MocMut_Tla + 1&gt;&gt;&lt;&lt;set $Moc_Mut_Vote = $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;set $users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; has shown great leadership. You vote for him. &lt;br&gt;
+&lt;&lt;link &quot;Tlacaelel&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;set $users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; has shown great leadership. You vote for him. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Cuauhtemoc&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $MocMut_Cua = $MocMut_Cua + 1&gt;&gt;&lt;&lt;set $Moc_Mut_Vote = $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;set $users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; is clearly the one to lead you through these strange times. 
+&lt;&lt;link &quot;Cuauhtemoc&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;set $users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; is clearly the one to lead you through these strange times. 
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
-&lt;&lt;if $Moc_Mut_Vote isnot 5&gt;&gt;
+&lt;&lt;if _Moc_Mut_Vote &lt; (_Aztec_Tot_Play - 1)&gt;&gt;
 You wait, on edge, wondering what the reception of your proclamation will be. You know that your counselors are meeting without you, but about what?&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
 You are waiting for your team members to all vote.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;print $Moc_Mut_Vote&gt;&gt; votes have been cast.&lt;br&gt;
+&lt;&lt;print _Moc_Mut_Vote&gt;&gt; votes have been cast.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Moc_Mut_Vote is 5&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote &gt;= (_Aztec_Tot_Play - 1)&gt;&gt;
 After meeting without you, your counselors call you [[into the chamber|Moctezuma Confidence Vote]].
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
