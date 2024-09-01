@@ -5973,7 +5973,7 @@ The group has made a decision, and your team has shown great unity of purpose.  
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 
-<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla > _MocMut_Moc and _MocMut_Tla > _MocMut_Cua>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla > _MocMut_Moc and _MocMut_Tla >= _MocMut_Cua>>
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 
@@ -6187,8 +6187,6 @@ You wait, on edge, wondering what the reception of your proclamation will be. Yo
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 You are waiting for your team members to all vote.<br>
-<br>
-<<print _Moc_Mut_Vote>> votes have been cast.<br>
 <br>
 
 <<elseif _Moc_Mut_Vote >= (_Aztec_Tot_Play - 1)>>
