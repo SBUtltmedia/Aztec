@@ -5671,7 +5671,7 @@ The arrival of the strangers and mysterious omens have left everybody unsettled.
 &lt;&lt;link &quot;Cuauhtemoc&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;set $users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; is clearly the one to lead you through these strange times. 
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
-&lt;&lt;if _Moc_Mut_Vote &lt; (_Aztec_Tot_Play - 1)&gt;&gt;
+&lt;&lt;if _Moc_Mut_Vote &lt; (_Aztec_Tot_Play - 1) or ndef _Moc_Mut_Vote&gt; or _Moc_Mut_Vote is 0&gt;&gt;
 You wait, on edge, wondering what the reception of your proclamation will be. You know that your counselors are meeting without you, but about what?&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
