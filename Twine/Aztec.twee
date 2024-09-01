@@ -6149,6 +6149,8 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 <<set $Moc_Mut_Vote=0>>
 <</if>>
 
+<<switch $role>>
+<<case "Tlacaelel" or "Cuauhtemoc" or "Cacamatzin" or "Aztec_Priest" or "Pochteca">>
 <<if ndef $Moc_Proc or $Moc_Proc eq "">>
 When Moctezuma has come to a decision, you may continue on to read his proclamation.<br>
 <br>
@@ -6161,8 +6163,6 @@ You are waiting for Moctezuma to come to a decision.<br>
 <b>Moctezuma's Proclamation:</b>  <<print $Moc_Proc>><br>
 <br>
 <br>
-<<switch $role>>
-<<case "Tlacaelel" or "Cuauhtemoc" or "Cacamatzin" or "Aztec_Priest" or "Pochteca">>
 You read Moctezuma's Proclamation, and you gather together in Council, this time without Moctezuma present. <br>
 <br>
 The arrival of the strangers and mysterious omens have left everybody unsettled. How should you proceed? Does Moctezuma's Proclamation inspire confidence, or is it time to choose a new leader? In this strange new world, who will you follow?<br>
@@ -6172,7 +6172,7 @@ The arrival of the strangers and mysterious omens have left everybody unsettled.
 <<link "Tlacaelel" "Moctezuma Confidence Vote">><<set $MocMut_Tla = $MocMut_Tla + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Tlacaelel"]["stats"]["Loyalty"]+=1>><</link>> has shown great leadership. You vote for him. <br>
 <br>
 <<link "Cuauhtemoc" "Moctezuma Confidence Vote">><<set $MocMut_Cua = $MocMut_Cua + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Cuauhtemoc"]["stats"]["Loyalty"]+=1>><</link>> is clearly the one to lead you through these strange times. 
-
+<</if>>
 <<case "Moctezuma">>
 <<if $Moc_Mut_Vote isnot 5>>
 You wait, on edge, wondering what the reception of your proclamation will be. You know that your counselors are meeting without you, but about what?<br>
@@ -6186,7 +6186,6 @@ You are waiting for your team members to all vote.<br>
 
 <<elseif $Moc_Mut_Vote is 5>>
 After meeting without you, your counselors call you [[into the chamber|Moctezuma Confidence Vote]].
-<</if>>
 <</if>>
 <</switch>>
 
