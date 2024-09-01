@@ -5957,35 +5957,31 @@ You wait while your fellow counselors cast their vote.<br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1)>>
-You have chosen a leader.<br>
-<br>
-<</if>>
-
-<<if _MocMut_Moc is (_Aztec_Tot_Play - 1)>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Moc is (_Aztec_Tot_Play - 1)>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
 <br>
 
-<<elseif _MocMut_Tla is (_Aztec_Tot_Play - 1)>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla is (_Aztec_Tot_Play - 1)>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
 <br>
 
-<<elseif _MocMut_Cua is (_Aztec_Tot_Play - 1)>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Cua is (_Aztec_Tot_Play - 1)>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
 <br>
 
-<<elseif _MocMut_Moc >= _MocMut_Tla and _MocMut_Moc >= _MocMut_Cua>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Moc >= _MocMut_Tla and _MocMut_Moc >= _MocMut_Cua>>
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 
-<<elseif _MocMut_Tla > _MocMut_Moc and _MocMut_Tla > _MocMut_Cua>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla > _MocMut_Moc and _MocMut_Tla > _MocMut_Cua>>
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 
-<<elseif _MocMut_Cua > _MocMut_Moc and _MocMut_Cua > _MocMut_Tla>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Cua > _MocMut_Moc and _MocMut_Cua > _MocMut_Tla>>
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 <</if>>
+
 
 
 :: Moctezuma Confidence Vote 2 {"position":"100,1975","size":"100,100"}
