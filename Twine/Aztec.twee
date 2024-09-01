@@ -2198,7 +2198,6 @@ When you are satisfied you have heard everything <<print $Aztec_Leader>> has to 
 
 
 :: Aztecs Hold a Council Meeting [Done] {"position":"2375,2975","size":"100,100"}
-<<liveblock>>
 <<if ndef $Moc_Mut_Vote >>
 <<set $Moc_Mut_Vote=0 >>
 <</if>>
@@ -2226,20 +2225,10 @@ You [[advance with care and caution|Moctezuma Makes his Proclamation]], knowing 
 <<case "Tlacaelel" or "Cuauhtemoc" or "Cacamatzin" or "Pochteca" or "Aztec_Priest">>
 Now that you have presented your statement, review the statements of your fellow counselors, linked above  Once you have done that, adjourn to the Aztec discussion board. Be prepared to answer Moctezuma's questions and debate with your fellows. Remember, the very fate of the Mexica is in your hands.<br>
 <br>
-<<if ndef $Moc_Proc or $Moc_Proc eq "">>
-When Moctezuma has come to a decision, you may continue on to read his proclamation.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
-<br>
-You are waiting for Moctezuma to come to a decision.<br>
-<br>
-<<else>>
 When Moctezuma has come to a decision, you may continue on to [[read his proclamation|Moctezuma Makes his Proclamation]].<br>
 <br>
-<</if>>
 <</switch>>
 
-<</liveblock>>
 
 :: Aztecs Lay a Trap in Cholula [Done] {"position":"2625,5225","size":"100,100"}
 <<liveblock>>
@@ -6160,12 +6149,18 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 <<set $Moc_Mut_Vote=0>>
 <</if>>
 
-
+<<if ndef $Moc_Proc or $Moc_Proc eq "">>
+When Moctezuma has come to a decision, you may continue on to read his proclamation.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Moctezuma to come to a decision.<br>
+<br>
+<<else>>
 
 <b>Moctezuma's Proclamation:</b>  <<print $Moc_Proc>><br>
 <br>
 <br>
-
 <<switch $role>>
 <<case "Tlacaelel" or "Cuauhtemoc" or "Cacamatzin" or "Aztec_Priest" or "Pochteca">>
 You read Moctezuma's Proclamation, and you gather together in Council, this time without Moctezuma present. <br>
@@ -6191,6 +6186,7 @@ You are waiting for your team members to all vote.<br>
 
 <<elseif $Moc_Mut_Vote is 5>>
 After meeting without you, your counselors call you [[into the chamber|Moctezuma Confidence Vote]].
+<</if>>
 <</if>>
 <</switch>>
 
