@@ -5939,40 +5939,50 @@ These rumors <<link "make you sad" "Sad">><<set $users["Aguilar"]["stats"]["Wisd
 
 :: Moctezuma Confidence Vote [Done] {"position":"2375,3250","size":"100,100"}
 <<liveblock>>
-<<if $Moc_Mut_Vote <= 4>>
-You wait while your fellow counselors cast their vote.<br>
+<<set _Moc_Mut_Vote = setup.getTotalChoices("Moc_Mut_Vote")>>
+<<set _MocMut_Moc = setup.getTotalChoices("MocMut_Moc")>>
+<<set _MocMut_Tla = setup.getTotalChoices ("MocMut_Tla")>>
+<<set _MocMut_Cua = setup.getTotalChoices ("MocMut_Cua")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+Total Votes cast: <<print _Moc_Mut_Vote>><br>
+Votes for Moctezuma: <<print _MocMut_Moc>><br>
+Votes for Tlacaelel: <<print _MocMut_Tla>><br>
+Votes for Cuauhtemoc: <<print _MocMut_Cua>><br>
+Total Players in Game: <<print _Aztec_Tot_Play>><br>
 <br>
-<<print $Moc_Mut_Vote>> votes have been cast.<br>
+
+<<if _Moc_Mut_Vote < (_Aztec_Tot_Play - 1)>>
+You wait while your fellow counselors cast their vote.<br>
 <br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
-<<elseif $Moc_Mut_Vote is 5>>
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1)>>
 You have chosen a leader.<br>
 <br>
 <</if>>
 
-<<if $MocMut_Moc is 5>>
+<<if _MocMut_Moc is (_Aztec_Tot_Play - 1)>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
 <br>
 
-<<elseif $MocMut_Tla is 5>>
+<<elseif _MocMut_Tla is (_Aztec_Tot_Play - 1)>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
 <br>
 
-<<elseif $MocMut_Cua is 5>>
+<<elseif _MocMut_Cua is (_Aztec_Tot_Play - 1)>>
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
 <br>
 
-<<elseif $MocMut_Moc >=3>>
+<<elseif _MocMut_Moc >= _MocMut_Tla and _MocMut_Moc >= _MocMut_Cua>>
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 
-<<elseif $MocMut_Tla >=3>>
+<<elseif _MocMut_Tla > _MocMut_Moc and _MocMut_Tla > _MocMut_Cua>>
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 
-<<elseif $MocMut_Cua >=3>>
+<<elseif _MocMut_Cua > _MocMut_Moc and _MocMut_Cua > _MocMut_Tla>>
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 <</if>>
@@ -6136,17 +6146,17 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 :: Moctezuma Makes his Proclamation [Done] {"position":"2375,3125","size":"100,100"}
 <<liveblock>>
 
-<<if ndef $MocMut_Moc>>
-<<set $MocMut_Moc=0>>
+<<if ndef $users[$role]["choices"]["MocMut_Moc"]>>
+<<set $users[$role]["choices"]["MocMut_Moc"]=0 >>
 <</if>>
-<<if ndef $MocMut_Tla>>
-<<set $MocMut_Tla=0>>
+<<if ndef $users[$role]["choices"]["MocMut_Tla"]>>
+<<set $users[$role]["choices"]["MocMut_Tla"]=0 >>
 <</if>>
-<<if ndef $MocMut_Cua>>
-<<set $MocMut_Cua=0>>
+<<if ndef $users[$role]["choices"]["MocMut_Cua"]>>
+<<set $users[$role]["choices"]["MocMut_Cua"]=0 >>
 <</if>>
-<<if ndef $Moc_Mut_Vote>>
-<<set $Moc_Mut_Vote=0>>
+<<if ndef $users[$role]["choices"]["Moc_Mut_Vote"]>>
+<<set $users[$role]["choices"]["Moc_Mut_Vote"]=0 >>
 <</if>>
 
 <<switch $role>>
@@ -6167,24 +6177,25 @@ You read Moctezuma's Proclamation, and you gather together in Council, this time
 <br>
 The arrival of the strangers and mysterious omens have left everybody unsettled. How should you proceed? Does Moctezuma's Proclamation inspire confidence, or is it time to choose a new leader? In this strange new world, who will you follow?<br>
 <br>
-<<link "Moctezuma" "Moctezuma Confidence Vote">><<set $MocMut_Moc = $MocMut_Moc + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Moctezuma"]["stats"]["Loyalty"]+=1>><</link>> retains your loyalty, you trust his leadership. <br>
+
+<<link "Moctezuma" "Moctezuma Confidence Vote">><<set $users[$role]["choices"]["MocMut_Moc"] = $users[$role]["choices"]["MocMut_Moc"] = 1>><<set $users[$role]["choices"]["MocMut_Tla"] = $users[$role]["choices"]["MocMut_Tla"] = 0>><<set $users[$role]["choices"]["MocMut_Cua"] = $users[$role]["choices"]["MocMut_Cua"] = 0>><<set $users[$role]["choices"]["Moc_Mut_Vote"] = $users[$role]["choices"]["Moc_Mut_Vote "] = 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Moctezuma"]["stats"]["Loyalty"]+=1>><</link>>retains your loyalty, you trust his leadership. <br>
 <br>
-<<link "Tlacaelel" "Moctezuma Confidence Vote">><<set $MocMut_Tla = $MocMut_Tla + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Tlacaelel"]["stats"]["Loyalty"]+=1>><</link>> has shown great leadership. You vote for him. <br>
+<<link "Tlacaelel" "Moctezuma Confidence Vote">><<set $users[$role]["choices"]["MocMut_Moc"] = $users[$role]["choices"]["MocMut_Moc"] = 0>><<set $users[$role]["choices"]["MocMut_Tla"] = $users[$role]["choices"]["MocMut_Tla"] = 1>><<set $users[$role]["choices"]["MocMut_Cua"] = $users[$role]["choices"]["MocMut_Cua"] = 0>><<set $users[$role]["choices"]["Moc_Mut_Vote"] = $users[$role]["choices"]["Moc_Mut_Vote "] = 1>><<set $users["Tlacaelel"]["stats"]["Loyalty"]+=1>><</link>> has shown great leadership. You vote for him. <br>
 <br>
-<<link "Cuauhtemoc" "Moctezuma Confidence Vote">><<set $MocMut_Cua = $MocMut_Cua + 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Cuauhtemoc"]["stats"]["Loyalty"]+=1>><</link>> is clearly the one to lead you through these strange times. 
+<<link "Cuauhtemoc" "Moctezuma Confidence Vote">><<set $users[$role]["choices"]["MocMut_Moc"] = $users[$role]["choices"]["MocMut_Moc"] = 0>><<set $users[$role]["choices"]["MocMut_Tla"] = $users[$role]["choices"]["MocMut_Tla"] = 0>><<set $users[$role]["choices"]["MocMut_Cua"] = $users[$role]["choices"]["MocMut_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Mut_Vote"] = $users[$role]["choices"]["Moc_Mut_Vote "] = 1>><<set $users["Cuauhtemoc"]["stats"]["Loyalty"]+=1>><</link>> is clearly the one to lead you through these strange times. 
 <</if>>
 <<case "Moctezuma">>
-<<if $Moc_Mut_Vote isnot 5>>
+<<if _Moc_Mut_Vote < (_Aztec_Tot_Play - 1)>>
 You wait, on edge, wondering what the reception of your proclamation will be. You know that your counselors are meeting without you, but about what?<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 You are waiting for your team members to all vote.<br>
 <br>
-<<print $Moc_Mut_Vote>> votes have been cast.<br>
+<<print _Moc_Mut_Vote>> votes have been cast.<br>
 <br>
 
-<<elseif $Moc_Mut_Vote is 5>>
+<<elseif _Moc_Mut_Vote >= (_Aztec_Tot_Play - 1)>>
 After meeting without you, your counselors call you [[into the chamber|Moctezuma Confidence Vote]].
 <</if>>
 <</switch>>
