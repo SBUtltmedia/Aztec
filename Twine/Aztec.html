@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -5451,32 +5451,27 @@ You wait while your fellow counselors cast their vote.&lt;br&gt;
 
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1)&gt;&gt;
-You have chosen a leader.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;if _MocMut_Moc is (_Aztec_Tot_Play - 1)&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Moc is (_Aztec_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _MocMut_Tla is (_Aztec_Tot_Play - 1)&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla is (_Aztec_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _MocMut_Cua is (_Aztec_Tot_Play - 1)&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Cua is (_Aztec_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Unanimous&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _MocMut_Moc &gt;= _MocMut_Tla and _MocMut_Moc &gt;= _MocMut_Cua&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Moc &gt;= _MocMut_Tla and _MocMut_Moc &gt;= _MocMut_Cua&gt;&gt;
 The group has made a decision. Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _MocMut_Tla &gt; _MocMut_Moc and _MocMut_Tla &gt; _MocMut_Cua&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla &gt; _MocMut_Moc and _MocMut_Tla &gt; _MocMut_Cua&gt;&gt;
 The group has made a decision. Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _MocMut_Cua &gt; _MocMut_Moc and _MocMut_Cua &gt; _MocMut_Tla&gt;&gt;
+&lt;&lt;elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Cua &gt; _MocMut_Moc and _MocMut_Cua &gt; _MocMut_Tla&gt;&gt;
 The group has made a decision. Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Moctezuma Confidence Vote 2&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Aztec_Mut=&quot;Win&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="Moctezuma Confidence Vote 2" tags="" position="100,1975" size="100,100">&lt;&lt;switch $role&gt;&gt;
