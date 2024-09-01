@@ -6185,7 +6185,7 @@ The arrival of the strangers and mysterious omens have left everybody unsettled.
 <<link "Cuauhtemoc" "Moctezuma Confidence Vote">><<set $users[$role]["choices"]["MocMut_Moc"] = $users[$role]["choices"]["MocMut_Moc"] = 0>><<set $users[$role]["choices"]["MocMut_Tla"] = $users[$role]["choices"]["MocMut_Tla"] = 0>><<set $users[$role]["choices"]["MocMut_Cua"] = $users[$role]["choices"]["MocMut_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Mut_Vote"] = $users[$role]["choices"]["Moc_Mut_Vote "] = 1>><<set $users["Cuauhtemoc"]["stats"]["Loyalty"]+=1>><</link>> is clearly the one to lead you through these strange times. 
 <</if>>
 <<case "Moctezuma">>
-<<if _Moc_Mut_Vote < (_Aztec_Tot_Play - 1) or ndef _Moc_Mut_Vote> or _Moc_Mut_Vote is 0>>
+<<if _Moc_Mut_Vote < (_Aztec_Tot_Play - 1) or ndef _Moc_Mut_Vote or _Moc_Mut_Vote is 0>>
 You wait, on edge, wondering what the reception of your proclamation will be. You know that your counselors are meeting without you, but about what?<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
