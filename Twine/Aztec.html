@@ -2099,8 +2099,7 @@ When you are satisfied you have heard everything &lt;&lt;print $Aztec_Leader&gt;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="Aztecs Hold a Council Meeting" tags="Done" position="2375,2975" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if ndef $Moc_Mut_Vote &gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="Aztecs Hold a Council Meeting" tags="Done" position="2375,2975" size="100,100">&lt;&lt;if ndef $Moc_Mut_Vote &gt;&gt;
 &lt;&lt;set $Moc_Mut_Vote=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -2127,20 +2126,9 @@ You [[advance with care and caution|Moctezuma Makes his Proclamation]], knowing 
 &lt;&lt;case &quot;Tlacaelel&quot; or &quot;Cuauhtemoc&quot; or &quot;Cacamatzin&quot; or &quot;Pochteca&quot; or &quot;Aztec_Priest&quot;&gt;&gt;
 Now that you have presented your statement, review the statements of your fellow counselors, linked above  Once you have done that, adjourn to the Aztec discussion board. Be prepared to answer Moctezuma&#39;s questions and debate with your fellows. Remember, the very fate of the Mexica is in your hands.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if ndef $Moc_Proc or $Moc_Proc eq &quot;&quot;&gt;&gt;
-When Moctezuma has come to a decision, you may continue on to read his proclamation.&lt;br&gt;
-&lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
-&lt;br&gt;
-You are waiting for Moctezuma to come to a decision.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;else&gt;&gt;
 When Moctezuma has come to a decision, you may continue on to [[read his proclamation|Moctezuma Makes his Proclamation]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;
-
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="Aztecs Lay a Trap in Cholula" tags="Done" position="2625,5225" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="Aztecs Lay a Trap in Cholula" tags="Done" position="2625,5225" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Your Cholulan allies send word that the foreigners have entered their city. They have plied them with food and wine, treating the strangers as honored guests. All is going according to plan.&lt;br&gt;
 &lt;br&gt;
 You compose a small band of warriors and send them off to that sacred city, where they will surround the sleeping band of foreigners just as the sun wins its battle with the night. With the aid of the Cholulans, they will gather the men and transport them back to Tenochtitlán to be sacrificed. Huitzilopochtli demands it.&lt;br&gt;
@@ -5647,12 +5635,18 @@ With this decided, how will you [[engage with the strangers|Aztec Leader Makes a
 &lt;&lt;set $Moc_Mut_Vote=0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-
+&lt;&lt;if ndef $Moc_Proc or $Moc_Proc eq &quot;&quot;&gt;&gt;
+When Moctezuma has come to a decision, you may continue on to read his proclamation.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
+&lt;br&gt;
+You are waiting for Moctezuma to come to a decision.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
 
 &lt;b&gt;Moctezuma&#39;s Proclamation:&lt;/b&gt;  &lt;&lt;print $Moc_Proc&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
-
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot; or &quot;Cuauhtemoc&quot; or &quot;Cacamatzin&quot; or &quot;Aztec_Priest&quot; or &quot;Pochteca&quot;&gt;&gt;
 You read Moctezuma&#39;s Proclamation, and you gather together in Council, this time without Moctezuma present. &lt;br&gt;
@@ -5678,6 +5672,7 @@ You are waiting for your team members to all vote.&lt;br&gt;
 
 &lt;&lt;elseif $Moc_Mut_Vote is 5&gt;&gt;
 After meeting without you, your counselors call you [[into the chamber|Moctezuma Confidence Vote]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
