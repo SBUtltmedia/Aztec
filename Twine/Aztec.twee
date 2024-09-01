@@ -5985,6 +5985,8 @@ The group has made a decision. Continue to the next page to find out <<link "who
 
 
 :: Moctezuma Confidence Vote 2 {"position":"100,1975","size":"100,100"}
+<b> Your leader is <<print $Aztec_Leader>>.</b><br>
+<br>
 <<switch $role>>
 <<case "Moctezuma">>
 <<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
