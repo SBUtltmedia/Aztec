@@ -9125,42 +9125,60 @@ List of valid roles and their info */
 	}
 	$(&quot;body&quot;).css({opacity:1})
 &lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="217" name="Tenochtitlan New Spanish Leader" tags="" position="2675,9300" size="100,100">&lt;&lt;liveblock&gt;&gt;
+
+&lt;b&gt; Your new leader is &lt;&lt;print $Span_Leader&gt;&gt;.&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
+
 After much  debate , you finally determine that &lt;&lt;print $Span_Leader&gt;&gt; has the greatest loyalty , and you [[move forward under his leadership|Toxcatl]].&lt;br&gt;
 &lt;br&gt;
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="218" name="Tenochtitlan Spanish Leadership Results" tags="" position="2675,9175" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
-&lt;&lt;if $Sp_Ld_Vote_Teno &lt;= 4&gt;&gt;
+&lt;&lt;set _Sp_Ld_Vote_Teno = setup.getTotalChoices(&quot;Sp_Ld_Vote_Teno&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Alv_Teno = setup.getTotalChoices(&quot;Sp_Ld_Alv_Teno&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Mar_Teno = setup.getTotalChoices (&quot;Sp_Ld_Mar_Teno&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Gar_Teno = setup.getTotalChoices(&quot;Sp_Ld_Gar_Teno&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Agu_Teno = setup.getTotalChoices (&quot;Sp_Ld_Agu_Teno&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Oli_Teno = setup.getTotalChoices(&quot;Sp_Ld_Oli_Teno&quot;)&gt;&gt;
+&lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
+Total Votes cast: &lt;&lt;print _Sp_Ld_Vote_Teno&gt;&gt;&lt;br&gt;
+Votes for Alvarado: &lt;&lt;print _Sp_Ld_Alv_Teno&gt;&gt;&lt;br&gt;
+Votes for Aguilar: &lt;&lt;print _Sp_Ld_Agu_Teno&gt;&gt;&lt;br&gt;
+Votes for Garrido: &lt;&lt;print _Sp_Ld_Gar_Teno&gt;&gt;&lt;br&gt;
+Votes for Marina: &lt;&lt;print _Sp_Ld_Mar_Teno&gt;&gt;&lt;br&gt;
+Votes for Olid: &lt;&lt;print _Sp_Ld_Oli_Teno&gt;&gt;&lt;br&gt;
+Total Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;if _Span_Tot_Play &lt; (_Span_Tot_Play - 1)&gt;&gt;
 When everyone has voted, you will find out who will lead you now.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;&lt;br&gt;
 &lt;br&gt;
-You are waiting for the rest of your team to vote. &lt;&lt;print $Sp_Ld_Vote_Teno&gt;&gt; players have voted.&lt;br&gt;
-&lt;br&gt;
 
-&lt;&lt;elseif $Sp_Ld_Vote_Teno is 5&gt;&gt;
+&lt;&lt;else&gt;&gt;
 
-&lt;&lt;if $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno&gt;=$Sp_Ld_Oli_Teno&gt;&gt;
-
-The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Marina&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
-&lt;br&gt;
-
-&lt;&lt;elseif $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Alv_Teno &gt;=$Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;if _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Mar_Teno and _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Agu_Teno and _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Gar_Teno and _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Oli_Teno&gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Alv_Teno and $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno &gt;=$Sp_Ld_Oli_Teno&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;
+&lt;&lt;elseif _Sp_Ld_Mar_Teno &gt; _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno &gt; _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno &gt; _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno &gt; _Sp_Ld_Oli_Teno&gt;&gt;
+
+The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Marina&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;elseif _Sp_Ld_Agu_Teno &gt; _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno &gt; _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno &gt; _Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno &gt; _Sp_Ld_Oli_Teno&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Alv_Teno and $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno &gt;=$Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;elseif _Sp_Ld_Gar_Teno &gt; _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno &gt; _Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno &gt; _Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno &gt; _Sp_Ld_Oli_Teno&gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Alv_Teno and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno &gt;=$Sp_Ld_Gar_Teno &gt;&gt;
+&lt;&lt;elseif _Sp_Ld_Oli_Teno &gt; _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno &gt; _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno &gt; _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno &gt; _Sp_Ld_Gar_Teno &gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;

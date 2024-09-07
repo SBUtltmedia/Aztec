@@ -9919,6 +9919,10 @@ List of valid roles and their info */
 
 :: Tenochtitlan New Spanish Leader {"position":"2675,9300","size":"100,100"}
 <<liveblock>>
+
+<b> Your new leader is <<print $Span_Leader>>.</b><br>
+<br>
+
 After much  debate , you finally determine that <<print $Span_Leader>> has the greatest loyalty , and you [[move forward under his leadership|Toxcatl]].<br>
 <br>
 
@@ -9929,36 +9933,50 @@ After much  debate , you finally determine that <<print $Span_Leader>> has the g
 :: Tenochtitlan Spanish Leadership Results {"position":"2675,9175","size":"100,100"}
 <<liveblock>>
 
-<<if $Sp_Ld_Vote_Teno <= 4>>
+<<set _Sp_Ld_Vote_Teno = setup.getTotalChoices("Sp_Ld_Vote_Teno")>>
+<<set _Sp_Ld_Alv_Teno = setup.getTotalChoices("Sp_Ld_Alv_Teno")>>
+<<set _Sp_Ld_Mar_Teno = setup.getTotalChoices ("Sp_Ld_Mar_Teno")>>
+<<set _Sp_Ld_Gar_Teno = setup.getTotalChoices("Sp_Ld_Gar_Teno")>>
+<<set _Sp_Ld_Agu_Teno = setup.getTotalChoices ("Sp_Ld_Agu_Teno")>>
+<<set _Sp_Ld_Oli_Teno = setup.getTotalChoices("Sp_Ld_Oli_Teno")>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+Total Votes cast: <<print _Sp_Ld_Vote_Teno>><br>
+Votes for Alvarado: <<print _Sp_Ld_Alv_Teno>><br>
+Votes for Aguilar: <<print _Sp_Ld_Agu_Teno>><br>
+Votes for Garrido: <<print _Sp_Ld_Gar_Teno>><br>
+Votes for Marina: <<print _Sp_Ld_Mar_Teno>><br>
+Votes for Olid: <<print _Sp_Ld_Oli_Teno>><br>
+Total Players in Game: <<print _Span_Tot_Play>><br>
+<br>
+
+<<if _Span_Tot_Play < (_Span_Tot_Play - 1)>>
 When everyone has voted, you will find out who will lead you now.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-You are waiting for the rest of your team to vote. <<print $Sp_Ld_Vote_Teno>> players have voted.<br>
-<br>
 
-<<elseif $Sp_Ld_Vote_Teno is 5>>
+<<else>>
 
-<<if $Sp_Ld_Mar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Mar_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Mar_Teno>=$Sp_Ld_Oli_Teno>>
-
-The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
-<br>
-
-<<elseif $Sp_Ld_Alv_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Alv_Teno >=$Sp_Ld_Oli_Teno>>
+<<if _Sp_Ld_Alv_Teno >=_Sp_Ld_Mar_Teno and _Sp_Ld_Alv_Teno >=_Sp_Ld_Agu_Teno and _Sp_Ld_Alv_Teno >=_Sp_Ld_Gar_Teno and _Sp_Ld_Alv_Teno >=_Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
 
-<<elseif $Sp_Ld_Agu_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Gar_Teno and $Sp_Ld_Agu_Teno >=$Sp_Ld_Oli_Teno>><<set $Span_Leader="Aguilar">>
+<<elseif _Sp_Ld_Mar_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno > _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno > _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno > _Sp_Ld_Oli_Teno>>
+
+The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
+<br>
+
+<<elseif _Sp_Ld_Agu_Teno > _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Oli_Teno>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
 <br>
 
-<<elseif $Sp_Ld_Gar_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Gar_Teno >=$Sp_Ld_Oli_Teno>>
+<<elseif _Sp_Ld_Gar_Teno > _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno > _Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno > _Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 
-<<elseif $Sp_Ld_Oli_Teno >=$Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Alv_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Agu_Teno and $Sp_Ld_Oli_Teno >=$Sp_Ld_Gar_Teno >>
+<<elseif _Sp_Ld_Oli_Teno > _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno > _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno > _Sp_Ld_Gar_Teno >>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
