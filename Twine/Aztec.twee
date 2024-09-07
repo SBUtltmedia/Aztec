@@ -1811,20 +1811,21 @@ As <<print $Aztec_Leader>> gathers a welcoming party and gets ready to <<link "m
 
 :: Aztec Leadership Challenge Again {"position":"2450,6800","size":"100,100"}
 <<liveblock>>
-<<if ndef $Az_Ld_Vote>>
-<<set$Az_Ld_Vote=0 >>
+
+<<if ndef $users[$role]["choices"]["Az_Ld_Moc"]>>
+<<set $users[$role]["choices"]["Az_Ld_Moc"]=0 >>
 <</if>>
-<<if ndef $Az_Ld_Moc>>
-<<set$Az_Ld_Moc=0 >>
+<<if ndef $users[$role]["choices"]["Az_Ld_Tla"]>>
+<<set $users[$role]["choices"]["Az_Ld_Tla"]=0 >>
 <</if>>
-<<if ndef $Az_Ld_Tla>>
-<<set$Az_Ld_Tla=0 >>
+<<if ndef $users[$role]["choices"]["Az_Ld_Cua"]>>
+<<set $users[$role]["choices"]["Az_Ld_Cua"]=0 >>
 <</if>>
-<<if ndef $Az_Ld_Cua>>
-<<set$Az_Ld_Cua=0 >>
+<<if ndef $users[$role]["choices"]["Az_Ld_Cac"]>>
+<<set $users[$role]["choices"]["Az_Ld_Cac"]=0 >>
 <</if>>
-<<if ndef $Az_Ld_Cac>>
-<<set$Az_Ld_Cac=0 >>
+<<if ndef $users[$role]["choices"]["Az_Ld_Vote"]>>
+<<set $users[$role]["choices"]["Az_Ld_Vote"]=0 >>
 <</if>>
 
 <<if $Aztec_Leader is $role>>
@@ -1839,55 +1840,60 @@ You have made your case to the council and retire from the council chamber, conf
 He leaves the chamber and each member of the council votes. When it is your turn, you make your choice.  Should <<print $Aztec_Leader>> remain in power? Or should one of the other elegible nobels take over?  Vote for your leader below.<br>
 <br>
 
-Option 1: <<link "Moctezuma" "Aztec Leadership Results">><<set $Az_Ld_Moc = $Az_Ld_Moc + 1>><<set $users["Moctezuma"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> should lead your people.<br>
+Option 1: <<link "Moctezuma" "Aztec Leadership Results">><<set $users[$role]["choices"]["Az_Ld_Moc"] = $users[$role]["choices"]["Az_Ld_Moc"] = 1>><<set $users[$role]["choices"]["Az_Ld_Cac"] = $users[$role]["choices"]["Az_Ld_Cac"] = 0>><<set $users[$role]["choices"]["Az_Ld_Tla"] = $users[$role]["choices"]["Az_Ld_Tla"] = 0>><<set $users[$role]["choices"]["Az_Ld_Cua"] = $users[$role]["choices"]["Az_Ld_Cua"] = 0>><<set $users[$role]["choices"]["Az_Ld_Vote"] = $users[$role]["choices"]["Az_Ld_Vote"] = 1>><</link>> has your confidence.<br>
+
 <br>
-Option 2: <<link "Tlacaelel" "Aztec Leadership Results">><<set $Az_Ld_Tla = $Az_Ld_Tla + 1>><<set $users["Tlacaelel"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> should be in charge.<br>
+Option 2: <<link "Tlacaelel" "Aztec Leadership Results">><<set $users[$role]["choices"]["Az_Ld_Tla"] = $users[$role]["choices"]["Az_Ld_Tla"] = 1>><<set $users[$role]["choices"]["Az_Ld_Cac"] = $users[$role]["choices"]["Az_Ld_Cac"] = 0>><<set $users[$role]["choices"]["Az_Ld_Moc"] = $users[$role]["choices"]["Az_Ld_Moc"] = 0>><<set $users[$role]["choices"]["Az_Ld_Cua"] = $users[$role]["choices"]["Az_Ld_Cua"] = 0>><<set $users[$role]["choices"]["Az_Ld_Vote"] = $users[$role]["choices"]["Az_Ld_Vote"] = 1>><</link>> should be in charge.<br>
 <br>
-Option 3: <<link "Cuauhtemoc" "Aztec Leadership Results">><<set $Az_Ld_Cua = $Az_Ld_Cua + 1>><<set $users["Cuauhtemoc"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> is best suited to lead in these difficult times.<br>
+Option 3: <<link "Cuauhtemoc" "Aztec Leadership Results">><<set $users[$role]["choices"]["Az_Ld_Cua"] = $users[$role]["choices"]["Az_Ld_Cua"] = 1>><<set $users[$role]["choices"]["Az_Ld_Cac"] = $users[$role]["choices"]["Az_Ld_Cac"] = 0>><<set $users[$role]["choices"]["Az_Ld_Moc"] = $users[$role]["choices"]["Az_Ld_Moc"] = 0>><<set $users[$role]["choices"]["Az_Ld_Tla"] = $users[$role]["choices"]["Az_Ld_Tla"] = 0>><<set $users[$role]["choices"]["Az_Ld_Vote"] = $users[$role]["choices"]["Az_Ld_Vote"] = 1>><</link>> is best suited to lead in these difficult times.<br>
 <br>
-Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $Az_Ld_Cac = $Az_Ld_Cac + 1>><<set $users["Cacamatzin"]["stats"]["Wisdom"]+=2>><<set $Az_Ld_Vote = $Az_Ld_Vote + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $users[$role]["choices"]["Az_Ld_Cac"] = $users[$role]["choices"]["Az_Ld_Cac"] = 1>><<set $users[$role]["choices"]["Az_Ld_Cua"] = $users[$role]["choices"]["Az_Ld_Cua"] = 0>><<set $users[$role]["choices"]["Az_Ld_Moc"] = $users[$role]["choices"]["Az_Ld_Moc"] = 0>><<set $users[$role]["choices"]["Az_Ld_Tla"] = $users[$role]["choices"]["Az_Ld_Tla"] = 0>><<set $users[$role]["choices"]["Az_Ld_Vote"] = $users[$role]["choices"]["Az_Ld_Vote"] = 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
 <</if>>
-
-
 <</liveblock>>
 
 
 :: Aztec Leadership Results {"position":"2450,6925","size":"100,100"}
 <<liveblock>>
+
+<<set _Az_Ld_Vote = setup.getTotalChoices("Az_Ld_Vote")>>
+<<set _Mut_Cor = setup.getTotalChoices("Mut_Cor")>>
+<<set _Mut_Olid = setup.getTotalChoices ("Mut_Olid")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("_Aztec_Tot_Play")>>
+
+
+Total Votes cast: <<print _Az_Ld_Vote>><br>
+Votes for Moctezuma: <<print _Az_Ld_Moc>><br>
+Votes for Tlacaelel: <<print _Az_Ld_Tla>><br>
+Votes for Cuauhtemoc: <<print _Az_Ld_Cua>><br>
+Votes for Cacamatzin: <<print _Az_Ld_Cac>><br>
+Total Players in Game: <<print _Aztec_Tot_Play>><br>
+<br>
+
+
 <<if $Aztec_Leader is $role and $Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
 You wait nervously for your advisors to deliberate.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Az_Ld_Vote>> votes have been cast.
 
 <<elseif $Aztec_Leader isnot $role and $Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
 When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Az_Ld_Vote>> votes have been cast.<br>
-<br>
-
 <<else>>
-<<print $Az_Ld_Vote>> votes have been cast.<br>
-<br>
-<<print $Az_Ld_Moc>> votes have been cast for Moctezuma.<br>
-<<print $Az_Ld_Tla>> votes have been cast for Tlacaelel.<br>
-<<print $Az_Ld_Cua>> votes have been cast for Cuauhtemoc.<br>
-<<print $Az_Ld_Cac>> votes have been cast for Cacamatzin.<br>
-<br>
-<<if $Az_Ld_Moc >= $Az_Ld_Tla and $Az_Ld_Moc >= $Az_Ld_Cua and $Az_Ld_Moc >= $Az_Ld_Cac>>
+
+<<if _Az_Ld_Moc >= _Az_Ld_Tla and _Az_Ld_Moc >= _Az_Ld_Cua and _Az_Ld_Moc >= _Az_Ld_Cac>>
 The council has made a decision.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $Aztec_Leader="Moctezuma">><</link>>.<br>
 <br>
-<<elseif $Az_Ld_Tla > $Az_Ld_Moc and $Az_Ld_Tla > $Az_Ld_Cua and $Az_Ld_Tla > $Az_Ld_Cac>><<set $Aztec_Leader="Tlacaelel">>
+<<elseif _Az_Ld_Tla > _Az_Ld_Moc and _Az_Ld_Tla > _Az_Ld_Cua and _Az_Ld_Tla > _Az_Ld_Cac>>
 The council has made a decision.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $Aztec_Leader="Tlacaelel">><</link>>.<br>
 <br>
-<<elseif $Az_Ld_Cua > $Az_Ld_Moc and $Az_Ld_Cua > $Az_Ld_Tla and $Az_Ld_Cua > $Az_Ld_Cac>><<set $Aztec_Leader="Cuauhtemoc">>
+<<elseif _Az_Ld_Cua > _Az_Ld_Moc and _Az_Ld_Cua > _Az_Ld_Tla and _Az_Ld_Cua > _Az_Ld_Cac>>
 The council has made a decision.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $Aztec_Leader="Cuauhtemoc">><</link>>.<br>
 <br>
-<<elseif $Az_Ld_Cac > $Az_Ld_Moc and $Az_Ld_Cac > $Az_Ld_Tla and $Az_Ld_Cac > $Az_Ld_Cua>><<set $Aztec_Leader="Cacamatzin">>
+<<elseif _Az_Ld_Cac > _Az_Ld_Moc and _Az_Ld_Cac > _Az_Ld_Tla and _Az_Ld_Cac > _Az_Ld_Cua>>
 The council has made a decision.  Continue to the next page to find out <<link "who will lead your people" "New Aztec Leader">><<set $Aztec_Leader="Cacamatzin">><</link>>.<br>
 <br>
 
@@ -4702,8 +4708,6 @@ It is rude to start eating before all the guests have arrived! You'll just have 
 <br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<<print $Feast>> guests have arrived.<br>
-<br>
 
 <<else>>
 <<switch $users[$role]["faction"]>>
@@ -5619,7 +5623,7 @@ You have answered Question 3 correctly. Tlaxcala might make a valuable ally.<br>
 
 :: Marina Hears a Real Rumor [Done] {"position":"1900,4300","size":"100,100"}
 <<liveblock>>
-You follow the wizened old woman around the corner, into a cramped alleyway. She informs you--and you alone--that the Spaniards have walked into a trap. The leaders of the city are planning an ambush and there is an Aztec army hidden nearby. <br>
+You follow the wizened old woman around the corner, into a cramped alleyway. <b>She informs you--and you alone--that the Spaniards have walked into a trap.</b> The leaders of the city are planning an ambush and there is an Aztec army hidden nearby. <br>
 <br>
 Do you believe this woman or not? What will you do with the information? <br>
 <br>
@@ -5981,7 +5985,7 @@ The group has made a decision. Continue to the next page to find out <<link "who
 The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">><</link>>.<br>
 <br>
 <</if>>
-
+<</liveblock>>
 
 
 :: Moctezuma Confidence Vote 2 {"position":"100,1975","size":"100,100"}
@@ -6913,7 +6917,7 @@ You will [[continue to observe these developments closely|Tlaxcalans observe the
 <<liveblock>>
 <<set _AllPlayers = (setup.getTotalChoices("Span_Tot_Play")+(setup.getTotalChoices("Aztec_Tot_Play"))+(setup.getTotalChoices("Tlax_Tot_Play")))>>
 
-<<if $Causeway < _AllPlayers>>
+<<if $Causeway<_AllPlayers>>
 You must wait for all players to gather before you can continue.<br>
 <br>
 <<print $Causeway>> players have arrived. You must wait for <<print (_AllPlayers - $Causeway)>> more.<br>
