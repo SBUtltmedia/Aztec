@@ -3124,7 +3124,55 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 
 :: Character assignment and points selection [Done] {"position":"4025,1200","size":"100,100"}
 <<if ndef $Start>>
-<<set$Start=0 >>
+<<set $Start=0>>
+<</if>>
+
+<<if ndef $Moctezuma_Act>>
+<<set $Moctezuma_Act="No">>
+<</if>>
+<<if ndef $Tlacaelel_Act>>
+<<set $Tlacaelel_Act="No">>
+<</if>>
+<<if ndef $Cuauhtemoc_Act>>
+<<set $Cuauhtemoc_Act="No">>
+<</if>>
+<<if ndef $Cacamatzin_Act>>
+<<set $Cacamatzin_Act="No">>
+<</if>>
+<<if ndef $Aztec_Priest_Act>>
+<<set $Aztec_Priest_Act="No">>
+<</if>>
+<<if ndef $Pochteca_Act>>
+<<set $Pochteca_Act="No">>
+<</if>>
+
+<<if ndef $Cortes_Act>>
+<<set $Cortes_Act="No">>
+<</if>>
+<<if ndef $Alvarado_Act>>
+<<set $Alvarado_Act="No">>
+<</if>>
+<<if ndef $Aguilar_Act>>
+<<set $Aguilar_Act="No">>
+<</if>>
+<<if ndef $Marina_Act>>
+<<set $Marina_Act="No">>
+<</if>>
+<<if ndef $Garrido_Act>>
+<<set $Garrido_Act="No">>
+<</if>>
+<<if ndef $Olid_Act>>
+<<set $Olid_Act="No">>
+<</if>>
+
+<<if ndef $Xicotencatl_Elder_Act>>
+<<set $Xicotencatl_Elder_Act="No">>
+<</if>>
+<<if ndef $Xicotencatl_Younger_Act>>
+<<set $Xicotencatl_Younger_Act="No">>
+<</if>>
+<<if ndef $Maxixcatl_Act>>
+<<set $Maxixcatl_Act="No">>
 <</if>>
 
 <<switch $role>>
@@ -3268,30 +3316,48 @@ You need to assign points to your character to continue. <br>
 <<case "Aztecs">>
 <<if $role is "Moctezuma">>
 Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="None">><<set $A_Q_Heart="no">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
-<<else>>
-Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+<<elseif $role is "Tlacaelel">>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Tlacaelel_Act="Yes">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+<<elseif $role is "Cuauhtemoc">>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Cuauhtemoc_Act="Yes">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+<<elseif $role is "Cacamatzin">>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Cacamatzin_Act="Yes">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+<<elseif $role is "Aztec_Priest">>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Priest_Act="Yes">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+<<elseif $role is "Pochteca">>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Pochteca_Act="Yes">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
 <</if>>
+
+
 <<case "Tlaxcalans">>
 <<if $role is "Xicotencatl_Elder">>
-Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $T_Q_Heart="no">><<set $Quest_Leader_T ="None">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
-<<else>>
-Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Tlax_Leader="Xicotencatl_Elder">><<set $T_Q_Heart="no">><<set $Xicotencatl_Elder_Act="Yes">><<set $Quest_Leader_T ="None">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+<<elseif $role is "Xicotencatl_Younger">>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Xicotencatl_Younger_Act="Yes">><<set $Tlax_Leader="Xicotencatl_Elder">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
+<<elseif $role is "Maxixcatl">>
+Are you ready to <<link "begin your journey" "Quest intro: The Tlaxcalan Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Maxixcatl_Act="Yes">><<set $Tlax_Leader="Xicotencatl_Elder">><<set $users[$role]["choices"]["Tlax_Tot_Play"] = $users[$role]["choices"]["Tlax_Tot_Play"] = 1>><</link>>?<br>
 <</if>>
 <br>
 <</switch>>
 
 <<switch $role>>
-<<case "Alvarado" OR "Garrido" OR "Olid">><br>
-Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
-<br>
 <<case "Cortes">>
-Are you ready to <<link "begin your journey" "Cortes sets sail from Cuba">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Cortes sets sail from Cuba">><<set $Start = $Start + 1>><<set $Span_Leader="Cortes">><<set $Cortes_Act="Yes">><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <<case "Marina">>
-Are you ready to <<link "begin your journey" "Marina hears gossip in the market">><<set $Start = $Start + 1>><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Marina hears gossip in the market">><<set $Start = $Start + 1>><<set $Marina_Act="Yes">><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
+<br>
+<<case "Alvarado">>
+Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><<set $Alvarado_Act="Yes">><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <<case "Aguilar">>
-Are you ready to <<link "begin your journey" "Aguilar overhears Maya gossip">><<set $Start = $Start + 1>><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
+Are you ready to <<link "begin your journey" "Aguilar overhears Maya gossip">><<set $Start = $Start + 1>><<set $Aguilar_Act="Yes">><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
+<br>
+<<case "Garrido">>
+Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><<set $Garrido_Act="Yes">><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
+<br>
+<<case "Olid">>
+Are you ready to <<link "begin your journey" "Spaniards set sail from Cuba">><<set $Start = $Start + 1>><<set $Olid_Act="Yes">><<set $users[$role]["choices"]["Span_Tot_Play"] = $users[$role]["choices"]["Span_Tot_Play"] = 1>><</link>>?<br>
 <br>
 <</switch>>
 
@@ -10362,6 +10428,25 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebl
 
 You must wait for enough players to gather to begin.<br>
 <br>
+<<if $Xicotencatl_Elder_Act is "No">>
+
+<<elseif $Xicotencatl_Elder_Act is "Yes">>
+Xicotencatl the Elder has joined the game.<br>
+<br>
+<</if>>
+<<if $Xicotencatl_Younger_Act is "No">>
+
+<<elseif $Xicotencatl_Younger_Act is "Yes">>
+Xicotencatl the Younger has joined the game.<br>
+<br>
+<</if>>
+
+<<if $Maxixcatl_Act is "No">>
+
+<<elseif $Maxixcatl_Act is "Yes">>
+Maxixcatl_Act has joined the game.<br>
+<br>
+<</if>>
 
 <<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
 <br>

@@ -2894,7 +2894,55 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;if ndef $Start&gt;&gt;
-&lt;&lt;set$Start=0 &gt;&gt;
+&lt;&lt;set $Start=0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Moctezuma_Act&gt;&gt;
+&lt;&lt;set $Moctezuma_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Tlacaelel_Act&gt;&gt;
+&lt;&lt;set $Tlacaelel_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Cuauhtemoc_Act&gt;&gt;
+&lt;&lt;set $Cuauhtemoc_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Cacamatzin_Act&gt;&gt;
+&lt;&lt;set $Cacamatzin_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Aztec_Priest_Act&gt;&gt;
+&lt;&lt;set $Aztec_Priest_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Pochteca_Act&gt;&gt;
+&lt;&lt;set $Pochteca_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Cortes_Act&gt;&gt;
+&lt;&lt;set $Cortes_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Alvarado_Act&gt;&gt;
+&lt;&lt;set $Alvarado_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Aguilar_Act&gt;&gt;
+&lt;&lt;set $Aguilar_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Marina_Act&gt;&gt;
+&lt;&lt;set $Marina_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Garrido_Act&gt;&gt;
+&lt;&lt;set $Garrido_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Olid_Act&gt;&gt;
+&lt;&lt;set $Olid_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Xicotencatl_Elder_Act&gt;&gt;
+&lt;&lt;set $Xicotencatl_Elder_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Xicotencatl_Younger_Act&gt;&gt;
+&lt;&lt;set $Xicotencatl_Younger_Act=&quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Maxixcatl_Act&gt;&gt;
+&lt;&lt;set $Maxixcatl_Act=&quot;No&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;switch $role&gt;&gt;
@@ -3038,30 +3086,48 @@ You need to assign points to your character to continue. &lt;br&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $role is &quot;Moctezuma&quot;&gt;&gt;
 Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A=&quot;None&quot;&gt;&gt;&lt;&lt;set $A_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
-&lt;&lt;else&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
+&lt;&lt;elseif $role is &quot;Tlacaelel&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Tlacaelel_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
+&lt;&lt;elseif $role is &quot;Cuauhtemoc&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Cuauhtemoc_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
+&lt;&lt;elseif $role is &quot;Cacamatzin&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Cacamatzin_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
+&lt;&lt;elseif $role is &quot;Aztec_Priest&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Aztec_Priest_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
+&lt;&lt;elseif $role is &quot;Pochteca&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Pochteca_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
+
+
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
 &lt;&lt;if $role is &quot;Xicotencatl_Elder&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest intro: The Tlaxcalan Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;set $T_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_T =&quot;None&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
-&lt;&lt;else&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest intro: The Tlaxcalan Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest intro: The Tlaxcalan Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;set $T_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $Xicotencatl_Elder_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_T =&quot;None&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+&lt;&lt;elseif $role is &quot;Xicotencatl_Younger&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest intro: The Tlaxcalan Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Xicotencatl_Younger_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+&lt;&lt;elseif $role is &quot;Maxixcatl&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest intro: The Tlaxcalan Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Maxixcatl_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 &lt;&lt;switch $role&gt;&gt;
-&lt;&lt;case &quot;Alvarado&quot; OR &quot;Garrido&quot; OR &quot;Olid&quot;&gt;&gt;&lt;br&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
-&lt;br&gt;
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Cortes sets sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Cortes sets sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;set $Cortes_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Marina&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Marina hears gossip in the market&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Marina hears gossip in the market&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Marina_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;case &quot;Alvarado&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Alvarado_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Aguilar&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Aguilar overhears Maya gossip&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Aguilar overhears Maya gossip&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aguilar_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;case &quot;Garrido&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Garrido_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;case &quot;Olid&quot;&gt;&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set sail from Cuba&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Olid_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
@@ -9504,6 +9570,25 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn&#39;t Attack in P
 
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Xicotencatl_Elder_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Xicotencatl_Elder_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Elder has joined the game.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Xicotencatl_Younger_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Xicotencatl_Younger_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Younger has joined the game.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Maxixcatl_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Maxixcatl_Act is &quot;Yes&quot;&gt;&gt;
+Maxixcatl_Act has joined the game.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
