@@ -1078,10 +1078,23 @@ Cuauhtemoc's entry is:  <<print "$Cu_Rec">><br>
 <br>
 <i>You have already rated Cuauhtemoc's contribution.</i><br>
 <br>
+<<if ndef "$Ca_Rec" or "$Ca_Rec" = 0>>
+
+Test Worked.
+
+Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
+<br>
+Does he <<link "PASS" "Olid's Contribution">><</link>> or <<link "FAIL" "Olid's Contribution">><</link>>?<br>
+<br>
+<<else>>
+
+Test Failed.
+
 Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
 <br>
 Does he <<link "PASS" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
+<</if>>
 The Aztec Priest's entry is:  <<print "$AP_Rec">><br>
 <br>
 <</switch>>
@@ -1873,7 +1886,7 @@ Votes for Moctezuma: <<print _Az_Ld_Moc>><br>
 Votes for Tlacaelel: <<print _Az_Ld_Tla>><br>
 Votes for Cuauhtemoc: <<print _Az_Ld_Cua>><br>
 Votes for Cacamatzin: <<print _Az_Ld_Cac>><br>
-Total Players in Game: <<print _Aztec_Tot_Play>><br>
+Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
 <br>
 
 
@@ -6410,7 +6423,8 @@ Maxixcatl
 
 :: New Aztec Leader {"position":"2450,7050","size":"100,100"}
 <<liveblock>>
-
+<b>The leader of the Aztecs is <<print $Aztec_Leader>></b><br>
+<br>
 <<if $Aztec_Leader is $role>>
 After much angry debate in the Council Room, you find that you have been elected leader. You have the greatest loyalty of the men, and you [[move forward as Tlatoani|Set up for the Feast]].
 
