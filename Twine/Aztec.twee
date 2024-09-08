@@ -1791,18 +1791,22 @@ You are waiting for The Tlaxcalans to do something.<br>
 
 :: Aztec Leader will make an invitation {"position":"2150,6250","size":"100,100"}
 <<liveblock>>
+<<if ndef $users[$role]["choices"]["Causeway"]>>
+<<set $users[$role]["choices"]["Causeway"]=0 >>
+<</if>>
+
 <<if $Aztec_Leader is $role>>
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and it is now time to decide how you will deal with them. You have weighed all your options, you have considered the omens carefully, and you have decided that the best course of action is to invite the strangers into your city.<br><br>
 
 Your first task is to face the rest of your team, and to explain to them why, in spite of the Omens and the potential dangers that lie ahead, you are going to invite the strangers in. Not everybody will be in support of this decision, so frame your justifications carefully.<br>
 <br>
-You gather a welcoming party and get ready to <<link "meet the strangers face-to-face" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Aztecs_currentMap=5>><</link>>. <br><br>
+You gather a welcoming party and get ready to <<link "meet the strangers face-to-face" "On the Causeway">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $Aztecs_currentMap=5>><</link>>. <br><br>
 <<else>>
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and you wonder how <<print $Aztec_Leader>> will deal with them. <br><br>
 
 He makes his announcement, telling you that he has weighed all the options and considered the omens carefully. The best course of action, he declares, is to invite the strangers into your city. This is your last chance to ask him to explain his decision before the strangers enter the city as guests.<br><br>
 
-As <<print $Aztec_Leader>> gathers a welcoming party and gets ready to <<link "meet the strangers face-to-face" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Aztecs_currentMap=5>><</link>>, you contemplate this decision. Is it the right choice?<br><br>
+As <<print $Aztec_Leader>> gathers a welcoming party and gets ready to <<link "meet the strangers face-to-face" "On the Causeway">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $Aztecs_currentMap=5>><</link>>, you contemplate this decision. Is it the right choice?<br><br>
 <</if>>
 
 
@@ -4700,11 +4704,12 @@ Now that your quest is complete, <<link "you return home exhausted" "Tlaxcalans 
 <<liveblock>>
 
 <<set _AllPlayers = (setup.getTotalChoices("Span_Tot_Play")+(setup.getTotalChoices("Aztec_Tot_Play"))+(setup.getTotalChoices("Tlax_Tot_Play")))>>
+<<set _Feast = setup.getTotalChoices("Feast")>>
 
-<<if $Feast < _AllPlayers>>
+<<if _Feast < _AllPlayers>>
 It is rude to start eating before all the guests have arrived! You'll just have to wait, no matter how hungry you are!<br>
 <br>
-<<print $Feast>> guests have arrived.  You need <<print (_AllPlayers-$Feast)>> more. <br>
+<<print _Feast>> guests have arrived.  You need <<print (_AllPlayers-_Feast)>> more. <br>
 <br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -6916,11 +6921,13 @@ You will [[continue to observe these developments closely|Tlaxcalans observe the
 :: On the Causeway {"position":"2300,6375","size":"100,100"}
 <<liveblock>>
 <<set _AllPlayers = (setup.getTotalChoices("Span_Tot_Play")+(setup.getTotalChoices("Aztec_Tot_Play"))+(setup.getTotalChoices("Tlax_Tot_Play")))>>
+<<set _Causeway = setup.getTotalChoices("Causeway")>>
 
-<<if $Causeway<_AllPlayers>>
+<<if _Causeway < _AllPlayers>>
+
 You must wait for all players to gather before you can continue.<br>
 <br>
-<<print $Causeway>> players have arrived. You must wait for <<print (_AllPlayers - $Causeway)>> more.<br>
+<<print _Causeway>> players have arrived. You must wait for <<print (_AllPlayers -_Causeway)>> more.<br>
 <br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -7928,8 +7935,8 @@ Click through to the page titled "Moctezuma Speaks", follow the link to the Go t
 
 
 :: Set up for the Feast {"position":"2450,7175","size":"100,100"}
-<<if ndef $Feast>>
-<<set $Feast=0>>
+<<if ndef $users[$role]["choices"]["Feast"]>>
+<<set $users[$role]["choices"]["Feast"]=0 >>
 <</if>>
 
 While your guests are off exploring the city, it's time to prepare for the greatest feast this city has ever seen! <br>
@@ -7989,7 +7996,7 @@ Your recipe is:  <<textbox "$AP_Rec" "">><br>
 <</switch>>
 <</if>>
 
-When your contribution to the cookbook is ready, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<set $Feast = $Feast + 1>><</link>>!
+When your contribution to the cookbook is ready, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<set $users[$role]["choices"]["Feast"] = $users[$role]["choices"]["Feast"] = 1>><</link>>!
 
 
 :: Smallpox in Tenochtitlán {"position":"2575,12025","size":"100,100"}
@@ -9062,8 +9069,8 @@ You settle in and [[wait for a response|Aguilar’s first encounter with the Spa
 
 
 :: Spaniards Tour Tenochtitlan {"position":"2150,7175","size":"100,100"}
-<<if ndef $Feast>>
-<<set $Feast=0>>
+<<if ndef $users[$role]["choices"]["Feast"]>>
+<<set $users[$role]["choices"]["Feast"]=0 >>
 <</if>>
 You settle in quickly, eager to see everything this remarkable city has to offer. Moctezuma has sent a group of Aztec nobles to be your guides and they have presented you with an itinerary:<br>
 <br>
@@ -9142,11 +9149,15 @@ Your entry is:  <<textbox "$Ga_TG" "">><br>
 
 <</if>>
 
-When your contribution to the guidebook is ready, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<set $Feast = $Feast + 1>><</link>>!<br>
+When your contribution to the guidebook is ready, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<set $users[$role]["choices"]["Feast"] = $users[$role]["choices"]["Feast"] = 1>><</link>>!<br>
 <br>
 
 
 :: Spaniards Write Letters {"position":"2300,6250","size":"100,100"}
+<<if ndef $users[$role]["choices"]["Causeway"]>>
+<<set $users[$role]["choices"]["Causeway"]=0 >>
+<</if>>
+
 Your compatriot Bernal Diaz later recalled the sight as such:<br>
 <br>
 <i>“The next morning we reached the broad high road of Iztapalapan, whence we for the first time beheld the numbers of towns and villages built in the lake, and the still greater number of large townships on the mainland, with the level causeway which ran in a straight line into Mexico. Our astonishment was indeed raised to the highest pitch, and we could not help remarking to each other, that all these buildings resembled the fairy castles we read of in Amadis de Gaul; so high, majestic, and splendid did the temples, towers, and houses of the town, all built of massive stone and lime, rise up out of the midst of the lake. Indeed, many of our men believed what they saw was a mere dream. And the reader must not feel surprised at the manner in which I have expressed myself, for it is impossible to speak coolly of things which we had never seen nor heard of, nor even could have dreamt of, beforehand.” (Lockhart, 219)</i><br>
@@ -9208,7 +9219,7 @@ Of course, this raises an issue.  You've been so busy with conquest and discover
 <br>
 <</switch>>
 
-Once you have sent your letter, you may <<link "continue your journey" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Spaniards_currentMap=10>><</link>>?<br>
+Once you have sent your letter, you may <<link "continue your journey" "On the Causeway">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $Spaniards_currentMap=10>><</link>>?<br>
 <br>
 
 
@@ -11963,8 +11974,8 @@ When this is finished [[continue on to the council meeting|Tlaxcalans Hold for a
 
 
 :: Tlaxcalans Visit Tlatelolco {"position":"2300,7175","size":"100,100"}
-<<if ndef $Feast>>
-<<set $Feast=0>>
+<<if ndef $users[$role]["choices"]["Feast"]>>
+<<set $users[$role]["choices"]["Feast"]=0 >>
 <</if>>
 <<if $role is "Pochteca">>
 You set out for the market with your Tlaxcalan guests in tow. They are eager to visit the legendary Tlatelolco Market and, as one of the most important agents of the market, you can't help but take pride in their excitement. You are halfway to your destination when you are approached by a messenger. He has come to assign your guests a task.<br>
@@ -12015,7 +12026,7 @@ Your Insider's Guide is:  <<textbox "$Tl_IG" "">><br>
 <</if>>
 <</if>>
 
-When your work is complete, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<set $Feast = $Feast + 1>><</link>>!<br>
+When your work is complete, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<set $users[$role]["choices"]["Feast"] = $users[$role]["choices"]["Feast"] = 1>><</link>>!<br>
 <br>
 
 
@@ -12288,16 +12299,20 @@ You turn back [[towards Tenochtitlan|On the Causeway]].<br>
 
 :: Tlaxcalans decide where to go {"position":"2450,6250","size":"100,100"}
 <<liveblock>>
+<<if ndef $users[$role]["choices"]["Causeway"]>>
+<<set $users[$role]["choices"]["Causeway"]=0 >>
+<</if>>
+
 <<if $Tlax_Leader is $role>>
 Now that you have consulted with your men, it is up to you to decide how to proceed.<br>
 <br>
-You will carry on to the city, allied with the Spaniards, and <<link "hope to defeat the Aztecs once and for all" "On the Causeway">><<set $Tlax_Cause="fight">><<set $Causeway = $Causeway + 1>><</link>>.<br>
+You will carry on to the city, allied with the Spaniards, and <<link "hope to defeat the Aztecs once and for all" "On the Causeway">><<set $Tlax_Cause="fight">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><</link>>.<br>
 <br>
-You will send a messenger to Tenochtitlán to negotiate an alliance, <<link "you just don't trust the Spaniards" "On the Causeway">><<set $Tlax_Cause="neg">><<set $Causeway = $Causeway + 1>><</link>>. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.<br>
+You will send a messenger to Tenochtitlán to negotiate an alliance, <<link "you just don't trust the Spaniards" "On the Causeway">><<set $Tlax_Cause="neg">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><</link>>. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.<br>
 <br>
-You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<set $Tlax_Cause="flee">><<set $Causeway = $Causeway + 1>><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=5>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
+You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<set $Tlax_Cause="flee">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=5>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
 <br>
-You will honor an existing but secret alliance with the Aztecs and <<link "enter the city as their friends" "On the Causeway">><<set $Tlax_Cause="allies">><<set $Causeway = $Causeway + 1>><</link>>.<br>
+You will honor an existing but secret alliance with the Aztecs and <<link "enter the city as their friends" "On the Causeway">><<set $Tlax_Cause="allies">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><</link>>.<br>
 
 <<else>>
 <<if ndef $Tlax_Cause or $Tlax_Cause eq "">>
@@ -12305,16 +12320,16 @@ You wait for <<print $Tlax_Leader>> to make your intentions known.<br><br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 
 <<elseif $Tlax_Cause is "fight">>
-You will carry on to the city, allied with the Spaniards, and <<link "hope to defeat the Aztecs once and for all" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
+You will carry on to the city, allied with the Spaniards, and <<link "hope to defeat the Aztecs once and for all" "On the Causeway">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
 <br>
 <<elseif $Tlax_Cause is "neg">>
-You will send a messenger to Tenochtitlán to negotiate an alliance, <<link "you just don't trust the Spaniards" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Tlaxcalans_currentMap=6>><</link>>. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.<br>
+You will send a messenger to Tenochtitlán to negotiate an alliance, <<link "you just don't trust the Spaniards" "On the Causeway">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $Tlaxcalans_currentMap=6>><</link>>. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.<br>
 <br>
 <<elseif $Tlax_Cause is "flee">>
-You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<set $Causeway = $Causeway + 1>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
+You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
 <br>
 <<elseif $Tlax_Cause is "allies">>
-You will honor an existing but secret alliance with the Aztecs and <<link "enter the city as their friends" "On the Causeway">><<set $Causeway = $Causeway + 1>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
+You will honor an existing but secret alliance with the Aztecs and <<link "enter the city as their friends" "On the Causeway">><<set $users[$role]["choices"]["Causeway"] = $users[$role]["choices"]["Causeway"] = 1>><<set $Tlaxcalans_currentMap=6>><</link>>.<br>
 <</if>>
 <</if>>
 

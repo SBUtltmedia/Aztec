@@ -1732,18 +1732,22 @@ You are waiting for The Tlaxcalans to do something.&lt;br&gt;
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="Aztec Leader will make an invitation" tags="" position="2150,6250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Causeway&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;]=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;if $Aztec_Leader is $role&gt;&gt;
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and it is now time to decide how you will deal with them. You have weighed all your options, you have considered the omens carefully, and you have decided that the best course of action is to invite the strangers into your city.&lt;br&gt;&lt;br&gt;
 
 Your first task is to face the rest of your team, and to explain to them why, in spite of the Omens and the potential dangers that lie ahead, you are going to invite the strangers in. Not everybody will be in support of this decision, so frame your justifications carefully.&lt;br&gt;
 &lt;br&gt;
-You gather a welcoming party and get ready to &lt;&lt;link &quot;meet the strangers face-to-face&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=5&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;&lt;br&gt;
+You gather a welcoming party and get ready to &lt;&lt;link &quot;meet the strangers face-to-face&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=5&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 You have spent many moons thinking about these strangers and what their presence could mean. They march upon your city at this very moment, accompanied by thousands of your enemies, and you wonder how &lt;&lt;print $Aztec_Leader&gt;&gt; will deal with them. &lt;br&gt;&lt;br&gt;
 
 He makes his announcement, telling you that he has weighed all the options and considered the omens carefully. The best course of action, he declares, is to invite the strangers into your city. This is your last chance to ask him to explain his decision before the strangers enter the city as guests.&lt;br&gt;&lt;br&gt;
 
-As &lt;&lt;print $Aztec_Leader&gt;&gt; gathers a welcoming party and gets ready to &lt;&lt;link &quot;meet the strangers face-to-face&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=5&gt;&gt;&lt;&lt;/link&gt;&gt;, you contemplate this decision. Is it the right choice?&lt;br&gt;&lt;br&gt;
+As &lt;&lt;print $Aztec_Leader&gt;&gt; gathers a welcoming party and gets ready to &lt;&lt;link &quot;meet the strangers face-to-face&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $Aztecs_currentMap=5&gt;&gt;&lt;&lt;/link&gt;&gt;, you contemplate this decision. Is it the right choice?&lt;br&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
 
@@ -4330,11 +4334,12 @@ Now that your quest is complete, &lt;&lt;link &quot;you return home exhausted&qu
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="Everyone Gathers for a Feast" tags="" position="2300,7300" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;set _AllPlayers = (setup.getTotalChoices(&quot;Span_Tot_Play&quot;)+(setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;))+(setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)))&gt;&gt;
+&lt;&lt;set _Feast = setup.getTotalChoices(&quot;Feast&quot;)&gt;&gt;
 
-&lt;&lt;if $Feast &lt; _AllPlayers&gt;&gt;
+&lt;&lt;if _Feast &lt; _AllPlayers&gt;&gt;
 It is rude to start eating before all the guests have arrived! You&#39;ll just have to wait, no matter how hungry you are!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;print $Feast&gt;&gt; guests have arrived.  You need &lt;&lt;print (_AllPlayers-$Feast)&gt;&gt; more. &lt;br&gt;
+&lt;&lt;print _Feast&gt;&gt; guests have arrived.  You need &lt;&lt;print (_AllPlayers-_Feast)&gt;&gt; more. &lt;br&gt;
 &lt;br&gt;
 
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
@@ -6326,11 +6331,13 @@ You will [[continue to observe these developments closely|Tlaxcalans observe the
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="166" name="On the Causeway" tags="" position="2300,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _AllPlayers = (setup.getTotalChoices(&quot;Span_Tot_Play&quot;)+(setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;))+(setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)))&gt;&gt;
+&lt;&lt;set _Causeway = setup.getTotalChoices(&quot;Causeway&quot;)&gt;&gt;
 
-&lt;&lt;if $Causeway&lt;_AllPlayers&gt;&gt;
+&lt;&lt;if _Causeway &lt; _AllPlayers&gt;&gt;
+
 You must wait for all players to gather before you can continue.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;print $Causeway&gt;&gt; players have arrived. You must wait for &lt;&lt;print (_AllPlayers - $Causeway)&gt;&gt; more.&lt;br&gt;
+&lt;&lt;print _Causeway&gt;&gt; players have arrived. You must wait for &lt;&lt;print (_AllPlayers -_Causeway)&gt;&gt; more.&lt;br&gt;
 &lt;br&gt;
 
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
@@ -7282,8 +7289,8 @@ Click through to the page titled &quot;Moctezuma Speaks&quot;, follow the link t
 [[Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán]]
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="Set up for the Feast" tags="" position="2450,7175" size="100,100">&lt;&lt;if ndef $Feast&gt;&gt;
-&lt;&lt;set $Feast=0&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="Set up for the Feast" tags="" position="2450,7175" size="100,100">&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Feast&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Feast&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 While your guests are off exploring the city, it&#39;s time to prepare for the greatest feast this city has ever seen! &lt;br&gt;
@@ -7343,7 +7350,7 @@ Your recipe is:  &lt;&lt;textbox &quot;$AP_Rec&quot; &quot;&quot;&gt;&gt;&lt;br&
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-When your contribution to the cookbook is ready, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;set $Feast = $Feast + 1&gt;&gt;&lt;&lt;/link&gt;&gt;!</tw-passagedata><tw-passagedata pid="181" name="Smallpox in Tenochtitlán" tags="" position="2575,12025" size="100,100">&lt;&lt;liveblock&gt;&gt;
+When your contribution to the cookbook is ready, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Feast&quot;] = $users[$role][&quot;choices&quot;][&quot;Feast&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;!</tw-passagedata><tw-passagedata pid="181" name="Smallpox in Tenochtitlán" tags="" position="2575,12025" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $Hostage_Exch is &quot;Yes&quot;&gt;&gt;
 They are finally gone. For seven months, the strangers occupied your city. For seven months, their presence dominated life in Tenochtitlán. Rather than celebrate, your friends and neighbors breathe a sigh of relief, thankful to reclaim the city.&lt;br&gt;
 &lt;br&gt;
@@ -8312,8 +8319,8 @@ You settle in and [[wait for a response|Aguilar’s first encounter with the Spa
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="206" name="Spaniards Tour Tenochtitlan" tags="" position="2150,7175" size="100,100">&lt;&lt;if ndef $Feast&gt;&gt;
-&lt;&lt;set $Feast=0&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="206" name="Spaniards Tour Tenochtitlan" tags="" position="2150,7175" size="100,100">&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Feast&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Feast&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 You settle in quickly, eager to see everything this remarkable city has to offer. Moctezuma has sent a group of Aztec nobles to be your guides and they have presented you with an itinerary:&lt;br&gt;
 &lt;br&gt;
@@ -8392,8 +8399,12 @@ Your entry is:  &lt;&lt;textbox &quot;$Ga_TG&quot; &quot;&quot;&gt;&gt;&lt;br&gt
 
 &lt;&lt;/if&gt;&gt;
 
-When your contribution to the guidebook is ready, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;set $Feast = $Feast + 1&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
-&lt;br&gt;</tw-passagedata><tw-passagedata pid="207" name="Spaniards Write Letters" tags="" position="2300,6250" size="100,100">Your compatriot Bernal Diaz later recalled the sight as such:&lt;br&gt;
+When your contribution to the guidebook is ready, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Feast&quot;] = $users[$role][&quot;choices&quot;][&quot;Feast&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="207" name="Spaniards Write Letters" tags="" position="2300,6250" size="100,100">&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Causeway&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;]=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+Your compatriot Bernal Diaz later recalled the sight as such:&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;“The next morning we reached the broad high road of Iztapalapan, whence we for the first time beheld the numbers of towns and villages built in the lake, and the still greater number of large townships on the mainland, with the level causeway which ran in a straight line into Mexico. Our astonishment was indeed raised to the highest pitch, and we could not help remarking to each other, that all these buildings resembled the fairy castles we read of in Amadis de Gaul; so high, majestic, and splendid did the temples, towers, and houses of the town, all built of massive stone and lime, rise up out of the midst of the lake. Indeed, many of our men believed what they saw was a mere dream. And the reader must not feel surprised at the manner in which I have expressed myself, for it is impossible to speak coolly of things which we had never seen nor heard of, nor even could have dreamt of, beforehand.” (Lockhart, 219)&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
@@ -8454,7 +8465,7 @@ Of course, this raises an issue.  You&#39;ve been so busy with conquest and disc
 &lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
-Once you have sent your letter, you may &lt;&lt;link &quot;continue your journey&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Spaniards_currentMap=10&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+Once you have sent your letter, you may &lt;&lt;link &quot;continue your journey&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $Spaniards_currentMap=10&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;</tw-passagedata><tw-passagedata pid="208" name="Spaniards and Marina Talk" tags="Done Breaks" position="1950,1125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Marina&quot;&gt;&gt;
@@ -10910,8 +10921,8 @@ When this is finished [[continue on to the council meeting|Tlaxcalans Hold for a
 [[The Aztecs Regroup]]
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="282" name="Tlaxcalans Visit Tlatelolco" tags="" position="2300,7175" size="100,100">&lt;&lt;if ndef $Feast&gt;&gt;
-&lt;&lt;set $Feast=0&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="282" name="Tlaxcalans Visit Tlatelolco" tags="" position="2300,7175" size="100,100">&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Feast&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Feast&quot;]=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $role is &quot;Pochteca&quot;&gt;&gt;
 You set out for the market with your Tlaxcalan guests in tow. They are eager to visit the legendary Tlatelolco Market and, as one of the most important agents of the market, you can&#39;t help but take pride in their excitement. You are halfway to your destination when you are approached by a messenger. He has come to assign your guests a task.&lt;br&gt;
@@ -10962,7 +10973,7 @@ Your Insider&#39;s Guide is:  &lt;&lt;textbox &quot;$Tl_IG&quot; &quot;&quot;&gt
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-When your work is complete, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;set $Feast = $Feast + 1&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
+When your work is complete, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Feast&quot;] = $users[$role][&quot;choices&quot;][&quot;Feast&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;!&lt;br&gt;
 &lt;br&gt;</tw-passagedata><tw-passagedata pid="283" name="Tlaxcalans Vote on Attacking Spaniards" tags="Done" position="2175,3075" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $TL_St_Voted &gt;&gt;
 &lt;&lt;set $TL_St_Voted=0 &gt;&gt;
@@ -11191,16 +11202,20 @@ You turn back [[towards Tenochtitlan|On the Causeway]].&lt;br&gt;
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="293" name="Tlaxcalans decide where to go" tags="" position="2450,6250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Causeway&quot;]&gt;&gt;
+&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;]=0 &gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;if $Tlax_Leader is $role&gt;&gt;
 Now that you have consulted with your men, it is up to you to decide how to proceed.&lt;br&gt;
 &lt;br&gt;
-You will carry on to the city, allied with the Spaniards, and &lt;&lt;link &quot;hope to defeat the Aztecs once and for all&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;fight&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+You will carry on to the city, allied with the Spaniards, and &lt;&lt;link &quot;hope to defeat the Aztecs once and for all&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;fight&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-You will send a messenger to Tenochtitlán to negotiate an alliance, &lt;&lt;link &quot;you just don&#39;t trust the Spaniards&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;neg&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;/link&gt;&gt;. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.&lt;br&gt;
+You will send a messenger to Tenochtitlán to negotiate an alliance, &lt;&lt;link &quot;you just don&#39;t trust the Spaniards&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;neg&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.&lt;br&gt;
 &lt;br&gt;
-You decide to cut your losses. You leave the Spaniards to their fate and &lt;&lt;link &quot;head for home&quot; &quot;Tlaxcalans cut their losses&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;flee&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=5&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+You decide to cut your losses. You leave the Spaniards to their fate and &lt;&lt;link &quot;head for home&quot; &quot;Tlaxcalans cut their losses&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;flee&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=5&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-You will honor an existing but secret alliance with the Aztecs and &lt;&lt;link &quot;enter the city as their friends&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;allies&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+You will honor an existing but secret alliance with the Aztecs and &lt;&lt;link &quot;enter the city as their friends&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Tlax_Cause=&quot;allies&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if ndef $Tlax_Cause or $Tlax_Cause eq &quot;&quot;&gt;&gt;
@@ -11208,16 +11223,16 @@ You wait for &lt;&lt;print $Tlax_Leader&gt;&gt; to make your intentions known.&l
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
 &lt;&lt;elseif $Tlax_Cause is &quot;fight&quot;&gt;&gt;
-You will carry on to the city, allied with the Spaniards, and &lt;&lt;link &quot;hope to defeat the Aztecs once and for all&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+You will carry on to the city, allied with the Spaniards, and &lt;&lt;link &quot;hope to defeat the Aztecs once and for all&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Tlax_Cause is &quot;neg&quot;&gt;&gt;
-You will send a messenger to Tenochtitlán to negotiate an alliance, &lt;&lt;link &quot;you just don&#39;t trust the Spaniards&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.&lt;br&gt;
+You will send a messenger to Tenochtitlán to negotiate an alliance, &lt;&lt;link &quot;you just don&#39;t trust the Spaniards&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Tlax_Cause is &quot;flee&quot;&gt;&gt;
-You decide to cut your losses. You leave the Spaniards to their fate and &lt;&lt;link &quot;head for home&quot; &quot;Tlaxcalans cut their losses&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+You decide to cut your losses. You leave the Spaniards to their fate and &lt;&lt;link &quot;head for home&quot; &quot;Tlaxcalans cut their losses&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Tlax_Cause is &quot;allies&quot;&gt;&gt;
-You will honor an existing but secret alliance with the Aztecs and &lt;&lt;link &quot;enter the city as their friends&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $Causeway = $Causeway + 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+You will honor an existing but secret alliance with the Aztecs and &lt;&lt;link &quot;enter the city as their friends&quot; &quot;On the Causeway&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = $users[$role][&quot;choices&quot;][&quot;Causeway&quot;] = 1&gt;&gt;&lt;&lt;set $Tlaxcalans_currentMap=6&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
