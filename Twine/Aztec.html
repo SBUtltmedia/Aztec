@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -1071,15 +1071,12 @@ Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
 
 Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-
-&lt;&lt;if $Ca_Rec is &quot;0&quot;&gt;&gt;
+&lt;&lt;if $Ca_Rec is &quot;0&quot; or ndef $Cac_Rec&gt;&gt;
 Test Worked.&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-
 &lt;&lt;else&gt;&gt;
-
 Test Failed.&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
