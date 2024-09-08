@@ -1877,13 +1877,13 @@ Total Players in Game: <<print _Aztec_Tot_Play>><br>
 <br>
 
 
-<<if $Aztec_Leader is $role and $Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
+<<if $Aztec_Leader is $role and _Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
 You wait nervously for your advisors to deliberate.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 
-<<elseif $Aztec_Leader isnot $role and $Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
+<<elseif $Aztec_Leader isnot $role and _Az_Ld_Vote < (_Aztec_Tot_Play -2)>>
 When everyone has voted, you will deliver the news to <<print $Aztec_Leader>>.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
