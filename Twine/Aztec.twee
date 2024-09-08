@@ -1865,7 +1865,7 @@ Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $users[$role]["c
 <<set _Az_Ld_Tla = setup.getTotalChoices ("Az_Ld_Tla")>>
 <<set _Az_Ld_Cua = setup.getTotalChoices("Az_Ld_Cua")>>
 <<set _Az_Ld_Cac = setup.getTotalChoices ("Az_Ld_Cac")>>
-<<set _Aztec_Tot_Play = setup.getTotalChoices("_Aztec_Tot_Play")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 
 
 Total Votes cast: <<print _Az_Ld_Vote>><br>
