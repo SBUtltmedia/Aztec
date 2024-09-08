@@ -1082,14 +1082,11 @@ Cuauhtemoc's entry is:  <<print "$Cu_Rec">><br>
 
 Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
 <br>
-<<if ndef $users["Cacamatzin"]["stats"]["Wisdom"]>>
-Test Worked.<br>
-<br>
-Does he <<link "PASS" "Olid's Contribution">><</link>> or <<link "FAIL" "Olid's Contribution">><</link>>?<br>
+<<if $Ca_Rec is "0" or ndef $Cac_Rec>>
+
+This player is not active. Please <<link "continue" "Olid's Contribution">><</link>> without casting a vote.<br>
 <br>
 <<else>>
-Test Failed.<br>
-<br>
 Does he <<link "PASS" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
 <</if>>
