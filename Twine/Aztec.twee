@@ -1059,13 +1059,13 @@ Garrido's entry is:  <<print "$Ga_TG">><br>
 <br>
 The Tlaxcalan's Insider's Guide is:  <<print "$Tl_IG">><br>
 <br>
+
 <<case "Spaniards" OR "Tlaxcalans">>
 Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can't be found in Tenochtitlán?  <br>
 <br>
 
 To aid you in this task, you may want to revisit Bernal Diaz' account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.<br>
 <br>
-
 Moctezuma's recipe is:  <<print "$Moc_Rec">><br>
 <br>
 <i>You have already rated Moctezuma's contribution.</i><br>
@@ -1078,19 +1078,20 @@ Cuauhtemoc's entry is:  <<print "$Cu_Rec">><br>
 <br>
 <i>You have already rated Cuauhtemoc's contribution.</i><br>
 <br>
-<<if ndef "$Ca_Rec" or "$Ca_Rec" = 0>>
 
-Test Worked.
 
 Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
+<br>
+
+<<if ndef $Ca_Rec or $Ca_Rec=0>>
+Test Worked.<br>
 <br>
 Does he <<link "PASS" "Olid's Contribution">><</link>> or <<link "FAIL" "Olid's Contribution">><</link>>?<br>
 <br>
+
 <<else>>
 
-Test Failed.
-
-Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
+Test Failed.<br>
 <br>
 Does he <<link "PASS" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]-=2>><</link>>?<br>
 <br>
