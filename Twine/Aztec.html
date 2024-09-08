@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -1067,10 +1067,23 @@ Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cuauhtemoc&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if ndef &quot;$Ca_Rec&quot; or &quot;$Ca_Rec&quot; = 0&gt;&gt;
+
+Test Worked.
+
+Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+Does he &lt;&lt;link &quot;PASS&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+
+Test Failed.
+
 Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
@@ -1806,7 +1819,7 @@ Votes for Moctezuma: &lt;&lt;print _Az_Ld_Moc&gt;&gt;&lt;br&gt;
 Votes for Tlacaelel: &lt;&lt;print _Az_Ld_Tla&gt;&gt;&lt;br&gt;
 Votes for Cuauhtemoc: &lt;&lt;print _Az_Ld_Cua&gt;&gt;&lt;br&gt;
 Votes for Cacamatzin: &lt;&lt;print _Az_Ld_Cac&gt;&gt;&lt;br&gt;
-Total Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
+Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
 
@@ -5864,7 +5877,8 @@ Xicotencatl_Younger &lt;br&gt;
 Maxixcatl
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="155" name="New Aztec Leader" tags="" position="2450,7050" size="100,100">&lt;&lt;liveblock&gt;&gt;
-
+&lt;b&gt;The leader of the Aztecs is &lt;&lt;print $Aztec_Leader&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
 &lt;&lt;if $Aztec_Leader is $role&gt;&gt;
 After much angry debate in the Council Room, you find that you have been elected leader. You have the greatest loyalty of the men, and you [[move forward as Tlatoani|Set up for the Feast]].
 
