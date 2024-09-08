@@ -4162,7 +4162,8 @@ You must wait for enough players to gather to begin.<br>
 <br>
 
 <<else>>
-<b> Your Team Leader is: <<print $Span_Leader>></b><br>
+<b> Your Team Leader is: <<print $Span_Leader>><br>
+There are <<print $Span_Tot_Play>> players on your team.</b><br>
 <br>
 November 18th, 1519. Just off the shore of Cuba.<br>
 <br>
@@ -4481,7 +4482,10 @@ You must wait for enough players to gather to begin.<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 <<else>>
-<b> Your Team Leader is: <<print $Span_Leader>></b><br>
+<b> Your Team Leader is: <<print $Span_Leader>>
+<br>
+There are <<print $Span_Tot_Play>> players on your team.</b><br>
+<br>
 <br>	
 November 18th, 1519.  Just off the shore of Cuba. <br>
 <br>
@@ -10011,7 +10015,8 @@ You must wait for enough players to gather to begin.<br>
 
 <<else>>
 
-<b> Your Team Leader is: <<print $Aztec_Leader>></b><br>
+<b> Your Team Leader is: <<print $Aztec_Leader>><br>
+There are <<print $Aztec_Tot_Play>> players on your team.</b><br>
 <br>	
 Mexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of the empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power.<br>
 <br>
@@ -10351,7 +10356,8 @@ You must wait for enough players to gather to begin.<br>
 <br>
 
 <<else>>
-<b> Your Team Leader is: <<print $Tlax_Leader>></b><br>
+<b> Your Team Leader is: <<print $Tlax_Leader>><br>
+There are <<print $Tlax_Tot_Play>> players on your team.</b><br>
 <br>
 Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
 <br>
