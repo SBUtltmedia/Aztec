@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -1026,28 +1026,40 @@ Here you will find links to each entry of the Spanish guidebook, along with a sp
 &lt;br&gt;
 To aid you in this task, go to your game documents and read Bernal Diaz&#39; account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
 Marina&#39;s introduction is:  &lt;&lt;print &quot;$Ma_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Marina&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
 Cortes&#39; entry is:  &lt;&lt;print &quot;$Co_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cortes&#39; contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
 Alvarado&#39;s entry is:  &lt;&lt;print &quot;$Al_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Alvarado&#39;s contribution.&lt;/i&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
+Aguilar is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
 Aguilar&#39;s entry is:  &lt;&lt;print &quot;$Ag_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Olid&#39;s entry is:  &lt;&lt;print &quot;$Ol_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Garrido&#39;s entry is:  &lt;&lt;print &quot;$Ga_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Tlaxcalan&#39;s Insider&#39;s Guide is:  &lt;&lt;print &quot;$Tl_IG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;case &quot;Spaniards&quot; OR &quot;Tlaxcalans&quot;&gt;&gt;
 Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can&#39;t be found in Tenochtitlán?  &lt;br&gt;
@@ -1055,32 +1067,43 @@ Here you will find links to each recipe in the Aztec cookbook. You must read eac
 
 To aid you in this task, you may want to revisit Bernal Diaz&#39; account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
 Moctezuma&#39;s recipe is:  &lt;&lt;print &quot;$Moc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Moctezuma&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
 Tlacaelel&#39;s entry is:  &lt;&lt;print &quot;$Tlc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Tlacaelel&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
 Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cuauhtemoc&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
-
+&lt;&lt;if $Cacamatzin_Act is &quot;No&quot;&gt;&gt;
+Cacamatzin is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
 Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Ca_Rec is &quot;0&quot; or ndef $Cac_Rec&gt;&gt;
-
-This player is not active. Please &lt;&lt;link &quot;continue&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; without casting a vote.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;else&gt;&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Olid&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
+
 &lt;&lt;/switch&gt;&gt;
 
 
@@ -1091,49 +1114,66 @@ Here you will find links to each entry of the Spanish guidebook, along with a sp
 &lt;br&gt;
 To aid you in this task, go to your game documents and read Bernal Diaz&#39; account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
 Marina&#39;s introduction is:  &lt;&lt;print &quot;$Ma_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Marina&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
 Cortes&#39; entry is:  &lt;&lt;print &quot;$Co_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cortes&#39; contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+Alvarado is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Aguilar&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
 Alvarado&#39;s entry is:  &lt;&lt;print &quot;$Al_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Aguilar&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Aguilar&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Aguilar&#39;s entry is:  &lt;&lt;print &quot;$Ag_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Olid&#39;s entry is:  &lt;&lt;print &quot;$Ol_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Garrido&#39;s entry is:  &lt;&lt;print &quot;$Ga_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Tlaxcalan&#39;s Insider&#39;s Guide is:  &lt;&lt;print &quot;$Tl_IG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;case &quot;Spaniards&quot; OR &quot;Tlaxcalans&quot;&gt;&gt;
 Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can&#39;t be found in Tenochtitlán?  &lt;br&gt;
 &lt;br&gt;
 
 To aid you in this task, you may want to revisit Bernal Diaz&#39; account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
 
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
 Moctezuma&#39;s recipe is:  &lt;&lt;print &quot;$Moc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Moctezuma&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
 Tlacaelel&#39;s entry is:  &lt;&lt;print &quot;$Tlc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Tlacaelel&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+Cuauhtemoc is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Aguilar&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
 Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Aguilar&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Aguilar&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/switch&gt;&gt;
 
@@ -1788,16 +1828,30 @@ You have made your case to the council and retire from the council chamber, conf
 
 He leaves the chamber and each member of the council votes. When it is your turn, you make your choice.  Should &lt;&lt;print $Aztec_Leader&gt;&gt; remain in power? Or should one of the other elegible nobels take over?  Vote for your leader below.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;link &quot;Moctezuma&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; has your confidence.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Moctezuma_Act is &quot;No&quot;&gt;&gt;
 
-Option 1: &lt;&lt;link &quot;Moctezuma&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; has your confidence.&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;link &quot;Tlacaelel&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; should be in charge.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
 
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;link &quot;Cuauhtemoc&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; is best suited to lead in these difficult times.&lt;br&gt;
 &lt;br&gt;
-Option 2: &lt;&lt;link &quot;Tlacaelel&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; should be in charge.&lt;br&gt;
-&lt;br&gt;
-Option 3: &lt;&lt;link &quot;Cuauhtemoc&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; is best suited to lead in these difficult times.&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
 Option 4: &lt;&lt;link &quot;Cacamatzin&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; is your best chance of suriving these strange turns of events.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;elseif $Cacamatzin_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="Aztec Leadership Results" tags="" position="2450,6925" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
@@ -1810,10 +1864,26 @@ Option 4: &lt;&lt;link &quot;Cacamatzin&quot; &quot;Aztec Leadership Results&quo
 
 
 Total Votes cast: &lt;&lt;print _Az_Ld_Vote&gt;&gt;&lt;br&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
 Votes for Moctezuma: &lt;&lt;print _Az_Ld_Moc&gt;&gt;&lt;br&gt;
+&lt;&lt;elseif $Moctezuma_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
 Votes for Tlacaelel: &lt;&lt;print _Az_Ld_Tla&gt;&gt;&lt;br&gt;
+&lt;&lt;elseif $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
 Votes for Cuauhtemoc: &lt;&lt;print _Az_Ld_Cua&gt;&gt;&lt;br&gt;
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
 Votes for Cacamatzin: &lt;&lt;print _Az_Ld_Cac&gt;&gt;&lt;br&gt;
+&lt;&lt;elseif $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
 Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
@@ -4162,46 +4232,50 @@ Here you will find links to each entry of the Spanish guidebook, along with a sp
 &lt;br&gt;
 To aid you in this task, go to your game documents and read Bernal Diaz&#39; account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
 Marina&#39;s introduction is:  &lt;&lt;print &quot;$Ma_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Marina&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+Cortes is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Alvarado&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
 Cortes&#39; entry is:  &lt;&lt;print &quot;$Co_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Alvarado&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Alvarado&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Alvarado&#39;s entry is:  &lt;&lt;print &quot;$Al_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Aguilar&#39;s entry is:  &lt;&lt;print &quot;$Ag_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Olid&#39;s entry is:  &lt;&lt;print &quot;$Ol_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Garrido&#39;s entry is:  &lt;&lt;print &quot;$Ga_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Tlaxcalan&#39;s Insider&#39;s Guide is:  &lt;&lt;print &quot;$Tl_IG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;case &quot;Spaniards&quot; OR &quot;Tlaxcalans&quot;&gt;&gt;
 Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can&#39;t be found in Tenochtitlán?  &lt;br&gt;
 &lt;br&gt;
 
 To aid you in this task, you may want to revisit Bernal Diaz&#39; account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
 
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
 Moctezuma&#39;s recipe is:  &lt;&lt;print &quot;$Moc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Moctezuma&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+Tlacaelel is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Alvarado&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
 Tlacaelel&#39;s entry is:  &lt;&lt;print &quot;$Tlc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Alvarado&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Alvarado&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
@@ -4524,32 +4598,60 @@ Here you will find links to each entry of the Spanish guidebook, along with a sp
 &lt;br&gt;
 To aid you in this task, go to your game documents and read Bernal Diaz&#39; account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
 Marina&#39;s introduction is:  &lt;&lt;print &quot;$Ma_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Marina&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
 Cortes&#39; entry is:  &lt;&lt;print &quot;$Co_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cortes&#39; contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
 Alvarado&#39;s entry is:  &lt;&lt;print &quot;$Al_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Alvarado&#39;s contribution.&lt;/i&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
 Aguilar&#39;s entry is:  &lt;&lt;print &quot;$Ag_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Aguilar&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Olid_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Olid_Act is &quot;Yes&quot;&gt;&gt;
 Olid&#39;s entry is:  &lt;&lt;print &quot;$Ol_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Olid&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Garrido_Act is &quot;No&quot;&gt;&gt;
+Garrido is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Tlaxcalan&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Garrido_Act is &quot;Yes&quot;&gt;&gt;
 Garrido&#39;s entry is:  &lt;&lt;print &quot;$Ga_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Tlaxcalan&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Tlaxcalan&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-The Tlaxcalan&#39;s Insider&#39;s Guide is:  &lt;&lt;print &quot;$Tl_IG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;/switch&gt;&gt;
 
 
@@ -4700,49 +4802,22 @@ When you are ready, you bed down for the night. Your enemies are close and &lt;&
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="Judging the Feast Documents" tags="" position="2300,7425" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
-&lt;&lt;if $role is &quot;Pochteca&quot;&gt;&gt;
-Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can&#39;t be found in Tenochtitlán?  &lt;br&gt;
-&lt;br&gt;
-To aid you in this task, you may want to revisit Bernal Diaz&#39; account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
-&lt;br&gt;
-As you evaluate their work, they are also evaluating yours. Keep an eye on your points to see how you did&lt;br&gt;
-&lt;br&gt;
-Moctezuma&#39;s recipe is:  &lt;&lt;print &quot;$Moc_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Does he &lt;&lt;link &quot;PASS&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
-&lt;br&gt;
-Tlacaelel&#39;s entry is:  &lt;&lt;print &quot;$Tlc_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;else&gt;&gt;
 Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? &lt;br&gt;
 &lt;br&gt;
 To aid you in this task, go to your game documents and read Bernal Diaz&#39; account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
 As you evaluate their work, they are also evaluating yours. Keep an eye on your points to see how you did&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+Marina is not active, please &lt;&lt;link &quot;continue without judging her&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
 Marina&#39;s introduction is:  &lt;&lt;print &quot;$Ma_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does she &lt;&lt;link &quot;PASS&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Cortes&#39; entry is:  &lt;&lt;print &quot;$Co_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Alvarado&#39;s entry is:  &lt;&lt;print &quot;$Al_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Aguilar&#39;s entry is:  &lt;&lt;print &quot;$Ag_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Olid&#39;s entry is:  &lt;&lt;print &quot;$Ol_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Garrido&#39;s entry is:  &lt;&lt;print &quot;$Ga_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Tlaxcalan&#39;s Insider&#39;s Guide is:  &lt;&lt;print &quot;$Tl_IG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
+
 &lt;&lt;case &quot;Spaniards&quot; OR &quot;Tlaxcalans&quot;&gt;&gt;
 Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can&#39;t be found in Tenochtitlán?  &lt;br&gt;
 &lt;br&gt;
@@ -4750,19 +4825,15 @@ To aid you in this task, you may want to revisit Bernal Diaz&#39; account of Ten
 &lt;br&gt;
 As you evaluate their work, they are also evaluating yours. Keep an eye on your points to see how you did&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
+Moctezuma is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
 Moctezuma&#39;s recipe is:  &lt;&lt;print &quot;$Moc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Cortes&#39; Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Tlacaelel&#39;s entry is:  &lt;&lt;print &quot;$Tlc_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
@@ -6154,63 +6225,118 @@ You&#39;ve just received a shocking report from Tenochtitlán: &lt;&lt;print $Az
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="162" name="Olid&#39;s Contribution" tags="" position="2300,7925" size="100,100">&lt;&lt;liveblock&gt;&gt;
+
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? &lt;br&gt;
 &lt;br&gt;
 To aid you in this task, go to your game documents and read Bernal Diaz&#39; account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
 Marina&#39;s introduction is:  &lt;&lt;print &quot;$Ma_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Marina&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
 Cortes&#39; entry is:  &lt;&lt;print &quot;$Co_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cortes&#39; contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
 Alvarado&#39;s entry is:  &lt;&lt;print &quot;$Al_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Alvarado&#39;s contribution.&lt;/i&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
 Aguilar&#39;s entry is:  &lt;&lt;print &quot;$Ag_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Aguilar&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Olid_Act is &quot;No&quot;&gt;&gt;
+Olid is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;Garrido&#39;s Contribution&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Olid_Act is &quot;Yes&quot;&gt;&gt;
 Olid&#39;s entry is:  &lt;&lt;print &quot;$Ol_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;Garrido&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;Garrido&#39;s Contribution&quot;&gt;&gt;&lt;&lt;set $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
-Garrido&#39;s entry is:  &lt;&lt;print &quot;$Ga_TG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-The Tlaxcalan&#39;s Insider&#39;s Guide is:  &lt;&lt;print &quot;$Tl_IG&quot;&gt;&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+
 &lt;&lt;case &quot;Spaniards&quot; OR &quot;Tlaxcalans&quot;&gt;&gt;
 Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can&#39;t be found in Tenochtitlán?  &lt;br&gt;
 &lt;br&gt;
 
 To aid you in this task, you may want to revisit Bernal Diaz&#39; account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
 Moctezuma&#39;s recipe is:  &lt;&lt;print &quot;$Moc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Moctezuma&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
 Tlacaelel&#39;s entry is:  &lt;&lt;print &quot;$Tlc_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Tlacaelel&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
 Cuauhtemoc&#39;s entry is:  &lt;&lt;print &quot;$Cu_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cuauhtemoc&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cacamatzin_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
 Cacamatzin&#39;s entry is:  &lt;&lt;print &quot;$Ca_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cacamatzin&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
+The Aztec Priest is not active, please &lt;&lt;link &quot;continue without judging him&quot; &quot;After the Feast&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt; 
+&lt;&lt;elseif $Aztec_Priest_Act is &quot;Yes&quot;&gt;&gt;
 The Aztec Priest&#39;s entry is:  &lt;&lt;print &quot;$AP_Rec&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Does he &lt;&lt;link &quot;PASS&quot; &quot;After the Feast&quot;&gt;&gt;&lt;&lt;set $users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+=2&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;After the Feast&quot;&gt;&gt;&lt;&lt;set $users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]-=2&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;/switch&gt;&gt;
+
+
+
+
+
+
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="163" name="On The Way to Veracruz" tags="" position="2100,1125" size="100,100">&lt;&lt;liveblock&gt;&gt;
@@ -9570,25 +9696,6 @@ You march across the plains [[in hopes of peace|Tlaxcala Doesn&#39;t Attack in P
 
 You must wait for enough players to gather to begin.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Xicotencatl_Elder_Act is &quot;No&quot;&gt;&gt;
-
-&lt;&lt;elseif $Xicotencatl_Elder_Act is &quot;Yes&quot;&gt;&gt;
-Xicotencatl the Elder has joined the game.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $Xicotencatl_Younger_Act is &quot;No&quot;&gt;&gt;
-
-&lt;&lt;elseif $Xicotencatl_Younger_Act is &quot;Yes&quot;&gt;&gt;
-Xicotencatl the Younger has joined the game.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;if $Maxixcatl_Act is &quot;No&quot;&gt;&gt;
-
-&lt;&lt;elseif $Maxixcatl_Act is &quot;Yes&quot;&gt;&gt;
-Maxixcatl_Act has joined the game.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;print &quot;_Span_Tot_Play&quot;&gt;&gt; Spanish players have joined the game. You must have at least 3 active players.&lt;br&gt;
 &lt;br&gt;
@@ -10707,30 +10814,58 @@ Here you will find links to each entry of the Spanish guidebook, along with a sp
 &lt;br&gt;
 To aid you in this task, go to your game documents and read Bernal Diaz&#39; account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
 Marina&#39;s introduction is:  &lt;&lt;print &quot;$Ma_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Marina&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
 Cortes&#39; entry is:  &lt;&lt;print &quot;$Co_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Cortes&#39; contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
 Alvarado&#39;s entry is:  &lt;&lt;print &quot;$Al_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Alvarado&#39;s contribution.&lt;/i&gt;&lt;br&gt;
-&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
 Aguilar&#39;s entry is:  &lt;&lt;print &quot;$Ag_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Aguilar&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Olid_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Olid_Act is &quot;Yes&quot;&gt;&gt;
 Olid&#39;s entry is:  &lt;&lt;print &quot;$Ol_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Olid&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Garrido_Act is &quot;No&quot;&gt;&gt;
+
+&lt;&lt;elseif $Garrido_Act is &quot;Yes&quot;&gt;&gt;
 Garrido&#39;s entry is:  &lt;&lt;print &quot;$Ga_TG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;i&gt;You have already rated Garrido&#39;s contribution.&lt;/i&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
 The Tlaxcalan&#39;s Insider&#39;s Guide is:  &lt;&lt;print &quot;$Tl_IG&quot;&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Do they &lt;&lt;link &quot;PASS&quot; &quot;After the Feast&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=3&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;FAIL&quot; &quot;After the Feast&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=3&gt;&gt;&lt;&lt;/link&gt;&gt;?&lt;br&gt;
