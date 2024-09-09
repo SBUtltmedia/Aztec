@@ -1934,8 +1934,8 @@ Total Votes cast: <<print _Az_Ld_Vote>><br>
 <<if $Moctezuma_Act is "Yes">>
 Votes for Moctezuma: <<print _Az_Ld_Moc>><br>
 <<elseif $Moctezuma_Act is "No">>
-
 <</if>>
+
 <<if $Tlacaelel_Act is "Yes">>
 Votes for Tlacaelel: <<print _Az_Ld_Tla>><br>
 <<elseif $Tlacaelel_Act is "No">>
@@ -3385,7 +3385,7 @@ You need to assign points to your character to continue. <br>
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <<if $role is "Moctezuma">>
-Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="None">><<set $A_Q_Heart="no">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
+Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Quest_Leader_A="None">><<set $A_Q_Heart="no">><<set $Moctezuma_Act="Yes">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
 <<elseif $role is "Tlacaelel">>
 Are you ready to <<link "begin your journey" "Quest Intro: The Aztec Legend of Quetzalcoatl">><<set $Start = $Start + 1>><<set $Aztec_Leader="Moctezuma">><<set $Tlacaelel_Act="Yes">><<set $users[$role]["choices"]["Aztec_Tot_Play"] = $users[$role]["choices"]["Aztec_Tot_Play"] = 1>><</link>>? <br>
 <<elseif $role is "Cuauhtemoc">>

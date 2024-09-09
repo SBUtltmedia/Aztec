@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -1867,8 +1867,8 @@ Total Votes cast: &lt;&lt;print _Az_Ld_Vote&gt;&gt;&lt;br&gt;
 &lt;&lt;if $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
 Votes for Moctezuma: &lt;&lt;print _Az_Ld_Moc&gt;&gt;&lt;br&gt;
 &lt;&lt;elseif $Moctezuma_Act is &quot;No&quot;&gt;&gt;
-
 &lt;&lt;/if&gt;&gt;
+
 &lt;&lt;if $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
 Votes for Tlacaelel: &lt;&lt;print _Az_Ld_Tla&gt;&gt;&lt;br&gt;
 &lt;&lt;elseif $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
@@ -3155,7 +3155,7 @@ You need to assign points to your character to continue. &lt;br&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $role is &quot;Moctezuma&quot;&gt;&gt;
-Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A=&quot;None&quot;&gt;&gt;&lt;&lt;set $A_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
+Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A=&quot;None&quot;&gt;&gt;&lt;&lt;set $A_Q_Heart=&quot;no&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
 &lt;&lt;elseif $role is &quot;Tlacaelel&quot;&gt;&gt;
 Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Quest Intro: The Aztec Legend of Quetzalcoatl&quot;&gt;&gt;&lt;&lt;set $Start = $Start + 1&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Moctezuma&quot;&gt;&gt;&lt;&lt;set $Tlacaelel_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Tot_Play&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;? &lt;br&gt;
 &lt;&lt;elseif $role is &quot;Cuauhtemoc&quot;&gt;&gt;
