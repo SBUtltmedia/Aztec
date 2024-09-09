@@ -4775,7 +4775,7 @@ When you have come to an understanding, you may [[decide how to deal with the st
 <<case "Tlacaelel">>
 You have discussed these options with your men, and together you have decided you will:<br>
 <br>
-1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $gifts="Attack">><</link>>.<br>
+1.  <<link "Attack" "Attack On a Beach in Veracruz">><<set $gifts="Attack">><<set $factions["Aztecs"]["stats"]["Strength"]-=3>><</link>>.<br>
 <br>
 2.  <<link "Approach cautiously without the gifts" "On a Beach in Veracruz: No Gifts">><<set $gifts="No">><</link>>.<br>
 <br>
@@ -6607,7 +6607,7 @@ You return from your journey to find the city buzzing with news. One of your spi
 <br>
 <<switch $role>>
 <<case "Moctezuma">>
-Moctezuma, you order your men--Tlacaelel Xocoyotl, Cuauhtémoc, Cacamatzin, and the Pochteca--to the coast to learn more. Meanwhile, you and the priest [[adjourn to the palace|the Omens]]. He tells you he has other news for you.<br>
+Moctezuma, you order your menn to the coast to learn more. Meanwhile, you and your priest [[adjourn to the palace|the Omens]]. He tells you he has other news for you.<br>
 <br>
 <<case "Aztec_Priest">>
 Moctezuma orders the men--Tlacaelel Xocoyotl, Cuauhtémoc, Cacamatzin, and the Pochteca--to the coast to learn more. Meanwhile, you and he [[return to the palace|the Omens]]. You have important news for him. <br>
@@ -10245,16 +10245,37 @@ Before you can begin your quest, you must choose a teammate to lead your people.
 <br>
 You choose: <br>
 <br>
+<<if $Tlacaelel_Act is "Yes">>
 <<link "Tlacaelel">><<set $Quest_Leader_A = "Tlacaelel">><</link>>.<br>
 <br>
+<<else>>
+
+<</if>>
+<<if $Cuauhtemoc_Act is "Yes">>
 <<link "Cuauhtemoc">><<set $Quest_Leader_A = "Cuauhtemoc">><</link>>.<br>
 <br>
+<<else>>
+
+<</if>>
+<<if $Cacamatzin_Act is "Yes">>
 <<link "Cacamatzín">><<set $Quest_Leader_A = "Cacamatzin">><</link>>.<br>
 <br>
+<<else>>
+
+<</if>>
+
+<<if $Aztec_Priest_Act is "Yes">>
 <<link "Aztec_Priest">><<set $Quest_Leader_A = "Aztec_Priest">><</link>>.<br>
 <br>
+<<else>>
+
+<</if>>
+<<if $Pochteca_Act is "Yes">>
 <<link "Pochteca">><<set $Quest_Leader_A = "Pochteca">><</link>>.<br>
 <br>
+<<else>>
+
+<</if>>
 <<else>>
 You must wait for Moctezuma to choose a quest leader. <br>
 <br>
@@ -10287,9 +10308,9 @@ Do not hesitate in this journey, for you are not the only ones seeking this trea
 <br>
 When you have read the following instructions and are ready to begin your quest, click the link below to enter the palace. <br>
 <br>
-In the palace you will find 6 place glyphs. Each of these glyphs represents a site of great significance in Central Mexico and in each you will find a vital resource for your journey. In order to collect each resource, you must work with your team to identify the correct name that corresponds with the glyph. Click on each glyph to visit that place and receive a clue to its location. You will need to draw on all your knowledge to solve each puzzle! Once you have figured out where you are, the Pochteca will enter the name into a text box that is only available on his screen. When he enters the correct response, your team will collect the resource located there and you will not be able to return.<br>
+In the palace you will find 6 place glyphs. Each of these glyphs represents a site of great significance in Central Mexico and in each you will find a vital resource for your journey. In order to collect each resource, you must work with your team to identify the correct name that corresponds with the glyph. Click on each glyph to visit that place and receive a clue to its location. You will need to draw on all your knowledge to solve each puzzle! Once you have figured out where you are, <<print $Quest_Leader_A>> will enter the name into a text box that is only available on his screen. When he enters the correct response, your team will collect the resource located there and you will not be able to return.<br>
 <br>
-When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have further to travel, they must gather 5 goods, while the Tlaxcalans only require 4. <br>
+When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have farther to travel, they must gather 5 goods, while the Tlaxcalans only require 4. <br>
 <br>
 Enter the palace and [[begin your quest|Scavenger Hunt Hub]].<br>
 <br>
@@ -10378,7 +10399,7 @@ You must decide how you will proceed if you find the strange men you seek. Choos
 <br>
 2. You agree with Moctezuma's decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will <<link "not offer the gifts" "On a Beach in Veracruz: No Gifts">><<set $gifts="No">><</link>>.<br>
 <br>
-3.  You disagree with Moctezuma's plan. You are wary of the strangers and believe the smartest move is to catch them off guard with <<link "an immediate attack" "Attack On a Beach in Veracruz">><<set $users["Tlacaelel"]["stats"]["Strength"]-=2>><<set $users["Cuauhtemoc"]["stats"]["Strength"]-=2>><<set $users["Cacamatzin"]["stats"]["Strength"]-=2>><<set $users["Pochteca"]["stats"]["Strength"]-=2>><<set $gifts="Attack">><</link>>.<br>
+3.  You disagree with Moctezuma's plan. You are wary of the strangers and believe the smartest move is to catch them off guard with <<link "an immediate attack" "Attack On a Beach in Veracruz">><<set $factions["Aztecs"]["stats"]["Strength"]-=3>><<set $gifts="Attack">><</link>>.<br>
  <br>
 4.  You are wary of making a hasty decision and <<link "seek the counsel of your men" "Discuss these options with your men">><<set $gifts="Talk">><</link>>.<br>
 <br>
