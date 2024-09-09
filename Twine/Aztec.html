@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="0 Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -4417,7 +4417,7 @@ When you have come to an understanding, you may [[decide how to deal with the st
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
 You have discussed these options with your men, and together you have decided you will:&lt;br&gt;
 &lt;br&gt;
-1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+1.  &lt;&lt;link &quot;Attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=3&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 2.  &lt;&lt;link &quot;Approach cautiously without the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
@@ -6053,7 +6053,7 @@ You return from your journey to find the city buzzing with news. One of your spi
 &lt;br&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
-Moctezuma, you order your men--Tlacaelel Xocoyotl, Cuauhtémoc, Cacamatzin, and the Pochteca--to the coast to learn more. Meanwhile, you and the priest [[adjourn to the palace|the Omens]]. He tells you he has other news for you.&lt;br&gt;
+Moctezuma, you order your menn to the coast to learn more. Meanwhile, you and your priest [[adjourn to the palace|the Omens]]. He tells you he has other news for you.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Aztec_Priest&quot;&gt;&gt;
 Moctezuma orders the men--Tlacaelel Xocoyotl, Cuauhtémoc, Cacamatzin, and the Pochteca--to the coast to learn more. Meanwhile, you and he [[return to the palace|the Omens]]. You have important news for him. &lt;br&gt;
@@ -9439,16 +9439,37 @@ Before you can begin your quest, you must choose a teammate to lead your people.
 &lt;br&gt;
 You choose: &lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
 &lt;&lt;link &quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A = &quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;else&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
 &lt;&lt;link &quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A = &quot;Cuauhtemoc&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;else&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
 &lt;&lt;link &quot;Cacamatzín&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A = &quot;Cacamatzin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;else&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Aztec_Priest_Act is &quot;Yes&quot;&gt;&gt;
 &lt;&lt;link &quot;Aztec_Priest&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A = &quot;Aztec_Priest&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;else&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Pochteca_Act is &quot;Yes&quot;&gt;&gt;
 &lt;&lt;link &quot;Pochteca&quot;&gt;&gt;&lt;&lt;set $Quest_Leader_A = &quot;Pochteca&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;else&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
 You must wait for Moctezuma to choose a quest leader. &lt;br&gt;
 &lt;br&gt;
@@ -9481,9 +9502,9 @@ Do not hesitate in this journey, for you are not the only ones seeking this trea
 &lt;br&gt;
 When you have read the following instructions and are ready to begin your quest, click the link below to enter the palace. &lt;br&gt;
 &lt;br&gt;
-In the palace you will find 6 place glyphs. Each of these glyphs represents a site of great significance in Central Mexico and in each you will find a vital resource for your journey. In order to collect each resource, you must work with your team to identify the correct name that corresponds with the glyph. Click on each glyph to visit that place and receive a clue to its location. You will need to draw on all your knowledge to solve each puzzle! Once you have figured out where you are, the Pochteca will enter the name into a text box that is only available on his screen. When he enters the correct response, your team will collect the resource located there and you will not be able to return.&lt;br&gt;
+In the palace you will find 6 place glyphs. Each of these glyphs represents a site of great significance in Central Mexico and in each you will find a vital resource for your journey. In order to collect each resource, you must work with your team to identify the correct name that corresponds with the glyph. Click on each glyph to visit that place and receive a clue to its location. You will need to draw on all your knowledge to solve each puzzle! Once you have figured out where you are, &lt;&lt;print $Quest_Leader_A&gt;&gt; will enter the name into a text box that is only available on his screen. When he enters the correct response, your team will collect the resource located there and you will not be able to return.&lt;br&gt;
 &lt;br&gt;
-When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have further to travel, they must gather 5 goods, while the Tlaxcalans only require 4. &lt;br&gt;
+When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have farther to travel, they must gather 5 goods, while the Tlaxcalans only require 4. &lt;br&gt;
 &lt;br&gt;
 Enter the palace and [[begin your quest|Scavenger Hunt Hub]].&lt;br&gt;
 &lt;br&gt;
@@ -9544,7 +9565,7 @@ You must decide how you will proceed if you find the strange men you seek. Choos
 &lt;br&gt;
 2. You agree with Moctezuma&#39;s decision to seek information, but question the wisdom in offering gifts. You will approach the strangers and inquire about their intentions, but you will &lt;&lt;link &quot;not offer the gifts&quot; &quot;On a Beach in Veracruz: No Gifts&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-3.  You disagree with Moctezuma&#39;s plan. You are wary of the strangers and believe the smartest move is to catch them off guard with &lt;&lt;link &quot;an immediate attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=2&gt;&gt;&lt;&lt;set $users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=2&gt;&gt;&lt;&lt;set $users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=2&gt;&gt;&lt;&lt;set $users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=2&gt;&gt;&lt;&lt;set $gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+3.  You disagree with Moctezuma&#39;s plan. You are wary of the strangers and believe the smartest move is to catch them off guard with &lt;&lt;link &quot;an immediate attack&quot; &quot;Attack On a Beach in Veracruz&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=3&gt;&gt;&lt;&lt;set $gifts=&quot;Attack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
  &lt;br&gt;
 4.  You are wary of making a hasty decision and &lt;&lt;link &quot;seek the counsel of your men&quot; &quot;Discuss these options with your men&quot;&gt;&gt;&lt;&lt;set $gifts=&quot;Talk&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
