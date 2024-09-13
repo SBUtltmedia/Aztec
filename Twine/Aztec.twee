@@ -141,7 +141,7 @@ importScripts([
 })();
 
 
-:: 0 Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
+:: Dakota Test Passage [Done Breaks] {"position":"338,1151","size":"100,100"}
 <<liveblock>>
 As a global var:
 <br>
