@@ -1274,8 +1274,8 @@ You are forced to retreat, hanging your heads in shame and strategizing for your
 <br>
 <<elseif $TL_Attacks is "Aztecs">>
 
-You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You [[flee back towards the mountains|Tlaxcalans decide to attack the Aztecs on their way back from the coast]] and wonder how you will explain this to Moctezuma.<br>
-<br>
+You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Tlaxcalans decide to attack the Aztecs on their way back from the coast">><<set $Aztecs_currentMap=1>><</link>>.
+
 <<elseif $TL_Attacks is "Spanish">>
 
 You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>> and wonder how you will explain this to Moctezuma.
