@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -11870,7 +11870,7 @@ You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="309" name="Victory Decision Aztecs versus Spaniards and Tlaxcalans" tags="" position="4600,12575" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
-&lt;&lt;if $Span_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
+&lt;&lt;if $Span_Leader is $role&gt;&gt;
 You raise your sword and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards and Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Spanish_Players=$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $Final_Spanish_Players/=6&gt;&gt;&lt;&lt;set $Final_Spanish_Points=$factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$Final_Spanish_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
@@ -11878,7 +11878,7 @@ You watch as &lt;&lt;print $Span_Leader&gt;&gt; raises his sword and [[strikes t
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
-&lt;&lt;if $New_Aztec_Leader is $users[$userId][&quot;role&quot;]&gt;&gt;
+&lt;&lt;if $New_Aztec_Leader is $role&gt;&gt;
 You raise your macuahuitl and &lt;&lt;link &quot;strike the final blow&quot; &quot;Battle Outcome Aztecs Versus Spaniards and Tlaxcalans&quot;&gt;&gt;&lt;&lt;set $Final_Aztec_Players=$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $Final_Aztec_Players/=6&gt;&gt;&lt;&lt;set $Final_Aztec_Points=$factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$Final_Aztec_Players&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;

@@ -13031,7 +13031,7 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 <<liveblock>>
 <<switch $users[$role]["faction"]>>
 <<case "Spaniards">>
-<<if $Span_Leader is $users[$userId]["role"]>>
+<<if $Span_Leader is $role>>
 You raise your sword and <<link "strike the final blow" "Battle Outcome Aztecs Versus Spaniards and Tlaxcalans">><<set $Final_Spanish_Players=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]+$users["Alvarado"]["stats"]["Strength"]+$users["Alvarado"]["stats"]["Loyalty"]+$users["Alvarado"]["stats"]["Wisdom"]+$users["Aguilar"]["stats"]["Strength"]+$users["Aguilar"]["stats"]["Loyalty"]+$users["Aguilar"]["stats"]["Wisdom"]+$users["Marina"]["stats"]["Strength"]+$users["Marina"]["stats"]["Loyalty"]+$users["Marina"]["stats"]["Wisdom"]+$users["Garrido"]["stats"]["Strength"]+$users["Garrido"]["stats"]["Loyalty"]+$users["Garrido"]["stats"]["Wisdom"]+$users["Olid"]["stats"]["Strength"]+$users["Olid"]["stats"]["Loyalty"]+$users["Olid"]["stats"]["Wisdom"]>><<set $Final_Spanish_Players/=6>><<set $Final_Spanish_Points=$factions["Spaniards"]["stats"]["Strength"]+$Final_Spanish_Players>><</link>>. <br>
 <br>
 <<else>>
@@ -13039,7 +13039,7 @@ You watch as <<print $Span_Leader>> raises his sword and [[strikes the final blo
 <br>
 <</if>>
 <<case "Aztecs">>
-<<if $New_Aztec_Leader is $users[$userId]["role"]>>
+<<if $New_Aztec_Leader is $role>>
 You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs Versus Spaniards and Tlaxcalans">><<set $Final_Aztec_Players=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]+$users["Tlacaelel"]["stats"]["Strength"]+$users["Tlacaelel"]["stats"]["Loyalty"]+$users["Tlacaelel"]["stats"]["Wisdom"]+$users["Cuauhtemoc"]["stats"]["Strength"]+$users["Cuauhtemoc"]["stats"]["Loyalty"]+$users["Cuauhtemoc"]["stats"]["Wisdom"]+$users["Cacamatzin"]["stats"]["Strength"]+$users["Cacamatzin"]["stats"]["Loyalty"]+$users["Cacamatzin"]["stats"]["Wisdom"]+$users["Aztec_Priest"]["stats"]["Strength"]+$users["Aztec_Priest"]["stats"]["Loyalty"]+$users["Aztec_Priest"]["stats"]["Wisdom"]+$users["Pochteca"]["stats"]["Strength"]+$users["Pochteca"]["stats"]["Loyalty"]+$users["Pochteca"]["stats"]["Wisdom"]>><<set $Final_Aztec_Players/=6>><<set $Final_Aztec_Points=$factions["Aztecs"]["stats"]["Strength"]+$Final_Aztec_Players>><</link>>. <br>
 <br>
 <<else>>
