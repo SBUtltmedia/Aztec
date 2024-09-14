@@ -827,8 +827,6 @@ Congratulations! You have been freed from your long captivity! <<link "You may n
 <br>
 Aguilar, though you have been captive among the Maya for years, recently, you've heard exciting news and now is your chance to escape.  A band of Spaniards have arrived and are going to interview you for information about this news you've heard. If you can answer their questions, they will free you from your captivity, and you can join their expedition.  But beware, every wrong answer you give them will hurt them, while the correct answer will make your team stronger.<br>
 <br>
-When you have finished answering their questions on the discord discussion board, you may [[continue to find out if you are free|Aguilar Answers]].<br>
-<br>
 <</if>>
 
 <<case "Alvarado" or "Olid" or "Garrido">>
@@ -846,8 +844,7 @@ The great coastal city of Tulum.<br>
 <br>
 The priest in the temple.<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
-<br>
+
 <<else>>
 <b>You have answered Question 1. The gossip came from the great coastal city of Tulum.</b><br>
 <br>
@@ -863,8 +860,7 @@ A rowdy group of strangers in the market.<br>
 <br>
 Messengers from the Aztec Emperor.<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
-<br>
+
 <<else>>
 <b>You have answered Question 2. The Maya saw a house floating on water filled with men.</b><br>
 <br>
@@ -880,8 +876,7 @@ The strangers came ashore and asked for food.<br>
 <br>
 [[The strangers were carried away by a giant caiman|Aguilar Answers]].<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
-<br>
+
 <<else>>
 <b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
 <br>
@@ -900,13 +895,13 @@ Congratulations! You have freed Aguilar from his long captivity! <<link "You may
 
 <b>Question One: Where did the gossip come from?</b><br>
 <br>
-<<link "The land of Chuup" "Aguilar Answers">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "The land of Chuup" "Aguilar Quest">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "Their friend Náats' Amal" "Aguilar Answers">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "Their friend Náats' Amal" "Aguilar Quest">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "The great coastal city of Tulum" "Aguilar Answers">><<set $Aguilar_1="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
+<<link "The great coastal city of Tulum" "Aguilar Quest">><<set $Aguilar_1="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
 <br>
-<<link "The priest in the temple" "Aguilar Answers">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "The priest in the temple" "Aguilar Quest">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<elseif $Aguilar_1 is "Yes">>
 <b>You have answered Question 1. The gossip came from the great coastal city of Tulum.</b><br>
@@ -916,13 +911,13 @@ Congratulations! You have freed Aguilar from his long captivity! <<link "You may
 <<if $Aguilar_2 is "No" or $Aguilar_2 eq "" or ndef $Aguilar_2>>
 <b>Question 2: What did the Maya see?</b><br>
 <br>
-<<link "A long line of men on horseback" "Aguilar Answers">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "A long line of men on horseback" "Aguilar Quest">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "A House Floating on the Water filled with men" "Aguilar Answers">><<set $Aguilar_2="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
+<<link "A House Floating on the Water filled with men" "Aguilar Quest">><<set $Aguilar_2="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
 <br>
-<<link "A rowdy group of strangers in the market" "Aguilar Answers">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "A rowdy group of strangers in the market" "Aguilar Quest">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "Messengers from the Aztec Emperor" "Aguilar Answers">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "Messengers from the Aztec Emperor" "Aguilar Quest">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<else>>
 <b>You have answered Question 2. The Maya saw a house floating on water filled with men.</b><br>
@@ -932,13 +927,13 @@ Congratulations! You have freed Aguilar from his long captivity! <<link "You may
 <<if $Aguilar_3 is "No" or $Aguilar_3 eq "" or ndef $Aguilar_3>>
 <b>Question 3: How did the interaction between the groups go?</b><br>
 <br>
-<<link "The strangers fired rocks into the sea and fled" "Aguilar Answers">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Aguilar_3="Yes">><</link>>.<br>
+<<link "The strangers fired rocks into the sea and fled" "Aguilar Quest">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Aguilar_3="Yes">><</link>>.<br>
 <br>
-<<link "The strangers came ashore and asked for food" "Aguilar Answers">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "The strangers came ashore and asked for food" "Aguilar Quest">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "The strangers came ashore and attacked" "Aguilar Answers">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "The strangers came ashore and attacked" "Aguilar Quest">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "The strangers were carried away by a giant caiman" "Aguilar Answers">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "The strangers were carried away by a giant caiman" "Aguilar Quest">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<else>>
 <b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
