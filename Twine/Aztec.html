@@ -1434,7 +1434,7 @@ Each member of the council will cast their individual vote.&lt;br&gt;
 You have two choices:&lt;br&gt;
 &lt;br&gt;
 Option 1: Listen to &lt;&lt;print $Aztec_Leader&gt;&gt; and attempt to calm the mob that surrounds you. Now is not the time to continue this fight and it&#39;s sure to bring &lt;&lt;link &quot;disaster for your people&quot; &quot;Aztecs Decide About The Riot&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Riot_No&quot;] = $users[$role][&quot;choices&quot;][&quot;Riot_No&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Riot_Yes&quot;] = $users[$role][&quot;choices&quot;][&quot;Riot_Yes&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Riot_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Riot_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
-
+&lt;br&gt;
 Option 2: Oppose &lt;&lt;print $Aztec_Leader&gt;&gt;, who is clearly weak and no longer represents the will of the people. You egg the people on and assure them that &lt;&lt;link &quot;victory is yours to be taken&quot; &quot;Aztecs Decide About The Riot&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Riot_No&quot;] = $users[$role][&quot;choices&quot;][&quot;Riot_No&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Riot_Yes&quot;] = $users[$role][&quot;choices&quot;][&quot;Riot_Yes&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Riot_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Riot_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
@@ -1946,6 +1946,7 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $role is $Aztec_Leader&gt;&gt;
 &lt;&lt;if _Riot_Vote &lt; (_Aztec_Tot_Play - 1)&gt;&gt;
@@ -1964,7 +1965,6 @@ You observe the crowd warily and [[await their response|Aztec Mob Recedes]].&lt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-
 &lt;&lt;else&gt;&gt;
 Total Votes cast: &lt;&lt;print _Riot_Vote&gt;&gt;&lt;br&gt;
 Votes for Riot: &lt;&lt;print _Riot_Yes&gt;&gt;&lt;br&gt;
@@ -2024,7 +2024,7 @@ You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;
+&lt;&lt;/switch&gt;&gt;
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Aztecs Decide Whether to Make an Exchange" tags="" position="2950,11125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Hostage_Exch or $Hostage_Exch eq &quot;&quot;&gt;&gt;
