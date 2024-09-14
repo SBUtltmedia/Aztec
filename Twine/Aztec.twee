@@ -9046,30 +9046,36 @@ It is now time to [[investigate these two individuals|Spaniards Quest Instructio
 <<liveblock>>
 <<switch $role>>
 <<case "Aguilar">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
+<<if $Aguilar_Free is "No" and $Malinche_Free is "No">>
 Aguilar, the Spaniards must interview and gain information about the gossip you heard. Go to the Discord discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. <br>
 <br>
 Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain you one! [[Good luck|Aguilar Quest]]. <br>
 <br>
-<<elseif $Aguilar_Free is "Yes">>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No">>
 The Spaniards have freed you from your long captivity! You may now join them and help them recruit this strange woman, Marina. Your gift for languages [[will come in handy here|Malinche Quest]]!<br>
+<br>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
+Congratulations! You have sucessfully completed the quest!  You may now continue [[on your journey|On The Way to Veracruz]]!<br>
 <br>
 <</if>>
 <<case "Marina">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
+<<if $Aguilar_Free is "No" and $Malinche_Free is "No">>
 You must wait for the Spaniards to rescure Aguilar before you can meet them.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<elseif $Aguilar_Free is "Yes">>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No">>
 Marina, the Spaniards must interview and gain information about the gossip you heard. Go to the Discord discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. This is the chance to prove your worth to them. Handle this well, and you might become a trusted member of their group, handle it poorly, and who knows what your fate will hold!<br>
 <br>
 Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain them two points! [[Good luck|Malinche Quest]]. <br>
 <br>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
+Congratulations! You have sucessfully completed the quest!  You may now continue [[on your journey|On The Way to Veracruz]]!<br>
+<br>
 <</if>>
 
 <<case "Cortes">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
+<<if $Aguilar_Free is "No" and $Malinche_Free is "No">>
 You are to go on a quest to find the last two members of your team.  You must begin with Aguilar, as it is he you will meet first. Interview him on Discord and find the answers to the questions on the next page.  The questions are multiple choice, but be careful! <b> Each wrong answer will cost you 1 strength point, while each correct answer will gain you 1.  There is a lot at stake here.</b>  The less guessing you do, the stronger you will become!<br>
 <br>
 You first must interview Aguilar and then Marina. You must correctly answer three questions to unlock each character so they can join your team. Once Aguilar is unlocked, he may help you complete your quest for Marina.<br>
@@ -9077,16 +9083,16 @@ You first must interview Aguilar and then Marina. You must correctly answer thre
 Begin your quest to rescue <<link "Aguilar" "Aguilar Quest">><<set $Aguilar_1="No">><<set $Aguilar_2="No">><<set $Aguilar_3="No">><</link>>?<br>
 <br>
 
-<<elseif $Aguilar_Free is "Yes">>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No">>
 Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of <<link "value to your team" "Malinche Quest">><<set $Malinche_1="No">><<set $Malinche_2="No">><<set $Malinche_3="No">><</link>>.<br>
 <br>
-<<elseif $Malinche_Free is "Yes">>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
 Congratulations! You have sucessfully completed the quest!  You may now continue [[on your journey|On The Way to Veracruz]]!<br>
 <br>
 <</if>>
 
 <<case "Alvarado" or "Olid" or "Garrido">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
+<<if $Aguilar_Free is "No" and $Malinche_Free is "No">>
 You are to go on a quest to find the last two members of your team.  You must begin with Aguilar, as it is he you will meet first. Interview him on Discord and find the answers to the questions on the next page.  The questions are multiple choice, but be careful! <b> Each wrong answer will cost you 1 strength point, while each correct answer will gain you 1.  There is a lot at stake here.</b>  The less guessing you do, the stronger you will become!<br>
 <br>
 You first must interview Aguilar and then Marina. You must correctly answer three questions to unlock each character so they can join your team. Once Aguilar is unlocked, he may help you complete your quest for Marina. Only Cortes can enter the answers.<br>
@@ -9094,10 +9100,10 @@ You first must interview Aguilar and then Marina. You must correctly answer thre
 Begin your quest to rescue [[Aguilar|Aguilar Quest]]?<br>
 <br>
 
-<<elseif $Aguilar_Free is "Yes">>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No">>
 Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of [[value to your team|Malinche Quest]].<br>
 <br>
-<<elseif $Malinche_Free is "Yes">>
+<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
 Congratulations! You have sucessfully completed the quest!  You may now continue [[on your journey|On The Way to Veracruz]]!<br>
 <br>
 <</if>>
