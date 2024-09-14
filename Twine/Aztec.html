@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -824,8 +824,6 @@ Congratulations! You have been freed from your long captivity! &lt;&lt;link &quo
 &lt;br&gt;
 Aguilar, though you have been captive among the Maya for years, recently, you&#39;ve heard exciting news and now is your chance to escape.  A band of Spaniards have arrived and are going to interview you for information about this news you&#39;ve heard. If you can answer their questions, they will free you from your captivity, and you can join their expedition.  But beware, every wrong answer you give them will hurt them, while the correct answer will make your team stronger.&lt;br&gt;
 &lt;br&gt;
-When you have finished answering their questions on the discord discussion board, you may [[continue to find out if you are free|Aguilar Answers]].&lt;br&gt;
-&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;case &quot;Alvarado&quot; or &quot;Olid&quot; or &quot;Garrido&quot;&gt;&gt;
@@ -843,8 +841,7 @@ The great coastal city of Tulum.&lt;br&gt;
 &lt;br&gt;
 The priest in the temple.&lt;br&gt;
 &lt;br&gt;
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].&lt;br&gt;
-&lt;br&gt;
+
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;You have answered Question 1. The gossip came from the great coastal city of Tulum.&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
@@ -860,8 +857,7 @@ A rowdy group of strangers in the market.&lt;br&gt;
 &lt;br&gt;
 Messengers from the Aztec Emperor.&lt;br&gt;
 &lt;br&gt;
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].&lt;br&gt;
-&lt;br&gt;
+
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;You have answered Question 2. The Maya saw a house floating on water filled with men.&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
@@ -877,8 +873,7 @@ The strangers came ashore and asked for food.&lt;br&gt;
 &lt;br&gt;
 [[The strangers were carried away by a giant caiman|Aguilar Answers]].&lt;br&gt;
 &lt;br&gt;
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].&lt;br&gt;
-&lt;br&gt;
+
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;You have answered Question 3. The strangers fired rocks into the sea and fled.&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
@@ -897,13 +892,13 @@ Congratulations! You have freed Aguilar from his long captivity! &lt;&lt;link &q
 
 &lt;b&gt;Question One: Where did the gossip come from?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The land of Chuup&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The land of Chuup&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Their friend Náats&#39; Amal&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Their friend Náats&#39; Amal&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The great coastal city of Tulum&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The great coastal city of Tulum&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The priest in the temple&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The priest in the temple&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_1=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Aguilar_1 is &quot;Yes&quot;&gt;&gt;
 &lt;b&gt;You have answered Question 1. The gossip came from the great coastal city of Tulum.&lt;/b&gt;&lt;br&gt;
@@ -913,13 +908,13 @@ Congratulations! You have freed Aguilar from his long captivity! &lt;&lt;link &q
 &lt;&lt;if $Aguilar_2 is &quot;No&quot; or $Aguilar_2 eq &quot;&quot; or ndef $Aguilar_2&gt;&gt;
 &lt;b&gt;Question 2: What did the Maya see?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;A long line of men on horseback&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;A long line of men on horseback&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;A House Floating on the Water filled with men&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;A House Floating on the Water filled with men&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;A rowdy group of strangers in the market&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;A rowdy group of strangers in the market&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Messengers from the Aztec Emperor&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;Messengers from the Aztec Emperor&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_2=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;You have answered Question 2. The Maya saw a house floating on water filled with men.&lt;/b&gt;&lt;br&gt;
@@ -929,13 +924,13 @@ Congratulations! You have freed Aguilar from his long captivity! &lt;&lt;link &q
 &lt;&lt;if $Aguilar_3 is &quot;No&quot; or $Aguilar_3 eq &quot;&quot; or ndef $Aguilar_3&gt;&gt;
 &lt;b&gt;Question 3: How did the interaction between the groups go?&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers fired rocks into the sea and fled&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers fired rocks into the sea and fled&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers came ashore and asked for food&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers came ashore and asked for food&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers came ashore and attacked&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers came ashore and attacked&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;The strangers were carried away by a giant caiman&quot; &quot;Aguilar Answers&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;&lt;link &quot;The strangers were carried away by a giant caiman&quot; &quot;Aguilar Quest&quot;&gt;&gt;&lt;&lt;set $Aguilar_3=&quot;No&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]-=1&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;You have answered Question 3. The strangers fired rocks into the sea and fled.&lt;/b&gt;&lt;br&gt;
