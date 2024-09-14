@@ -1477,7 +1477,7 @@ Each member of the council will cast their individual vote.<br>
 You have two choices:<br>
 <br>
 Option 1: Listen to <<print $Aztec_Leader>> and attempt to calm the mob that surrounds you. Now is not the time to continue this fight and it's sure to bring <<link "disaster for your people" "Aztecs Decide About The Riot">><<set $users[$role]["choices"]["Riot_No"] = $users[$role]["choices"]["Riot_No"] = 1>><<set $users[$role]["choices"]["Riot_Yes"] = $users[$role]["choices"]["Riot_Yes"] = 0>><<set $users[$role]["choices"]["Riot_Vote"] = $users[$role]["choices"]["Riot_Vote"] = 1>><</link>>.<br>
-
+<br>
 Option 2: Oppose <<print $Aztec_Leader>>, who is clearly weak and no longer represents the will of the people. You egg the people on and assure them that <<link "victory is yours to be taken" "Aztecs Decide About The Riot">><<set $users[$role]["choices"]["Riot_No"] = $users[$role]["choices"]["Riot_No"] = 0>><<set $users[$role]["choices"]["Riot_Yes"] = $users[$role]["choices"]["Riot_Yes"] = 1>><<set $users[$role]["choices"]["Riot_Vote"] = $users[$role]["choices"]["Riot_Vote"] = 1>><</link>>.<br>
 <br>
 <</if>>
@@ -2029,6 +2029,7 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 
 <<switch $users[$role]["faction"]>>
+
 <<case "Aztecs">>
 <<if $role is $Aztec_Leader>>
 <<if _Riot_Vote < (_Aztec_Tot_Play - 1)>>
@@ -2047,7 +2048,6 @@ You observe the crowd warily and [[await their response|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
 <</if>>
-
 <<else>>
 Total Votes cast: <<print _Riot_Vote>><br>
 Votes for Riot: <<print _Riot_Yes>><br>
@@ -2107,7 +2107,7 @@ You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
 <</if>>
-<</switch>
+<</switch>>
 
 <</liveblock>>
 
