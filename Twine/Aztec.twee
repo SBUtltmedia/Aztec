@@ -1444,60 +1444,27 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 <<if ndef $users[$role]["choices"]["Riot_Vote"]>>
 <<set $users[$role]["choices"]["Riot_Vote"]=0>>
 <</if>>
-<<if ndef $users[$role]["choices"]["Riot_Vote_sum"]>>
-<<set $users[$role]["choices"]["Riot_Vote_sum"]=0>>
+<<if ndef $users[$role]["choices"]["Riot_Yes"]>>
+<<set $users[$role]["choices"]["Riot_Yes"]=0>>
 <</if>>
-<<if ndef $users[$role]["choices"]["Riot_sum"]>>
-<<set $users[$role]["choices"]["Riot_sum"]=0>>
+<<if ndef $users[$role]["choices"]["Riot_No"]>>
+<<set $users[$role]["choices"]["Riot_No"]=0>>
 <</if>>
-<<if ndef $users[$role]["choices"]["Riot"]>>
-<<set $users[$role]["choices"]["Riot"]=0>>
-<</if>>
-
 <<switch $users[$role]["faction"]>>
 <<case "Spaniards">>
 After days of eerie quiet, the Mexica resume their assault on the palace. You are hungry and outnumbered. Desperate to bring the siege to an end so you can make your escape, you decide to deploy the best weapon you have at your disposal: <<print $Aztec_Leader>>.<br>
 <br>
 You take him to the roof of the palace and demand that he bring a stop to the assault. <<print $Aztec_Leader>> steps to the edge of the roof and the volley of rocks and arrows comes to a halt. He speaks to his people, pleading with them to put down their weapons. They are no match for your weapons, he tells them, and this can only end in tragedy. <br>
 <br>
-<<if $Riot_Vote < 4>>
-You observe warily, trying to gauge the crowd's response.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
-<br>
-You are waiting for the Aztecs to do something.<br>
-<br>
-<<else>>
-<<if $Riot >= 0>>
-You observe warily, trying to gauge [[the crowd's response|Aztecs Riot]]! <br>
-<br>
-<<elseif $Riot < 0>>
-You observe warily, trying to gauge [[the crowd's response|Aztec Mob Recedes]].<br>
-<br>
-<</if>>
-<</if>>
+[[You wait to see their response|Aztecs Decide About The Riot]]
+
 <<case "Aztecs">>
 <<if $role is $Aztec_Leader>>
 After days of eerie quiet, your people resume their assault on the palace. The Spaniards are hungry and outnumbered. Desperate to bring the siege to an end so they can make their escape, they order you to speak to your people.<br>
 <br>
 They take you to the roof of the palace and demand that you bring a stop to the assault. As you step to the edge of the roof, the volley of rocks and arrows comes to a halt. You speak to your people, pleading with them to put down their weapons. They are no match for the Spanish weapons, you tell them. This can only end in tragedy. <br>
 <br>
-<<if $Riot_Vote < 4>>
-You observe the crowd warily and await their response.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
-<br>
-You are waiting for the Aztecs to do something.<br>
-<br>
-<<else>>
-<<if $Riot >=0>>
-You observe the crowd warily and [[await their response|Aztecs Riot]]. <br>
-<br>
-<<elseif $Riot <0>>
-You observe the crowd warily and [[await their response|Aztec Mob Recedes]].<br>
-<br>
-<</if>>
-<</if>>
+[[You wait to see their response|Aztecs Decide About The Riot]]
 <<else>>
 Once the city has been adequately prepared for battle, you resume your attack on the palace. The Spaniards have been barricaded inside for days with <<print $Aztec_Leader>> as their prisoner. You have lost faith in your leader, whose decisions are what brought you to this point.<br>
 <br>
@@ -1509,32 +1476,15 @@ Each member of the council will cast their individual vote.<br>
 <br>
 You have two choices:<br>
 <br>
-Option 1: Listen to <<print $Aztec_Leader>> and attempt to calm the mob that surrounds you. Now is not the time to continue this fight and it's sure to bring <<link "disaster for your people" "Aztecs Decide About The Riot">><<set $Riot = $Riot + -1>><<set $Riot_Vote = $Riot_Vote + 1>><</link>>.<br>
-<br>
+Option 1: Listen to <<print $Aztec_Leader>> and attempt to calm the mob that surrounds you. Now is not the time to continue this fight and it's sure to bring <<link "disaster for your people" "Aztecs Decide About The Riot">><<set $users[$role]["choices"]["Riot_No"] = $users[$role]["choices"]["Riot_No"] = 1>><<set $users[$role]["choices"]["Riot_Yes"] = $users[$role]["choices"]["Riot_Yes"] = 0>><<set $users[$role]["choices"]["Riot_Vote"] = $users[$role]["choices"]["Riot_Vote"] = 1>><</link>>.<br>
 
-Option 2: Oppose <<print $Aztec_Leader>>, who is clearly weak and no longer represents the will of the people. You egg the people on and assure them that <<link "victory is yours to be taken" "Aztecs Decide About The Riot">><<set $Riot = $Riot + 1>><<set $Riot_Vote = $Riot_Vote + 1>><</link>>.<br>
+Option 2: Oppose <<print $Aztec_Leader>>, who is clearly weak and no longer represents the will of the people. You egg the people on and assure them that <<link "victory is yours to be taken" "Aztecs Decide About The Riot">><<set $users[$role]["choices"]["Riot_No"] = $users[$role]["choices"]["Riot_No"] = 0>><<set $users[$role]["choices"]["Riot_Yes"] = $users[$role]["choices"]["Riot_Yes"] = 1>><<set $users[$role]["choices"]["Riot_Vote"] = $users[$role]["choices"]["Riot_Vote"] = 1>><</link>>.<br>
 <br>
 <</if>>
+
 <<case "Tlaxcalans">>
-<<if $Riot_Vote < 4>>
-You wonder what is happening in Tenochtitlan.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
-<br>
-You are waiting for the Aztecs to do something.<br>
-<br>
-<<else>>
-<<if $Riot >0>>
-You wonder what is [[happening in Tenochtitlan|Aztecs Riot]]! <br>
-<br>
-<<elseif $Riot <0>>
-You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
-<br>
-<</if>>
-<</if>>
+You [[wonder what is happening in Tenochtitlán|Aztecs Decide About The Riot]].
 <</switch>>
-
-
 <</liveblock>>
 
 
@@ -2072,24 +2022,92 @@ Option 2: Turn against your Spanish companions and help drive them out of the ci
 
 :: Aztecs Decide About The Riot {"position":"2875,10050","size":"100,100"}
 <<liveblock>>
-<<if $Riot_Vote isnot 5>>
+
+<<set _Riot_Vote = setup.getTotalChoices("Riot_Vote")>>
+<<set _Riot_Yes = setup.getTotalChoices("Riot_Yes")>>
+<<set _Riot_No = setup.getTotalChoices ("Riot_No")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+
+<<switch $users[$role]["faction"]>>
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+<<if _Riot_Vote < (_Aztec_Tot_Play - 1)>>
+You observe the crowd warily and await their response.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the rest of the Aztecs to do something.<br>
+<br>
+<<else>>
+<<if _Riot_Yes >= _Riot_No>>
+You observe the crowd warily and [[await their response|Aztecs Riot]]. <br>
+<br>
+<<elseif _Riot_Yes < _Riot_No>>
+You observe the crowd warily and [[await their response|Aztec Mob Recedes]].<br>
+<br>
+<</if>>
+<</if>>
+
+<<else>>
+Total Votes cast: <<print _Riot_Vote>><br>
+Votes for Riot: <<print _Riot_Yes>><br>
+Votes against Riot: <<print _Riot_No>><br>
+Total Players in Game: <<print _Aztec_Tot_Play>><br>
+<br>
+
+<<if _Riot_Vote < (_Aztec_Tot_Play - 1)>>
 You wait while the rest of your team casts their vote. <br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
-<<print $Riot_Vote>> votes have been cast.<br>
-<br>
-
 <<else>>
-<<if $Riot >0>>
+<<if _Riot_Yes >= _Riot_No>>
 You have decided [[to fight|Aztecs Riot]]! <br>
 <br>
-<<elseif $Riot <0>>
+<<elseif _Riot_Yes < _Riot_No>>
 You have decided now is not the time to fight. You gather the council together and [[retreat, for now|Aztec Mob Recedes]].<br>
 <br>
 <</if>>
 <</if>>
+<</if>>
 
+<<case "Spaniards">>
+<<if _Riot_Vote < (_Aztec_Tot_Play - 1)>>
+You observe warily, trying to gauge the crowd's response.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Aztecs to do something.<br>
+<br>
+<<else>>
+<<if _Riot_Yes >= _Riot_No>>
+You observe warily, trying to gauge [[the crowd's response|Aztecs Riot]]! <br>
+<br>
+<<elseif _Riot_Yes < _Riot_No>>
+You observe warily, trying to gauge [[the crowd's response|Aztec Mob Recedes]].<br>
+<br>
+<</if>>
+<</if>>
+
+
+<<case "Tlaxcalans">>
+<<if _Riot_Vote < (_Aztec_Tot_Play - 1)>>
+You wonder what is happening in Tenochtitlan.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Aztecs to do something.<br>
+<br>
+<<else>>
+<<if _Riot_Yes >= _Riot_No>>
+You wonder what is [[happening in Tenochtitlan|Aztecs Riot]]! <br>
+<br>
+<<elseif _Riot_Yes < _Riot_No>>
+You wonder what is [[happening in Tenochtitlan|Aztec Mob Recedes]].<br>
+<br>
+<</if>>
+<</if>>
+<</switch>
 
 <</liveblock>>
 
