@@ -2978,7 +2978,7 @@ The rabblerouser [[chickened out|Burning the Ships: Failed Mutiny]]!<br>
 <<if $Span_Leader isnot $role>>
 After the first encounter with the fabled Mexica, the group has questioned the wisdom of moving forward. Not only would such an expedition be illegal, it's clear that great danger lies ahead with little promise of reward. Nonetheless, the coup has failed and it is clear that you will continue your perilous journey inward.<br>
 <br>
-After all the turmoil that surrounded this decision, things proceed to get worse: <<print $Span_Leader>> learned that a coup was in the works and would do anything to prevent it. In a bid to force the group inland, <<print $Span_Leader>> has beached the your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After all the turmoil that surrounded this decision, things proceed to get worse: <<print $Span_Leader>> learned that a coup was in the works and would do anything to prevent it. <b>In a bid to force the group inland, <<print $Span_Leader>> has beached the your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials.</b> <br>
 <br>
 All of these events have been a blow to team morale. Head to the Spanish discussion board to hear what <<print $Span_Leader>> has to say about this. After what has happened, can you still trust <<print $Span_Leader>>?<br>
 <br>
@@ -8260,7 +8260,7 @@ Clearly, your desire to lead was not misplaced! Perhaps now, your teammates will
 There is little choice now but to forge onward. Head to the Spanish discussion board to hear what Cortes has to say about this. How will the team move forward with so many betrayals? How will you play this relationship [[moving forward|Tlaxcalans decide to attack the Spaniards in Veracruz]]?<br>
 <br>
 <<elseif $Span_Leader is "Olid">>
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After the first encounter with the fabled Mexica, the group was uneasy. <b>Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships!</b> Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
 <br>
 Clearly, your desire to lead and your teammates trust in you were both warranted!<br>
 <br>
@@ -8269,7 +8269,7 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 <</if>>
 <<case "Marina" or "Aguilar" or "Garrido" or "Alvarado">>
 <<if $Span_Leader is "Cortes">>
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. <b>In a bid to force the group inland, he beached your ships! </b> Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
 <br>
 Maybe you should have listened to Olid!<br>
 <br>
@@ -8277,7 +8277,7 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 <br>
 
 <<elseif $Span_Leader is "Olid">>
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. <b>In a bid to force the group inland, he beached your ships!</b> Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
 <br>
 Clearly, you've made the right decision in electing Olid as your new winner.<br>
 <br>
@@ -8306,14 +8306,14 @@ When you have made your case, [[you may carry on|The Spaniards Head Inland]].<br
 <</if>>
 <<case "Olid">>
 <<if $Span_Leader is "Cortes">>
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. <b>In a bid to force the group inland, he beached your ships!</b> Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
 <br>
 Clearly, your desire to lead was not misplaced! Perhaps now, your teammates will begin to see Cortes for who he really is.<br>
 <br>
 There is little choice now but to forge onward. Head to the Spanish discussion board to hear what Cortes has to say about this. How will the team move forward with so many betrayals? How will you play this relationship [[moving forward|The Spaniards Head Inland]]?<br>
 <br>
 <<elseif $Span_Leader is "Olid">>
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. <b>In a bid to force the group inland, he beached your ships!</b> Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
 <br>
 Clearly, your desire to lead and your teammates trust in you were both warranted!<br>
 <br>
@@ -8322,7 +8322,7 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 <</if>>
 <<case "Marina" or "Aguilar" or "Garrido" or "Alvarado">>
 <<if $Span_Leader is "Cortes">>
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. <b>In a bid to force the group inland, he beached your ships!</b> Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
 <br>
 Maybe you should have listened to Olid!<br>
 <br>
@@ -8330,7 +8330,7 @@ There is little choice now but to forge onward. Head to the Spanish discussion b
 <br>
 
 <<elseif $Span_Leader is "Olid">>
-After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. In a bid to force the group inland, he beached your ships! Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
+After the first encounter with the fabled Mexica, the group was uneasy. Cortes, mistaking the unease for a desire to go inland made a bold move. <b>In a bid to force the group inland, he beached your ships!</b> Though not destroyed, fixing them would require many weeks of repair, assuming you could even find the necessary materials. <br>
 <br>
 Clearly, you've made the right decision in electing Olid as your new winner.<br>
 <br>
@@ -10059,11 +10059,31 @@ After much  debate , you finally determine that <<print $Span_Leader>> has the g
 <<set _Sp_Ld_Oli_Teno = setup.getTotalChoices("Sp_Ld_Oli_Teno")>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
 Total Votes cast: <<print _Sp_Ld_Vote_Teno>><br>
+<<if $Alvarado_Act is "No">>
+
+<<elseif $Alvarado_Act is "Yes">>
 Votes for Alvarado: <<print _Sp_Ld_Alv_Teno>><br>
+<</if>>
+<<if $Aguilar_Act is "No">>
+
+<<elseif $Aguilar_Act is "Yes">>
 Votes for Aguilar: <<print _Sp_Ld_Agu_Teno>><br>
+<</if>>
+<<if $Garrido_Act is "No">>
+
+<<elseif $Garrido_Act is "Yes">>
 Votes for Garrido: <<print _Sp_Ld_Gar_Teno>><br>
+<</if>>
+<<if $Marina_Act is "No">>
+
+<<elseif $Marina_Act is "Yes">>
 Votes for Marina: <<print _Sp_Ld_Mar_Teno>><br>
+<</if>>
+<<if $Olid_Act is "No">>
+
+<<elseif $Olid_Act is "Yes">>
 Votes for Olid: <<print _Sp_Ld_Oli_Teno>><br>
+<</if>>
 Total Players in Game: <<print _Span_Tot_Play>><br>
 <br>
 
