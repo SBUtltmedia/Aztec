@@ -831,20 +831,12 @@ When you have finished answering their questions on the discord discussion board
 <br>
 <</if>>
 
-<<case "Marina">>
-<<if ndef $Aguilar_1 or $Aguilar_1 eq "">>
-You must wait for Cortes to begin the quest.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<<elseif $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
-Congratulations! You have freed Aguilar from his long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
-<br>
-<<else>>
+<<case "Alvarado" or "Olid" or "Garrido">>
 To “unlock” Aguilar's character, you must interview him about some gossip he overheard. Interview him to find the answers to the following questions:<br> 
 <br>
 <<if $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
 
-<b>Where did the gossip come from?</b><br>
+<b>Question 1: Where did the gossip come from?</b><br>
 <br>
 The land of Chuup.<br>
 <br>
@@ -857,11 +849,11 @@ The priest in the temple.<br>
 Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
 <br>
 <<else>>
-You have answered Question 1. The gossip came from the great coastal city of Tulum.<br>
+<b>You have answered Question 1. The gossip came from the great coastal city of Tulum.</b><br>
 <br>
 <</if>>
 <<if $Aguilar_2 is "No" or $Aguilar_2 eq "" or ndef $Aguilar_2>>
-<b>What did the Maya see?</b><br>
+<b>Question 2: What did the Maya see?</b><br>
 <br>
 A long line of men on horseback.<br>
 <br>
@@ -874,11 +866,11 @@ Messengers from the Aztec Emperor.<br>
 Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
 <br>
 <<else>>
-You have answered Question 2. The Maya saw a house floating on water filled with men.<br>
+<b>You have answered Question 2. The Maya saw a house floating on water filled with men.</b><br>
 <br>
 <</if>>
 <<if $Aguilar_3 is "No" or $Aguilar_3 eq "" or ndef $Aguilar_3>>
-<b>How did the interaction between the groups go?</b><br>
+<b>Question 3: How did the interaction between the groups go?</b><br>
 <br>
 The strangers fired rocks into the sea and fled.<br>
 <br>
@@ -891,9 +883,8 @@ The strangers came ashore and asked for food.<br>
 Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
 <br>
 <<else>>
-You have answered Question 3. The strangers fired rocks into the sea and fled.<br>
+<b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
 <br>
-<</if>>
 <</if>>
 
 <<case "Cortes">>
@@ -907,41 +898,41 @@ Congratulations! You have freed Aguilar from his long captivity! <<link "You may
 
 <<elseif $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
 
-<b>Where did the gossip come from?</b><br>
+<b>Question One: Where did the gossip come from?</b><br>
 <br>
 <<link "The land of Chuup" "Aguilar Answers">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<link "Their friend Náats' Amal" "Aguilar Answers">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "The great coastal city of Tulum" "Aguilar Answers">><<set $Aguilar_1="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=2>><</link>>.<br>
+<<link "The great coastal city of Tulum" "Aguilar Answers">><<set $Aguilar_1="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
 <br>
 <<link "The priest in the temple" "Aguilar Answers">><<set $Aguilar_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<elseif $Aguilar_1 is "Yes">>
-You have answered Question 1. The gossip came from the great coastal city of Tulum.<br>
+<b>You have answered Question 1. The gossip came from the great coastal city of Tulum.</b><br>
 <br>
 <</if>>
 
 <<if $Aguilar_2 is "No" or $Aguilar_2 eq "" or ndef $Aguilar_2>>
-<b>What did the Maya see?</b><br>
+<b>Question 2: What did the Maya see?</b><br>
 <br>
 <<link "A long line of men on horseback" "Aguilar Answers">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "A House Floating on the Water filled with men" "Aguilar Answers">><<set $Aguilar_2="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=2>><</link>>.<br>
+<<link "A House Floating on the Water filled with men" "Aguilar Answers">><<set $Aguilar_2="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
 <br>
 <<link "A rowdy group of strangers in the market" "Aguilar Answers">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<link "Messengers from the Aztec Emperor" "Aguilar Answers">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<else>>
-You have answered Question 2. The Maya saw a house floating on water filled with men.<br>
+<b>You have answered Question 2. The Maya saw a house floating on water filled with men.</b><br>
 <br>
 <</if>>
 
 <<if $Aguilar_3 is "No" or $Aguilar_3 eq "" or ndef $Aguilar_3>>
-<b>How did the interaction between the groups go?</b><br>
+<b>Question 3: How did the interaction between the groups go?</b><br>
 <br>
-<<link "The strangers fired rocks into the sea and fled" "Aguilar Answers">><<set $factions["Spaniards"]["stats"]["Strength"]+=2>><<set $Aguilar_3="Yes">><</link>>.<br>
+<<link "The strangers fired rocks into the sea and fled" "Aguilar Answers">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Aguilar_3="Yes">><</link>>.<br>
 <br>
 <<link "The strangers came ashore and asked for food" "Aguilar Answers">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
@@ -950,75 +941,8 @@ You have answered Question 2. The Maya saw a house floating on water filled with
 <<link "The strangers were carried away by a giant caiman" "Aguilar Answers">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<else>>
-You have answered Question 3. The strangers fired rocks into the sea and fled.<br>
+<b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
 <br>
-<</if>>
-
-<<case "Alvarado" or "Olid" or "Garrido">>
-<<if ndef $Aguilar_1 or $Aguilar_1 eq "">>
-You must wait for Cortes to begin the quest.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<<elseif $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
-Congratulations! You have freed Aguilar from his long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
-<br>
-<<else>>
-To “unlock” Aguilar's character, you must interview him about some gossip he overheard. Interview him to find the answers to the following questions:<br> 
-<br>
-
-<<if $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
-
-<b>Where did the gossip come from?</b><br>
-<br>
-The land of Chuup.<br>
-<br>
-Their friend Náats' Amal.<br>
-<br>
-The great coastal city of Tulum.<br>
-<br>
-The priest in the temple.<br>
-<br>
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
-<br>
-<<else>>
-You have answered Question 1. The gossip came from the great coastal city of Tulum.<br>
-<br>
-<</if>>
-<<if $Aguilar_2 is "No" or $Aguilar_2 eq "" or ndef $Aguilar_2>>
-<b>What did the Maya see?</b><br>
-<br>
-A long line of men on horseback.<br>
-<br>
-A House Floating on the Water filled with men.<br>
-<br>
-A rowdy group of strangers in the market.<br>
-<br>
-Messengers from the Aztec Emperor.<br>
-<br>
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
-<br>
-<<else>>
-You have answered Question 2. The Maya saw a house floating on water filled with men.<br>
-<br>
-<</if>>
-
-<<if $Aguilar_3 is "No" or $Aguilar_3 eq "" or ndef $Aguilar_3>>
-<b>How did the interaction between the groups go?</b><br>
-<br>
-The strangers fired rocks into the sea and fled.<br>
-<br>
-The strangers came ashore and asked for food.<br>
-<br>
-The strangers came ashore and attacked.<br>
-<br>
-The strangers were carried away by a giant caiman.<br>
-<br>
-Check and see if [[Cortes answered the questions correctly|Aguilar Answers]].<br>
-<br>
-<<else>>
-You have answered Question 3. The strangers fired rocks into the sea and fled.<br>
-<br>
-<</if>>
 <</if>>
 <</switch>>
 
@@ -5598,7 +5522,7 @@ To “unlock” Marina's character, you must interview her about some gossip she
 <br>
 
 <<if $Malinche_1 is "No" or ndef $Malinche_1 or $Malinche_1 eq "">>
-<b>Why has power shifted in the land of the mountains?</b><br>
+<b>Question 1: Why has power shifted in the land of the mountains?</b><br>
 <br>
 Cholula has changed alliances.<br>
 <br>
@@ -5608,14 +5532,12 @@ The Mexica and the Cholulans fought a battle against Tlaxcala.<br>
 <br>
 Tlaxcala invaded Cholula, angering the Mexica.<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Malinche Answers]].<br>
-<br>
 <<else>>
-You have answered Question 1 correctly. Power has shifted in the land of the mountains because Choulula has changed alliances.<br>
+<b>You have answered Question 1 correctly. Power has shifted in the land of the mountains because Choulula has changed alliances.</b><br>
 <br>
 <</if>>
 <<if $Malinche_2 is "No" or ndef $Malinche_2 or $Malinche_2 eq "">>
-<b>Why is the trader worried?</b><br>
+<b>Question 2: Why is the trader worried?</b><br>
 <br>
 He can no longer trade with Cholula.<br>
 <br>
@@ -5625,16 +5547,14 @@ He fears the Aztecs will soon conquer Maya territory.<br>
 <br>
 He fears he will lose his supply of cacao.<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Malinche Answers]].<br>
-<br>
 
 <<else>>
-You have answered Question 2 correctly. The trader fears that the Aztecs will soon conquor Maya territory.<br>
+<b>You have answered Question 2 correctly. The trader fears that the Aztecs will soon conquor Maya territory.</b><br>
 <br>
 <</if>>
 
 <<if $Malinche_3 is "No" or ndef $Malinche_3 or $Malinche_3 eq "">>
-<b>Given this information, who might make a valuable ally for the Spanish?</b><br>
+<b>Question 3: Given this information, who might make a valuable ally for the Spanish?</b><br>
 <br>
 Tlaxcala<br>
 <br>
@@ -5644,10 +5564,8 @@ Both<br>
 <br>
 Neither<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Malinche Answers]].<br>
-<br>
 <<else>>
-You have answered Question 3 correctly. Tlaxcala might make a valuable ally.<br>
+</b>You have answered Question 3 correctly. Tlaxcala might make a valuable ally.</b><br>
 <br>
 <</if>>
 <</if>>
@@ -5671,8 +5589,7 @@ Congratulations! You have been recruited by the Spaniards! <<link "You may now c
 <br>
 <b>Trader:</b><i> Le mexicas ken tijik u k'aab Amal ka'atéen asab lu'um. Séeb u comerán le lu'umo' yéetel in lu'um xan. K'a'abet wáaj k je'ela'.</i><br>
 <br>
-Marina, you have been gifted to these strange men. Now is your chance to prove your worth. Go to the Discord discussion board, answer their questions, and demonstrate your gift for languages. When you are ready, you may [[see if you have gained their trust|Malinche Answers]].<br>
-<br>
+Marina, you have been gifted to these strange men. Now is your chance to prove your worth. Go to the Discord discussion board, answer their questions, and demonstrate your gift for languages.
 <</if>>
 
 <<case "Cortes">>
@@ -5684,50 +5601,50 @@ Interview her to find the answers to the following questions:<br>
 Congratulations! You have recruited Marina! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Malinche_Free="Yes">><</link>>.<br>
 <br>
 <<elseif $Malinche_1 is "No" or ndef $Malinche_1 or $Malinche_1 eq "">>
-<b>Why has power shifted in the land of the mountains?</b><br>
+<b>Question 1: Why has power shifted in the land of the mountains?</b><br>
 <br>
-<<link "Cholula has changed alliances" "Malinche Answers">><<set $Malinche_1="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=2>><</link>>.<br>
+<<link "Cholula has changed alliances" "Malinche Quest">><<set $Malinche_1="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
 <br>
-<<link "Tlaxcala and Cholula fought a battle against the Mexica" "Malinche Answers">><<set $Malinche_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "Tlaxcala and Cholula fought a battle against the Mexica" "Malinche Quest">><<set $Malinche_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "The Mexica and the Cholulans fought a battle against Tlaxcala" "Malinche Answers">><<set $Malinche_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "The Mexica and the Cholulans fought a battle against Tlaxcala" "Malinche Quest">><<set $Malinche_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "Tlaxcala invaded Cholula, angering the Mexica" "Malinche Answers">><<set $Malinche_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "Tlaxcala invaded Cholula, angering the Mexica" "Malinche Quest">><<set $Malinche_1="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<else>>
-You have answered Question 1 correctly. Power has shifted in the land of the mountains because Choulula has changed alliances.<br>
+<b>You have answered Question 1 correctly. Power has shifted in the land of the mountains because Choulula has changed alliances.</b><br>
 <br>
 <</if>>
  
 <<if $Malinche_2 is "No" or ndef $Malinche_2 or $Malinche_2 eq "">>
-<b>Why is the trader worried?</b><br>
+<b>Question 2: Why is the trader worried?</b><br>
 <br>
-<<link "He can no longer trade with Cholula" "Malinche Answers">><<set $Malinche_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "He can no longer trade with Cholula" "Malinche Quest">><<set $Malinche_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "He fears the war will spill over into Maya territory" "Malinche Answers">><<set $Malinche_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "He fears the war will spill over into Maya territory" "Malinche Quest">><<set $Malinche_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "He fears the Aztecs will soon conquer Maya territory" "Malinche Answers">><<set $Malinche_2="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=2>><</link>>.<br>
+<<link "He fears the Aztecs will soon conquer Maya territory" "Malinche Quest">><<set $Malinche_2="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
 <br>
-<<link "He fears he will lose his supply of cacao" "Malinche Answers">><<set $Malinche_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "He fears he will lose his supply of cacao" "Malinche Quest">><<set $Malinche_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<else>>
-You have answered Question 2 correctly. The trader fears that the Aztecs will soon conquor Maya territory.<br>
+<b>You have answered Question 2 correctly. The trader fears that the Aztecs will soon conquor Maya territory.</b><br>
 <br>
 <</if>>
 
 <<if $Malinche_3 is "No" or ndef $Malinche_3 or $Malinche_3 eq "">>
-<b>Given this information, who might make a valuable ally for the Spanish?</b><br>
+<b>Question 3: Given this information, who might make a valuable ally for the Spanish?</b><br>
 <br>
-<<link "Tlaxcala" "Malinche Answers">><<set $factions["Spaniards"]["stats"]["Strength"]+=2>><<set $Malinche_3="Yes">><</link>>.<br>
+<<link "Tlaxcala" "Malinche Quest">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Malinche_3="Yes">><</link>>.<br>
 <br>
-<<link "Cholula" "Malinche Answers">><<set $Malinche_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "Cholula" "Malinche Quest">><<set $Malinche_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "Both" "Malinche Answers">><<set $Malinche_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "Both" "Malinche Quest">><<set $Malinche_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
-<<link "Neither" "Malinche Answers">><<set $Malinche_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<<link "Neither" "Malinche Quest">><<set $Malinche_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
 <br>
 <<else>>
-You have answered Question 3 correctly. Tlaxcala might make a valuable ally.<br>
+<b>You have answered Question 3 correctly. Tlaxcala might make a valuable ally.</b><br>
 <br>
 <</if>>
 
@@ -5743,7 +5660,7 @@ Congratulations! You have recruited Marina! <<link "You may now continue" "Spani
 To “unlock” Marina's character, you must interview her about some gossip she overheard. Interview her to find the answers to the following questions:<br> 
 <br>
 <<if $Malinche_1 is "No" or ndef $Malinche_1 or $Malinche_1 eq "">>
-<b>Why has power shifted in the land of the mountains?</b><br>
+<b>Question 1: Why has power shifted in the land of the mountains?</b><br>
 <br>
 Cholula has changed alliances.<br>
 <br>
@@ -5753,14 +5670,12 @@ The Mexica and the Cholulans fought a battle against Tlaxcala.<br>
 <br>
 Tlaxcala invaded Cholula, angering the Mexica.<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Malinche Answers]].<br>
-<br>
 <<else>>
-You have answered Question 1 correctly. Power has shifted in the land of the mountains because Choulula has changed alliances.<br>
+<b>You have answered Question 1 correctly. Power has shifted in the land of the mountains because Choulula has changed alliances.</b><br>
 <br>
 <</if>>
 <<if $Malinche_2 is "No" or ndef $Malinche_2 or $Malinche_2 eq "">>
-<b>Why is the trader worried?</b><br>
+<b>Question 2: Why is the trader worried?</b><br>
 <br>
 He can no longer trade with Cholula.<br>
 <br>
@@ -5770,14 +5685,12 @@ He fears the Aztecs will soon conquer Maya territory.<br>
 <br>
 He fears he will lose his supply of cacao.<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Malinche Answers]].<br>
-<br>
 <<else>>
-You have answered Question 2 correctly. The trader fears that the Aztecs will soon conquor Maya territory.<br>
+<b>You have answered Question 2 correctly. The trader fears that the Aztecs will soon conquor Maya territory.</b><br>
 <br>
 <</if>>
 <<if $Malinche_3 is "No" or ndef $Malinche_3 or $Malinche_3 eq "">>
-<b>Given this information, who might make a valuable ally for the Spanish?</b><br>
+<b>Question 3: Given this information, who might make a valuable ally for the Spanish?</b><br>
 <br>
 Tlaxcala<br>
 <br>
@@ -5787,16 +5700,12 @@ Both<br>
 <br>
 Neither<br>
 <br>
-Check and see if [[Cortes answered the questions correctly|Malinche Answers]].<br>
-<br>
 <<else>>
-You have answered Question 3 correctly. Tlaxcala might make a valuable ally.<br>
+<b>You have answered Question 3 correctly. Tlaxcala might make a valuable ally.</b><br>
 <br>
 <</if>>
 <</if>>
 <</switch>>
-
-
 <</liveblock>>
 
 
@@ -7998,7 +7907,7 @@ Remember: You must enter the proper Nahuatl name and you must use the correct sp
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 
-Your team has accumulated <<print $Quest_Points_A>> points. <br>
+<b>Your team has accumulated <<print $Quest_Points_A>> points. </b><br>
 <br>
 
 <<if ndef $Xochimilco_Ans_A or $Xochimilco_Ans_A eq "" or $Xochimilco_Ans_A isnot "xochimilco">> 
@@ -8060,7 +7969,7 @@ You cannot yet travel to Cholula, continue your quest to gather all the items ne
 <<set$Quest_Points_T=0 >>
 <</if>>
 
-Your team has accumulated <<print $Quest_Points_T>> points. <br>
+<b>Your team has accumulated <<print $Quest_Points_T>> points. </b><br>
 <br>
 
 <<if ndef $Xochimilco_Ans_T or $Xochimilco_Ans_T eq "" or $Xochimilco_Ans_T isnot "xochimilco">> 
@@ -9142,91 +9051,58 @@ It is now time to [[investigate these two individuals|Spaniards Quest Instructio
 <<liveblock>>
 <<switch $role>>
 <<case "Aguilar">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "No" or ndef $Malinche_Free or $Malinche_Free eq "">>
+<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
 Aguilar, the Spaniards must interview and gain information about the gossip you heard. Go to the Discord discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. <br>
 <br>
-Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain them two points! [[Good luck|Aguilar Quest]]. <br>
+Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain you one! [[Good luck|Aguilar Quest]]. <br>
 <br>
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No" or $Malinche_Free eq "" or ndef $Malinche_Free>>
+<<elseif $Aguilar_Free is "Yes">>
 The Spaniards have freed you from your long captivity! You may now join them and help them recruit this strange woman, Marina. Your gift for languages [[will come in handy here|Malinche Quest]]!<br>
-<br>
-<<elseif $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "Yes">>
-Aguilar, the Spaniards must interview and gain information about the gossip you heard. Go to the Discord discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. <br>
-<br>
-Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain them two points! [[Good luck|Aguilar Quest]]. <br>
-<br>
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
-Congratulations! You have sucessfully completed the quest!  You may now join the rest of the Spaniards [[on their journey|On The Way to Veracruz]]!<br>
 <br>
 <</if>>
 <<case "Marina">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "No" or ndef $Malinche_Free or $Malinche_Free eq "">>
+<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
+You must wait for the Spaniards to rescure Aguilar before you can meet them.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<elseif $Aguilar_Free is "Yes">>
 Marina, the Spaniards must interview and gain information about the gossip you heard. Go to the Discord discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. This is the chance to prove your worth to them. Handle this well, and you might become a trusted member of their group, handle it poorly, and who knows what your fate will hold!<br>
 <br>
 Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain them two points! [[Good luck|Malinche Quest]]. <br>
-<br>
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No" or $Malinche_Free eq "" or ndef $Malinche_Free>>
-Marina, the Spaniards must interview and gain information about the gossip you heard. Go to the Discord discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. This is the chance to prove your worth to them. Handle this well, and you might become a trusted member of their group, handle it poorly, and who knows what your fate will hold!<br>
-<br>
-Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain them two points! [[Good luck|Malinche Quest]]. <br>
-<br>
-<<elseif $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "Yes">>
-The Spaniards have recruited you, and you seem to have won their respect! You may now join them and help them rescue their compatriot Aguilar. Your gift for languages [[will come in handy here|Aguilar Quest]]!<br>
-<br>
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
-Congratulations! You have sucessfully completed the quest!  You may now join the Spaniards [[on their journey|On The Way to Veracruz]]!<br>
 <br>
 <</if>>
+
 <<case "Cortes">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "No" or ndef $Malinche_Free or $Malinche_Free eq "">>
-You are to go on a quest to find the last two members of your team.  You may choose which team member you want to recruit first.  Interview them on Discord and find the answers to the questions on the next page.  The questions are multiple choice, but be careful! <b> Each wrong answer will cost you 1 strength point, while each correct answer will gain you 2 strength points.  There is a lot at stake here.</b>  The less guessing you do, the stronger you will become!<br>
+<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
+You are to go on a quest to find the last two members of your team.  You must begin with Aguilar, as it is he you will meet first. Interview him on Discord and find the answers to the questions on the next page.  The questions are multiple choice, but be careful! <b> Each wrong answer will cost you 1 strength point, while each correct answer will gain you 1.  There is a lot at stake here.</b>  The less guessing you do, the stronger you will become!<br>
 <br>
-You have the choice of interviewing either Aguilar or Marina first. You must correctly answer three questions to unlock their character so they can join your team. Once they are unlocked, they can help you complete your quest for the other character, so choose wisely.<br>
+You first must interview Aguilar and then Marina. You must correctly answer three questions to unlock each character so they can join your team. Once Aguilar is unlocked, he may help you complete your quest for Marina.<br>
 <br>
-As leader of your team, you will select which character you will start with. Meet with your team on the discord board and decide where to start.<br>
-<br>
-Will you rescue <<link "Aguilar" "Aguilar Quest">><<set $Aguilar_1="No">><<set $Aguilar_2="No">><<set $Aguilar_3="No">><</link>>?<br>
-<br>
-or<br>
-<br>
-Will you recruit <<link "Marina" "Malinche Quest">><<set $Malinche_1="No">><<set $Malinche_2="No">><<set $Malinche_3="No">><</link>>?<br>
+Begin your quest to rescue <<link "Aguilar" "Aguilar Quest">><<set $Aguilar_1="No">><<set $Aguilar_2="No">><<set $Aguilar_3="No">><</link>>?<br>
 <br>
 
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No" or $Malinche_Free eq "" or ndef $Malinche_Free>>
+<<elseif $Aguilar_Free is "Yes">>
 Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of <<link "value to your team" "Malinche Quest">><<set $Malinche_1="No">><<set $Malinche_2="No">><<set $Malinche_3="No">><</link>>.<br>
 <br>
-<<elseif $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "Yes">>
-Congratulations! You have recruited this woman Marina! Now you may turn your attention to freeing your compatriot Aguilar from <<link "his long years in captivity" "Aguilar Quest">><<set $Aguilar_1="No">><<set $Aguilar_2="No">><<set $Aguilar_3="No">><</link>>.<br>
-<br><br>
-<br>
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
+<<elseif $Malinche_Free is "Yes">>
 Congratulations! You have sucessfully completed the quest!  You may now continue [[on your journey|On The Way to Veracruz]]!<br>
 <br>
 <</if>>
 
 <<case "Alvarado" or "Olid" or "Garrido">>
-<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "No" or ndef $Malinche_Free or $Malinche_Free eq "">>
-You are to go on a quest to find the last two members of your team.  You may choose which team member you want to recruit first.  Interview them on Discord and find the answers to the questions on the next page.  The questions are multiple choice, but be careful! <b> Each wrong answer will cost you 1 strength point, while each correct answer will gain you 2 strength points.  There is a lot at stake here.</b>  The less guessing you do, the stronger you will become!<br>
+<<if $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "">>
+You are to go on a quest to find the last two members of your team.  You must begin with Aguilar, as it is he you will meet first. Interview him on Discord and find the answers to the questions on the next page.  The questions are multiple choice, but be careful! <b> Each wrong answer will cost you 1 strength point, while each correct answer will gain you 1.  There is a lot at stake here.</b>  The less guessing you do, the stronger you will become!<br>
 <br>
-You have the choice of interviewing either Aguilar or Marina first. You must correctly answer three questions to unlock their character so they can join your team. Once they are unlocked, they can help you complete your quest for the other character, so choose wisely.<br>
+You first must interview Aguilar and then Marina. You must correctly answer three questions to unlock each character so they can join your team. Once Aguilar is unlocked, he may help you complete your quest for Marina. Only Cortes can enter the answers.<br>
 <br>
-You have the choice of interviewing either Aguilar or Marina first. You must correctly answer three questions to unlock their character so they can join your team. Once they are unlocked, they can help you complete your quest for the other character, so choose wisely.<br>
+Begin your quest to rescue [[Aguilar|Aguilar Quest]]?<br>
 <br>
-As leader of your team, Cortes will select which character you will start with. Meet with your team on the discord board and decide where to start, then help Cortes solve the puzzle!<br>
-<br>
-Will you rescue [[Aguilar|Aguilar Quest]]?<br>
-<br>
-or<br>
-<br>
-Will you recruit [[Marina|Malinche Quest]]?<br>
-<br>
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No" or $Malinche_Free eq "" or ndef $Malinche_Free>>
+
+<<elseif $Aguilar_Free is "Yes">>
 Congratulations! You have rescued your compatriot Aguilar from his long years of slavery! Now you may turn your attention to this strange woman you have baptised as Marina, and see if she will be of [[value to your team|Malinche Quest]].<br>
 <br>
-<<elseif $Aguilar_Free is "No" or ndef $Aguilar_Free or $Aguilar_Free eq "" and $Malinche_Free is "Yes">>
-Congratulations! You have recruited this woman Marina! Now you may turn your attention to freeing your compatriot Aguilar from [[his long years in captivity|Aguilar Quest]].<br>
-<br>
-<<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "Yes">>
+<<elseif $Malinche_Free is "Yes">>
 Congratulations! You have sucessfully completed the quest!  You may now continue [[on your journey|On The Way to Veracruz]]!<br>
 <br>
 <</if>>
@@ -11940,14 +11816,14 @@ Do they <<link "PASS" "After the Feast">><<set $factions["Tlaxcalans"]["stats"][
 <<case "Aztecs">>
 As you make your way toward home, you think back on your encounter with the strangers. It seems likely they will head for the city, but how will Moctezuma respond? You discuss this among yourselves, contemplating the best strategy.<br>
 <br>
-Suddenly, you find yourselves under attack by a band of Tlaxcalan warriors. You manage to fight them off and the battle ends in a draw, as it so often does. Nonetheless, you have been weakened by this attack and remain on guard <<link "the rest of the way home" "Aztecs Return to Tenochtitlan to report">><<set $factions["Aztecs"]["stats"]["Strength"]-=1>><<set $Aztecs_currentMap=1>><</link>>.<br>
+Suddenly, you find yourselves under attack by a band of Tlaxcalan warriors. You manage to fight them off and the battle ends in a draw, as it so often does. Nonetheless, you have been weakened by this attack and remain on guard <<link "the rest of the way home" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>>.<br>
 <br>
 <<case "Tlaxcalans">>
 You attack the Mexica, hoping to catch them off guard. But, like always, the battle ends in a draw.  Both sides have been weakened and you have increased hostilities between your groups, as the strangers on the shore prepare to head inland.  <br>
 <br>
 You hope you don't regret this decision later!<br>
 <br>
-It's time to <<link "return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=1>><<set $Tlaxcalans_currentMap=1>><</link>> and regroup.<br>
+It's time to <<link "return to Tlaxcala" "The Spaniards Head Inland">><<set $Tlaxcalans_currentMap=1>><</link>> and regroup.<br>
 <br>
 <</switch>>
 
@@ -12180,9 +12056,9 @@ Go to the Tlaxcalan discussion board and decide upon your best course of action.
 <<if $role is $Tlax_Leader>>
 <<link "do nothing" "Tlaxcalans decide to let the Spaniards continue their journey inland">><<set $TL_Attacks="No">><</link>>, <br>
 <br>
-<<link "attack the Spaniards on the beach" "Tlaxcalans decide to attack the Spaniards in Veracruz">><<set $TL_Attacks="Spanish">><</link>>,<br>
+<<link "attack the Spaniards on the beach" "Tlaxcalans decide to attack the Spaniards in Veracruz">><<set $TL_Attacks="Spanish">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=3>><</link>>,<br>
 <br>
-or you can <<link "attack the Mexica on their way back to Tenochtitlan" "Tlaxcalans decide to attack the Aztecs on their way back from the coast">><<set $TL_Attacks="Aztecs">><</link>>.
+or you can <<link "attack the Mexica on their way back to Tenochtitlan" "Tlaxcalans decide to attack the Aztecs on their way back from the coast">><<set $TL_Attacks="Aztecs">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=3>><</link>>.
 
 <<else>>
 
@@ -12526,14 +12402,14 @@ You host the troops for the night and see them on their way the next morning, [[
 <br>
 The Tlaxcalans have decided to take the offensive and launch an attack! They made their move, but it was too soon and they were ill prepared to confront your weapons. The battle ends in a draw, but you have been weakened and must remain wary of these new foes. <br>
 <br>
-You regroup and <<link "settle into your basecamp" "The Spaniards Head Inland">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>> for the night.<br>
+You regroup and <<link "settle into your basecamp" "The Spaniards Head Inland">><</link>> for the night.<br>
 <br>
 <<case "Tlaxcalans">>
 You attack the foreigners, but you've moved too soon! You cannot overpower the strangers with their powerful weapons. The battle ends in a draw, but your side has been weakened and you have put the Spaniards on high alert.  <br>
 <br>
 Hopefully, this doesn't leave you vulnerable down the road! If only you had been more patient!<br>
 <br>
-<<link "Return to Tlaxcala" "The Spaniards Head Inland">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=1>><</link>> and regroup.<br>
+<<link "Return to Tlaxcala" "The Spaniards Head Inland">><</link>> and regroup.<br>
 <br>
 
 <</switch>>
