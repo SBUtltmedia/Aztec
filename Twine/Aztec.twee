@@ -335,15 +335,28 @@ Go to the discussion board and discuss this decision amongst yourselves.  Everyb
 <br>
 When you are satisfied with where things stand, vote for your leader.<br>
 <br>
-Option 1: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">>">><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><</link>> should be in charge.<br>
-<br>
-Option 2: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
-<br>
-Option 3: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
-<br>
-Option 4: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
+<<if $Alvarado_Act is "No">>
+
+<<elseif $Alvarado_Act is "Yes">>
+<<link "Alvarado" "Tenochtitlan Spanish Leadership Results">>">><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><</link>> should be in charge.<br>
+<</if>>
 <br>
 
+<<if $Aguilar_Act is "No">>
+<<elseif $Aguilar_Act is "Yes">>
+<<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
+<br>
+<</if>>
+<<if $Garrido_Act is "No">>
+<<elseif $Garrido_Act is "Yes">>
+<<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+<br>
+<</if>>
+<<if $Olid_Act is "No">>
+<<elseif $Olid_Act is "Yes">>
+<<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
+<br>
+<</if>>
 <<else>>
 With Cortes gone, now is a good time to think about your team structure.  <<print $Span_Leader>> has led you through months of delicate negotations with <<print $Aztec_Leader>>, but with Cortes' departure, it is now time to make other changes?<br>
 <br>
@@ -351,16 +364,28 @@ Go to the discussion board and discuss this decision amongst yourselves.  Everyb
 <br>
 When you are satisfied with where things stand, vote for your leader.<br>
 <br>
-Option 1: <<link "Marina" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Marina"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should lead your people.<br>
+<<if $Marina_Act is "No">>
+<<elseif $Marina_Act is "Yes">>
+<<link "Marina" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Marina"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> should lead your people.<br>
 <br>
-Option 2: <<link "Alvarado" "Tenochtitlan Spanish Leadership Results">>">><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><</link>> should be in charge.<br>
-<br>
-Option 3: <<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
-<br>
-Option 4: <<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
-<br>
+<</if>>
+<<if $Alvarado_Act is "No">>
+<<elseif $Alvarado_Act is "Yes">>
+<<link "Alvarado" "Tenochtitlan Spanish Leadership Results">>">><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Alvarado"]["stats"]["Wisdom"]+=2>><</link>> should be in charge.<br>
+<</if>>
+<<if $Aguilar_Act is "No">>
+<<elseif $Aguilar_Act is "Yes">>
+<<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is best suited to lead in these difficult times.<br>
+<</if>>
+<<if $Garrido_Act is "No">>
+<<elseif $Garrido_Act is "Yes">>
+<<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Garrido"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+<</if>>
+<<if $Olid_Act is "No">>
+<<elseif $Olid_Act is "Yes">>
 Option 5: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><<set $Sp_Ld_Vote_Teno = $Sp_Ld_Vote_Teno + 1>><</link>> will be your leader.<br>
 <br>
+<</if>>
 <</if>>
 
 
@@ -1496,17 +1521,18 @@ Overcome by grief, you gather for a council meeting. Now is not the time for mou
 
 :: Aztec Leader Gives a Speech {"position":"2725,9925","size":"100,100"}
 <<liveblock>>
-<<if ndef $Riot_Vote>>
-<<set $Riot_Vote=0>>
+
+<<if ndef $users[$role]["choices"]["Riot_Vote"]>>
+<<set $users[$role]["choices"]["Riot_Vote"]=0>>
 <</if>>
-<<if ndef $Riot_Vote_sum>>
-<<set $Riot_Vote_sum=0>>
+<<if ndef $users[$role]["choices"]["Riot_Vote_sum"]>>
+<<set $users[$role]["choices"]["Riot_Vote_sum"]=0>>
 <</if>>
-<<if ndef $Riot_sum>>
-<<set $Riot_sum=0>>
+<<if ndef $users[$role]["choices"]["Riot_sum"]>>
+<<set $users[$role]["choices"]["Riot_sum"]=0>>
 <</if>>
-<<if ndef $Riot>>
-<<set $Riot=0>>
+<<if ndef $users[$role]["choices"]["Riot"]>>
+<<set $users[$role]["choices"]["Riot"]=0>>
 <</if>>
 
 <<switch $users[$role]["faction"]>>
@@ -1566,6 +1592,7 @@ You have two choices:<br>
 <br>
 Option 1: Listen to <<print $Aztec_Leader>> and attempt to calm the mob that surrounds you. Now is not the time to continue this fight and it's sure to bring <<link "disaster for your people" "Aztecs Decide About The Riot">><<set $Riot = $Riot + -1>><<set $Riot_Vote = $Riot_Vote + 1>><</link>>.<br>
 <br>
+
 Option 2: Oppose <<print $Aztec_Leader>>, who is clearly weak and no longer represents the will of the people. You egg the people on and assure them that <<link "victory is yours to be taken" "Aztecs Decide About The Riot">><<set $Riot = $Riot + 1>><<set $Riot_Vote = $Riot_Vote + 1>><</link>>.<br>
 <br>
 <</if>>
@@ -4355,7 +4382,7 @@ After many days on the road, you receive word from a messenger that there has be
 <br>
 It seems that things have descended into chaos during your absence. Your companions launched an unprovoked attack that left many of the city's warriors dead and they are now barricaded inside the palace, with <<print $Aztec_Leader>> as their prisoner. Outside the palace, the Mexica have been preparing for war and have cut off all food supplies to your men.<br>
 <br>
-While you were achieving victory on the coast, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse. <br>
+While you were achieving victory on the coast, your compatriots allowed the situation to get out of hand. <b>Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse. </b><br>
 <br>
 It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
 <br>
@@ -13096,6 +13123,10 @@ You wake to the smell of fresh tortillas and the chatter of Nahuatl outside your
 
 <<switch $users[$role]["faction"]>>
 <<case "Spaniards">>
+
+<b>Your current leader is <<print $Span_Leader>>.</b><br>
+<br>
+
 Six months have passed since you arrived in the city. For six months, you have been a guest of <<print $Aztec_Leader>>, but with every day that passes you feel less like a guest and more like a prisoner. You feel eyes upon you everywhere you go. The Emperor has assured you of your safety and has never shown you anything less than respect, but you don't trust him. You've lain awake every night for weeks, as the nagging dread that lingers at the back of your mind during the day takes over your thoughts.<br>
 <br>
 You rouse yourself out of bed and prepare for another day of wondering and waiting, thinking about how you might force <<print $Aztec_Leader>>'s hand. <br>
@@ -13103,11 +13134,18 @@ You rouse yourself out of bed and prepare for another day of wondering and waiti
 Suddenly, [[a messenger arrives at your lodgings|Cortes gets called to the coast]].<br>
 <br>
 <<case "Aztecs">>
+<b>Your current leader is <<print $Aztec_Leader>>.</b><br>
+<br>
+
 Six months have passed since the strangers arrived in your city. For six months, you have treated them as guests and watched their every move. They have marveled at your city, recoiled in horror at your temples, and beseeched you to worship their god instead. Strange creatures, these bearded men and their slave woman. You don't trust them. Nobody does. For many moons, you have been weighing your options, carefully plotting the best way to remove them from your city--permanently.<br>
 <br>
 As you begin to prepare for your day, you hear word that the Spaniards have received a message. [[This could be just what you need|Cortes gets called to the coast]].<br>
 <br>
 <<case "Tlaxcalans">>
+
+<b>Your current leader is <<print $Tlax_Leader>>.</b><br>
+<br>
+
 Six months have passed since you arrived in the city. For six months, you have been a guest of <<print $Aztec_Leader>>, but with every day that passes you feel less like a guest and more like a prisoner. You feel eyes upon you everywhere you go and you have been kept away from the Spaniards, relegated to the periphery of the city. Nonetheless, you have taken advantage of your stay to carefully gather supplies that you will take back to Tlaxcala. You have spent countless hours in the market and you have everything you could possibly need. You grow increasingly anxious by the day, wondering if all is well at home. <br>
 <br>
 As you begin to prepare for your day, you hear word that the Spaniards have received a message. [[Could this be your ticket home|Cortes gets called to the coast]]?<br>
