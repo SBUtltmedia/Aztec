@@ -2828,35 +2828,6 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
-<b>Spaniards</b><br>
-<<if $Aguilar_Act is "No">>
-<<elseif $Aguilar_Act is "Yes">>
-Aguilar Total Points: <<print $Aguilar_Final>><br>
-<</if>>
-<<if $Alvarado_Act is "No">>
-<<elseif $Alvarado_Act is "Yes">>
-Alvarado Total Points: <<print $Alvarado_Final>><br>
-<</if>>
-<<if $Cortes_Act is "No">>
-<<elseif $Cortes_Act is "Yes">>
-Cortes Total Points: <<print $Cortes_Final>><br>
-<</if>>
-<<if $Garrido_Act is "No">>
-<<elseif $Garrido_Act is "Yes">>
-Garrido Total Points: <<print $Garrido_Final>><br>
-<</if>>
-<<if $Marina_Act is "No">>
-<<elseif $Marina_Act is "Yes">>
-Marina Total Points: <<print $Marina_Final>><br>
-<</if>>
-<<if $Olid_Act is "No">>
-<<elseif $Olid_Act is "Yes">>
-Olid Total Points: <<print $Olid_Final>><br>
-<</if>>
-Spaniards Team Strength:  <<print $factions["Spaniards"]["stats"]["Strength"]>><br>
-Spanish Players who have struck their final blow:  <<print _Span_Final>><br>
-Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
-<br>
 
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
@@ -2886,6 +2857,44 @@ Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
+<br>
+<<if $Az_Ld_Dead is "Yes">>
+<b>Aztec Final Score: <<print (($Aztec_Priest_Final)+($Cacamatzin_Final)+($Cuauhtemoc_Final)+($Moctezuma_Final)+(Pochteca_Final)+(Tlacaelel_Final))/($Aztec_Tot_Play-1))>></b><br>
+<br>
+<<elseif $Az_Ld_Dead is "No">>
+<b>Aztec Final Score: <<print (($Aztec_Priest_Final)+($Cacamatzin_Final)+($Cuauhtemoc_Final)+($Moctezuma_Final)+(Pochteca_Final)+(Tlacaelel_Final))/($Aztec_Tot_Play))>></b><br>
+<br>
+<</if>>
+
+
+<b>Spaniards</b><br>
+<<if $Aguilar_Act is "No">>
+<<elseif $Aguilar_Act is "Yes">>
+Aguilar Total Points: <<print $Aguilar_Final>><br>
+<</if>>
+<<if $Alvarado_Act is "No">>
+<<elseif $Alvarado_Act is "Yes">>
+Alvarado Total Points: <<print $Alvarado_Final>><br>
+<</if>>
+<<if $Cortes_Act is "No">>
+<<elseif $Cortes_Act is "Yes">>
+Cortes Total Points: <<print $Cortes_Final>><br>
+<</if>>
+<<if $Garrido_Act is "No">>
+<<elseif $Garrido_Act is "Yes">>
+Garrido Total Points: <<print $Garrido_Final>><br>
+<</if>>
+<<if $Marina_Act is "No">>
+<<elseif $Marina_Act is "Yes">>
+Marina Total Points: <<print $Marina_Final>><br>
+<</if>>
+<<if $Olid_Act is "No">>
+<<elseif $Olid_Act is "Yes">>
+Olid Total Points: <<print $Olid_Final>><br>
+<</if>>
+Spaniards Team Strength:  <<print $factions["Spaniards"]["stats"]["Strength"]>><br>
+Spanish Players who have struck their final blow:  <<print _Span_Final>><br>
+Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
 <br>
 
 <b>Tlaxcalans</b><br>
