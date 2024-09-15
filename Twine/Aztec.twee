@@ -2828,6 +2828,10 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 
+<<if ndef $Aztec_End>>
+<<set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/_Aztec_Tot_Play)>>
+<</if>>
+
 
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
@@ -2859,11 +2863,7 @@ Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
 <br>
 <<if $Az_Ld_Dead is "Yes">>
-<b>Aztec Final Score: <<print (($Aztec_Priest_Final)+($Cacamatzin_Final)+($Cuauhtemoc_Final)+($Moctezuma_Final)+(Pochteca_Final)+(Tlacaelel_Final))/($Aztec_Tot_Play-1))>></b><br>
-<br>
-<<elseif $Az_Ld_Dead is "No">>
-<b>Aztec Final Score: <<print (($Aztec_Priest_Final)+($Cacamatzin_Final)+($Cuauhtemoc_Final)+($Moctezuma_Final)+(Pochteca_Final)+(Tlacaelel_Final))/($Aztec_Tot_Play))>></b><br>
-<br>
+<b>Aztec Final Score: <<print $Aztec_End>>
 <</if>>
 
 
