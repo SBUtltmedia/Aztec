@@ -2827,11 +2827,15 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
-
 <<if ndef $Aztec_End>>
-<<set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/_Aztec_Tot_Play)>>
+<<set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/(_Aztec_Tot_Play)+($factions["Aztecs"]["stats"]["Strength"]))>>
 <</if>>
-
+<<if ndef $Span_End>>
+<<set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))>>
+<</if>>
+<<if ndef $Tlax_End>>
+<<set $Tlax_End=(($Xicotencatl_Elder_Final+Xicotencatl_Younger_Final+$Maxixcatl_Final)/(_Tlax_Tot_Play))>>
+<</if>>
 
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
@@ -2860,11 +2864,8 @@ Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 <</if>>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
-Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
+<b>Aztec Final Score: <<print $Aztec_End>></b><br>
 <br>
-<<if $Az_Ld_Dead is "Yes">>
-<b>Aztec Final Score: <<print $Aztec_End>>
-<</if>>
 
 
 <b>Spaniards</b><br>
