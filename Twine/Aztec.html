@@ -2669,11 +2669,15 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Final = setup.getTotalChoices (&quot;Tlax_Final&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
-
 &lt;&lt;if ndef $Aztec_End&gt;&gt;
-&lt;&lt;set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/_Aztec_Tot_Play)&gt;&gt;
+&lt;&lt;set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/(_Aztec_Tot_Play)+($factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]))&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-
+&lt;&lt;if ndef $Span_End&gt;&gt;
+&lt;&lt;set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Tlax_End&gt;&gt;
+&lt;&lt;set $Tlax_End=(($Xicotencatl_Elder_Final+Xicotencatl_Younger_Final+$Maxixcatl_Final)/(_Tlax_Tot_Play))&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
 &lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
@@ -2702,11 +2706,8 @@ Tlacaelel Total Points: &lt;&lt;print $Tlacaelel_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
 Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
-Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;if $Az_Ld_Dead is &quot;Yes&quot;&gt;&gt;
-&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_End&gt;&gt;
-&lt;&lt;/if&gt;&gt;
 
 
 &lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
