@@ -2827,7 +2827,6 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
-$factions["Spaniards"]["stats"]["Strength"]
 
 <b>Spaniards</b><br>
 <<if $Aguilar_Act is "No">>
