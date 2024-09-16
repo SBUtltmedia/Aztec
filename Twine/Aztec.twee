@@ -2828,7 +2828,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 <<if ndef $Aztec_End>>
-<<set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/(_Aztec_Tot_Play))+$Aztecs_Strength>>
+<<set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/(_Aztec_Tot_Play))+($Aztec_Strength)>>
 <</if>>
 <<if ndef $Span_End>>
 <<set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))>>
