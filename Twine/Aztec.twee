@@ -2864,8 +2864,8 @@ Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 <</if>>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
-<b>Aztec Final Score: <<print $Aztec_End>></b><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
+<b>Aztec Final Score: <<print $Aztec_End>></b><br>
 <br>
 
 
@@ -2897,6 +2897,7 @@ Olid Total Points: <<print $Olid_Final>><br>
 Spaniards Team Strength:  <<print $factions["Spaniards"]["stats"]["Strength"]>><br>
 Spanish Players who have struck their final blow:  <<print _Span_Final>><br>
 Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
+<b>Spaniards Final Score: <<print $Span_End>></b><br>
 <br>
 
 <b>Tlaxcalans</b><br>
@@ -2915,7 +2916,8 @@ Xicotencatl the Younger Total Points: <<print $Xicotencatl_Younger_Final>><br>
 Tlaxcalan Team Strength:  <<print $factions["Tlaxcalans"]["stats"]["Strength"]>><br>
 Tlaxcalan Players who have struck their final blow:  <<print _Tlax_Final>><br>
 Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
-
+<b>Tlaxcalan Final Score: <<print $Tlax_End>></b><br>
+<br>
 
 <</liveblock>>
 
