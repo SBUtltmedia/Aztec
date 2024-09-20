@@ -10261,6 +10261,7 @@ After much  debate , you finally determine that <<print $Span_Leader>> has the g
 <<set _Sp_Ld_Agu_Teno = setup.getTotalChoices ("Sp_Ld_Agu_Teno")>>
 <<set _Sp_Ld_Oli_Teno = setup.getTotalChoices("Sp_Ld_Oli_Teno")>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+
 Total Votes cast: <<print _Sp_Ld_Vote_Teno>><br>
 <<if $Alvarado_Act is "No">>
 
@@ -10295,6 +10296,7 @@ When everyone has voted, you will find out who will lead you now.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
+>
 
 <<else>>
 
@@ -10303,13 +10305,13 @@ When everyone has voted, you will find out who will lead you now.<br>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Mar_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Oli_Teno>>
-
-The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
-<br>
-
 <<elseif _Sp_Ld_Agu_Teno >= _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Oli_Teno>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
+<br>
+
+<<elseif _Sp_Ld_Oli_Teno >= _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Gar_Teno >>
+
+The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
 
 <<elseif _Sp_Ld_Gar_Teno >= _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Oli_Teno>>
@@ -10317,11 +10319,13 @@ The group has made a decision.  Continue to the next page to find out <<link "wh
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Oli_Teno >= _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Gar_Teno >>
+<<elseif _Sp_Ld_Mar_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Oli_Teno>>
 
-The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
+The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
 <br>
+
 <</if>>
+
 <</if>>
 
 
