@@ -1592,108 +1592,194 @@ You [[wonder what is happening in Tenochtitlán|Aztecs Decide About The Riot]].
 
 :: Aztec Leader Lives and Aztecs Choose a Leader Riot {"position":"2525,10625","size":"100,100"}
 <<liveblock>>
-<<if ndef $Moc_Riot_Vote>>
-<<set $Moc_Riot_Vote=0>>
+<<if ndef $users[$role]["choices"]["Moc_Riot_Vote"]>>
+<<set $users[$role]["choices"]["Moc_Riot_Vote"]=0>>
 <</if>>
-<<if ndef $MocRiot_Tla>>
-<<set $MocRiot_Tla=0>>
+<<if ndef $users[$role]["choices"]["MocRiot_Tla"]>>
+<<set $users[$role]["choices"]["MocRiot_Tla"]=0>>
 <</if>>
-<<if ndef $MocRiot_Cua>>
-<<set $MocRiot_Cua=0>>
+<<if ndef $users[$role]["choices"]["MocRiot_Cua"]>>
+<<set $users[$role]["choices"]["MocRiot_Cua"]=0>>
 <</if>>
-<<if ndef $MocRiot_Cac>>
-<<set $MocRiot_Cac=0>>
+<<if ndef $users[$role]["choices"]["MocRiot_Cac"]>>
+<<set $users[$role]["choices"]["MocRiot_Cac"]=0>>
 <</if>>
-<<if ndef $MocRiot_AzP>>
-<<set $MocRiot_AzP=0>>
+<<if ndef $users[$role]["choices"]["MocRiot_AzP"]>>
+<<set $users[$role]["choices"]["MocRiot_AzP"]=0>>
 <</if>>
-<<if ndef $MocRiot_Poc>>
-<<set $MocRiot_Poc=0>>
+<<if ndef $users[$role]["choices"]["MocRiot_Poc"]>>
+<<set $users[$role]["choices"]["MocRiot_Poc"]=0>>
 <</if>>
-<<if ndef $MocRiot_Moc>>
-<<set $MocRiot_Moc=0>>
+<<if ndef $users[$role]["choices"]["MocRiot_Moc"]>>
+<<set $users[$role]["choices"]["MocRiot_Moc"]=0>>
 <</if>>
+
 
 
 You gather for a council meeting and decide to elect a new leader. Who among you is capable of leading your people in this difficult moment? Who do you trust? <br>
 <br>
 <<if $Aztec_Leader is "Moctezuma">>
+<<if $Tlacaelel_Act is "No">>
+<<elseif $Tlacaelel_Act is "Yes">>
 <<link "Tlacaelel" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Tla"] = $users[$role]["choices"]["MocRiot_Tla"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cuauhtemoc_Act is "No">>
+<<elseif $Cuauhtemoc_Act is "Yes">>
 <<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cua"] = $users[$role]["choices"]["MocRiot_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cacamatzin_Act is "No">>
+<<elseif $Cacamatzin_Act is "Yes">>
 <<link "Cacamatzin" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cac"] = $users[$role]["choices"]["MocRiot_Cac"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-
+<</if>>
+<<if $Aztec_Priest_Act is "No">>
+<<elseif $Aztec_Priest_Act is "Yes">>
 <<link "Aztec_Priest" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_AzP"] = $users[$role]["choices"]["MocRiot_AzP"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Pochteca_Act is "No">>
+<<elseif $Pochteca_Act is "Yes">>
 <<link "Pochteca" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Poc"] = $users[$role]["choices"]["MocRiot_Poc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-
+<</if>>
 <<elseif $Aztec_Leader is "Tlacaelel">>
+<<if $Moctezuma_Act is "No">>
+<<elseif $Moctezuma_Act is "Yes">>
 <<link "Moctezuma" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Moc"] = $users[$role]["choices"]["MocRiot_Moc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cuauhtemoc_Act is "No">>
+<<elseif $Cuauhtemoc_Act is "Yes">>
 <<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cua"] = $users[$role]["choices"]["MocRiot_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cacamatzin_Act is "No">>
+<<elseif $Cacamatzin_Act is "Yes">>
 <<link "Cacamatzin" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cac"] = $users[$role]["choices"]["MocRiot_Cac"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Aztec_Priest_Act is "No">>
+<<elseif $Aztec_Priest_Act is "Yes">>
 <<link "Aztec_Priest" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_AzP"] = $users[$role]["choices"]["MocRiot_AzP"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Pochteca_Act is "No">>
+<<elseif $Pochteca_Act is "Yes">>
 <<link "Pochteca" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Poc"] = $users[$role]["choices"]["MocRiot_Poc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-
+<</if>>
 
 <<elseif $Aztec_Leader is "Cuauhtemoc">>
+<<if $Moctezuma_Act is "No">>
+<<elseif $Moctezuma_Act is "Yes">>
 <<link "Moctezuma" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Moc"] = $users[$role]["choices"]["MocRiot_Moc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Tlacaelel_Act is "No">>
+<<elseif $Tlacaelel_Act is "Yes">>
 <<link "Tlacaelel" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Tla"] = $users[$role]["choices"]["MocRiot_Tla"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cacamatzin_Act is "No">>
+<<elseif $Cacamatzin_Act is "Yes">>
 <<link "Cacamatzin" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cac"] = $users[$role]["choices"]["MocRiot_Cac"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Aztec_Priest_Act is "No">>
+<<elseif $Aztec_Priest_Act is "Yes">>
 <<link "Aztec_Priest" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_AzP"] = $users[$role]["choices"]["MocRiot_AzP"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Pochteca_Act is "No">>
+<<elseif $Pochteca_Act is "Yes">>
 <<link "Pochteca" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Poc"] = $users[$role]["choices"]["MocRiot_Poc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-
+<</if>>
 
 <<elseif $Aztec_Leader is "Cacamatzin">>
+<<if $Moctezuma_Act is "No">>
+<<elseif $Moctezuma_Act is "Yes">>
 <<link "Moctezuma" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Moc"] = $users[$role]["choices"]["MocRiot_Moc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Tlacaelel_Act is "No">>
+<<elseif $Tlacaelel_Act is "Yes">>
 <<link "Tlacaelel" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Tla"] = $users[$role]["choices"]["MocRiot_Tla"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cuauhtemoc_Act is "No">>
+<<elseif $Cuauhtemoc_Act is "Yes">>
 <<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cua"] = $users[$role]["choices"]["MocRiot_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Aztec_Priest_Act is "No">>
+<<elseif $Aztec_Priest_Act is "Yes">>
 <<link "Aztec_Priest" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_AzP"] = $users[$role]["choices"]["MocRiot_AzP"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Pochteca_Act is "No">>
+<<elseif $Pochteca_Act is "Yes">>
 <<link "Pochteca" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Poc"] = $users[$role]["choices"]["MocRiot_Poc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
 
 
 
 <<elseif $Aztec_Leader is "Aztec_Priest">>
+<<if $Moctezuma_Act is "No">>
+<<elseif $Moctezuma_Act is "Yes">>
 <<link "Moctezuma" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Moc"] = $users[$role]["choices"]["MocRiot_Moc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Tlacaelel_Act is "No">>
+<<elseif $Tlacaelel_Act is "Yes">>
 <<link "Tlacaelel" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Tla"] = $users[$role]["choices"]["MocRiot_Tla"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cuauhtemoc_Act is "No">>
+<<elseif $Cuauhtemoc_Act is "Yes">>
 <<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cua"] = $users[$role]["choices"]["MocRiot_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cacamatzin_Act is "No">>
+<<elseif $Cacamatzin_Act is "Yes">>
 <<link "Cacamatzin" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cac"] = $users[$role]["choices"]["MocRiot_Cac"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Pochteca_Act is "No">>
+<<elseif $Pochteca_Act is "Yes">>
 <<link "Pochteca" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Poc"] = $users[$role]["choices"]["MocRiot_Poc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
-
+<</if>>
 
 <<elseif $Aztec_Leader is "Pochteca">>
+<<if $Moctezuma_Act is "No">>
+<<elseif $Moctezuma_Act is "Yes">>
 <<link "Moctezuma" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Moc"] = $users[$role]["choices"]["MocRiot_Moc"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Tlacaelel_Act is "No">>
+<<elseif $Tlacaelel_Act is "Yes">>
 <<link "Tlacaelel" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Tla"] = $users[$role]["choices"]["MocRiot_Tla"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cuauhtemoc_Act is "No">>
+<<elseif $Cuauhtemoc_Act is "Yes">>
 <<link "Cuauhtemoc" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cua"] = $users[$role]["choices"]["MocRiot_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Cacamatzin_Act is "No">>
+<<elseif $Cacamatzin_Act is "Yes">>
 <<link "Cacamatzin" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_Cac"] = $users[$role]["choices"]["MocRiot_Cac"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
+<<if $Aztec_Priest_Act is "No">>
+<<elseif $Aztec_Priest_Act is "Yes">>
 <<link "Aztec_Priest" "After the Riot Vote">><<set $users[$role]["choices"]["MocRiot_AzP"] = $users[$role]["choices"]["MocRiot_AzP"] = 1>><<set $users[$role]["choices"]["Moc_Riot_Vote"] = $users[$role]["choices"]["Moc_Riot_Vote"] = 1>><</link>><br>
 <br>
+<</if>>
 <</if>>
 
 <</liveblock>>
