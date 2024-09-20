@@ -10303,21 +10303,21 @@ When everyone has voted, you will find out who will lead you now.<br>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Mar_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno > _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno > _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno > _Sp_Ld_Oli_Teno>>
+<<elseif _Sp_Ld_Mar_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Agu_Teno > _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Oli_Teno>>
+<<elseif _Sp_Ld_Agu_Teno >= _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Oli_Teno>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Gar_Teno > _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno > _Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno > _Sp_Ld_Oli_Teno>>
+<<elseif _Sp_Ld_Gar_Teno >= _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Oli_Teno > _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno > _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno > _Sp_Ld_Gar_Teno >>
+<<elseif _Sp_Ld_Oli_Teno >= _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Gar_Teno >>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
