@@ -2939,21 +2939,111 @@ You must wait for both &lt;&lt;print $New_Aztec_Leader&gt;&gt; and &lt;&lt;print
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="Battle Outcome Aztecs and Tlaxcalans versus Spaniards" tags="" position="2250,12875" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
-You wait for the haze of war to clear.&lt;br&gt;
-&lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
-All leaders must click through before you can continue.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;else&gt;&gt;
-&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
-You wipe the sweat of battle from your eyes, squinting to judge &lt;&lt;link &quot;where victory lies&quot; &quot;Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2&quot;&gt;&gt;&lt;&lt;set $Final_Az_Tlax_Points= $Final_Tlaxcalan_Points+$Final_Aztec_Points&gt;&gt;&lt;&lt;/link&gt;&gt;. &lt;br&gt;
-&lt;br&gt;. 
-&lt;&lt;else&gt;&gt;
-You wipe the sweat of battle from your eyes, squinting to judge where [[victory lies|Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2]].
-&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;set _Span_Final = setup.getTotalChoices (&quot;Span_Final&quot;)&gt;&gt;
+&lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Aztec_Final = setup.getTotalChoices (&quot;Aztec_Final&quot;)&gt;&gt;
+&lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Tlax_Final = setup.getTotalChoices (&quot;Tlax_Final&quot;)&gt;&gt;
+&lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
+
+&lt;&lt;if ndef $Aztec_End&gt;&gt;
+&lt;&lt;set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/(_Aztec_Tot_Play))+(_Aztecs_Strength)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;&lt;if ndef $Span_End&gt;&gt;
+&lt;&lt;set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Tlax_End&gt;&gt;
+&lt;&lt;set $Tlax_End=(($Xicotencatl_Elder_Final+Xicotencatl_Younger_Final+$Maxixcatl_Final)/(_Tlax_Tot_Play))&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Aztec_Priest_Act is &quot;Yes&quot;&gt;&gt;
+Aztec Priest Total Points: &lt;&lt;print $Aztec_Priest_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cacamatzin_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
+Cacamatzin Total Points: &lt;&lt;print $Cacamatzin_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
+Cuauhtemoc Total Points: &lt;&lt;print $Cuauhtemoc_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
+Moctezuma Total Points: &lt;&lt;print $Moctezuma_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Pochteca_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Pochteca_Final is &quot;Yes&quot;&gt;&gt;
+Pochteca Total Points: &lt;&lt;print $Pochteca_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
+Tlacaelel Total Points: &lt;&lt;print $Tlacaelel_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
+Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
+
+
+&lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
+Aguilar Total Points: &lt;&lt;print $Aguilar_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
+Alvarado Total Points: &lt;&lt;print $Alvarado_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
+Cortes Total Points: &lt;&lt;print $Cortes_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Garrido_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Garrido_Act is &quot;Yes&quot;&gt;&gt;
+Garrido Total Points: &lt;&lt;print $Garrido_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
+Marina Total Points: &lt;&lt;print $Marina_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Olid_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Olid_Act is &quot;Yes&quot;&gt;&gt;
+Olid Total Points: &lt;&lt;print $Olid_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+Spaniards Team Strength:  &lt;&lt;print $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Spanish Players who have struck their final blow:  &lt;&lt;print _Span_Final&gt;&gt;&lt;br&gt;
+Total Spanish Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;b&gt;Tlaxcalans&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Maxixcatl_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Maxixcatl_Act is &quot;Yes&quot;&gt;&gt;
+Maxixcatl Total Points: &lt;&lt;print $Maxixcatl_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Xicotencatl_Elder_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Elder_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Elder Total Points: &lt;&lt;print $Xicotencatl_Elder_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Xicotencatl_Younger_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Younger_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Younger Total Points: &lt;&lt;print $Xicotencatl_Younger_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+Tlaxcalan Team Strength:  &lt;&lt;print $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Tlaxcalan Players who have struck their final blow:  &lt;&lt;print _Tlax_Final&gt;&gt;&lt;br&gt;
+Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;b&gt;Tlaxcalan Final Score: &lt;&lt;print $Tlax_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2" tags="" position="2250,13050" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Final_Az_Tlax_Points or $Final_Az_Tlax_Points eq &quot;&quot;&gt;&gt;

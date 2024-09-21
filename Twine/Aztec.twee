@@ -3117,21 +3117,111 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 
 :: Battle Outcome Aztecs and Tlaxcalans versus Spaniards {"position":"2250,12875","size":"100,100"}
 <<liveblock>>
-<<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
-You wait for the haze of war to clear.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-All leaders must click through before you can continue.<br>
-<br>
-<<else>>
-<<if $role is $Tlax_Leader>>
-You wipe the sweat of battle from your eyes, squinting to judge <<link "where victory lies" "Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2">><<set $Final_Az_Tlax_Points= $Final_Tlaxcalan_Points+$Final_Aztec_Points>><</link>>. <br>
-<br>. 
-<<else>>
-You wipe the sweat of battle from your eyes, squinting to judge where [[victory lies|Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2]].
-<</if>>
+
+<<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
+
+<<if ndef $Aztec_End>>
+<<set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final)/(_Aztec_Tot_Play))+(_Aztecs_Strength)>>
 <</if>>
 
+<<if ndef $Span_End>>
+<<set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))>>
+<</if>>
+
+<<if ndef $Tlax_End>>
+<<set $Tlax_End=(($Xicotencatl_Elder_Final+Xicotencatl_Younger_Final+$Maxixcatl_Final)/(_Tlax_Tot_Play))>>
+<</if>>
+
+<b>Aztecs</b><br>
+<<if $Aztec_Priest_Act is "No">>
+<<elseif $Aztec_Priest_Act is "Yes">>
+Aztec Priest Total Points: <<print $Aztec_Priest_Final>><br>
+<</if>>
+
+<<if $Cacamatzin_Act is "No">>
+<<elseif $Cacamatzin_Act is "Yes">>
+Cacamatzin Total Points: <<print $Cacamatzin_Final>><br>
+<</if>>
+
+<<if $Cuauhtemoc_Act is "No">>
+<<elseif $Cuauhtemoc_Act is "Yes">>
+Cuauhtemoc Total Points: <<print $Cuauhtemoc_Final>><br>
+<</if>>
+
+<<if $Moctezuma_Act is "No">>
+<<elseif $Moctezuma_Act is "Yes">>
+Moctezuma Total Points: <<print $Moctezuma_Final>><br>
+<</if>>
+
+<<if $Pochteca_Act is "No">>
+<<elseif $Pochteca_Final is "Yes">>
+Pochteca Total Points: <<print $Pochteca_Final>><br>
+<</if>>
+<<if $Tlacaelel_Act is "No">>
+<<elseif $Tlacaelel_Act is "Yes">>
+Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
+<</if>>
+Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
+Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
+Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
+<b>Aztec Final Score: <<print $Aztec_End>></b><br>
+<br>
+
+
+<b>Spaniards</b><br>
+<<if $Aguilar_Act is "No">>
+<<elseif $Aguilar_Act is "Yes">>
+Aguilar Total Points: <<print $Aguilar_Final>><br>
+<</if>>
+<<if $Alvarado_Act is "No">>
+<<elseif $Alvarado_Act is "Yes">>
+Alvarado Total Points: <<print $Alvarado_Final>><br>
+<</if>>
+<<if $Cortes_Act is "No">>
+<<elseif $Cortes_Act is "Yes">>
+Cortes Total Points: <<print $Cortes_Final>><br>
+<</if>>
+<<if $Garrido_Act is "No">>
+<<elseif $Garrido_Act is "Yes">>
+Garrido Total Points: <<print $Garrido_Final>><br>
+<</if>>
+<<if $Marina_Act is "No">>
+<<elseif $Marina_Act is "Yes">>
+Marina Total Points: <<print $Marina_Final>><br>
+<</if>>
+<<if $Olid_Act is "No">>
+<<elseif $Olid_Act is "Yes">>
+Olid Total Points: <<print $Olid_Final>><br>
+<</if>>
+Spaniards Team Strength:  <<print $factions["Spaniards"]["stats"]["Strength"]>><br>
+Spanish Players who have struck their final blow:  <<print _Span_Final>><br>
+Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
+<b>Spaniards Final Score: <<print $Span_End>></b><br>
+<br>
+
+<b>Tlaxcalans</b><br>
+<<if $Maxixcatl_Act is "No">>
+<<elseif $Maxixcatl_Act is "Yes">>
+Maxixcatl Total Points: <<print $Maxixcatl_Final>><br>
+<</if>>
+<<if $Xicotencatl_Elder_Act is "No">>
+<<elseif $Xicotencatl_Elder_Act is "Yes">>
+Xicotencatl the Elder Total Points: <<print $Xicotencatl_Elder_Final>><br>
+<</if>>
+<<if $Xicotencatl_Younger_Act is "No">>
+<<elseif $Xicotencatl_Younger_Act is "Yes">>
+Xicotencatl the Younger Total Points: <<print $Xicotencatl_Younger_Final>><br>
+<</if>>
+Tlaxcalan Team Strength:  <<print $factions["Tlaxcalans"]["stats"]["Strength"]>><br>
+Tlaxcalan Players who have struck their final blow:  <<print _Tlax_Final>><br>
+Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
+<b>Tlaxcalan Final Score: <<print $Tlax_End>></b><br>
+<br>
 
 <</liveblock>>
 
