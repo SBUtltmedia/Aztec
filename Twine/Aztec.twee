@@ -3132,6 +3132,10 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 :: Battle Outcome Aztecs and Tlaxcalans versus Spaniards {"position":"2250,12875","size":"100,100"}
 <<liveblock>>
 
+<<if ndef $Aztec_End>>
+<<set $Aztec_End = "0">>
+<</if>>
+
 <<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
 <<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
@@ -3147,11 +3151,10 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 <<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
 <<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
 
-<<if ndef $Aztec_End>>
-<<set $Aztec_End = 0>>
-<</if>>
+
 <<if $Aztec_End = 0>>
-<<set $Aztec_End = ((_Aztec_Priest_Final)+(_Cacamatzin_Final)+(_Cuauhtemoc_Final)+(_Moctezuma_Final)+(_Pochteca_Final)+(_Tlacaelel_Final))>>
+<<set $Aztec_End = (("Aztec_Priest_Final")+("Cacamatzin_Final")+("Cuauhtemoc_Final")+("Moctezuma_Final")+("Pochteca_Final")+("Tlacaelel_Final"))>>
+<br>Hello
 <</if>>
 
 <<if ndef $Span_End>>
