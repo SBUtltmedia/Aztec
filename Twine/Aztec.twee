@@ -400,7 +400,7 @@ When you are satisfied with where things stand, vote for your leader.<br>
 <<if $Olid_Act is "No">>
 
 <<elseif $Olid_Act is "Yes">>
-Option 5: <<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><</link>> will be your leader.<br>
+<<link "Olid" "Tenochtitlan Spanish Leadership Results">><<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = $users[$role]["choices"]["Sp_Ld_Oli_Teno"] = 1>><<set $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = $users[$role]["choices"]["Sp_Ld_Mar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = $users[$role]["choices"]["Sp_Ld_Agu_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = $users[$role]["choices"]["Sp_Ld_Alv_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = $users[$role]["choices"]["Sp_Ld_Gar_Teno"] = 0>><<set $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = $users[$role]["choices"]["Sp_Ld_Vote_Teno"] = 1>><<set $users["Olid"]["stats"]["Wisdom"]+=2>><</link>> will be your leader.<br>
 <br>
 <</if>>
 <</if>>
@@ -2090,8 +2090,8 @@ OPTION 2: Send <<print $Aztec_Leader>> <<link "to meet his Gods" "Spaniards Kill
 <<else>>
 It appears that the crowd has listened to their leader and have retreated back to their homes. All is calm…for now. 
 
-If not for <<print $Aztec_Leader>>, the scene outside may have turned into a riot. He has proven to be a useful prisoner thus far, but has his usefulness run its course? Go to the Spanish discussion board and contemplate the value of continuing to keep <<print $Aztec_Leader>> as your prisoner. What are the benefits of keeping him alive? What are the potential costs? You have two choices: keep him in shackles or dispose of him…for good.
-
+If not for <<print $Aztec_Leader>>, the scene outside may have turned into a riot. He has proven to be a useful prisoner thus far, but has his usefulness run its course? Go to the Spanish discussion board and contemplate the value of continuing to keep <<print $Aztec_Leader>> as your prisoner. What are the benefits of keeping him alive? What are the potential costs? You have two choices: keep him in shackles or dispose of him…for good.<br>
+<br>
 <<if ndef $Az_Ld_Dead or $Az_Ld_Dead eq "">>
 <<print $Span_Leader>> will input your decision. Once you have made your choice, you may carry on.<br>
 <br>
@@ -2902,6 +2902,105 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 
 :: Battle Outcome Aztecs Versus Spaniards 3 {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
+
+
+<<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+
+
+
+<<set _Aztec_Priest_Final = setup.getTotalChoices("Aztec_Priest_Final")>>
+<<set _Cacamatzin_Final = setup.getTotalChoices("Cacamatzin_Final")>>
+<<set _Cuauhtemoc_Final = setup.getTotalChoices("Cuauhtemoc_Final")>>
+<<set _Moctezuma_Final = setup.getTotalChoices("Moctezuma_Final")>>
+<<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
+<<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
+
+<<if ndef $Aztec_End>>
+<<set $Aztec_End = 0>>
+<</if>>
+<<if $Aztec_End = 0>>
+<<set $Aztec_End = ((_Aztec_Priest_Final)+(_Cacamatzin_Final)+(_Cuauhtemoc_Final)+(_Moctezuma_Final)+(_Pochteca_Final)+(_Tlacaelel_Final))+ 10>>
+<</if>>
+
+<<if ndef $Span_End>>
+<<set $Span_End = 0>>
+<</if>>
+<<if $Span_End = 0>>
+<<set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play))>>
+<</if>>
+
+<b>Aztecs</b><br>
+<<if $Aztec_Priest_Act is "No">>
+<<elseif $Aztec_Priest_Act is "Yes">>
+Aztec Priest Total Points: <<print $Aztec_Priest_Final>><br>
+<</if>>
+
+<<if $Cacamatzin_Act is "No">>
+<<elseif $Cacamatzin_Act is "Yes">>
+Cacamatzin Total Points: <<print $Cacamatzin_Final>><br>
+<</if>>
+
+<<if $Cuauhtemoc_Act is "No">>
+<<elseif $Cuauhtemoc_Act is "Yes">>
+Cuauhtemoc Total Points: <<print $Cuauhtemoc_Final>><br>
+<</if>>
+
+<<if $Moctezuma_Act is "No">>
+<<elseif $Moctezuma_Act is "Yes">>
+Moctezuma Total Points: <<print _Moctezuma_Final>><br>
+<</if>>
+
+<<if $Pochteca_Act is "No">>
+<<elseif $Pochteca_Act is "Yes">>
+Pochteca Total Points: <<print _Pochteca_Final>><br>
+<</if>>
+<<if $Tlacaelel_Act is "No">>
+<<elseif $Tlacaelel_Act is "Yes">>
+Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
+<</if>>
+Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
+Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
+Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
+<b>Aztec Final Score: <<print $Aztec_End>></b><br>
+<br>
+
+
+<b>Spaniards</b><br>
+<<if $Aguilar_Act is "No">>
+<<elseif $Aguilar_Act is "Yes">>
+Aguilar Total Points: <<print $Aguilar_Final>><br>
+<</if>>
+<<if $Alvarado_Act is "No">>
+<<elseif $Alvarado_Act is "Yes">>
+Alvarado Total Points: <<print $Alvarado_Final>><br>
+<</if>>
+<<if $Cortes_Act is "No">>
+<<elseif $Cortes_Act is "Yes">>
+Cortes Total Points: <<print $Cortes_Final>><br>
+<</if>>
+<<if $Garrido_Act is "No">>
+<<elseif $Garrido_Act is "Yes">>
+Garrido Total Points: <<print $Garrido_Final>><br>
+<</if>>
+<<if $Marina_Act is "No">>
+<<elseif $Marina_Act is "Yes">>
+Marina Total Points: <<print $Marina_Final>><br>
+<</if>>
+<<if $Olid_Act is "No">>
+<<elseif $Olid_Act is "Yes">>
+Olid Total Points: <<print $Olid_Final>><br>
+<</if>>
+Spaniards Team Strength:  <<print $factions["Spaniards"]["stats"]["Strength"]>><br>
+Spanish Players who have struck their final blow:  <<print _Span_Final>><br>
+Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
+<b>Spaniards Final Score: <<print $Span_End>></b><br>
+<br>
+
+
+
 <<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
 You wait for the haze of war to clear.<br>
 <br>
@@ -8854,18 +8953,15 @@ As you exit the causeway and the city of Tenochtitlán fades into the distance, 
 <br>
 It is now time to decide just what that path will be, however. <<print $Span_Leader>> gathers their most trusted counselors to weigh your options. Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. <br>
 <br>
-There is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly, relying on the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
-<br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Retreat to Tlaxcala]].<br>
+There is no choice but to lay siege to the city. You must return to Tlaxcala and attempt [[to rebuild your army|Spaniards Retreat to Tlaxcala]].<br>
 <br>
 <<elseif $Hostage_Exch is "No">>
 You drag yourself to shore, eager to get beyond reach of the city that almost became your grave. You can't believe you escaped with your life! Many others were not so lucky-a fact that becomes starkly clear as you take stock of the men who now walk beside you. <br>
 <br>
-When you feel you have reached a safe distance, <<print $Span_Leader>> calls out to your compatriots to stop and recommend they rest a while. As the ragged soldiers settle in and create a makeshift camp with what little supplies they have, you gather your most trusted counselors to weigh your options. <br>
+When you feel you have reached a safe distance, <<print $Span_Leader>> calls out to your compatriots to stop and recommend they rest a while. As the ragged soldiers settle in and create a makeshift camp with what little supplies they have, you gather your most trusted counselors to weigh your options. <<print $Span_Leader>> decides that, given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. <br>
 <br>
-Given the conflict with Velazquez back in Cuba and the condition of your ships, escape from the mainland is not an option. Besides, you have witnessed the riches of this land and could never walk away from so great a reward. You inform your men that there is no choice but to lay siege to the city. But will you go it alone or will you return to Tlaxcala and attempt to rebuild your army? If you choose the former, you have no safe place to regroup and will have to launch your attack quickly. You have suffered enormous damages in your escape from the city, but you would  have the element of surprise to strengthen your hand. To succeed at the latter, however, will require the support of the Tlaxcalan people. Do you think you have it?<br>
+There is no choice but to lay siege to the city. You must return to Tlaxcala and attempt [[to rebuild your army|Spaniards Retreat to Tlaxcala]].<br>
 <br>
-Go to the Spanish discussion board and consider your options. When you have made your decision, <<print $Span_Leader>> will input your choice and you may then [[move forward with your plan|Spaniards Retreat to Tlaxcala]].<br>
 <br>
 <</if>>
 <</if>>
@@ -13404,25 +13500,121 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 
 :: Victory Decision Aztecs versus Spaniards 3 {"position":"3200,12125","size":"100,100"}
 <<liveblock>>
-<<switch $users[$role]["faction"]>>
-<<case "Spaniards">>
-<<if $Span_Leader is $users[$userId]["role"]>>
-You raise your sword and <<link "strike the final blow" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Final_Spanish_Players=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]+$users["Alvarado"]["stats"]["Strength"]+$users["Alvarado"]["stats"]["Loyalty"]+$users["Alvarado"]["stats"]["Wisdom"]+$users["Aguilar"]["stats"]["Strength"]+$users["Aguilar"]["stats"]["Loyalty"]+$users["Aguilar"]["stats"]["Wisdom"]+$users["Marina"]["stats"]["Strength"]+$users["Marina"]["stats"]["Loyalty"]+$users["Marina"]["stats"]["Wisdom"]+$users["Garrido"]["stats"]["Strength"]+$users["Garrido"]["stats"]["Loyalty"]+$users["Garrido"]["stats"]["Wisdom"]+$users["Olid"]["stats"]["Strength"]+$users["Olid"]["stats"]["Loyalty"]+$users["Olid"]["stats"]["Wisdom"]>><<set $Final_Spanish_Players/=6>><<set $Final_Spanish_Points=$factions["Spaniards"]["stats"]["Strength"]+$Final_Spanish_Players>><</link>>. <br>
-<br>
-<<else>>
-You watch as <<print $Span_Leader>> raises his sword and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards 3]].<br>
-<br>
+
+
+<<if ndef $Moctezuma_Final>>
+<<set $Moctezuma_Final="0">>
 <</if>>
+<<if ndef $Tlacaelel_Final>>
+<<set $Tlacaelel_Final ="0">>
+<</if>>
+<<if ndef $Cuauhtemoc_Final>>
+<<set $Cuauhtemoc_Final="0">>
+<</if>>
+<<if ndef $Cacamatzin_Final>>
+<<set $Cacamatzin_Final="0">>
+<</if>>
+<<if ndef $Aztec_Priest_Final>>
+<<set $Aztec_Priest_Final="0">>
+<</if>>
+<<if ndef $Pochteca_Final>>
+<<set $Pochteca_Final="0">>
+<</if>>
+<<if ndef $Aztec_Final>>
+<<set $Aztec_Final="0">>
+<</if>>
+
+<<if ndef $Cortes_Final>>
+<<set $Cortes_Final="0">>
+<</if>>
+<<if ndef $Alvarado_Final>>
+<<set $Alvarado_Final="0">>
+<</if>>
+<<if ndef $Aguilar_Final>>
+<<set $Aguilar_Final="0">>
+<</if>>
+<<if ndef $Marina_Final>>
+<<set $Marina_Final="0">>
+<</if>>
+<<if ndef $Garrido_Final>>
+<<set $Garrido_Final="0">>
+<</if>>
+<<if ndef $Olid_Final>>
+<<set $Olid_Final="0">>
+<</if>>
+<<if ndef $Span_Final>>
+<<set $Span_Final="0">>
+<</if>>
+
+<<if ndef $Xicotencatl_Elder_Final>>
+<<set $Xicotencatl_Elder_Final="0">>
+<</if>>
+<<if ndef $Xicotencatl_Younger_Final>>
+<<set $Xicotencatl_Younger_Final="0">>
+<</if>>
+<<if ndef $Maxixcatl_Final>>
+<<set $Maxixcatl_Final="0">>
+<</if>>
+<<if ndef $Tlax_Final>>
+<<set $Tlax_Final="0">>
+<</if>>
+
+
+<<switch $users[$role]["faction"]>>
+
 <<case "Aztecs">>
-<<if $New_Aztec_Leader is $users[$userId]["role"]>>
-You raise your macuahuitl and <<link "strike the final blow" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Final_Aztec_Players=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]+$users["Tlacaelel"]["stats"]["Strength"]+$users["Tlacaelel"]["stats"]["Loyalty"]+$users["Tlacaelel"]["stats"]["Wisdom"]+$users["Cuauhtemoc"]["stats"]["Strength"]+$users["Cuauhtemoc"]["stats"]["Loyalty"]+$users["Cuauhtemoc"]["stats"]["Wisdom"]+$users["Cacamatzin"]["stats"]["Strength"]+$users["Cacamatzin"]["stats"]["Loyalty"]+$users["Cacamatzin"]["stats"]["Wisdom"]+$users["Aztec_Priest"]["stats"]["Strength"]+$users["Aztec_Priest"]["stats"]["Loyalty"]+$users["Aztec_Priest"]["stats"]["Wisdom"]+$users["Pochteca"]["stats"]["Strength"]+$users["Pochteca"]["stats"]["Loyalty"]+$users["Pochteca"]["stats"]["Wisdom"]>><<set $Final_Aztec_Players/=6>><<set $Final_Aztec_Points=$factions["Aztecs"]["stats"]["Strength"]+$Final_Aztec_Players>><</link>>. <br>
-<br>
-<<else>>
-You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the final blow|Battle Outcome Aztecs Versus Spaniards 3]].<br>
-<br>
+<<if $role is "Moctezuma">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Moctezuma_Final=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>>.
+
+<<elseif $role is "Tlacaelel">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Tlacaelel_Final=$users["Tlacaelel"]["stats"]["Strength"]+$users["Tlacaelel"]["stats"]["Loyalty"]+$users["Tlacaelel"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>>.
+
+<<elseif $role is "Cuauhtemoc">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Cuauhtemoc_Final=$users["Cuauhtemoc"]["stats"]["Strength"]+$users["Cuauhtemoc"]["stats"]["Loyalty"]+$users["Cuauhtemoc"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>>.
+
+<<elseif $role is "Cacamatzin">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Cacamatzin_Final=$users["Cacamatzin"]["stats"]["Strength"]+$users["Cacamatzin"]["stats"]["Loyalty"]+$users["Cacamatzin"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>>.
+
+<<elseif $role is "Aztec_Priest">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_Priest_Final=$users["Aztec_Priest"]["stats"]["Strength"]+$users["Aztec_Priest"]["stats"]["Loyalty"]+$users["Aztec_Priest"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>>.
+
+<<elseif $role is "Pochteca">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Pochteca_Final=$users["Pochteca"]["stats"]["Strength"]+$users["Pochteca"]["stats"]["Loyalty"]+$users["Pochteca"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>>.
+<</if>>
+
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Cortes_Final=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>>.
+
+<<elseif $role is "Alvarado">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Alvarado_Final=$users["Alvarado"]["stats"]["Strength"]+$users["Alvarado"]["stats"]["Loyalty"]+$users["Alvarado"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>>.
+
+<<elseif $role is "Garrido">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Garrido_Final=$users["Garrido"]["stats"]["Strength"]+$users["Garrido"]["stats"]["Loyalty"]+$users["Garrido"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>>.
+
+<<elseif $role is "Olid">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Olid_Final=$users["Olid"]["stats"]["Strength"]+$users["Olid"]["stats"]["Loyalty"]+$users["Olid"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>>.
+
+<<elseif $role is "Aguilar">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aguilar_Final=$users["Aguilar"]["stats"]["Strength"]+$users["Aguilar"]["stats"]["Loyalty"]+$users["Aguilar"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>>.
+
+<<elseif $role is "Marina">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Marina_Final=$users["Marina"]["stats"]["Strength"]+$users["Marina"]["stats"]["Marina"]+$users["Marina"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>>.
+<</if>>
+
+
+<<case "Tlaxcalans">>
+<<if $role is "Xicotencatl_Elder">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Xicotencatl_Elder_Final=$users["Xicotencatl_Elder"]["stats"]["Strength"]+$users["Xicotencatl_Elder"]["stats"]["Loyalty"]+$users["Xicotencatl_Elder"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+
+<<elseif $role is "Xicotencatl_Younger">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Xicotencatl_Younger_Final=$users["Xicotencatl_Younger"]["stats"]["Strength"]+$users["Xicotencatl_Younger"]["stats"]["Loyalty"]+$users["Xicotencatl_Younger"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+
+<<elseif $role is "Maxixcatl">>
+The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Maxixcatl_Final=$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
 <</if>>
 <</switch>>
-
 
 <</liveblock>>
 
