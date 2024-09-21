@@ -2907,6 +2907,12 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
 <<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Aztec_Priest_Final = setup.getTotalChoices("Aztec_Priest_Final")>>
+<<set _Cacamatzin_Final = setup.getTotalChoices("Cacamatzin_Final")>>
+<<set _Cuauhtemoc_Final = setup.getTotalChoices("Cuauhtemoc_Final")>>
+<<set _Moctezuma_Final = setup.getTotalChoices("Moctezuma_Final")>>
+<<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
+<<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
 
 <<if ndef $Aztec_End>>
 <<set $Aztec_End = "0">>
@@ -2946,7 +2952,7 @@ Pochteca Total Points: <<print $Pochteca_Final>><br>
 <</if>>
 <<if $Tlacaelel_Act is "No">>
 <<elseif $Tlacaelel_Act is "Yes">>
-Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
+Tlacaelel Total Points: <<print _Tlacaelel_Final>><br>
 <</if>>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
@@ -2954,7 +2960,7 @@ Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
 <b>Aztec Final Score: <<print $Aztec_End>></b><br>
 <br>
 
-As the Leader of the Aztecs, you must <<link "calculate your team's final score" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End=($Tlacaelel_Final) + ($Pochteca_Final) + ($Moctezuma_Final) + ($Cuauhtemoc_Final) + ($Cacamatzin_Final) + ($Aztec_Priest_Final)>><</link>>.<br>
+As the Leader of the Aztecs, you must <<link "calculate your team's final score" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End=[(_Tlacaelel_Final)+(_Pochteca_Final)+(_Moctezuma_Final)+(_Cuauhtemoc_Final)+(_Cacamatzin_Final)+(_Aztec_Priest_Final)]>><</link>>.<br>
 <br>
 
 <b>Spaniards</b><br>
