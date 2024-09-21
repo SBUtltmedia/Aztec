@@ -2960,7 +2960,7 @@ Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
 <b>Aztec Final Score: <<print $Aztec_End>></b><br>
 <br>
 
-As the Leader of the Aztecs, you must <<link "calculate your team's final score" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End=["Tlacaelel_Final"+"Pochteca_Final"+"Moctezuma_Final"+"Cuauhtemoc_Final"+"Cacamatzin_Final"+"Aztec_Priest_Final"]>><</link>>.<br>
+As the Leader of the Aztecs, you must <<link "calculate your team's final score" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End=$Tlacaelel_Final+$Pochteca_Final+$Moctezuma_Final+$Cuauhtemoc_Final+$Cacamatzin_Final+$Aztec_Priest_Final>><</link>>.<br>
 <br>
 
 <b>Spaniards</b><br>
