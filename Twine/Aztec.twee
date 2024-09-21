@@ -2964,7 +2964,7 @@ Moctezuma Total Points: <<print $Moctezuma_Final>><br>
 <</if>>
 
 <<if $Pochteca_Act is "No">>
-<<elseif $Pochteca_Final is "Yes">>
+<<elseif $Pochteca_Act is "Yes">>
 Pochteca Total Points: <<print $Pochteca_Final>><br>
 <</if>>
 <<if $Tlacaelel_Act is "No">>
@@ -3159,7 +3159,7 @@ Moctezuma Total Points: <<print $Moctezuma_Final>><br>
 <</if>>
 
 <<if $Pochteca_Act is "No">>
-<<elseif $Pochteca_Final is "Yes">>
+<<elseif $Pochteca_Act is "Yes">>
 Pochteca Total Points: <<print $Pochteca_Final>><br>
 <</if>>
 <<if $Tlacaelel_Act is "No">>
