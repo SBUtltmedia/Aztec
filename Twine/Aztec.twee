@@ -6929,6 +6929,9 @@ Your Cholulan hosts are generous and treat you as esteemed visitors. You pass a 
 
 :: Noche Triste {"position":"2450,11125","size":"100,100"}
 <<liveblock>>
+<<if ndef $NT_Fight>>
+<<set $NT_Fight=0 >>
+<</if>>
 <<switch $users[$role]["faction"]>>
 <<case "Spaniards">>
 <<if $role is $Span_Leader>>
@@ -8661,7 +8664,7 @@ You are waiting for <<print $Span_Leader>> to do something.<br>
 <<elseif $NT_Fight eq "Yes">>
 A calm settles over the city, [[and you wonder what the Spaniards will do next|Spaniards Fight the Aztecs Alone]].<br>
 <br>
-<<elseif $NT_Fight eq"No">>
+<<elseif $NT_Fight eq "No">>
 A calm settles over the city, but strange things <<link "are unfolding in Tenochtitlan" "Smallpox in Tenochtitlán">><<set $factions["Aztecs"]["stats"]["Strength"]*=.5>><</link>>.<br>
 <br>
 <</if>>
