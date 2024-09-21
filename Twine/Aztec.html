@@ -2755,15 +2755,6 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Aztec_Final = setup.getTotalChoices (&quot;Aztec_Final&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 
-
-
-&lt;&lt;set _Aztec_Priest_Final = setup.getTotalChoices(&quot;Aztec_Priest_Final&quot;)&gt;&gt;
-&lt;&lt;set _Cacamatzin_Final = setup.getTotalChoices(&quot;Cacamatzin_Final&quot;)&gt;&gt;
-&lt;&lt;set _Cuauhtemoc_Final = setup.getTotalChoices(&quot;Cuauhtemoc_Final&quot;)&gt;&gt;
-&lt;&lt;set _Moctezuma_Final = setup.getTotalChoices(&quot;Moctezuma_Final&quot;)&gt;&gt;
-&lt;&lt;set _Pochteca_Final = setup.getTotalChoices(&quot;Pochteca_Final&quot;)&gt;&gt;
-&lt;&lt;set _Tlacaelel_Final = setup.getTotalChoices(&quot;Tlacaelel_Final&quot;)&gt;&gt;
-
 &lt;&lt;if ndef $Aztec_End&gt;&gt;
 &lt;&lt;set $Aztec_End = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -2796,12 +2787,12 @@ Cuauhtemoc Total Points: &lt;&lt;print $Cuauhtemoc_Final&gt;&gt;&lt;br&gt;
 
 &lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
-Moctezuma Total Points: &lt;&lt;print _Moctezuma_Final&gt;&gt;&lt;br&gt;
+Moctezuma Total Points: &lt;&lt;print $Moctezuma_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $Pochteca_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Pochteca_Act is &quot;Yes&quot;&gt;&gt;
-Pochteca Total Points: &lt;&lt;print _Pochteca_Final&gt;&gt;&lt;br&gt;
+Pochteca Total Points: &lt;&lt;print $Pochteca_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
@@ -12443,7 +12434,7 @@ The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome 
 The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aguilar_Final=$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Marina&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Marina_Final=$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Marina&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Marina_Final=$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
 &lt;&lt;/if&gt;&gt;
 
 
