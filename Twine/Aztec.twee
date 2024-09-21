@@ -2946,6 +2946,9 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <</if>>
 
 <<if ndef $Span_End>>
+<<set $Span_End = 0>>
+<</if>>
+<<if $Span_End = 0>>
 <<set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))>>
 <</if>>
 
