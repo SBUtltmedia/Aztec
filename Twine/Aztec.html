@@ -2756,10 +2756,10 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 
 &lt;&lt;if ndef $Aztec_End&gt;&gt;
-&lt;&lt;set $Aztec_End = 0&gt;&gt;
+&lt;&lt;set $Aztec_End = &quot;0&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;if $Aztec_End = 0&gt;&gt;
-&lt;&lt;set $Aztec_End = ((_Aztec_Priest_Final)+(_Cacamatzin_Final)+(_Cuauhtemoc_Final)+(_Moctezuma_Final)+(_Pochteca_Final)+(_Tlacaelel_Final))+ 10&gt;&gt;
+&lt;&lt;if $Aztec_End = &quot;0&quot;&gt;&gt;
+&lt;&lt;set $Aztec_End = &quot;10&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if ndef $Span_End&gt;&gt;
