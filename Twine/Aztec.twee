@@ -3150,12 +3150,8 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 <<set _Moctezuma_Final = setup.getTotalChoices("Moctezuma_Final")>>
 <<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
 <<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
-
-
-<<if $Aztec_End = 0>>
 <<set $Aztec_End = (("Aztec_Priest_Final")+("Cacamatzin_Final")+("Cuauhtemoc_Final")+("Moctezuma_Final")+("Pochteca_Final")+("Tlacaelel_Final"))>>
-<br>Hello
-<</if>>
+
 
 <<if ndef $Span_End>>
 <<set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))>>
@@ -3164,6 +3160,8 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 <<if ndef $Tlax_End>>
 <<set $Tlax_End=(($Xicotencatl_Elder_Final+Xicotencatl_Younger_Final+$Maxixcatl_Final)/(_Tlax_Tot_Play))>>
 <</if>>
+
+Hello
 
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
