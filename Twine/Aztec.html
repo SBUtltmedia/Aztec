@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -2772,8 +2772,16 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Tlax_Final = setup.getTotalChoices (&quot;Tlax_Final&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
 
+
+&lt;&lt;set _Aztec_Priest_Final = setup.getTotalChoices(&quot;Aztec_Priest_Final&quot;)&gt;&gt;
+&lt;&lt;set _Cacamatzin_Final = setup.getTotalChoices(&quot;Cacamatzin_Final&quot;)&gt;&gt;
+&lt;&lt;set _Cuauhtemoc_Final = setup.getTotalChoices(&quot;Cuauhtemoc_Final&quot;)&gt;&gt;
+&lt;&lt;set _Moctezuma_Final = setup.getTotalChoices(&quot;Moctezuma_Final&quot;)&gt;&gt;
+&lt;&lt;set _Pochteca_Final = setup.getTotalChoices(&quot;Pochteca_Final&quot;)&gt;&gt;
+&lt;&lt;set _Tlacaelel_Final = setup.getTotalChoices(&quot;Tlacaelel_Final&quot;)&gt;&gt;
+
 &lt;&lt;if ndef $Aztec_End&gt;&gt;
-&lt;&lt;set $Aztec_End=(($Aztec_Priest_Final+$Cacamatzin_Final+$Cuauhtemoc_Final+$Moctezuma_Final+$Pochteca_Final+$Tlacaelel_Final))&gt;&gt;
+&lt;&lt;set $Aztec_End=((_Aztec_Priest_Final+_Cacamatzin_Final+_Cuauhtemoc_Final+_Moctezuma_Final+_Pochteca_Final+_Tlacaelel_Final))&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if ndef $Span_End&gt;&gt;
