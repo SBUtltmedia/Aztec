@@ -2942,7 +2942,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set $Aztec_End = 0>>
 <</if>>
 <<if $Aztec_End = 0>>
-<<set $Aztec_End = ((_Aztec_Priest_Final)+(_Cacamatzin_Final)+(_Cuauhtemoc_Final)+(_Moctezuma_Final)+(_Pochteca_Final)+(_Tlacaelel_Final))>>
+<<set $Aztec_End = ((_Aztec_Priest_Final)+(_Cacamatzin_Final)+(_Cuauhtemoc_Final)+(_Moctezuma_Final)+(_Pochteca_Final)+(_Tlacaelel_Final))+ 10>>
 <</if>>
 
 <<if ndef $Span_End>>
