@@ -2939,7 +2939,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
 
 <<if ndef $Aztec_End>>
-<<set $Aztec_End=((_Aztec_Priest_Final+_Cacamatzin_Final+_Cuauhtemoc_Final+_Moctezuma_Final+_Pochteca_Final+_Tlacaelel_Final))>>
+<<set $Aztec_End=(_Aztec_Priest_Final+_Cacamatzin_Final+_Cuauhtemoc_Final+_Moctezuma_Final+_Pochteca_Final+_Tlacaelel_Final)>>
 <</if>>
 
 <<if ndef $Span_End>>
@@ -2968,12 +2968,12 @@ Cuauhtemoc Total Points: <<print $Cuauhtemoc_Final>><br>
 
 <<if $Moctezuma_Act is "No">>
 <<elseif $Moctezuma_Act is "Yes">>
-Moctezuma Total Points: <<print $Moctezuma_Final>><br>
+Moctezuma Total Points: <<print _Moctezuma_Final>><br>
 <</if>>
 
 <<if $Pochteca_Act is "No">>
 <<elseif $Pochteca_Act is "Yes">>
-Pochteca Total Points: <<print $Pochteca_Final>><br>
+Pochteca Total Points: <<print _Pochteca_Final>><br>
 <</if>>
 <<if $Tlacaelel_Act is "No">>
 <<elseif $Tlacaelel_Act is "Yes">>
