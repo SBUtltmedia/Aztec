@@ -3161,8 +3161,6 @@ You must wait for both <<print $New_Aztec_Leader>> and <<print $Tlax_Leader>> to
 <<set $Tlax_End=(($Xicotencatl_Elder_Final+Xicotencatl_Younger_Final+$Maxixcatl_Final)/(_Tlax_Tot_Play))>>
 <</if>>
 
-Hello
-
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
 <<elseif $Aztec_Priest_Act is "Yes">>
@@ -10502,7 +10500,8 @@ Votes for Olid: <<print _Sp_Ld_Oli_Teno>><br>
 Total Players in Game: <<print _Span_Tot_Play>><br>
 <br>
 
-<<if _Span_Tot_Play < (_Span_Tot_Play - 1)>>
+
+<<if _Sp_Ld_Vote_Teno < (_Span_Tot_Play - 1)>>
 When everyone has voted, you will find out who will lead you now.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
