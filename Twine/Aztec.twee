@@ -2955,7 +2955,7 @@ Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
-<b>Aztec Final Score: <<print $Aztec_End>></b><br>
+<b>Aztec Final Score: <<print $Tlacaelel_Final + $Pochteca_Final + $Moctezuma_Final + $Cuauhtemoc_Final + $Cacamatzin_Final + $Aztec_Priest_Final>></b><br>
 <br>
 
 
