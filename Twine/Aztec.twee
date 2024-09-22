@@ -2913,13 +2913,8 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Moctezuma_Final = setup.getTotalChoices("Moctezuma_Final")>>
 <<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
 <<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
-<<set _Aztec_End = setup.sum("Aztec_Priest_Final" 
-    "Cacamatzin_Final"
-    "Cuauhtemoc_Final"
-    "Moctezuma_Final"
-    "Tlacaelel_Final"
-    "Pochteca_Final"
-     + 10>>
+
+
 
 <<if ndef $Span_End>>
 <<set $Span_End = 0>>
@@ -2960,10 +2955,9 @@ Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
-<b>Aztec Final Score: <<print _Aztec_End>></b><br>
+<b>Aztec Final Score: <<print $Aztec_End>></b><br>
 <br>
-
-As the Leader of the Aztecs, you must <<link "calculate your team's final score" "Battle Outcome Aztecs Versus Spaniards 3">><</link>>
+Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Tlacaelel_Final>><</link>>
 
 <b>Spaniards</b><br>
 <<if $Aguilar_Act is "No">>
