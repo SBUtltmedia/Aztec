@@ -2958,9 +2958,9 @@ Pochteca Total Points: <<print $Pochteca_Final>><br>
 Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 <</if>>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
-Aztec Players who have struck their final blow:  <<print $Aztec_Final>><br>
-Total Aztec Players in Game: <<print $Aztec_Tot_Play>><br>
-<b>Aztec Final Score: <<print $Aztec_End>></b><br>
+Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
+Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
+<b>Aztec Final Score: <<print _Aztec_End>></b><br>
 <br>
 
 As the Leader of the Aztecs, you must <<link "calculate your team's final score" "Battle Outcome Aztecs Versus Spaniards 3">><</link>>
