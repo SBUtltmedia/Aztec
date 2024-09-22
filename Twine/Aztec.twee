@@ -2903,8 +2903,6 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 :: Battle Outcome Aztecs Versus Spaniards 3 {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
 
-<<set _Aztec_End = "Test 2">>
-
 <<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
 <<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
