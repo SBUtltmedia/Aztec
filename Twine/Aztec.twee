@@ -2913,7 +2913,13 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Moctezuma_Final = setup.getTotalChoices("Moctezuma_Final")>>
 <<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
 <<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
-<<set _Aztec_End = ((setup.getTotalChoices("Aztec_Priest_Final"))+(setup.getTotalChoices("Cacamatzin_Final"))+(setup.getTotalChoices("Cuauhtemoc_Final"))+(setup.getTotalChoices("Moctezuma_Final"))+(setup.getTotalChoices("Tlacaelel_Final"))+(setup.getTotalChoices("Pochteca_Final")))>>
+<<set _Aztec_End = 
+    setup.getTotalChoices("Aztec_Priest_Final") +
+    setup.getTotalChoices("Cacamatzin_Final") +
+    setup.getTotalChoices("Cuauhtemoc_Final") +
+    setup.getTotalChoices("Moctezuma_Final") +
+    setup.getTotalChoices("Tlacaelel_Final") +
+    setup.getTotalChoices("Pochteca_Final")>>
 
 <<if ndef $Span_End>>
 <<set $Span_End = 0>>
