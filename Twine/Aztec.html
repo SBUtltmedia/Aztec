@@ -2803,7 +2803,7 @@ Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&
 Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;b&gt;Aztec Players Total Final: &lt;&lt;print $Aztec_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-Aztec Team and Players Final:  &lt;&lt;print $Aztec_End + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Aztec Team and Players Final:  &lt;&lt;print ($Aztec_End + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;])/$Aztec_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
