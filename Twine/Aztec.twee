@@ -2903,7 +2903,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 :: Battle Outcome Aztecs Versus Spaniards 3 {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
 
-<<set $Aztec_End = "Test">>
+<<set _Aztec_End = "Test 2">>
 
 <<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
@@ -2957,7 +2957,7 @@ Tlacaelel Total Points: <<print _Tlacaelel_Final>><br>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
-<b>Aztec Final Score: <<print $Aztec_End>></b><br>
+<b>Aztec Final Score: <<print _Aztec_End>></b><br>
 <br>
 
 As the Leader of the Aztecs, you must <<link "calculate your team's final score" "Battle Outcome Aztecs Versus Spaniards 3">><<set _Aztec_End = (setup.getTotalChoices("Aztec_Priest_Final")+(setup.getTotalChoices("Cacamatzin_Final"))+(setup.getTotalChoices("Cuauhtemoc_Final"))+(setup.getTotalChoices("Moctezuma_Final"))+(setup.getTotalChoices("Pochteca_Final"))+(setup.getTotalChoices("Tlacaelel_Final")))>><</link>>
