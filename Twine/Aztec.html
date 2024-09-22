@@ -2801,9 +2801,37 @@ Tlacaelel Total Points: &lt;&lt;print $Tlacaelel_Final&gt;&gt;&lt;br&gt;
 Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
 Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
 Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
-&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;Aztec Players Total Final: &lt;&lt;print $Aztec_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final&gt;&gt;&lt;&lt;/link&gt;&gt;
+Aztec Team and Players Final:  &lt;&lt;print $Aztec_End + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;switch $role&gt;&gt;
+&lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
+Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;case &quot;Pochteca&quot;&gt;&gt;
+Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Pochteca_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;case &quot;Aztec_Priest&quot;&gt;&gt;
+Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Aztec_Priest_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;case &quot;Cacamatzin&quot;&gt;&gt;
+Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cacamatzin_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;case &quot;Cuauhtemoc&quot;&gt;&gt;
+Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cuauhtemoc_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
+Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Moctezuma_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;/switch&gt;&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+
 
 &lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
 &lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;

@@ -2955,9 +2955,37 @@ Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
-<b>Aztec Final Score: <<print $Aztec_End>></b><br>
+<b>Aztec Players Total Final: <<print $Aztec_End>></b><br>
 <br>
-Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Tlacaelel_Final>><</link>>
+Aztec Team and Players Final:  <<print $Aztec_End + $factions["Aztecs"]["stats"]["Strength"]>><br>
+<br>
+<<switch $role>>
+<<case "Tlacaelel">>
+Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Tlacaelel_Final>><</link>><br>
+<br>
+<<case "Pochteca">>
+Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Pochteca_Final>><</link>><br>
+<br>
+
+<<case "Aztec_Priest">>
+Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Aztec_Priest_Final>><</link>><br>
+<br>
+
+<<case "Cacamatzin">>
+Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Cacamatzin_Final>><</link>><br>
+<br>
+
+<<case "Cuauhtemoc">>
+Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Cuauhtemoc_Final>><</link>><br>
+<br>
+
+<<case "Moctezuma">>
+Add your points <<link "to the total" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End += $Moctezuma_Final>><</link>><br>
+<br>
+
+<</switch>>
+Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><</link>><br>
+
 
 <b>Spaniards</b><br>
 <<if $Aguilar_Act is "No">>
