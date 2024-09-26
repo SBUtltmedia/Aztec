@@ -2933,7 +2933,6 @@ Aztec Priest Total Points: <<print $Aztec_Priest_Final>><br>
 <<elseif $Cacamatzin_Act is "Yes">>
 Cacamatzin Total Points: <<print $Cacamatzin_Final>><br>
 <</if>>
-
 <<if $Cuauhtemoc_Act is "No">>
 <<elseif $Cuauhtemoc_Act is "Yes">>
 Cuauhtemoc Total Points: <<print $Cuauhtemoc_Final>><br>
@@ -2950,6 +2949,7 @@ Pochteca Total Points: <<print $Pochteca_Final>><br>
 <</if>>
 <<if $Tlacaelel_Act is "No">>
 <<elseif $Tlacaelel_Act is "Yes">>
+
 Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 <</if>>
 Current Aztec Leader:  <<print $New_Aztec_Leader>><br>
