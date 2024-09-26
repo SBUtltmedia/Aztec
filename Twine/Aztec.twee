@@ -3058,7 +3058,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 :: Battle Outcome Aztecs Versus Spaniards 3b {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
 <<if ndef $Aztecs_Game>>
-<<set $Aztecs_Game = "O">>
+<<set $Aztecs_Game = O>>
 <</if>>
 <b>Page 2</b><br>
 <br>
@@ -3077,7 +3077,7 @@ Aztec Final score:  <b><<print $Aztec_Game>></b><br>
 
 Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End/$Aztec_Tot_Play>><</link>>
 
-Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = "0">><<set $Aztecs_Game = "0">><</link>><br>
+Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
 
 
 
@@ -13618,60 +13618,60 @@ You watch as <<print $New_Aztec_Leader>> raises his macuahuitl and [[strikes the
 
 
 <<if ndef $Moctezuma_Final>>
-<<set $Moctezuma_Final="0">>
+<<set $Moctezuma_Final = 0>>
 <</if>>
 <<if ndef $Tlacaelel_Final>>
-<<set $Tlacaelel_Final ="0">>
+<<set $Tlacaelel_Final = 0>>
 <</if>>
 <<if ndef $Cuauhtemoc_Final>>
-<<set $Cuauhtemoc_Final="0">>
+<<set $Cuauhtemoc_Final = 0>>
 <</if>>
 <<if ndef $Cacamatzin_Final>>
-<<set $Cacamatzin_Final="0">>
+<<set $Cacamatzin_Final = 0>>
 <</if>>
 <<if ndef $Aztec_Priest_Final>>
-<<set $Aztec_Priest_Final="0">>
+<<set $Aztec_Priest_Final = 0>>
 <</if>>
 <<if ndef $Pochteca_Final>>
-<<set $Pochteca_Final="0">>
+<<set $Pochteca_Final = 0>>
 <</if>>
 <<if ndef $Aztec_Final>>
-<<set $Aztec_Final="0">>
+<<set $Aztec_Final = 0>>
 <</if>>
 
 <<if ndef $Cortes_Final>>
-<<set $Cortes_Final="0">>
+<<set $Cortes_Final = 0>>
 <</if>>
 <<if ndef $Alvarado_Final>>
-<<set $Alvarado_Final="0">>
+<<set $Alvarado_Final = 0>>
 <</if>>
 <<if ndef $Aguilar_Final>>
-<<set $Aguilar_Final="0">>
+<<set $Aguilar_Final = 0>>
 <</if>>
 <<if ndef $Marina_Final>>
-<<set $Marina_Final="0">>
+<<set $Marina_Final = 0>>
 <</if>>
 <<if ndef $Garrido_Final>>
-<<set $Garrido_Final="0">>
+<<set $Garrido_Final = 0>>
 <</if>>
 <<if ndef $Olid_Final>>
-<<set $Olid_Final="0">>
+<<set $Olid_Final = 0>>
 <</if>>
 <<if ndef $Span_Final>>
-<<set $Span_Final="0">>
+<<set $Span_Final = 0>>
 <</if>>
 
 <<if ndef $Xicotencatl_Elder_Final>>
-<<set $Xicotencatl_Elder_Final="0">>
+<<set $Xicotencatl_Elder_Final = 0>>
 <</if>>
 <<if ndef $Xicotencatl_Younger_Final>>
-<<set $Xicotencatl_Younger_Final="0">>
+<<set $Xicotencatl_Younger_Final = 0>>
 <</if>>
 <<if ndef $Maxixcatl_Final>>
-<<set $Maxixcatl_Final="0">>
+<<set $Maxixcatl_Final = 0>>
 <</if>>
 <<if ndef $Tlax_Final>>
-<<set $Tlax_Final="0">>
+<<set $Tlax_Final = 0>>
 <</if>>
 
 
