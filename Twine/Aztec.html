@@ -2779,7 +2779,6 @@ Aztec Priest Total Points: &lt;&lt;print $Aztec_Priest_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;elseif $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
 Cacamatzin Total Points: &lt;&lt;print $Cacamatzin_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-
 &lt;&lt;if $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
 Cuauhtemoc Total Points: &lt;&lt;print $Cuauhtemoc_Final&gt;&gt;&lt;br&gt;
@@ -2796,9 +2795,11 @@ Pochteca Total Points: &lt;&lt;print $Pochteca_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
+
 Tlacaelel Total Points: &lt;&lt;print $Tlacaelel_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 Current Aztec Leader:  &lt;&lt;print $New_Aztec_Leader&gt;&gt;&lt;br&gt;
+
 Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
 Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
 Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
@@ -2897,7 +2898,8 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Pochteca_Final = setup.getTotalChoices(&quot;Pochteca_Final&quot;)&gt;&gt;
 &lt;&lt;set _Tlacaelel_Final = setup.getTotalChoices(&quot;Tlacaelel_Final&quot;)&gt;&gt;
 
-
+&lt;b&gt;Page 2&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
 
 &lt;&lt;if ndef $Span_End&gt;&gt;
 &lt;&lt;set $Span_End = 0&gt;&gt;
