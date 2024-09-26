@@ -2953,6 +2953,7 @@ Pochteca Total Points: <<print $Pochteca_Final>><br>
 Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 <</if>>
 Current Aztec Leader:  <<print $New_Aztec_Leader>><br>
+
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
