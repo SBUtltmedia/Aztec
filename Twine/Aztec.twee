@@ -3058,7 +3058,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 :: Battle Outcome Aztecs Versus Spaniards 3b {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
 <<if ndef $Aztecs_Game>>
-<<set $Aztecs_Game = O>>
+<<set $Aztecs_Game = 0>>
 <</if>>
 <b>Page 2</b><br>
 <br>
