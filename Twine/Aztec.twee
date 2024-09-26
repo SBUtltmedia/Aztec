@@ -3072,7 +3072,7 @@ Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
 
 Aztec Players Total Final: <<print $Aztec_End>><br> 
 <br>
-Aztec Final score:  <b><<print $Aztec_Game>></b><br>
+Aztec Final score:  <b><<print $Aztecs_Game>></b><br>
 <br>
 
 Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End/$Aztec_Tot_Play>><</link>>
