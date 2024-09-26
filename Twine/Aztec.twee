@@ -3060,6 +3060,8 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<if ndef $Aztecs_Game>>
 <<set $Aztecs_Game = 0>>
 <</if>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+
 <b>Page 2</b><br>
 <br>
 <b>Aztecs</b><br>
@@ -3075,7 +3077,7 @@ Aztec Players Total Final: <<print $Aztec_End>><br>
 Aztec Final score:  <b><<print $Aztecs_Game>></b><br>
 <br>
 
-Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End / $Aztec_Tot_Play>><</link>>
+Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>>
 
 Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
 
