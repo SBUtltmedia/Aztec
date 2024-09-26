@@ -3055,7 +3055,8 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
 <<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
 
-
+<b>Page 2</b><br>
+<br>
 
 <<if ndef $Span_End>>
 <<set $Span_End = 0>>
