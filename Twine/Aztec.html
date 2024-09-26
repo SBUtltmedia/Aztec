@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -2810,7 +2810,7 @@ Aztec Team and Players Final:  &lt;b&gt;&lt;&lt;print $Aztec_End + $factions[&qu
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final&gt;&gt;&lt;&lt;set $Aztec_End += $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;	
 Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
@@ -2898,8 +2898,7 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Pochteca_Final = setup.getTotalChoices(&quot;Pochteca_Final&quot;)&gt;&gt;
 &lt;&lt;set _Tlacaelel_Final = setup.getTotalChoices(&quot;Tlacaelel_Final&quot;)&gt;&gt;
 
-&lt;b&gt;Page 2&lt;/b&gt;&lt;br&gt;
-&lt;br&gt;
+
 
 &lt;&lt;if ndef $Span_End&gt;&gt;
 &lt;&lt;set $Span_End = 0&gt;&gt;
@@ -2907,6 +2906,9 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;if $Span_End = 0&gt;&gt;
 &lt;&lt;set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play))&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+
+&lt;b&gt;Page 2&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
 
 &lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
 &lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
