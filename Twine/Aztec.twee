@@ -3061,6 +3061,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set $Aztecs_Game = 0>>
 <</if>>
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
 
 <b>Page 2</b><br>
 <br>
