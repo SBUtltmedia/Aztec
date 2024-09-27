@@ -14532,6 +14532,8 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Fi
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
 <<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Final = setup.getTotalChoices ("Aztec_Final")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Aztec_Priest_Final = setup.getTotalChoices("Aztec_Priest_Final")>>
 <<set _Cacamatzin_Final = setup.getTotalChoices("Cacamatzin_Final")>>
 <<set _Cuauhtemoc_Final = setup.getTotalChoices("Cuauhtemoc_Final")>>
@@ -14961,7 +14963,7 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Tlax_Game = $Tlax_End / 
 <br>
 Reset <<link "Tlaxcalan Points for Testing" "5 Last Nap in the Library">><<set $Tlax_End = 0>><<set $Tlax_Final = 0>><<set $Tlax_Game= 0>><</link>><br>
 <<else>>
-Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Tlax_End = 0>><<set $Tlax_Final = 0>><<set $Tlax_Game= 0>><</link>><br>
+Reset <<link "Tlaxcalan Points for Testing" "5 Last Nap in the Library">><<set $Tlax_End = 0>><<set $Tlax_Final = 0>><<set $Tlax_Game= 0>><</link>><br>
 
 <</if>>
 <</if>>
