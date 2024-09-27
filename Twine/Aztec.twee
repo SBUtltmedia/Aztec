@@ -14383,10 +14383,10 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <<if $Az_Ld_Dead is "Yes">>
 It's your last nap in the [[library|Final Battle Purgatory]]!
 <<else>>
-It's your last nap in the [[library|Final Battle 1]]!
+It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 0>><</link>>!
 <</if>>
 <<else>>
-It's your last nap in the [[library|Final Battle 1]]!
+It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 0>><</link>>!
 <</if>>
 
 <<case "Spaniards">>
@@ -14394,16 +14394,16 @@ It's your last nap in the [[library|Final Battle 1]]!
 <<if $Cortes_Dead is "Yes">>
 It's your last nap in the [[library|Final Battle Purgatory]]!
 <<else>>
-It's your last nap in the [[library|Final Battle 1]]!
+It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 0>><</link>>!
 <</if>>
 
 <<else>>
-It's your last nap in the [[library|Final Battle 1]]!
+It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 0>><</link>>!
 <</if>>
 
 <<case "Tlaxcalans">>
 
-It's your last nap in the [[library|Final Battle 1]]!
+It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 0>><</link>>!
 
 <</switch>>
 
