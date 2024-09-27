@@ -14377,7 +14377,7 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <</liveblock>>
 :: 5 Last Nap in the Library{"position":"3200,12250","size":"100,100"}
 
-<<switch $factions>>
+<<switch $faction>>
 <<case "Aztecs">>
 <<if $role is $Aztec_Leader>>
 <<if $Az_Ld_Dead is "Yes">>
