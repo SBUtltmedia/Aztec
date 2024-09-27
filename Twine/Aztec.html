@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -2760,6 +2760,20 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Pochteca_Final = setup.getTotalChoices(&quot;Pochteca_Final&quot;)&gt;&gt;
 &lt;&lt;set _Tlacaelel_Final = setup.getTotalChoices(&quot;Tlacaelel_Final&quot;)&gt;&gt;
 
+&lt;&lt;if ndef $Aztec_Final&gt;&gt;
+&lt;&lt;set $Aztec_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Span_Final&gt;&gt;
+&lt;&lt;set $Span_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Tlax_Final&gt;&gt;
+&lt;&lt;set $Tlax_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;switch $factions&gt;&gt;
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
 &lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Aztec_Priest_Act is &quot;Yes&quot;&gt;&gt;
@@ -2786,71 +2800,67 @@ Pochteca Total Points: &lt;&lt;print $Pochteca_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
-
 Tlacaelel Total Points: &lt;&lt;print $Tlacaelel_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
+
 Current Aztec Leader:  &lt;&lt;print $New_Aztec_Leader&gt;&gt;&lt;br&gt;
 
 Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
 Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
 Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
-&lt;b&gt;Aztec Players Total Final: &lt;&lt;print $Aztec_End&gt;&gt;&lt;/b&gt;&lt;br&gt; 
-&lt;br&gt;
-Aztec Team and Players Final:  &lt;b&gt;&lt;&lt;print $Aztec_End + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/b&gt;&lt;br&gt;
-&lt;br&gt;
+
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;	
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Pochteca&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Pochteca_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Pochteca_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Pochteca_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Pochteca_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Aztec_Priest&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Aztec_Priest_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Aztec_Priest_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Aztec_Priest_Final&gt;&gt;
-&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Aztec_Priest_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Cacamatzin&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cacamatzin_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cacamatzin_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cacamatzin_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cacamatzin_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Cuauhtemoc&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cuauhtemoc_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cuauhtemoc_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cuauhtemoc_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cuauhtemoc_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Moctezuma_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Moctezuma_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Moctezuma_Final&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Moctezuma_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
-
+&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
 &lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
@@ -2874,31 +2884,113 @@ Marina Total Points: &lt;&lt;print $Marina_Final&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $Olid_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Olid_Act is &quot;Yes&quot;&gt;&gt;
-Olid Total Points: &lt;&lt;print $Olid_Final&gt;&gt;&lt;br&gt;
+Olid Total Points: &lt;&lt;print $Olid_Final&gt;&gt;&lt;br&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
+
+Current Spanish Leader:  &lt;&lt;print $Span_Leader&gt;&gt;&lt;br&gt;
 Spaniards Team Strength:  &lt;&lt;print $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
 Spanish Players who have struck their final blow:  &lt;&lt;print _Span_Final&gt;&gt;&lt;br&gt;
 Total Spanish Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
-&lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-
-
-
-&lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
-You wait for the haze of war to clear.&lt;br&gt;
+&lt;&lt;switch $role&gt;&gt;
+&lt;&lt;case &quot;Aguilar&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Aguilar_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
-&lt;br&gt;
-Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&gt; must join.
-&lt;&lt;elseif $Final_Spanish_Points &gt;=$Final_Aztec_Points&gt;&gt;
-[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Spanish Victory]].&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;elseif $Final_Aztec_Points &gt;$Final_Spanish_Points&gt;&gt;
-[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory]].&lt;br&gt;
+&lt;&lt;else&gt;&gt;	
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Aguilar_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Alvarado&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Alvarado_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Alvarado_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Cortes&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Cortes_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Cortes_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Garrido&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Garrido_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Garrido_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Marina&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Marina_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Marina_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Olid&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Olid_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Span_End += $Olid_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
 
+&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;b&gt;Tlaxcalans&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Xicotencatl_Elder_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Elder_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Elder Total Points: &lt;&lt;print $Xicotencatl_Elder_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Xicotencatl_Younger_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Younger_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Younger Total Points: &lt;&lt;print $Xicotencatl_Younger_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Maxixcatl_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Maxixcatl_Act is &quot;Yes&quot;&gt;&gt;
+Maxixcatl Total Points: &lt;&lt;print $Maxixcatl_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
+Current Tlaxcalan Leader:  &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;
+Tlaxcalan Team Strength:  &lt;&lt;print $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Tlaxcalan Players who have struck their final blow:  &lt;&lt;print _Tlax_Final&gt;&gt;&lt;br&gt;
+Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;switch $role&gt;&gt;
+&lt;&lt;case &quot;Xicotencatl_Elder&quot;&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Elder_Final + $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;	
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Elder_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Xicotencatl_Younger&quot;&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Younger_Final + $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Younger_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Maxixcatl&quot;&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Maxixcatl_Final + $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Maxixcatl_Final&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Battle Outcome Aztecs Versus Spaniards 3b" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztecs_Game&gt;&gt;
 &lt;&lt;set $Aztecs_Game = 0&gt;&gt;
@@ -2906,8 +2998,22 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Final = setup.getTotalChoices (&quot;Aztec_Final&quot;)&gt;&gt;
 
+&lt;&lt;if ndef $Span_Game&gt;&gt;
+&lt;&lt;set $Span_Game = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Span_Final = setup.getTotalChoices (&quot;Span_Final&quot;)&gt;&gt;
+
+&lt;&lt;if ndef $Tlax_Game&gt;&gt;
+&lt;&lt;set $Tlax_Game = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Tlax_Final = setup.getTotalChoices (&quot;Tlax_Final&quot;)&gt;&gt;
+
 &lt;b&gt;Page 2&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;switch $faction&gt;&gt;
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
 
 Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
@@ -2954,7 +3060,7 @@ Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Azt
 
 
 
-
+&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
 &lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
@@ -2986,7 +3092,9 @@ Total Spanish Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
 
+&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
 
+&lt;&lt;/switch&gt;&gt;
 
 &lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
 You wait for the haze of war to clear.&lt;br&gt;
@@ -3031,7 +3139,7 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;set $Span_End = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $Span_End = 0&gt;&gt;
-&lt;&lt;set $Span_End=(($Aguilar_Final+$Alvarado_Finall+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))&gt;&gt;
+&lt;&lt;set $Span_End=(($Aguilar_Final+$Alvarado_Final+$Garrido_Final+$Cortes_Final+$Olid_Final+Marina_Final)/(_Span_Tot_Play)/($))&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if ndef $Tlax_End&gt;&gt;
@@ -12526,9 +12634,7 @@ You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [
 &lt;&lt;if ndef $Olid_Final&gt;&gt;
 &lt;&lt;set $Olid_Final = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;if ndef $Span_Final&gt;&gt;
-&lt;&lt;set $Span_Final = 0&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+
 
 &lt;&lt;if ndef $Xicotencatl_Elder_Final&gt;&gt;
 &lt;&lt;set $Xicotencatl_Elder_Final = 0&gt;&gt;
@@ -12548,43 +12654,43 @@ You watch as &lt;&lt;print $New_Aztec_Leader&gt;&gt; raises his macuahuitl and [
 
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $role is &quot;Moctezuma&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Final=$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Final=$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Tlacaelel&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Tlacaelel_Final=$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Tlacaelel_Final=$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Cuauhtemoc&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cuauhtemoc_Final=$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cuauhtemoc_Final=$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Cacamatzin&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cacamatzin_Final=$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cacamatzin_Final=$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Aztec_Priest&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_Priest_Final=$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_Priest_Final=$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Pochteca&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Pochteca_Final=$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Pochteca_Final=$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 &lt;&lt;/if&gt;&gt;
 
 
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $role is &quot;Cortes&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cortes_Final=$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cortes_Final=$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Alvarado&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Alvarado_Final=$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Alvarado_Final=$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Garrido&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Garrido_Final=$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Garrido_Final=$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Olid&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Olid_Final=$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Olid_Final=$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Aguilar&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aguilar_Final=$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aguilar_Final=$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 
 &lt;&lt;elseif $role is &quot;Marina&quot;&gt;&gt;
-The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Marina_Final=$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Marina_Final=$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
 &lt;&lt;/if&gt;&gt;
 
 
@@ -13055,7 +13161,486 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="5 Last Nap in the Library" tags="" position="3200,12250" size="100,100">It&#39;s your last nap in the [[library|Final Battle 1]]!</tw-passagedata><tw-passagedata pid="324" name="Final Battle 1" tags="" position="3200,12125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+
+
+&lt;&lt;if ndef $Moctezuma_Final&gt;&gt;
+&lt;&lt;set $Moctezuma_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Tlacaelel_Final&gt;&gt;
+&lt;&lt;set $Tlacaelel_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Cuauhtemoc_Final&gt;&gt;
+&lt;&lt;set $Cuauhtemoc_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Cacamatzin_Final&gt;&gt;
+&lt;&lt;set $Cacamatzin_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Aztec_Priest_Final&gt;&gt;
+&lt;&lt;set $Aztec_Priest_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Pochteca_Final&gt;&gt;
+&lt;&lt;set $Pochteca_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Aztec_Final&gt;&gt;
+&lt;&lt;set $Aztec_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Cortes_Final&gt;&gt;
+&lt;&lt;set $Cortes_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Alvarado_Final&gt;&gt;
+&lt;&lt;set $Alvarado_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Aguilar_Final&gt;&gt;
+&lt;&lt;set $Aguilar_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Marina_Final&gt;&gt;
+&lt;&lt;set $Marina_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Garrido_Final&gt;&gt;
+&lt;&lt;set $Garrido_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Olid_Final&gt;&gt;
+&lt;&lt;set $Olid_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+&lt;&lt;if ndef $Xicotencatl_Elder_Final&gt;&gt;
+&lt;&lt;set $Xicotencatl_Elder_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Xicotencatl_Younger_Final&gt;&gt;
+&lt;&lt;set $Xicotencatl_Younger_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Maxixcatl_Final&gt;&gt;
+&lt;&lt;set $Maxixcatl_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Tlax_Final&gt;&gt;
+&lt;&lt;set $Tlax_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
+&lt;&lt;if $role is &quot;Moctezuma&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Final=$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Tlacaelel&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Tlacaelel_Final=$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Cuauhtemoc&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cuauhtemoc_Final=$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Cacamatzin&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cacamatzin_Final=$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cacamatzin&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Aztec_Priest&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_Priest_Final=$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aztec_Priest&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Pochteca&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Pochteca_Final=$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Pochteca&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;/if&gt;&gt;
+
+
+&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
+&lt;&lt;if $role is &quot;Cortes&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Cortes_Final=$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Alvarado&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Alvarado_Final=$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Garrido&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Garrido_Final=$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Olid&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Olid_Final=$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Aguilar&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aguilar_Final=$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Marina&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Marina_Final=$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;/if&gt;&gt;
+
+
+&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;&lt;if $role is &quot;Xicotencatl_Elder&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Xicotencatl_Elder_Final=$users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Xicotencatl_Younger&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Xicotencatl_Younger_Final=$users[&quot;Xicotencatl_Younger&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Xicotencatl_Younger&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Xicotencatl_Younger&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+
+&lt;&lt;elseif $role is &quot;Maxixcatl&quot;&gt;&gt;
+The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Maxixcatl_Final=$users[&quot;Maxixcatl&quot;][&quot;stats&quot;][&quot;Strength&quot;]+$users[&quot;Maxixcatl&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+$users[&quot;Maxixcatl&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;.
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="325" name="Final Battle 2" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+
+&lt;&lt;set _Span_Final = setup.getTotalChoices (&quot;Span_Final&quot;)&gt;&gt;
+&lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Aztec_Final = setup.getTotalChoices (&quot;Aztec_Final&quot;)&gt;&gt;
+&lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Aztec_Priest_Final = setup.getTotalChoices(&quot;Aztec_Priest_Final&quot;)&gt;&gt;
+&lt;&lt;set _Cacamatzin_Final = setup.getTotalChoices(&quot;Cacamatzin_Final&quot;)&gt;&gt;
+&lt;&lt;set _Cuauhtemoc_Final = setup.getTotalChoices(&quot;Cuauhtemoc_Final&quot;)&gt;&gt;
+&lt;&lt;set _Moctezuma_Final = setup.getTotalChoices(&quot;Moctezuma_Final&quot;)&gt;&gt;
+&lt;&lt;set _Pochteca_Final = setup.getTotalChoices(&quot;Pochteca_Final&quot;)&gt;&gt;
+&lt;&lt;set _Tlacaelel_Final = setup.getTotalChoices(&quot;Tlacaelel_Final&quot;)&gt;&gt;
+
+&lt;&lt;if ndef $Aztec_Final&gt;&gt;
+&lt;&lt;set $Aztec_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Span_Final&gt;&gt;
+&lt;&lt;set $Span_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ndef $Tlax_Final&gt;&gt;
+&lt;&lt;set $Tlax_Final = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;switch $factions&gt;&gt;
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
+&lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Aztec_Priest_Act is &quot;Yes&quot;&gt;&gt;
+Aztec Priest Total Points: &lt;&lt;print $Aztec_Priest_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Cacamatzin_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
+Cacamatzin Total Points: &lt;&lt;print $Cacamatzin_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
+Cuauhtemoc Total Points: &lt;&lt;print $Cuauhtemoc_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
+Moctezuma Total Points: &lt;&lt;print $Moctezuma_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $Pochteca_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Pochteca_Act is &quot;Yes&quot;&gt;&gt;
+Pochteca Total Points: &lt;&lt;print $Pochteca_Final&gt;&gt;&lt;br&gt; 
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
+Tlacaelel Total Points: &lt;&lt;print $Tlacaelel_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+Current Aztec Leader:  &lt;&lt;print $New_Aztec_Leader&gt;&gt;&lt;br&gt;
+
+Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
+Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
+
+&lt;&lt;switch $role&gt;&gt;
+&lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;	
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Tlacaelel_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Pochteca&quot;&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Pochteca_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Pochteca_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Aztec_Priest&quot;&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Aztec_Priest_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Aztec_Priest_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Cacamatzin&quot;&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cacamatzin_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cacamatzin_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Cuauhtemoc&quot;&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cuauhtemoc_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Cuauhtemoc_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Moctezuma_Final + $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End += $Moctezuma_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
+&lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
+Aguilar Total Points: &lt;&lt;print $Aguilar_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
+Alvarado Total Points: &lt;&lt;print $Alvarado_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
+Cortes Total Points: &lt;&lt;print $Cortes_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Garrido_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Garrido_Act is &quot;Yes&quot;&gt;&gt;
+Garrido Total Points: &lt;&lt;print $Garrido_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
+Marina Total Points: &lt;&lt;print $Marina_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Olid_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Olid_Act is &quot;Yes&quot;&gt;&gt;
+Olid Total Points: &lt;&lt;print $Olid_Final&gt;&gt;&lt;br&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+Current Spanish Leader:  &lt;&lt;print $Span_Leader&gt;&gt;&lt;br&gt;
+Spaniards Team Strength:  &lt;&lt;print $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Spanish Players who have struck their final blow:  &lt;&lt;print _Span_Final&gt;&gt;&lt;br&gt;
+Total Spanish Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;switch $role&gt;&gt;
+&lt;&lt;case &quot;Aguilar&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Aguilar_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;	
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Aguilar_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Alvarado&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Alvarado_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Alvarado_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Cortes&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Cortes_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Cortes_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Garrido&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Garrido_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Garrido_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Marina&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Marina_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Marina_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Olid&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Olid_Final + $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_End += $Olid_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;b&gt;Tlaxcalans&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Xicotencatl_Elder_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Elder_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Elder Total Points: &lt;&lt;print $Xicotencatl_Elder_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Xicotencatl_Younger_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Younger_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Younger Total Points: &lt;&lt;print $Xicotencatl_Younger_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Maxixcatl_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Maxixcatl_Act is &quot;Yes&quot;&gt;&gt;
+Maxixcatl Total Points: &lt;&lt;print $Maxixcatl_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+Current Tlaxcalan Leader:  &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;
+Tlaxcalan Team Strength:  &lt;&lt;print $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Tlaxcalan Players who have struck their final blow:  &lt;&lt;print _Tlax_Final&gt;&gt;&lt;br&gt;
+Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;switch $role&gt;&gt;
+&lt;&lt;case &quot;Xicotencatl_Elder&quot;&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Elder_Final + $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;	
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Elder_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Xicotencatl_Younger&quot;&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Younger_Final + $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Xicotencatl_Younger_Final&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Maxixcatl&quot;&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Maxixcatl_Final + $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;print $role&gt;&gt;, the battle is over. Add your points &lt;&lt;link &quot;to the total&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_End += $Maxixcatl_Final&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Final Battle 3" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Aztecs_Game&gt;&gt;
+&lt;&lt;set $Aztecs_Game = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Aztec_Final = setup.getTotalChoices (&quot;Aztec_Final&quot;)&gt;&gt;
+
+&lt;&lt;if ndef $Span_Game&gt;&gt;
+&lt;&lt;set $Span_Game = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Span_Final = setup.getTotalChoices (&quot;Span_Final&quot;)&gt;&gt;
+
+&lt;&lt;if ndef $Tlax_Game&gt;&gt;
+&lt;&lt;set $Tlax_Game = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
+&lt;&lt;set _Tlax_Final = setup.getTotalChoices (&quot;Tlax_Final&quot;)&gt;&gt;
+
+&lt;b&gt;Page 2&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;switch $faction&gt;&gt;
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
+&lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
+
+Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+
+Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
+
+Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
+
+Aztec Players Total Final: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt; 
+&lt;br&gt;
+
+&lt;&lt;if $Az_Ld_Dead is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;if _Aztec_Final &lt; _Aztec_Tot_Play - 1&gt;&gt;
+You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if _Aztec_Final &lt; _Aztec_Tot_Play&gt;&gt;
+You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;/if &gt;&gt;
+&lt;br&gt;
+
+
+
+&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
+&lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aguilar_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Aguilar_Act is &quot;Yes&quot;&gt;&gt;
+Aguilar Total Points: &lt;&lt;print $Aguilar_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Alvarado_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Alvarado_Act is &quot;Yes&quot;&gt;&gt;
+Alvarado Total Points: &lt;&lt;print $Alvarado_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cortes_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cortes_Act is &quot;Yes&quot;&gt;&gt;
+Cortes Total Points: &lt;&lt;print $Cortes_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Garrido_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Garrido_Act is &quot;Yes&quot;&gt;&gt;
+Garrido Total Points: &lt;&lt;print $Garrido_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Marina_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Marina_Act is &quot;Yes&quot;&gt;&gt;
+Marina Total Points: &lt;&lt;print $Marina_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Olid_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Olid_Act is &quot;Yes&quot;&gt;&gt;
+Olid Total Points: &lt;&lt;print $Olid_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+Spaniards Team Strength:  &lt;&lt;print $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Spanish Players who have struck their final blow:  &lt;&lt;print _Span_Final&gt;&gt;&lt;br&gt;
+Total Spanish Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+
+&lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
+You wait for the haze of war to clear.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
+Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&gt; must join.
+&lt;&lt;elseif $Final_Spanish_Points &gt;=$Final_Aztec_Points&gt;&gt;
+[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Spanish Victory]].&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Final_Aztec_Points &gt;$Final_Spanish_Points&gt;&gt;
+[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory]].&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
@@ -13110,7 +13695,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="324" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="328" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
 
 
 &lt;&lt;script&gt;&gt;
@@ -13202,16 +13787,16 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 
 
 
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="325" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="329" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 	 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 2
 	/* Put link to next passage  */
 	&lt;&lt;link &quot;Next passage (final)&quot; &quot;Side Passage Example Final&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="331" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example Final
 	&lt;&lt;print $users[$role][&quot;sidePassageReturn&quot;]&gt;&gt;
 	
