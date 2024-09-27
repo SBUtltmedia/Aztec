@@ -14377,7 +14377,35 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <</liveblock>>
 :: 5 Last Nap in the Library{"position":"3200,12250","size":"100,100"}
 
+<<switch $factions>>
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+<<if $Az_Ld_Dead is "Yes">>
+It's your last nap in the [[library|Final Battle Purgatory]]!
+<<else>>
 It's your last nap in the [[library|Final Battle 1]]!
+<</if>>
+<<else>>
+It's your last nap in the [[library|Final Battle 1]]!
+<</if>>
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+<<if $Cortes_Dead is "Yes">>
+It's your last nap in the [[library|Final Battle Purgatory]]!
+<<else>>
+It's your last nap in the [[library|Final Battle 1]]!
+<</if>>
+
+<<else>>
+It's your last nap in the [[library|Final Battle 1]]!
+<</if>>
+
+<<case "Tlaxcalans">>
+
+It's your last nap in the [[library|Final Battle 1]]!
+
+<</switch>>
 
 :: Final Battle 1 {"position":"3200,12125","size":"100,100"}
 <<liveblock>>
@@ -14523,7 +14551,7 @@ The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniar
 <<set $Tlax_Final = 0>>
 <</if>>
 
-<<switch $factions>>
+<<switch $faction>>
 <<case "Aztecs">>
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
@@ -14868,7 +14896,12 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <</liveblock>>
 
 
+:: Final Battle Purgatory
+You are stuck in Purgatory waiting for an outcome to the earthly goings-on.<br>
+<br>
+:: Final Battle Decision
 
+:: Final Battle Outcome
 
 
 :: Home: Stats [Control Done Breaks Home] {"position":"338,1151","size":"100,100"}
