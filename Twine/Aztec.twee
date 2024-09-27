@@ -2926,7 +2926,7 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 <<set $Tlax_Final = 0>>
 <</if>>
 
-<<switch $factions>>
+<<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
@@ -3169,7 +3169,7 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 
 <b>Page 2</b><br>
 <br>
-<<switch $faction>>
+<<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <b>Aztecs</b><br>
 
@@ -14471,55 +14471,55 @@ It's your last nap in the [[library|Final Battle 1]]!
 
 <<case "Aztecs">>
 <<if $role is "Moctezuma">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Moctezuma_Final=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Moctezuma_Final=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Tlacaelel">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Tlacaelel_Final=$users["Tlacaelel"]["stats"]["Strength"]+$users["Tlacaelel"]["stats"]["Loyalty"]+$users["Tlacaelel"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Tlacaelel_Final=$users["Tlacaelel"]["stats"]["Strength"]+$users["Tlacaelel"]["stats"]["Loyalty"]+$users["Tlacaelel"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Cuauhtemoc">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Cuauhtemoc_Final=$users["Cuauhtemoc"]["stats"]["Strength"]+$users["Cuauhtemoc"]["stats"]["Loyalty"]+$users["Cuauhtemoc"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cuauhtemoc_Final=$users["Cuauhtemoc"]["stats"]["Strength"]+$users["Cuauhtemoc"]["stats"]["Loyalty"]+$users["Cuauhtemoc"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Cacamatzin">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Cacamatzin_Final=$users["Cacamatzin"]["stats"]["Strength"]+$users["Cacamatzin"]["stats"]["Loyalty"]+$users["Cacamatzin"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cacamatzin_Final=$users["Cacamatzin"]["stats"]["Strength"]+$users["Cacamatzin"]["stats"]["Loyalty"]+$users["Cacamatzin"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Aztec_Priest">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_Priest_Final=$users["Aztec_Priest"]["stats"]["Strength"]+$users["Aztec_Priest"]["stats"]["Loyalty"]+$users["Aztec_Priest"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Aztec_Priest_Final=$users["Aztec_Priest"]["stats"]["Strength"]+$users["Aztec_Priest"]["stats"]["Loyalty"]+$users["Aztec_Priest"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Pochteca">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Pochteca_Final=$users["Pochteca"]["stats"]["Strength"]+$users["Pochteca"]["stats"]["Loyalty"]+$users["Pochteca"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Pochteca_Final=$users["Pochteca"]["stats"]["Strength"]+$users["Pochteca"]["stats"]["Loyalty"]+$users["Pochteca"]["stats"]["Wisdom"]>><</link>>.
 <</if>>
 
 
 <<case "Spaniards">>
 <<if $role is "Cortes">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Cortes_Final=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cortes_Final=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Alvarado">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Alvarado_Final=$users["Alvarado"]["stats"]["Strength"]+$users["Alvarado"]["stats"]["Loyalty"]+$users["Alvarado"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Alvarado_Final=$users["Alvarado"]["stats"]["Strength"]+$users["Alvarado"]["stats"]["Loyalty"]+$users["Alvarado"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Garrido">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Garrido_Final=$users["Garrido"]["stats"]["Strength"]+$users["Garrido"]["stats"]["Loyalty"]+$users["Garrido"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Garrido_Final=$users["Garrido"]["stats"]["Strength"]+$users["Garrido"]["stats"]["Loyalty"]+$users["Garrido"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Olid">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Olid_Final=$users["Olid"]["stats"]["Strength"]+$users["Olid"]["stats"]["Loyalty"]+$users["Olid"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Olid_Final=$users["Olid"]["stats"]["Strength"]+$users["Olid"]["stats"]["Loyalty"]+$users["Olid"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Aguilar">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aguilar_Final=$users["Aguilar"]["stats"]["Strength"]+$users["Aguilar"]["stats"]["Loyalty"]+$users["Aguilar"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Aguilar_Final=$users["Aguilar"]["stats"]["Strength"]+$users["Aguilar"]["stats"]["Loyalty"]+$users["Aguilar"]["stats"]["Wisdom"]>><</link>>.
 
 <<elseif $role is "Marina">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Marina_Final=$users["Marina"]["stats"]["Strength"]+$users["Marina"]["stats"]["Loyalty"]+$users["Marina"]["stats"]["Wisdom"]>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Marina_Final=$users["Marina"]["stats"]["Strength"]+$users["Marina"]["stats"]["Loyalty"]+$users["Marina"]["stats"]["Wisdom"]>><</link>>.
 <</if>>
 
 
 <<case "Tlaxcalans">>
 <<if $role is "Xicotencatl_Elder">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Xicotencatl_Elder_Final=$users["Xicotencatl_Elder"]["stats"]["Strength"]+$users["Xicotencatl_Elder"]["stats"]["Loyalty"]+$users["Xicotencatl_Elder"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Xicotencatl_Elder_Final=$users["Xicotencatl_Elder"]["stats"]["Strength"]+$users["Xicotencatl_Elder"]["stats"]["Loyalty"]+$users["Xicotencatl_Elder"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
 
 <<elseif $role is "Xicotencatl_Younger">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Xicotencatl_Younger_Final=$users["Xicotencatl_Younger"]["stats"]["Strength"]+$users["Xicotencatl_Younger"]["stats"]["Loyalty"]+$users["Xicotencatl_Younger"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Xicotencatl_Younger_Final=$users["Xicotencatl_Younger"]["stats"]["Strength"]+$users["Xicotencatl_Younger"]["stats"]["Loyalty"]+$users["Xicotencatl_Younger"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
 
 <<elseif $role is "Maxixcatl">>
-The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Maxixcatl_Final=$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Final=$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
 <</if>>
 <</switch>>
 
@@ -14551,7 +14551,7 @@ The noise of battle <<link "surrounds you" "Battle Outcome Aztecs Versus Spaniar
 <<set $Tlax_Final = 0>>
 <</if>>
 
-<<switch $faction>>
+<<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <b>Aztecs</b><br>
 <<if $Aztec_Priest_Act is "No">>
@@ -14794,7 +14794,7 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 
 <b>Page 2</b><br>
 <br>
-<<switch $faction>>
+<<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <b>Aztecs</b><br>
 
