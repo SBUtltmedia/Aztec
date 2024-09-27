@@ -14809,6 +14809,10 @@ Aztec Players Total Final: <<print $Aztec_End>><br>
 
 <<if $Az_Ld_Dead is "Yes">>
 <<if _Aztec_Final < _Aztec_Tot_Play - 1>>
+You wait for the haze of war to clear.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
 You must wait until all Aztec Players have joined.<br><br>
 <<else>>
 <<if $role is $New_Aztec_Leader>>
@@ -14818,11 +14822,16 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End
 <br>
 Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 <<else>>
+<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
 Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 <</if>>
 <</if>>
 <<else>>
 <<if _Aztec_Final < _Aztec_Tot_Play>>
+	You wait for the haze of war to clear.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
 You must wait until all Aztec Players have joined.<br><br>
 <<else>>
 <<if $role is $Aztec_Leader>>
@@ -14832,6 +14841,7 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End
 <br>
 Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 <<else>>
+<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
 Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 
 <</if>>
@@ -14871,10 +14881,90 @@ Olid Total Points: <<print $Olid_Final>><br>
 Spaniards Team Strength:  <<print $factions["Spaniards"]["stats"]["Strength"]>><br>
 Spanish Players who have struck their final blow:  <<print _Span_Final>><br>
 Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
-<b>Spaniards Final Score: <<print $Span_End>></b><br>
+Spaniards Players Total Final: <<print $Span_End>><br>
 <br>
 
+<<if $Cortes_Dead is "Yes">>
+<<if _Span_Final < _Span_Tot_Play - 1>>
+You wait for the haze of war to clear.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+You must wait until all Spanish Players have joined.<br><br>
+<<else>>
+<<if $role is $Span_Leader>>
+<b>Spaniards' Final Score: <<print $Span_Game>></b><br>
+
+Calculate <<link "Final Score" "Final Battle 3">><<set $Span_Game = $Span_End / _Span_Tot_Play>><</link>><br>
+<br>
+Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Game = 0>><<set $Span_Final=0>><</link>><br>
+<<else>>
+<b>Spaniards' Final Score: <<print $Span_Game>></b><br>
+Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Final = 0>><<set $Span_Final=0>><</link>><br>
+<</if>>
+<</if>>
+<<else>>
+<<if _Span_Final < _Span_Tot_Play>>
+You wait for the haze of war to clear.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+You must wait until all Spanish Players have joined.<br><br>
+<<else>>
+<<if $role is $Span_Leader>>
+<b>Spaniards' Final score: <<print $Span_Game>></b><br>
+
+Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+<br>
+Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Final = 0>><<set $Span_Game=0>><</link>><br>
+
+<<else>>
+<b>Spaniards' Final score: <<print $Span_Game>></b><br>
+Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Final = 0>><<set $Span_Game=0>><</link>><br>
+
+<</if>>
+<</if>>
+<</if>>
+
 <<case "Tlaxcalans">>
+<b>Tlaxcalans</b><br>
+<<if $Xicotencatl_Elder_Act is "No">>
+<<elseif $Xicotencatl_Elder_Act is "Yes">>
+Xicotencatl the Elder Total Points: <<print $Xicotencatl_Elder_Final>><br>
+<</if>>
+<<if $Xicotencatl_Younger_Act is "No">>
+<<elseif $Xicotencatl_Younger_Act is "Yes">>
+Xicotencatl the Younger Total Points: <<print $Xicotencatl_Younger_Final>><br>
+<</if>>
+<<if $Maxixcatl_Act is "No">>
+<<elseif $Maxixcatl_Act is "Yes">>
+Maxixcatl Total Points: <<print $Maxixcatl_Final>><br>
+<</if>>
+
+Tlaxcalans Team Strength:  <<print $factions["Tlaxcalans"]["stats"]["Strength"]>><br>
+Tlaxcalan Players who have struck their final blow:  <<print _Tlax_Final>><br>
+Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
+Tlaxcalan Players Total Final: <<print $Tlax_End>><br>
+<br>
+
+<<if _Tlax_Final < _Tlax_Tot_Play>>
+You wait for the haze of war to clear.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+You must wait until all Tlaxcalan Players have joined.<br><br>
+<<else>>
+<<if $role is $Tlax_Leader>>
+<b>Tlaxcalan's Final score: <<print $Tlax_Game>></b><br>
+
+Calculate <<link "Final Score" "Final Battle 3">><<set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play>><</link>><br>
+<br>
+Reset <<link "Tlaxcalan Points for Testing" "5 Last Nap in the Library">><<set $Tlax_End = 0>><<set $Tlax_Final = 0>><<set $Tlax_Game= 0>><</link>><br>
+<<else>>
+Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Tlax_End = 0>><<set $Tlax_Final = 0>><<set $Tlax_Game= 0>><</link>><br>
+
+<</if>>
+<</if>>
 
 <</switch>>
 
