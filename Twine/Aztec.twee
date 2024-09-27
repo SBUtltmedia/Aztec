@@ -14765,7 +14765,7 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Maxixcatl_Final + $factions["Tlaxcalans"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Maxixcatl_Final<<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
+<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Maxixcatl_Final>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
 <br>
 <</if>>
 <</switch>>
@@ -14814,7 +14814,7 @@ You must wait until all Aztec Players have joined.<br><br>
 <<if $role is $New_Aztec_Leader>>
 <b>Aztec Final score: <<print $Aztecs_Game>></b><br>
 
-Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
 Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
 <<else>>
@@ -14825,14 +14825,14 @@ Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 
 <<if _Aztec_Final < _Aztec_Tot_Play>>
 You must wait until all Aztec Players have joined.<br><br>
 <<else>>
-<<if $role is $New_Aztec_Leader>>
+<<if $role is $Aztec_Leader>>
 <b>Aztec Final score: <<print $Aztecs_Game>></b><br>
 
 Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
+Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
 <<else>>
-Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
+Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 
 <</if>>
 <</if>>
