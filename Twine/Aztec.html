@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -13584,6 +13584,10 @@ Aztec Players Total Final: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
 
 &lt;&lt;if $Az_Ld_Dead is &quot;Yes&quot;&gt;&gt;
 &lt;&lt;if _Aztec_Final &lt; _Aztec_Tot_Play - 1&gt;&gt;
+You wait for the haze of war to clear.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
 You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
@@ -13593,11 +13597,16 @@ Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt
 &lt;br&gt;
 Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
+&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if _Aztec_Final &lt; _Aztec_Tot_Play&gt;&gt;
+	You wait for the haze of war to clear.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
 You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $Aztec_Leader&gt;&gt;
@@ -13607,6 +13616,7 @@ Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt
 &lt;br&gt;
 Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
+&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 
 &lt;&lt;/if&gt;&gt;
@@ -13646,10 +13656,90 @@ Olid Total Points: &lt;&lt;print $Olid_Final&gt;&gt;&lt;br&gt;
 Spaniards Team Strength:  &lt;&lt;print $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
 Spanish Players who have struck their final blow:  &lt;&lt;print _Span_Final&gt;&gt;&lt;br&gt;
 Total Spanish Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
-&lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_End&gt;&gt;&lt;/b&gt;&lt;br&gt;
+Spaniards Players Total Final: &lt;&lt;print $Span_End&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 
+&lt;&lt;if $Cortes_Dead is &quot;Yes&quot;&gt;&gt;
+&lt;&lt;if _Span_Final &lt; _Span_Tot_Play - 1&gt;&gt;
+You wait for the haze of war to clear.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
+You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_Game = $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Game = 0&gt;&gt;&lt;&lt;set $Span_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Final = 0&gt;&gt;&lt;&lt;set $Span_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if _Span_Final &lt; _Span_Tot_Play&gt;&gt;
+You wait for the haze of war to clear.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
+You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;b&gt;Spaniards&#39; Final score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Final = 0&gt;&gt;&lt;&lt;set $Span_Game=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+
+&lt;&lt;else&gt;&gt;
+&lt;b&gt;Spaniards&#39; Final score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Final = 0&gt;&gt;&lt;&lt;set $Span_Game=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;b&gt;Tlaxcalans&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Xicotencatl_Elder_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Elder_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Elder Total Points: &lt;&lt;print $Xicotencatl_Elder_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Xicotencatl_Younger_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Xicotencatl_Younger_Act is &quot;Yes&quot;&gt;&gt;
+Xicotencatl the Younger Total Points: &lt;&lt;print $Xicotencatl_Younger_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Maxixcatl_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Maxixcatl_Act is &quot;Yes&quot;&gt;&gt;
+Maxixcatl Total Points: &lt;&lt;print $Maxixcatl_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+
+Tlaxcalans Team Strength:  &lt;&lt;print $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
+Tlaxcalan Players who have struck their final blow:  &lt;&lt;print _Tlax_Final&gt;&gt;&lt;br&gt;
+Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
+Tlaxcalan Players Total Final: &lt;&lt;print $Tlax_End&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;if _Tlax_Final &lt; _Tlax_Tot_Play&gt;&gt;
+You wait for the haze of war to clear.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
+You must wait until all Tlaxcalan Players have joined.&lt;br&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;b&gt;Tlaxcalan&#39;s Final score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+Reset &lt;&lt;link &quot;Tlaxcalan Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Tlax_End = 0&gt;&gt;&lt;&lt;set $Tlax_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Game= 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Tlax_End = 0&gt;&gt;&lt;&lt;set $Tlax_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Game= 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/switch&gt;&gt;
 
