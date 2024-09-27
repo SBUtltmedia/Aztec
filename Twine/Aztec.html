@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -13161,7 +13161,35 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="5 Last Nap in the Library" tags="" position="3200,12250" size="100,100">It&#39;s your last nap in the [[library|Final Battle 1]]!</tw-passagedata><tw-passagedata pid="324" name="Final Battle 1" tags="" position="3200,12125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="5 Last Nap in the Library" tags="" position="3200,12250" size="100,100">&lt;&lt;switch $factions&gt;&gt;
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
+&lt;&lt;if $role is $Aztec_Leader&gt;&gt;
+&lt;&lt;if $Az_Ld_Dead is &quot;Yes&quot;&gt;&gt;
+It&#39;s your last nap in the [[library|Final Battle Purgatory]]!
+&lt;&lt;else&gt;&gt;
+It&#39;s your last nap in the [[library|Final Battle 1]]!
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+It&#39;s your last nap in the [[library|Final Battle 1]]!
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
+&lt;&lt;if $role is &quot;Cortes&quot;&gt;&gt;
+&lt;&lt;if $Cortes_Dead is &quot;Yes&quot;&gt;&gt;
+It&#39;s your last nap in the [[library|Final Battle Purgatory]]!
+&lt;&lt;else&gt;&gt;
+It&#39;s your last nap in the [[library|Final Battle 1]]!
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;else&gt;&gt;
+It&#39;s your last nap in the [[library|Final Battle 1]]!
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+
+It&#39;s your last nap in the [[library|Final Battle 1]]!
+
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="324" name="Final Battle 1" tags="" position="3200,12125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 
 &lt;&lt;if ndef $Moctezuma_Final&gt;&gt;
@@ -13301,7 +13329,7 @@ The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Battle Outcome 
 &lt;&lt;set $Tlax_Final = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;switch $factions&gt;&gt;
+&lt;&lt;switch $faction&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
 &lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
@@ -13640,7 +13668,8 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Final Battle Purgatory" tags="" position="850,4100" size="100,100">You are stuck in Purgatory waiting for an outcome to the earthly goings-on.&lt;br&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="328" name="Final Battle Decision" tags="" position="975,4100" size="100,100"></tw-passagedata><tw-passagedata pid="329" name="Final Battle Outcome" tags="" position="1100,4100" size="100,100"></tw-passagedata><tw-passagedata pid="330" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
@@ -13695,7 +13724,7 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="328" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="331" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
 
 
 &lt;&lt;script&gt;&gt;
@@ -13787,16 +13816,16 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 
 
 
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="329" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="332" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 	 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="333" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 2
 	/* Put link to next passage  */
 	&lt;&lt;link &quot;Next passage (final)&quot; &quot;Side Passage Example Final&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="331" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="334" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example Final
 	&lt;&lt;print $users[$role][&quot;sidePassageReturn&quot;]&gt;&gt;
 	
