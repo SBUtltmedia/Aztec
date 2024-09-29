@@ -2337,7 +2337,7 @@ Finally, news! It seems that the Spaniards [[have made it out of Tenochtitlan|Sp
 <<if $role is $Aztec_Leader>>
 It seems your luck has run out. Your people have decided that you are no longer of value to them and thus you are now worthless to your captors too.<br>
 <br>
-As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods could have [[forsaken you so|The End]].<br>
+As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods could have [[forsaken you so|A Rude Awakening in the Library]].<br>
 <br>
 <<else>>
 <<print $Aztec_Leader>> has proven himself weak and there is little benefit in keeping him alive. You would rather finish off these Spaniards once and for all. After weeks without food, they are surely weakened and now is the time to act. <<print $Aztec_Leader>>'s life is a price you are willing to pay.<br>
@@ -4927,9 +4927,8 @@ You arrive in Cuba, where you are taken before Governor Velazquez, your sworn en
 <br>
 You watch Velazquez grow increasingly angry at your words. When you have made your case, he finds you guilty of violating the orders of the Crown. He sentences you to a lifetime of hard labor, to be served at sea.<br>
 <br>
-As you are thrown in chains into the hold of another ship, you wonder why <<link "God has forsaken you" "The End">><<set $users["Cortes"]["stats"]["Strength"]=0>><<set $users["Cortes"]["stats"]["Loyalty"]=0>><<set $users["Cortes"]["stats"]["Wisdom"]=0>><</link>>.<br>
+As you are thrown in chains into the hold of another ship, you wonder why <<link "God has forsaken you" "A Rude Awakening in the Library">><<set $users["Cortes"]["stats"]["Strength"]=0>><<set $users["Cortes"]["stats"]["Loyalty"]=0>><<set $users["Cortes"]["stats"]["Wisdom"]=0>><</link>>.<br>
 <br>
-
 
 <</liveblock>>
 
@@ -7477,7 +7476,7 @@ Once the deed is done, you decide that your best chance of escape is to leave by
 <<case "Aztecs">>
 It seems your luck has run out. Your captors have decided that you are no longer of value to them and their best chance of escape is to flee by night.<br>
 <br>
-As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods could have [[forsaken you so|The End]].<br>
+As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods could have [[forsaken you so|A Rude Awakening in the Library]].<br>
 <br>
 
 <<case "Tlaxcalans">>
@@ -9600,7 +9599,7 @@ You send a messenger to the roof of the palace to inform the residents of Tenoch
 <<if $role is $Aztec_Leader>>
 As you descend back into the palace, you can feel the tension in the air. Your captors seem nervous and have been whispering excitedly amongst themselves.<br>
 <br> 
-As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods could have [[forsaken you so|The End]].<br>
+As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods could have [[forsaken you so|A Rude Awakening in the Library]].<br>
 <br>
 <<else>>
 It is not long before you learn of <<print $Aztec_Leader>>'s fate. After the mob receded and people retreated back to their homes, a messenger returned to the roof of the palace bearing the worst possible news: <<print $Aztec_Leader>> is dead, slain by the hands of his Spanish captors. <br>
@@ -9635,7 +9634,7 @@ You send a messenger to the roof of the palace to inform the residents of Tenoch
 <<if $role is $Aztec_Leader>>
 Someone is carrying you back into the palace. Even in your confusion, you can feel the tension in the air. Your captors seem nervous and have been whispering excitedly amongst themselves. <br>
 <br>
-As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods [[could have forsaken you so|The End]].<br>
+As you feel the knife in your back, you cry out to your attacker. Do you not deserve a more dignified death than this?! As you slip into darkness, you wonder one last time how your gods [[forsaken you so|A Rude Awakening in the Library]].<br>
 <br>
 <<else>>
 It is not long before you learn of <<print $Aztec_Leader>>'s fate. After the chaos died down and people retreated back to their homes, a messenger returned to the roof of the palace bearing the worst possible news: <<print $Aztec_Leader>> is dead, toppled by the hand of his own people! <br>
@@ -10855,7 +10854,6 @@ When everyone has voted, you will find out who will lead you now.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
->
 
 <<else>>
 
@@ -12404,7 +12402,7 @@ Ten months pass before you are ready to lay siege to Tenochtitlán. Your Tlaxcal
 <br>
 When the day comes, you launch your ships and attack from the lake. The island capital is completely cut off and you are able to take the offensive. As you enter the city, you note that the population has diminished. You heard rumors that a plague had torn through the city and it has clearly taken its toll. Nonetheless, the residents of Tenochtitlán present a strong defense. The fighting lasts for 90 days and by the end, with men fighting hand-to-hand in the streets in the bloodiest and longest battle you have ever seen. <br>
 <br>
-90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|Victory Decision Aztecs versus Spaniards and Tlaxcalans]].<br>
+90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|A Rude Awakening in the Library]].<br>
 <br>
 <<else>>
 Your Tlaxcalan friends have decided that your offer is too good to pass up. You have won them over and gained your support! You must now prepare for what could be the greatest battle of your lifetime. Your enemies are strong and these preparations are not to be taken lightly.<br> 
@@ -12413,7 +12411,7 @@ Ten months pass before you are ready to lay siege to Tenochtitlán. Your Tlaxcal
 <br>
 When the day comes, you launch your ships and attack from the lake. The island capital is completely cut off and you are able to take the offensive. As you enter the city, you note that the population has diminished. You heard rumors that a plague had torn through the city and it has clearly taken its toll. Nonetheless, the residents of Tenochtitlán present a strong defense. The fighting lasts for 90 days and by the end, with men fighting hand-to-hand in the streets in the bloodiest and longest battle you have ever seen. <br> 
 <br>
-90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|Victory Decision Aztecs versus Spaniards and Tlaxcalans]].<br> 
+90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|A Rude Awakening in the Library]].<br> 
 <br>
 <</if>>
 <<case "Tlaxcalans">>
@@ -12424,7 +12422,7 @@ Ten months pass before you are ready to lay siege to Tenochtitlán. You use thos
 <br>
 When the day comes, you launch your ships and attack from the lake. The island capital is completely cut off and you are able to take the offensive. As you enter the city, you note that the population has diminished. It seems the rumors of the mysterious illness were true, and it has taken its toll. Nonetheless, the residents of Tenochtitlán present a strong defense. The fighting lasts for 90 days and by the end, with men fighting hand-to-hand in the streets in the bloodiest and longest battle you have ever seen. <br>
 <br>
-90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|Victory Decision Aztecs versus Spaniards and Tlaxcalans]].<br>
+90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|A Rude Awakening in the Library]].<br>
 <br>
 <<else>>
 You have decided that the Spaniards' offer is too good to pass up. This may be your best chance to do away with your Mexica enemies for good. You promise them your support and begin preparing for what could be the greatest battle of your lifetime. Your enemies are strong and these preparations are not to be taken lightly. <br>
@@ -12433,7 +12431,7 @@ Ten months pass before you are ready to lay siege to Tenochtitlán. You use thos
 <br>
 When the day comes, you launch your ships and attack from the lake. The island capital is completely cut off and you are able to take the offensive. As you enter the city, you note that the population has diminished. It seems the rumors of the mysterious illness were true, and it has taken its toll. Nonetheless, the residents of Tenochtitlán present a strong defense. The fighting lasts for 90 days and by the end, with men fighting hand-to-hand in the streets in the bloodiest and longest battle you have ever seen.<br>
 <br>
-90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|Victory Decision Aztecs versus Spaniards and Tlaxcalans]].<br>
+90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|A Rude Awakening in the Library]].<br>
 <br>
 <</if>>
 <<case "Aztecs">>
@@ -12443,7 +12441,7 @@ The city flies into action, preparing for battle. You cut off the causeways and 
 <br>
 The enemy exits the mountain pass. You can barely believe your eyes as they make their way to shore, launch their ships, and attack from the lake. Your island capital is completely cut off and they are able to take the offensive. Nonetheless, the residents of Tenochtitlán present a strong defense. The fighting lasts for 90 days and by the end, with men fighting hand-to-hand in the streets in the bloodiest and longest battle you have ever seen. <br> 
 <br>
-90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|Victory Decision Aztecs versus Spaniards and Tlaxcalans]].<br> 
+90 days of battle take their toll. The city is a ruin and it seems that no-one has any remaining will to fight. But finally, only a few survivors remain and it becomes clear [[which side has won|A Rude Awakening in the Library]].<br> 
 <br>
 <</switch>>
 
