@@ -10380,7 +10380,7 @@ When you have agreed on the best course of action, input your decision here. You
 <<elseif $Tlax_Alliance is "Betray">>
 You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
 <br>
-You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? Rather than admit that you abandoned their former leader to his fate, you lie and report that you left Cortes and the rest of the continent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him. It's best for everyone if they don't know you led him into a trap.<br>
+You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? Rather than admit that you abandoned their former leader to his fate, you lie and report that you left Cortes and the rest of the contingent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him. It's best for everyone if they don't know you led him into a trap.<br>
 <br>
 They go on to recount the events that transpired after you left the city. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
 <br>
@@ -10406,7 +10406,7 @@ When you have agreed on the best course of action, input your decision here. You
 <<if $Tlax_Alliance is "Home">>
 You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
 <br>
-You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? It seems the fate of their former leader will remain a mystery, however. You report that you left Cortes and the rest of the continent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him.<br>
+You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? It seems the fate of their former leader will remain a mystery, however. You report that you left Cortes and the rest of the contingent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him.<br>
 <br>
 They go on to recount the events that transpired after you left the city. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
 <br>
@@ -10428,7 +10428,7 @@ When you have agreed on the best course of action, <<print $Tlax_Leader>> will i
 <<elseif $Tlax_Alliance is "Betray">>
 You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
 <br>
-You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? Rather than admit that you abandoned their former leader to his fate, you lie and report that you left Cortes and the rest of the continent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him. It's best for everyone if they don't know you led him into a trap.<br>
+You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? Rather than admit that you abandoned their former leader to his fate, you lie and report that you left Cortes and the rest of the contingent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him. It's best for everyone if they don't know you led him into a trap.<br>
 <br>
 They go on to recount the events that transpired after you left the city. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
 <br>
@@ -14428,7 +14428,6 @@ and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link
 :: Final Battle 1 {"position":"3200,12125","size":"100,100"}
 <<liveblock>>
 
-
 <<if ndef $Moctezuma_Final>>
 <<set $Moctezuma_Final = 0>>
 <</if>>
@@ -14616,54 +14615,55 @@ Current Aztec Leader:  <<print $New_Aztec_Leader>><br>
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
 Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
+<br>
 
 <<switch $role>>
 <<case "Tlacaelel">>
 <<if $role is $New_Aztec_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Tlacaelel_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
-<br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Tlacaelel_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
+<br></b>
 <<else>>	
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Tlacaelel_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Tlacaelel_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Pochteca">>
-<<if $role is $New_Aztec_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Pochteca_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<if $role is $New_Aztec_Leader>>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Pochteca_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Pochteca_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Pochteca_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Aztec_Priest">>
 <<if $role is $New_Aztec_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Aztec_Priest_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Aztec_Priest_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Aztec_Priest_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Aztec_Priest_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Cacamatzin">>
 <<if $role is $New_Aztec_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cacamatzin_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cacamatzin_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cacamatzin_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cacamatzin_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Cuauhtemoc">>
 <<if $role is $New_Aztec_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cuauhtemoc_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cuauhtemoc_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cuauhtemoc_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Cuauhtemoc_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Moctezuma">>
 <<if $role is $New_Aztec_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Moctezuma_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Moctezuma_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Moctezuma_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Moctezuma_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <</switch>>
@@ -14703,50 +14703,50 @@ Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
 <<switch $role>>
 <<case "Aguilar">>
 <<if $role is $Span_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Aguilar_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Aguilar_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>	
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Aguilar_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Aguilar_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Alvarado">>
 <<if $role is $Span_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Alvarado_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Alvarado_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Alvarado_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Alvarado_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Cortes">>
 <<if $role is $Span_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Cortes_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Cortes_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Cortes_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Cortes_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Garrido">>
 <<if $role is $Span_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Garrido_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Garrido_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Garrido_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Garrido_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Marina">>
 <<if $role is $Span_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Marina_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Marina_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Marina_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Marina_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Olid">>
 <<if $role is $Span_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Olid_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Olid_Final + $factions["Spaniards"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Olid_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Span_End += $Olid_Final>><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <</switch>>
@@ -14775,26 +14775,26 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <<switch $role>>
 <<case "Xicotencatl_Elder">>
 <<if $role is $Tlax_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Elder_Final + $factions["Tlaxcalans"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Elder_Final + $factions["Tlaxcalans"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>	
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Elder_Final>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Elder_Final>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Xicotencatl_Younger">>
 <<if $role is $Tlax_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Younger_Final + $factions["Tlaxcalans"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Younger_Final + $factions["Tlaxcalans"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Younger_Final>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Xicotencatl_Younger_Final>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <<case "Maxixcatl">>
 <<if $role is $Tlax_Leader>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Maxixcatl_Final + $factions["Tlaxcalans"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Maxixcatl_Final + $factions["Tlaxcalans"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>></b><br>
 <br>
 <<else>>
-<<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Maxixcatl_Final>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>><br>
+<b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Tlax_End += $Maxixcatl_Final>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>></b><br>
 <br>
 <</if>>
 <</switch>>
@@ -15007,11 +15007,11 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 
 
 :: Final Battle Purgatory
-You awake with a start, unsure of your surroundings. Your heart is racing, and you're disoriented. The library! How did you get back here? This wasn't supposed to happen! Is it really over?<br>
+You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you've been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. <br>
 <br>
-Your finished assignment lays at your feet, but you hardly care. Desperate to go back, you close your eyes and will yourself to go to sleep. It doesn't work. You need to know what's going to happen! You're so frustrated you could scream.<br>
-<br> 
-It's only when you finally give up and accept defeat that you notice something alarming: there's no door. Panicked, you pound on the wall with your fists, yelling at the top of your lungs for anyone to hear, but no one does. Then you remember that this is the 21st century and you grab your phone to call for help, but the battery is dead. <br>
+No! This can't be right! You need to get back to Tenochtitlán! You close your eyes, desperate to fall asleep and return, but to no avail. You lean back in the chair, willing it to happen.<br>
+<br>
+It's only when you finally give up and accept defeat that you notice something alarming: there's no door. Panicked, you pound on the wall with your fists, yelling at the top of your lungs for anyone to hear, but no one does. Then you remember that this is the 21st century and you grab your phone to call for help, but the battery is dead.<br>
 <br>
 You pick up your assignment and wonder how much time you have until it's due. You don't even know what time it is. The ancient clock on the wall says it's 3:45, but is it even right, and is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...<br>
 <br><br>
