@@ -14621,7 +14621,7 @@ Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
 <<case "Tlacaelel">>
 <<if $role is $New_Aztec_Leader>>
 <b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Tlacaelel_Final + $factions["Aztecs"]["stats"]["Strength"]>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
-<br></b>
+<br>
 <<else>>	
 <b><<print $role>>, the battle is over. Add your points <<link "to the total" "Final Battle 3">><<set $Aztec_End += $Tlacaelel_Final>><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 1>><</link>></b><br>
 <br>
