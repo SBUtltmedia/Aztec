@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -13159,37 +13159,50 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-
-
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="5 Last Nap in the Library" tags="" position="3200,12250" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="A Rude Awakening in the Library" tags="" position="350,4100" size="100,100">You awake with a start, unsure of your surroundings. Your heart is racing, and you&#39;re disoriented. The library! How did you get back here? This wasn&#39;t supposed to happen now! Your finished assignment lays at your feet, but you hardly care. Desperate to go back, you close your eyes and will yourself to go to sleep. It doesn&#39;t work. You need to know what&#39;s going to happen! You&#39;re so frustrated you could scream. &lt;br&gt;
+&lt;br&gt;
+After an hour, you accept defeat and leave. You swing by your history teacher&#39;s office on the way, handing in your assignment. You&#39;re sure she&#39;s going to give you another A, but that&#39;s the last thing [[on your mind at this point|Desperate Return to the Library]].&lt;br&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="324" name="A Desperate Return to the Library" tags="" position="475,4100" size="100,100">You thought you were so clever when you got your last assignment early, but now you&#39;re desperate to get back to Tenochtitlán and there&#39;s nothing to hand in. &lt;br&gt;
+&lt;br&gt;
+All you can think about is getting back into the mysterious room and waking up in Mexico. You&#39;re not sleeping. You can hardly pay attention in class. You go to the library every day for two weeks, even though you know you won&#39;t see the door. And you don&#39;t. The staff are starting to look at you funny, and you&#39;re pretty sure the security guard was following you last time you were there. You feel like you&#39;re losing your mind, but all you can do is wait. And wait. And wait.&lt;br&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="325" name="5 Last Nap in the Library" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+The day your history teacher hands out your next assignment, you can barely contain your excitement. You don&#39;t even wait for class to end before running out of class and heading to the library. You climb the stairs, round the corner, and there it is!&lt;br&gt;
+&lt;br&gt;
+As you sink into the chair, your adrenaline is pumping so hard you doubt you&#39;ll be able to fall asleep. The chair works its magic within seconds though, 
+&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $role is $Aztec_Leader&gt;&gt;
 &lt;&lt;if $Az_Ld_Dead is &quot;Yes&quot;&gt;&gt;
-It&#39;s your last nap in the [[library|Final Battle Purgatory]]!
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].&lt;br&gt;
+&lt;br&gt;
 &lt;&lt;else&gt;&gt;
-It&#39;s your last nap in the &lt;&lt;link &quot;library&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 0&gt;&gt;&lt;&lt;/link&gt;&gt;!
+and you immediately drift &lt;&lt;link &quot;into a deep slumber&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
-It&#39;s your last nap in the &lt;&lt;link &quot;library&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Aztec_Final&quot;] = 0&gt;&gt;&lt;&lt;/link&gt;&gt;!
+and you immediately drift &lt;&lt;link &quot;into a deep slumber&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $role is &quot;Cortes&quot;&gt;&gt;
 &lt;&lt;if $Cortes_Dead is &quot;Yes&quot;&gt;&gt;
-It&#39;s your last nap in the [[library|Final Battle Purgatory]]!
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].&lt;br&gt;
+&lt;br&gt;
 &lt;&lt;else&gt;&gt;
-It&#39;s your last nap in the &lt;&lt;link &quot;library&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 0&gt;&gt;&lt;&lt;/link&gt;&gt;!
+and you immediately drift &lt;&lt;link &quot;into a deep slumber&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-
 &lt;&lt;else&gt;&gt;
-It&#39;s your last nap in the &lt;&lt;link &quot;library&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Span_Final&quot;] = 0&gt;&gt;&lt;&lt;/link&gt;&gt;!
+and you immediately drift &lt;&lt;link &quot;into a deep slumber&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
-
-It&#39;s your last nap in the &lt;&lt;link &quot;library&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = $users[$role][&quot;choices&quot;][&quot;Tlax_Final&quot;] = 0&gt;&gt;&lt;&lt;/link&gt;&gt;!
-
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="324" name="Final Battle 1" tags="" position="3200,12125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+and you immediately drift &lt;&lt;link &quot;into a deep slumber&quot; &quot;Final Battle 1&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Final Battle 1" tags="" position="3200,12125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 
 &lt;&lt;if ndef $Moctezuma_Final&gt;&gt;
@@ -13247,6 +13260,10 @@ It&#39;s your last nap in the &lt;&lt;link &quot;library&quot; &quot;Final Battl
 &lt;&lt;set $Tlax_Final = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
+Your eyes snap open and you take a deep breath. You&#39;re back. Your heart quickens. This is the moment you&#39;ve been waiting for. You must know how the story ends!&lt;br&gt;
+&lt;br&gt;
+The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you&#39;re surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It&#39;s clear the battle is approaching its end. There are few men left standing. But who has won?&lt;br&gt;
+&lt;br&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 
@@ -13304,7 +13321,7 @@ The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Final Battle 2&
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="325" name="Final Battle 2" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Final Battle 2" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;set _Span_Final = setup.getTotalChoices (&quot;Span_Final&quot;)&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
@@ -13330,6 +13347,11 @@ The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Final Battle 2&
 &lt;&lt;if ndef $Tlax_Final&gt;&gt;
 &lt;&lt;set $Tlax_Final = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+
+The fog of war begins to clear. You look around to survey the scene. &lt;br&gt;
+&lt;br&gt;
+Below is a tally of all the individual points for each member of your faction: strength, wisdom, and loyalty combined. The total of each team member will appear as they join you.&lt;br&gt;
+&lt;br&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
@@ -13550,7 +13572,7 @@ Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Final Battle 3" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="328" name="Final Battle 3" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztecs_Game&gt;&gt;
 &lt;&lt;set $Aztecs_Game = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -13569,7 +13591,9 @@ Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Final = setup.getTotalChoices (&quot;Tlax_Final&quot;)&gt;&gt;
 
-&lt;b&gt;Page 2&lt;/b&gt;&lt;br&gt;
+You have now added your points to the total. Watch the count below as you wait for others to arrive. When all members of your faction have added their points, your leader will finalize the score.&lt;br&gt;
+&lt;br&gt;
+Your final score is the total of all individual player points plus your team strength points. The total will be divided by the number of players on your team...dead or alive.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
@@ -13597,10 +13621,8 @@ You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 
 Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -13616,11 +13638,8 @@ You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 
 Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -13674,10 +13693,8 @@ You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
 
 Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_Game = $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Game = 0&gt;&gt;&lt;&lt;set $Span_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
-Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Final = 0&gt;&gt;&lt;&lt;set $Span_Final=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -13693,12 +13710,8 @@ You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
 
 Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Final = 0&gt;&gt;&lt;&lt;set $Span_Game=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-
 &lt;&lt;else&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
-Reset &lt;&lt;link &quot;Spanish Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Span_End = 0&gt;&gt;&lt;&lt;set $Span_Final = 0&gt;&gt;&lt;&lt;set $Span_Game=0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -13736,9 +13749,9 @@ You must wait until all Tlaxcalan Players have joined.&lt;br&gt;&lt;br&gt;
 
 Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Reset &lt;&lt;link &quot;Tlaxcalan Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Tlax_End = 0&gt;&gt;&lt;&lt;set $Tlax_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Game= 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Reset &lt;&lt;link &quot;Tlaxcalan Points for Testing&quot; &quot;5 Last Nap in the Library&quot;&gt;&gt;&lt;&lt;set $Tlax_End = 0&gt;&gt;&lt;&lt;set $Tlax_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Game= 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;b&gt;Tlaxcalan&#39;s Final score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+
 
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -13760,8 +13773,20 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Final Battle Purgatory" tags="" position="850,4100" size="100,100">You are stuck in Purgatory waiting for an outcome to the earthly goings-on.&lt;br&gt;
-&lt;br&gt;</tw-passagedata><tw-passagedata pid="328" name="Final Battle Decision" tags="" position="975,4100" size="100,100"></tw-passagedata><tw-passagedata pid="329" name="Final Battle Outcome" tags="" position="1100,4100" size="100,100"></tw-passagedata><tw-passagedata pid="330" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="329" name="Final Battle Purgatory" tags="" position="1100,4100" size="100,100">You awake with a start, unsure of your surroundings. Your heart is racing, and you&#39;re disoriented. The library! How did you get back here? This wasn&#39;t supposed to happen! Is it really over?&lt;br&gt;
+&lt;br&gt;
+Your finished assignment lays at your feet, but you hardly care. Desperate to go back, you close your eyes and will yourself to go to sleep. It doesn&#39;t work. You need to know what&#39;s going to happen! You&#39;re so frustrated you could scream.&lt;br&gt;
+&lt;br&gt; 
+It&#39;s only when you finally give up and accept defeat that you notice something alarming: there&#39;s no door. Panicked, you pound on the wall with your fists, yelling at the top of your lungs for anyone to hear, but no one does. Then you remember that this is the 21st century and you grab your phone to call for help, but the battery is dead. &lt;br&gt;
+&lt;br&gt;
+You pick up your assignment and wonder how much time you have until it&#39;s due. You don&#39;t even know what time it is. The ancient clock on the wall says it&#39;s 3:45, but is it even right, and is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
+&lt;br&gt;
+All you can do is wait, but for how long...&lt;br&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Decision" tags="" position="1225,4100" size="100,100"></tw-passagedata><tw-passagedata pid="331" name="Final Battle Outcome" tags="" position="100,4225" size="100,100"></tw-passagedata><tw-passagedata pid="332" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
@@ -13816,7 +13841,7 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="331" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="333" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
 
 
 &lt;&lt;script&gt;&gt;
@@ -13908,16 +13933,16 @@ Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&
 
 
 
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="332" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="334" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 	 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="333" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="335" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 2
 	/* Put link to next passage  */
 	&lt;&lt;link &quot;Next passage (final)&quot; &quot;Side Passage Example Final&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="334" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="336" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example Final
 	&lt;&lt;print $users[$role][&quot;sidePassageReturn&quot;]&gt;&gt;
 	

@@ -14372,40 +14372,60 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <br>
 <</if>>
 <</switch>>
-
-
 <</liveblock>>
-:: 5 Last Nap in the Library{"position":"3200,12250","size":"100,100"}
 
+:: A Rude Awakening in the Library
+You awake with a start, unsure of your surroundings. Your heart is racing, and you're disoriented. The library! How did you get back here? This wasn't supposed to happen now! Your finished assignment lays at your feet, but you hardly care. Desperate to go back, you close your eyes and will yourself to go to sleep. It doesn't work. You need to know what's going to happen! You're so frustrated you could scream. <br>
+<br>
+After an hour, you accept defeat and leave. You swing by your history teacher's office on the way, handing in your assignment. You're sure she's going to give you another A, but that's the last thing [[on your mind at this point|Desperate Return to the Library]].<br>
+<br>
+
+:: A Desperate Return to the Library
+
+You thought you were so clever when you got your last assignment early, but now you're desperate to get back to Tenochtitlán and there's nothing to hand in. <br>
+<br>
+All you can think about is getting back into the mysterious room and waking up in Mexico. You're not sleeping. You can hardly pay attention in class. You go to the library every day for two weeks, even though you know you won't see the door. And you don't. The staff are starting to look at you funny, and you're pretty sure the security guard was following you last time you were there. You feel like you're losing your mind, but all you can do is wait. And wait. And wait.<br>
+<br>
+
+:: 5 Last Nap in the Library{"position":"3200,12250","size":"100,100"}
+<<liveblock>>
+The day your history teacher hands out your next assignment, you can barely contain your excitement. You don't even wait for class to end before running out of class and heading to the library. You climb the stairs, round the corner, and there it is!<br>
+<br>
+As you sink into the chair, your adrenaline is pumping so hard you doubt you'll be able to fall asleep. The chair works its magic within seconds though, 
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <<if $role is $Aztec_Leader>>
 <<if $Az_Ld_Dead is "Yes">>
-It's your last nap in the [[library|Final Battle Purgatory]]!
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
 <<else>>
-It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 0>><</link>>!
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
 <</if>>
 <<else>>
-It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Aztec_Final"] = $users[$role]["choices"]["Aztec_Final"] = 0>><</link>>!
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
 <</if>>
 
 <<case "Spaniards">>
 <<if $role is "Cortes">>
 <<if $Cortes_Dead is "Yes">>
-It's your last nap in the [[library|Final Battle Purgatory]]!
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
 <<else>>
-It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 0>><</link>>!
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
 <</if>>
-
 <<else>>
-It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Span_Final"] = $users[$role]["choices"]["Span_Final"] = 0>><</link>>!
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
 <</if>>
 
 <<case "Tlaxcalans">>
-
-It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 0>><</link>>!
-
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
 <</switch>>
+<</liveblock>>
 
 :: Final Battle 1 {"position":"3200,12125","size":"100,100"}
 <<liveblock>>
@@ -14466,6 +14486,10 @@ It's your last nap in the <<link "library" "Final Battle 1">><<set $users[$role]
 <<set $Tlax_Final = 0>>
 <</if>>
 
+Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
+<br>
+The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you're surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It's clear the battle is approaching its end. There are few men left standing. But who has won?<br>
+<br>
 
 <<switch $users[$role]["faction"]>>
 
@@ -14552,6 +14576,11 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Fi
 <<if ndef $Tlax_Final>>
 <<set $Tlax_Final = 0>>
 <</if>>
+
+The fog of war begins to clear. You look around to survey the scene. <br>
+<br>
+Below is a tally of all the individual points for each member of your faction: strength, wisdom, and loyalty combined. The total of each team member will appear as they join you.<br>
+<br>
 
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
@@ -14794,7 +14823,9 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 <<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
 
-<b>Page 2</b><br>
+You have now added your points to the total. Watch the count below as you wait for others to arrive. When all members of your faction have added their points, your leader will finalize the score.<br>
+<br>
+Your final score is the total of all individual player points plus your team strength points. The total will be divided by the number of players on your team...dead or alive.<br>
 <br>
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
@@ -14822,10 +14853,8 @@ You must wait until all Aztec Players have joined.<br><br>
 
 Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 <<else>>
 <b>Aztec Final score: <<print $Aztecs_Game>></b><br>
-Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 <</if>>
 <</if>>
 <<else>>
@@ -14841,11 +14870,8 @@ You must wait until all Aztec Players have joined.<br><br>
 
 Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
 <<else>>
 <b>Aztec Final score: <<print $Aztecs_Game>></b><br>
-Reset <<link "Aztec Points for Testing" "5 Last Nap in the Library">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><<set $Aztec_Final=0>><</link>><br>
-
 <</if>>
 <</if>>
 
@@ -14899,10 +14925,8 @@ You must wait until all Spanish Players have joined.<br><br>
 
 Calculate <<link "Final Score" "Final Battle 3">><<set $Span_Game = $Span_End / _Span_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Game = 0>><<set $Span_Final=0>><</link>><br>
 <<else>>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
-Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Final = 0>><<set $Span_Final=0>><</link>><br>
 <</if>>
 <</if>>
 <<else>>
@@ -14918,12 +14942,8 @@ You must wait until all Spanish Players have joined.<br><br>
 
 Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Final = 0>><<set $Span_Game=0>><</link>><br>
-
 <<else>>
 <b>Spaniards' Final score: <<print $Span_Game>></b><br>
-Reset <<link "Spanish Points for Testing" "5 Last Nap in the Library">><<set $Span_End = 0>><<set $Span_Final = 0>><<set $Span_Game=0>><</link>><br>
-
 <</if>>
 <</if>>
 <</if>>
@@ -14961,9 +14981,9 @@ You must wait until all Tlaxcalan Players have joined.<br><br>
 
 Calculate <<link "Final Score" "Final Battle 3">><<set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Tlaxcalan Points for Testing" "5 Last Nap in the Library">><<set $Tlax_End = 0>><<set $Tlax_Final = 0>><<set $Tlax_Game= 0>><</link>><br>
 <<else>>
-Reset <<link "Tlaxcalan Points for Testing" "5 Last Nap in the Library">><<set $Tlax_End = 0>><<set $Tlax_Final = 0>><<set $Tlax_Game= 0>><</link>><br>
+<b>Tlaxcalan's Final score: <<print $Tlax_Game>></b><br>
+
 
 <</if>>
 <</if>>
@@ -14989,8 +15009,21 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 
 
 :: Final Battle Purgatory
-You are stuck in Purgatory waiting for an outcome to the earthly goings-on.<br>
+You awake with a start, unsure of your surroundings. Your heart is racing, and you're disoriented. The library! How did you get back here? This wasn't supposed to happen! Is it really over?<br>
 <br>
+Your finished assignment lays at your feet, but you hardly care. Desperate to go back, you close your eyes and will yourself to go to sleep. It doesn't work. You need to know what's going to happen! You're so frustrated you could scream.<br>
+<br> 
+It's only when you finally give up and accept defeat that you notice something alarming: there's no door. Panicked, you pound on the wall with your fists, yelling at the top of your lungs for anyone to hear, but no one does. Then you remember that this is the 21st century and you grab your phone to call for help, but the battery is dead. <br>
+<br>
+You pick up your assignment and wonder how much time you have until it's due. You don't even know what time it is. The ancient clock on the wall says it's 3:45, but is it even right, and is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...<br>
+<br><br>
+
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+<br>
+All you can do is wait, but for how long...<br>
+<br>
+
 :: Final Battle Decision
 
 :: Final Battle Outcome
