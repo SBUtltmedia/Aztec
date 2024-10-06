@@ -3149,8 +3149,8 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 
 :: Battle Outcome Aztecs Versus Spaniards 3b {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
-<<if ndef $Aztecs_Game>>
-<<set $Aztecs_Game = 0>>
+<<if ndef $Aztec_Game>>
+<<set $Aztec_Game = 0>>
 <</if>>
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
@@ -3187,13 +3187,13 @@ Aztec Players Total Final: <<print $Aztec_End>><br>
 You must wait until all Aztec Players have joined.<br><br>
 <<else>>
 <<if $role is $New_Aztec_Leader>>
-<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
+<b>Aztec Final score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
+Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztec_Game = 0>><</link>><br>
 <<else>>
-Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
+Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztec_Game = 0>><</link>><br>
 <</if>>
 <</if>>
 <<else>>
@@ -3201,13 +3201,13 @@ Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 
 You must wait until all Aztec Players have joined.<br><br>
 <<else>>
 <<if $role is $New_Aztec_Leader>>
-<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
+<b>Aztec Final score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
-Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
+Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztec_Game = 0>><</link>><br>
 <<else>>
-Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztecs_Game = 0>><</link>><br>
+Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<set $Aztec_End = 0>><<set $Aztec_Game = 0>><</link>><br>
 
 <</if>>
 <</if>>
@@ -14803,20 +14803,30 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 
 :: Final Battle 3 {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
-<<if ndef $Aztecs_Game>>
-<<set $Aztecs_Game = 0>>
+<<if ndef $Aztec_Game>>
+<<set $Aztec_Game = 0>>
 <</if>>
+<<if ndef $Aztec_Game_Over>>
+<<set $Aztec_Game_Over = "No">>
+<</if>>
+
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
 <<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
 
 <<if ndef $Span_Game>>
 <<set $Span_Game = 0>>
 <</if>>
+<<if ndef $Span_Game_Over>>
+<<set $Span_Game_Over = "No">>
+<</if>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
 <<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
 
 <<if ndef $Tlax_Game>>
 <<set $Tlax_Game = 0>>
+<</if>>
+<<if ndef $Tlax_Game_Over>>
+<<set $Tlax_Game_Over = "No">>
 <</if>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
 <<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
@@ -14844,15 +14854,27 @@ You wait for the haze of war to clear.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 <br>
-You must wait until all Aztec Players have joined.<br><br>
+You must wait until all active Aztec Players have joined.<br><br>
 <<else>>
 <<if $role is $New_Aztec_Leader>>
-<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
+<<if $Aztec_Game_Over is "No">>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play>><<set $Aztec_Game_Over = "Yes">><</link>><br>
 <br>
+<<elseif $Aztec_Game_Over is "Yes">>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <<else>>
-<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
+<<if $Aztec_Game_Over is "No">>
+You must wait for your leader to calculate your final score.<br>
+<br>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
+<<<<elseif $Aztec_Game_Over is "Yes">>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <</if>>
 <</if>>
 <<else>>
@@ -14864,12 +14886,24 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End
 You must wait until all Aztec Players have joined.<br><br>
 <<else>>
 <<if $role is $Aztec_Leader>>
-<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
+<<if $Aztec_Game_Over is "No">>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play>><<set $Aztec_Game_Over = "Yes">><</link>><br>
 <br>
+<<elseif $Aztec_Game_Over is "Yes">>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <<else>>
-<b>Aztec Final score: <<print $Aztecs_Game>></b><br>
+<<if $Aztec_Game_Over is "No">>
+You must wait for your leader to calculate your final score.<br>
+<br>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
+<<<<elseif $Aztec_Game_Over is "Yes">>
+<b>Aztec Final Score: <<print $Aztec_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <</if>>
 <</if>>
 
@@ -14919,12 +14953,24 @@ You wait for the haze of war to clear.<br>
 You must wait until all Spanish Players have joined.<br><br>
 <<else>>
 <<if $role is $Span_Leader>>
+<<if $Span_Game_Over is "No">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<set $Span_Game = $Span_End / _Span_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<set $Span_Game = $Span_End / _Span_Tot_Play>><<set $Span_Game_Over = "Yes">><</link>><br>
 <br>
-<<else>>
+<<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
+<<else>>
+<<if $Span_Game_Over is "No">>
+You must wait for your leader to calculate your final score.<br>
+<br>
+<b>Spaniards Final Score: <<print $Span_Game>></b><br>
+<<<<elseif $Span_Game_Over is "Yes">>
+<b>Spaniards Final score: <<print $Span_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <</if>>
 <</if>>
 <<else>>
@@ -14936,12 +14982,24 @@ You wait for the haze of war to clear.<br>
 You must wait until all Spanish Players have joined.<br><br>
 <<else>>
 <<if $role is $Span_Leader>>
-<b>Spaniards' Final score: <<print $Span_Game>></b><br>
+<<if $Span_Game_Over is "No">>
+<b>Spaniards' Final Score: <<print $Span_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<set $Span_Game = $Span_End / _Span_Tot_Play>><<set $Span_Game_Over = "Yes">><</link>><br>
 <br>
+<<elseif $Span_Game_Over is "Yes">>
+<b>Spaniards' Final Score: <<print $Span_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <<else>>
-<b>Spaniards' Final score: <<print $Span_Game>></b><br>
+<<if $Span_Game_Over is "No">>
+You must wait for your leader to calculate your final score.<br>
+<br>
+<b>Spaniards Final Score: <<print $Span_Game>></b><br>
+<<<<elseif $Span_Game_Over is "Yes">>
+<b>Spaniards Final Score: <<print $Span_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <</if>>
 <</if>>
 <</if>>
@@ -14974,38 +15032,85 @@ You wait for the haze of war to clear.<br>
 <br>
 You must wait until all Tlaxcalan Players have joined.<br><br>
 <<else>>
+
 <<if $role is $Tlax_Leader>>
-<b>Tlaxcalan's Final score: <<print $Tlax_Game>></b><br>
+<<if $Tlax_Game_Over is "No">>
+<b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play>><<set $Tlax_Game_Over = "Yes">><</link>><br>
 <br>
+$Tlax
+<<elseif $Tlax_Game_Over is "Yes">>
+<b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <<else>>
-<b>Tlaxcalan's Final score: <<print $Tlax_Game>></b><br>
-
-
+<<if $Tlax_Game_Over is "No">>
+You must wait for your leader to calculate your final score.<br>
+<br>
+<b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
+<<<<elseif $Tlax_Game_Over is "Yes">>
+<b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+<</if>>
 <</if>>
 <</if>>
 
 <</switch>>
 
-<<if $Final_Aztec_Points eq "" or ndef $Final_Aztec_Points or $Final_Spanish_Points eq "" or ndef $Final_Spanish_Points>>
-You wait for the haze of war to clear.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<br>
-Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
-<<elseif $Final_Spanish_Points >=$Final_Aztec_Points>>
-[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Spanish Victory]].<br>
-<br>
-<<elseif $Final_Aztec_Points >$Final_Spanish_Points>>
-[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory]].<br>
-<br>
-<</if>>
-
-
 <</liveblock>>
 
+:: After the Final Battle
+<<switch $faction>>
+<<case "Aztecs">>
+<<if $role is $New_Aztec_Leader>>
 
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
+<br>
+Discuss with your team and once you are done, you will input your final choice.<br>
+<br>
+Remember, the fate of civilization rests on your shoulders.<br>
+<br>
+<b>Option 1:</b> Continue on with the battle and <<link "find out who will claim victory" "Conclusion">><<set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play>><<set $Tlax_Game_Over = "Yes">><</link>><br>
+<br><br>
+<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<br>
+<<else>>
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
+<br>
+Discuss with your team and once you are done <<print $New_Aztec_Leader>> will input your final choice.<br>
+<br>
+<b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
+<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<br>
+<</if>>
+<<case "Spaniards">>
+<<if $role is $Span_Leader>>
+<<else>>
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
+<br>
+Discuss with your team and once you are done <<print $Span_Leader>> will input your final choice.<br>
+<br>
+<b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
+<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<br>
+<</if>>
+<<case "Tlaxcalans">>
+<<if $role is $Tlax_Leader>>
+<<else>>
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
+<br>
+Discuss with your team and once you are done <<print $Tlax_Leader>> will input your final choice.<br>
+<br>
+<b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
+<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<br>
+<</if>>
+<</switch>>
 :: Final Battle Purgatory
 You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you've been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. <br>
 <br>
