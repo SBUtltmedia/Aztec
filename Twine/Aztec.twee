@@ -15188,6 +15188,12 @@ You may now [[continue on|Final Battle Decision]].
 <</liveblock>>
 :: Final Battle Purgatory
 <<liveblock>>
+<<if ndef $Aztec_Decision>>
+<<set $Aztec_Decision = "No">>
+<</if>>
+<<if ndef $Span_Decision>>
+<<set $Span_Decision = "No">>
+<</if>>
 You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you've been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. <br>
 <br>
 No! This can't be right! You need to get back to Tenochtitlán! You close your eyes, desperate to fall asleep and return, but to no avail. You lean back in the chair, willing it to happen.<br>
@@ -15200,7 +15206,7 @@ You pick up your assignment and wonder how much time you have until it's due. Yo
 <<switch $users[$role]["faction"]>>
 	
 <<case "Aztecs">>
-<<if $ndef $Aztec_Decision or $Aztec_Decision is "No">>
+<<if $Aztec_Decision is "No">>
 All you can do is wait, but for how long...<br>
 <br>
 <<elseif $Aztec_Decision is "Yes">>
