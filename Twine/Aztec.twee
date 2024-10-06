@@ -15257,10 +15257,6 @@ You finally manage to [[fall back asleep|The End]]<br>
 <br>
 <br>
 <</liveblock>>
-:: Final Battle Decision
-Aztecs: <<print $Aztec_End>><br>
-Spaniards: <<print $Span_End>><br>
-Tlaxcalans: <<print $Tlax_End>><br>
 
 :: Final Battle Outcome
 
