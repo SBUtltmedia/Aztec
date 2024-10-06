@@ -13949,9 +13949,35 @@ You may now [[continue on|Final Battle Decision]].
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Decision" tags="" position="1225,4100" size="100,100">Aztecs: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Decision" tags="" position="1225,4100" size="100,100">The dust has settled, and the results are in. Below, you will see the final score for each faction. &lt;br&gt;
+&lt;br&gt;
+Aztecs: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
 Spaniards: &lt;&lt;print $Span_End&gt;&gt;&lt;br&gt;
-Tlaxcalans: &lt;&lt;print $Tlax_End&gt;&gt;&lt;br&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle Purgatory" tags="" position="100,4225" size="100,100">&lt;&lt;liveblock&gt;&gt;
+Tlaxcalans: &lt;&lt;print $Tlax_End&gt;&gt;&lt;br&gt;
+Hello?
+&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+What is working? 
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
+How about now?
+&lt;&lt;if $Aztec_End = &quot;0&quot;&gt;&gt;
+Is this working?
+&lt;&lt;if $Span_End = &quot;0&quot; &amp; $Tlax_End = &quot;0&quot;&gt;&gt;
+The battle seemed as though it would never end. The city lies in ruins before you and countless lives have been lost. You have decided there must be a better way to end this bloody war. As you lay down your arms, you see the others do the same. Is it real? Can this really end in peace? You can hardly believe your eyes, but it seems peace has come to Tenochtitlán. Now that it&#39;s over, what will remain? Surely this world will [[never look the same|The End]].&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Aztec_End &lt; $Span_End or $Aztec_End &lt; $Tlax_End&gt;&gt;
+You may have chosen to lay down your arms, but the others betrayed you. The city lies in ruins before you and countless lives have been lost. Your enemies are rounding up the few who remain, preparing them for their final punishment. You wait your turn and pray for a dignified death. There is no hope for mercy after all that has transpired. But when their vengeance is done, what will remain? Surely this world will [[never look the same|The End]].&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif ndef $Span_End or ndef $Tlax_End&gt;&gt;
+You must wait for all teams to arrive.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+Still not working!
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle Purgatory" tags="" position="100,4225" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztec_Decision&gt;&gt;
 &lt;&lt;set $Aztec_Decision = &quot;No&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
