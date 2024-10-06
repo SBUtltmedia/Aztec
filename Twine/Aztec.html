@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -13826,7 +13826,24 @@ You now have your final score.  You may [[contine on to decide what to do about 
 
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="329" name="After the Final Battle" tags="" position="1100,4100" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="329" name="After the Final Battle" tags="" position="1100,4100" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;if ndef $Aztec_Decision&gt;&gt;
+&lt;&lt;set $Aztec_Decision = &quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Span_Decision&gt;&gt;
+&lt;&lt;set $Span_Decision = &quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Tlax_Decision&gt;&gt;
+&lt;&lt;set $Tlax_Decision = &quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+Which teams have made their final decision?&lt;br&gt;
+&lt;br&gt;
+Aztecs:  &lt;&lt;print $Aztec_Decision&gt;&gt;&lt;br&gt;
+Spaniards:  &lt;&lt;print $Span_Decision&gt;&gt;&lt;br&gt;
+Tlaxcalans:  &lt;&lt;print $Tlax_Decision&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
 
@@ -13836,20 +13853,33 @@ Discuss with your team and once you are done, you will input your final choice.&
 &lt;br&gt;
 Remember, the fate of civilization rests on your shoulders.&lt;br&gt;
 &lt;br&gt;
-&lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and &lt;&lt;link &quot;find out who will claim victory&quot; &quot;Conclusion&quot;&gt;&gt;&lt;&lt;set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;set $Tlax_Game_Over = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and &lt;&lt;link &quot;find out who will claim victory&quot; &quot;Final Battle Decision&quot;&gt;&gt;&lt;&lt;set $Aztec_Decision = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
+&lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;&lt;link &quot;find out who will claim victory&quot; &quot;Final Battle Decision&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztec_Decision = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
 &lt;br&gt;
 Discuss with your team and once you are done &lt;&lt;print $New_Aztec_Leader&gt;&gt; will input your final choice.&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;if $Aztec_Decision = &quot;No&quot;&gt;&gt;
 &lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and find out who will claim victory.&lt;br&gt;
 &lt;br&gt;
 &lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
 &lt;br&gt;
+You must wait for your leader to make the final decision.&lt;br&gt;
+&lt;br&gt;
+&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Aztec_Decision = &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and find out who will claim victory.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
+&lt;br&gt;
+You may now [[continue on|Final Battle Decision]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $role is $Span_Leader&gt;&gt;
@@ -13875,20 +13905,25 @@ Discuss with your team and once you are done &lt;&lt;print $Tlax_Leader&gt;&gt; 
 &lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Purgatory" tags="" position="1225,4100" size="100,100">You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you&#39;ve been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. &lt;br&gt;
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Purgatory" tags="" position="1225,4100" size="100,100">&lt;&lt;liveblock&gt;&gt;
+You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you&#39;ve been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. &lt;br&gt;
 &lt;br&gt;
 No! This can&#39;t be right! You need to get back to Tenochtitlán! You close your eyes, desperate to fall asleep and return, but to no avail. You lean back in the chair, willing it to happen.&lt;br&gt;
 &lt;br&gt;
 It&#39;s only when you finally give up and accept defeat that you notice something alarming: there&#39;s no door. Panicked, you pound on the wall with your fists, yelling at the top of your lungs for anyone to hear, but no one does. Then you remember that this is the 21st century and you grab your phone to call for help, but the battery is dead.&lt;br&gt;
 &lt;br&gt;
-You pick up your assignment and wonder how much time you have until it&#39;s due. You don&#39;t even know what time it is. The ancient clock on the wall says it&#39;s 3:45, but is it even right, and is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...&lt;br&gt;
+You pick up your assignment and wonder how much time you have until it&#39;s due. You don&#39;t even know what time it is. The ancient clock on the wall says it&#39;s 3:45, but is it even right? And is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 &lt;br&gt;
 &lt;br&gt;
 All you can do is wait, but for how long...&lt;br&gt;
-&lt;br&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle Decision" tags="" position="100,4225" size="100,100"></tw-passagedata><tw-passagedata pid="332" name="Final Battle Outcome" tags="" position="225,4225" size="100,100"></tw-passagedata><tw-passagedata pid="333" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle Decision" tags="" position="100,4225" size="100,100">Aztecs: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
+Spaniards: &lt;&lt;print $Span_End&gt;&gt;&lt;br&gt;
+Tlaxcalans: &lt;&lt;print $Tlax_End&gt;&gt;&lt;br&gt;</tw-passagedata><tw-passagedata pid="332" name="Final Battle Outcome" tags="" position="225,4225" size="100,100"></tw-passagedata><tw-passagedata pid="333" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
