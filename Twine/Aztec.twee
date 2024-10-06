@@ -15099,7 +15099,7 @@ Now that you have seen your final score, you have one last decision to make. You
 <br>
 Discuss with your team and once you are done <<print $New_Aztec_Leader>> will input your final choice.<br>
 <br>
-<<if $Aztec_Decision = "No">>
+<<if $Aztec_Decision is "No">>
 <b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
@@ -15108,7 +15108,7 @@ You must wait for your leader to make the final decision.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 <br>
-<<elseif $Aztec_Decision = "Yes">>
+<<elseif $Aztec_Decision is "Yes">>
 <b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
