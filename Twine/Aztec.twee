@@ -15197,7 +15197,7 @@ Tlaxcalans: <<print $Tlax_End>><br>
 <<if $Aztec_End = 0 and $Span_End = 0 and $Tlax_End = 0>>
 The battle seemed as though it would never end. The city lies in ruins before you and countless lives have been lost. You have decided there must be a better way to end this bloody war. As you lay down your arms, you see the others do the same. Is it real? Can this really end in peace? You can hardly believe your eyes, but it seems peace has come to Tenochtitlán. Now that it's over, what will remain? Surely this world will [[never look the same|The End]].<br>
 <br>
-<<elseif $Aztec_End = 0 and $Aztec_End < $Span_End or $Aztec_End < $Tlax_End>>
+<<elseif $Aztec_End = 0 and ($Aztec_End < $Span_End or $Aztec_End < $Tlax_End)>>
 You may have chosen to lay down your arms, but the others betrayed you. The city lies in ruins before you and countless lives have been lost. Your enemies are rounding up the few who remain, preparing them for their final punishment. You wait your turn and pray for a dignified death. There is no hope for mercy after all that has transpired. But when their vengeance is done, what will remain? Surely this world will [[never look the same|The End]].<br>
 <br>
 <<elseif ndef $Span_End or ndef $Tlax_End>>
