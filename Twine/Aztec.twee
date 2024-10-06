@@ -15049,7 +15049,7 @@ You now have your final score.  You may [[contine on to decide what to do about 
 You must wait for your leader to calculate your final score.<br>
 <br>
 <b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
-<<<<elseif $Tlax_Game_Over is "Yes">>
+<<elseif $Tlax_Game_Over is "Yes">>
 <b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
 You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
 <</if>>
@@ -15114,29 +15114,75 @@ You must wait for your leader to make the final decision.<br>
 You may now [[continue on|Final Battle Decision]].
 <</if>>
 <</if>>
+
 <<case "Spaniards">>
 <<if $role is $Span_Leader>>
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
+<br>
+Discuss with your team and once you are done, you will input your final choice.<br>
+<br>
+Remember, the fate of civilization rests on your shoulders.<br>
+<br>
+<b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $Span_Decision = "Yes">><</link>><br>
+<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Span_End = 0>><<set $Span_Decision = "Yes">><</link>>.<br>
+<br>
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
 Discuss with your team and once you are done <<print $Span_Leader>> will input your final choice.<br>
 <br>
+<<if $Span_Decision is "No">>
 <b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
 <br>
+You must wait for your leader to make the final decision.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+<<elseif $Span_Decision is "Yes">>
+<b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
+<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<br>
+You may now [[continue on|Final Battle Decision]].
 <</if>>
+<</if>>
+
 <<case "Tlaxcalans">>
 <<if $role is $Tlax_Leader>>
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
+<br>
+Discuss with your team and once you are done, you will input your final choice.<br>
+<br>
+Remember, the fate of civilization rests on your shoulders.<br>
+<br>
+<b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $Tlax_Decision = "Yes">><</link>><br>
+<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Tlax_End = 0>><<set $Tlax_Decision = "Yes">><</link>>.<br>
+<br>
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
-Discuss with your team and once you are done <<print $Tlax_Leader>> will input your final choice.<br>
+Discuss with your team and once you are done <<print $Span_Leader>> will input your final choice.<br>
 <br>
+<<if $Tlax_Decision is "No">>
 <b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
 <br>
+You must wait for your leader to make the final decision.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+<<elseif $Tlax_Decision is "Yes">>
+<b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
+<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<br>
+You may now [[continue on|Final Battle Decision]].
+<</if>>
 <</if>>
 <</switch>>
 <</liveblock>>
@@ -15151,10 +15197,25 @@ It's only when you finally give up and accept defeat that you notice something a
 You pick up your assignment and wonder how much time you have until it's due. You don't even know what time it is. The ancient clock on the wall says it's 3:45, but is it even right? And is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...<br>
 <br><br>
 
+<<switch $users[$role]["faction"]>>
+	
+<<case "Aztecs">>
+<<if $ndef $Aztec_Decision or $Aztec_Decision is "No">>
+All you can do is wait, but for how long...<br>
+<br>
+<<elseif $Aztec_Decision is "Yes">>
+You finally manage to [[fall back asleep|Final Battle Decision]]<br>
+<br>
+<<case "Spaniards">>
+<<if $ndef $Span_Decision or $Span_Decision is "No">>
+All you can do is wait, but for how long...<br>
+<br>
+<<elseif $Span_Decision is "Yes">>
+You finally manage to [[fall back asleep|Final Battle Decision]]<br>
+<br>
+<</switch>>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
 <br>
-<br>
-All you can do is wait, but for how long...<br>
 <br>
 <</liveblock>>
 :: Final Battle Decision
