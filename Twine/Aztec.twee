@@ -14871,7 +14871,7 @@ You now have your final score.  You may [[contine on to decide what to do about 
 You must wait for your leader to calculate your final score.<br>
 <br>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
-<<<<elseif $Aztec_Game_Over is "Yes">>
+<<elseif $Aztec_Game_Over is "Yes">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
 <</if>>
