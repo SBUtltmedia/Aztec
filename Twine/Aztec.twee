@@ -15061,7 +15061,7 @@ You now have your final score.  You may [[contine on to decide what to do about 
 <</liveblock>>
 
 :: After the Final Battle
-<<switch $faction>>
+<<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <<if $role is $New_Aztec_Leader>>
 
