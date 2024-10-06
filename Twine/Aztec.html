@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -2992,8 +2992,8 @@ Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Battle Outcome Aztecs Versus Spaniards 3b" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if ndef $Aztecs_Game&gt;&gt;
-&lt;&lt;set $Aztecs_Game = 0&gt;&gt;
+&lt;&lt;if ndef $Aztec_Game&gt;&gt;
+&lt;&lt;set $Aztec_Game = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Final = setup.getTotalChoices (&quot;Aztec_Final&quot;)&gt;&gt;
@@ -3030,13 +3030,13 @@ Aztec Players Total Final: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
 You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztec_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztec_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -3044,13 +3044,13 @@ Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Azt
 You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztec_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
-Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztecs_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;set $Aztec_End = 0&gt;&gt;&lt;&lt;set $Aztec_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -13571,20 +13571,30 @@ Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="328" name="Final Battle 3" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if ndef $Aztecs_Game&gt;&gt;
-&lt;&lt;set $Aztecs_Game = 0&gt;&gt;
+&lt;&lt;if ndef $Aztec_Game&gt;&gt;
+&lt;&lt;set $Aztec_Game = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Aztec_Game_Over&gt;&gt;
+&lt;&lt;set $Aztec_Game_Over = &quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Final = setup.getTotalChoices (&quot;Aztec_Final&quot;)&gt;&gt;
 
 &lt;&lt;if ndef $Span_Game&gt;&gt;
 &lt;&lt;set $Span_Game = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Span_Game_Over&gt;&gt;
+&lt;&lt;set $Span_Game_Over = &quot;No&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Span_Final = setup.getTotalChoices (&quot;Span_Final&quot;)&gt;&gt;
 
 &lt;&lt;if ndef $Tlax_Game&gt;&gt;
 &lt;&lt;set $Tlax_Game = 0&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if ndef $Tlax_Game_Over&gt;&gt;
+&lt;&lt;set $Tlax_Game_Over = &quot;No&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Final = setup.getTotalChoices (&quot;Tlax_Final&quot;)&gt;&gt;
@@ -13612,15 +13622,27 @@ You wait for the haze of war to clear.&lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 &lt;br&gt;
-You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
+You must wait until all active Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
-&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aztec_Game_Over is &quot;No&quot;&gt;&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;set $Aztec_Game_Over = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;elseif $Aztec_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
-&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aztec_Game_Over is &quot;No&quot;&gt;&gt;
+You must wait for your leader to calculate your final score.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;&lt;&lt;elseif $Aztec_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -13632,12 +13654,24 @@ Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt
 You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $Aztec_Leader&gt;&gt;
-&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aztec_Game_Over is &quot;No&quot;&gt;&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztec_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;set $Aztec_Game_Over = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;elseif $Aztec_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
-&lt;b&gt;Aztec Final score: &lt;&lt;print $Aztecs_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aztec_Game_Over is &quot;No&quot;&gt;&gt;
+You must wait for your leader to calculate your final score.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;&lt;&lt;elseif $Aztec_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -13687,12 +13721,24 @@ You wait for the haze of war to clear.&lt;br&gt;
 You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;if $Span_Game_Over is &quot;No&quot;&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_Game = $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_Game = $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;set $Span_Game_Over = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;else&gt;&gt;
+&lt;&lt;elseif $Span_Game_Over is &quot;Yes&quot;&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;if $Span_Game_Over is &quot;No&quot;&gt;&gt;
+You must wait for your leader to calculate your final score.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;&lt;&lt;elseif $Span_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Spaniards Final score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
@@ -13704,12 +13750,24 @@ You wait for the haze of war to clear.&lt;br&gt;
 You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;if $role is $Span_Leader&gt;&gt;
-&lt;b&gt;Spaniards&#39; Final score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Span_Game_Over is &quot;No&quot;&gt;&gt;
+&lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Aztecs_Game = $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Span_Game = $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;set $Span_Game_Over = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
+&lt;&lt;elseif $Span_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
-&lt;b&gt;Spaniards&#39; Final score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Span_Game_Over is &quot;No&quot;&gt;&gt;
+You must wait for your leader to calculate your final score.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;&lt;&lt;elseif $Span_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Spaniards Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -13742,36 +13800,82 @@ You wait for the haze of war to clear.&lt;br&gt;
 &lt;br&gt;
 You must wait until all Tlaxcalan Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
+
 &lt;&lt;if $role is $Tlax_Leader&gt;&gt;
-&lt;b&gt;Tlaxcalan&#39;s Final score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Tlax_Game_Over is &quot;No&quot;&gt;&gt;
+&lt;b&gt;Tlaxcalan&#39;s Final Score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;set $Tlax_Game_Over = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
+$Tlax
+&lt;&lt;elseif $Tlax_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Tlaxcalan&#39;s Final Score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;else&gt;&gt;
-&lt;b&gt;Tlaxcalan&#39;s Final score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
-
-
+&lt;&lt;if $Tlax_Game_Over is &quot;No&quot;&gt;&gt;
+You must wait for your leader to calculate your final score.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Tlaxcalan&#39;s Final Score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+&lt;&lt;&lt;&lt;elseif $Tlax_Game_Over is &quot;Yes&quot;&gt;&gt;
+&lt;b&gt;Tlaxcalan&#39;s Final Score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
+You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
-You wait for the haze of war to clear.&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="329" name="After the Final Battle" tags="" position="1100,4100" size="100,100">&lt;&lt;switch $faction&gt;&gt;
+&lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
+&lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
+
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
 &lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
+Discuss with your team and once you are done, you will input your final choice.&lt;br&gt;
 &lt;br&gt;
-Both &lt;&lt;print $Span_Leader&gt;&gt; and &lt;&lt;print $New_Aztec_Leader&gt;&gt; must join.
-&lt;&lt;elseif $Final_Spanish_Points &gt;=$Final_Aztec_Points&gt;&gt;
-[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Spanish Victory]].&lt;br&gt;
+Remember, the fate of civilization rests on your shoulders.&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Final_Aztec_Points &gt;$Final_Spanish_Points&gt;&gt;
-[[Finally, the haze of war clears|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory]].&lt;br&gt;
+&lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and &lt;&lt;link &quot;find out who will claim victory&quot; &quot;Conclusion&quot;&gt;&gt;&lt;&lt;set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;set $Tlax_Game_Over = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;else&gt;&gt;
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
+&lt;br&gt;
+Discuss with your team and once you are done &lt;&lt;print $New_Aztec_Leader&gt;&gt; will input your final choice.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and find out who will claim victory.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-
-
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="329" name="Final Battle Purgatory" tags="" position="1100,4100" size="100,100">You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you&#39;ve been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. &lt;br&gt;
+&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
+&lt;&lt;if $role is $Span_Leader&gt;&gt;
+&lt;&lt;else&gt;&gt;
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
+&lt;br&gt;
+Discuss with your team and once you are done &lt;&lt;print $Span_Leader&gt;&gt; will input your final choice.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and find out who will claim victory.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
+&lt;&lt;if $role is $Tlax_Leader&gt;&gt;
+&lt;&lt;else&gt;&gt;
+Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
+&lt;br&gt;
+Discuss with your team and once you are done &lt;&lt;print $Tlax_Leader&gt;&gt; will input your final choice.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and find out who will claim victory.&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Option 2:&lt;/b&gt; Lay down your arms and attempt to make peace.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Purgatory" tags="" position="1225,4100" size="100,100">You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you&#39;ve been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. &lt;br&gt;
 &lt;br&gt;
 No! This can&#39;t be right! You need to get back to Tenochtitlán! You close your eyes, desperate to fall asleep and return, but to no avail. You lean back in the chair, willing it to happen.&lt;br&gt;
 &lt;br&gt;
@@ -13784,7 +13888,7 @@ You pick up your assignment and wonder how much time you have until it&#39;s due
 &lt;br&gt;
 &lt;br&gt;
 All you can do is wait, but for how long...&lt;br&gt;
-&lt;br&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Decision" tags="" position="1225,4100" size="100,100"></tw-passagedata><tw-passagedata pid="331" name="Final Battle Outcome" tags="" position="100,4225" size="100,100"></tw-passagedata><tw-passagedata pid="332" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle Decision" tags="" position="100,4225" size="100,100"></tw-passagedata><tw-passagedata pid="332" name="Final Battle Outcome" tags="" position="225,4225" size="100,100"></tw-passagedata><tw-passagedata pid="333" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
@@ -13839,7 +13943,7 @@ All you can do is wait, but for how long...&lt;br&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="333" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="334" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
 
 
 &lt;&lt;script&gt;&gt;
@@ -13931,16 +14035,16 @@ All you can do is wait, but for how long...&lt;br&gt;
 
 
 
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="334" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="335" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 	 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="335" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="336" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 2
 	/* Put link to next passage  */
 	&lt;&lt;link &quot;Next passage (final)&quot; &quot;Side Passage Example Final&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="336" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="337" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example Final
 	&lt;&lt;print $users[$role][&quot;sidePassageReturn&quot;]&gt;&gt;
 	
