@@ -15208,7 +15208,7 @@ You finally manage to [[fall back asleep|Final Battle Decision]]<br>
 <br>
 <</if>>
 <<case "Spaniards">>
-<<if $ndef $Span_Decision or $Span_Decision is "No">>
+<<if $Span_Decision is "No">>
 All you can do is wait, but for how long...<br>
 <br>
 <<elseif $Span_Decision is "Yes">>
