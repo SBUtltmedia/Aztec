@@ -15194,7 +15194,9 @@ Spaniards: <<print $Span_End>><br>
 Tlaxcalans: <<print $Tlax_End>><br>
 
 <<switch $users[$role]["faction"]>>
+What is working? 
 <<case "Aztecs">>
+How about now?
 <<if $Aztec_End = "0">>
 Is this working?
 <<if $Span_End = "0" & $Tlax_End = "0">>
