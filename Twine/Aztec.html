@@ -10214,10 +10214,10 @@ Well, this explains a lot. You knew you couldn&#39;t have written those papers--
 You rise up out of the chair, knees shaking. You know what you must do...&lt;br&gt;
 &lt;br&gt;
 
-Final Game Score:&lt;br&gt;
-Aztecs: &lt;&lt;print $Final_Aztec_Points&gt;&gt;&lt;br&gt;
-Spaniards:  &lt;&lt;print $Final_Spanish_Points&gt;&gt;&lt;br&gt;
-Tlaxcalans: &lt;&lt;print $Final_Tlaxcalan_Points&gt;&gt;&lt;br&gt;
+Final Game Scores:&lt;br&gt;
+Aztecs: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
+Spaniards:  &lt;&lt;print $Span_End&gt;&gt;&lt;br&gt;
+Tlaxcalans: &lt;&lt;print $Tlax_End&gt;&gt;&lt;br&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="224" name="The Festival of Toxcatl" tags="" position="4300,9250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 [[The Festival of Toxcatl: The Spaniards]]
 
@@ -13950,7 +13950,9 @@ You may now [[continue on|Final Battle Decision]].
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Purgatory" tags="" position="1225,4100" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle Decision" tags="" position="1225,4100" size="100,100">Aztecs: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
+Spaniards: &lt;&lt;print $Span_End&gt;&gt;&lt;br&gt;
+Tlaxcalans: &lt;&lt;print $Tlax_End&gt;&gt;&lt;br&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle Purgatory" tags="" position="100,4225" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztec_Decision&gt;&gt;
 &lt;&lt;set $Aztec_Decision = &quot;No&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -13973,7 +13975,7 @@ You pick up your assignment and wonder how much time you have until it&#39;s due
 All you can do is wait, but for how long...&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Aztec_Decision is &quot;Yes&quot;&gt;&gt;
-You finally manage to [[fall back asleep|Final Battle Decision]]&lt;br&gt;
+You finally manage to [[fall back asleep|The End]]&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
@@ -13981,16 +13983,14 @@ You finally manage to [[fall back asleep|Final Battle Decision]]&lt;br&gt;
 All you can do is wait, but for how long...&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Span_Decision is &quot;Yes&quot;&gt;&gt;
-You finally manage to [[fall back asleep|Final Battle Decision]]&lt;br&gt;
+You finally manage to [[fall back asleep|The End]]&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle Decision" tags="" position="100,4225" size="100,100">Aztecs: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt;
-Spaniards: &lt;&lt;print $Span_End&gt;&gt;&lt;br&gt;
-Tlaxcalans: &lt;&lt;print $Tlax_End&gt;&gt;&lt;br&gt;</tw-passagedata><tw-passagedata pid="332" name="Final Battle Outcome" tags="" position="225,4225" size="100,100"></tw-passagedata><tw-passagedata pid="333" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="332" name="Final Battle Outcome" tags="" position="225,4225" size="100,100"></tw-passagedata><tw-passagedata pid="333" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
