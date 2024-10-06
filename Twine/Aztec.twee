@@ -15090,9 +15090,7 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <br>
 <b>Option 1:</b> Continue on with the battle and <<link "find out who will claim victory" "Final Battle Decision">><<set $Aztec_Decision = "Yes">><</link>><br>
 <br>
-<b>Option 2:</b> Lay down your arms and attempt to make peace.<<link "find out who will claim victory" "Final Battle Decision">><<set $Aztec_End = 0>><<set $Aztec_Decision = "Yes">><</link>><br>
-<br>
-<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make peace" "Final Battle Decision">><<set $Aztec_End = 0>><<set $Aztec_Decision = "Yes">><</link>><br>
 <br>
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
