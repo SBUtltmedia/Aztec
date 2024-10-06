@@ -15197,7 +15197,7 @@ Hello?
 
 <<case "Aztecs">>
 
-<<if $Aztec_End is "0">>
+<<if $Aztec_End eq 0>>
 Is this working?
 <<if $Span_End = "0" & $Tlax_End = "0">>
 The battle seemed as though it would never end. The city lies in ruins before you and countless lives have been lost. You have decided there must be a better way to end this bloody war. As you lay down your arms, you see the others do the same. Is it real? Can this really end in peace? You can hardly believe your eyes, but it seems peace has come to Tenochtitlán. Now that it's over, what will remain? Surely this world will [[never look the same|The End]].<br>
