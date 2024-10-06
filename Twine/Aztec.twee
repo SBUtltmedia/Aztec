@@ -15061,6 +15061,23 @@ You now have your final score.  You may [[contine on to decide what to do about 
 <</liveblock>>
 
 :: After the Final Battle
+<<liveblock>>
+<<if ndef $Aztec_Decision>>
+<<set $Aztec_Decision = "No">>
+<</if>>
+<<if ndef $Span_Decision>>
+<<set $Span_Decision = "No">>
+<</if>>
+<<if ndef $Tlax_Decision>>
+<<set $Tlax_Decision = "No">>
+<</if>>
+
+Which teams have made their final decision?<br>
+<br>
+Aztecs:  <<print $Aztec_Decision>><br>
+Spaniards:  <<print $Span_Decision>><br>
+Tlaxcalans:  <<print $Tlax_Decision>><br>
+<br>
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <<if $role is $New_Aztec_Leader>>
@@ -15071,20 +15088,33 @@ Discuss with your team and once you are done, you will input your final choice.<
 <br>
 Remember, the fate of civilization rests on your shoulders.<br>
 <br>
-<b>Option 1:</b> Continue on with the battle and <<link "find out who will claim victory" "Conclusion">><<set $Tlax_Game = $Tlax_End / _Tlax_Tot_Play>><<set $Tlax_Game_Over = "Yes">><</link>><br>
-<br><br>
+<b>Option 1:</b> Continue on with the battle and <<link "find out who will claim victory" "Final Battle Decision">><<set $Aztec_Decision = "Yes">><</link>><br>
 <br>
-<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<<link "find out who will claim victory" "Final Battle Decision">><<set $Aztec_End = 0>><<set $Aztec_Decision = "Yes">><</link>><br>
+<br>
+<br>
 <br>
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
 Discuss with your team and once you are done <<print $New_Aztec_Leader>> will input your final choice.<br>
 <br>
+<<if $Aztec_Decision = "No">>
 <b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
 <br>
+You must wait for your leader to make the final decision.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+<<elseif $Aztec_Decision = "Yes">>
+<b>Option 1:</b> Continue on with the battle and find out who will claim victory.<br>
+<br>
+<b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
+<br>
+You may now [[continue on|Final Battle Decision]].
+<</if>>
 <</if>>
 <<case "Spaniards">>
 <<if $role is $Span_Leader>>
@@ -15111,14 +15141,16 @@ Discuss with your team and once you are done <<print $Tlax_Leader>> will input y
 <br>
 <</if>>
 <</switch>>
+<</liveblock>>
 :: Final Battle Purgatory
+<<liveblock>>
 You waken and take a deep breath, trying to calm your racing heart before you open your eyes. This is the moment you've been waiting for. You must know how the story ends! Slowly you open your eyes and see before you...the library. <br>
 <br>
 No! This can't be right! You need to get back to Tenochtitlán! You close your eyes, desperate to fall asleep and return, but to no avail. You lean back in the chair, willing it to happen.<br>
 <br>
 It's only when you finally give up and accept defeat that you notice something alarming: there's no door. Panicked, you pound on the wall with your fists, yelling at the top of your lungs for anyone to hear, but no one does. Then you remember that this is the 21st century and you grab your phone to call for help, but the battery is dead.<br>
 <br>
-You pick up your assignment and wonder how much time you have until it's due. You don't even know what time it is. The ancient clock on the wall says it's 3:45, but is it even right, and is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...<br>
+You pick up your assignment and wonder how much time you have until it's due. You don't even know what time it is. The ancient clock on the wall says it's 3:45, but is it even right? And is it the middle of the afternoon or the middle of the night? Will you ever get out of here? You collapse into the chair as the clock ticks loudly at your back. Tick...tick...tick...<br>
 <br><br>
 
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
@@ -15126,8 +15158,11 @@ You pick up your assignment and wonder how much time you have until it's due. Yo
 <br>
 All you can do is wait, but for how long...<br>
 <br>
-
+<</liveblock>>
 :: Final Battle Decision
+Aztecs: <<print $Aztec_End>><br>
+Spaniards: <<print $Span_End>><br>
+Tlaxcalans: <<print $Tlax_End>><br>
 
 :: Final Battle Outcome
 
