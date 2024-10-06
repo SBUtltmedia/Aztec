@@ -15192,7 +15192,7 @@ The dust has settled, and the results are in. Below, you will see the final scor
 Aztecs: <<print $Aztec_End>><br>
 Spaniards: <<print $Span_End>><br>
 Tlaxcalans: <<print $Tlax_End>><br>
-
+Hello?
 <<switch $users[$role]["faction"]>>
 What is working? 
 <<case "Aztecs">>
