@@ -15314,7 +15314,7 @@ You pick up your assignment and wonder how much time you have until it's due. Yo
 <<if $Aztec_Decision is "No">>
 All you can do is wait, but for how long...<br>
 <br>
-<<elseif $Aztec_Decision is "Yes">>
+<<elseif $Aztec_Decision is "Peace" or $Aztec_Decision is "War">>
 You finally manage to [[fall back asleep|The End]]<br>
 <br>
 <</if>>
@@ -15322,7 +15322,7 @@ You finally manage to [[fall back asleep|The End]]<br>
 <<if $Span_Decision is "No">>
 All you can do is wait, but for how long...<br>
 <br>
-<<elseif $Span_Decision is "Yes">>
+<<elseif $Span_Decision is "Peace" or $Span_Decision is "War">>
 You finally manage to [[fall back asleep|The End]]<br>
 <br>
 <</if>>
