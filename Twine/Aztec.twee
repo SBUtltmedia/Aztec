@@ -2824,25 +2824,25 @@ The news in Tlaxcala has left your companions bitter and the mood is dark. The S
 <br>
 As you near Tenochtitlán, you set up camp for the night, preparing to attack by dark. When all is ready, the Spaniards launch their attack, cutting off the causeways and trapping the Mexica inside the city. It seems the Mexica were prepared, however, and you did not have the element of surprise! Even worse: Tlaxcalan soldiers fight at their side! This is not the battle you had prepared for.<br>
 <br>
-The battle is like nothing you could have imagined. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|Victory Decision Aztecs and Tlaxcalans versus Spaniards]].<br>
+The battle is like nothing you could have imagined. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|A Rude Awakening in the Library]].<br>
 <br>
 <<else>>
 You leave Tlaxcala disappointed and unsure of the future. You have no choice but to face the Mexica alone. You heard that the city has been devastated by disease, but will this be enough to assure your victory?<br>
 <br>
 As you near Tenochtitlán, you set up camp for the night, preparing to attack by dark. When all is ready, you launch your attack, cutting off the causeways and trapping the Mexica inside the city. It seems the Mexica were prepared, however, and you did not have the element of surprise! Even worse: Tlaxcalan soldiers fight at their side! This is not the battle you had prepared for.<br>
 <br>
-The battle is like nothing you've ever experienced. The stakes are high and this will be a fight to the death for both sides.The residents of the city-young, old, man, woman-all join the fray, luring your men into traps and fighting with makeshift weapons. Many others, however, fall victim to your superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|Victory Decision Aztecs and Tlaxcalans versus Spaniards]].<br>
+The battle is like nothing you've ever experienced. The stakes are high and this will be a fight to the death for both sides.The residents of the city-young, old, man, woman-all join the fray, luring your men into traps and fighting with makeshift weapons. Many others, however, fall victim to your superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|A Rude Awakening in the Library]].<br>
 <br>
 <</if>>
 <<case "Tlaxcalans">>
 You make your way to Tenochtitlán and prepare the city for battle. The Spaniards launch their attack by night, clearly hoping to catch the Mexica by surprise. The surprise is on them, however, for you together you mount a quick and powerful defense. You watch with satisfaction their look of dismay when they realize that you are fighting alongside the Mexica.<br>
 <br>
-The battle is like nothing you've seen before. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|Victory Decision Aztecs and Tlaxcalans versus Spaniards]].<br>
+The battle is like nothing you've seen before. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|A Rude Awakening in the Library]].<br>
 <br>
 <<case "Aztecs">>
 With your Tlaxcalan allies at your side, you prepare the city for battle. The Spaniards launch their attack by night, clearly hoping to catch you by surprise. The surprise is on them, however, for you mount a quick and powerful defense. You watch with satisfaction their look of dismay when they see the Tlaxcalans at your side.<br>
 <br>
-The battle is like nothing you've seen before. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|Victory Decision Aztecs and Tlaxcalans versus Spaniards]].<br>
+The battle is like nothing you've seen before. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|A Rude Awakening in the Library]].<br>
 <br>
 <</switch>>
 
@@ -11036,6 +11036,11 @@ Final Game Scores:<br>
 Aztecs: <<print $Aztec_End>><br>
 Spaniards:  <<print $Span_End>><br>
 Tlaxcalans: <<print $Tlax_End>><br>
+<<if $Tlax_Final_Dec eq "Span">>
+Spanish and Tlaxcalan Alliance: <<print $TlaxSpan_End>> <br>
+<<elseif $Tlax_Final_Dec eq "Aztecs">>
+Aztec and Tlaxcalan Alliance:  <<print $TlaxAz_End>><br>
+<</if>>
 <</liveblock>>
 
 
@@ -11936,14 +11941,14 @@ The news in Tlaxcala has left your companions bitter and the mood is dark. The S
 <br>
 As you near Tenochtitlán, you set up camp for the night, preparing to attack by dark. When all is ready, the Spaniards launch their attack, cutting off the causeways and trapping the Mexica inside the city. Despite being caught off guard, the Mexica mount a powerful defense. The people of the city spent weeks preparing for just such a battle, and they are quick to jump into action.<br>
 <br>
-The battle is like nothing you could have imagined. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|Victory Decision Aztecs versus Spaniards 3]].<br>
+The battle is like nothing you could have imagined. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|A Rude Awakening in the Library]].<br>
 <br>
 <<else>>
 You leave Tlaxcala disappointed and unsure of the future. You have no choice but to face the Mexica alone. You heard that the city has been devastated by disease, but will this be enough to assure your victory?<br>
 <br>
 As you near Tenochtitlán, you set up camp for the night, preparing to attack by dark. When all is ready, you launch your attack, cutting off the causeways and trapping the Mexica inside the city. Despite being caught off guard, the Mexica mount a powerful defense. The people of the city spent weeks preparing for just such a battle, and they are quick to jump into action.<br>
 <br>
-The battle is like nothing you've ever experienced before. The stakes are high and this will be a fight to the death for both sides.The residents of the city-young, old, man, woman-all join the fray, luring your men into traps and fighting with makeshift weapons. Many others, however, fall victim to your superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|Victory Decision Aztecs versus Spaniards 3]].<br>
+The battle is like nothing you've ever experienced before. The stakes are high and this will be a fight to the death for both sides.The residents of the city-young, old, man, woman-all join the fray, luring your men into traps and fighting with makeshift weapons. Many others, however, fall victim to your superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|A Rude Awakening in the Library]].<br>
 <br>
 <</if>>
 <<case "Aztecs">>
@@ -11951,7 +11956,7 @@ The past months have been a waking nightmare. The arrival of the strangers on yo
 <br>
 In the midst of this horror, you are awoken in the dead of night by an attack! It seems the Spaniards have attempted to catch you off guard! Despite the despair that hangs like a cloud over the city, the people are quick to launch a defense. You spent months preparing for just such a fight and now the time has come.<br>
 <br>
-The battle is like nothing you've seen before. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|Victory Decision Aztecs versus Spaniards 3]].<br>
+The battle is like nothing you've seen before. The stakes are high and this will be a fight to the death for both sides. The residents of the city-young, old, man, woman-all join the fray, luring the Spaniards into traps and fighting with makeshift weapons. Many others, however, fall victim to the foreigners' superior weapons. The scene descends into mayhem, but it soon becomes clear [[which side will win|A Rude Awakening in the Library]].<br>
 <br>
 <</switch>>
 
@@ -14389,9 +14394,13 @@ All you can think about is getting back into the mysterious room and waking up i
 <<liveblock>>
 The day your history teacher hands out your next assignment, you can barely contain your excitement. You don't even wait for class to end before running out of class and heading to the library. You climb the stairs, round the corner, and there it is!<br>
 <br>
+
+
 <<if $Tlax_Final_Dec eq "Span">>
 As you sink into the chair, your adrenaline is pumping so hard you doubt you'll be able to fall asleep. The chair works its magic within seconds though, 
+
 <<switch $users[$role]["faction"]>>
+
 <<case "Aztecs">>
 <<if $role is $Aztec_Leader>>
 <<if $Az_Ld_Dead is "Yes">>
@@ -14424,9 +14433,87 @@ and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link
 and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
 <br>
 <</switch>>
-<<elseif $Tlax_Final_Dec eq "AttackSpan">>
+
+
+<<elseif $Tlax_Final_Dec eq "Alone">>
+As you sink into the chair, your adrenaline is pumping so hard you doubt you'll be able to fall asleep. The chair works its magic within seconds though, 
+
+<<switch $users[$role]["faction"]>>
+
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+<<if $Az_Ld_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+<<if $Cortes_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</switch>>
+
+<<elseif $Tlax_Final_Dec eq "Aztecs">>
+As you sink into the chair, your adrenaline is pumping so hard you doubt you'll be able to fall asleep. The chair works its magic within seconds though, 
+
+<<switch $users[$role]["faction"]>>
+
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+<<if $Az_Ld_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+<<if $Cortes_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</switch>>
 
 <</if>>
+
+
 
 <</liveblock>>
 
@@ -14472,6 +14559,9 @@ and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link
 <</if>>
 <<if ndef $Olid_Final>>
 <<set $Olid_Final = 0>>
+<</if>>
+<<if ndef $Span_Final>>
+<<set $Span_Final = 0>>
 <</if>>
 
 
@@ -14546,6 +14636,219 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Xicotencatl_
 
 <<elseif $role is "Maxixcatl">>
 The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Final=$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+<</if>>
+<</switch>>
+
+<</liveblock>>
+
+:: Final Battle Aztecs and Spaniards 1
+<<liveblock>>
+
+<<if ndef $Moctezuma_Final>>
+<<set $Moctezuma_Final = 0>>
+<</if>>
+<<if ndef $Tlacaelel_Final>>
+<<set $Tlacaelel_Final = 0>>
+<</if>>
+<<if ndef $Cuauhtemoc_Final>>
+<<set $Cuauhtemoc_Final = 0>>
+<</if>>
+<<if ndef $Cacamatzin_Final>>
+<<set $Cacamatzin_Final = 0>>
+<</if>>
+<<if ndef $Aztec_Priest_Final>>
+<<set $Aztec_Priest_Final = 0>>
+<</if>>
+<<if ndef $Pochteca_Final>>
+<<set $Pochteca_Final = 0>>
+<</if>>
+<<if ndef $Aztec_Final>>
+<<set $Aztec_Final = 0>>
+<</if>>
+
+<<if ndef $Cortes_Final>>
+<<set $Cortes_Final = 0>>
+<</if>>
+<<if ndef $Alvarado_Final>>
+<<set $Alvarado_Final = 0>>
+<</if>>
+<<if ndef $Aguilar_Final>>
+<<set $Aguilar_Final = 0>>
+<</if>>
+<<if ndef $Marina_Final>>
+<<set $Marina_Final = 0>>
+<</if>>
+<<if ndef $Garrido_Final>>
+<<set $Garrido_Final = 0>>
+<</if>>
+<<if ndef $Olid_Final>>
+<<set $Olid_Final = 0>>
+<</if>>
+<<if ndef $Span_Final>>
+<<set $Span_Final = 0>>
+<</if>>
+
+<<if ndef $Xicotencatl_Elder_Final>>
+<<set $Xicotencatl_Elder_Final = 0>>
+<</if>>
+<<if ndef $Xicotencatl_Younger_Final>>
+<<set $Xicotencatl_Younger_Final = 0>>
+<</if>>
+<<if ndef $Maxixcatl_Final>>
+<<set $Maxixcatl_Final = 0>>
+<</if>>
+<<if ndef $Tlax_Final>>
+<<set $Tlax_Final = 0>>
+<</if>>
+
+<<switch $users[$role]["faction"]>>
+
+<<case "Aztecs">>
+<<if $role is "Moctezuma">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Moctezuma_Final=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Tlacaelel">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Tlacaelel_Final=$users["Tlacaelel"]["stats"]["Strength"]+$users["Tlacaelel"]["stats"]["Loyalty"]+$users["Tlacaelel"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Cuauhtemoc">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cuauhtemoc_Final=$users["Cuauhtemoc"]["stats"]["Strength"]+$users["Cuauhtemoc"]["stats"]["Loyalty"]+$users["Cuauhtemoc"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Cacamatzin">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cacamatzin_Final=$users["Cacamatzin"]["stats"]["Strength"]+$users["Cacamatzin"]["stats"]["Loyalty"]+$users["Cacamatzin"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Aztec_Priest">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Aztec_Priest_Final=$users["Aztec_Priest"]["stats"]["Strength"]+$users["Aztec_Priest"]["stats"]["Loyalty"]+$users["Aztec_Priest"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Pochteca">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Pochteca_Final=$users["Pochteca"]["stats"]["Strength"]+$users["Pochteca"]["stats"]["Loyalty"]+$users["Pochteca"]["stats"]["Wisdom"]>><</link>>.
+<</if>>
+
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cortes_Final=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Alvarado">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Alvarado_Final=$users["Alvarado"]["stats"]["Strength"]+$users["Alvarado"]["stats"]["Loyalty"]+$users["Alvarado"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Garrido">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Garrido_Final=$users["Garrido"]["stats"]["Strength"]+$users["Garrido"]["stats"]["Loyalty"]+$users["Garrido"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Olid">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Olid_Final=$users["Olid"]["stats"]["Strength"]+$users["Olid"]["stats"]["Loyalty"]+$users["Olid"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Aguilar">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Aguilar_Final=$users["Aguilar"]["stats"]["Strength"]+$users["Aguilar"]["stats"]["Loyalty"]+$users["Aguilar"]["stats"]["Wisdom"]>><</link>>.
+
+<<elseif $role is "Marina">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Marina_Final=$users["Marina"]["stats"]["Strength"]+$users["Marina"]["stats"]["Loyalty"]+$users["Marina"]["stats"]["Wisdom"]>><</link>>.
+<</if>>
+
+<<case "Tlaxcalans">>
+<<if ndef $Span_Decision or ndef $Aztec_Decision or $Aztec_Decision is "No" or $Span_Decision is "No">>
+You wait for your options to become clear.<br>
+<br>
+The Spaniards and Aztecs must battle it out.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+
+<<elseif $Span_Decision is "Peace" and $Aztec_Decision is "Peace">>
+
+The Spaniards and the Aztecs have made peace! You now have a serious decision to make.  Will you join them in this new cooperative utopia or will you gather your allies and fight to the death?<br>
+<br>
+<<if $role is $Tlax_Leader>>
+
+<<else>>
+
+<</if>>
+
+<<elseif $Span_Decision is "War" or $Aztec_Decision is "War">>
+<<if $Span_End >= $Aztec_End>>
+<<if $role is $Tlax_Leader>>
+After the Spaniards made their departure, your spies followed close behind. They've been keeping close watch and now there is news to report! It seems there has been a great battle and the Spaniards emerged victorious! The Mexica defeat was catastrophic. It seems clear that Huitzilopochtli has abandoned them.<br>
+<br>
+But what will this mean for you? What is your best way forward? Should you propose peace and try to salvage your relationship with the Spaniards? Or is now the chance to make your move, to be the last ones standing and to rule over the once powerful Aztec Empire yourselves?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have two choices:
+<br>
+<b>Option 1:</b> <<link "Offer to make peace with the Spaniards" "Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners">><<set $Tlax_Span_Peace="Yes">><</link>>.<br>
+<br>
+<b>Option 2:</b> <<link "Launch a surprise attack and put an end to the foreigners, once and for all" "Final Battle 2">><<set $Tlax_Span_Peace="No">><</link>>.<br>
+<br>
+When you have agreed on the best course of action, input your decision here. You may then carry on.<br>
+<br>
+
+<<else>>
+
+After the Spaniards made their departure, your spies followed close behind. They've been keeping close watch and now there is news to report! It seems there has been a great battle and the Spaniards emerged victorious! The Mexica defeat was catastrophic. It seems clear that Huitzilopochtli has abandoned them.<br>
+<br>
+But what will this mean for you? What is your best way forward? Should you propose peace and try to salvage your relationship with the Spaniards? Or is now the chance to make your move, to be the last ones standing and to rule over the once powerful Aztec Empire yourselves?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have two choices:<br>
+<br>
+<b>Option 1:</b> Offer to make peace with the Spaniards.<br>
+<br>
+<b>Option 2:</b> Launch a surprise attack and put an end to the foreigners, once and for all.<br>
+<br>
+
+<<if ndef $Tlax_Span_Peace or $Tlax_Span_Peace eq "">>
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then carry on.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+You must wait for <<print $Tlax_Leader>> to input your decision.<br>
+<br>
+<<elseif $Tlax_Span_Peace is "Yes">>
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners]].<br>
+<br>
+<<elseif $Tlax_Span_Peace is "No">>
+You have decided to seize on this moment of weakness and attack the [[Spaniards|Final Battle 2]].<br>
+<br>
+<</if>>
+
+<</if>>
+<<elseif $Aztec_End > $Span_End>>
+<<if $role is $Tlax_Leader>>
+After the Spaniards made their departure, your spies followed close behind. They've been keeping close watch and now there is news to report! It seems there has been a great battle and the Mexica emerged victorious! So great was their victory that the foreign enemies are no more. Those who survived the battle were offered up to Huitzilopochtli, who will surely reward the victors for such a valuable gift.<br>
+<br>
+You are now faced with a decision. Has this experience changed your feelings about your archenemies? Or does the hatred of a thousand suns still consume you? <br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have two choices:<br>
+<br>
+<b>Option 1:</b> <<link "Offer to make peace with the Mexica" "Tlaxcala Does Nothing and Makes a Peace Treaty with the Aztec Winners">><<set $Tlax_Az_Peace="Yes">><</link>>.<br>
+<br>
+<b>Option 2:</b> <<link "Launch a surprise attack on Tenochtitlán and put an end to your enemies, once and for all" "Final Battle 2">><<set $Tlax_Az_Peace="No">><</link>>.<br>
+<br>
+When you have agreed on the best course of action, input your decision here. You may then carry on.<br>
+<br>
+<<else>>
+After the Spaniards made their departure, your spies followed close behind. They've been keeping close watch and now there is news to report! It seems there has been a great battle and the Mexica emerged victorious! So great was their victory that the foreign enemies are no more. Those who survived the battle were offered up to Huitzilopochtli, who will surely reward the victors for such a valuable gift.<br>
+<br>
+You are now faced with a decision. Has this experience changed your feelings about your archenemies? Or does the hatred of a thousand suns still consume you? <br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have two choices:<br>
+<br>
+<b>Option 1:</b> Offer to make peace with the Mexica.<br>
+<br>
+<b>Option 2:</b> Launch a surprise attack on Tenochtitlán and put an end to your enemies, once and for all.<br>
+<br>
+<<if ndef $Tlax_Az_Peace or $Tlax_Az_Peace eq "">>
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then carry on.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+You must wait for <<print $Tlax_Leader>> to input your decision.<br>
+<br>
+<<elseif $Tlax_Az_Peace is "Yes">>
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing and Makes a Peace Treaty with the Aztec Winners]].<br>
+<br>
+<<elseif $Tlax_Az_Peace is "No">>
+You have decided to seize on this moment of weakness and attack the [[Aztecs| Final Battle 2]].<br>
+<br>
+<</if>>
+<</if>>
+<</if>>
 <</if>>
 <</switch>>
 
@@ -15085,6 +15388,9 @@ You now have your final score.  You may [[contine on to decide what to do about 
 <<switch $users[$role]["faction"]>>
 <<case "Aztecs">>
 <<if $role is $New_Aztec_Leader>>
+
+<<if $Tlax_Final_Dec is "Aztecs">>
+
 <<if $Tlax_Decision is "No">>
 
 You must wait for <<print $Tlax_Leader>> to make a decision, but until then, you may consider your options with your team.<br>
@@ -15098,7 +15404,7 @@ Discuss with your team.<br>
 <b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
 <br>
 <<else>>
-<<if $Tlax_Final_Dec is "Aztecs">>
+
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
 Discuss with your team and once you are done, you will input your final choice.<br>
@@ -15109,6 +15415,8 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Aztec_End = 0>><<set $Aztec_Decision = "Peace">><</link>>.<br>
 <br>
+<</if>>
+
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
@@ -15120,7 +15428,6 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Aztec_End = 0>><<set $Aztec_Decision = "Peace">><</link>>.<br>
 <br>
-<</if>>
 <</if>>
 
 <<else>>
@@ -15148,6 +15455,9 @@ You may now [[continue on|Final Battle Decision]].
 
 <<case "Spaniards">>
 <<if $role is $Span_Leader>>
+
+<<if $Tlax_Final_Dec is "Span">>
+
 <<if $Tlax_Decision is "No">>
 
 You must wait for <<print $Tlax_Leader>> to make a decision, but until then, you may consider your options with your team.<br>
@@ -15161,7 +15471,6 @@ Discuss with your team.<br>
 <b>Option 2:</b> Lay down your arms and attempt to make peace.<br>
 <br>
 <<else>>
-<<if $Tlax_Final_Dec is "Span">>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
 Discuss with your team and once you are done, you will input your final choice.<br>
@@ -15172,6 +15481,7 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <br>
 <b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Span_End = 0>><<set $Span_Decision = "Peace">><</link>>.<br>
 <br>
+<</if>>
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
@@ -15184,7 +15494,7 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Span_End = 0>><<set $Span_Decision = "Peace">><</link>>.<br>
 <br>
 <</if>>
-<</if>>
+
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
 <br>
@@ -15263,6 +15573,8 @@ Aztec and Tlaxcalan Alliance:  <<print $TlaxAz_End>><br>
 <<if $Tlax_Decision is "No" or $Span_Decision is "No" or $Aztec_Decision is "No">>
 You must wait for all leaders to gather.<br>
 <br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
 
 <<elseif $Tlax_Decision is "Peace" and $Span_Decision is "Peace" and $Aztec_Decision is "Peace">>
 The battle seemed as though it would never end. The city lies in ruins before you and countless lives have been lost. You have decided there must be a better way to end this bloody war. As you lay down your arms, you see the others do the same. Is it real? Can this really end in peace? You can hardly believe your eyes, but it seems peace has come to Tenochtitlán. Now that it's over, what will remain? Surely this world will [[never look the same|The End]].<br>
@@ -15273,23 +15585,88 @@ The battle seemed as though it would never end. The city lies in ruins before yo
 
 <<case "Aztecs">>
 
-<<if $Aztec_End eq 0>>
-
-<<if $Span_End = "0" & $Tlax_End = "0">>
-<<elseif $Aztec_End < $Span_End or $Aztec_End < $Tlax_End>>
+<<if $Aztec_Decision is "Peace" and $Span_Decision is "War" or $Tlax_Decision is "War">>
 You may have chosen to lay down your arms, but the others betrayed you. The city lies in ruins before you and countless lives have been lost. Your enemies are rounding up the few who remain, preparing them for their final punishment. You wait your turn and pray for a dignified death. There is no hope for mercy after all that has transpired. But when their vengeance is done, what will remain? Surely this world will [[never look the same|The End]].<br>
-<br>
-<<elseif ndef $Span_End or ndef $Tlax_End>>
-You must wait for all teams to arrive.<br>
-<br>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<br>
-<</if>>
+
+<<elseif $Aztec_Decision is "War">>
+<<if $Tlax_Final_Dec is "Span">>
+<<if $TlaxSpan_End >= $Aztec_End>>
+You lost.
 <<else>>
+You won.
+<</if>>
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+<<if $TlaxAz_End >= $Span_End>>
+You won.
+<<else>>
+You lost.
+<</if>>
+<</if>>
+<</if>>
+
+<<case "Spaniards">>
+
+<<if $Span_Decision is "Peace" and $Aztec_Decision is "War" or $Tlax_Decision is "War">>
+You may have chosen to lay down your arms, but the others betrayed you. The city lies in ruins before you and countless lives have been lost. Your enemies are rounding up the few who remain, preparing them for their final punishment. You wait your turn and pray for a dignified death. There is no hope for mercy after all that has transpired. But when their vengeance is done, what will remain? Surely this world will [[never look the same|The End]].<br>
+
+<<if $Tlax_Final_Dec is "Span">>
+
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+
+<</if>>
+
+<<elseif $Span_Decision is "War">>
+<<if $Tlax_Final_Dec is "Span">>
+<<if $TlaxSpan_End >= $Aztec_End>>
+You won.
+<<else>>
+You lost.
+<</if>>
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+<<if $TlaxAz_End >= $Span_End>>
+You lost.
+<<else>>
+You won.
+<</if>>
+<</if>>
+
+<</if>>
+
+<<case "Tlaxcalans">>
+
+<<if $Tlax_Decision is "Peace" and $Aztec_Decision is "War" or $Span_Decision is "War">>
+You may have chosen to lay down your arms, but the others betrayed you. The city lies in ruins before you and countless lives have been lost. Your enemies are rounding up the few who remain, preparing them for their final punishment. You wait your turn and pray for a dignified death. There is no hope for mercy after all that has transpired. But when their vengeance is done, what will remain? Surely this world will [[never look the same|The End]].<br>
+
+<<if $Tlax_Final_Dec is "Span">>
+
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+
+<</if>>
+<<elseif $Tlax_Decision is "War">>
+<<if $Tlax_Final_Dec is "Span">>
+<<if $TlaxSpan_End >= $Aztec_End>>
+You won.
+<<else>>
+You lost.
+<</if>>
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+<<if $TlaxAz_End >= $Span_End>>
+You won.
+<<else>>
+You lost.
+<</if>>
 <</if>>
 <</if>>
 
 <</switch>>
+
+<<elseif ndef $Span_End or ndef $Tlax_End or ndef $Aztec_End>>
+You must wait for all teams to arrive.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+
+<</if>>
 
 :: Final Battle Purgatory
 <<liveblock>>
@@ -15314,6 +15691,9 @@ You pick up your assignment and wonder how much time you have until it's due. Yo
 <<if $Aztec_Decision is "No">>
 All you can do is wait, but for how long...<br>
 <br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+<br>
 <<elseif $Aztec_Decision is "Peace" or $Aztec_Decision is "War">>
 You finally manage to [[fall back asleep|The End]]<br>
 <br>
@@ -15322,14 +15702,15 @@ You finally manage to [[fall back asleep|The End]]<br>
 <<if $Span_Decision is "No">>
 All you can do is wait, but for how long...<br>
 <br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+<br>
 <<elseif $Span_Decision is "Peace" or $Span_Decision is "War">>
 You finally manage to [[fall back asleep|The End]]<br>
 <br>
 <</if>>
 <</switch>>
-<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
-<br>
-<br>
+
 <</liveblock>>
 
 :: Final Battle Outcome
