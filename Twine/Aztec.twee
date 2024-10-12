@@ -11801,7 +11801,7 @@ You carefully weigh the Spaniards' offer. This may be your best chance to do awa
 <br>
 After much debate, you decide that the best course of action is to remain neutral. You don't trust anyone at this point and, besides, the longer the Mexica and the Spaniards fight among themselves, the weaker they both become. This could work to your advantage.<br>
 <br>
-You inform your guests that they must fight their battles alone and [[send them on their way|Tlaxcala Decides What To Do]].<br>
+You inform your guests that they must fight their battles alone and [[send them on their way|A Rude Awakening in the Library]].<br>
 <br>
 <</switch>>
 
@@ -15201,7 +15201,7 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Aztec_Game = $Aztec_End 
 <br>
 <<elseif $Aztec_Game_Over is "Yes">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <<else>>
 <<if $Aztec_Game_Over is "No">>
@@ -15210,7 +15210,7 @@ You must wait for your leader to calculate your final score.<br>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 <<elseif $Aztec_Game_Over is "Yes">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <</if>>
 <</if>>
@@ -15268,7 +15268,7 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Span_Game = $Span_End / 
 <br>
 <<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <<else>>
 <<if $Span_Game_Over is "No">>
@@ -15277,7 +15277,7 @@ You must wait for your leader to calculate your final score.<br>
 <b>Spaniards Final Score: <<print $Span_Game>></b><br>
 <<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards Final score: <<print $Span_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <</if>>
 <</if>>
@@ -15297,7 +15297,7 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Span_Game = $Span_End / 
 <br>
 <<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <<else>>
 <<if $Span_Game_Over is "No">>
@@ -15306,7 +15306,7 @@ You must wait for your leader to calculate your final score.<br>
 <b>Spaniards Final Score: <<print $Span_Game>></b><br>
 <<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards Final Score: <<print $Span_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <</if>>
 <</if>>
@@ -15349,7 +15349,7 @@ Calculate <<link "Final Score" "Final Battle 3">><<set $Tlax_Game = $Tlax_End / 
 <br>
 <<elseif $Tlax_Game_Over is "Yes">>
 <b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <<else>>
 <<if $Tlax_Game_Over is "No">>
@@ -15358,7 +15358,7 @@ You must wait for your leader to calculate your final score.<br>
 <b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
 <<elseif $Tlax_Game_Over is "Yes">>
 <b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
-You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
+You now have your final score.  You may [[continue on to decide what to do about it|After the Final Battle]].
 <</if>>
 <</if>>
 <</if>>
