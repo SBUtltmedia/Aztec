@@ -10856,6 +10856,8 @@ When everyone has voted, you will find out who will lead you now.<br>
 <br>
 
 <<else>>
+Hello!<br>
+<br>
 
 <<if _Sp_Ld_Alv_Teno >_Sp_Ld_Mar_Teno and _Sp_Ld_Alv_Teno >_Sp_Ld_Agu_Teno and _Sp_Ld_Alv_Teno >_Sp_Ld_Gar_Teno and _Sp_Ld_Alv_Teno >_Sp_Ld_Oli_Teno>>
 
