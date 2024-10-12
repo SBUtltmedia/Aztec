@@ -10164,7 +10164,7 @@ After a long night, you wake to a visit from some [[Cholulan delegates|Cholula M
 <</liveblock>>
 
 
-:: Aguilar’s first encounter with the Spaniards [Done Breaks] {"position":"1450,700","size":"100,100"}
+:: Aguilar's first encounter with the Spaniards [Done Breaks] {"position":"1450,700","size":"100,100"}
 <<liveblock>>
 <<if $role isnot "Aguilar" and ndef $L_Received or $L_Received eq "">>
 
@@ -14764,7 +14764,7 @@ The Spaniards and the Aztecs have made peace! You now have a serious decision to
 <</if>>
 
 <<elseif $Span_Decision is "War" or $Aztec_Decision is "War">>
-<<if $Span_End >= $Aztec_End>>
+<<if $Span_Game >= $Aztec_Game>>
 <<if $role is $Tlax_Leader>>
 After the Spaniards made their departure, your spies followed close behind. They've been keeping close watch and now there is news to report! It seems there has been a great battle and the Spaniards emerged victorious! The Mexica defeat was catastrophic. It seems clear that Huitzilopochtli has abandoned them.<br>
 <br>
@@ -14808,7 +14808,7 @@ You have decided to seize on this moment of weakness and attack the [[Spaniards|
 <</if>>
 
 <</if>>
-<<elseif $Aztec_End > $Span_End>>
+<<elseif $Aztec_Game > $Span_Game>>
 <<if $role is $Tlax_Leader>>
 After the Spaniards made their departure, your spies followed close behind. They've been keeping close watch and now there is news to report! It seems there has been a great battle and the Mexica emerged victorious! So great was their victory that the foreign enemies are no more. Those who survived the battle were offered up to Huitzilopochtli, who will surely reward the victors for such a valuable gift.<br>
 <br>
@@ -15411,9 +15411,9 @@ Discuss with your team and once you are done, you will input your final choice.<
 <br>
 Remember, the fate of civilization rests on your shoulders.<br>
 <br>
-<b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $TlaxAz_End = $Aztec_End + $Tlax_End>><<set $Aztec_Decision = "War">><</link>><br>
+<b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $TlaxAz_End = $Aztec_Game + $Tlax_Game>><<set $Aztec_Decision = "War">><</link>><br>
 <br>
-<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Aztec_End = 0>><<set $Aztec_Decision = "Peace">><</link>>.<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Aztec_Game = 0>><<set $Aztec_Decision = "Peace">><</link>>.<br>
 <br>
 <</if>>
 
@@ -15426,7 +15426,7 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <br>
 <b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $Aztec_Decision = "War">><</link>><br>
 <br>
-<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Aztec_End = 0>><<set $Aztec_Decision = "Peace">><</link>>.<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Aztec_Game = 0>><<set $Aztec_Decision = "Peace">><</link>>.<br>
 <br>
 <</if>>
 
@@ -15477,9 +15477,9 @@ Discuss with your team and once you are done, you will input your final choice.<
 <br>
 Remember, the fate of civilization rests on your shoulders.<br>
 <br>
-<b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $TlaxSpan_End = $Span_End + $Tlax_End>><<set $Span_Decision = "War">><</link>><br>
+<b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $TlaxSpan_End = $Span_Game + $Tlax_Game>><<set $Span_Decision = "War">><</link>><br>
 <br>
-<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Span_End = 0>><<set $Span_Decision = "Peace">><</link>>.<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Span_Game = 0>><<set $Span_Decision = "Peace">><</link>>.<br>
 <br>
 <</if>>
 <<else>>
@@ -15491,7 +15491,7 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <br>
 <b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $Span_Decision = "War">><</link>><br>
 <br>
-<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Span_End = 0>><<set $Span_Decision = "Peace">><</link>>.<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Span_Game = 0>><<set $Span_Decision = "Peace">><</link>>.<br>
 <br>
 <</if>>
 
@@ -15528,7 +15528,7 @@ Remember, the fate of civilization rests on your shoulders.<br>
 <br>
 <b>Option 1:</b> Continue on with the battle and <<link "find out who will CLAIM VICTORY" "Final Battle Decision">><<set $Tlax_Decision = "War">><</link>><br>
 <br>
-<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Tlax_End = 0>><<set $Tlax_Decision = "Peace">><</link>>.<br>
+<b>Option 2:</b> Lay down your arms and <<link "attempt to make PEACE" "Final Battle Decision">><<set $Tlax_Game = 0>><<set $Tlax_Decision = "Peace">><</link>>.<br>
 <br>
 <<else>>
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! <br>
@@ -15558,9 +15558,9 @@ You may now [[continue on|Final Battle Decision]].
 :: Final Battle Decision
 The dust has settled, and the results are in. Below, you will see the final score for each faction. <br>
 <br>
-Aztecs: <<print $Aztec_End>><br>
-Spaniards: <<print $Span_End>><br>
-Tlaxcalans: <<print $Tlax_End>><br>
+Aztecs: <<print $Aztec_Game>><br>
+Spaniards: <<print $Span_Game>><br>
+Tlaxcalans: <<print $Tlax_Game>><br>
 <br>
 <<if $Tlax_Final_Dec eq "Span">>
 Spanish and Tlaxcalan Alliance: <<print $TlaxSpan_End>> <br>
@@ -15586,6 +15586,7 @@ The battle seemed as though it would never end. The city lies in ruins before yo
 <br>
 <<else>>
 <</if>>
+<</if>>
 <<switch $users[$role]["faction"]>>
 
 <<case "Aztecs">>
@@ -15607,7 +15608,7 @@ You won.
 You lost.
 <</if>>
 <</if>>
-<</if>>
+
 
 <<case "Spaniards">>
 
@@ -15622,13 +15623,13 @@ You may have chosen to lay down your arms, but the others betrayed you. The city
 
 <<elseif $Span_Decision is "War">>
 <<if $Tlax_Final_Dec is "Span">>
-<<if $TlaxSpan_End >= $Aztec_End>>
+<<if $TlaxSpan_End >= $Aztec_Game>>
 You won.
 <<else>>
 You lost.
 <</if>>
 <<elseif $Tlax_Final_Dec is "Aztecs">>
-<<if $TlaxAz_End >= $Span_End>>
+<<if $TlaxAz_End >= $Span_Game>>
 You lost.
 <<else>>
 You won.
@@ -15649,13 +15650,13 @@ You may have chosen to lay down your arms, but the others betrayed you. The city
 <</if>>
 <<elseif $Tlax_Decision is "War">>
 <<if $Tlax_Final_Dec is "Span">>
-<<if $TlaxSpan_End >= $Aztec_End>>
+<<if $TlaxSpan_End >= $Aztec_Game>>
 You won.
 <<else>>
 You lost.
 <</if>>
 <<elseif $Tlax_Final_Dec is "Aztecs">>
-<<if $TlaxAz_End >= $Span_End>>
+<<if $TlaxAz_End >= $Span_Game>>
 You won.
 <<else>>
 You lost.
