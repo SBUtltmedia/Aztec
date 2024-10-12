@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -10055,26 +10055,26 @@ When everyone has voted, you will find out who will lead you now.&lt;br&gt;
 
 &lt;&lt;else&gt;&gt;
 
-&lt;&lt;if _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Mar_Teno and _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Agu_Teno and _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Gar_Teno and _Sp_Ld_Alv_Teno &gt;=_Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;if _Sp_Ld_Alv_Teno &gt;_Sp_Ld_Mar_Teno and _Sp_Ld_Alv_Teno &gt;_Sp_Ld_Agu_Teno and _Sp_Ld_Alv_Teno &gt;_Sp_Ld_Gar_Teno and _Sp_Ld_Alv_Teno &gt;_Sp_Ld_Oli_Teno&gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _Sp_Ld_Agu_Teno &gt;= _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno &gt;= _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno &gt;= _Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno &gt;= _Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;elseif _Sp_Ld_Agu_Teno &gt; _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno &gt; _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno &gt;_Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno &gt; _Sp_Ld_Oli_Teno&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _Sp_Ld_Oli_Teno &gt;= _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno &gt;= _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno &gt;= _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno &gt;= _Sp_Ld_Gar_Teno &gt;&gt;
+&lt;&lt;elseif _Sp_Ld_Oli_Teno &gt; _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno &gt; _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno &gt; _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno &gt; _Sp_Ld_Gar_Teno &gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _Sp_Ld_Gar_Teno &gt;= _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno &gt;= _Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno &gt;= _Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno &gt;= _Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;elseif _Sp_Ld_Gar_Teno &gt; _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno &gt;_Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno &gt;_Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno &gt;_Sp_Ld_Oli_Teno&gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;elseif _Sp_Ld_Mar_Teno &gt;= _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno &gt;= _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno &gt;= _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno &gt;= _Sp_Ld_Oli_Teno&gt;&gt;
+&lt;&lt;elseif _Sp_Ld_Mar_Teno &gt; _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno &gt;_Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno &gt; _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno &gt;_Sp_Ld_Oli_Teno&gt;&gt;
 
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Tenochtitlan New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Marina&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
@@ -14329,6 +14329,11 @@ Aztec and Tlaxcalan Alliance:  &lt;&lt;print $TlaxAz_End&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;&lt;if $Tlax_Final_Dec is &quot;Alone&quot;&gt;&gt;
+
+Need new options here to account for different battle and without a Tlaxcalan hold.
+
+&lt;&lt;else&gt;&gt;
 &lt;&lt;if $Tlax_Decision is &quot;No&quot; or $Span_Decision is &quot;No&quot; or $Aztec_Decision is &quot;No&quot;&gt;&gt;
 You must wait for all leaders to gather.&lt;br&gt;
 &lt;br&gt;
@@ -14339,7 +14344,7 @@ You must wait for all leaders to gather.&lt;br&gt;
 The battle seemed as though it would never end. The city lies in ruins before you and countless lives have been lost. You have decided there must be a better way to end this bloody war. As you lay down your arms, you see the others do the same. Is it real? Can this really end in peace? You can hardly believe your eyes, but it seems peace has come to Tenochtitlán. Now that it&#39;s over, what will remain? Surely this world will [[never look the same|The End]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;else&gt;&gt;
-
+&lt;&lt;/if&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
