@@ -2313,7 +2313,7 @@ You wait for the Aztecs to make a decision.<br>
 <<if $role is $Aztec_Leader>>
 It seems your people still value your life and have secured your release. The Spaniards honor their word and you join your compatriots to watch your enemies retreat from the city.<br>
 <br>
-Though you are grateful to be alive, you cannot help but wonder if your people made the right decision. That is a question for later, however. In your absence, your people elected a new leader, <<print $New_Aztec_Leader>>, and now you must help him [[restore order to your city|Smallpox in Tenochtitlán]].<br>
+Though you are grateful to be alive, you cannot help but wonder if your people made the right decision. That is a question for later, however. In your absence, your people elected a new leader, <<print $New_Aztec_Leader>>, and now you must help him <<link "restore order to your city" "Smallpox in Tenochtitlán">><<set $factions["Aztecs"]["stats"]["Strength"]*=.5>><</link>>.<br>
 <br>
 <<else>>
 You have decided that <<print $Aztec_Leader>>'s life is worth more to you than taking your revenge on the evil Spaniards.<br>
@@ -10269,7 +10269,7 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<set $Tlax_Final_Dec="Alone">><</link>>.<br>
 <br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape <<link "Spaniards cannot possibly escape" "Tlaxcala Sides with the Aztecs">><<set $Tlax_Final_Dec="Aztecs">><</link>>. <br>
+<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the <<link "Spaniards cannot possibly escape" "Tlaxcala Sides with the Aztecs">><<set $Tlax_Final_Dec="Aztecs">><</link>>. <br>
 <br>
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
@@ -13392,7 +13392,7 @@ You <<link "head back to Tlaxcala" "The Spaniards Head Inland">><<set $users["Xi
 :: Tlaxcalans wait [Done] {"position":"3050,925","size":"100,100"}
 <<liveblock>>
 <<set _Mutiny_Voted = setup.getTotalChoices("Mutiny_Voted")>>
-<<<<if _Mutiny_Voted <3>>>>
+<<if _Mutiny_Voted <3>>
 All is quiet in Tlaxcala and you find yourself bored, wondering what could possibly be happening on the coast. Unfortunately, your decision not to send spies means that you've lost track of the foreigners and have no idea what's going on.<br>
 <br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
@@ -15193,7 +15193,7 @@ You now have your final score.  You may [[contine on to decide what to do about 
 <br>
 You must wait until all Aztec Players have joined.<br><br>
 <<else>>
-<<if $role is $Aztec_Leader>>
+<<if $role is $New_Aztec_Leader>>
 <<if $Aztec_Game_Over is "No">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 
@@ -15208,7 +15208,7 @@ You now have your final score.  You may [[contine on to decide what to do about 
 You must wait for your leader to calculate your final score.<br>
 <br>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
-<<<<elseif $Aztec_Game_Over is "Yes">>
+<<elseif $Aztec_Game_Over is "Yes">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
 <</if>>
@@ -15275,7 +15275,7 @@ You now have your final score.  You may [[contine on to decide what to do about 
 You must wait for your leader to calculate your final score.<br>
 <br>
 <b>Spaniards Final Score: <<print $Span_Game>></b><br>
-<<<<elseif $Span_Game_Over is "Yes">>
+<<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards Final score: <<print $Span_Game>></b><br>
 You now have your final score.  You may [[contine on to decide what to do about it|After the Final Battle]].
 <</if>>
