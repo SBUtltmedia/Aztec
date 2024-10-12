@@ -10857,26 +10857,26 @@ When everyone has voted, you will find out who will lead you now.<br>
 
 <<else>>
 
-<<if _Sp_Ld_Alv_Teno >=_Sp_Ld_Mar_Teno and _Sp_Ld_Alv_Teno >=_Sp_Ld_Agu_Teno and _Sp_Ld_Alv_Teno >=_Sp_Ld_Gar_Teno and _Sp_Ld_Alv_Teno >=_Sp_Ld_Oli_Teno>>
+<<if _Sp_Ld_Alv_Teno >_Sp_Ld_Mar_Teno and _Sp_Ld_Alv_Teno >_Sp_Ld_Agu_Teno and _Sp_Ld_Alv_Teno >_Sp_Ld_Gar_Teno and _Sp_Ld_Alv_Teno >_Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Alvarado">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Agu_Teno >= _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno >= _Sp_Ld_Oli_Teno>>
+<<elseif _Sp_Ld_Agu_Teno > _Sp_Ld_Mar_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Agu_Teno >_Sp_Ld_Gar_Teno and _Sp_Ld_Agu_Teno > _Sp_Ld_Oli_Teno>>
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Aguilar">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Oli_Teno >= _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno >= _Sp_Ld_Gar_Teno >>
+<<elseif _Sp_Ld_Oli_Teno > _Sp_Ld_Mar_Teno and $Sp_Ld_Oli_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Oli_Teno > _Sp_Ld_Agu_Teno and _Sp_Ld_Oli_Teno > _Sp_Ld_Gar_Teno >>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Olid">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Gar_Teno >= _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno >= _Sp_Ld_Oli_Teno>>
+<<elseif _Sp_Ld_Gar_Teno > _Sp_Ld_Mar_Teno and _Sp_Ld_Gar_Teno >_Sp_Ld_Alv_Teno and _Sp_Ld_Gar_Teno >_Sp_Ld_Agu_Teno and _Sp_Ld_Gar_Teno >_Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Garrido">><</link>>.<br>
 <br>
 
-<<elseif _Sp_Ld_Mar_Teno >= _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno >= _Sp_Ld_Oli_Teno>>
+<<elseif _Sp_Ld_Mar_Teno > _Sp_Ld_Alv_Teno and _Sp_Ld_Mar_Teno >_Sp_Ld_Agu_Teno and _Sp_Ld_Mar_Teno > _Sp_Ld_Gar_Teno and _Sp_Ld_Mar_Teno >_Sp_Ld_Oli_Teno>>
 
 The group has made a decision.  Continue to the next page to find out <<link "who will lead your people" "Tenochtitlan New Spanish Leader">><<set $Span_Leader="Marina">><</link>>.<br>
 <br>
@@ -15570,6 +15570,11 @@ Aztec and Tlaxcalan Alliance:  <<print $TlaxAz_End>><br>
 <br>
 <</if>>
 
+<<if $Tlax_Final_Dec is "Alone">>
+
+Need new options here to account for different battle and without a Tlaxcalan hold.
+
+<<else>>
 <<if $Tlax_Decision is "No" or $Span_Decision is "No" or $Aztec_Decision is "No">>
 You must wait for all leaders to gather.<br>
 <br>
@@ -15580,7 +15585,7 @@ You must wait for all leaders to gather.<br>
 The battle seemed as though it would never end. The city lies in ruins before you and countless lives have been lost. You have decided there must be a better way to end this bloody war. As you lay down your arms, you see the others do the same. Is it real? Can this really end in peace? You can hardly believe your eyes, but it seems peace has come to Tenochtitlán. Now that it's over, what will remain? Surely this world will [[never look the same|The End]].<br>
 <br>
 <<else>>
-
+<</if>>
 <<switch $users[$role]["faction"]>>
 
 <<case "Aztecs">>
