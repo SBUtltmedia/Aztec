@@ -15739,7 +15739,11 @@ Reset the Spaniards: <<link "RESET" "6 Reset for Testing Act 5">><<set $Cortes_F
 Reset the Tlaxcalans:  <<link "RESET" "6 Reset for Testing Act 5">> <<set $Xicotencatl_Elder_Final = 0>><<set $Xicotencatl_Younger_Final = 0>><<set $Maxixcatl_Final = 0>><<set $Tlax_Final = 0>><<set $Tlax_Decision = "No">><<set $Tlax_End= 0>><<set $Tlax_Game = 0>><<set $Tlax_Game_Over = "No">><<set $Tlax_Decision = "No">><<set $TlaxAz_End = 0>><<set $TlaxSpan_End = 0>><</link>>.<br>
 <br>
 
+Is Cortes dead? <<link "Yes" "6 Reset for Testing Act 5">><<set $Cortes_Dead = "Yes">><</link>>.  <<link "No" "6 Reset for Testing Act 5">><<set $Cortes_Dead = "No">><</link>>.<br>
+<br>
 
+Is the Aztec Leader dead? <<link "Yes" "6 Reset for Testing Act 5">><<set $Az_Ld_Dead = "Yes">><</link>>.  <<link "No" "6 Reset for Testing Act 5">><<set $Az_Ld_Dead = "No">><</link>>.<br>
+<br>  
 
 :: Home: Stats [Control Done Breaks Home] {"position":"338,1151","size":"100,100"}
 <div id="info-stats">
