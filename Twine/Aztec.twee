@@ -2168,14 +2168,8 @@ You send another spy out, [[hoping for news|Spaniards Kill Aztec Leader]].<br>
 <<liveblock>>
 <<switch $users[$role]["faction"]>>
 <<case "Tlaxcalans">>
-<<if $Tlax_Leader is $role>>
-The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be <<link "from this moment on" "The End">><<set  
-$Final_Tlaxcalan_Players=$users["Xicotencatl_Elder"]["stats"]["Strength"]+$users["Xicotencatl_Elder"]["stats"]["Loyalty"]+$users["Xicotencatl_Elder"]["stats"]["Wisdom"]+$users["Xicotencatl_Younger"]["stats"]["Strength"]+$users["Xicotencatl_Younger"]["stats"]["Loyalty"]+$users["Xicotencatl_Younger"]["stats"]["Wisdom"]+$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
-<br> 
-<<else>>
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].<br>
 <br>
-<</if>>
 <<case "Aztecs">>
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
 <</switch>>
@@ -11851,14 +11845,9 @@ Your two sides are evenly matched, as usual, but only one [[can claim victory|Vi
 <<liveblock>>
 <<switch $users[$role]["faction"]>>
 <<case "Tlaxcalans">>
-<<if $Tlax_Leader is $role>>
-The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be <<link "from this moment on" "The End">><<set  
-$Final_Tlaxcalan_Players=$users["Xicotencatl_Elder"]["stats"]["Strength"]+$users["Xicotencatl_Elder"]["stats"]["Loyalty"]+$users["Xicotencatl_Elder"]["stats"]["Wisdom"]+$users["Xicotencatl_Younger"]["stats"]["Strength"]+$users["Xicotencatl_Younger"]["stats"]["Loyalty"]+$users["Xicotencatl_Younger"]["stats"]["Wisdom"]+$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $Final_Tlaxcalan_Players/=3>><<set $Final_Tlaxcalan_Points=$factions["Tlaxcalans"]["stats"]["Strength"]+$Final_Tlaxcalan_Players>><</link>>. <br>
-<br> 
-<<else>>
+
 The Mexica have listened to reason and agreed with your wisdom! You will set aside your hatred in the interest of peace. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].<br>
 <br>
-<</if>>
 
 <<case "Aztecs">>
 The Tlaxcalans have convinced you that peace is your best way forward. You agree to set aside your hatred and unite against any enemies that might come your way. As you reflect on this moment, you cannot help but wonder how different your world will be [[from this moment on|The End]].
@@ -12118,7 +12107,7 @@ As you set to work on the most pressing tasks, a Tlaxcalan messenger arrives in 
 <br>
 <b>Option 1:</b> <<link "Sign a peace treaty" "Tlaxcala Does Nothing Spaniards Accept Peace Treaty">><<set $Final_Peace="Yes">><</link>>.<br>
 <br>
-<b>Option 2:</b> <<link "Reject the peace treaty and attack Tlaxcala" "Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala">><<set $Final_Peace="No">><</link>>.<br>
+<b>Option 2:</b> <<link "Reject the peace treaty and attack Tlaxcala" "Final Battle 1">><<set $Final_Peace="No">><<set $Cortes_Final = 0>><<set $Alvarado_Final = 0>><<set $Aguilar_Final = 0>><<set $Marina_Final = 0>><<set $Garrido_Final = 0>><<set $Olid_Final = 0>><<set $Span_Final = 0>><<set $Span_Decision = "No">><<set $Span_End= 0>><<set $Span_Game = 0>><<set $Span_Game_Over = "No">><<set $Span_Decision = "No">><</link>>.<br>
 <br>
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
@@ -12142,7 +12131,7 @@ You must wait for <<print $Span_Leader>> to input your decision.<br>
 When you have agreed on the best course of action, <<print $Span_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing Spaniards Accept Peace Treaty]].<br>
 <br>
 <<elseif $Final_Peace is "No">>
-When you have agreed on the best course of action, <<print $Span_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala]].<br>
+<<print $Span_Leader>> has decided you will attack the Tlaxcalans. You head [[back into battle|Final Battle 1]].<br>
 <br>
 <</if>>
 <</if>>
@@ -12164,7 +12153,7 @@ You must wait for <<print $Span_Leader>> to input a decision.<br>
 [[The Spaniards approach|Tlaxcala Does Nothing Spaniards Accept Peace Treaty]].<br>
 <br>
 <<elseif $Final_Peace is "No">>
-[[The Spaniards approach|Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala]].<br>
+[[The Spaniards approach with weapons raised|Final Battle 1]].<br>
 <br>
 <</if>>
 <</switch>>
@@ -12191,10 +12180,10 @@ You wait anxiously to hear their response.<br>
 You must wait for <<print $New_Aztec_Leader>> to input a decision.<br>
 <br>
 <<elseif $Final_Peace is "Yes">>
-[[The Aztecs approach|Tlaxcala Does Nothing Aztecs Accept Peace Treaty]].<br>
+[[The Aztecs approach with outstretched hands|Tlaxcala Does Nothing Aztecs Accept Peace Treaty]].<br>
 <br>
 <<elseif $Final_Peace is "No">>
-[[The Aztecs approach|Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala]].<br>
+[[The Aztecs approach with weapons raised|Final Battle 1]].<br>
 <br>
 <</if>>
 <<case "Aztecs">>
@@ -12205,7 +12194,7 @@ You are surprised when a Tlaxcalan messenger arrives in the city, conveying an o
 <br>
 <b>Option 1:</b> <<link "Sign a peace treaty" "Tlaxcala Does Nothing Aztecs Accept Peace Treaty">><<set $Final_Peace="Yes">><</link>>.<br>
 <br>
-<b>Option 2:</b> <<link "Reject the peace treaty and attack Tlaxcala" "Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala">><<set $Final_Peace="No">><</link>>.<br>
+<b>Option 2:</b> <<link "Reject the peace treaty and attack Tlaxcala" "Final Battle 1">><<set $Final_Peace="No">><<set $Moctezuma_Final = 0>><<set $Tlacaelel_Final = 0>><<set $Cuauhtemoc_Final = 0>><<set $Cacamatzin_Final = 0>><<set $Aztec_Priest_Final = 0>><<set $Pochteca_Final = 0>><<set $Aztec_Final = 0>><<set $Aztec_Decision = "No">><<set $Aztec_End= 0>><<set $Aztec_Game = 0>><<set $Aztec_Game_Over = "No">><<set $Aztec_Decision = "No">><</link>>.<br>
 <br>
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
@@ -12229,7 +12218,7 @@ You must wait for <<print $New_Aztec_Leader>> to input your decision.<br>
 When you have agreed on the best course of action, <<print $New_Aztec_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing Aztecs Accept Peace Treaty]].<br>
 <br>
 <<elseif $Final_Peace is "No">>
-When you have agreed on the best course of action, <<print $New_Aztec_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala]].<br>
+When you have agreed on the best course of action, <<print $New_Aztec_Leader>> will input your decision. You may then [[carry on|Final Battle 1]].<br>
 <br>
 <</if>>
 <</if>>
@@ -14586,6 +14575,10 @@ The air is heavy, and you see carnage all around you. Here and there, men are st
 <<switch $users[$role]["faction"]>>
 
 <<case "Aztecs">>
+Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
+<br>
+The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you're surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It's clear the battle is approaching its end. There are few men left standing. But who has won?<br>
+<br>
 <<if $role is "Moctezuma">>
 The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Moctezuma_Final=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]>><</link>>.
 
@@ -14607,6 +14600,10 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Pochteca_Fin
 
 
 <<case "Spaniards">>
+Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
+<br>
+The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you're surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It's clear the battle is approaching its end. There are few men left standing. But who has won?<br>
+<br>
 <<if $role is "Cortes">>
 The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cortes_Final=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]>><</link>>.
 
@@ -14628,6 +14625,7 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Marina_Final
 
 
 <<case "Tlaxcalans">>
+<<if $Tlax_Final_Dec is "Alone">>
 <<if $role is "Xicotencatl_Elder">>
 The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Xicotencatl_Elder_Final=$users["Xicotencatl_Elder"]["stats"]["Strength"]+$users["Xicotencatl_Elder"]["stats"]["Loyalty"]+$users["Xicotencatl_Elder"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
 
@@ -14636,6 +14634,23 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Xicotencatl_
 
 <<elseif $role is "Maxixcatl">>
 The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Final=$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+<</if>>
+
+<<else>>
+Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
+<br>
+The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you're surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It's clear the battle is approaching its end. There are few men left standing. But who has won?<br>
+<br>
+
+<<if $role is "Xicotencatl_Elder">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Xicotencatl_Elder_Final=$users["Xicotencatl_Elder"]["stats"]["Strength"]+$users["Xicotencatl_Elder"]["stats"]["Loyalty"]+$users["Xicotencatl_Elder"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+
+<<elseif $role is "Xicotencatl_Younger">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Xicotencatl_Younger_Final=$users["Xicotencatl_Younger"]["stats"]["Strength"]+$users["Xicotencatl_Younger"]["stats"]["Loyalty"]+$users["Xicotencatl_Younger"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+
+<<elseif $role is "Maxixcatl">>
+The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Final=$users["Maxixcatl"]["stats"]["Strength"]+$users["Maxixcatl"]["stats"]["Loyalty"]+$users["Maxixcatl"]["stats"]["Wisdom"]>><<set $users[$role]["choices"]["Tlax_Final"] = $users[$role]["choices"]["Tlax_Final"] = 1>><</link>>.
+<</if>>
 <</if>>
 <</switch>>
 
@@ -14704,6 +14719,10 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Fi
 <<switch $users[$role]["faction"]>>
 
 <<case "Aztecs">>
+Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
+<br>
+The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you're surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It's clear the battle is approaching its end. There are few men left standing. But who has won?<br>
+<br>
 <<if $role is "Moctezuma">>
 The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Moctezuma_Final=$users["Moctezuma"]["stats"]["Strength"]+$users["Moctezuma"]["stats"]["Loyalty"]+$users["Moctezuma"]["stats"]["Wisdom"]>><</link>>.
 
@@ -14725,6 +14744,10 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Pochteca_Fin
 
 
 <<case "Spaniards">>
+Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
+<br>
+The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you're surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It's clear the battle is approaching its end. There are few men left standing. But who has won?<br>
+<br>
 <<if $role is "Cortes">>
 The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Cortes_Final=$users["Cortes"]["stats"]["Strength"]+$users["Cortes"]["stats"]["Loyalty"]+$users["Cortes"]["stats"]["Wisdom"]>><</link>>.
 
@@ -14745,6 +14768,26 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Marina_Final
 <</if>>
 
 <<case "Tlaxcalans">>
+
+<<if ndef $Tlax_Az_Peac>>
+<<set $Tlax_Az_Peac = 0>>
+<</if>>
+<<if ndef $Tlax_Span_Peace>>
+<<set $Tlax_Span_Peace = 0>>
+<</if>>
+<<if ndef $Tlax_Decision>>
+<<set $Tlax_Decision = "No">>
+<</if>>
+<<if ndef $Tlax_Game>>
+<<set $Tlax_Game = 0>>
+
+Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
+<br>
+The last thing you recall was sending the foreigners off to fight the Mexica alone. A pair of spies just arrived in the village with news. <br>
+<br>
+The two sides are currently at war, and it's unlike anything your people have ever seen. It's not yet clear who will win. You wait anxiously.<br>
+<br>
+
 <<if ndef $Span_Decision or ndef $Aztec_Decision or $Aztec_Decision is "No" or $Span_Decision is "No">>
 You wait for your options to become clear.<br>
 <br>
@@ -14758,9 +14801,38 @@ The Spaniards and Aztecs must battle it out.<br>
 The Spaniards and the Aztecs have made peace! You now have a serious decision to make.  Will you join them in this new cooperative utopia or will you gather your allies and fight to the death?<br>
 <br>
 <<if $role is $Tlax_Leader>>
-
+Go to the Tlaxcalan discussion board and weigh your options. You have two choices:
+<br>
+<b>Option 1:</b> <<link "Offer to make peace with the others" "Final Battle Decision">><<set $Tlax_Decision="Peace">><<set $Tlax_Game = 0>><</link>>.<br>
+<br>
+<b>Option 2:</b> <<link "Launch a surprise attack and put an end to your enemies once and for all" "Final Battle Decision">><<set $Tlax_Decision="War">><<set $Tlax_Game = 0>><</link>>.<br>
+<br>
+When you have agreed on the best course of action, input your decision here. You may then carry on.<br>
+<br>
 <<else>>
+The Spaniards and the Aztecs have made peace! You now have a serious decision to make.  Will you join them in this new cooperative utopia or will you gather your allies and fight to the death?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have two choices:<br>
+<br>
+<b>Option 1:</b> Offer to make peace with the others.<br>
+<br>
+<b>Option 2:</b> Launch a surprise attack and put an end to your enemies, once and for all.<br>
+<br>
 
+<<if $Tlax_Decision is "No">>
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then carry on.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+You must wait for <<print $Tlax_Leader>> to input your decision.<br>
+<br>
+<<elseif $Tlax_Decision is "Peace">>
+You have decided to join the others [[and declare peace|Final Battle Decision]].<br>
+<br>
+<<elseif $Tlax_Span_Peace is "No">>
+You have decided to seize on this moment of weakness and attack the [[others|Final Battle Decision]].<br>
+<br>
+<</if>>
 <</if>>
 
 <<elseif $Span_Decision is "War" or $Aztec_Decision is "War">>
@@ -14772,9 +14844,9 @@ But what will this mean for you? What is your best way forward? Should you propo
 <br>
 Go to the Tlaxcalan discussion board and weigh your options. You have two choices:
 <br>
-<b>Option 1:</b> <<link "Offer to make peace with the Spaniards" "Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners">><<set $Tlax_Span_Peace="Yes">><</link>>.<br>
+<b>Option 1:</b> <<link "Offer to make peace with the Spaniards" "Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners">><<set $Tlax_Span_Peace="Yes">><<set $Tlax_Decision = "Peace">><</link>>.<br>
 <br>
-<b>Option 2:</b> <<link "Launch a surprise attack and put an end to the foreigners, once and for all" "Final Battle 2">><<set $Tlax_Span_Peace="No">><</link>>.<br>
+<b>Option 2:</b> <<link "Launch a surprise attack and put an end to the foreigners, once and for all" "Final Battle 1">><<set $Tlax_Span_Peace="No">><<set $Tlax_Decision="War">><</link>>.<br>
 <br>
 When you have agreed on the best course of action, input your decision here. You may then carry on.<br>
 <br>
@@ -14800,14 +14872,15 @@ When you have agreed on the best course of action, <<print $Tlax_Leader>> will i
 You must wait for <<print $Tlax_Leader>> to input your decision.<br>
 <br>
 <<elseif $Tlax_Span_Peace is "Yes">>
-When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners]].<br>
+You have decided to approach the Spaniards [[in peace with an outstretched hand|Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners]].<br>
 <br>
 <<elseif $Tlax_Span_Peace is "No">>
-You have decided to seize on this moment of weakness and attack the [[Spaniards|Final Battle 2]].<br>
+You have decided to seize on this moment of weakness and attack the [[Spaniards|Final Battle 1]].<br>
 <br>
 <</if>>
-
 <</if>>
+<</if>>
+
 <<elseif $Aztec_Game > $Span_Game>>
 <<if $role is $Tlax_Leader>>
 After the Spaniards made their departure, your spies followed close behind. They've been keeping close watch and now there is news to report! It seems there has been a great battle and the Mexica emerged victorious! So great was their victory that the foreign enemies are no more. Those who survived the battle were offered up to Huitzilopochtli, who will surely reward the victors for such a valuable gift.<br>
@@ -14816,9 +14889,9 @@ You are now faced with a decision. Has this experience changed your feelings abo
 <br>
 Go to the Tlaxcalan discussion board and weigh your options. You have two choices:<br>
 <br>
-<b>Option 1:</b> <<link "Offer to make peace with the Mexica" "Tlaxcala Does Nothing and Makes a Peace Treaty with the Aztec Winners">><<set $Tlax_Az_Peace="Yes">><</link>>.<br>
+<b>Option 1:</b> <<link "Offer to make peace with the Mexica" "Tlaxcala Does Nothing and Makes a Peace Treaty with the Aztec Winners">><<set $Tlax_Az_Peace="Yes">><<set $Tlax_Decision = "Peace">><</link>>.<br>
 <br>
-<b>Option 2:</b> <<link "Launch a surprise attack on Tenochtitlán and put an end to your enemies, once and for all" "Final Battle 2">><<set $Tlax_Az_Peace="No">><</link>>.<br>
+<b>Option 2:</b> <<link "Launch a surprise attack on Tenochtitlán and put an end to your enemies, once and for all" "Final Battle 1">><<set $Tlax_Az_Peace="No">><</link>>.<br>
 <br>
 When you have agreed on the best course of action, input your decision here. You may then carry on.<br>
 <br>
@@ -14844,7 +14917,7 @@ You must wait for <<print $Tlax_Leader>> to input your decision.<br>
 When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then [[carry on|Tlaxcala Does Nothing and Makes a Peace Treaty with the Aztec Winners]].<br>
 <br>
 <<elseif $Tlax_Az_Peace is "No">>
-You have decided to seize on this moment of weakness and attack the [[Aztecs| Final Battle 2]].<br>
+You have decided to seize on this moment of weakness and attack the [[Aztecs| Final Battle 1]].<br>
 <br>
 <</if>>
 <</if>>
@@ -15736,7 +15809,7 @@ Reset the Aztecs:  <<link "RESET" "6 Reset for Testing Act 5">><<set $Moctezuma_
 Reset the Spaniards: <<link "RESET" "6 Reset for Testing Act 5">><<set $Cortes_Final = 0>><<set $Alvarado_Final = 0>><<set $Aguilar_Final = 0>><<set $Marina_Final = 0>><<set $Garrido_Final = 0>><<set $Olid_Final = 0>><<set $Span_Final = 0>><<set $Span_Decision = "No">><<set $Span_End= 0>><<set $Span_Game = 0>><<set $Span_Game_Over = "No">><<set $Span_Decision = "No">><</link>>.<br>
 <br>
 
-Reset the Tlaxcalans:  <<link "RESET" "6 Reset for Testing Act 5">> <<set $Xicotencatl_Elder_Final = 0>><<set $Xicotencatl_Younger_Final = 0>><<set $Maxixcatl_Final = 0>><<set $Tlax_Final = 0>><<set $Tlax_Decision = "No">><<set $Tlax_End= 0>><<set $Tlax_Game = 0>><<set $Tlax_Game_Over = "No">><<set $Tlax_Decision = "No">><<set $TlaxAz_End = 0>><<set $TlaxSpan_End = 0>><</link>>.<br>
+Reset the Tlaxcalans:  <<link "RESET" "6 Reset for Testing Act 5">> <<set $Xicotencatl_Elder_Final = 0>><<set $Xicotencatl_Younger_Final = 0>><<set $Maxixcatl_Final = 0>><<set $Tlax_Final = 0>><<set $Tlax_Decision = "No">><<set $Tlax_End= 0>><<set $Tlax_Game = 0>><<set $Tlax_Game_Over = "No">><<set $Tlax_Decision = "No">><<set $TlaxAz_End = 0>><<set $TlaxSpan_End = 0>><<set $Tlax_Span_Peace = 0>><<set $Tlax_Az_Peace= 0>><</link>>.<br>
 <br>
 
 Is Cortes dead? <<link "Yes" "6 Reset for Testing Act 5">><<set $Cortes_Dead = "Yes">><</link>>.  <<link "No" "6 Reset for Testing Act 5">><<set $Cortes_Dead = "No">><</link>>.<br>
