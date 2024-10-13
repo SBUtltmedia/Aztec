@@ -14780,6 +14780,7 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Marina_Final
 <</if>>
 <<if ndef $Tlax_Game>>
 <<set $Tlax_Game = 0>>
+<</if>>
 
 Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
 <br>
@@ -14922,7 +14923,7 @@ You have decided to seize on this moment of weakness and attack the [[Aztecs| Fi
 <</if>>
 <</if>>
 <</if>>
-<</if>>
+
 <</switch>>
 
 <</liveblock>>
