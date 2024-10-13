@@ -11033,9 +11033,9 @@ You rise up out of the chair, knees shaking. You know what you must do...<br>
 <br>
 
 Final Game Scores:<br>
-Aztecs: <<print $Aztec_End>><br>
-Spaniards:  <<print $Span_End>><br>
-Tlaxcalans: <<print $Tlax_End>><br>
+Aztecs: <<print $Aztec_Game>><br>
+Spaniards:  <<print $Span_Game>><br>
+Tlaxcalans: <<print $Tlax_Game>><br>
 <<if $Tlax_Final_Dec eq "Span">>
 Spanish and Tlaxcalan Alliance: <<print $TlaxSpan_End>> <br>
 <<elseif $Tlax_Final_Dec eq "Aztecs">>
@@ -14869,19 +14869,15 @@ You have decided to seize on this moment of weakness and attack the [[Aztecs| Fi
 <<set _Moctezuma_Final = setup.getTotalChoices("Moctezuma_Final")>>
 <<set _Pochteca_Final = setup.getTotalChoices("Pochteca_Final")>>
 <<set _Tlacaelel_Final = setup.getTotalChoices("Tlacaelel_Final")>>
-
-<<if ndef $Aztec_Final>>
-<<set $Aztec_Final = 0>>
+<<if ndef $Aztec_End>>
+<<set $Aztec_End= 0>>
 <</if>>
-
-<<if ndef $Span_Final>>
-<<set $Span_Final = 0>>
+<<if ndef $Span_End>>
+<<set $Span_End= 0>>
 <</if>>
-
-<<if ndef $Tlax_Final>>
-<<set $Tlax_Final = 0>>
+<<if ndef $Tlax_End>>
+<<set $Tlax_End= 0>>
 <</if>>
-
 The fog of war begins to clear. You look around to survey the scene. <br>
 <br>
 Below is a tally of all the individual points for each member of your faction: strength, wisdom, and loyalty combined. The total of each team member will appear as they join you.<br>
@@ -15562,10 +15558,10 @@ Aztecs: <<print $Aztec_Game>><br>
 Spaniards: <<print $Span_Game>><br>
 Tlaxcalans: <<print $Tlax_Game>><br>
 <br>
-<<if $Tlax_Final_Dec eq "Span">>
+<<if $Tlax_Final_Dec is "Span">>
 Spanish and Tlaxcalan Alliance: <<print $TlaxSpan_End>> <br>
 <br>
-<<elseif $Tlax_Final_Dec eq "Aztecs">>
+<<elseif $Tlax_Final_Dec is "Aztecs">>
 Aztec and Tlaxcalan Alliance:  <<print $TlaxAz_End>><br>
 <br>
 <</if>>
@@ -15720,6 +15716,29 @@ You finally manage to [[fall back asleep|The End]]<br>
 <</liveblock>>
 
 :: Final Battle Outcome
+
+:: 6 Reset for Testing Act 5
+
+Reset the Tlaxcalan End of Game Decision. <br> 
+Tlaxcalans join the Spanish <<link "against the Aztecs" "6 Reset for Testing Act 5">><<set $Tlax_Final_Dec = "Span">><</link>>.<br>
+<br>
+Tlaxcalans join the Aztecs  <<link "against the Spanish" "6 Reset for Testing Act 5">><<set $Tlax_Final_Dec = "Aztecs">><</link>>.<br>
+<br>
+Tlaxcalans <<link "do nothing" "6 Reset for Testing Act 5">><<set $Tlax_Final_Dec = "Alone">>.<</link>><br>
+<br>
+Tlaxcalans  <<link "attack the Spanish" "6 Reset for Testing Act 5">><<set $Tlax_Final_Dec = "AttackSpan">><</link>>.<br>
+<br>
+
+
+Reset the Aztecs:  <<link "RESET" "6 Reset for Testing Act 5">><<set $Moctezuma_Final = 0>><<set $Tlacaelel_Final = 0>><<set $Cuauhtemoc_Final = 0>><<set $Cacamatzin_Final = 0>><<set $Aztec_Priest_Final = 0>><<set $Pochteca_Final = 0>><<set $Aztec_Final = 0>><<set $Aztec_Decision = "No">><<set $Aztec_End= 0>><<set $Aztec_Game = 0>><<set $Aztec_Game_Over = "No">><<set $Aztec_Decision = "No">><</link>>.<br>
+<br>
+
+Reset the Spaniards: <<link "RESET" "6 Reset for Testing Act 5">><<set $Cortes_Final = 0>><<set $Alvarado_Final = 0>><<set $Aguilar_Final = 0>><<set $Marina_Final = 0>><<set $Garrido_Final = 0>><<set $Olid_Final = 0>><<set $Span_Final = 0>><<set $Span_Decision = "No">><<set $Span_End= 0>><<set $Span_Game = 0>><<set $Span_Game_Over = "No">><<set $Span_Decision = "No">><</link>>.<br>
+<br>
+
+Reset the Tlaxcalans:  <<link "RESET" "6 Reset for Testing Act 5">> <<set $Xicotencatl_Elder_Final = 0>><<set $Xicotencatl_Younger_Final = 0>><<set $Maxixcatl_Final = 0>><<set $Tlax_Final = 0>><<set $Tlax_Decision = "No">><<set $Tlax_End= 0>><<set $Tlax_Game = 0>><<set $Tlax_Game_Over = "No">><<set $Tlax_Decision = "No">><<set $TlaxAz_End = 0>><<set $TlaxSpan_End = 0>><</link>>.<br>
+<br>
+
 
 
 :: Home: Stats [Control Done Breaks Home] {"position":"338,1151","size":"100,100"}
