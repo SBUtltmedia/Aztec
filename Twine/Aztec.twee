@@ -14782,14 +14782,13 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Marina_Final
 <<set $Tlax_Game = 0>>
 <</if>>
 
+<<if ndef $Span_Decision or ndef $Aztec_Decision or $Aztec_Decision is "No" or $Span_Decision is "No">>
 Your eyes snap open and you take a deep breath. You're back. Your heart quickens. This is the moment you've been waiting for. You must know how the story ends!<br>
 <br>
 The last thing you recall was sending the foreigners off to fight the Mexica alone. A pair of spies just arrived in the village with news. <br>
 <br>
 The two sides are currently at war, and it's unlike anything your people have ever seen. It's not yet clear who will win. You wait anxiously.<br>
 <br>
-
-<<if ndef $Span_Decision or ndef $Aztec_Decision or $Aztec_Decision is "No" or $Span_Decision is "No">>
 You wait for your options to become clear.<br>
 <br>
 The Spaniards and Aztecs must battle it out.<br>
@@ -14799,9 +14798,9 @@ The Spaniards and Aztecs must battle it out.<br>
 
 <<elseif $Span_Decision is "Peace" and $Aztec_Decision is "Peace">>
 
+<<if $role is $Tlax_Leader>>
 The Spaniards and the Aztecs have made peace! You now have a serious decision to make.  Will you join them in this new cooperative utopia or will you gather your allies and fight to the death?<br>
 <br>
-<<if $role is $Tlax_Leader>>
 Go to the Tlaxcalan discussion board and weigh your options. You have two choices:
 <br>
 <b>Option 1:</b> <<link "Offer to make peace with the others" "Final Battle Decision">><<set $Tlax_Decision="Peace">><<set $Tlax_Game = 0>><</link>>.<br>
