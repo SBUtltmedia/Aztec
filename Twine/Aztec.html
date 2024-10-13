@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -13341,11 +13341,6 @@ and you immediately drift &lt;&lt;link &quot;into a deep slumber&quot; &quot;Fin
 &lt;&lt;set $Tlax_Final = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-Your eyes snap open and you take a deep breath. You&#39;re back. Your heart quickens. This is the moment you&#39;ve been waiting for. You must know how the story ends!&lt;br&gt;
-&lt;br&gt;
-The air is heavy, and you see carnage all around you. Here and there, men are still fighting and you&#39;re surrounded by the sound of battle. More than anything, though, you hear the cries of the wounded. It&#39;s clear the battle is approaching its end. There are few men left standing. But who has won?&lt;br&gt;
-&lt;br&gt;
-
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
@@ -13573,6 +13568,7 @@ The Spaniards and Aztecs must battle it out.&lt;br&gt;
 The Spaniards and the Aztecs have made peace! You now have a serious decision to make.  Will you join them in this new cooperative utopia or will you gather your allies and fight to the death?&lt;br&gt;
 &lt;br&gt;
 Go to the Tlaxcalan discussion board and weigh your options. You have two choices:
+&lt;br&gt;
 &lt;br&gt;
 &lt;b&gt;Option 1:&lt;/b&gt; &lt;&lt;link &quot;Offer to make peace with the others&quot; &quot;Final Battle Decision&quot;&gt;&gt;&lt;&lt;set $Tlax_Decision=&quot;Peace&quot;&gt;&gt;&lt;&lt;set $Tlax_Game = 0&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
@@ -13979,13 +13975,34 @@ Your final score is the total of all individual player points plus your team str
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;b&gt;Aztecs&lt;/b&gt;&lt;br&gt;
-
+&lt;b&gt;Spaniards&lt;/b&gt;&lt;br&gt;
+&lt;&lt;if $Aztec_Priest_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Aztec_Priest_Act is &quot;Yes&quot;&gt;&gt;
+Aztec Priest Total Points: &lt;&lt;print $Aztec_Priest_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cacamatzin_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
+Cacamatzin Total Points: &lt;&lt;print $Cacamatzin_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Cuauhtemoc_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Cuauhtemoc_Act is &quot;Yes&quot;&gt;&gt;
+Cuauhtemoc Total Points: &lt;&lt;print $Cuauhtemoc_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Moctezuma_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Moctezuma_Act is &quot;Yes&quot;&gt;&gt;
+Moctezuma Total Points: &lt;&lt;print $Moctezuma_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Pochteca_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Pochteca_Act is &quot;Yes&quot;&gt;&gt;
+Pochteca Total Points: &lt;&lt;print $Pochteca_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $Tlacaelel_Act is &quot;No&quot;&gt;&gt;
+&lt;&lt;elseif $Tlacaelel_Act is &quot;Yes&quot;&gt;&gt;
+Tlacaelel Total Points: &lt;&lt;print $Tlacaelel_Final&gt;&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 Aztec Team Strength:  &lt;&lt;print $factions[&quot;Aztecs&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;br&gt;
-
 Aztec Players who have struck their final blow:  &lt;&lt;print _Aztec_Final&gt;&gt;&lt;br&gt;
-
 Total Aztec Players in Game: &lt;&lt;print _Aztec_Tot_Play&gt;&gt;&lt;br&gt;
-
 Aztec Players Total Final: &lt;&lt;print $Aztec_End&gt;&gt;&lt;br&gt; 
 &lt;br&gt;
 
@@ -14223,7 +14240,7 @@ You now have your final score.  You may [[continue on to decide what to do about
 
 &lt;&lt;if $Tlax_Decision is &quot;No&quot;&gt;&gt;
 
-You must wait for &lt;&lt;print $Tlax_Leader&gt;&gt; to make a decision, but until then, you may consider your options with your team.&lt;br&gt;
+You must wait for &lt;&lt;print $New_Aztec_Leader&gt;&gt; to make a decision, but until then, you may consider your options with your team.&lt;br&gt;
 &lt;br&gt;
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
 &lt;br&gt;
@@ -14290,7 +14307,7 @@ You may now [[continue on|Final Battle Decision]].
 
 &lt;&lt;if $Tlax_Decision is &quot;No&quot;&gt;&gt;
 
-You must wait for &lt;&lt;print $Tlax_Leader&gt;&gt; to make a decision, but until then, you may consider your options with your team.&lt;br&gt;
+You must wait for &lt;&lt;print $Span_Leader&gt;&gt; to make a decision, but until then, you may consider your options with your team.&lt;br&gt;
 &lt;br&gt;
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
 &lt;br&gt;
@@ -14363,7 +14380,7 @@ Remember, the fate of civilization rests on your shoulders.&lt;br&gt;
 &lt;&lt;else&gt;&gt;
 Now that you have seen your final score, you have one last decision to make. You may carry on with the battle and pit your final team score against that of your enemies, or you may choose to lay down your arms and declare peace. This is your chance to make history, but keep in mind that your enemies will face the same decision! &lt;br&gt;
 &lt;br&gt;
-Discuss with your team and once you are done &lt;&lt;print $Span_Leader&gt;&gt; will input your final choice.&lt;br&gt;
+Discuss with your team and once you are done &lt;&lt;print $Tlax_Leader&gt;&gt; will input your final choice.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if $Tlax_Decision is &quot;No&quot;&gt;&gt;
 &lt;b&gt;Option 1:&lt;/b&gt; Continue on with the battle and find out who will claim victory.&lt;br&gt;
@@ -14492,13 +14509,6 @@ You lost.
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/switch&gt;&gt;
-
-&lt;&lt;elseif ndef $Span_End or ndef $Tlax_End or ndef $Aztec_End&gt;&gt;
-You must wait for all teams to arrive.&lt;br&gt;
-&lt;br&gt;
-&lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
-&lt;br&gt;
-
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="332" name="Final Battle Purgatory" tags="" position="225,4225" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztec_Decision&gt;&gt;
 &lt;&lt;set $Aztec_Decision = &quot;No&quot;&gt;&gt;
@@ -14554,12 +14564,18 @@ Tlaxcalans  &lt;&lt;link &quot;attack the Spanish&quot; &quot;6 Reset for Testin
 
 Reset the Aztecs:  &lt;&lt;link &quot;RESET&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Final = 0&gt;&gt;&lt;&lt;set $Tlacaelel_Final = 0&gt;&gt;&lt;&lt;set $Cuauhtemoc_Final = 0&gt;&gt;&lt;&lt;set $Cacamatzin_Final = 0&gt;&gt;&lt;&lt;set $Aztec_Priest_Final = 0&gt;&gt;&lt;&lt;set $Pochteca_Final = 0&gt;&gt;&lt;&lt;set $Aztec_Final = 0&gt;&gt;&lt;&lt;set $Aztec_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;set $Aztec_End= 0&gt;&gt;&lt;&lt;set $Aztec_Game = 0&gt;&gt;&lt;&lt;set $Aztec_Game_Over = &quot;No&quot;&gt;&gt;&lt;&lt;set $Aztec_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-
+How Many Aztec Players have struck their final blow:  &lt;&lt;print $Aztec_Final&gt;&gt;&lt;br&gt;
+&lt;br&gt;
 Reset the Spaniards: &lt;&lt;link &quot;RESET&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Cortes_Final = 0&gt;&gt;&lt;&lt;set $Alvarado_Final = 0&gt;&gt;&lt;&lt;set $Aguilar_Final = 0&gt;&gt;&lt;&lt;set $Marina_Final = 0&gt;&gt;&lt;&lt;set $Garrido_Final = 0&gt;&gt;&lt;&lt;set $Olid_Final = 0&gt;&gt;&lt;&lt;set $Span_Final = 0&gt;&gt;&lt;&lt;set $Span_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;set $Span_End= 0&gt;&gt;&lt;&lt;set $Span_Game = 0&gt;&gt;&lt;&lt;set $Span_Game_Over = &quot;No&quot;&gt;&gt;&lt;&lt;set $Span_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
-
-Reset the Tlaxcalans:  &lt;&lt;link &quot;RESET&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt; &lt;&lt;set $Xicotencatl_Elder_Final = 0&gt;&gt;&lt;&lt;set $Xicotencatl_Younger_Final = 0&gt;&gt;&lt;&lt;set $Maxixcatl_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;set $Tlax_End= 0&gt;&gt;&lt;&lt;set $Tlax_Game = 0&gt;&gt;&lt;&lt;set $Tlax_Game_Over = &quot;No&quot;&gt;&gt;&lt;&lt;set $Tlax_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;set $TlaxAz_End = 0&gt;&gt;&lt;&lt;set $TlaxSpan_End = 0&gt;&gt;&lt;&lt;set $Tlax_Span_Peace = 0&gt;&gt;&lt;&lt;set $Tlax_Az_Peace= 0&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+How Many Spanish Players have struck their final blow:  &lt;&lt;print $Span_Final&gt;&gt;&lt;br&gt;
 &lt;br&gt;
+
+Reset the Tlaxcalans:  &lt;&lt;link &quot;RESET&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt; &lt;&lt;set $Xicotencatl_Elder_Final = 0&gt;&gt;&lt;&lt;set $Xicotencatl_Younger_Final = 0&gt;&gt;&lt;&lt;set $Maxixcatl_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Final = 0&gt;&gt;&lt;&lt;set $Tlax_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;set $Tlax_End = 0&gt;&gt;&lt;&lt;set $Tlax_Game = 0&gt;&gt;&lt;&lt;set $Tlax_Game_Over = &quot;No&quot;&gt;&gt;&lt;&lt;set $Tlax_Decision = &quot;No&quot;&gt;&gt;&lt;&lt;set $TlaxAz_End = 0&gt;&gt;&lt;&lt;set $TlaxSpan_End = 0&gt;&gt;&lt;&lt;set $Tlax_Span_Peace = 0&gt;&gt;&lt;&lt;set $Tlax_Az_Peace= 0&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+How Many Tlaxcalan Players have struck their final blow:  &lt;&lt;print $Tlax_Final&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
 
 Is Cortes dead? &lt;&lt;link &quot;Yes&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Cortes_Dead = &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.  &lt;&lt;link &quot;No&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Cortes_Dead = &quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
