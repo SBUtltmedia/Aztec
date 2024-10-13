@@ -14985,7 +14985,7 @@ Tlacaelel Total Points: <<print $Tlacaelel_Final>><br>
 Current Aztec Leader:  <<print $New_Aztec_Leader>><br>
 
 Aztec Team Strength:  <<print $factions["Aztecs"]["stats"]["Strength"]>><br>
-Aztec Players who have struck their final blow:  <<print $Aztec_Final>><br>
+Aztec Players who have struck their final blow:  <<print _Aztec_Final>><br>
 Total Aztec Players in Game: <<print _Aztec_Tot_Play>><br>
 <br>
 
@@ -15069,7 +15069,7 @@ Olid Total Points: <<print $Olid_Final>><br><br>
 
 Current Spanish Leader:  <<print $Span_Leader>><br>
 Spaniards Team Strength:  <<print $factions["Spaniards"]["stats"]["Strength"]>><br>
-Spanish Players who have struck their final blow:  <<print $Span_Final>><br>
+Spanish Players who have struck their final blow:  <<print _Span_Final>><br>
 Total Spanish Players in Game: <<print _Span_Tot_Play>><br>
 <br>
 <<switch $role>>
@@ -15140,7 +15140,7 @@ Maxixcatl Total Points: <<print $Maxixcatl_Final>><br>
 
 Current Tlaxcalan Leader:  <<print $Tlax_Leader>><br>
 Tlaxcalan Team Strength:  <<print $factions["Tlaxcalans"]["stats"]["Strength"]>><br>
-Tlaxcalan Players who have struck their final blow:  <<print $Tlax_Final>><br>
+Tlaxcalan Players who have struck their final blow:  <<print _Tlax_Final>><br>
 Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <br>
 
@@ -15183,7 +15183,6 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <</if>>
 
 <<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
-<<set _Aztec_Final = setup.getTotalChoices ("Aztec_Final")>>
 
 <<if ndef $Span_Game>>
 <<set $Span_Game = 0>>
@@ -15192,7 +15191,6 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <<set $Span_Game_Over = "No">>
 <</if>>
 <<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
-<<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
 
 <<if ndef $Tlax_Game>>
 <<set $Tlax_Game = 0>>
@@ -15201,7 +15199,6 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <<set $Tlax_Game_Over = "No">>
 <</if>>
 <<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
-<<set _Tlax_Final = setup.getTotalChoices ("Tlax_Final")>>
 
 You have now added your points to the total. Watch the count below as you wait for others to arrive. When all members of your faction have added their points, your leader will finalize the score.<br>
 <br>
