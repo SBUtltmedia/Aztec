@@ -15798,6 +15798,13 @@ You finally manage to [[fall back asleep|The End]]<br>
 
 :: 6 Reset for Testing Act 5
 
+Add One Point to Spanish Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>><br>
+<br>
+Add One Point to Aztec Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><</link>><br>
+<br>
+Add One Point to Tlaxcalan Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<set $factions["Tlaxcalans"]["stats"]["Strength"]+=1>><</link>><br>
+<br>
+
 Reset the Tlaxcalan End of Game Decision. <br> 
 Tlaxcalans join the Spanish <<link "against the Aztecs" "6 Reset for Testing Act 5">><<set $Tlax_Final_Dec = "Span">><</link>>.<br>
 <br>
