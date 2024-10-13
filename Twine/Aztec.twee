@@ -14880,7 +14880,6 @@ You have decided to seize on this moment of weakness and attack the [[Spaniards|
 <br>
 <</if>>
 <</if>>
-<</if>>
 
 <<elseif $Aztec_Game > $Span_Game>>
 <<if $role is $Tlax_Leader>>
@@ -14923,7 +14922,7 @@ You have decided to seize on this moment of weakness and attack the [[Aztecs| Fi
 <</if>>
 <</if>>
 <</if>>
-
+<</if>>
 <</switch>>
 
 <</liveblock>>
