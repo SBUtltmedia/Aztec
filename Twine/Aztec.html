@@ -8498,10 +8498,6 @@ You wait and [[wonder what the Spaniards will do next|Spaniards Retreat to Tlaxc
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="187" name="Spaniards Decide Whether to Retreat to Tlaxcala" tags="" position="2525,11250" size="100,100">&lt;&lt;liveblock&gt;&gt;
-Hostage Exchange is:  &lt;&lt;print $Hostage_Exch&gt;&gt;&lt;br&gt;
-&lt;br&gt;
-To test if this is working.&lt;br&gt;
-&lt;br&gt;
 
 &lt;&lt;if $role is $Span_Leader&gt;&gt;
 &lt;&lt;if $Hostage_Exch is &quot;Yes&quot;&gt;&gt;
@@ -14559,6 +14555,25 @@ Add One Point to Aztec Strength:  &lt;&lt;link &quot;plus one point&quot; &quot;
 &lt;br&gt;
 Add One Point to Tlaxcalan Strength:  &lt;&lt;link &quot;plus one point&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Tlaxcalans&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
+
+The Tlaxcalan end of game decision is: &lt;br&gt;
+&lt;br&gt;
+&lt;&lt;if ndef $Tlax_Final_Dec or $Tlax_Final_Dec is &quot;O&quot;&gt;&gt;
+There is no record of a Tlaxcalan Decision.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Tlax_Final_Dec is &quot;Span&quot;&gt;&gt;
+The Tlaxcalans chose to make an alliance with the Spaniards and attack the Aztecs together.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Tlax_Final_Dec is &quot;AttackSpan&quot;&gt;&gt;
+The Tlaxcalans chose to attack the Spaniards in Tlaxcala. They will next have to face the Aztecs alone if they win.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Tlax_Final_Dec is &quot;Aztecs&quot;&gt;&gt;
+The Tlaxcalans chose to ally with the Aztecs and together attack the Spaniards.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Tlax_Final_Dec is &quot;Alone&quot;&gt;&gt;
+The Tlaxcalans chose to do nothing and standby to see what happens between Spaniards and Aztecs.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
 Reset the Tlaxcalan End of Game Decision. &lt;br&gt; 
 Tlaxcalans join the Spanish &lt;&lt;link &quot;against the Aztecs&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Tlax_Final_Dec = &quot;Span&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
