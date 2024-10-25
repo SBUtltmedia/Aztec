@@ -9172,6 +9172,11 @@ You wait and [[wonder what the Spaniards will do next|Spaniards Retreat to Tlaxc
 
 :: Spaniards Decide Whether to Retreat to Tlaxcala {"position":"2525,11250","size":"100,100"}
 <<liveblock>>
+Hostage Exchange is:  <<print $Hostage_Exch>><br>
+<br>
+To test if this is working.<br>
+<br>
+
 <<if $role is $Span_Leader>>
 <<if $Hostage_Exch is "Yes">>
 As you exit the causeway and the city of Tenochtitlán fades into the distance, you breathe a sigh of relief. You spent seven long months inside the city, surrounded by your enemies and acutely aware of your own vulnerability. The path before you may not yet be clear or free of danger, but your sense of security has improved considerably.<br>
