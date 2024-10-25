@@ -2085,7 +2085,7 @@ After consulting with your compatriots, you have decided to:<br>
 <br>
 OPTION 1: Keep <<print $Aztec_Leader>> <<link "alive as your prisoner" "Spaniards Keep Aztec Leader Alive">><<set $Az_Ld_Dead="No">><</link>>.<br>
 <br>
-OPTION 2: Send <<print $Aztec_Leader>> <<link "to meet his Gods" "Spaniards Kill Aztec Leader">><<set $Az_Ld_Dead="Yes">><</link>>.<br>
+OPTION 2: Send <<print $Aztec_Leader>> <<link "to meet his Gods" "Spaniards Kill Aztec Leader">><<set $Az_Ld_Dead="Yes">><<set $Hostage_Exch = "No">><</link>>.<br>
 <br>
 <<else>>
 It appears that the crowd has listened to their leader and have retreated back to their homes. All is calm…for now. 
