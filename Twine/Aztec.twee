@@ -9687,7 +9687,7 @@ With tension gripping the city, you decide it is time to make your escape. But w
 <br>
 Go to the Spanish discussion board and decide on the best course of action. You have two choices:<br>
 <br>
-Option 1: Offer to release <<print $Aztec_Leader>> <<link "in exchange for free passage out of the city" "Offer to Bargain or Not">><<set $Hostage="Yes">><</link>>.<br>
+Option 1: Offer to release <<print $Aztec_Leader>> <<link "in exchange for free passage out of the city" "Offer to Bargain or Not">><<set $Hostage="Yes">><<set $Hostage_Exch="No">><</link>>.<br>
 <br>
 Option 2: Send <<print $Aztec_Leader>> <<link "to meet his Gods" "Offer to Bargain or Not">><<set $Hostage="No">><<set $Az_Ld_Dead="Yes">><</link>> and make your escape by cover of night. <br>
 <br>
