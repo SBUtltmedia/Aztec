@@ -2604,6 +2604,7 @@ Compose your statement and then paste it in the box below to share with the rest
 Once you've done this, you may [[continue to the meeting|Aztecs Hold a Council Meeting]].<br>
 <br>
 
+
 :: Aztecs Refuse Peace Treaty and Attack Tlaxcala {"position":"3925,12650","size":"100,100"}
 <<liveblock>>
 <<switch $users[$role]["faction"]>>
@@ -3141,6 +3142,7 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <</switch>>
 <</liveblock>>
 
+
 :: Battle Outcome Aztecs Versus Spaniards 3b {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
 <<if ndef $Aztec_Game>>
@@ -3263,7 +3265,6 @@ Both <<print $Span_Leader>> and <<print $New_Aztec_Leader>> must join.
 
 
 <</liveblock>>
-
 
 
 :: Battle Outcome Aztecs Versus Spaniards and Tlaxcalans {"position":"4600,12750","size":"100,100"}
@@ -9172,10 +9173,6 @@ You wait and [[wonder what the Spaniards will do next|Spaniards Retreat to Tlaxc
 
 :: Spaniards Decide Whether to Retreat to Tlaxcala {"position":"2525,11250","size":"100,100"}
 <<liveblock>>
-Hostage Exchange is:  <<print $Hostage_Exch>><br>
-<br>
-To test if this is working.<br>
-<br>
 
 <<if $role is $Span_Leader>>
 <<if $Hostage_Exch is "Yes">>
@@ -12900,6 +12897,7 @@ Once your statement is prepared, paste it in the box below to share with your fe
 When this is finished [[continue on to the council meeting|Tlaxcalans Hold for a Council Meeting]]<br>
 <br>
 
+
 :: Tlaxcalans Respond to La Noche Triste {"position":"4300,9700","size":"100,100"}
 <<liveblock>>
 [[Game Over: Aztecs Win La Noche Triste]]
@@ -14371,20 +14369,22 @@ You are waiting for the Tlaxcalan team to make a decision.<br>
 <</switch>>
 <</liveblock>>
 
-:: A Rude Awakening in the Library
+
+:: A Rude Awakening in the Library {"position":"350,4100","size":"100,100"}
 You awake with a start, unsure of your surroundings. Your heart is racing, and you're disoriented. The library! How did you get back here? This wasn't supposed to happen now! Your finished assignment lays at your feet, but you hardly care. Desperate to go back, you close your eyes and will yourself to go to sleep. It doesn't work. You need to know what's going to happen! You're so frustrated you could scream. <br>
 <br>
 After an hour, you accept defeat and leave. You swing by your history teacher's office on the way, handing in your assignment. You're sure she's going to give you another A, but that's the last thing [[on your mind at this point|A Desperate Return to the Library]].<br>
 <br>
 
-:: A Desperate Return to the Library
 
+:: A Desperate Return to the Library {"position":"475,4100","size":"100,100"}
 You thought you were so clever when you got your last assignment early, but now you're desperate to get back to Tenochtitlán and there's nothing to hand in. <br>
 <br>
 All you can think about is getting back into the mysterious room and waking up in Mexico. You're not sleeping. You can hardly pay attention in class. You go to the library every day for two weeks, even though you know you won't see the door. And you don't. The staff are starting to look at you funny, and you're pretty sure the security guard was following you last time you were there. You feel like you're losing your mind, but all you can do is wait. And wait. And wait.<br>
 <br>
 
-:: 5 Last Nap in the Library{"position":"3200,12250","size":"100,100"}
+
+:: 5 Last Nap in the Library {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
 The day your history teacher hands out your next assignment, you can barely contain your excitement. You don't even wait for class to end before running out of class and heading to the library. You climb the stairs, round the corner, and there it is!<br>
 <br>
@@ -14510,6 +14510,7 @@ and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link
 
 
 <</liveblock>>
+
 
 :: Final Battle 1 {"position":"3200,12125","size":"100,100"}
 <<liveblock>>
@@ -14656,7 +14657,8 @@ The noise of battle <<link "surrounds you" "Final Battle 2">><<set $Maxixcatl_Fi
 
 <</liveblock>>
 
-:: Final Battle Aztecs and Spaniards 1
+
+:: Final Battle Aztecs and Spaniards 1 {"position":"850,4100","size":"100,100"}
 <<liveblock>>
 
 <<if ndef $Moctezuma_Final>>
@@ -14927,7 +14929,8 @@ You have decided to seize on this moment of weakness and attack the [[Aztecs| Fi
 
 <</liveblock>>
 
-:: Final Battle 2{"position":"3200,12250","size":"100,100"}
+
+:: Final Battle 2 {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
 
 <<set _Span_Final = setup.getTotalChoices ("Span_Final")>>
@@ -15177,6 +15180,7 @@ Total Tlaxcalan Players in Game: <<print _Tlax_Tot_Play>><br>
 <</switch>>
 <</switch>>
 <</liveblock>>
+
 
 :: Final Battle 3 {"position":"3200,12250","size":"100,100"}
 <<liveblock>>
@@ -15454,7 +15458,8 @@ You now have your final score.  You may [[continue on to decide what to do about
 
 <</liveblock>>
 
-:: After the Final Battle
+
+:: After the Final Battle {"position":"1225,4100","size":"100,100"}
 <<liveblock>>
 <<if ndef $Aztec_Decision>>
 <<set $Aztec_Decision = "No">>
@@ -15642,7 +15647,8 @@ You may now [[continue on|Final Battle Decision]].
 <</switch>>
 <</liveblock>>
 
-:: Final Battle Decision
+
+:: Final Battle Decision {"position":"100,4225","size":"100,100"}
 The dust has settled, and the results are in. Below, you will see the final score for each faction. <br>
 <br>
 Aztecs: <<print $Aztec_Game>><br>
@@ -15754,7 +15760,8 @@ You lost.
 <</switch>>
 <</if>>
 
-:: Final Battle Purgatory
+
+:: Final Battle Purgatory {"position":"225,4225","size":"100,100"}
 <<liveblock>>
 <<if ndef $Aztec_Decision>>
 <<set $Aztec_Decision = "No">>
@@ -15799,16 +15806,36 @@ You finally manage to [[fall back asleep|The End]]<br>
 
 <</liveblock>>
 
-:: Final Battle Outcome
 
-:: 6 Reset for Testing Act 5
+:: Final Battle Outcome {"position":"350,4225","size":"100,100"}
 
+
+:: 6 Reset for Testing Act 5 {"position":"475,4225","size":"100,100"}
 Add One Point to Spanish Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>><br>
 <br>
 Add One Point to Aztec Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><</link>><br>
 <br>
 Add One Point to Tlaxcalan Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<set $factions["Tlaxcalans"]["stats"]["Strength"]+=1>><</link>><br>
 <br>
+
+The Tlaxcalan end of game decision is: <br>
+<br>
+<<if ndef $Tlax_Final_Dec or $Tlax_Final_Dec is "O">>
+There is no record of a Tlaxcalan Decision.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Span">>
+The Tlaxcalans chose to make an alliance with the Spaniards and attack the Aztecs together.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "AttackSpan">>
+The Tlaxcalans chose to attack the Spaniards in Tlaxcala. They will next have to face the Aztecs alone if they win.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+The Tlaxcalans chose to ally with the Aztecs and together attack the Spaniards.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Alone">>
+The Tlaxcalans chose to do nothing and standby to see what happens between Spaniards and Aztecs.<br>
+<br>
+<</if>>
 
 Reset the Tlaxcalan End of Game Decision. <br> 
 Tlaxcalans join the Spanish <<link "against the Aztecs" "6 Reset for Testing Act 5">><<set $Tlax_Final_Dec = "Span">><</link>>.<br>
@@ -15840,7 +15867,8 @@ Is Cortes dead? <<link "Yes" "6 Reset for Testing Act 5">><<set $Cortes_Dead = "
 <br>
 
 Is the Aztec Leader dead? <<link "Yes" "6 Reset for Testing Act 5">><<set $Az_Ld_Dead = "Yes">><</link>>.  <<link "No" "6 Reset for Testing Act 5">><<set $Az_Ld_Dead = "No">><</link>>.<br>
-<br>  
+<br>
+
 
 :: Home: Stats [Control Done Breaks Home] {"position":"338,1151","size":"100,100"}
 <div id="info-stats">
