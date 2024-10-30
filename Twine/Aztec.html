@@ -376,14 +376,6 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 &lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Sp_Ld_Oli_Teno&quot;]=0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;link &quot;reset total players&quot; &quot;Absent Cortes Leadership Challenge&quot;&gt;&gt;&lt;&lt;set $Span_Tot_Play=&quot;4&quot;&gt;&gt;&lt;&lt;set $Aztec_Tot_Play=&quot;5&quot;&gt;&gt;&lt;&lt;set $Tlax_Tot_Play=&quot;3&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-Spanish: &lt;&lt;print $Span_Tot_Play&gt;&gt;&lt;br&gt;
-Aztec:  &lt;&lt;print $Aztec_Tot_Play&gt;&gt;&lt;br&gt;
-Tlaxcalan: &lt;&lt;print $Tlax_Tot_Play&gt;&gt;&lt;br&gt;
-Spanish Leader:  &lt;&lt;print $Span_Leader&gt;&gt;&lt;br&gt;
-Aztec Leader:  &lt;&lt;print $Aztec_Leader&gt;&gt;&lt;br&gt;
-Tlaxcalan Leader:  &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;
-
 &lt;&lt;if $Span_Leader is &quot;Cortes&quot;&gt;&gt;
 
 &lt;&lt;print $Span_Leader&gt;&gt; has led you through months of delicate negotations with &lt;&lt;print $Aztec_Leader&gt;&gt;, but with his departure, it is now time to designate someone you trust as your temporary leader?&lt;br&gt;
@@ -14616,7 +14608,15 @@ Is the Aztec Leader dead? &lt;&lt;link &quot;Yes&quot; &quot;6 Reset for Testing
 &lt;br&gt;
 
 
-&lt;&lt;link &quot;Turn Characters On&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Cortes_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Aguilar_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Marina_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Olid_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Maxixcatl_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Xicotencatl_Elder_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Xicotencatl_Younger_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Tlacaelel_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Cuauhtemoc_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Aztec_Priest_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Pochteca_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="335" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;&lt;link &quot;Turn Characters On&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Cortes_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Aguilar_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Marina_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Olid_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Maxixcatl_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Xicotencatl_Elder_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Xicotencatl_Younger_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Tlacaelel_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Cuauhtemoc_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Aztec_Priest_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;set $Pochteca_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;link &quot;reset total players&quot; &quot;6 Reset for Testing Act 5&quot;&gt;&gt;&lt;&lt;set $Span_Tot_Play=&quot;4&quot;&gt;&gt;&lt;&lt;set $Aztec_Tot_Play=&quot;5&quot;&gt;&gt;&lt;&lt;set $Tlax_Tot_Play=&quot;3&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Spanish: &lt;&lt;print $Span_Tot_Play&gt;&gt;&lt;br&gt;
+Aztec:  &lt;&lt;print $Aztec_Tot_Play&gt;&gt;&lt;br&gt;
+Tlaxcalan: &lt;&lt;print $Tlax_Tot_Play&gt;&gt;&lt;br&gt;
+Spanish Leader:  &lt;&lt;print $Span_Leader&gt;&gt;&lt;br&gt;
+Aztec Leader:  &lt;&lt;print $Aztec_Leader&gt;&gt;&lt;br&gt;
+Tlaxcalan Leader:  &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;</tw-passagedata><tw-passagedata pid="335" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
