@@ -327,6 +327,8 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 <<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"]=0>>
 <</if>>
 
+<<link "fix characters" "Absent Cortes Leadership Challenge">><<set $Cortes_Act="Yes">><<set $Aguilar_Act="Yes">><<set $Marina_Act="Yes">><<set $Olid_Act="Yes">><<set $Maxixcatl_Act="Yes">><<set $Xicotencatl_Elder_Act="Yes">><<set $Xicotencatl_Younger_Act="Yes">><<set $Moctezuma_Act="Yes">><<set $Tlacaelel_Act="Yes">><<set $Cuauhtemoc_Act="Yes">><<set $Aztec_Priest_Act="Yes">><<set $Pochteca_Act="Yes">><</link>>
+
 <<if $Span_Leader is "Cortes">>
 
 <<print $Span_Leader>> has led you through months of delicate negotations with <<print $Aztec_Leader>>, but with his departure, it is now time to designate someone you trust as your temporary leader?<br>
