@@ -327,6 +327,7 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 <<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"]=0>>
 <</if>>
 
+<<link "reset total players" "Absent Cortes Leadership Challenge">><<set $Span_Tot_Play="4">><<set $Aztec_Tot_Play="5">><<set $Tlax_Tot_Play="3">><</link>><br>
 Spanish: <<print $Span_Tot_Play>><br>
 Aztec:  <<print $Aztec_Tot_Play>><br>
 Tlaxcalan: <<print $Tlax_Tot_Play>><br>
