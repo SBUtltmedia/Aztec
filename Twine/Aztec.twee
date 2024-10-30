@@ -330,6 +330,9 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 Spanish: <<print $Span_Tot_Play>><br>
 Aztec:  <<print $Aztec_Tot_Play>><br>
 Tlaxcalan: <<print $Tlax_Tot_Play>><br>
+Spanish Leader:  <<print $Span_Leader>><br>
+Aztec Leader:  <<print $Aztec_Leader>><br>
+Tlaxcalan Leader:  <<print $Tlax_Leader>><br>
 
 <<if $Span_Leader is "Cortes">>
 
