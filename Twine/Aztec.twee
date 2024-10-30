@@ -327,7 +327,9 @@ Thankfully, your Tlaxcalan allies have come to your defense! You fight your way 
 <<set $users[$role]["choices"]["Sp_Ld_Oli_Teno"]=0>>
 <</if>>
 
-<<link "fix characters" "Absent Cortes Leadership Challenge">><<set $Cortes_Act="Yes">><<set $Aguilar_Act="Yes">><<set $Marina_Act="Yes">><<set $Olid_Act="Yes">><<set $Maxixcatl_Act="Yes">><<set $Xicotencatl_Elder_Act="Yes">><<set $Xicotencatl_Younger_Act="Yes">><<set $Moctezuma_Act="Yes">><<set $Tlacaelel_Act="Yes">><<set $Cuauhtemoc_Act="Yes">><<set $Aztec_Priest_Act="Yes">><<set $Pochteca_Act="Yes">><</link>>
+Spanish: <<print $Span_Tot_Play>><br>
+Aztec:  <<print $Aztec_Tot_Play>><br>
+Tlaxcalan: <<print $Tlax_Tot_Play>><br>
 
 <<if $Span_Leader is "Cortes">>
 
@@ -15870,6 +15872,9 @@ Is Cortes dead? <<link "Yes" "6 Reset for Testing Act 5">><<set $Cortes_Dead = "
 
 Is the Aztec Leader dead? <<link "Yes" "6 Reset for Testing Act 5">><<set $Az_Ld_Dead = "Yes">><</link>>.  <<link "No" "6 Reset for Testing Act 5">><<set $Az_Ld_Dead = "No">><</link>>.<br>
 <br>
+
+
+<<link "Turn Characters On" "6 Reset for Testing Act 5">><<set $Cortes_Act="Yes">><<set $Aguilar_Act="Yes">><<set $Marina_Act="Yes">><<set $Olid_Act="Yes">><<set $Maxixcatl_Act="Yes">><<set $Xicotencatl_Elder_Act="Yes">><<set $Xicotencatl_Younger_Act="Yes">><<set $Moctezuma_Act="Yes">><<set $Tlacaelel_Act="Yes">><<set $Cuauhtemoc_Act="Yes">><<set $Aztec_Priest_Act="Yes">><<set $Pochteca_Act="Yes">><</link>>
 
 
 :: Home: Stats [Control Done Breaks Home] {"position":"338,1151","size":"100,100"}
