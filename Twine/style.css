@@ -59,7 +59,7 @@ color: rgb(65, 24, 6);
 button.link-internal,a {
   font-size: 3rem;
   text-decoration: underline;
-  color: rgb(193, 193, 193);
+  /* color: rgb(193, 193, 193); */
 }
 
 .link-internal:hover,a:hover {
