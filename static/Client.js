@@ -6,6 +6,32 @@ var gameVars;
 var lastStats = [];
 var buffer = [];
 
+window.addEventListener('message', function (event) {
+    // It's crucial to verify the origin of the message for security
+    // In a real application, replace '*' with the expected origin of the iframe content
+    // if (event.origin !== 'http://your-iframe-origin.com') return;
+
+    if (event.data && event.data.type === 'statsUpdate') {
+        const { strength, wisdom, loyalty } = event.data;
+        console.log('Received updated stats from iframe:', { sc: Window.SugarCubeState, strength, wisdom, loyalty });
+        let users = Window.SugarCubeState.getVar("$users")
+        // let userId=Window.SugarCubeState.getVar("$userId")
+        var userId = Window.SugarCubeState.getVar("$role");
+        var user = Window.SugarCubeState.getVar("$users")[userId];
+        user["stats"]["Strength"] += strength
+        user["stats"]["Wisdom"] += wisdom
+        user["stats"]["Loyalty"] += loyalty
+        console.log(user["stats"])
+        // Object.keys(users).array.forEach(element => {
+        //     console.log(element)
+        // });
+
+        console.log(users)
+        //  Window.SugarCubeState.setVar("$strength")
+        // You can then use these values in your parent application
+    }
+}, false);
+
 function init() {
     // $('#passages').html($('#passages').html().replace(/<br><br>/gm, ""));
 
@@ -28,7 +54,7 @@ function setBackground() {
     if (faction) {
         imageURL = `url('Twine/images/Borders/${faction}.jpg')`
     }
-    
+
     $(() => {
         $('#story').css({
             'background-image': imageURL,
@@ -85,8 +111,8 @@ function showMap() {
 
     let user = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.role]
     let role = user.role
-    let faction =  user.faction
-    var currentMapIndex =  parseInt(user.currentMap)
+    let faction = user.faction
+    var currentMapIndex = parseInt(user.currentMap)
     let currentMap
 
     if (!currentMapIndex) {
@@ -117,7 +143,7 @@ function showStats() {
         "id": "displayStats",
     })
     let user = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.role];
-    let twineStats =  user.stats;
+    let twineStats = user.stats;
     let faction = user["faction"];
 
     if (twineStats) {
@@ -144,7 +170,7 @@ function showStats() {
         }
     }
 
-    let factions =  Window.SugarCubeState.variables['factions']
+    let factions = Window.SugarCubeState.variables['factions']
     let twineVar = factions[faction]['stats']['Strength'];
 
     if (twineVar != null) {
@@ -199,7 +225,7 @@ function makeRoleStats(statsIn) {
     user["stats"] = statsIn;
 
     //TODO: try to only send stats of user
-      socket.emit('difference',  Window.SugarCubeState.variables)
+    socket.emit('difference', Window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
         // SugarCube.State.variables[`${role}_${stat}`] = val;
@@ -207,7 +233,7 @@ function makeRoleStats(statsIn) {
     }
     )
     $('#statsPicker').html(output)
-  
+
     showStats()
 }
 
@@ -223,39 +249,39 @@ function getRandomInt(max) {
  * @param {object} newStats: the new stat values
  */
 function changeStats(rolePlay, newStats) {
-    let usersObj= Window.SugarCubeState.variables.users;
+    let usersObj = Window.SugarCubeState.variables.users;
     let currentUserId = Window.SugarCubeState.variables.role
-    if(currentUserId == undefined){
+    if (currentUserId == undefined) {
         currentUserId = "NotSeen"
     }
-    console.log("user:" , currentUserId)
-    let currentUser =usersObj[currentUserId]
+    console.log("user:", currentUserId)
+    let currentUser = usersObj[currentUserId]
     let roleStats = currentUser.stats
     console.log("stats:", roleStats)
     Object.keys(roleStats).forEach((stat, idx) => {
         console.log("stat:", stat);
-        console.log( roleStats[stat])
+        console.log(roleStats[stat])
         roleStats[stat] = parseInt(newStats[stat]) + parseInt(roleStats[stat])
         console.log(newStats[stat])
     });
-    Window.SugarCubeState.variables.users[currentUserId]["stats"] =roleStats;
+    Window.SugarCubeState.variables.users[currentUserId]["stats"] = roleStats;
 
     //renaming rolestats to stats so a diff object can be created
     let stats = roleStats
-    let diff = {users: {[currentUserId] :  {stats}}};
+    let diff = { users: { [currentUserId]: { stats } } };
     console.log("stat change diff:", diff);
-    
+
     socket.emit('difference', diff);
 }
 
-function fullReset(){
+function fullReset() {
     console.log("reset start")
     socket.emit('fullReset', '');
 }
 
-function DOMTest(){
+function DOMTest() {
     setTimeout({})
-   return $("#passages").children()[0].innerHTML
+    return $("#passages").children()[0].innerHTML
 }
 
 
@@ -268,33 +294,33 @@ function DOMTest(){
 // Returns the role of the current player
 function getUser() {
     let userId = Window.SugarCubeState.getVar("$role");
-    let user =  Window.SugarCubeState.getVar("$users")[userId];
+    let user = Window.SugarCubeState.getVar("$users")[userId];
     return user;
 }
 
 
 //Creates a handler for the state proxy, maintains entire path of var getting set for emitting to webstack
-function createHandler(path = []){
+function createHandler(path = []) {
     return {
-    get(target, key) {
-        if(path.length == 0 && key != `variables`){
-            return target[key];
+        get(target, key) {
+            if (path.length == 0 && key != `variables`) {
+                return target[key];
+            }
+            if (typeof target[key] === 'object' && Array.isArray(target[key]) == false && target[key] !== null) {
+                return new Proxy(target[key], createHandler([...path, key]))
+            } else {
+                return target[key];
+            }
+        },
+        set(target, key, value) {
+            if (target[key] != value) {
+                target[key] = value
+                path.shift();
+                diffSet([...path, key], value)
+            }
+            return true
         }
-        if (typeof target[key] === 'object' && Array.isArray(target[key]) ==false &&  target[key] !== null) {
-        return new Proxy(target[key], createHandler([...path,key]))
-        } else {
-        return target[key];
-        }
-    },
-    set (target, key, value) {
-        if(target[key] != value){
-            target[key] = value
-            path.shift();
-            diffSet([...path,key], value)
-        }
-        return true
     }
-}
 }
 
 
@@ -308,22 +334,22 @@ function createHandler(path = []){
  * @param {*} value: the new value of whatever is being set
  * @returns 
  */
-function diffSet(pathArr, value){
+function diffSet(pathArr, value) {
     //find new value after setting is done
-    
+
     //If an varible that has been labeled an exception is being set, stop
-    if(exceptions.includes(pathArr[0])){
+    if (exceptions.includes(pathArr[0])) {
         return;
     }
     let currKey;
     let prevKey = value
-    while(pathArr.length > 0){
-        currKey = {[pathArr.pop()]: prevKey};
+    while (pathArr.length > 0) {
+        currKey = { [pathArr.pop()]: prevKey };
         prevKey = currKey;
     }
 
     console.log("diff:", currKey);
-    socket.emit('difference',  currKey)
+    socket.emit('difference', currKey)
     $(document).trigger(":liveupdate");
 
 }
@@ -344,10 +370,10 @@ function initTheyr(lockInfo) {
         // console.log("LOAD #2: RECEIEVE STATE");
         console.log("Connecting state:", state)
         // console.log("Current State:", Window.SugarCubeState.variables)
-        let combinedState = Object.assign({}, Window.SugarCubeState.variables,state)
+        let combinedState = Object.assign({}, Window.SugarCubeState.variables, state)
         // console.log("Combined State", combinedState)
         // If the server's state is empty, set with this client's state
-    //    updateSugarCubeState(combinedState);
+        //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
     });
 
@@ -369,24 +395,24 @@ function initTheyr(lockInfo) {
 
 
 
-    // Updates client's SugarCube State when state changes are received from the server
-    function updateSugarCubeState(new_state) {
-       _.merge(Window.SugarCubeState.variables, new_state);
-    
-        $(document).trigger(":liveupdate");
-    }
+// Updates client's SugarCube State when state changes are received from the server
+function updateSugarCubeState(new_state) {
+    _.merge(Window.SugarCubeState.variables, new_state);
 
-    // Updates client's SugarCube State when state changes are received from the server
-    function resetSugarCubeState(new_state) {
-        for (var member in Window.SugarCubeState.variables) delete Window.SugarCubeState.variables[member];
-        console.log(new_state, Window.SugarCubeState.variables)
-        location.reload()
-         $(document).trigger(":liveupdate");
-     }
+    $(document).trigger(":liveupdate");
+}
+
+// Updates client's SugarCube State when state changes are received from the server
+function resetSugarCubeState(new_state) {
+    for (var member in Window.SugarCubeState.variables) delete Window.SugarCubeState.variables[member];
+    console.log(new_state, Window.SugarCubeState.variables)
+    location.reload()
+    $(document).trigger(":liveupdate");
+}
 
 //Exceptions are global variables that shouldn't be shared between users
-function addTheyrException(varName){
-    varName = varName.replace('State.variables.','')
+function addTheyrException(varName) {
+    varName = varName.replace('State.variables.', '')
     console.log(varName)
     exceptions.push(varName);
 }
