@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortés JRPG - The God's Dream</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Darker, dreamlike background */
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            background-color: #162447; /* Deep blue for dream container */
+            border: 4px solid #c0c0c0;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
+
+        .hidden-screen { opacity: 0; pointer-events: none; }
+        .active-screen { opacity: 1; pointer-events: auto; }
+
+        #title-screen h1 { font-size: 2.5rem; color: #ff6b6b; text-shadow: 2px 2px #000; margin-bottom: 20px; }
+        #title-screen p { font-size: 0.8rem; margin-bottom: 30px; color: #f0f0f0;}
+
+        .game-button {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #ff6b6b; color: #ffffff;
+            padding: 15px 30px; border: 2px solid #c44d4d;
+            border-radius: 5px; text-transform: uppercase; font-size: 1rem;
+            cursor: pointer; box-shadow: 0 4px #a04040; transition: all 0.1s ease;
+        }
+        .game-button:hover { background-color: #c44d4d; box-shadow: 0 2px #a04040; transform: translateY(2px); }
+        .game-button:active { box-shadow: 0 0px #a04040; transform: translateY(4px); }
+
+        /* Game Screen (Main Story) Styles */
+        #game-screen { justify-content: flex-start; padding: 0; background-color: #34495e;}
+        #player-stats-area {
+            position: absolute; top: 10px; left: 10px; right: 10px; height: 40px; 
+            background-color: rgba(0, 0, 0, 0.7); border: 2px solid #bdc3c7; border-radius: 5px;
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 0 5px; z-index: 100; font-size: 0.65rem; color: #ecf0f1; box-sizing: border-box;
+        }
+        .stat-item { display: flex; align-items: center; margin: 0 3px; }
+        .stat-name { color: #f1c40f; margin-right: 4px; }
+        .stat-value { color: #2ecc71; font-weight: bold; min-width: 15px; text-align: right; }
+
+        #scene-background {
+            position: absolute; top: 60px; left: 0; width: 100%;
+            height: calc(100% - 60px - 220px - 20px); 
+            background-color: #7f8c8d; background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: space-around;
+            padding: 20px; box-sizing: border-box;
+        }
+        #dialogue-area {
+            position: absolute; bottom: 20px; left: 20px; right: 20px; height: 220px; 
+            background-color: rgba(0, 0, 0, 0.85); border: 3px solid #ecf0f1; border-radius: 8px;
+            padding: 15px; box-sizing: border-box; display: flex; align-items: flex-start; 
+        }
+        #character-icon-display {
+            width: 180px; height: 180px; margin-right: 15px; border: 2px solid #bdc3c7;
+            border-radius: 5px; background-color: #2c3e50; /* Darker than main game's icon bg */
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; flex-shrink: 0; 
+        }
+        #character-icon-display svg, #character-icon-display img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        #text-content-wrapper { display: flex; flex-direction: column; flex-grow: 1; height: 100%; }
+        #character-name { font-size: 1rem; color: #f1c40f; margin-bottom: 8px; }
+        #dialogue-text { font-size: 0.9rem; line-height: 1.4; flex-grow: 1; overflow-y: auto; color: #ffffff; margin-bottom: 8px; }
+        #choices-area { display: flex; flex-direction: column; gap: 10px; }
+        .choice-button {
+            font-family: 'Press Start 2P', cursive; background-color: #3498db; color: #ffffff;
+            padding: 10px 15px; border: 2px solid #2980b9; border-radius: 5px;
+            font-size: 0.8rem; cursor: pointer; text-align: left; box-shadow: 0 3px #1f638b;
+        }
+        .choice-button:hover { background-color: #2980b9; box-shadow: 0 1px #1f638b; transform: translateY(1px); }
+
+        /* Dream Screen Styles */
+        #dream-screen {
+            background: linear-gradient(135deg, #1f1c2c 0%, #4a3f6b 100%); /* Dreamy gradient */
+            justify-content: flex-start; /* Align content from top */
+            padding: 15px; /* Padding for dream screen content */
+        }
+        #dream-god-info { display: flex; margin-bottom: 15px; width:100%;}
+        #dream-god-icon {
+            width: 150px; height: 150px; border: 3px solid #9b7ede; border-radius: 8px;
+            margin-right: 15px; background-color: #332d4f; flex-shrink: 0;
+            display: flex; justify-content: center; align-items: center; overflow: hidden;
+        }
+        #dream-god-icon img { width: 100%; height: 100%; object-fit: cover; }
+        #dream-god-details { flex-grow: 1; }
+        #dream-god-name { font-size: 1.2rem; color: #d1c4e9; margin-bottom: 5px; }
+        #dream-god-title { font-size: 0.7rem; color: #b39ddb; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+        #dream-god-description { font-size: 0.75rem; color: #e0e0e0; line-height: 1.5; margin-bottom: 8px; font-family: 'Inter', sans-serif; max-height: 60px; overflow-y: auto;}
+        #dream-god-clues { font-size: 0.7rem; font-style: italic; color: #c5cae9; font-family: 'Inter', sans-serif; }
+        
+        #dream-message-area {
+            width: 100%; text-align: center; font-size: 0.8rem; color: #ffcc80;
+            min-height: 20px; margin-bottom: 10px;
+            border: 1px dashed #7e57c2; padding: 5px; background-color: rgba(0,0,0,0.2);
+        }
+
+        #dream-thought-bubble {
+            width: 100%; height: 280px; /* Adjusted height */
+            background-color: rgba(255, 255, 255, 0.05); border: 2px dashed #b39ddb;
+            border-radius: 10px; padding: 15px; overflow-y: auto;
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-content: flex-start;
+        }
+        .sacrifice-button {
+            font-family: 'Press Start 2P', cursive; background-color: #7e57c2; color: #ffffff;
+            padding: 8px 12px; border: 1px solid #5e35b1; border-radius: 4px;
+            font-size: 0.65rem; cursor: pointer; box-shadow: 0 2px #4527a0;
+            transition: all 0.1s ease;
+        }
+        .sacrifice-button:hover { background-color: #673ab7; box-shadow: 0 1px #4527a0; transform: translateY(1px); }
+        .sacrifice-button.chosen { background-color: #4caf50; border-color: #388e3c; color: #fff; cursor: default; opacity: 0.7; }
+        .sacrifice-button.incorrect-flash { animation: flash-red 0.5s; }
+        @keyframes flash-red { 0%, 100% { background-color: #d32f2f; } 50% { background-color: #7e57c2; } }
+
+        #dream-progress-info {
+            width: 100%; text-align: center; font-size: 0.7rem; color: #e0e0e0; margin-top: 10px;
+        }
+
+        #svg-definitions { display: none; }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="svg-definitions">
+            <svg id="svg-cortes" viewBox="0 0 200 200"><path d="M50,80 Q100,35 150,80 L160,100 L40,100 Z" fill="#777"/><path d="M70,100 Q100,145 130,100 L125,155 Q100,170 75,155 Z" fill="#A0522D"/></svg>
+            <svg id="svg-marina" viewBox="0 0 200 200"><circle cx="100" cy="70" r="25" fill="#F0E68C"/><path d="M75,70 Q100,40 125,70 Q100,95 75,70 Z" fill="#3B2E1A"/><path d="M80,100 L70,160 Q100,170 130,160 L120,100 Z" fill="#8B4513"/></svg>
+            <svg id="svg-alvarado" viewBox="0 0 200 200"><path d="M60,90 Q100,40 140,90 L145,110 L55,110 Z" fill="#888"/><path d="M75,110 Q100,135 125,110 L120,145 Q100,155 80,145 Z" fill="#F4A460"/></svg>
+            <svg id="svg-narrator" viewBox="0 0 200 200"><rect x="40" y="60" width="120" height="80" fill="#555" rx="10"/><text x="100" y="110" font-family="Inter" font-size="20" fill="#fff" text-anchor="middle" dy=".3em">N</text></svg>
+        </div>
+
+        <div id="title-screen" class="screen active-screen">
+            <h1>CONQUISTADOR</h1>
+            <p>A Chronicle of Cortés: The God's Dream</p>
+            <button id="start-button" class="game-button">Enter the Dream</button>
+        </div>
+        
+        <div id="dream-screen" class="screen hidden-screen">
+            <div id="dream-god-info">
+                <div id="dream-god-icon"></div>
+                <div id="dream-god-details">
+                    <h2 id="dream-god-name"></h2>
+                    <p id="dream-god-title"></p>
+                    <p id="dream-god-description"></p>
+                    <p id="dream-god-clues"></p>
+                </div>
+            </div>
+            <div id="dream-message-area">Choose three offerings for the god...</div>
+            <div id="dream-thought-bubble">
+                </div>
+            <div id="dream-progress-info">
+                Gods Appeased: <span id="dream-gods-appeased">0</span>/<span id="dream-gods-total">0</span> | Wrong Attempts: <span id="dream-wrong-attempts">0</span>/3
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen hidden-screen">
+            <div id="player-stats-area"></div>
+            <div id="scene-background"></div>
+            <div id="dialogue-area">
+                <div id="character-icon-display"></div>
+                <div id="text-content-wrapper">
+                     <p id="character-name"></p>
+                     <p id="dialogue-text"></p>
+                     <div id="choices-area"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const titleScreen = document.getElementById('title-screen');
+        const dreamScreen = document.getElementById('dream-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const startButton = document.getElementById('start-button');
+        
+        // Dream Screen Elements
+        const dreamGodIcon = document.getElementById('dream-god-icon');
+        const dreamGodName = document.getElementById('dream-god-name');
+        const dreamGodTitle = document.getElementById('dream-god-title');
+        const dreamGodDescription = document.getElementById('dream-god-description');
+        const dreamGodClues = document.getElementById('dream-god-clues');
+        const dreamMessageArea = document.getElementById('dream-message-area');
+        const dreamThoughtBubble = document.getElementById('dream-thought-bubble');
+        const dreamGodsAppeasedDisplay = document.getElementById('dream-gods-appeased');
+        const dreamGodsTotalDisplay = document.getElementById('dream-gods-total');
+        const dreamWrongAttemptsDisplay = document.getElementById('dream-wrong-attempts');
+
+        // Main Game Screen Elements
+        const playerStatsArea = document.getElementById('player-stats-area');
+        const characterIconDisplay = document.getElementById('character-icon-display');
+        const characterNameDisplay = document.getElementById('character-name');
+        const dialogueTextDisplay = document.getElementById('dialogue-text');
+        const choicesArea = document.getElementById('choices-area');
+        const sceneBackground = document.getElementById('scene-background');
+
+        // --- Simulated JSON Data for Character & God Images ---
+        const characterImageJsonString = `{
+            "baseUrl": "https://placehold.co/", 
+            "characterImages": {
+                "cortes": "180x180/777777/FFFFFF?Text=Cortes",
+                "marina": "180x180/8B4513/FFFFFF?Text=Marina",
+                "alvarado": "180x180/888888/FFFFFF?Text=Alvarado",
+                "huitzilopochtli_icon": "150x150/FF4500/FFFFFF?Text=Huitzi",
+                "tlaloc_icon": "150x150/4682B4/FFFFFF?Text=Tlaloc",
+                "quetzalcoatl_icon": "150x150/3CB371/FFFFFF?Text=Quetzal",
+                "tezcatlipoca_icon": "150x150/2F4F4F/FFFFFF?Text=Tezca",
+                "chalchiuhtlicue_icon": "150x150/40E0D0/000000?Text=Chalchi"
+            }
+        }`;
+        
+        // --- Simulated JSON Data for Gods & Sacrifices ---
+        const godsJsonString = `{
+            "allPossibleSacrifices": [
+                { "id": "hummingbird_feathers", "name": "Hummingbird Feathers" }, { "id": "warrior_song", "name": "Song of Warriors" },
+                { "id": "eagle_symbol", "name": "Eagle Symbol" }, { "id": "fresh_water", "name": "Bowl of Fresh Water" },
+                { "id": "corn_offering", "name": "Offering of Corn" }, { "id": "mountain_flowers", "name": "Mountain Flowers" },
+                { "id": "quetzal_feathers", "name": "Quetzal Feathers" }, { "id": "ancient_codex", "name": "Scroll of Wisdom" },
+                { "id": "carved_jade", "name": "Carved Jade" }, { "id": "obsidian_mirror", "name": "Polished Obsidian" },
+                { "id": "copal_incense", "name": "Burning Copal Incense" }, { "id": "jaguar_symbol", "name": "Jaguar Symbol" },
+                { "id": "jade_figurine", "name": "Jade Figurine" }, { "id": "river_stones", "name": "Smooth River Stones" },
+                { "id": "water_lilies", "name": "Water Lilies" }, { "id": "cacao_beans", "name": "Precious Cacao Beans" },
+                { "id": "woven_textile", "name": "Fine Woven Textile" }, { "id": "flute_melody", "name": "Melody on a Flute" },
+                { "id": "painted_vase", "name": "Painted Pottery" }, { "id": "poem_of_praise", "name": "Poem of Praise" }
+            ],
+            "gods": [
+                {
+                    "id": "huitzilopochtli", "name": "Huitzilopochtli", "title": "God of Sun and War", "iconKey": "huitzilopochtli_icon",
+                    "description": "A figure adorned with hummingbird feathers, wielding a fiery serpent. The sun's vibrant energy emanates from him.",
+                    "clues": "He thrives on tributes that sing of the sun's glory, the warrior's spirit, and the eagle's flight.",
+                    "preferredSacrifices": ["hummingbird_feathers", "warrior_song", "eagle_symbol"]
+                },
+                {
+                    "id": "tlaloc", "name": "Tlaloc", "title": "God of Rain and Fertility", "iconKey": "tlaloc_icon",
+                    "description": "A being with goggle-eyes and fanged mouth, often associated with water, mountains, and the life-giving earth.",
+                    "clues": "He seeks offerings that honor the life-giving waters, the earth's bounty, and the mountain's peak.",
+                    "preferredSacrifices": ["fresh_water", "corn_offering", "mountain_flowers"]
+                },
+                {
+                    "id": "quetzalcoatl", "name": "Quetzalcoatl", "title": "The Feathered Serpent", "iconKey": "quetzalcoatl_icon",
+                    "description": "A magnificent serpent covered in shimmering quetzal feathers, radiating an aura of profound knowledge and creation.",
+                    "clues": "He values offerings that speak of creation's beauty, the pursuit of knowledge, and the artisan's craft.",
+                    "preferredSacrifices": ["quetzal_feathers", "ancient_codex", "carved_jade"]
+                },
+                {
+                    "id": "tezcatlipoca", "name": "Tezcatlipoca", "title": "Smoking Mirror, Lord of Night", "iconKey": "tezcatlipoca_icon",
+                    "description": "A mysterious figure, one foot an obsidian mirror. Cloaked in shadows and jaguar imagery, he sees all.",
+                    "clues": "He accepts tributes acknowledging night's mystery, divination's power, and the jaguar's stealth.",
+                    "preferredSacrifices": ["obsidian_mirror", "copal_incense", "jaguar_symbol"]
+                },
+                {
+                    "id": "chalchiuhtlicue", "name": "Chalchiuhtlicue", "title": "She of the Jade Skirt", "iconKey": "chalchiuhtlicue_icon",
+                    "description": "A serene goddess adorned with jade skirts, often depicted with flowing water and aquatic life, protector of waters.",
+                    "clues": "She cherishes gifts honoring spring's purity, river's abundance, and protection of new life.",
+                    "preferredSacrifices": ["jade_figurine", "river_stones", "water_lilies"]
+                }
+            ]
+        }`;
+
+        // --- Game Data & State ---
+        let playerStats = {};
+        const initialPlayerStats = { ambition: 5, piety: 5, ruthlessness: 3, diplomacy: 4, renown: 0 };
+        let godsData = { allPossibleSacrifices: [], gods: [] };
+        let characterImageData = { baseUrl: "", characterImages: {} };
+
+        const mainGameCharacters = { // Renamed to avoid conflict
+            cortes: { name: "Hernán Cortés", svgId: "svg-cortes", imageUrl: null },
+            marina: { name: "Malinche (Marina)", svgId: "svg-marina", imageUrl: null },
+            alvarado: { name: "Pedro de Alvarado", svgId: "svg-alvarado", imageUrl: null },
+            narrator: { name: "Narrator", svgId: "svg-narrator", imageUrl: null }
+        };
+        
+        let dreamState = {};
+        const GODS_TO_APPEASE_IN_DREAM = 3;
+
+        const gameStory = { /* Main game story (unchanged for brevity, same as previous) */
+            currentScene: 'intro1',
+            scenes: {
+                'intro1': { character: 'narrator', background: 'url("https://placehold.co/800x280/5D6D7E/FFFFFF?Text=Yucatan+Coast")', dialogue: "1519. Yucatán. A new world awaits.", next: 'intro2' },
+                'intro2': { character: 'cortes', dialogue: "Men! For God, Spain, and glory!", effects: { ambition: +1, piety: +1, renown: +5 }, next: 'intro3' },
+                'intro3': { character: 'narrator', dialogue: "Locals are wary. Malinche, a native woman, emerges...", next: 'marina_encounter1'},
+                'marina_encounter1': { character: 'narrator', dialogue: "Malinche (Marina) speaks Nahuatl and Mayan dialects.", next: 'marina_speaks1'},
+                'marina_speaks1': { character: 'marina', dialogue: "(Via Aguilar) Sir, they speak of Moctezuma, ruler of a great city.", choices: [ { text: "\"Tell of Moctezuma.\"", nextScene: 'marina_info_moctezuma', effects: { diplomacy: +1, ambition: +1 } }, { text: "\"Guide us. Your knowledge is vital.\"", nextScene: 'marina_guide_offer', effects: { ambition: +1, renown: +5 } } ] },
+                'marina_info_moctezuma': { character: 'marina', dialogue: "Tenochtitlan, city on a lake, full of gold. Moctezuma is feared.", next: 'cortes_ponders1', effects: { ambition: +1 } },
+                'marina_guide_offer': { character: 'marina', dialogue: "I... I can try. A dangerous path, perhaps to a new life.", next: 'cortes_accepts_marina', effects: { renown: +2 } },
+                'cortes_ponders1': { character: 'cortes', dialogue: "Gold... allies... This needs careful strategy.", next: 'consult_captains', effects: { diplomacy: +1, ambition: +1 } },
+                'cortes_accepts_marina': { character: 'cortes', dialogue: "Your aid is invaluable, Marina. You will be rewarded.", next: 'consult_captains', effects: { renown: +5, diplomacy: +1 } },
+                'consult_captains': { character: 'narrator', background: 'url("https://placehold.co/800x280/4A4A4A/FFFFFF?Text=Council+Tent")', dialogue: "Cortés summons his captains. Alvarado, Sandoval... The air is thick.", next: 'alvarado_speaks1' },
+                'alvarado_speaks1': { character: 'alvarado', dialogue: "Captain-General! They understand only force! March, show power, take what's ours!", choices: [ { text: "\"Alvarado, your zeal is noted.\"", nextScene: 'cortes_agrees_alvarado', effects: { ruthlessness: +2, ambition: +1, diplomacy: -1, renown: +5 } }, { text: "\"Patience, Pedro. Allies first.\"", nextScene: 'cortes_cautions_alvarado', effects: { diplomacy: +2, ruthlessness: -1, piety: +1 } }, { text: "\"Marina, your thoughts?\"", nextScene: 'marina_responds_alvarado', effects: { diplomacy: +1 } } ] },
+                'cortes_agrees_alvarado': { character: 'cortes', dialogue: "Right, Alvarado. A swift strike! Show Spain's might!", next: 'plan_aggressive_march', effects: { renown: +10, ruthlessness: +1 } },
+                'cortes_cautions_alvarado': { character: 'cortes', dialogue: "We are few. Rushing blindly is folly. Gather intel, seek allies.", next: 'plan_diplomatic_approach', effects: { diplomacy: +1, renown: +5, piety: +1 } },
+                'marina_responds_alvarado': { character: 'marina', dialogue: "Alvarado has a warrior's heart. But these lands are complex. Wisdom is needed.", choices: [ { text: "\"Wise, Marina. Cautious but firm.\"", nextScene: 'cortes_cautions_alvarado', effects: { diplomacy: +1 } }, { text: "\"A mix: power then alliance.\"", nextScene: 'cortes_mixed_approach', effects: { ambition: +1, ruthlessness: +1, diplomacy: +1 } } ] },
+                'plan_aggressive_march': { character: 'narrator', dialogue: "Decision made: assertive advance. Aggressive soldiers' morale soars.", next: 'end_chapter1' },
+                'plan_diplomatic_approach': { character: 'narrator', dialogue: "Cortés opts for cunning: allies and intel first. Envoys prepared.", next: 'end_chapter1' },
+                'cortes_mixed_approach': { character: 'narrator', dialogue: "Balanced strategy: intimidate, then offer alliance. Risky path.", next: 'end_chapter1' },
+                'end_chapter1': { character: 'narrator', dialogue: "Initial strategy set... (End of Chapter 1)", end: true }
+            }
+        };
+        
+        // --- Utility Functions ---
+        function shuffleArray(array) { // Fisher-Yates shuffle
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // --- Data Processing Functions ---
+        function processImageData(jsonString) {
+            try {
+                characterImageData = JSON.parse(jsonString);
+                // Populate mainGameCharacters with image URLs
+                for (const charKey in mainGameCharacters) {
+                    if (characterImageData.characterImages[charKey]) {
+                        mainGameCharacters[charKey].imageUrl = characterImageData.baseUrl + characterImageData.characterImages[charKey];
+                    }
+                }
+            } catch (error) { console.error("Error processing character image JSON:", error); }
+        }
+
+        function processGodsData(jsonString) {
+            try {
+                godsData = JSON.parse(jsonString);
+            } catch (error) { console.error("Error processing gods JSON:", error); }
+        }
+
+        // --- Stat Functions (for main game) ---
+        function initializeStatsDisplay() { /* ... (same as before) ... */ 
+            playerStatsArea.innerHTML = ''; 
+            for (const statKey in playerStats) {
+                const statName = statKey.charAt(0).toUpperCase() + statKey.slice(1);
+                const statElement = document.createElement('div');
+                statElement.classList.add('stat-item');
+                statElement.innerHTML = `<span class="stat-name">${statName}:</span> <span class="stat-value" id="stat-${statKey}">${playerStats[statKey]}</span>`;
+                playerStatsArea.appendChild(statElement);
+            }
+        }
+        function updateStatsDisplay() { /* ... (same as before) ... */ 
+             for (const statKey in playerStats) {
+                const valueElement = document.getElementById(`stat-${statKey}`);
+                if (valueElement) valueElement.textContent = playerStats[statKey];
+            }
+        }
+        function applyEffects(effects) { /* ... (same as before) ... */ 
+            for (const statKey in effects) {
+                if (playerStats.hasOwnProperty(statKey)) {
+                    playerStats[statKey] += effects[statKey];
+                    if (statKey !== 'renown') {
+                        if (playerStats[statKey] < 0) playerStats[statKey] = 0;
+                        if (playerStats[statKey] > 10) playerStats[statKey] = 10;
+                    } else if (playerStats[statKey] < 0) playerStats[statKey] = 0;
+                }
+            }
+            updateStatsDisplay();
+        }
+
+        // --- Dream Sequence Functions ---
+        function startDreamSequence() {
+            dreamState = {
+                availableGods: shuffleArray([...godsData.gods]),
+                currentGodIndex: -1,
+                currentGodData: null,
+                correctSacrificesMade: [],
+                wrongAttemptsThisGod: 0,
+                godsAppeasedCount: 0,
+                totalGodsToEncounter: Math.min(GODS_TO_APPEASE_IN_DREAM, godsData.gods.length)
+            };
+            dreamGodsTotalDisplay.textContent = dreamState.totalGodsToEncounter;
+            loadNextDreamGod();
+        }
+
+        function loadNextDreamGod() {
+            dreamState.currentGodIndex++;
+            if (dreamState.currentGodIndex >= dreamState.availableGods.length || dreamState.godsAppeasedCount >= dreamState.totalGodsToEncounter) {
+                endDreamSequence(true); // Dream success (or ran out of gods for the target count)
+                return;
+            }
+            
+            dreamState.currentGodData = dreamState.availableGods[dreamState.currentGodIndex];
+            dreamState.correctSacrificesMade = [];
+            dreamState.wrongAttemptsThisGod = 0;
+
+            dreamGodName.textContent = dreamState.currentGodData.name;
+            dreamGodTitle.textContent = dreamState.currentGodData.title;
+            dreamGodDescription.textContent = dreamState.currentGodData.description;
+            dreamGodClues.textContent = "Clues: " + dreamState.currentGodData.clues;
+            
+            dreamGodIcon.innerHTML = '';
+            const iconKey = dreamState.currentGodData.iconKey;
+            if (characterImageData.characterImages[iconKey]) {
+                const img = document.createElement('img');
+                img.src = characterImageData.baseUrl + characterImageData.characterImages[iconKey];
+                img.alt = dreamState.currentGodData.name;
+                dreamGodIcon.appendChild(img);
+            } else {
+                dreamGodIcon.innerHTML = '<span>Icon</span>';
+            }
+            
+            updateDreamProgressDisplay();
+            populateSacrificeOptions();
+            dreamMessageArea.textContent = `Offerings for ${dreamState.currentGodData.name}... Choose wisely.`;
+        }
+
+        function populateSacrificeOptions() {
+            dreamThoughtBubble.innerHTML = '';
+            const sacrificesToShow = shuffleArray([...godsData.allPossibleSacrifices]);
+
+            sacrificesToShow.forEach(sacrifice => {
+                const button = document.createElement('button');
+                button.classList.add('sacrifice-button');
+                button.textContent = sacrifice.name;
+                button.dataset.sacrificeId = sacrifice.id;
+                button.onclick = () => handleSacrificeChoice(sacrifice.id, button);
+                dreamThoughtBubble.appendChild(button);
+            });
+        }
+
+        function handleSacrificeChoice(sacrificeId, buttonElement) {
+            if (dreamState.correctSacrificesMade.includes(sacrificeId) || dreamState.correctSacrificesMade.length >= 3) {
+                return; // Already chosen or god appeased
+            }
+
+            const isCorrect = dreamState.currentGodData.preferredSacrifices.includes(sacrificeId);
+
+            if (isCorrect) {
+                dreamState.correctSacrificesMade.push(sacrificeId);
+                buttonElement.classList.add('chosen');
+                buttonElement.disabled = true;
+                dreamMessageArea.textContent = `${dreamState.currentGodData.name} seems pleased with ${buttonElement.textContent}.`;
+
+                if (dreamState.correctSacrificesMade.length === 3) {
+                    dreamState.godsAppeasedCount++;
+                    updateDreamProgressDisplay();
+                    dreamMessageArea.textContent = `${dreamState.currentGodData.name} is appeased!`;
+                    setTimeout(() => {
+                        if (dreamState.godsAppeasedCount >= dreamState.totalGodsToEncounter) {
+                            endDreamSequence(true); // All required gods appeased
+                        } else {
+                            loadNextDreamGod(); // Next god
+                        }
+                    }, 2000);
+                }
+            } else {
+                dreamState.wrongAttemptsThisGod++;
+                updateDreamProgressDisplay();
+                buttonElement.classList.add('incorrect-flash');
+                setTimeout(() => buttonElement.classList.remove('incorrect-flash'), 500);
+                dreamMessageArea.textContent = `${dreamState.currentGodData.name} is displeased! That is not favored.`;
+
+                if (dreamState.wrongAttemptsThisGod >= 3) {
+                    dreamMessageArea.textContent = `The vision fades... ${dreamState.currentGodData.name} turns away in anger.`;
+                    setTimeout(() => endDreamSequence(false), 2500); // Failed this god
+                }
+            }
+        }
+        
+        function updateDreamProgressDisplay() {
+            dreamGodsAppeasedDisplay.textContent = dreamState.godsAppeasedCount;
+            dreamWrongAttemptsDisplay.textContent = dreamState.wrongAttemptsThisGod;
+        }
+
+        function endDreamSequence(success) {
+            dreamScreen.classList.remove('active-screen');
+            dreamScreen.classList.add('hidden-screen');
+            gameScreen.classList.remove('hidden-screen');
+            gameScreen.classList.add('active-screen');
+            
+            if (success) {
+                playerStats.piety += 1; // Example boon
+                playerStats.renown += 2;
+                // Could add a small message about the dream's impact later
+            }
+            updateStatsDisplay(); // Update display with any boon
+            loadMainGameScene('intro1'); // Start the main game
+        }
+        
+        // --- Main Game Flow Functions ---
+        function startGame() {
+            playerStats = { ...initialPlayerStats }; // Reset stats
+            processImageData(characterImageJsonString); // Load character image URLs
+            processGodsData(godsJsonString); // Load god and sacrifice data
+            
+            titleScreen.classList.remove('active-screen');
+            titleScreen.classList.add('hidden-screen');
+            dreamScreen.classList.remove('hidden-screen');
+            dreamScreen.classList.add('active-screen');
+            
+            initializeStatsDisplay(); // Initialize for main game, though not visible yet
+            startDreamSequence();
+        }
+
+        function loadMainGameScene(sceneId) { // Renamed to avoid conflict
+            const scene = gameStory.scenes[sceneId];
+            if (!scene) { dialogueTextDisplay.textContent = "Error: Scene not found."; choicesArea.innerHTML = ''; return; }
+            
+            gameStory.currentScene = sceneId; 
+
+            if (scene.background) {
+                let bgUrl = scene.background;
+                if (bgUrl.includes("placehold.co") && !bgUrl.includes("800x280")) { // Ensure placeholder size is consistent
+                    bgUrl = bgUrl.replace(/(\d+)x(\d+)/, "800x280"); 
+                }
+                sceneBackground.style.backgroundImage = bgUrl;
+            }
+
+            const speakerKey = scene.character.toLowerCase();
+            const speakerData = mainGameCharacters[speakerKey]; // Use mainGameCharacters
+            characterNameDisplay.textContent = speakerData ? speakerData.name : "Unknown";
+            
+            characterIconDisplay.innerHTML = ''; 
+            if (speakerData && speakerData.imageUrl) {
+                const img = document.createElement('img');
+                img.src = speakerData.imageUrl;
+                img.alt = speakerData.name;
+                characterIconDisplay.appendChild(img);
+            } else if (speakerData && speakerData.svgId) { 
+                const svgElement = document.getElementById(speakerData.svgId);
+                if (svgElement) characterIconDisplay.appendChild(svgElement.cloneNode(true));
+                else characterIconDisplay.innerHTML = '<span>No Icon</span>'; 
+            } else {
+                 characterIconDisplay.innerHTML = '<span>N/A</span>';
+            }
+            
+            if (scene.effects) applyEffects(scene.effects);
+            dialogueTextDisplay.textContent = scene.dialogue;
+            choicesArea.innerHTML = ''; 
+
+            if (scene.choices) { 
+                scene.choices.forEach(choice => {
+                    const button = document.createElement('button');
+                    button.classList.add('choice-button');
+                    button.textContent = choice.text;
+                    button.onclick = () => {
+                        if (choice.effects) applyEffects(choice.effects);
+                        loadMainGameScene(choice.nextScene);
+                    };
+                    choicesArea.appendChild(button);
+                });
+            } else if (scene.next) { 
+                const nextButton = document.createElement('button');
+                nextButton.classList.add('choice-button'); 
+                nextButton.textContent = "Continue...";
+                nextButton.onclick = () => loadMainGameScene(scene.next);
+                choicesArea.appendChild(nextButton);
+            } else if (scene.end) { 
+                dialogueTextDisplay.textContent = ""; 
+                const endP = document.createElement('p'); endP.textContent = scene.dialogue; choicesArea.appendChild(endP);
+                const restartButton = document.createElement('button');
+                restartButton.classList.add('game-button'); restartButton.style.marginTop = "10px";
+                restartButton.textContent = "Play Again"; restartButton.onclick = startGame; 
+                choicesArea.appendChild(restartButton);
+            }
+        }
+
+        // Event Listeners
+        startButton.addEventListener('click', startGame);
+
+    </script>
+</body>
+</html>
