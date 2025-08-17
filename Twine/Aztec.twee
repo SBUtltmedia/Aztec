@@ -3894,6 +3894,11 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 <</switch>>
 
 
+:: 7 Mini Game Test {"position":"850,975","size":"100,100"}
+<iframe class="minigame" src="https://lizterese.github.io/MyCDN/Stats.html?strength=5"
+width="100%" height="100%"/>
+
+
 :: Character assignment and points selection [Done] {"position":"4025,1200","size":"100,100"}
 <<if ndef $Start>>
 <<set $Start=0>>
@@ -3946,6 +3951,7 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 <<if ndef $Maxixcatl_Act>>
 <<set $Maxixcatl_Act="No">>
 <</if>>
+
 
 <<switch $role>>
 <<case "Cortes">>
@@ -5482,6 +5488,7 @@ You have discussed these options with your men, and together you have decided yo
 <br>
  3. <<link "Approach with the gifts" "On a Beach in Veracruz: Gifts">><<set $gifts="Yes">><</link>>.<br>
 <br>
+
 <<case "Cuauhtemoc" OR "Cacamatzin" OR "Pochteca">>
 
 <<if $gifts is "Attack">>
@@ -5497,6 +5504,10 @@ You have discussed it and together decided you question Moctezuma's decision to 
 You have discussed it and together decided to follow Moctezuma's directions. You will offer the gifts and gather as much information as you can about the pale men and their intentions. You [[approach the strangers|On a Beach in Veracruz: Gifts]] with the gifts Moctezuma provided you with.<br>
 <br>
 
+<<elseif $gifts is "Talk">>
+
+Tlacaelel has not yet entered the decision you've made together.<br>
+<br>
 <<elseif $gifts eq "" or ndef $gifts>>
 Tlacaelel has not yet entered your decision.<br>
 <br>
