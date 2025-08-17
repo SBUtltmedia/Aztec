@@ -5478,6 +5478,8 @@ When you have come to an understanding, you may [[decide how to deal with the st
 :: Discuss these options with your men [Done Breaks] {"position":"2450,1150","size":"100,100"}
 <<liveblock>>
 
+Hello.
+
 <<switch $role>>
 <<case "Tlacaelel">>
 You have discussed these options with your men, and together you have decided you will:<br>
