@@ -51,7 +51,7 @@ for (let i = startingAppId; i <= endingAppId; i++) {
         try {
             execSync(command, console.log);
         } catch (err) { }
-        // console.log(commands);
+         console.log(commands);
     }
     commands = [];
 }
