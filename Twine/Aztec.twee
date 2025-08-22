@@ -5478,8 +5478,6 @@ When you have come to an understanding, you may [[decide how to deal with the st
 :: Discuss these options with your men [Done Breaks] {"position":"2450,1150","size":"100,100"}
 <<liveblock>>
 
-Hello.
-
 <<switch $role>>
 <<case "Tlacaelel">>
 You have discussed these options with your men, and together you have decided you will:<br>
@@ -5510,6 +5508,9 @@ You have discussed it and together decided to follow Moctezuma's directions. You
 
 Tlacaelel has not yet entered the decision you've made together.<br>
 <br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
 <<elseif $gifts eq "" or ndef $gifts>>
 Tlacaelel has not yet entered your decision.<br>
 <br>
