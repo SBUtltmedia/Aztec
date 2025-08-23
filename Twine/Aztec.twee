@@ -900,15 +900,16 @@ The strangers were carried away by a giant caiman.<br>
 <</if>>
 
 <<case "Cortes">>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have freed Aguilar from his long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
 To “unlock” Aguilar's character, you must interview him about some gossip he overheard. <b> As the leader, note that ONLY YOUR answers will work to unlock the characters.</b><br>
 <br>
 Interview Aguilar to find the answers to the following questions:<br> 
 <br>
-<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
-Congratulations! You have freed Aguilar from his long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
-<br>
 
-<<elseif $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
+<<if $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
 
 <b>Question One: Where did the gossip come from?</b><br>
 <br>
@@ -955,6 +956,7 @@ Congratulations! You have freed Aguilar from his long captivity! <<link "You may
 <<else>>
 <b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
 <br>
+<</if>>
 <</if>>
 <</switch>>
 
