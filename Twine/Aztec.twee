@@ -847,6 +847,10 @@ Aguilar, though you have been captive among the Maya for years, recently, you've
 <</if>>
 
 <<case "Alvarado" or "Olid" or "Garrido">>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have freed Aguilar from his long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><</link>>.<br>
+<br>
+<<else>>
 To “unlock” Aguilar's character, you must interview him about some gossip he overheard. Interview him to find the answers to the following questions:<br> 
 <br>
 <<if $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
@@ -956,6 +960,7 @@ Interview Aguilar to find the answers to the following questions:<br>
 <<else>>
 <b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
 <br>
+<</if>>
 <</if>>
 <</if>>
 <</switch>>
