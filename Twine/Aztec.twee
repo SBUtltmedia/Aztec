@@ -6364,14 +6364,16 @@ Marina, you have been gifted to these strange men. Now is your chance to prove y
 <</if>>
 
 <<case "Cortes">>
+<<if $Malinche_1 is "Yes" and $Malinche_2 is "Yes" and $Malinche_3 is "Yes">>
+Congratulations! You have recruited Marina! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Malinche_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
 To “unlock” Marina's character, you must interview her about some gossip she overheard. <b> As the leader, note that ONLY YOUR answers will work to unlock the characters.</b><br>
 <br>
 Interview her to find the answers to the following questions:<br> 
 <br>
-<<if $Malinche_1 is "Yes" and $Malinche_2 is "Yes" and $Malinche_3 is "Yes">>
-Congratulations! You have recruited Marina! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Malinche_Free="Yes">><</link>>.<br>
-<br>
-<<elseif $Malinche_1 is "No" or ndef $Malinche_1 or $Malinche_1 eq "">>
+
+<<if $Malinche_1 is "No" or ndef $Malinche_1 or $Malinche_1 eq "">>
 <b>Question 1: Why has power shifted in the land of the mountains?</b><br>
 <br>
 <<link "Cholula has changed alliances" "Malinche Quest">><<set $Malinche_1="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
@@ -6417,6 +6419,7 @@ Congratulations! You have recruited Marina! <<link "You may now continue" "Spani
 <<else>>
 <b>You have answered Question 3 correctly. Tlaxcala might make a valuable ally.</b><br>
 <br>
+<</if>>
 <</if>>
 
 <<case "Alvarado" or "Olid" or "Garrido">>
@@ -9842,7 +9845,7 @@ You must wait for the Spaniards to rescure Aguilar before you can meet them.<br>
 <img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
 <br>
 <<elseif $Aguilar_Free is "Yes" and $Malinche_Free is "No">>
-Marina, the Spaniards must interview and gain information about the gossip you heard. Go to the Discord discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. This is the chance to prove your worth to them. Handle this well, and you might become a trusted member of their group, handle it poorly, and who knows what your fate will hold!<br>
+Marina, the Spaniards must interview you and gain information about the gossip you heard. Go to the discussion board, and when they approach you, help them find the information they seek. If you can help them answer all three questions correctly, you will be able to join their team and continue on their journey with them. This is the chance to prove your worth to them. Handle this well, and you might become a trusted member of their group, handle it poorly, and who knows what your fate will hold!<br>
 <br>
 Beware, though, every wrong answer will weaken the team by one strength point, while every right answer will gain them two points! [[Good luck|Malinche Quest]]. <br>
 <br>
