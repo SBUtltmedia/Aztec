@@ -4304,8 +4304,6 @@ Option 5: <<link "Olid" "Cholula Spanish Leadership Results">><<set $Sp_Ld_Oli =
 :: Cholula Spanish Leadership Results {"position":"2100,5100","size":"100,100"}
 <<liveblock>>
 
-Hello.
-
 <<set _Sp_Ld_Vote = setup.getTotalChoices("Sp_Ld_Vote")>>
 <<set _Sp_Ld_Cor = setup.getTotalChoices("Sp_Ld_Cor")>>
 <<set _Sp_Ld_Alv = setup.getTotalChoices("Sp_Ld_Alv")>>
