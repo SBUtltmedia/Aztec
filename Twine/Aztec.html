@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -4044,56 +4044,74 @@ Option 5: &lt;&lt;link &quot;Olid&quot; &quot;Cholula Spanish Leadership Results
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="Cholula Spanish Leadership Results" tags="" position="2100,5100" size="100,100">&lt;&lt;liveblock&gt;&gt;
-&lt;&lt;if $Span_Leader is $role and $Sp_Ld_Vote isnot 5&gt;&gt;
+
+&lt;&lt;set _Sp_Ld_Vote = setup.getTotalChoices(&quot;Sp_Ld_Vote&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Cor = setup.getTotalChoices(&quot;Sp_Ld_Cor&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Alv = setup.getTotalChoices(&quot;Sp_Ld_Alv&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Agu = setup.getTotalChoices(&quot;Sp_Ld_Agu&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Gar = setup.getTotalChoices (&quot;Sp_Ld_Gar&quot;)&gt;&gt;
+&lt;&lt;set _Sp_Ld_Oli = setup.getTotalChoices (&quot;Sp_Ld_Oli&quot;)&gt;&gt;
+&lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
+Total Votes cast: &lt;&lt;print _Sp_Ld_Vote&gt;&gt;&lt;br&gt;
+Votes for Cortes: &lt;&lt;print _Sp_Ld_Cor&gt;&gt;&lt;br&gt;
+Votes for Alvarado: &lt;&lt;print _Sp_Ld_Alv&gt;&gt;&lt;br&gt;
+Votes for Aguilar: &lt;&lt;print _Sp_Ld_Agu&gt;&gt;&lt;br&gt;
+Votes for Garrido: &lt;&lt;print _Sp_Ld_Gar&gt;&gt;&lt;br&gt;
+Votes for Olid: &lt;&lt;print _Sp_Ld_Oli&gt;&gt;&lt;br&gt;
+Total Players in Game: &lt;&lt;print _Span_Tot_Play&gt;&gt;&lt;br&gt;
+&lt;br&gt;
+
+&lt;&lt;if $Span_Leader is $role and $Sp_Ld_Vote &lt; (_Span_Tot_Play - 1)&gt;&gt;
 You wait nervously for your team to deliberate.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;print $Sp_Ld_Vote&gt;&gt; votes have been cast. &lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Span_Leader isnot $role and $Sp_Ld_Vote isnot 5&gt;&gt;
+
+&lt;&lt;elseif $Span_Leader isnot $role and $Sp_Ld_Vote &lt; (_Span_Tot_Play - 1)&gt;&gt;
 When everyone has voted, you will deliver the news to &lt;&lt;print $Span_Leader&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;print $Sp_Ld_Vote&gt;&gt; votes have been cast. &lt;br&gt;
 &lt;br&gt;
 &lt;img src=&quot;Twine/images/Stop_1.png&quot; style=&quot;width:60%; margin:auto; display:block;&quot;&gt;
 
-&lt;&lt;elseif $Sp_Ld_Vote is 5&gt;&gt;
+&lt;&lt;elseif $Sp_Ld_Vote is (_Span_Tot_Play - 1)&gt;&gt;
 You have chosen a leader. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $Sp_Ld_Cor &gt;= $Sp_Ld_Alv and $Sp_Ld_Cor &gt;= $Sp_Ld_Agu and $Sp_Ld_Cor &gt;= $Sp_Ld_Gar and $Sp_Ld_Cor &gt;= $Sp_Ld_Oli and $Sp_Ld_Cor is 5&gt;&gt;
+&lt;&lt;if $Sp_Ld_Cor is (_Span_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Cor &gt;= $Sp_Ld_Alv and $Sp_Ld_Cor &gt;= $Sp_Ld_Agu and $Sp_Ld_Cor &gt;= $Sp_Ld_Gar and $Sp_Ld_Cor &gt;= $Sp_Ld_Oli and $Sp_Ld_Cor isnot 5&gt;&gt;
-The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Alv &gt;=$Sp_Ld_Cor and $Sp_Ld_Alv &gt;=$Sp_Ld_Agu and $Sp_Ld_Alv &gt;=$Sp_Ld_Gar and $Sp_Ld_Alv &gt;=$Sp_Ld_Oli and $Sp_Ld_Alv is 5&gt;&gt;
+&lt;&lt;elseif $Sp_Ld_Alv is (_Span_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Alv &gt;=$Sp_Ld_Cor and $Sp_Ld_Alv &gt;=$Sp_Ld_Agu and $Sp_Ld_Alv &gt;=$Sp_Ld_Gar and $Sp_Ld_Alv &gt;=$Sp_Ld_Oli and $Sp_Ld_Alv isnot 5&gt;&gt;
-The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Agu &gt;=$Sp_Ld_Cor and $Sp_Ld_Agu &gt;=$Sp_Ld_Alv and $Sp_Ld_Agu &gt;=$Sp_Ld_Gar and $Sp_Ld_Agu &gt;=$Sp_Ld_Oli and $Sp_Ld_Agu is 5&gt;&gt;
+&lt;&lt;elseif $Sp_Ld_Agu is (_Span_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Agu &gt;=$Sp_Ld_Cor and $Sp_Ld_Agu &gt;=$Sp_Ld_Alv and $Sp_Ld_Agu &gt;=$Sp_Ld_Gar and $Sp_Ld_Agu &gt;=$Sp_Ld_Oli and $Sp_Ld_Agu isnot 5&gt;&gt;
-The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Gar &gt;=$Sp_Ld_Cor and $Sp_Ld_Gar &gt;=$Sp_Ld_Alv and $Sp_Ld_Gar &gt;=$Sp_Ld_Agu and $Sp_Ld_Gar &gt;=$Sp_Ld_Oli and $Sp_Ld_Gar is 5&gt;&gt;
+&lt;&lt;elseif $Sp_Ld_Gar is (_Span_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Gar &gt;=$Sp_Ld_Cor and $Sp_Ld_Gar &gt;=$Sp_Ld_Alv and $Sp_Ld_Gar &gt;=$Sp_Ld_Agu and $Sp_Ld_Gar &gt;=$Sp_Ld_Oli and $Sp_Ld_Gar isnot 5&gt;&gt;
-The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
-&lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Oli &gt;=$Sp_Ld_Cor and $Sp_Ld_Oli &gt;=$Sp_Ld_Alv and $Sp_Ld_Oli &gt;=$Sp_Ld_Agu and $Sp_Ld_Oli &gt;=$Sp_Ld_Gar and $Sp_Ld_Oli is 5&gt;&gt;
+&lt;&lt;elseif $Sp_Ld_Oli is (_Span_Tot_Play - 1)&gt;&gt;
 The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]+=1&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; and take note of your team strength points!&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Sp_Ld_Oli &gt;=$Sp_Ld_Cor and $Sp_Ld_Oli &gt;=$Sp_Ld_Alv and $Sp_Ld_Oli &gt;=$Sp_Ld_Agu and $Sp_Ld_Oli &gt;=$Sp_Ld_Gar and $Sp_Ld_Oli isnot 5&gt;&gt;
+
+&lt;&lt;elseif $Sp_Ld_Cor &gt;= $Sp_Ld_Alv and $Sp_Ld_Cor &gt;= $Sp_Ld_Agu and $Sp_Ld_Cor &gt;= $Sp_Ld_Gar and $Sp_Ld_Cor &gt;= $Sp_Ld_Oli&gt;&gt;
+The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Cortes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Sp_Ld_Alv &gt;=$Sp_Ld_Cor and $Sp_Ld_Alv &gt;=$Sp_Ld_Agu and $Sp_Ld_Alv &gt;=$Sp_Ld_Gar and $Sp_Ld_Alv &gt;=$Sp_Ld_Oli&gt;&gt;
+The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Alvarado&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Sp_Ld_Agu &gt;=$Sp_Ld_Cor and $Sp_Ld_Agu &gt;=$Sp_Ld_Alv and $Sp_Ld_Agu &gt;=$Sp_Ld_Gar and $Sp_Ld_Agu &gt;=$Sp_Ld_Oli&gt;&gt;
+The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Aguilar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Sp_Ld_Gar &gt;=$Sp_Ld_Cor and $Sp_Ld_Gar &gt;=$Sp_Ld_Alv and $Sp_Ld_Gar &gt;=$Sp_Ld_Agu and $Sp_Ld_Gar &gt;=$Sp_Ld_Oli&gt;&gt;
+The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Garrido&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;elseif $Sp_Ld_Oli &gt;=$Sp_Ld_Cor and $Sp_Ld_Oli &gt;=$Sp_Ld_Alv and $Sp_Ld_Oli &gt;=$Sp_Ld_Agu and $Sp_Ld_Oli &gt;=$Sp_Ld_Gar&gt;&gt;
 The group has made a decision.  Continue to the next page to find out &lt;&lt;link &quot;who will lead your people&quot; &quot;Cholula New Spanish Leader&quot;&gt;&gt;&lt;&lt;set $Span_Leader=&quot;Olid&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-
+&lt;&lt;/if&gt;&gt;
 
 
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Cholulans Attack" tags="Done" position="1600,4800" size="100,100">&lt;&lt;liveblock&gt;&gt;
@@ -6519,7 +6537,7 @@ You read Moctezuma&#39;s Proclamation, and you gather together in Council, this 
 The arrival of the strangers and mysterious omens have left everybody unsettled. How should you proceed? Does Moctezuma&#39;s Proclamation inspire confidence, or is it time to choose a new leader? In this strange new world, who will you follow?&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;link &quot;Moctezuma&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;set $Moc_Mut_Vote = $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt;retains your loyalty, you trust his leadership. &lt;br&gt;
+&lt;&lt;link &quot;Moctezuma&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;set $Moc_Mut_Vote = $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;set $users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; retains your loyalty, you trust his leadership. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;link &quot;Tlacaelel&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;set $users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]+=1&gt;&gt;&lt;&lt;/link&gt;&gt; has shown great leadership. You vote for him. &lt;br&gt;
 &lt;br&gt;
@@ -11513,14 +11531,14 @@ Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Deci
 &lt;&lt;elseif $TL_St_Voted is 3 and $users[&quot;Xicotencatl_Younger&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] &gt;=$users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] and $users[&quot;Xicotencatl_Younger&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] &gt;=$users[&quot;Maxixcatl&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Younger&quot;&gt;&gt;
 You and your fellow council members have weighed each other&#39;s arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. &lt;br&gt;
 &lt;br&gt;
-The Tlaxcalan leader is &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;
+&lt;b&gt;The Tlaxcalan leader is &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
 Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Decides]]?&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $TL_St_Voted is 3 and $users[&quot;Maxixcatl&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] &gt;=$users[&quot;Xicotencatl_Elder&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] and $users[&quot;Maxixcatl&quot;][&quot;stats&quot;][&quot;Wisdom&quot;] &gt;=$users[&quot;Xicotencatl_Younger&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Maxixcatl&quot;&gt;&gt;
 You and your fellow council members have weighed each other&#39;s arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. &lt;br&gt;
 &lt;br&gt;
-The Tlaxcalan leader is &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;
+&lt;b&gt;The Tlaxcalan leader is &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
 Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Decides]]?&lt;br&gt;
 &lt;br&gt;
@@ -12313,7 +12331,7 @@ Once you have done all you can to convince your teammates, continue [[to the nex
 &lt;&lt;case &quot;Alvarado&quot; or &quot;Aguilar&quot; or &quot;Garrido&quot;&gt;&gt;
 After your encounter with the Mexica, the mood amongst the crew has shifted. There is excitement about the riches that may well lie inland, but there is also a clear current of unease. Cortés thinks you should forge inland, in search of the Aztec capital and the riches that surely await you, but do you trust him to lead you there? There is at least one among you who lacks faith in Cortés.&lt;br&gt;
 &lt;br&gt;
-Go to Discord to see what is being said. Is Cortés able to maintain your support? Or can you be convinced to change your allegiance? You may be approached in private, so keep an eye on your DMs.&lt;br&gt;
+Go to the discussion board to see what is being said. Is Cortés able to maintain your support? Or can you be convinced to change your allegiance? You may be approached in private, so keep an eye on your DMs.&lt;br&gt;
 &lt;br&gt;
 Once you have decided where your loyalty lies, [[continue to the next screen|Spaniards decide whether to mutiny]].&lt;br&gt;
 &lt;br&gt;
