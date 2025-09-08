@@ -25,6 +25,7 @@ window.addEventListener('message', function (event) {
         // Object.keys(users).array.forEach(element => {
         //     console.log(element)
         // });
+showStats() 
 
         console.log(users)
         //  Window.SugarCubeState.setVar("$strength")

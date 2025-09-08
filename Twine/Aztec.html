@@ -1939,7 +1939,7 @@ He leaves the chamber and each member of the council votes. When it is your turn
 
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $Cacamatzin_Act is &quot;Yes&quot;&gt;&gt;
-Option 4: &lt;&lt;link &quot;Cacamatzin&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; is your best chance of suriving these strange turns of events.&lt;br&gt;
+&lt;&lt;link &quot;Cacamatzin&quot; &quot;Aztec Leadership Results&quot;&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cac&quot;] = 1&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Cua&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Moc&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Tla&quot;] = 0&gt;&gt;&lt;&lt;set $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = $users[$role][&quot;choices&quot;][&quot;Az_Ld_Vote&quot;] = 1&gt;&gt;&lt;&lt;/link&gt;&gt; is your best chance of suriving these strange turns of events.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Cacamatzin_Act is &quot;No&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -3667,8 +3667,12 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="7 Mini Game Test" tags="" position="850,975" size="100,100">&lt;iframe class=&quot;minigame&quot; src=&quot;https://lizterese.github.io/MyCDN/Stats.html?strength=5&quot;
-width=&quot;100%&quot; height=&quot;100%&quot;/&gt;</tw-passagedata><tw-passagedata pid="78" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;if ndef $Start&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="7 Mini Game Test" tags="" position="850,975" size="100,100">&lt;iframe class=&quot;minigame&quot; src=&quot;https://lizterese.github.io/MyCDN/Stats.html?strength=5&quot;/&gt;
+
+You wake to find yourself back in the library, sprawled across the comfy chair. You missed dinner, but somehow your belly feels strangely full. You swear you can still taste the pulque on your lips, but that can&#39;t possibly be true... can it? &lt;br&gt;
+&lt;br&gt;
+You look at the stack of papers on the floor, and, sure enough, there&#39;s your latest history assignment, complete and ready to hand in. Buoyed by the knowledge that another A grade is coming your way, you pack up your things and head home. &lt;br&gt;
+&lt;br&gt;</tw-passagedata><tw-passagedata pid="78" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;if ndef $Start&gt;&gt;
 &lt;&lt;set $Start=0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 

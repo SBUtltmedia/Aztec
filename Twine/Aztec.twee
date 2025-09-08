@@ -2002,7 +2002,7 @@ He leaves the chamber and each member of the council votes. When it is your turn
 
 <</if>>
 <<if $Cacamatzin_Act is "Yes">>
-Option 4: <<link "Cacamatzin" "Aztec Leadership Results">><<set $users[$role]["choices"]["Az_Ld_Cac"] = $users[$role]["choices"]["Az_Ld_Cac"] = 1>><<set $users[$role]["choices"]["Az_Ld_Cua"] = $users[$role]["choices"]["Az_Ld_Cua"] = 0>><<set $users[$role]["choices"]["Az_Ld_Moc"] = $users[$role]["choices"]["Az_Ld_Moc"] = 0>><<set $users[$role]["choices"]["Az_Ld_Tla"] = $users[$role]["choices"]["Az_Ld_Tla"] = 0>><<set $users[$role]["choices"]["Az_Ld_Vote"] = $users[$role]["choices"]["Az_Ld_Vote"] = 1>><</link>> is your best chance of suriving these strange turns of events.<br>
+<<link "Cacamatzin" "Aztec Leadership Results">><<set $users[$role]["choices"]["Az_Ld_Cac"] = $users[$role]["choices"]["Az_Ld_Cac"] = 1>><<set $users[$role]["choices"]["Az_Ld_Cua"] = $users[$role]["choices"]["Az_Ld_Cua"] = 0>><<set $users[$role]["choices"]["Az_Ld_Moc"] = $users[$role]["choices"]["Az_Ld_Moc"] = 0>><<set $users[$role]["choices"]["Az_Ld_Tla"] = $users[$role]["choices"]["Az_Ld_Tla"] = 0>><<set $users[$role]["choices"]["Az_Ld_Vote"] = $users[$role]["choices"]["Az_Ld_Vote"] = 1>><</link>> is your best chance of suriving these strange turns of events.<br>
 <br>
 <<elseif $Cacamatzin_Act is "No">>
 <</if>>
@@ -3902,9 +3902,13 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 
 
 :: 7 Mini Game Test {"position":"850,975","size":"100,100"}
-<iframe class="minigame" src="https://lizterese.github.io/MyCDN/Stats.html?strength=5"
-width="100%" height="100%"/>
 
+<iframe class="minigame" src="https://lizterese.github.io/MyCDN/Stats.html?strength=5"/>
+
+You wake to find yourself back in the library, sprawled across the comfy chair. You missed dinner, but somehow your belly feels strangely full. You swear you can still taste the pulque on your lips, but that can't possibly be true... can it? <br>
+<br>
+You look at the stack of papers on the floor, and, sure enough, there's your latest history assignment, complete and ready to hand in. Buoyed by the knowledge that another A grade is coming your way, you pack up your things and head home. <br>
+<br>
 
 :: Character assignment and points selection [Done] {"position":"4025,1200","size":"100,100"}
 <<if ndef $Start>>
