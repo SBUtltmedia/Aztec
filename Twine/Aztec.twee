@@ -3903,7 +3903,9 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 
 :: 7 Mini Game Test {"position":"850,975","size":"100,100"}
 
-<iframe class="minigame" src="https://lizterese.github.io/MyCDN/Stats.html?strength=5"/>
+<iframe class="minigame" id="frame" src="https://lizterese.github.io/MyCDN/Malinche.html"/>
+
+/* <iframe class="minigame" id="frame" src="https://lizterese.github.io/MyCDN/Stats.html?strength=5"/> */
 
 You wake to find yourself back in the library, sprawled across the comfy chair. You missed dinner, but somehow your belly feels strangely full. You swear you can still taste the pulque on your lips, but that can't possibly be true... can it? <br>
 <br>
@@ -11186,9 +11188,6 @@ You are waiting for Tlacaelel to input his decision.<br>
 :: The Library [Done] {"position":"3875,1275","size":"100,100"}
 <<liveblock>>
 
-Hello!<br>
-<br>
-
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
 <br>
 It's 7 pm and the library is more crowded than usual. It looks like you're not the only one with a mountain of work to do this week! There's no way you'll be able to focus in the midst of so many people. Maybe the top floor is quieter. You head upstairs towards the study carrels, but they're all taken. It's dead quiet up here, but there's nowhere to work. You begin wandering down unfamiliar hallways, poking your head into all the different rooms, but none of them work. You're beginning to get frustrated when you notice a door you've never seen before. It's tucked into an alcove in the very back corner of the building. You decide to check this one last spot before you give up and join the masses downstairs. <br>
@@ -16111,5 +16110,109 @@ Tlaxcalan Leader:  <<print $Tlax_Leader>><br>
 
 
 /* Use this to send users to side passages */
+
+:: 0 Emergency Controls {"position":"475,4225","size":"100,100"}
+<b>Spaniard's Strength: <<print $factions["Spaniards"]["stats"]["Strength"]>></b><br>
+Add One Point to Spanish Strength:  <<link "plus one point" "0 Emergency Controls">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>><br>
+Subtract One Point from Spanish Strength:  <<link "minus one point" "0 Emergency Controls">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>><br>
+<br>
+<b>Aztec's Strength: <<print $factions["Aztecs"]["stats"]["Strength"]>></b><br>
+Add One Point to Aztec Strength:  <<link "plus one point" "0 Emergency Controls">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><</link>><br>
+Subtract One Point from Aztec Strength:  <<link "minus one point" "0 Emergency Controls">><<set $factions["Aztecs"]["stats"]["Strength"]-=1>><</link>><br>
+<br>
+<b>Tlaxcalan's Strength: <<print $factions["Tlaxcalans"]["stats"]["Strength"]>></b><br>
+Add One Point to Tlaxcalan Strength:  <<link "plus one point" "0 Emergency Controls">><<set $factions["Tlaxcalans"]["stats"]["Strength"]+=1>><</link>><br>
+Subtract One Point from Tlaxcalan Strength: <<link "minus one point" "0 Emergency Controls">><<set $factions["Tlaxcalans"]["stats"]["Strength"]-=1>><</link>><br>
+<br>
+
+<b>Spanish team size: <<print $users[$role]["choices"]["Span_Tot_Play"]>></b><br>
+<<link "Add One Player to the Spanish Team" "0 Emergency Controls">><<set $users[$role]["choices"]["Span_Tot_Play"] +=1>><</link>><br>
+<<link "Subtract One Player from the Spanish Team" "0 Emergency Controls">><<set $users[$role]["choices"]["Span_Tot_Play"] -=1>><</link>><br>
+<br>
+<<link "Reset Spanish players to Zero" "0 Emergency Controls">><<set $users[$role]["choices"]["Span_Tot_Play"]=0>><</link>><br>
+<br>
+<b>Aztec team size: <<print $users[$role]["choices"]["Aztec_Tot_Play"]>></b><br>
+<<link "Add One Player to the Aztec Team" "0 Emergency Controls">><<set $users[$role]["choices"]["Aztec_Tot_Play"] +=1>><</link>><br>
+<<link "Subtract One Player from the Aztec Team" "0 Emergency Controls">><<set $users[$role]["choices"]["Aztec_Tot_Play"] -=1>><</link>><br>
+<br>
+<<link "Reset Aztec players to Zero" "0 Emergency Controls">><<set $users[$role]["choices"]["Aztec_Tot_Play"]=0>><</link>><br>
+<br>
+<b>Tlaxcalan team size: <<print $users[$role]["choices"]["Tlax_Tot_Play"]>></b><br>
+<<link "Add One Player to the Tlaxcalan Team" "0 Emergency Controls">><<set $users[$role]["choices"]["Tlax_Tot_Play"] +=1>><</link>><br>
+<<link "Subtract One Player from the Tlaxcalan Team" "0 Emergency Controls">><<set $users[$role]["choices"]["Tlax_Tot_Play"] -=1>><</link>><br>
+<br>
+<<link "Reset Tlaxcalan players to Zero" "0 Emergency Controls">><<set $users[$role]["choices"]["Tlax_Tot_Play"]=0>><</link>><br>
+<br>
+<b>Set Leaders</b><br>
+Spanish Leader:  <<print $Span_Leader>><br>
+<<link "Set Cortes as Leader" "0 Emergency Controls">><<set $Span_Leader="Cortes">><</link>><br>
+<<link "Set Aguilar as Leader" "0 Emergency Controls">><<set $Span_Leader="Aguilar">><</link>><br>
+<<link "Set Alvarado as Leader" "0 Emergency Controls">><<set $Span_Leader="Alvarado">><</link>><br>
+<<link "Set Garrido as Leader" "0 Emergency Controls">><<set $Span_Leader="Garrido">><</link>><br>
+<<link "Set Marina as Leader" "0 Emergency Controls">><<set $Span_Leader="Marina">><</link>><br>
+<<link "Set Olid as Leader" "0 Emergency Controls">><<set $Span_Leader="Olid">><</link>><br>
+<br>
+Aztec Leader:  <<print $Aztec_Leader>><br>
+<<link "Set Moctezuma as Leader" "0 Emergency Controls">><<set $Aztec_Leader="Moctezuma">><</link>><br>
+<<link "Set Aztec Priest as Leader" "0 Emergency Controls">><<set $Aztec_Leader="Aztec_Priest">><</link>><br>
+<<link "Set Cacamaztin as Leader" "0 Emergency Controls">><<set $Aztec_Leader="Cacamatzin">><</link>><br>
+<<link "Set Cuauhtemoc as Leader" "0 Emergency Controls">><<set $Aztec_Leader="Cuauhtemoc">><</link>><br>
+<<link "Set Pochteca as Leader" "0 Emergency Controls">><<set $Aztec_Leader="Pochteca">><</link>><br>
+<<link "Set Tlacaelel as Leader" "0 Emergency Controls">><<set $Aztec_Leader="Tlacaelel">><</link>><br>
+<br>
+Tlaxcalan Leader:  <<print $Tlax_Leader>><br>
+<<link "Set Xicotencatl the Elder as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Xicotencatl the Elder">><</link>><br>
+<<link "Set Xicotencatl the Younger as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Xicotencatl the Younger">><</link>><br>
+<<link "Set Maxixcatl as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Maxixcatl">><</link>><br>
+<br>
+<b>Spaniards Player Status (active or not):</b><br>
+Cortes: <<print $Cortes_Act>><br>
+<<link "Turn Cortes On" "0 Emergency Controls">><<set $Cortes_Act="Yes">><</link>> or <<link "Turn Cortes Off" "0 Emergency Controls">><<set $Cortes_Act="No">><</link>><br>
+Aguilar:  <<print $Aguilar_Act>><br>
+<<link "Turn Aguilar On" "0 Emergency Controls">><<set $Aguilar_Act="Yes">><</link>> or <<link "Turn Aguilar Off" "0 Emergency Controls">><<set $Aguilar_Act="No">><</link>><br>
+Alvarado:  <<print $Alvarado_Act>><br>
+<<link "Turn Alvarado On" "0 Emergency Controls">><<set $Alvarado_Act="Yes">><</link>> or <<link "Turn Alvarado Off" "0 Emergency Controls">><<set $Alvarado_Act="No">><</link>><br>
+Garrido:  <<print $Garrido_Act>><br>
+<<link "Turn Garrido On" "0 Emergency Controls">><<set $Garrido_Act="Yes">><</link>> or <<link "Turn Garrido Off" "0 Emergency Controls">><<set $Garrido_Act="No">><</link>><br>
+Marina:  <<print $Marina_Act>><br>
+<<link "Turn Marina On" "0 Emergency Controls">><<set $Marina_Act="Yes">><</link>> or <<link "Turn Marina Off" "0 Emergency Controls">><<set $Marina_Act="No">><</link>><br>
+Olid:  <<print $Olid_Act>><br>
+<<link "Turn Olid On" "0 Emergency Controls">><<set $Olid_Act="Yes">><</link>> or <<link "Turn Olid Off" "0 Emergency Controls">><<set $Olid_Act="No">><</link>><br>
+<br>
+
+<b>Aztec Player Status (active or not):</b><br>
+Moctezuma: <<print $Moctezuma_Act>><br>
+<<link "Turn Moctezuma On" "0 Emergency Controls">><<set $Moctezuma_Act="Yes">><</link>> or <<link "Turn Moctezuma Off" "0 Emergency Controls">><<set $Moctezuma_Act="No">><</link>><br>
+Aztec Priest:  <<print $Aztec_Priest_Act>><br>
+<<link "Turn Aztec Priest On" "0 Emergency Controls">><<set $Aztec_Priest_Act="Yes">><</link>> or <<link "Turn Aztec Priest Off" "0 Emergency Controls">><<set $Aztec_Priest_Act="No">><</link>><br>
+Cacamatzin:  <<print $Cacamatzin_Act>><br>
+<<link "Turn Cacamatzin On" "0 Emergency Controls">><<set $Cacamatzin_Act="Yes">><</link>> or <<link "Turn Cacamatzin Off" "0 Emergency Controls">><<set $Cacamatzin_Act="No">><</link>><br>
+Cuauhtemoc:  <<print $Cuauhtemoc_Act>><br>
+<<link "Turn Garrido On" "0 Emergency Controls">><<set $Cuauhtemoc_Act="Yes">><</link>> or <<link "Turn Garrido Off" "0 Emergency Controls">><<set $Cuauhtemoc_Act="No">><</link>><br>
+Pochteca:  <<print $Pochteca_Act>><br>
+<<link "Turn Pochteca On" "0 Emergency Controls">><<set $Pochteca_Act="Yes">><</link>> or <<link "Turn Pochteca Off" "0 Emergency Controls">><<set $Pochteca_Act="No">><</link>><br>
+Tlacaelel:  <<print $Tlacaelel_Act>><br>
+<<link "Turn Tlacaelel On" "0 Emergency Controls">><<set $Tlacaelel_Act="Yes">><</link>> or <<link "Turn Tlacaelel Off" "0 Emergency Controls">><<set $Tlacaelel_Act="No">><</link>><br>
+<br>
+
+<b>Tlaxcalan Player Status (active or not):</b><br>
+Xicotencatl the Elder: <<print $Xicotencatl_Elder_Act>><br>
+<<link "Turn Xicotencatl the Elder On" "0 Emergency Controls">><<set $Xicotencatl_Elder_Act="Yes">><</link>> or <<link "Turn Xicotencatl the Elder Off" "0 Emergency Controls">><<set $Xicotencatl_Elder_Act="No">><</link>><br>
+Xicotencatl the Younger:  <<print $Xicotencatl_Younger_Act>><br>
+<<link "Turn Xicotencatl the Younger On" "0 Emergency Controls">><<set $Xicotencatl_Younger_Act="Yes">><</link>> or <<link "Turn Xicotencatl the Younger" "0 Emergency Controls">><<set $Xicotencatl_Younger_Act="No">><</link>><br>
+Maxixcatl:  <<print $Maxixcatl_Act>><br>
+<<link "Turn Maxixcatl On" "0 Emergency Controls">><<set $Maxixcatl_Act="Yes">><</link>> or <<link "Turn Maxixcatl Off" "0 Emergency Controls">><<set $Maxixcatl_Act="No">><</link>><br>
+<br>
+
+Is Cortes dead? <<link "Yes" "0 Emergency Controls">><<set $Cortes_Dead = "Yes">><</link>>.  <<link "No" "0 Emergency Controls">><<set $Cortes_Dead = "No">><</link>>.<br>
+<br>
+
+Is the Aztec Leader dead? <<link "Yes" "0 Emergency Controls">><<set $Az_Ld_Dead = "Yes">><</link>>.  <<link "No" "0 Emergency Controls">><<set $Az_Ld_Dead = "No">><</link>>.<br>
+<br>
+
+
+
+
+
 
 
