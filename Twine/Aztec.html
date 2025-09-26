@@ -211,7 +211,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Dakota Test Passage" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As a global var:
 &lt;br&gt;
 &lt;&lt;if ndef $incrementTest&gt;&gt;
@@ -14872,10 +14872,12 @@ Aztec Leader:  &lt;&lt;print $Aztec_Leader&gt;&gt;&lt;br&gt;
 &lt;&lt;link &quot;Set Tlacaelel as Leader&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Aztec_Leader=&quot;Tlacaelel&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Tlaxcalan Leader:  &lt;&lt;print $Tlax_Leader&gt;&gt;&lt;br&gt;
-&lt;&lt;link &quot;Set Xicotencatl the Elder as Leader&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl the Elder&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
-&lt;&lt;link &quot;Set Xicotencatl the Younger as Leader&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl the Younger&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;link &quot;Set Xicotencatl the Elder as Leader&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Elder&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+&lt;&lt;link &quot;Set Xicotencatl the Younger as Leader&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Xicotencatl_Younger&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;link &quot;Set Maxixcatl as Leader&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Tlax_Leader=&quot;Maxixcatl&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
+
+&lt;b&gt;NOTE: THIS WILL NOT CHANGE PLAYER NUMBERS. USE TEAM SIZE FUNCTION ABOVE FOR THAT.&lt;/b&gt;
 &lt;b&gt;Spaniards Player Status (active or not):&lt;/b&gt;&lt;br&gt;
 Cortes: &lt;&lt;print $Cortes_Act&gt;&gt;&lt;br&gt;
 &lt;&lt;link &quot;Turn Cortes On&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Cortes_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;Turn Cortes Off&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Cortes_Act=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
@@ -14890,7 +14892,6 @@ Marina:  &lt;&lt;print $Marina_Act&gt;&gt;&lt;br&gt;
 Olid:  &lt;&lt;print $Olid_Act&gt;&gt;&lt;br&gt;
 &lt;&lt;link &quot;Turn Olid On&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Olid_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;Turn Olid Off&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Olid_Act=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
-
 &lt;b&gt;Aztec Player Status (active or not):&lt;/b&gt;&lt;br&gt;
 Moctezuma: &lt;&lt;print $Moctezuma_Act&gt;&gt;&lt;br&gt;
 &lt;&lt;link &quot;Turn Moctezuma On&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Act=&quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt; or &lt;&lt;link &quot;Turn Moctezuma Off&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;set $Moctezuma_Act=&quot;No&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;

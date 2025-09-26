@@ -16161,10 +16161,12 @@ Aztec Leader:  <<print $Aztec_Leader>><br>
 <<link "Set Tlacaelel as Leader" "0 Emergency Controls">><<set $Aztec_Leader="Tlacaelel">><</link>><br>
 <br>
 Tlaxcalan Leader:  <<print $Tlax_Leader>><br>
-<<link "Set Xicotencatl the Elder as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Xicotencatl the Elder">><</link>><br>
-<<link "Set Xicotencatl the Younger as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Xicotencatl the Younger">><</link>><br>
+<<link "Set Xicotencatl the Elder as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Xicotencatl_Elder">><</link>><br>
+<<link "Set Xicotencatl the Younger as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Xicotencatl_Younger">><</link>><br>
 <<link "Set Maxixcatl as Leader" "0 Emergency Controls">><<set $Tlax_Leader="Maxixcatl">><</link>><br>
 <br>
+
+<b>NOTE: THIS WILL NOT CHANGE PLAYER NUMBERS. USE TEAM SIZE FUNCTION ABOVE FOR THAT.</b>
 <b>Spaniards Player Status (active or not):</b><br>
 Cortes: <<print $Cortes_Act>><br>
 <<link "Turn Cortes On" "0 Emergency Controls">><<set $Cortes_Act="Yes">><</link>> or <<link "Turn Cortes Off" "0 Emergency Controls">><<set $Cortes_Act="No">><</link>><br>
@@ -16179,7 +16181,6 @@ Marina:  <<print $Marina_Act>><br>
 Olid:  <<print $Olid_Act>><br>
 <<link "Turn Olid On" "0 Emergency Controls">><<set $Olid_Act="Yes">><</link>> or <<link "Turn Olid Off" "0 Emergency Controls">><<set $Olid_Act="No">><</link>><br>
 <br>
-
 <b>Aztec Player Status (active or not):</b><br>
 Moctezuma: <<print $Moctezuma_Act>><br>
 <<link "Turn Moctezuma On" "0 Emergency Controls">><<set $Moctezuma_Act="Yes">><</link>> or <<link "Turn Moctezuma Off" "0 Emergency Controls">><<set $Moctezuma_Act="No">><</link>><br>
