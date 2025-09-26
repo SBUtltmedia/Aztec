@@ -10440,8 +10440,6 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
-When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
-<br>
 <</if>>
 
 <<else>>
@@ -11187,6 +11185,9 @@ You are waiting for Tlacaelel to input his decision.<br>
 
 :: The Library [Done] {"position":"3875,1275","size":"100,100"}
 <<liveblock>>
+
+Hello!<br>
+<br>
 
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
 <br>
