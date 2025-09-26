@@ -19,7 +19,16 @@ font-family: 'Myriad Pro', sans-serif;
 font-size: 2.5rem;
 font-weight: 400;
 }
-
+#frame { width: 69rem; height: 38.7rem; border: 1px solid black; }
+    #frame {
+        -ms-zoom: 0.75;
+        -moz-transform: scale(0.75);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.75);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(1);
+        -webkit-transform-origin: 50% 50%;
+    }
 .blur{
 /* animation-duration: .2s;
 animation-name: blur;
