@@ -10305,7 +10305,7 @@ You treat your guests to a warm meal and they settle in to recount their own ver
 <br>
 You already fought with Cortes at the coast and your hand is now strengthened by the cannons you won in that battle, but will you put your lives on the line for these strangers again? Is this your opportunity to finally defeat your Mexica enemies once and for all? <br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<set $Tlax_Final_Dec="Span">><</link>>.<br>
 <br>
@@ -10313,8 +10313,7 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<set $Tlax_Final_Dec="Alone">><</link>>.<br>
 <br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the <<link "Spaniards cannot possibly escape" "Tlaxcala Sides with the Aztecs">><<set $Tlax_Final_Dec="Aztecs">><</link>>. <br>
-<br>
+
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
 <<elseif $Tlax_Alliance is "Home">>
@@ -10324,7 +10323,7 @@ You treat your guests to a warm meal and they settle in to recount their own ver
 <br>
 The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<set $Tlax_Final_Dec="Span">><</link>>.<br>
 <br>
@@ -10332,8 +10331,7 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<set $Tlax_Final_Dec="Alone">><</link>>.<br>
 <br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape <<link "Spaniards cannot possibly escape" "Tlaxcala Sides with the Aztecs">><<set $Tlax_Final_Dec="Aztecs">><</link>>. <br>
-<br>
+
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
 <</if>>
@@ -10346,7 +10344,7 @@ You treat your guests to a warm meal and they settle in to recount their own ver
 <br>
 You already fought with Cortes at the coast and your hand is now strengthened by the cannons you won in that battle, but will you put your lives on the line for these strangers again? Is this your opportunity to finally defeat your Mexica enemies once and for all? <br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
 <br>
@@ -10354,8 +10352,7 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
 <br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape. <br>
-<br>
+
 When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
 <br>
 <<elseif $Tlax_Alliance is "Home">>
@@ -10365,7 +10362,7 @@ You treat your guests to a warm meal and they settle in to recount their own ver
 <br>
 The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
 <br>
@@ -10373,8 +10370,7 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
 <br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape. <br>
-<br>
+
 When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
 <br>
 <</if>>
@@ -10408,15 +10404,13 @@ They go on to recount the events that transpired after you left the city. When t
 <br>
 The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<set $Tlax_Final_Dec="Span">><</link>>.<br>
 <br>
 <b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and <<link "restore order to your world" "Tlaxcala Attacks the Spaniards">><<set $Tlax_Final_Dec="AttackSpan">><</link>>.<br>
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<set $Tlax_Final_Dec="Alone">><</link>>.<br>
-<br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape <<link "Spaniards cannot possibly escape" "Tlaxcala Sides with the Aztecs">><<set $Tlax_Final_Dec="Aztecs">><</link>>. <br>
 <br>
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
@@ -10430,15 +10424,13 @@ They go on to recount the events that transpired after you left the city. When t
 <br>
 The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<set $Tlax_Final_Dec="Span">><</link>>.<br>
 <br>
 <b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and <<link "restore order to your world" "Tlaxcala Attacks the Spaniards">><<set $Tlax_Final_Dec="AttackSpan">><</link>>.<br>
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<set $Tlax_Final_Dec="Alone">><</link>>.<br>
-<br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape <<link "Spaniards cannot possibly escape" "Tlaxcala Sides with the Aztecs">><<set $Tlax_Final_Dec="Aztecs">><</link>>. <br>
 <br>
 When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
 <br>
@@ -10454,7 +10446,7 @@ They go on to recount the events that transpired after you left the city. When t
 <br>
 The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
 <br>
@@ -10462,8 +10454,7 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
 <br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape. <br>
-<br>
+
 When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
 <br>
 
@@ -10476,7 +10467,7 @@ They go on to recount the events that transpired after you left the city. When t
 <br>
 The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
 <br>
-Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
 <br>
 <b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
 <br>
@@ -10484,8 +10475,7 @@ Go to the Tlaxcalan discussion board and weigh your options. You have 4 choices:
 <br>
 <b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
 <br>
-<b>Option 4:</b> Lie to the Spaniards to trick them into complacency. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you join forces with your historical enemies, the foreigners won't stand a chance. You will promise support and then send word to the Mexica, laying a trap that the Spaniards cannot possibly escape. <br>
-<br>
+
 When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
 <br>
 <</if>>
