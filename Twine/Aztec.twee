@@ -2853,6 +2853,13 @@ The battle is like nothing you've seen before. The stakes are high and this will
 
 
 :: 4 Back to the Library Yet Again {"position":"2300,8675","size":"100,100"}
+Total Spanish players: <<print $Span_Tot_Play>><br>
+<br>
+Total Aztec Players: <<print $Aztec_Tot_Play>><br>
+<br>
+Total Tlaxcalan Players:  <<print $Tlax_Tot_Play>><br>
+<br>
+
 Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an 'A' student, she didn't seem surprised that you would want to get ahead.<br>
 <br>
 Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there's the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].<br>
