@@ -1,40 +1,55 @@
-import fs from 'fs'
-import webstack from '../Webstack.js'
-import '../tweeGaze.js'
+import fs from 'fs';
+import webstack from '../Webstack.js';
+import '../tweeGaze.js';
 import { createRequire } from "module";
+import { registerSharedRoutes, returnTwine } from '../sharedRoutes.js';
+
 const require = createRequire(import.meta.url);
 const configObj = require('../config.json');
 
-const { port, twinePath } = configObj.serverconf;
+const { port, twinePath, githubToken, githubUser, githubRepo, fileName, localAppIndex } = configObj.serverconf;
 
-// Gets environment variables from Heroku. Otherwise, get them locally from the config file.
-const PORT = process.env.PORT || port
+// Use the same server configuration logic
+const PORT = process.env.PORT || port;
 const TWINE_PATH = process.env.twinePath || twinePath;
-const appID = process.env.appID || 1
-const { app } = new webstack(PORT, appID).get();
+const appID = process.env.appIndex || localAppIndex || 1;
+const FILENAME = process.env.fileName || fileName;
+const GITHUBTOKEN = process.env.githubToken || githubToken;
+const GITHUBUSER = process.env.githubUser || githubUser;
+const GITHUBREPO = process.env.githubRepo || githubRepo;
+
+const SERVERCONF = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": FILENAME, "appIndex": appID };
+
+// Create a single webstack instance to access the shared state
+const webstackInstance = new webstack(SERVERCONF);
+const { app } = webstackInstance.get();
 const htmlTemplate = 'login/index.html';
+
+// Register shared routes (action, updateGit, dump)
+registerSharedRoutes(app, webstackInstance);
 
 // Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
-	//userData is info from discord
-	const userData = query;
+	const { nick, id } = query;
 
-	if (userData.nick) {
-		return returnTwine(userData, response);
+	if (nick && id) {
+        // Construct a user object similar to the discord one
+        const authData = {
+            id: id,
+            nick: nick,
+            user: {
+                username: nick
+            }
+        };
+		// Pass the full game state to the twine file
+		return returnTwine(
+			{ gameState: webstackInstance.serverStore.getState(), authData: authData },
+			response,
+			TWINE_PATH
+		);
 	}
-
 	else {
-		let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
-
+		let htmlContents = fs.readFileSync(htmlTemplate, 'utf8');
 		response.send(htmlContents);
 	}
 });
-
-function returnTwine(userData, response) {
-	let userDataScript=`
-		<script>let userData=${JSON.stringify(userData)}</script>
-	`
-	let file = TWINE_PATH
-	let fileContents = fs.readFileSync(file)
-	return response.send(`${fileContents} ${userDataScript}`);
-}

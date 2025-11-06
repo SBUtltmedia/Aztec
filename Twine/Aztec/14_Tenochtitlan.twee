@@ -1,0 +1,51 @@
+:: Into Tenochtitlan {"position":"4375,6525","size":"100,100"}
+<<liveblock>>
+Double-click this passage to edit it.
+
+
+<</liveblock>>
+
+
+
+:: Smallpox in Tenochtitlán {"position":"2575,12025","size":"100,100"}
+<<liveblock>>
+<<if $Hostage_Exch is "Yes">>
+They are finally gone. For seven months, the strangers occupied your city. For seven months, their presence dominated life in Tenochtitlán. Rather than celebrate, your friends and neighbors breathe a sigh of relief, thankful to reclaim the city.<br>
+<br>
+This respite is short-lived, however, for it's not long before a new enemy enters the city. Though invisible, this enemy is deadly and it rains death upon the people of Tenochtitlán. You've never seen a sickness like this before, one that kills almost everyone it touches. This can only be a curse from the Gods!<br>
+<br>
+The sickness lasts for many moons and by the time it finally leaves, only half the population remains.<br>
+<br>
+
+<<elseif $Hostage_Exch is "No">>
+They are finally gone. For seven months, the strangers occupied your city. For seven months, their presence dominated life in Tenochtitlán. But now you have cut them down! Those who escaped with their lives must cower in fear at the strength of the mighty Mexica! You have suffered your own losses, however, and now it is time to mourn the dead. <br>
+<br>
+Little could you have imagined that you would soon be mourning many more, for it's not long before a new enemy enters the city. Though invisible, this enemy is deadly and it rains death upon the people of Tenochtitlán. You've never seen a sickness like this before, one that kills almost everyone it touches. This can only be a curse from the Gods!<br>
+<br>
+The sickness lasts for many moons and by the time it finally leaves, only half the population remains.<br>
+<br>
+<</if>>
+
+<<if $Tlax_Final_Dec eq "" or ndef $Tlax_Final_Dec>>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<br>
+You are waiting for <<print $Tlax_Leader>> to make a decision.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Span">>
+Rumors from the mountains begin to [[trickle in|Tlaxcala helps the Spaniards]].<br>
+<br>
+<<elseif $Tlax_Final_Dec is "AttackSpan">>
+Rumors from the mountains begin to [[trickle in|Battle Outcome Spaniards Versus Tlaxcalans]].<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Alone">>
+Rumors from the mountains begin to [[trickle in|Tlaxcala Does Nothing Spaniards Fight Aztecs Alone]].<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+Rumors from the mountains begin to [[trickle in|Tlaxcala Sides with the Aztecs]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+

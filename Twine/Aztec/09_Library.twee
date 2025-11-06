@@ -1,0 +1,328 @@
+:: 4 Back to the Library Yet Again {"position":"2300,8675","size":"100,100"}
+Total Spanish players: <<print $Span_Tot_Play>><br>
+<br>
+Total Aztec Players: <<print $Aztec_Tot_Play>><br>
+<br>
+Total Tlaxcalan Players:  <<print $Tlax_Tot_Play>><br>
+<br>
+
+Your plan worked! It's only been two days since you last woke up in the library, but you convinced your history teacher to let you start the assignment early. Since you're now an 'A' student, she didn't seem surprised that you would want to get ahead.<br>
+<br>
+Assignment in hand, you make a beeline for the library. You head for the top floor, round the corner, and there's the door! Eager to get back to Tenochtitlán, you slip inside and flop out in the chair. You close your eyes and [[fall into a deep sleep|Waking up 6 months later]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: No Library Door Once Again {"position":"2300,8550","size":"100,100"}
+<<liveblock>>
+After a full day of classes, you head back to the library. You're pretty sure you know how this whole thing works by now and, since your history teacher didn't give you any new assignments, you don't expect to find the door. You round the corner in the library and, as expected, the door isn't there. <br>
+<br>
+Even though you knew this was going to happen, you can't help but feel disappointed. Tenochtitlán is unlike anything you've ever imagined and you're dying to get back there. You go online and find your history syllabus, wondering when your next assignment is due. Much to your dismay, it's two weeks until you'll get your next assignment. You've never been so eager to get homework in your life! <br>
+<br>
+You trudge home wondering how you can possibly wait so long. Maybe if you tell your professor you want to get a headstart, she'll give you the assignment early.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: 3 Return to the Library {"position":"2300,5775","size":"100,100"}
+<<liveblock>>
+<<audio "Library" play>>
+
+You've stopped by the library multiple times a day for the last two weeks, but the door has yet to appear. You try not to obsess about it this time, because last time this happened it nearly drove you crazy. That's easier said than done, however, because you're dying to know what happens next! You've become invested in this dream you've been having and you're getting desperate to go back.<br>
+<br>
+This afternoon your history professor gave you another assignment and you wonder if this might just be the key to finding that door. After all, both times you found it before you had just been given a new history assignment. Both times you woke up with those assignments complete. And both times, you got As!<br>
+<br> 
+
+<<switch $users[$role]["faction"]>>
+<<case "Aztecs">>
+You hurry toward the library, make your way to the top floor, and there it is: the magical door. You can barely contain your excitement as you enter the room and close the door quietly behind you. You know the routine by now. You set your assignment on the table beside you, sink into that big cozy chair, and <<link "drift into a deep sleep" "Discussing the Omens">><<th-set '$Aztecs_currentMap' to 1>><</link>>.<br>
+<br>
+
+<<case "Spaniards">>
+You hurry toward the library, make your way to the top floor, and there it is: the magical door. You can barely contain your excitement as you enter the room and close the door quietly behind you. You know the routine by now. You set your assignment on the table beside you, sink into that big cozy chair, and <<link "drift into a deep sleep" "Spaniards Descend into the Valley">><<th-set '$Spaniards_currentMap' to 8>><</link>>.<br>
+<br>
+<<case "Tlaxcalans">>
+You hurry toward the library, make your way to the top floor, and there it is: the magical door. You can barely contain your excitement as you enter the room and close the door quietly behind you. You know the routine by now. You set your assignment on the table beside you, sink into that big cozy chair, and <<link "drift into a deep sleep" "Tlaxcalans Face a Choice">><<th-set '$Tlaxcalans_currentMap' to 5>><</link>>.<br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: 2 Return to the Library [Done] {"position":"1975,2700","size":"100,100"}
+<<liveblock>>
+<<audio "Library" play>>
+
+A week has passed and every day you've gone back to the library after class, looking for the mysterious room. You've explored every inch of the building, growing increasingly desperate with every day that goes by. Every night you've lain awake for hours, trying to figure out what happened and whether you just imagined the whole thing. You wonder if you're losing your mind, because it sure feels like it.<br>
+<br>
+Your history teacher didn't help the situation when she handed back your assignment today. It turns out you really did write it. And you got an A. You now have another assignment due next week and you're extra stressed because now the bar is way too high! Your teacher is going to expect A-level work from you every time and you're just not sure it's in you.<br>
+<br>
+It's the end of the day and you know you should go home and get to work on this new assignment, but you just can't stop yourself from going back to the library. It's become an obsession. Just like every other day for the last week, you start on the top floor in the back corner. You brace yourself for the worst, knowing that you won't find what you were looking for, but there it is! You can barely believe your eyes. <br>
+<br>
+You carefully reach for the door knob, afraid that it will disappear before you can grasp it. But it doesn't! You turn the handle, give the door a good pull, and it opens to reveal the room exactly as you remember it: books piled high, overstuffed chair, one small table. How is this even happening? This can't be real...can it?<br>
+<br>
+<<switch $users[$role]["faction"]>>
+<<case "Tlaxcalans">>
+You make your way to the chair and you hear the door swing shut behind you. You sink down into the cushions and close your eyes, confused and relieved all at the same time. Without meaning to, <<link "you quickly drift off to sleep" "Tlaxcalans Prepare for a Council Meeting">><<th-set '$Tlaxcalans_currentMap' to 1>><</link>>.<br>
+<br>
+<<case "Aztecs">>
+You make your way to the chair and you hear the door swing shut behind you. You sink down into the cushions and close your eyes, confused and relieved all at the same time. Without meaning to, <<link "you quickly drift off to sleep" "Aztecs Prepare for a Council Meeting">><<th-set '$Aztecs_currentMap' to 1>><</link>>.<br>
+<br>
+<</switch>>
+<<switch $role>>
+<<case "Marina">>
+You make your way to the chair and you hear the door swing shut behind you. You sink down into the cushions and close your eyes, confused and relieved all at the same time. Without meaning to, [[you quickly drift off to sleep|Marina's Choice]].<br>
+<br>
+<<case "Cortes" or "Alvarado" or "Aguilar" or "Garrido" or "Olid">>
+You make your way to the chair and you hear the door swing shut behind you. You sink down into the cushions and close your eyes, confused and relieved all at the same time. Without meaning to, <<link "you quickly drift off to sleep" "Spaniards wake up at camp">><<th-set '$Spaniards_currentMap' to 5>><</link>>.<br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: The Library [Done] {"position":"3875,1275","size":"100,100"}
+<<liveblock>>
+
+It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
+<br>
+It's 7 pm and the library is more crowded than usual. It looks like you're not the only one with a mountain of work to do this week! There's no way you'll be able to focus in the midst of so many people. Maybe the top floor is quieter. You head upstairs towards the study carrels, but they're all taken. It's dead quiet up here, but there's nowhere to work. You begin wandering down unfamiliar hallways, poking your head into all the different rooms, but none of them work. You're beginning to get frustrated when you notice a door you've never seen before. It's tucked into an alcove in the very back corner of the building. You decide to check this one last spot before you give up and join the masses downstairs. <br>
+<br>
+The door sticks as you try to open it, but you can tell it's not locked. You give it a pull and it creaks open, revealing a tiny room piled high with books and a single, overstuffed chair. There's not a soul to be found. When you close the door behind you, you can't even hear the sound of the H-VAC that hums through the rest of the building. This is perfect. You can't believe your luck! <br>
+<br>
+You unload your books and make yourself comfortable--maybe a little too comfortable. You get to work on your assignment, but within a matter of minutes your eyes get heavy. You struggle to stay awake but it's impossible to focus. Maybe a ten-minute nap will help. You tell yourself that if you just get it out of your system, you'll be good to go for the rest of the night. You close your eyes and quickly slip into a deep sleep. <br>
+<br>
+Suddenly, <<link "you're startled by a loud noise" "Character assignment and points selection">><<th-set '$Spaniards_currentMap' to 1>><<th-set '$Tlaxcalans_currentMap' to 1>><<th-set '$Aztecs_currentMap' to 1>><</link>>!<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Waking up in the Library on a Full Belly {"position":"2300,8425","size":"100,100"}
+<<liveblock>>
+You wake to find yourself back in the library, sprawled across the comfy chair. You missed dinner, but somehow your belly feels strangely full. You swear you can still taste the pulque on your lips, but that can't possibly be true... can it? <br>
+<br>
+You look at the stack of papers on the floor, and, sure enough, there's your latest history assignment, complete and ready to hand in. Buoyed by the knowledge that another A grade is coming your way, you pack up your things and head home. <br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Waking up in the library [Done Breaks] {"position":"1975,2450","size":"100,100"}
+<<liveblock>>
+You slowly pull yourself awake.  It takes real effort, you were sleeping so deeply.  You're confused, there is nothing worse than waking up mid-dream. <br>
+<br>
+What is that noise? Nothing makes sense...<br>
+<br>
+You shake your head and catch sight of something glowing on the table next to you. <br>
+<br>
+Your phone. It is full of texts from your friends. Where have you been? Is your history assignment done?<br>
+<br>
+Your heart starts to race. You look around the room.  The library! Your assignment!  You grab your phone from the table next to you, class starts in just an hour! What are you going to do? <br>
+<br>
+It all comes flooding back.  That dream was weird, so realistic, but you came here to get your history paper done. And now you've lost the whole night!<br>
+<br>
+You start to gather up your things frantically, praying that somehow you'll find the time to complete the assignment. You knock the pile of books off the little side table next to you, and a neatly stapled stack of paper floats gently to the floor.  <br>
+<br>
+You grab it, you look, you start reading.  Your history assignment, it is done!  Did you complete it before you fell asleep? You read more. This is good, like really good! You wrote this? You are pretty sure you are getting an A!<br>
+<br>
+You take a deep breath, you gather your things up calmly. You can't believe it. You don't remember writing this brilliant paper, but here it is, done. And you feel rested, if a bit disoriented.  Everything is going to be alright after all! You text your friends.  You'll meet them in class.<br>
+<br>
+As you close the door of the weird little room behind you, you know <<link "you'll be back" "return to the library_no door">><<th-set '$Tlaxcalans_currentMap' to 1000>><<th-set '$Aztecs_currentMap' to 1000>><<th-set '$Spaniards_currentMap' to 1000>><</link>>.  You've done your best work here, and that big red chair is so cozy!<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Waking up in the library 3 [Done] {"position":"2300,5550","size":"100,100"}
+<<liveblock>>
+You wake from a fitful sleep, disturbed by dreams of battle. When you open your eyes, you are surprised to find that you're not on the battlefield but back in the library once again. <br>
+<br>
+You know the drill by now and you look immediately to the pile of papers that lies at your feet. Sure enough, sitting on top of the stack is your history assignment, finished. You read it over and can't believe your luck. This one might be even better than the last!<br>
+<br>
+You check your phone and see you still have plenty of time before class starts, so you make your way home. You smell alright, but you feel like you've never needed a shower so badly in your life!<br>
+<br>
+All the way home, you marvel at your luck and ignore the nagging feeling at the back of your mind that wonders if it's okay to hand in this assignment that you don't remember writing. You must have written it though, right? There's no other explanation. <br>
+<br>
+You decide that you'll hand the assignment in this time and <<link "go back later to investigate" "return to the library_no door">><<th-set '$Tlaxcalans_currentMap' to 1000>><<th-set '$Aztecs_currentMap' to 1000>><<th-set '$Spaniards_currentMap' to 1000>><</link>>.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: return to the library_no door [Done Breaks] {"position":"1975,2575","size":"100,100"}
+<<liveblock>>
+You made it through a full day of classes, but it was torture. You couldn't concentrate on anything because all you could think about was that mysterious room and the history assignment you don't remember writing. I mean, you must have written it, right? You feel a little guilty about handing it in, but you decide not to think too hard about that.<br>
+<br>
+It's now late afternoon and you're finally free for the day. You hurry back to the library, excited to revisit the mystery room and its big comfy chair. You hope that if you look closely, you'll find some clue to what happened...some indication that you really did write that killer paper.<br>
+<br>
+You arrive on the top floor and round the corner but you can't find the door! You swear this is exactly where you found it before, but it's not here. Confused, you scour every corner of the library to no avail. The door is nowhere to be found. You head home feeling deeply unsettled.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: A Rude Awakening in the Library {"position":"350,4100","size":"100,100"}
+You awake with a start, unsure of your surroundings. Your heart is racing, and you're disoriented. The library! How did you get back here? This wasn't supposed to happen now! Your finished assignment lays at your feet, but you hardly care. Desperate to go back, you close your eyes and will yourself to go to sleep. It doesn't work. You need to know what's going to happen! You're so frustrated you could scream. <br>
+<br>
+After an hour, you accept defeat and leave. You swing by your history teacher's office on the way, handing in your assignment. You're sure she's going to give you another A, but that's the last thing [[on your mind at this point|A Desperate Return to the Library]].<br>
+<br>
+
+
+
+:: A Desperate Return to the Library {"position":"475,4100","size":"100,100"}
+You thought you were so clever when you got your last assignment early, but now you're desperate to get back to Tenochtitlán and there's nothing to hand in. <br>
+<br>
+All you can think about is getting back into the mysterious room and waking up in Mexico. You're not sleeping. You can hardly pay attention in class. You go to the library every day for two weeks, even though you know you won't see the door. And you don't. The staff are starting to look at you funny, and you're pretty sure the security guard was following you last time you were there. You feel like you're losing your mind, but all you can do is wait. And wait. And wait.<br>
+<br>
+
+
+
+:: 5 Last Nap in the Library {"position":"3200,12250","size":"100,100"}
+<<liveblock>>
+The day your history teacher hands out your next assignment, you can barely contain your excitement. You don't even wait for class to end before running out of class and heading to the library. You climb the stairs, round the corner, and there it is!<br>
+<br>
+
+
+<<if $Tlax_Final_Dec eq "Span">>
+As you sink into the chair, your adrenaline is pumping so hard you doubt you'll be able to fall asleep. The chair works its magic within seconds though, 
+
+<<switch $users[$role]["faction"]>>
+
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+<<if $Az_Ld_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+<<if $Cortes_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</switch>>
+
+
+<<elseif $Tlax_Final_Dec eq "Alone">>
+As you sink into the chair, your adrenaline is pumping so hard you doubt you'll be able to fall asleep. The chair works its magic within seconds though, 
+
+<<switch $users[$role]["faction"]>>
+
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+<<if $Az_Ld_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+<<if $Cortes_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+and you immediately drift <<link "into a deep slumber" "Final Battle Aztecs and Spaniards 1">><</link>>.<br>
+<br>
+<</switch>>
+
+<<elseif $Tlax_Final_Dec eq "Aztecs">>
+As you sink into the chair, your adrenaline is pumping so hard you doubt you'll be able to fall asleep. The chair works its magic within seconds though, 
+
+<<switch $users[$role]["faction"]>>
+
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+<<if $Az_Ld_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+<<if $Cortes_Dead is "Yes">>
+and you immediately drift [[into a deep slumber|Final Battle Purgatory]].<br>
+<br>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+<<else>>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+and you immediately drift <<link "into a deep slumber" "Final Battle 1">><</link>>.<br>
+<br>
+<</switch>>
+
+<</if>>
+
+
+
+<</liveblock>>
+
+

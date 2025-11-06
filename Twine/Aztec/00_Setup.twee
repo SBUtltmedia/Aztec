@@ -1,0 +1,300 @@
+:: StoryData
+{
+	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
+	"format": "SugarCube",
+	"format-version": "2.37.0-alpha.5",
+	"start": "The Library",
+	"tag-colors": {
+		"Breaks": "blue",
+		"Change-Title": "yellow",
+		"Coding-Problem": "red",
+		"Done": "green",
+		"New-Passage": "purple",
+		"Text-to-be-updated-by-Ashley": "orange"
+	},
+	"zoom": 1
+}
+
+
+
+:: Story Stylesheet [stylesheet]
+@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
+@import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+@import url(".initVars.json");
+@import url("Twine/style.css");
+
+
+
+:: Story JavaScript [script]
+Save.clear()
+Config.passages.nobr = true;
+
+Window.SugarCubeState = State;
+
+var urlPrefix="static/";
+let lockId= LoadScreen.lock() 
+
+importScripts([
+	'/socket.io/socket.io.js',
+	'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
+	`${urlPrefix}resize.js`,
+	`${urlPrefix}picker.js`,
+	`${urlPrefix}Client.js`,
+	`${urlPrefix}chatMessage.js`,
+	"https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js",
+	"https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js",
+	"https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+	]	
+)
+	.then(function() {
+			initTheyr({lockId,callback:LoadScreen.unlock});
+
+			// State = new Proxy(State, createHandler()); // DISABLED: Not used in server-authoritative model.
+			// Note: Server state updates are handled via the existing 'difference' event in Client.js
+
+	}
+);
+
+(function () {
+	"use strict";
+
+	$(document).on(":liveupdate", function () {
+		$(".macro-live").trigger(":liveupdateinternal");
+	});
+
+	Macro.add(['liveblock', 'lb'], {
+		tags: null,
+		handler: function handler() {
+			try {
+				var content = this.payload[0].contents.trim();
+				if (content) {
+					var $el = $("<span></span>").addClass("macro-live macro-live-block").wiki(content).appendTo(this.output);
+					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
+						$el.empty().wiki(content);
+
+					}));
+				}
+			} catch (ex) {
+				return this.error("bad evaluation: " + (_typeof(ex) === 'object' ? ex.message : ex));
+			}
+		}
+	});
+
+	Macro.add('userInfo', {
+		handler: function() {
+			let userId = this.args[0];
+			let role = this.args[1];
+			let color = this.args[2];
+			let  image = setup.getUserSvgPicture(role);
+			let character = this.args[3];
+			let discordId = this.args[4];
+			let 	content = `<div id="playerSpaceBetween"></div><div class = "player" id="playerInfo_`+role+`"><img class = "playerImage `+color+`" src = "`+image+`"><div class = "playerText"><div class="printUserRole">`+character+`</div><div class="printUserName"><a href="https://discordapp.com/users/`+userId+`" target="_blank">@`+discordId+`</a></div></div></div><div id="playerSpaceBetween"></div>`
+				$(this.output).wiki(content)
+		}
+	});
+
+	Macro.add('passageList', {
+		handler: function(){
+			
+			let content = `<<set _passages = Story.lookup()>>
+							<<set _sidePassages = {}>>
+							<<for _i, _p range _passages>>
+								<<set _key = _p.title.slice(0,30)>>
+								<<if _p.title.length > 30>>
+									<<set _key = _key + "...">>
+								<</if>>
+								<<set _sidePassages[_key] = _p.title>>
+							<</for>>`
+		}
+	})
+	
+
+	/*	Designates a global variable as an exeception, preventing it from being sent to other clients
+	 */
+	Macro.add('theyrException', {
+    handler: function() {
+			addTheyrException(this.args.full)
+    	}
+	});
+
+
+
+
+	Macro.add(['discord'], {
+		tags: null,
+		handler: function handler() {
+			try {
+				let message = this.payload[0].contents.trim();
+				let channel = this.payload[0].arguments;
+				$.post("/discordbot", {message, channel}, () => {});
+			} catch (e) {
+				return e;
+			}
+		}
+	});
+
+	/*
+	 * <<th-set>> macro - Server-authoritative state setter
+	 *
+	 * Usage:
+	 *   <<th-set '$variable' to value>>
+	 *   <<th-set '$user.score' to $user.score + 1>>
+	 *   <<th-set '$variable' += 5>>      (compound operators)
+	 *   <<th-set '$variable' -= 2>>
+	 *   <<th-set '$variable' *= 0.5>>
+	 *   <<th-set '$variable' /= 3>>
+	 *
+	 * This macro evaluates the expression on the client side, then sends
+	 * the result to the server as the authoritative value.
+	 */
+	Macro.add('th-set', {
+		skipArgs: true,
+		handler: function() {
+			// Use this.args.raw to get the unprocessed argument string
+			const rawArgs = this.args.raw.trim();
+
+			if (!rawArgs) {
+				return this.error('th-set macro requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>>');
+			}
+
+			let varPath, expression;
+
+			// Check for compound operators (+=, -=, *=, /=, %=)
+			const compoundMatch = rawArgs.match(/^(.+?)\s*([\+\-\*\/\%])=\s*(.+)$/);
+			if (compoundMatch) {
+				// Compound operator format: $variable += expression
+				varPath = compoundMatch[1].trim().replace(/^["']|["']$/g, '');
+				const operator = compoundMatch[2];
+				const rightSide = compoundMatch[3].trim();
+
+				// Convert compound operator to regular expression
+				// $var += 5  becomes  $var + 5
+				expression = varPath + ' ' + operator + ' ' + rightSide;
+			} else {
+				// Regular 'to' format: $variable to expression
+				const toMatch = rawArgs.match(/^(.+?)\s+to\s+(.+)$/);
+				if (!toMatch) {
+					return this.error('th-set macro requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>> (got: ' + rawArgs + ')');
+				}
+
+				// Extract variable path and expression
+				varPath = toMatch[1].trim().replace(/^["']|["']$/g, ''); // Remove quotes if present
+				expression = toMatch[2].trim();
+			}
+
+			// Evaluate the expression in the proper context
+			// We need to create a function that has access to State.variables
+			let value;
+			try {
+				// Strip $ prefix from variable references in the expression
+				// Convert $variableName to variableName for use within with(State.variables)
+				const processedExpression = expression.replace(/\$(\w+)/g, '$1');
+
+				// Create an evaluator function with State.variables in scope
+				const evalFunc = new Function('State', `
+					with (State.variables) {
+						return ${processedExpression};
+					}
+				`);
+				value = evalFunc(State);
+			} catch (e) {
+				return this.error('Failed to evaluate expression "' + expression + '": ' + e.message);
+			}
+
+			// Send the action to the server
+			// Send value as JSON string to preserve type information
+			$.post("/action", {
+				variable: varPath,
+				value: JSON.stringify(value)
+			}).fail(function(err) {
+				console.error('Failed to send action to server:', err);
+			});
+		}
+	});
+
+	/*
+	 * <<sendAction>> macro - Low-level server action sender
+	 *
+	 * Usage:
+	 *   <<sendAction "$variable" value>>
+	 *
+	 * This is a simpler macro for direct value assignment.
+	 * Unlike <<th-set>>, this evaluates arguments normally, so you can use dynamic paths.
+	 */
+	Macro.add('sendAction', {
+		handler: function() {
+			if (this.args.length < 2) {
+				return this.error('sendAction macro needs at least two arguments: variable path and value');
+			}
+			const varPath = this.args[0];
+			const varValue = this.args[1];
+
+			// Send the intended action to the server
+			// Send value as JSON string to preserve type information
+			$.post("/action", {
+				variable: varPath,
+				value: JSON.stringify(varValue)
+			}).fail(function(err) {
+				console.error('Failed to send action to server:', err);
+			});
+		}
+	});
+
+	/*
+	 * <<th-run-set>> macro - Run code locally then sync to server
+	 *
+	 * Usage:
+	 *   <<th-run-set '$variable'>>
+	 *     $variable = someExpression;
+	 *   <</th-run-set>>
+	 *
+	 * This runs arbitrary JavaScript code, then syncs the specified variable to server.
+	 * Useful for complex operations like array modifications or nested object updates.
+	 */
+	Macro.add('th-run-set', {
+		tags: null,
+		handler: function() {
+			if (this.args.length < 1) {
+				return this.error('th-run-set macro needs a variable path argument');
+			}
+
+			const varPath = this.args[0];
+			const code = this.payload[0].contents.trim();
+
+			try {
+				// Execute the code in State.variables context
+				const evalFunc = new Function('State', `
+					with (State.variables) {
+						${code}
+					}
+				`);
+				evalFunc(State);
+
+				// Get the updated value
+				const path = varPath.substring(1); // Remove '$'
+				const parts = path.split(/[\[\]\."]/).filter(p => p);
+				let value = State.variables;
+				for (const part of parts) {
+					value = value[part];
+				}
+
+				// Send to server
+				$.post("/action", {
+					variable: varPath,
+					value: JSON.stringify(value)
+				}).fail(function(err) {
+					console.error('Failed to send action to server:', err);
+				});
+			} catch (e) {
+				return this.error('Failed to execute code: ' + e.message);
+			}
+		}
+	});
+})();
+
+

@@ -1,0 +1,1397 @@
+Unity Editor version:    6000.0.23f1 (1c4764c07fb4)
+Branch:                  6000.0/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 15.7.1 (Build 24G231)
+Darwin version:          24.6.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        32768 MB
+Using pre-set license
+Pro License: YES
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+/Users/pstdenis/Desktop/Aztec/unity
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+51112
+-job-worker-count
+7
+-background-job-worker-count
+8
+-asset-garbage-collectors
+1
+Successfully changed project path to: /Users/pstdenis/Desktop/Aztec/unity
+/Users/pstdenis/Desktop/Aztec/unity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [140704468201472]  Target information:
+
+Player connection [140704468201472]  * "[IP] 129.49.17.178 [Port] 0 [Flags] 2 [Guid] 1276664096 [EditorId] 1276664096 [Version] 1048832 [Id] OSXEditor(0,huey-tll) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [140704468201472] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [140704468201472] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 1.21 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.23f1 (1c4764c07fb4)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/pstdenis/Desktop/Aztec/unity/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+iMac preferred device: AMD Radeon Pro Vega 56 (high power)
+Metal devices available: 1
+0: AMD Radeon Pro Vega 56 (high power)
+Using device AMD Radeon Pro Vega 56 (high power)
+Initializing Metal device caps: AMD Radeon Pro Vega 56
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56482
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.004685 seconds.
+- Loaded All Assemblies, in  0.711 seconds
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.722 seconds
+Domain Reload Profiling: 1433ms
+	BeginReloadAssembly (242ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (2ms)
+	RebuildCommonClasses (71ms)
+	RebuildNativeTypeToScriptingClass (25ms)
+	initialDomainReloadingComplete (90ms)
+	LoadAllAssembliesAndSetupDomain (282ms)
+		LoadAssemblies (243ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (275ms)
+			TypeCache.Refresh (270ms)
+				TypeCache.ScanAssembly (248ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (722ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (673ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (62ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (11ms)
+			ProcessInitializeOnLoadAttributes (437ms)
+			ProcessInitializeOnLoadMethodAttributes (153ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.391 seconds
+Refreshing native plugins compatible for Editor in 0.11 ms, found 0 plugins.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.824 seconds
+Domain Reload Profiling: 2216ms
+	BeginReloadAssembly (1271ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (63ms)
+	RebuildCommonClasses (59ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (21ms)
+	LoadAllAssembliesAndSetupDomain (23ms)
+		LoadAssemblies (115ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (17ms)
+			TypeCache.Refresh (11ms)
+				TypeCache.ScanAssembly (5ms)
+			BuildScriptInfoCaches (2ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (825ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (508ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (14ms)
+			ProcessInitializeOnLoadAttributes (376ms)
+			ProcessInitializeOnLoadMethodAttributes (84ms)
+			AfterProcessingInitializeOnLoad (21ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Launching external process: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.16 seconds
+Refreshing native plugins compatible for Editor in 0.13 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 72 unused Assets / (67.6 KB). Loaded Objects now: 684.
+Memory consumption went from 82.4 MB to 82.3 MB.
+Total: 9.982190 ms (FindLiveObjects: 0.108060 ms CreateObjectMapping: 0.021775 ms MarkObjects: 9.386214 ms  DeleteObjects: 0.464309 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 90946.100683 seconds.
+  path: Assets/Narrative/PassageAssets/3 Return to the Library.asset
+  artifactKey: Guid(d02717d34f08b47faaf2b7c82821eb4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/3 Return to the Library.asset using Guid(d02717d34f08b47faaf2b7c82821eb4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '223a373fba9d59a035ae89998674d779') in 0.043938791 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000289 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs hear rumors of strange men on the coast and send a delegation.asset
+  artifactKey: Guid(c94274a6be2e84521982ce3de4a72ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs hear rumors of strange men on the coast and send a delegation.asset using Guid(c94274a6be2e84521982ce3de4a72ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b2bc2233416e8bb7c7a7ba12959f7c4e') in 0.001853724 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000141 seconds.
+  path: Assets/Narrative/PassageAssets/Aztec Leader Dies and Aztecs Choose a Leader Riot.asset
+  artifactKey: Guid(c5fa64cc492f4486184cf66463ff9959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztec Leader Dies and Aztecs Choose a Leader Riot.asset using Guid(c5fa64cc492f4486184cf66463ff9959) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '81fa3d6e147a2e53dcfd475d38b2efa5') in 0.0010993 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000102 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs Lay a Trap in Cholula.asset
+  artifactKey: Guid(392e4dc61236640e082fde5d697793b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs Lay a Trap in Cholula.asset using Guid(392e4dc61236640e082fde5d697793b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6cb67e001237bce6ec125d3dd680eb45') in 0.00145568 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000068 seconds.
+  path: Assets/Narrative/PassageAssets/After the Final Battle.asset
+  artifactKey: Guid(e98747a0297f6449d805b68d9e10984f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/After the Final Battle.asset using Guid(e98747a0297f6449d805b68d9e10984f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '32d50312508f9ea2e170926a7d7e8034') in 0.00133732 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000093 seconds.
+  path: Assets/Narrative/PassageAssets/Azcapotzalco 2.asset
+  artifactKey: Guid(c6acbe0916d764b3ba07ae5e23ed3163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Azcapotzalco 2.asset using Guid(c6acbe0916d764b3ba07ae5e23ed3163) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd371ff44204f204999e342fae64d748b') in 0.000940837 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000098 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs Prepare for a Council Meeting.asset
+  artifactKey: Guid(33bf0e6ec27b841c18f01dd2c4de8fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs Prepare for a Council Meeting.asset using Guid(33bf0e6ec27b841c18f01dd2c4de8fe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2f52d2cd9e786aedb64a266a01b1f302') in 0.001288153 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000071 seconds.
+  path: Assets/Narrative/PassageAssets/Aguilar Answers.asset
+  artifactKey: Guid(df2890e2648764ed493523f2b704f101) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aguilar Answers.asset using Guid(df2890e2648764ed493523f2b704f101) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '45760c317e09abe913a9a0ea59d573a8') in 0.000900322 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000124 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán.asset
+  artifactKey: Guid(4f2eca3be7f3d4efaa47c103a10c9540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán.asset using Guid(4f2eca3be7f3d4efaa47c103a10c9540) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c5beeca059e6e99ff43017eb0a462b41') in 0.000806495 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000145 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory.asset
+  artifactKey: Guid(3f234b0965ccb4c8fa5cd90ccc93dc2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory.asset using Guid(3f234b0965ccb4c8fa5cd90ccc93dc2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '47f2f1b950c1dc4a45115dcd7b88ee9f') in 0.00106867 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000121 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs Return to Tenochtitlan to report.asset
+  artifactKey: Guid(aad1cdf2b44c34629964fa61614f9eab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs Return to Tenochtitlan to report.asset using Guid(aad1cdf2b44c34629964fa61614f9eab) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fee260000d9f8da9b3de14b193f69e04') in 0.001198214 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Narrative/PassageAssets/A Rude Awakening in the Library.asset
+  artifactKey: Guid(1999e8e805cf4474691075461d81a291) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/A Rude Awakening in the Library.asset using Guid(1999e8e805cf4474691075461d81a291) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'de33ee3aef271dd9f2a42aac1898e66e') in 0.001435108 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000114 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs Riot.asset
+  artifactKey: Guid(e46a50447ca704581854bb57d884d497) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs Riot.asset using Guid(e46a50447ca704581854bb57d884d497) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bc4ba6f687c900478e59af2562581a7a') in 0.001031793 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Narrative/PassageAssets/A Tlaxcalan Nap.asset
+  artifactKey: Guid(c1cb16532207e4d5892f78b45fbc5af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/A Tlaxcalan Nap.asset using Guid(c1cb16532207e4d5892f78b45fbc5af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '75ccdd2c66da05fc12d98fc8e377b6d3') in 0.00088524 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000102 seconds.
+  path: Assets/Narrative/PassageAssets/Battle on the Causeway_ Tlaxcala sides with Aztecs.asset
+  artifactKey: Guid(6138dd36e17774666b93938feaa02c91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle on the Causeway_ Tlaxcala sides with Aztecs.asset using Guid(6138dd36e17774666b93938feaa02c91) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9e4972676b2bf4638b6b2e37ecbd9f11') in 0.001172908 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000239 seconds.
+  path: Assets/Narrative/PassageAssets/Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2.asset
+  artifactKey: Guid(4ea4f903dc4dd455b8bbc36c1f17b2d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle Outcome Aztecs and Tlaxcalans versus Spaniards 2.asset using Guid(4ea4f903dc4dd455b8bbc36c1f17b2d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '972bd08a45a46c558e7b90d65f8017b5') in 0.00095105 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000130 seconds.
+  path: Assets/Narrative/PassageAssets/Battle on the Causeway_ Spaniards Attack.asset
+  artifactKey: Guid(2a4f0fc3ed2b44453ac2eb4c2a964710) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle on the Causeway_ Spaniards Attack.asset using Guid(2a4f0fc3ed2b44453ac2eb4c2a964710) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd69c93f629bfffb0c23af33a4b8b9603') in 0.001181609 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000112 seconds.
+  path: Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Spaniards 2.asset
+  artifactKey: Guid(38bcabc7448fb406188dbb0b798029b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Spaniards 2.asset using Guid(38bcabc7448fb406188dbb0b798029b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '50768751e579550e6e9b3d364268ecf8') in 0.001126695 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000096 seconds.
+  path: Assets/Narrative/PassageAssets/Aztec Leader Lives and Aztecs Choose a Leader Riot.asset
+  artifactKey: Guid(60ccd24d8fb0a4aa7acf4fae726fe934) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztec Leader Lives and Aztecs Choose a Leader Riot.asset using Guid(60ccd24d8fb0a4aa7acf4fae726fe934) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '43f47f67e06c830f40e897aba2d4bc91') in 0.001043754 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000115 seconds.
+  path: Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Spaniards 3b.asset
+  artifactKey: Guid(631e7204917284b70b6cd9e7924f4b6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Spaniards 3b.asset using Guid(631e7204917284b70b6cd9e7924f4b6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '30f850c453b1037dd71a768f151f84eb') in 0.001307061 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000171 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs Hold a Council Meeting.asset
+  artifactKey: Guid(0cf55442fcb234b10a4dabc1e88b9e92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs Hold a Council Meeting.asset using Guid(0cf55442fcb234b10a4dabc1e88b9e92) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5dab989a863507e94c7d3c30012441d8') in 0.00138913 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001025 seconds.
+  path: Assets/Narrative/PassageAssets/Aztecs Gather Intelligence in Cholula.asset
+  artifactKey: Guid(2acae752f21c14e2aa1ac301784e94c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aztecs Gather Intelligence in Cholula.asset using Guid(2acae752f21c14e2aa1ac301784e94c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9225cb13f3e8922c8f6c1c8c28a9f84b') in 0.001269484 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Spaniards.asset
+  artifactKey: Guid(a73e81016f4f2462c920897c4554453e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Spaniards.asset using Guid(a73e81016f4f2462c920897c4554453e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e655784d7880737203edb19e9ee1f695') in 0.001353639 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000125 seconds.
+  path: Assets/Narrative/PassageAssets/Aguilar's Contribution.asset
+  artifactKey: Guid(6555f70f66e3a4c46b9d4ce2b7d206c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Aguilar's Contribution.asset using Guid(6555f70f66e3a4c46b9d4ce2b7d206c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '002dc689cbfb6d033e125161404963b8') in 0.001507858 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.529421 seconds.
+  path: Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Tlaxcalans 2.asset
+  artifactKey: Guid(913bf579899c04fed9423767866b5b86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Tlaxcalans 2.asset using Guid(913bf579899c04fed9423767866b5b86) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '31bd66610ef3e153e928d88d01b06dc0') in 0.001720517 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000068 seconds.
+  path: Assets/Narrative/PassageAssets/Battle Outcome Spaniards Versus Tlaxcalans 2.asset
+  artifactKey: Guid(c6f0e01a273f446bbb91c077c87d38dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle Outcome Spaniards Versus Tlaxcalans 2.asset using Guid(c6f0e01a273f446bbb91c077c87d38dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ed091d4665cbf2e6ee9e5679cadce452') in 0.001286263 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000089 seconds.
+  path: Assets/Narrative/PassageAssets/Burning the Ships_ No Mutiny.asset
+  artifactKey: Guid(bc0b1494c2c5447b5b29c465c2cf0846) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Burning the Ships_ No Mutiny.asset using Guid(bc0b1494c2c5447b5b29c465c2cf0846) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '81c2805e7ce88fc8d7b3a6805ff7bc61') in 0.001712858 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Narrative/PassageAssets/Cholula Makes an Invitation.asset
+  artifactKey: Guid(71098fbf0b2c54ba8bc4e06350bbf80e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cholula Makes an Invitation.asset using Guid(71098fbf0b2c54ba8bc4e06350bbf80e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '03d33991cb2a8d8429474b6dad095428') in 0.001667495 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000091 seconds.
+  path: Assets/Narrative/PassageAssets/Cholula.asset
+  artifactKey: Guid(bc0a5eb95e60d460286a28b9d7e8751f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cholula.asset using Guid(bc0a5eb95e60d460286a28b9d7e8751f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '91679722ba51d7cdfd0aedfac74742b3') in 0.001358151 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/Narrative/PassageAssets/Cholulans Don't Attack.asset
+  artifactKey: Guid(7df4bbe77a85d4d64bba82925ba54067) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cholulans Don't Attack.asset using Guid(7df4bbe77a85d4d64bba82925ba54067) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '92432857a9a2600bc1c0534ede9d7dc8') in 0.002045756 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000093 seconds.
+  path: Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Tlaxcalans 3.asset
+  artifactKey: Guid(65e0ac30b836c4a1d9d427f839bf7b13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Battle Outcome Aztecs Versus Tlaxcalans 3.asset using Guid(65e0ac30b836c4a1d9d427f839bf7b13) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4d6c3af1e1906336dff1890565592613') in 0.001560646 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Narrative/PassageAssets/Control_ Variables (UserId).asset
+  artifactKey: Guid(93bca967d53914416a5ee3ae98154b73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Control_ Variables (UserId).asset using Guid(93bca967d53914416a5ee3ae98154b73) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '620cad4da42a18adf397cd6d976f8183') in 0.002113768 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000249 seconds.
+  path: Assets/Narrative/PassageAssets/Cholulans Attack.asset
+  artifactKey: Guid(a1d171cd2ce3c451691cd206c57a92f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cholulans Attack.asset using Guid(a1d171cd2ce3c451691cd206c57a92f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bb709b5316e733cf89b72da5115db3e9') in 0.001613153 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000135 seconds.
+  path: Assets/Narrative/PassageAssets/Cortes decides to beach ships.asset
+  artifactKey: Guid(ef36bc175ddba4b428baff2489172c10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cortes decides to beach ships.asset using Guid(ef36bc175ddba4b428baff2489172c10) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '216b31549f5fd7fec17094cde8a0437f') in 0.001193523 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Narrative/PassageAssets/Cortes gets called to the coast.asset
+  artifactKey: Guid(883127712547c4695866e0e89b428612) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cortes gets called to the coast.asset using Guid(883127712547c4695866e0e89b428612) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dd73880888a8920884631c723a05fba5') in 0.002342597 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000496 seconds.
+  path: Assets/Narrative/PassageAssets/Burning the Ships_ Mutiny.asset
+  artifactKey: Guid(8e980613ba16242a18625c56f1ad2570) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Burning the Ships_ Mutiny.asset using Guid(8e980613ba16242a18625c56f1ad2570) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '658a52186fd04e8fa4310843366549d8') in 0.001357018 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000132 seconds.
+  path: Assets/Narrative/PassageAssets/Cortes must convince his men to accompany him on the journey.asset
+  artifactKey: Guid(0583c5818d65748b9941bee7342cabec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cortes must convince his men to accompany him on the journey.asset using Guid(0583c5818d65748b9941bee7342cabec) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7b73fff424f9688a1b9f96bd2140bbd8') in 0.00189104 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000121 seconds.
+  path: Assets/Narrative/PassageAssets/Cholula New Spanish Leader.asset
+  artifactKey: Guid(b2b75d2f2b24245069a839a230cf7417) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cholula New Spanish Leader.asset using Guid(b2b75d2f2b24245069a839a230cf7417) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '68715427bc2a10fa62801774eb10347c') in 0.001979419 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005226 seconds.
+  path: Assets/Narrative/PassageAssets/Cholula Spanish Leadership Challenge.asset
+  artifactKey: Guid(202cf5bff78d045698b2d2506d3bcc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cholula Spanish Leadership Challenge.asset using Guid(202cf5bff78d045698b2d2506d3bcc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd531876bc95200b9be67ddd10df0d921') in 0.002613126 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000307 seconds.
+  path: Assets/Narrative/PassageAssets/Burning the Ships.asset
+  artifactKey: Guid(0639dca357eb44a06b1df4f75d4ea163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Burning the Ships.asset using Guid(0639dca357eb44a06b1df4f75d4ea163) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c07d674dcb916982ea8061251a8cb0d6') in 0.002415075 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 123.813131 seconds.
+  path: Assets/Narrative/PassageAssets/Cortes Returns Victorious.asset
+  artifactKey: Guid(3e841025ad5c042d0af992bb33b81590) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cortes Returns Victorious.asset using Guid(3e841025ad5c042d0af992bb33b81590) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd73f1b6d4feed4f8f79e068024424ca8') in 0.002005696 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000294 seconds.
+  path: Assets/Narrative/PassageAssets/Cortes sets sail from Cuba.asset
+  artifactKey: Guid(1069dda629316495ab04e37160cb34bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cortes sets sail from Cuba.asset using Guid(1069dda629316495ab04e37160cb34bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '12d573beedf99164f60eae96f738f4f1') in 0.001699454 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000117 seconds.
+  path: Assets/Narrative/PassageAssets/Cortes takes Tlaxcalans to the coast.asset
+  artifactKey: Guid(5a6cad81bef1843e5a8ca55bd7d1ef94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cortes takes Tlaxcalans to the coast.asset using Guid(5a6cad81bef1843e5a8ca55bd7d1ef94) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f8afbaaa03dc740f80f26665c196d7f3') in 0.002120782 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.970620 seconds.
+  path: Assets/Narrative/PassageAssets/Cuauhnahuac.asset
+  artifactKey: Guid(939a9de9a79184a53897b8fc7ee9dfa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Cuauhnahuac.asset using Guid(939a9de9a79184a53897b8fc7ee9dfa7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '287083c146e7af33d463db2feea6b6cc') in 0.001212908 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001829 seconds.
+  path: Assets/Narrative/PassageAssets/Dakota Test Passage.asset
+  artifactKey: Guid(3048c48770d804010b532f44b549e4ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Dakota Test Passage.asset using Guid(3048c48770d804010b532f44b549e4ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3e88b99ddb29f05ee869a49c65078215') in 0.001202181 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000103 seconds.
+  path: Assets/Narrative/PassageAssets/Dashboard.asset
+  artifactKey: Guid(2ab9e2eee3d5c4c15b758a1c5f4399c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Dashboard.asset using Guid(2ab9e2eee3d5c4c15b758a1c5f4399c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b74f9183721462ef2775682a971edc8a') in 0.001831215 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Narrative/PassageAssets/Debating the Omens.asset
+  artifactKey: Guid(86589866bed5147a69b13747dc5b6a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Debating the Omens.asset using Guid(86589866bed5147a69b13747dc5b6a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5dc42bc58271e079e4a973624d5d1307') in 0.001003632 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Narrative/PassageAssets/Final Battle 3.asset
+  artifactKey: Guid(a7b8177883a9d479d8dde02d4a910c27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Final Battle 3.asset using Guid(a7b8177883a9d479d8dde02d4a910c27) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e6b6d2c042f8d29231407b702355634b') in 0.001265339 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Narrative/PassageAssets/Final Battle Purgatory.asset
+  artifactKey: Guid(796c06dff717c427580bb07a8db3aa76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Final Battle Purgatory.asset using Guid(796c06dff717c427580bb07a8db3aa76) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b651fc98eee3e7beb56d22351ef4feaa') in 0.00136541 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000115 seconds.
+  path: Assets/Narrative/PassageAssets/Final Battle 2.asset
+  artifactKey: Guid(49066236e0cb746579224ba44b2014e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Final Battle 2.asset using Guid(49066236e0cb746579224ba44b2014e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9e73427f371e99df0e6cdaf42c17ea73') in 0.002474834 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000075 seconds.
+  path: Assets/Narrative/PassageAssets/Final Battle Outcome.asset
+  artifactKey: Guid(7abeae1438a494366838643582191474) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Final Battle Outcome.asset using Guid(7abeae1438a494366838643582191474) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '97ac11d93afdb240477b7ba1e515813e') in 0.001466266 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000117 seconds.
+  path: Assets/Narrative/PassageAssets/Final Battle Decision.asset
+  artifactKey: Guid(d16ba0bf0a04f4ad388bb54ff9d2b871) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Final Battle Decision.asset using Guid(d16ba0bf0a04f4ad388bb54ff9d2b871) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2a34d17c2518fc2877bcaf8c2c0a7d6e') in 0.001439102 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.094363 seconds.
+  path: Assets/Narrative/PassageAssets/Game Setup.asset
+  artifactKey: Guid(832034c2cd2c046cba46fd423b6edd54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Game Setup.asset using Guid(832034c2cd2c046cba46fd423b6edd54) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5ce932f52db30ce02cab5ebf4e4e1a25') in 0.001907302 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000086 seconds.
+  path: Assets/Narrative/PassageAssets/Garrido's Contribution.asset
+  artifactKey: Guid(b8fef2a1dabc04d54bcd409d5a0557fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Garrido's Contribution.asset using Guid(b8fef2a1dabc04d54bcd409d5a0557fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fc1e4f1e56f89ddf0ba10e8b61cf5c20') in 0.001419238 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000343 seconds.
+  path: Assets/Narrative/PassageAssets/Home.asset
+  artifactKey: Guid(36d183afae8fe4c8da0cde7db1b7ac01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Home.asset using Guid(36d183afae8fe4c8da0cde7db1b7ac01) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6165a930cdd1a13b116d75e2b275229b') in 0.002155129 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000260 seconds.
+  path: Assets/Narrative/PassageAssets/Into Tenochtitlan.asset
+  artifactKey: Guid(5deb9ac992b8b49a28e284314e79a8b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Into Tenochtitlan.asset using Guid(5deb9ac992b8b49a28e284314e79a8b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '717108ab681767e8c2b2ba5dfcbb3f37') in 0.00167833 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000127 seconds.
+  path: Assets/Narrative/PassageAssets/Into the Mountain Pass.asset
+  artifactKey: Guid(824bdcd20be2d40de9574d024d6123e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Into the Mountain Pass.asset using Guid(824bdcd20be2d40de9574d024d6123e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd2f3e0f7941a8b69e08f160747e62a3f') in 0.001423912 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003255 seconds.
+  path: Assets/Narrative/PassageAssets/La Noche Triste.asset
+  artifactKey: Guid(cd03941932d4b4e12b34e5dfc5fa18e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/La Noche Triste.asset using Guid(cd03941932d4b4e12b34e5dfc5fa18e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e633f0185c2bc2d1221583868aec194c') in 0.002373364 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/Narrative/PassageAssets/Judging the Feast Documents.asset
+  artifactKey: Guid(058c96141e55746ca910f866a01f022d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Judging the Feast Documents.asset using Guid(058c96141e55746ca910f866a01f022d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fc209da8a49e67999f162bc36f1d580b') in 0.001508782 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/Narrative/PassageAssets/Malinche Answers.asset
+  artifactKey: Guid(2ed5b730b034748948614607ee37f550) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Malinche Answers.asset using Guid(2ed5b730b034748948614607ee37f550) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '69762a7b4226a58168ded00734b0153b') in 0.00117682 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000100 seconds.
+  path: Assets/Narrative/PassageAssets/Marina Hears a Real Rumor.asset
+  artifactKey: Guid(abcce72089759484296dbbc2f81a7568) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Marina Hears a Real Rumor.asset using Guid(abcce72089759484296dbbc2f81a7568) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ecc185f0a33061e9dd7d6ef37a5989fd') in 0.001364226 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000245 seconds.
+  path: Assets/Narrative/PassageAssets/Marina responds to the rumor.asset
+  artifactKey: Guid(86ebd033579dd469ab10e50bbae40220) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Marina responds to the rumor.asset using Guid(86ebd033579dd469ab10e50bbae40220) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a04b774eb202b637e7da2bec43b3ba92') in 0.00127708 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000130 seconds.
+  path: Assets/Narrative/PassageAssets/Marina Tells Her Story.asset
+  artifactKey: Guid(c53c42ca9a05d4a1b8f1a6c3871cafff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Marina Tells Her Story.asset using Guid(c53c42ca9a05d4a1b8f1a6c3871cafff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6f84b610dd308e5c1824e1c809fbf394') in 0.001169814 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000290 seconds.
+  path: Assets/Narrative/PassageAssets/Marina's Boyfriend.asset
+  artifactKey: Guid(40463e6f27a3547deb4954051880b6d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Marina's Boyfriend.asset using Guid(40463e6f27a3547deb4954051880b6d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e51adb69b68e7b4bd3dc039e69c98b45') in 0.001210666 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000121 seconds.
+  path: Assets/Narrative/PassageAssets/Master Spanish Faction Leadership Test All.asset
+  artifactKey: Guid(cb38dd07791844d38b26e2df7dd8cb03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Master Spanish Faction Leadership Test All.asset using Guid(cb38dd07791844d38b26e2df7dd8cb03) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '06c9ebd35ed6be26279bd21709eff741') in 0.001378689 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000112 seconds.
+  path: Assets/Narrative/PassageAssets/Moctezuma and Tlacaelel decide whether to share their information.asset
+  artifactKey: Guid(f30d11fe47e784a2d8bac77237bdce32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Moctezuma and Tlacaelel decide whether to share their information.asset using Guid(f30d11fe47e784a2d8bac77237bdce32) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1dbdbdd5eec850814ec10e7cff81033c') in 0.001666331 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000400 seconds.
+  path: Assets/Narrative/PassageAssets/Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do.asset
+  artifactKey: Guid(849875ca684914d21848fb065fc704fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do.asset using Guid(849875ca684914d21848fb065fc704fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7959156b43dc902a68ebe51c138c9935') in 0.001657704 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Narrative/PassageAssets/Moctezuma Respectfully Asks the Spaniards and their Allies to Leave.asset
+  artifactKey: Guid(085d8cdd773444335b399e0daa28eadf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Moctezuma Respectfully Asks the Spaniards and their Allies to Leave.asset using Guid(085d8cdd773444335b399e0daa28eadf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '94e0894460e571c2379f12960ede932a') in 0.001553715 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000124 seconds.
+  path: Assets/Narrative/PassageAssets/Moctezuma Makes his Proclamation.asset
+  artifactKey: Guid(c77b9d3dfcfd5461abdb3d703d7853c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Moctezuma Makes his Proclamation.asset using Guid(c77b9d3dfcfd5461abdb3d703d7853c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '32665766d4f73563490ece32aab65d36') in 0.001279989 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000112 seconds.
+  path: Assets/Narrative/PassageAssets/Leadership After the Mutiny.asset
+  artifactKey: Guid(115f6c450c02a4d0b93d7bc30954236f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Leadership After the Mutiny.asset using Guid(115f6c450c02a4d0b93d7bc30954236f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0917594410470d8ee7241d1927ad1f86') in 0.001209969 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000131 seconds.
+  path: Assets/Narrative/PassageAssets/Generic New Spanish Leader.asset
+  artifactKey: Guid(22465ac8aba164a6591510468f0e2caa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Generic New Spanish Leader.asset using Guid(22465ac8aba164a6591510468f0e2caa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '01244a2a76162afdacf108de9e00d875') in 0.001464088 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000133 seconds.
+  path: Assets/Narrative/PassageAssets/Mutiny in Veracruz.asset
+  artifactKey: Guid(ee225f736364b45299957cb21190db2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Mutiny in Veracruz.asset using Guid(ee225f736364b45299957cb21190db2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '672d56cd883abc96989f07505d0cb2c1') in 0.001546702 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Narrative/PassageAssets/New Aztec Leader.asset
+  artifactKey: Guid(4c550c8e159c148d7af589098fe0c0fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/New Aztec Leader.asset using Guid(4c550c8e159c148d7af589098fe0c0fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '007952b196b6f87048208ef41a24cd9a') in 0.001274925 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Narrative/PassageAssets/Offer to Bargain or Not.asset
+  artifactKey: Guid(204baf63773884f3aaf778583e6d9bdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Offer to Bargain or Not.asset using Guid(204baf63773884f3aaf778583e6d9bdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '60d1f2c021826878c8b539a037dd17f1') in 0.001159396 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000115 seconds.
+  path: Assets/Narrative/PassageAssets/On a Beach in Veracruz_ Gifts.asset
+  artifactKey: Guid(699b18260745c4c5ea4d0d549f30e48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/On a Beach in Veracruz_ Gifts.asset using Guid(699b18260745c4c5ea4d0d549f30e48c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd76d4b13781ef01273f83afd3efefb45') in 0.002296546 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/Narrative/PassageAssets/No Trap in Cholula.asset
+  artifactKey: Guid(764c7045a9535484e92c089b8510dc54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/No Trap in Cholula.asset using Guid(764c7045a9535484e92c089b8510dc54) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f2de4c30f88c39a945ae733eaf7a9744') in 0.001299658 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Narrative/PassageAssets/No Library Door Once Again.asset
+  artifactKey: Guid(5f08e3fd12c1140c4a9f81223bbaaf31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/No Library Door Once Again.asset using Guid(5f08e3fd12c1140c4a9f81223bbaaf31) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e4902e0244900370f5e873ab7c7cb162') in 0.001320716 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000117 seconds.
+  path: Assets/Narrative/PassageAssets/Olid's Contribution.asset
+  artifactKey: Guid(25a6e6e0b9f8f47ee82c00547260a8d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Olid's Contribution.asset using Guid(25a6e6e0b9f8f47ee82c00547260a8d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '045a956a88f540589f255c80b265aa7f') in 0.001157656 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Narrative/PassageAssets/Marina Warns of the Attack.asset
+  artifactKey: Guid(ceb2532b56fee4f379a0bbea7c710556) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Marina Warns of the Attack.asset using Guid(ceb2532b56fee4f379a0bbea7c710556) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a04fdcfea64e67b24703b1c634f5d53e') in 0.001062083 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.024154 seconds.
+  path: Assets/Narrative/PassageAssets/On the way to Puebla.asset
+  artifactKey: Guid(8b346c72e20f549b8af073af9705702b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/On the way to Puebla.asset using Guid(8b346c72e20f549b8af073af9705702b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '107b5fa616f824f4ee48531389c66a96') in 0.001839631 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000105 seconds.
+  path: Assets/Narrative/PassageAssets/Passage Teleport.asset
+  artifactKey: Guid(c4fd193560b0141b19407e7de6f9dea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Passage Teleport.asset using Guid(c4fd193560b0141b19407e7de6f9dea6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '438a102d63e2c1b7f14d368c301571b3') in 0.001211098 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000109 seconds.
+  path: Assets/Narrative/PassageAssets/PassageHeader.asset
+  artifactKey: Guid(895f10459eb5e4e95a58324802811ba5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/PassageHeader.asset using Guid(895f10459eb5e4e95a58324802811ba5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8c336b602bd0a1fa5599d12f14322a62') in 0.001476691 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Narrative/PassageAssets/Quest_ Aztec Instructions.asset
+  artifactKey: Guid(c6c705bbb686046d8830a7ff41644a4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Quest_ Aztec Instructions.asset using Guid(c6c705bbb686046d8830a7ff41644a4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '078699918b43c40c31a7967fe7b4948f') in 0.001445801 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/Narrative/PassageAssets/Rumors of Mutiny.asset
+  artifactKey: Guid(be58c7cebd84641f7981edd2bfae1440) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Rumors of Mutiny.asset using Guid(be58c7cebd84641f7981edd2bfae1440) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '992f2f53fb133bde9d5d882c94139d1a') in 0.001152395 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000103 seconds.
+  path: Assets/Narrative/PassageAssets/Scavenger Hunt Hub.asset
+  artifactKey: Guid(e1bb93d763ab543b88c4c7cc6bd7f651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Scavenger Hunt Hub.asset using Guid(e1bb93d763ab543b88c4c7cc6bd7f651) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e96f85a4371d90d032cb70cb31906e23') in 0.00109316 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000103 seconds.
+  path: Assets/Narrative/PassageAssets/Set up for the Feast.asset
+  artifactKey: Guid(5d59f32469f5c4f4bba04f8bb1e3142b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Set up for the Feast.asset using Guid(5d59f32469f5c4f4bba04f8bb1e3142b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e739e3f97762aaa2fcfc27f3884a8638') in 0.001374679 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000125 seconds.
+  path: Assets/Narrative/PassageAssets/Scared.asset
+  artifactKey: Guid(8682bbe281e0c42b485f962e4275e2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Scared.asset using Guid(8682bbe281e0c42b485f962e4275e2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b0d8ac84fa5b2b006254900669daa8d5') in 0.001191983 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000088 seconds.
+  path: Assets/Narrative/PassageAssets/Side Passage Example Final.asset
+  artifactKey: Guid(ed209f946bfbd4cb1a7977eb7831b087) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Side Passage Example Final.asset using Guid(ed209f946bfbd4cb1a7977eb7831b087) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1bbc99f5bd89bde0dddbd8f4f0568bc5') in 0.000913514 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000076 seconds.
+  path: Assets/Narrative/PassageAssets/On The Way to Veracruz.asset
+  artifactKey: Guid(a92f1922e1e474e3e931459baf5945dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/On The Way to Veracruz.asset using Guid(a92f1922e1e474e3e931459baf5945dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4e76c8fcbaae97a6d51daf62d858f1e6') in 0.000930846 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000104 seconds.
+  path: Assets/Narrative/PassageAssets/Quest intro_ The Tlaxcalan Legend of Quetzalcoatl.asset
+  artifactKey: Guid(b2e49363f509c410e8bfb9a3c7bf30fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Quest intro_ The Tlaxcalan Legend of Quetzalcoatl.asset using Guid(b2e49363f509c410e8bfb9a3c7bf30fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'acedfbfe7c40aa0f2e03da1954468438') in 0.000895125 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006030 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards and Marina Talk.asset
+  artifactKey: Guid(b6016410427c54aa793d96bb77cc1730) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards and Marina Talk.asset using Guid(b6016410427c54aa793d96bb77cc1730) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7320e4c77d4030c016d64395d1a2347c') in 0.001560733 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000094 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Attack.asset
+  artifactKey: Guid(333d6570be19c4e48931732ef3836775) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Attack.asset using Guid(333d6570be19c4e48931732ef3836775) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ec04e3cce3e8cb26a9eb3687dbbb41f2') in 0.001401484 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Decide Whether to Retreat to Tlaxcala.asset
+  artifactKey: Guid(892eba7a9e79b4e11b213167badf85ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Decide Whether to Retreat to Tlaxcala.asset using Guid(892eba7a9e79b4e11b213167badf85ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ee149b5b2168344f0a26fabbfd52c4cb') in 0.001220528 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards decide whether to mutiny.asset
+  artifactKey: Guid(e1778d049911d448cb8a44a1aa31ebf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards decide whether to mutiny.asset using Guid(e1778d049911d448cb8a44a1aa31ebf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1215fd9525233f012e495737f180e9a3') in 0.001165533 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000124 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Fight the Aztecs Alone.asset
+  artifactKey: Guid(69e04da6fd476410fac940c6c25b889f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Fight the Aztecs Alone.asset using Guid(69e04da6fd476410fac940c6c25b889f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9fb1eeb4e3949df150d7608394dc2ce1') in 0.001127196 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000076 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards defeat the Tlaxcalans in battle.asset
+  artifactKey: Guid(baa3cd32a40374f76924c75389942a2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards defeat the Tlaxcalans in battle.asset using Guid(baa3cd32a40374f76924c75389942a2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '267f2bf53edc3bab84771090d67faed6') in 0.001076493 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000075 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Descend into the Valley.asset
+  artifactKey: Guid(bbd5ad81abc5349b0b4cb2ceba537c07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Descend into the Valley.asset using Guid(bbd5ad81abc5349b0b4cb2ceba537c07) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0af0fc4c5382802c4884b70626cfb3a5') in 0.001263532 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.039509 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards wake up at camp.asset
+  artifactKey: Guid(e0ec3d97764044cb9ab96d06ec2960a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards wake up at camp.asset using Guid(e0ec3d97764044cb9ab96d06ec2960a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '55aea546c8886b62119ed094341f7fe2') in 0.001537175 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Write Letters.asset
+  artifactKey: Guid(05be1a78026c6448a8453cdd1dbc1462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Write Letters.asset using Guid(05be1a78026c6448a8453cdd1dbc1462) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4e210d743fb607c50da9b7d20fa23c79') in 0.00121682 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Narrative/PassageAssets/Tenochtitlan New Spanish Leader.asset
+  artifactKey: Guid(af7cda77bdc164b6fb480d860bed522a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tenochtitlan New Spanish Leader.asset using Guid(af7cda77bdc164b6fb480d860bed522a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '62f0038a34940d46886a214526a1ac92') in 0.000965198 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/Narrative/PassageAssets/test equations.asset
+  artifactKey: Guid(ff6802bcbc9dd4f7dbe1656c41b187fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/test equations.asset using Guid(ff6802bcbc9dd4f7dbe1656c41b187fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '314f1d07388442c12f87031de96a3230') in 0.001175475 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/Narrative/PassageAssets/test equations outcome.asset
+  artifactKey: Guid(06cf475192d6a415782f5d3b214649db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/test equations outcome.asset using Guid(06cf475192d6a415782f5d3b214649db) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f2094c50a8bac1762cf847729542a320') in 0.00158617 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Narrative/PassageAssets/The Festival of Toxcatl.asset
+  artifactKey: Guid(cc4d07437cbbb470f9f24c1931700fa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/The Festival of Toxcatl.asset using Guid(cc4d07437cbbb470f9f24c1931700fa5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '428d23c2891c1436ff1bbea2e3a15f6a') in 0.001669952 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000279 seconds.
+  path: Assets/Narrative/PassageAssets/The Festival of Toxcatl_ The Tlaxcalans.asset
+  artifactKey: Guid(e7d464829ff354f0498326315c635cb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/The Festival of Toxcatl_ The Tlaxcalans.asset using Guid(e7d464829ff354f0498326315c635cb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '395528ac0b8cac6bc45ee0db4884f367') in 0.002019232 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000117 seconds.
+  path: Assets/Narrative/PassageAssets/TestMap Passage.asset
+  artifactKey: Guid(62f0e15a1c1fb4bac97949607e224fa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/TestMap Passage.asset using Guid(62f0e15a1c1fb4bac97949607e224fa8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '39f0fc0069b6290c5976c9869143d494') in 0.00161506 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000086 seconds.
+  path: Assets/Narrative/PassageAssets/The Land of the Olmeca Xicalanca.asset
+  artifactKey: Guid(1c75fa6f6dba24b5e892e7d2bfc8fc21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/The Land of the Olmeca Xicalanca.asset using Guid(1c75fa6f6dba24b5e892e7d2bfc8fc21) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '39bda760b5ec0cedc831d1d9a4f67186') in 0.001608282 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/Narrative/PassageAssets/The Tlaxcalan Leader Decides.asset
+  artifactKey: Guid(8298f2fc2b0a441a6933bb4a41720835) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/The Tlaxcalan Leader Decides.asset using Guid(8298f2fc2b0a441a6933bb4a41720835) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd54958f2cb6f237214af0e5dfe527e61') in 0.001291997 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/Narrative/PassageAssets/The Tabascans battle the Spaniards.asset
+  artifactKey: Guid(51b6ca8fb0ba247119c5356b9dc3e80d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/The Tabascans battle the Spaniards.asset using Guid(51b6ca8fb0ba247119c5356b9dc3e80d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '31496d868105c5742c9980b56c3c335b') in 0.001475319 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000132 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Attacks Aztecs.asset
+  artifactKey: Guid(e4769cde92b5045b5bb63feb902dbc0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Attacks Aztecs.asset using Guid(e4769cde92b5045b5bb63feb902dbc0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4e5df2cfb6c8e2dc785433bf14e54100') in 0.001647203 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000116 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Attacks Aztecs Tlaxcalan Victory.asset
+  artifactKey: Guid(79d233d98a3144ce296d5bda6fcb0c7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Attacks Aztecs Tlaxcalan Victory.asset using Guid(79d233d98a3144ce296d5bda6fcb0c7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e20ffe34c376d82d209d340bab24c50c') in 0.002615215 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000114 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Attacks in Puebla.asset
+  artifactKey: Guid(3a139ed70c3f24ad3be28c6466372f17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Attacks in Puebla.asset using Guid(3a139ed70c3f24ad3be28c6466372f17) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c264af65daad2ed6b4f4cdb237f2e5f4') in 0.001490859 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000677 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Attacks the Spaniards Tlaxcalan Victory.asset
+  artifactKey: Guid(d9f0e4d496f874149847608a9ced030a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Attacks the Spaniards Tlaxcalan Victory.asset using Guid(d9f0e4d496f874149847608a9ced030a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fad82bc52d8f7cfd46868e1fa4dd6b7c') in 0.002517685 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000118 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Decides What To Do.asset
+  artifactKey: Guid(322775ca6027a4bd4be3175f6139c115) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Decides What To Do.asset using Guid(322775ca6027a4bd4be3175f6139c115) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'aa1d7bc93e79e02130988109ec030eca') in 0.001352374 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners.asset
+  artifactKey: Guid(be1e8aedaaa134c6ab2935c53b54dace) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Does Nothing and Makes a Peace Treaty with Spanish Winners.asset using Guid(be1e8aedaaa134c6ab2935c53b54dace) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '78813274b1df84f3ca6fe2fb09de5715') in 0.001305934 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000100 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Attacks the Spanish Winners.asset
+  artifactKey: Guid(822bfcf3361294e6bb0943a168fe6e83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Attacks the Spanish Winners.asset using Guid(822bfcf3361294e6bb0943a168fe6e83) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '67f18634f9bc89db29fa3df20e38e29d') in 0.001336899 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000091 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory.asset
+  artifactKey: Guid(c8479aec9306242218f3ebb23fa2a85a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala Aztec Victory.asset using Guid(c8479aec9306242218f3ebb23fa2a85a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '81b7bea18a2abd586aeafd5b37f63869') in 0.00147345 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000387 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala.asset
+  artifactKey: Guid(74cd2789074174012a004104c7a06d0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Aztecs Refuse Peace Treaty and Attack Tlaxcala.asset using Guid(74cd2789074174012a004104c7a06d0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4635c46d3c621d26d5b0f3f8e36bef2e') in 0.002349152 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000144 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory.asset
+  artifactKey: Guid(57a464386cd44418fbb76d120411c14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Spaniards Fight Aztecs Alone Aztec Victory.asset using Guid(57a464386cd44418fbb76d120411c14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '56ce420f97bc110027209ed174860d92') in 0.001377289 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000111 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Spaniards Accept Peace Treaty.asset
+  artifactKey: Guid(26d733892cb854e10bf41e3a4acdbdcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Spaniards Accept Peace Treaty.asset using Guid(26d733892cb854e10bf41e3a4acdbdcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '834688414fa03e6bbcd54beb12f5db85') in 0.001459353 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000090 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala Spanish Victory.asset
+  artifactKey: Guid(83a0b56bd96ab431e967648f7e39c3c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Does Nothing Spaniards Refuse Peace Treaty and Attack Tlaxcala Spanish Victory.asset using Guid(83a0b56bd96ab431e967648f7e39c3c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '56564adbfd50d239ed65cf7c8891f2bb') in 0.001267302 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000076 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Doesn't Attack in Puebla.asset
+  artifactKey: Guid(b0474690b9ca442ee825224630e13045) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Doesn't Attack in Puebla.asset using Guid(b0474690b9ca442ee825224630e13045) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c3f7223ef1a09f67e4a86b7989cdfe8a') in 0.001123821 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000337 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala helps the Spaniards.asset
+  artifactKey: Guid(1a90227149cff4eb0adc6524c257ed92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala helps the Spaniards.asset using Guid(1a90227149cff4eb0adc6524c257ed92) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7d417719be4aca21337cae83bc17db93') in 0.001644265 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000134 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Sides with the Aztecs.asset
+  artifactKey: Guid(b1659918e39434a5faa459847cec56aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Sides with the Aztecs.asset using Guid(b1659918e39434a5faa459847cec56aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0ac0122ae91ca867f24d9ec11f6937ef') in 0.001072691 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000186 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcala Sides with the Aztecs Aztec and Tlaxcalan Victory.asset
+  artifactKey: Guid(a1517f8798d9e469da63b9f6b2fe1db7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcala Sides with the Aztecs Aztec and Tlaxcalan Victory.asset using Guid(a1517f8798d9e469da63b9f6b2fe1db7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '89767c8737934c6f1a863002d619c895') in 0.001448378 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalan Wisdom Check.asset
+  artifactKey: Guid(1775bfa7557ef4b57b5a609e199154ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalan Wisdom Check.asset using Guid(1775bfa7557ef4b57b5a609e199154ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ace46159a7279f5297dbb772d8425ebb') in 0.001920292 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000120 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans and Aztecs meet.asset
+  artifactKey: Guid(97f2f4c1767894dc48f3ea1f80e72ca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans and Aztecs meet.asset using Guid(97f2f4c1767894dc48f3ea1f80e72ca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8e0735b10602f8957b71a49f98647936') in 0.001597511 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000123 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans and Spaniards Fight Aztecs Spanish and Tlaxcalan Victory.asset
+  artifactKey: Guid(caee665d510b14aa29256a31cc5a3730) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans and Spaniards Fight Aztecs Spanish and Tlaxcalan Victory.asset using Guid(caee665d510b14aa29256a31cc5a3730) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '149655e889d324e0397b7186885f5c18') in 0.001148675 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000103 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans announce their departure.asset
+  artifactKey: Guid(84fae9502a13d41eeae568071ea6b02b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans announce their departure.asset using Guid(84fae9502a13d41eeae568071ea6b02b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '64b30d663e7bc88aaf1922d3fc03769d') in 0.001062855 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000104 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans cut their losses.asset
+  artifactKey: Guid(debacd7326e8b4d92879f8bab4de15da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans cut their losses.asset using Guid(debacd7326e8b4d92879f8bab4de15da) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd69f47e921e7fcb3e53a5eaea919ae69') in 0.001382186 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000685 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans decide to attack the Aztecs on their way back from the coast.asset
+  artifactKey: Guid(f30206cbfaee84b0aa29bd8536c0ea4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans decide to attack the Aztecs on their way back from the coast.asset using Guid(f30206cbfaee84b0aa29bd8536c0ea4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5073b451c53c8c773d1fd60c1e50e310') in 0.001461155 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000122 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans decide to attack the Spaniards in Veracruz.asset
+  artifactKey: Guid(606c46107c0354528a0c049ca1a71b0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans decide to attack the Spaniards in Veracruz.asset using Guid(606c46107c0354528a0c049ca1a71b0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a48a71b7f3d5ef63fc47b6db94d9b487') in 0.001272955 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000105 seconds.
+  path: Assets/Narrative/PassageAssets/The Festival of Toxcatl_ The Spaniards.asset
+  artifactKey: Guid(bb14295de04a843b084c4de7f85398c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/The Festival of Toxcatl_ The Spaniards.asset using Guid(bb14295de04a843b084c4de7f85398c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7cc3253c277fc23f4bf2c792e92060de') in 0.001200546 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002205 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans decide where to go.asset
+  artifactKey: Guid(528c3742f5ee44e6da400c648a3a72b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans decide where to go.asset using Guid(528c3742f5ee44e6da400c648a3a72b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9a620ce366451cccb19d9ab02a1fd15a') in 0.002006594 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000116 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans Face a Choice.asset
+  artifactKey: Guid(3a1df5fda01ee4b5b97db77bd38dae0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans Face a Choice.asset using Guid(3a1df5fda01ee4b5b97db77bd38dae0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9e9e903112d749ee9b4a70f39092ee9e') in 0.001220678 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans hear rumors of strange men on the coast and decide what to do.asset
+  artifactKey: Guid(cef4a97b4f35b4220aacbd1b154c47ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans hear rumors of strange men on the coast and decide what to do.asset using Guid(cef4a97b4f35b4220aacbd1b154c47ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dd06a243236bb216e5efca5656c00944') in 0.001436086 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000425 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans keep waiting.asset
+  artifactKey: Guid(4c494f2608e0d4ae591b70d02e6b1320) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans keep waiting.asset using Guid(4c494f2608e0d4ae591b70d02e6b1320) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ddc0ed9bc87bf55ea2a3602d336af045') in 0.002348098 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000420 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans lose battle to Spaniards and decide whether to form an alliance.asset
+  artifactKey: Guid(a91c23f7675f9414eb453d11358ffca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans lose battle to Spaniards and decide whether to form an alliance.asset using Guid(a91c23f7675f9414eb453d11358ffca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '431b498608b7645947cff63bbc411155') in 0.002155997 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001019 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans Make the First Decision about Spaniards.asset
+  artifactKey: Guid(f756de1a06643499c8e8e24970c076f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans Make the First Decision about Spaniards.asset using Guid(f756de1a06643499c8e8e24970c076f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b2ac5f71e143d2b51282c7e03956fa7f') in 0.001545807 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002654 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans observe the Spanish ships being destroyed.asset
+  artifactKey: Guid(6ecd7f08dbbbb43b9977e22baa3d0570) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans observe the Spanish ships being destroyed.asset using Guid(6ecd7f08dbbbb43b9977e22baa3d0570) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c7acc5e61e979619d57de9798abda652') in 0.001242905 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000127 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans Respond to La Noche Triste.asset
+  artifactKey: Guid(dffd957694cf54deb93f3f31bdfcd7a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans Respond to La Noche Triste.asset using Guid(dffd957694cf54deb93f3f31bdfcd7a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1cba2693c232e566509337569d259586') in 0.00137046 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000134 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans Vote on Attacking Spaniards.asset
+  artifactKey: Guid(67743e89ada50455cbf8b79b3388eb2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans Vote on Attacking Spaniards.asset using Guid(67743e89ada50455cbf8b79b3388eb2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1f794ba77616e614b485c5db5125e77b') in 0.001258328 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000104 seconds.
+  path: Assets/Narrative/PassageAssets/Tlaxcalans Wait Outside and Send Spies.asset
+  artifactKey: Guid(2f3bd0b55b29f43c9960540248417360) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Tlaxcalans Wait Outside and Send Spies.asset using Guid(2f3bd0b55b29f43c9960540248417360) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ad4b7c99cb3264ec02b59704c2b18e29') in 0.001195657 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000100 seconds.
+  path: Assets/Narrative/PassageAssets/Victory Decision Aztecs and Tlaxcalans versus Spaniards.asset
+  artifactKey: Guid(276e4e2ba811744a1a6266f0a6b7710d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Victory Decision Aztecs and Tlaxcalans versus Spaniards.asset using Guid(276e4e2ba811744a1a6266f0a6b7710d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3f9584348ed0d3fb438b1973e4b340ce') in 0.001518014 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000134 seconds.
+  path: Assets/Narrative/PassageAssets/Victory Decision Aztecs versus Spaniards and Tlaxcalans.asset
+  artifactKey: Guid(a766a7826b0334c49a6d177de1458159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Victory Decision Aztecs versus Spaniards and Tlaxcalans.asset using Guid(a766a7826b0334c49a6d177de1458159) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '47e36273211f2951da17c6627180fa29') in 0.001312635 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000118 seconds.
+  path: Assets/Narrative/PassageAssets/Victory Decision Aztecs Versus Tlaxcalans 3.asset
+  artifactKey: Guid(92bc1a491ecca4e8a8b07121c2d187c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Victory Decision Aztecs Versus Tlaxcalans 3.asset using Guid(92bc1a491ecca4e8a8b07121c2d187c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fc19a8e00a75f7ab0606e8adfff9f855') in 0.001264927 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/Narrative/PassageAssets/Waking up 6 months later.asset
+  artifactKey: Guid(782fc5b920ff640f1800d280323a19dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Waking up 6 months later.asset using Guid(782fc5b920ff640f1800d280323a19dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c2667139957e08ef1eb2b0ddafbffe3c') in 0.001497972 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000112 seconds.
+  path: Assets/Narrative/PassageAssets/Xochimilco.asset
+  artifactKey: Guid(3937cf0c0fa8a4517ac729929840eac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Xochimilco.asset using Guid(3937cf0c0fa8a4517ac729929840eac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c0a6e006ec4215f5a06897261f2afc16') in 0.001575619 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/Narrative/PassageAssets/Waking up in the library 3.asset
+  artifactKey: Guid(74419bafcb8c049f885bdff8c046811d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Waking up in the library 3.asset using Guid(74419bafcb8c049f885bdff8c046811d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '234f2c3de786e9731f0362092dcb63de') in 0.001339868 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Narrative/PassageAssets/Waking up in the library.asset
+  artifactKey: Guid(c6efe9e83675a4ada850db974e269bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Waking up in the library.asset using Guid(c6efe9e83675a4ada850db974e269bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9a282887471367aa4d2f8d3c4190a521') in 0.001225568 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000110 seconds.
+  path: Assets/Narrative/PassageAssets/Xochimilco 2.asset
+  artifactKey: Guid(83cc81d8ea4ca4ab9a9144a17bf6f995) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Xochimilco 2.asset using Guid(83cc81d8ea4ca4ab9a9144a17bf6f995) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9f0577eb289f72c17d2198403ff27eea') in 0.001314632 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+AssetImportWorker is now disconnected from the server
+Process exiting

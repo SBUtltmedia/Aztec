@@ -1,0 +1,337 @@
+:: A Trap in Cholula [Done] {"position":"1750,4500","size":"100,100"}
+<<liveblock>>
+<<if $Mal_Share eq "" or ndef $Mal_Share>>
+You go to bed satisfied, full of food and a strange Cholulan wine. <br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Marina to do something.<br>
+<br>
+
+<<elseif $Mal_Share is "Yes" and $role is "Marina">>
+You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters and quietly rouse them, careful not to wake your Cholulan hosts.<br>
+<br>
+Go to the Spanish discussion board and share with them what you have learned.<br>
+<br>
+
+<<if ndef $Mal_Span or $Mal_Span eq "">> 
+You wait nervously for <<print $Span_Leader>> to make a decision. Does he believe you?
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Mal_Span is "Yes">>
+You have delivered your news, the men believe you, and now you have no choice but to wait and see what happens. What will your new friends do? [[What do the Gods have in store for you|Marina Warns of the Attack]]?<br>
+<br>
+<<elseif $Mal_Span is "No">>
+You have delivered your news, but your friends did not believe you. It seems you have not yet won their trust. You go to sleep, [[wondering what the Gods have in store for you|Marina Warns of the Attack]].
+<</if>>
+
+<<elseif $Mal_Share is "Yes" and $role is $Span_Leader>>
+You are just dozing off for the night when you hear a noise. The slave woman, Marina, has entered your sleeping quarters and is quietly rousing the men. She gathers you round, gesturing that you must be quiet, and delivers some news.<br>
+<br>
+Go to the Spanish discussion board and hear what she has to say.<br>
+<br>
+Once you've heard what she has to say, discuss this news with the others. Do you all believe her? As the leader of the Spanish Faction, it is up to you to make the call for the entire group, so choose carefully. <br>
+<br>
+<<link "Yes" "Marina Warns of the Attack">><<th-set '$Mal_Span' to "Yes">><</link>> or <<link "No" "Marina Warns of the Attack">><<th-set '$Mal_Span' to "No">><</link>>.<br>
+<br>
+
+<<elseif $Mal_Share is "Yes" and $role isnot $Span_Leader and $role isnot "Marina">>
+You are just dozing off for the night when you hear a noise. The slave woman, Marina, has entered your sleeping quarters and is quietly rousing the men. She gathers you round, gesturing that you must be quiet, and delivers some news.<br>
+<br>
+Go to the Spanish discussion board and hear what she has to say.<br>
+<br>
+Once you've heard what she has to say, discuss this news with the others. Do you all believe her? <<print $Span_Leader>> must make the call.  Do your best to persuade him, your very lives might depend upon this choice. <br>
+<br>
+<<if ndef $Mal_Span or $Mal_Span eq "">> 
+You wait nervously for <<print $Span_Leader>> to make a decision.
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Mal_Span is "Yes">>
+You have decided to [[put your faith in Marina|Marina Warns of the Attack]].
+<<elseif $Mal_Span is "No">>
+You have decided you [[do not believe Marina|Marina Warns of the Attack]].
+<</if>>
+<br>
+<br>
+
+<<elseif $Mal_Share is "No" and $role is "Marina">>
+You try to sleep, but your nerves are frayed and you anxiously listen for any noise that might alert you to an attack. <br>
+<br>
+You finally drift into a fitful sleep in the early hours of the morning, only to be awakened by the most terrifying sounds! You hear drums, screaming, and the unmistakable sound of thousands of men bearing down upon you. You sneak out your sleeping quarters and find a place to hide, watching events as they unfold.<br>
+<br>
+Fortunately for your Spanish friends, their Tlaxcalan allies have come to their defense. They fight their way out of the city, barely escaping with your lives. Facing the prospect of being enslaved by the Aztecs, <<link "you join them as they flee" "Into the Mountain Pass">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' -= 5>><</link>>.<br>
+<br>
+
+<<elseif $Mal_Share is "No" and $role isnot "Marina">>
+You go to bed satisfied, full of food and a strange Cholulan wine. <br>
+<br>
+In the early hours of the morning, you are awakened by the most terrifying sounds! You hear drums, screaming, and the unmistakable sound of thousands of men bearing down upon you. You barely have time to stand and grab your sword before you are surrounded by an army of Aztec warriors!<br>
+<br>
+Thankfully, your Tlaxcalan allies have come to your defense! You fight your way out of the city and [[barely escape with your lives|Into the Mountain Pass]]. <br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Cholula [Done Breaks] {"position":"2925,525","size":"100,100"}
+<<liveblock>>
+You've made it to Cholula!<br>
+<br>
+<<switch $users[$role]["faction"]>>
+<<case "Aztecs">>
+<<if $Quest_Leader_A is $role and $T_Q_Heart is "no">>
+
+Congratulations! You have beaten the Tlaxcalans and you may claim Quetzalcoatl's heart, which will increase your teams's strength by 5!<br>
+<br>
+
+<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<th-set '$A_Q_Heart' to "yes">><<th-set '$factions["Aztecs"]["stats"]["Strength"]' += 5>><</link>><br>
+<br>
+
+<<elseif $Quest_Leader_A is $role and $T_Q_Heart is "yes">>
+
+Too bad! The Tlaxcalans beat you to Cholula and they have Quetzalcoatl's heart.  You are at a disadvantage now because the Tlaxcalan's strength has increased by 5!<br>
+<br>
+
+This is the [[end of your quest|End of Quest]].<br>
+<br>
+
+<<elseif $Quest_Leader_A isnot $role and $T_Q_Heart is "no">>
+
+Congratulations! You have beaten the Tlaxcalans. But only <<print $Quest_Leader_A>> can claim Quetzalcoatl's heart. Let's hope he does it before the Tlaxcalans arrive, because this prize will increase your teams's strength by 5!<br>
+<br>
+
+This is the [[end of your quest|End of Quest]].<br>
+<br>
+
+<<elseif $Quest_Leader_A isnot $role and $T_Q_Heart is "yes">>
+
+Too bad! The Tlaxcalans beat you to Cholula and they have Quetzalcoatl's heart.  You are at a disadvantage now because the Tlaxcalan's strength has increased by 5!<br>
+<br>
+
+This is the [[end of your quest|End of Quest]].<br>
+<br>
+<</if>>
+<<case "Tlaxcalans">>
+<<if $Quest_Leader_T is $role and $A_Q_Heart is "no">>
+
+Congratulations! You have beaten the Mexica and you may claim Quetzalcoatl's heart, which will increase your teams's strength by 5!<br>
+<br>
+
+<<link "Claim Quetzalcoatl's Heart" "End of Quest">><<th-set '$T_Q_Heart' to "yes">><<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' += 5>><</link>><br>
+<br>
+
+<<elseif $Quest_Leader_T is $role and $A_Q_Heart is "yes">>
+
+Too bad! The Mexica beat you to Cholula and they have Quetzalcoatl's heart.  You are at a disadvantage now because the Mexica's strength has increased by 5!<br>
+<br>
+
+This is the [[end of your quest|End of Quest]].<br>
+<br>
+
+<<elseif $Quest_Leader_T isnot $role and $A_Q_Heart is "no">>
+
+Congratulations! You have beaten the Mexica. But only <<print $Quest_Leader_T>> can claim Quetzalcoatl's heart. Let's hope he does it before the Mexica arrive, because this prize will increase your teams's strength by 5!<br>
+<br>
+
+This is the [[end of your quest|End of Quest]].<br>
+<br>
+
+<<elseif $Quest_Leader_A isnot $role and $A_Q_Heart is "yes">>
+
+Too bad! The Mexica beat you to Cholula and they have Quetzalcoatl's heart.  You are at a disadvantage now because the Mexica's strength has increased by 5!<br>
+<br>
+
+This is the [[end of your quest|End of Quest]].<br>
+<br>
+<</if>>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cholula Makes an Invitation [Done] {"position":"2000,4000","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+A group of nobles from the city of Cholula has come to bid you welcome. One of them makes a long speech, expressing his honor at hosting such esteemed guests. They invite you into the city, but there is one catch: your Tlaxcalan friends may not enter.<br>
+<br>
+As you pack up camp and [[prepare to enter the city|Spaniards Enter Cholula]], your allies stay behind, watching closely.<br>
+<br>
+<<case "Tlaxcalans">>
+A group of nobles from the city of Cholula has come to bid the strangers welcome. The most powerful among them makes a speech, expressing his honor at hosting such esteemed guests. They invite your Spanish friends into the city, but there is one catch: you and your men may not enter. <br>
+<br>
+As your allies pack up camp and prepare to enter the city of your enemy, [[you remain behind|Tlaxcalans Wait Outside and Send Spies]], wondering what this could mean.<br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cholulans Attack [Done] {"position":"1600,4800","size":"100,100"}
+<<liveblock>>
+<<if $role is "Marina">>
+You try to sleep, but your nerves are frayed and you anxiously listen for any noise that might alert you to an attack. <br>
+<br>
+You finally drift into a fitful sleep in the early hours of the morning, only to be awakened by the most terrifying sounds! You hear drums, screaming, and the unmistakable sound of thousands of men bearing down upon you. You sneak out your sleeping quarters and find a place to hide, watching events as they unfold.<br>
+<br>
+Fortunately for your Spanish friends, their Tlaxcalan allies have come to their defense. They fight their way out of the city and you join them as they flee, [[barely escaping with your lives|Cholula Spanish Leadership Challenge]].<br>
+<br>
+<<elseif $role isnot "Marina">>
+You try to sleep, but your nerves are frayed and you anxiously listen for any noise that might alert you to an attack. <br>
+<br>
+You finally drift into a fitful sleep in the early hours of the morning, only to be awakened by the most terrifying sounds! You hear drums, screaming, and the unmistakable sound of thousands of men bearing down upon you. You barely have time to stand and grab your sword before you are surrounded by an army of Aztec warriors!<br>
+<br>
+Thankfully, your Tlaxcalan allies have come to your defense! You fight your way out of the city and [[barely escape with your lives|Cholula Spanish Leadership Challenge]]. <br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Cholulans Don't Attack [Done] {"position":"2150,4750","size":"100,100"}
+<<liveblock>>
+<<if $role is "Marina">>
+You try to sleep, but your nerves are frayed and you anxiously listen for any noise that might alert you to an attack. <br>
+<br>
+Despite your fears of a trap, the next day proceeds much as the last. It seems the rumor was unfounded and your Cholulan hosts treat you as esteemed visitors. You pass a pleasant stay in the city before [[carrying on with your journey|Cholula Spanish Leadership Challenge]].<br>
+<br>
+<<elseif $role isnot "Marina">>
+You go to bed satisfied, full of food and a strange Cholulan wine. 
+
+The next day proceeds much as the last. It seems you were right and the rumor was unfounded. Your Cholulan hosts are generous and treat you as esteemed visitors. You pass a pleasant stay in the city before [[carrying on with your journey|Cholula Spanish Leadership Challenge]]. <br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Making Plans for Cholula [Done] {"position":"2550,5100","size":"100,100"}
+<<liveblock>>
+<<if ndef $Cholula_Attack or $Cholula_Attack eq "">>
+
+You wait for <<print $Aztec_Leader>> to make a decision about how to approach the Spaniards, either in consultation with you, or alone.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $role is $Aztec_Leader and $Cholula_Attack is "Yes">>
+You have decided that the best course of action is to go on the offensive! These strangers are a threat and they must be dealt with. <br>
+<br>
+Luckily for you, an opportunity has presented itself. Your spies have informed you that the strangers have made friends with your Tlaxcalan enemies and together they are headed for the city of Cholula. It was not so long ago that the Cholulans were friends of Tlaxcala, but there is now bad blood between them, for Cholula has sworn allegiance to you. It's time to put this new friendship to use.<br>
+<br>
+You send word to Cholula, telling them of the strangers who have befriended their Tlaxcalan foe. Together, <<link "you lay plans for a trap" "Aztecs Lay a Trap in Cholula">><<th-set '$Aztecs_currentMap' to 4>><</link>>.<br>
+<br>
+
+<<elseif $Cholula_Attack is "Yes">>
+<<print $Aztec_Leader>> has decided that the best course of action is to go on the offensive! These strangers are a threat and they must be dealt with. <br>
+<br>
+Luckily for you, an opportunity has presented itself. Your spies have informed you that the strangers have made friends with your Tlaxcalan enemies and together they are headed for the city of Cholula. It was not so long ago that the Cholulans were friends of Tlaxcala, but there is now bad blood between them, for Cholula has sworn allegiance to you. It's time to put this new friendship to use.<br>
+<br>
+You send word to Cholula, telling them of the strangers who have befriended their Tlaxcalan foe. Together, <<link "you lay plans for a trap" "Aztecs Lay a Trap in Cholula">><<th-set '$Aztecs_currentMap' to 4>><</link>>.<br>
+<br>
+
+<<elseif $role is $Aztec_Leader and $Cholula_Attack is "No">>
+<<print $Aztec_Leader>> has decided that the best course of action is to be patient! You have not yet gathered sufficient information about the strangers.<br>
+<br>
+Luckily for you, an opportunity has presented itself. Your spies have informed you that the strangers have made friends with your Tlaxcalan enemies and together they are headed for the city of Cholula. It was not so long ago that the Cholulans were friends of Tlaxcala, but there is now bad blood between them, for Cholula has sworn allegiance to you. It's time to put this new friendship to use.<br>
+<br>
+You send word to Cholula, telling them of the strangers who have befriended their Tlaxcalan foe. <<link "You enlist their help to gain intelligence" "Aztecs Gather Intelligence in Cholula">><<th-set '$Aztecs_currentMap' to 4>><</link>>.<br>
+<br>
+<<elseif $Cholula_Attack is "No">>
+<<print $Aztec_Leader>> has decided that the best course of action is to be patient! You have not yet gathered sufficient information about the strangers.<br>
+<br>
+Luckily for you, an opportunity has presented itself. Your spies have informed you that the strangers have made friends with your Tlaxcalan enemies and together they are headed for the city of Cholula. It was not so long ago that the Cholulans were friends of Tlaxcala, but there is now bad blood between them, for Cholula has sworn allegiance to you. It's time to put this new friendship to use.<br>
+<br>
+You send word to Cholula, telling them of the strangers who have befriended their Tlaxcalan foe. <<link "You enlist their help to gain intelligence" "Aztecs Gather Intelligence in Cholula">><<th-set '$Aztecs_currentMap' to 4>><</link>>.<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: No Trap in Cholula [Done] {"position":"2150,4500","size":"100,100"}
+<<liveblock>>
+<<if $Mal_Share eq "" or ndef $Mal_Share>>
+You go to bed satisfied, full of food and a strange Cholulan wine. <br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Marina to do something.<br>
+<br>
+
+<<elseif $Mal_Share is "Yes" and $role is "Marina">>
+You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters and quietly rouse them, careful not to wake your Cholulan hosts.<br>
+<br>
+Go to the Spanish discussion board and share with them what you have learned.<br>
+<br>
+What do they make of the news? <br>
+<br>
+<<if ndef $Mal_Span or $Mal_Span eq "">> 
+You wait nervously for <<print $Span_Leader>> to make a decision. Does he believe you?
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Mal_Span is "Yes">>
+You have delivered your news, the men believe you, and now you have no choice but to wait and see what happens. What will your new friends do? [[What do the Gods have in store for you|Marina Warns of No Attack]]?<br>
+<br>
+<<elseif $Mal_Span is "No">>
+You have delivered your news, but your friends did not believe you. It seems you have not yet won their trust. You go to sleep, [[wondering what the Gods have in store for you|Marina Warns of No Attack]].
+<</if>>
+
+<<elseif $Mal_Share is "Yes" and $role is $Span_Leader>>
+You are just dozing off for the night when you hear a noise. The slave woman, Marina, has entered your sleeping quarters and is quietly rousing the men. She gathers you round, gesturing that you must be quiet, and delivers some news.<br>
+<br>
+Go to the Spanish discussion board and hear what she has to say.<br>
+<br>
+Once you've heard what she has to say, discuss this news with the others. Do you all believe her? As the leader of the Spanish Faction, it is up to you to make the call for the entire group, so choose carefully. <br>
+<br>
+<<link "Yes" "Marina Warns of No Attack">><<th-set '$Mal_Span' to "Yes">><</link>> or <<link "No" "Marina Warns of No Attack">><<th-set '$Mal_Span' to "No">><</link>>.<br>
+<br>
+
+<<elseif $Mal_Share is "Yes" and $role isnot $Span_Leader and $role isnot "Marina">>
+You are just dozing off for the night when you hear a noise. The slave woman, Marina, has entered your sleeping quarters and is quietly rousing the men. She gathers you round, gesturing that you must be quiet, and delivers some news.<br>
+<br>
+Go to the Spanish discussion board and hear what she has to say.<br>
+<br>
+Once you've heard what she has to say, discuss this news with the others. Do you all believe her? <<print $Span_Leader>> must make the call.  Do your best to persuade him, your very lives might depend upon this choice. <br>
+<br>
+<<if ndef $Mal_Span or $Mal_Span eq "">> 
+You wait nervously for <<print $Span_Leader>> to make a decision.
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Mal_Span is "Yes">>
+You have decided to [[put your faith in Marina|Marina Warns of No Attack]].
+<<elseif $Mal_Span is "No">>
+You have decided you [[do not believe Marina|Marina Warns of No Attack]].
+<</if>>
+<br>
+<br>
+
+<<elseif $Mal_Share is "No" and $role is "Marina">>
+You try to sleep, but your nerves are frayed and you anxiously listen for any noise that might alert you to an attack.<br> 
+<br>
+Despite your fears of a trap, the next day proceeds much as the last. It seems the rumor was unfounded and your Cholulan hosts treat you as esteemed visitors. You pass a pleasant stay in the city before  [[carrying on with your journey|Cholula Spanish Leadership Challenge]].<br>
+<br>
+
+<<elseif $Mal_Share is "No" and $role isnot "Marina">>
+You go to bed satisfied, full of food and a strange Cholulan wine. 
+
+Your Cholulan hosts are generous and treat you as esteemed visitors. You pass a pleasant stay in the city before [[carrying on with your journey|Cholula Spanish Leadership Challenge]]. <br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+

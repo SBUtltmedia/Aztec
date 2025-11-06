@@ -1,0 +1,956 @@
+:: Absent Cortes Leadership Challenge {"position":"2675,9050","size":"100,100"}
+<<liveblock>>
+
+<<if ndef $users[$role]["choices"]["Sp_Ld_Vote_Teno"]>>
+<<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 0>>
+<</if>>
+<<if ndef $users[$role]["choices"]["Sp_Ld_Mar_Teno"]>>
+<<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>>
+<</if>>
+<<if ndef $users[$role]["choices"]["Sp_Ld_Alv_Teno"]>>
+<<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>>
+<</if>>
+<<if ndef $users[$role]["choices"]["Sp_Ld_Agu_Teno"]>>
+<<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>>
+<</if>>
+<<if ndef $users[$role]["choices"]["Sp_Ld_Gar_Teno"]>>
+<<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>>
+<</if>>
+<<if ndef $users[$role]["choices"]["Sp_Ld_Oli_Teno"]>>
+<<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>>
+<</if>>
+
+<<if $Span_Leader is "Cortes">>
+
+<<print $Span_Leader>> has led you through months of delicate negotations with <<print $Aztec_Leader>>, but with his departure, it is now time to designate someone you trust as your temporary leader?<br>
+<br>
+Go to the discussion board and discuss this decision amongst yourselves.  Everybody but Cortes should participate.  You can make the case to become leader yourself, or you can argue in favor of one of your compatriots. <br>
+<br>
+When you are satisfied with where things stand, vote for your leader.<br>
+<br>
+<<if $Alvarado_Act is "No">>
+
+<<elseif $Alvarado_Act is "Yes">>
+<<link "Alvarado" "Tenochtitlan Spanish Leadership Results">>">><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Alvarado"]["stats"]["Wisdom"]' += 2>><</link>> should be in charge.<br>
+<</if>>
+<br>
+
+<<if $Aguilar_Act is "No">>
+
+<<elseif $Aguilar_Act is "Yes">>
+<<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Aguilar"]["stats"]["Wisdom"]' += 2>><</link>> is best suited to lead in these difficult times.<br>
+<br>
+<</if>>
+
+<<if $Garrido_Act is "No">>
+
+<<elseif $Garrido_Act is "Yes">>
+<<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Garrido"]["stats"]["Wisdom"]' += 2>><</link>> is your best chance of suriving these strange turns of events.<br>
+<br>
+<</if>>
+<<if $Marina_Act is "No">>
+
+<<elseif $Marina_Act is "Yes">>
+<<link "Marina" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Marina"]["stats"]["Wisdom"]' += 2>><</link>> should lead your people.<br>
+<br>
+<</if>>
+
+<<if $Olid_Act is "No">>
+
+<<elseif $Olid_Act is "Yes">>
+<<link "Olid" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Olid"]["stats"]["Wisdom"]' += 2>><</link>> will be your leader.<br>
+<br>
+<</if>>
+
+<<else>>
+With Cortes gone, now is a good time to think about your team structure.  <<print $Span_Leader>> has led you through months of delicate negotations with <<print $Aztec_Leader>>, but with Cortes' departure, it is now time to make other changes?<br>
+<br>
+Go to the discussion board and discuss this decision amongst yourselves.  Everybody but Cortes should participate.  Perhaps you think <<print $Span_Leader>> has done a fine job, and you advocate for no changes. You can make the case to become leader yourself, or you can argue in favor of one of your compatriots. <br>
+<br>
+When you are satisfied with where things stand, vote for your leader.<br>
+<br>
+<<if $Marina_Act is "No">>
+
+<<elseif $Marina_Act is "Yes">>
+<<link "Marina" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Marina"]["stats"]["Wisdom"]' += 2>><</link>> should lead your people.<br>
+<br>
+<</if>>
+<<if $Alvarado_Act is "No">>
+
+<<elseif $Alvarado_Act is "Yes">>
+<<link "Alvarado" "Tenochtitlan Spanish Leadership Results">>">><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Alvarado"]["stats"]["Wisdom"]' += 2>><</link>> should be in charge.<br>
+<</if>>
+<<if $Aguilar_Act is "No">>
+
+<<elseif $Aguilar_Act is "Yes">>
+<<link "Aguilar" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Aguilar"]["stats"]["Wisdom"]' += 2>><</link>> is best suited to lead in these difficult times.<br>
+<</if>>
+<<if $Garrido_Act is "No">>
+
+<<elseif $Garrido_Act is "Yes">>
+<<link "Garrido" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Garrido"]["stats"]["Wisdom"]' += 2>><</link>> is your best chance of suriving these strange turns of events.<br>
+<</if>>
+<<if $Olid_Act is "No">>
+
+<<elseif $Olid_Act is "Yes">>
+<<link "Olid" "Tenochtitlan Spanish Leadership Results">><<th-set '$users[$role]["choices"]["Sp_Ld_Oli_Teno"]' to 1>><<th-set '$users[$role]["choices"]["Sp_Ld_Mar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Agu_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Alv_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Gar_Teno"]' to 0>><<th-set '$users[$role]["choices"]["Sp_Ld_Vote_Teno"]' to 1>><<th-set '$users["Olid"]["stats"]["Wisdom"]' += 2>><</link>> will be your leader.<br>
+<br>
+<</if>>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes Attacks Narvaez {"position":"2175,9675","size":"100,100"}
+<<liveblock>>
+You have received word that the enemy camp lies just ahead. The time has come to make your move.<br>
+<br>
+You wait until midnight to launch your attack, hoping to catch the enemy forces asleep. Unfortunately, they have been alerted to your presence! A long and bloody battle ensues. Both sides suffer significant losses, but in the end, you manage to achieve a narrow victory. Narváez and his men retreat to the coast. <br>
+<br>
+You are alive, but you are weakened. You have lost many men, but you gather those who remain and prepare for the journey .<br>
+<br>
+<<link "back to Tenochtitlán" "Cortes Returns Victorious">><<th-set '$users["Cortes"]["stats"]["Strength"]' -= 5>><<th-set '$Cortes_Dead' to "No">><</link>><br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Cortes decides to beach ships {"position":"2025,1750","size":"100,100"}
+<<liveblock>>
+You have made your case to the men, but can you really trust them? Now is not the time for inaction; the risk is too high and the reward too great!<br>
+<br>
+You weigh your options and decide that the best course of action is the boldest: retreat cannot be an option! You will beach the ships so that your crew has no choice but to forge onward. Though not destroyed, fixing the ships would require many weeks of repair, assuming they could even find the necessary materials. <br>
+<br>
+Even if your men have turned against you, there's [[no going back|Mutiny Outcome]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Cortes Doesn't Return {"position":"2500,9800","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace. <br>
+<br>
+As you struggle to maintain your forces, you wish you had more manpower and wonder why Cortes has [[not yet returned from the coast|Aztec Leader Gives a Speech]].<br>
+<br>
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. With Cortes gone, a much smaller Spanish force remains and you wonder if he and his Tlaxcalan allies will return. You know the route to the coast well and it's clear that he should have returned by now. <br>
+<br>
+[[You hope this will work to your advantage|Aztec Leader Gives a Speech]].<br>
+<br>
+<<else>>
+With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. With Cortes gone, a much smaller Spanish force remains. Messengers have made their way to the city in recent days, reporting on his demise. It seems Cortes was defeated at the coast and neither he nor his Tlaxcalan allies will be returning. <br>
+<br>
+This turn of events gives you hope as you [[continue your preparations|Aztec Leader Gives a Speech]].<br>
+<br>
+<</if>>
+<<case "Tlaxcalans">>
+Ever since your return home, your spies have been keeping a close watch on events in Tenochtitlán. It seems things have grown increasingly tense in the capital since you left the city with Cortés.<br>
+<br> 
+It all began with a massacre. While you were away at the coast, the remaining Spaniards cut down the Mexica's most powerful warriors in the middle of a religious festival! The residents of the city recovered quickly from their horror and chased down the Spaniards, who retreated from the plaza and barricaded themselves in the palace. They were not alone in the palace, however, for <<print $Aztec_Leader>> had taken shelter there too. In a shocking move, the Spaniards were able to take him prisoner! To think, the all-powerful Mexica emperor is now nothing more than a captive to the invaders!<br>
+<br>
+Just today, you received yet another piece of news: Cortés has been killed at the coast! As you suspected, his forces were not strong enough to survive the battle alone. It seems rumors have been circulating in Tenochtitlán. The Mexica have received word of Cortés' death, but the Spaniards have been cut off from this information and wonder about the fate of their former leader.<br>
+<br>
+Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?<br>
+<br>
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].<br>
+<br>
+
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes Gets Sent to Cuba {"position":"1900,14500","size":"100,100"}
+<<liveblock>>
+You arrive in Cuba, where you are taken before Governor Velazquez, your sworn enemy. Velazquez declares that you acted outside of his authority, reminding you that he only granted permission for you to explore the coast. You defend your actions as perfectly legal! Upon arriving in Veracruz, you tell him, you and your men established a formal settlement. When the town council of Veracruz appointed you military leader, they imbued you with the authority to carry out further exploration. You were not disobeying Velazquez because you were no longer acting under his authority!<br>
+<br>
+You watch Velazquez grow increasingly angry at your words. When you have made your case, he finds you guilty of violating the orders of the Crown. He sentences you to a lifetime of hard labor, to be served at sea.<br>
+<br>
+As you are thrown in chains into the hold of another ship, you wonder why <<link "God has forsaken you" "A Rude Awakening in the Library">><<th-set '$users["Cortes"]["stats"]["Strength"]' to 0>><<th-set '$users["Cortes"]["stats"]["Loyalty"]' to 0>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' to 0>><</link>>.<br>
+<br>
+
+<</liveblock>>
+
+
+
+:: Cortes Leadership Check [Done] {"position":"1525,300","size":"100,100"}
+<<liveblock>>
+<<switch $role>>
+<<case "Cortes">>
+<<if $Cuba_Voted isnot 3>>
+You wait nervously to see how your men respond.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Cuba_Voted>> votes have been cast.<br>
+<br>
+
+<<elseif $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] < 1>><<th-set '$users["Cortes"]["stats"]["Strength"]' to 0>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' to 0>>
+
+Cortes, you have lost the confidence of your men. They don't trust your leadership, and they have mutinied!  You are no longer their leader. Worse yet, the mutiny wiped out all your strength and wisdom points, too! <br>
+<br>
+Click through to [[find out who your men are placing their trust in|New Leader]].<br>
+<br>
+<<elseif $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] is 1>><<th-set '$Span_Leader' to "Cortes">>">><<th-set '$Spaniards_currentMap' to 2>>
+
+Your Loyalty remains high enough, but barely, and you will continue to lead. But be careful how you handle your men, if your Loyalty drops to zero, you will face a mutiny! <br>
+<br>
+For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
+<br>
+<<elseif $Cuba_Voted is 3 and $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] > 1>><<th-set '$Span_Leader' to "Cortes">><<th-set '$Spaniards_currentMap' to 2>>
+
+Your Loyalty points remain high enough that you will continue to lead. But be thoughtful in how you lead your men. If they lose faith in you and your loyalty points drop to zero, you could be facing a mutiny!<br>
+<br>
+For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
+<br>
+<</if>>
+
+<<case "Olid" OR "Alvarado" OR "Garrido">>
+<<if $Cuba_Voted isnot 3>>
+You wait nervously to see how the other men respond.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $Cuba_Voted>> vostes have been cast.
+<<elseif $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] < 1>>
+
+Cortes has lost your confidence, and you mutiny against him! You band together and take control of the ship. One amongst you will rise to the top and lead the group. <br>
+<br>
+Click through to find out which of you has the most loyalty and who will  [[become your new leader |New Leader]]!<br>
+<br>
+<<elseif $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] is 1>><<th-set '$Span_Leader' to "Cortes">><<th-set '$Spaniards_currentMap' to 2>>
+
+Though the decision was contentious, Cortes still has enough Loyalty points to remain in control of your group-but just barely! Though some of you still have faith in him, his loyalty points are close to zero. If they reach zero, he will face a mutiny, and one of you will rise to the top! Will you support him, bolstering his leadership as you move forward, or will you begin to plot against him?<br>
+<br>
+For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
+<br>
+<<elseif $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] > 1>><<th-set '$Span_Leader' to "Cortes">><<th-set '$Spaniards_currentMap' to 2>>
+
+Though the decision was contentious, Cortes is still in control! Note, though, if Cortes' Loyalty Points reach zero, he will face a mutiny, and one of you will rise to the top! As you move forward, will you continue to support him, bolstering his leadership, or will you begin to plot against him?<br>
+<br>
+For now, you may [[continue on your journey|Spaniards Send a Letter]].<br>
+<br>
+<</if>>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes sets sail from Cuba [Done] {"position":"2200,50","size":"100,100"}
+<<liveblock>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
+
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
+
+You must wait for enough players to gather to begin.<br>
+<br>
+<<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+<<else>>
+<b> Your Team Leader is: <<print $Span_Leader>></b><br>
+<br>
+November 18th, 1519. Just off the shore of Cuba.<br>
+<br>
+You stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught the sails, and the ship creaks as it begins to heel. You can barely hear Velázquez yelling into the wind, yelling at you to turn around and come back.<br>
+<br>
+Velázquez is mad, and he hasn't yet discovered that, under your orders, the men have raided the city's main storehouse, stealing all the provisions they could carry. You hope they will last you through the uncertain adventures ahead.<br>
+<br>
+As the governor's rowboat rapidly loses ground, you cup your hands to your mouth, shouting back to Velázquez, "Forgive me, Your Worship, for this and similar things have to be done rather than thought about!"<br>
+<br>
+You forge onward, dreaming of the riches that surely await you! [[Without risk, there can be no reward|Spaniards Quest Instructions 1]]!
+<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes Proposes a meeting with Narvaez {"position":"2025,9675","size":"100,100"}
+<<liveblock>>
+You have received word that the enemy camp lies just ahead. The time has come to make your move. You send a messenger to make contact with Narváez. You propose a meeting.<br>
+<br>
+The messenger returns with Narváez' reply: He will meet you on the condition that you come unarmed. You agree to his terms and tuck a dagger in your boot as you make your way toward camp. You are wary, but Narváez has given his word that you will not be harmed.<br>
+<br>
+As soon as you step into the large clearing at the center of camp, you know you made a mistake. Hundreds of his men surround you, while your own are nowhere to be found. Narváez places you under arrest and puts you in shackles. You are chained to a stake in the middle of camp, a spectacle for all of these men who came to rob you of your glory.<br>
+<br>
+The next day, you are thrown on a boat and [[sent to Cuba|Cortes Waits]]. <br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Cortes Returns Victorious {"position":"2175,9800","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+After many days on the road, you receive word from a messenger that there has been an uprising back in Tenochtitlán. You ready your now fortified army for the battle that lies ahead. <br>
+<br>
+It seems that things have descended into chaos during your absence. Your companions launched an unprovoked attack that left many of the city's warriors dead and they are now barricaded inside the palace, with <<print $Aztec_Leader>> as their prisoner. Outside the palace, the Mexica have been preparing for war and have cut off all food supplies to your men.<br>
+<br>
+While you were achieving victory on the coast, your compatriots allowed the situation to get out of hand. <b>Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse. </b><br>
+<br>
+It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
+<br>
+<<else>>
+Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.<br>
+<br>
+It's late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast with a much larger force than he took with him. Not only was he able to defeat Velazquez' forces, but he won them over to your side and claimed their weapons.<br>
+<br>
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased  to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
+<br>
+<</if>>
+
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.<br>
+<br>
+This new turn of events makes you nervous and you [[wonder what is in store for you|Aztec Leader Gives a Speech]].<br>
+<br>
+<<else>>
+With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city with a much larger army behind him than he had when he left. It seems he has brought back many men and you wonder what kind of weapons they have with them.<br>
+<br>
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].<br>
+<br>
+<</if>>
+<<case "Tlaxcalans">>
+Ever since your return home, your spies have been keeping a close watch on events in Tenochtitlán. It seems things have grown increasingly tense in the capital since you left the city with Cortés.<br> 
+<br>
+It all began with a massacre. While you were away at the coast, the remaining Spaniards cut down the Mexica's most powerful warriors in the middle of a religious festival! The residents of the city recovered quickly from their horror and chased down the Spaniards, who retreated from the plaza and barricaded themselves in the palace. They were not alone in the palace, however, for <<print $Aztec_Leader>> had taken shelter there too. In a shocking move, the Spaniards were able to take him prisoner! To think, the all-powerful Mexica emperor is now nothing more than a captive to the invaders!<br> 
+<br>
+This was the situation when Cortés and his newly-fortified army returned to the city. The spies claim that he was livid at this turn of events, though you suspect he may benefit greatly from <<print $Aztec_Leader>>'s imprisonment.<br> 
+<br>
+Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?<br> 
+<br>
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].<br> 
+<br>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes Returns Weakened {"position":"2350,9800","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+After many days on the road, you receive word from a messenger that there has been an uprising back in Tenochtitlán. You curse your luck and ready your now weakened army for the battle that lies ahead. <br>
+<br>
+It seems that things have descended into chaos during your absence. Your companions launched an unprovoked attack that left many of the city's warriors dead and they are now barricaded inside the palace, with <<print $Aztec_Leader>> as their prisoner. Outside the palace, the Mexica have been preparing for war and have cut off all food supplies to your men.<br>
+<br>
+You gather your men and force your way through the city and into the palace with little resistance. Once inside you angrily confront the rest of the Spanish forces, wondering how they could have let things go so horribly wrong. While you were barely escaping the coast with your life, your compatriots allowed the situation to get out of hand. Despite his failures in your absence, <<print $Span_Leader>> remains in charge, for better for worse.<br>
+<br>
+It seems the one good thing the rest of your men did in your absence was to take <<print $Aztec_Leader>> prisoner. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
+<br>
+<<else>>
+Things have now been quiet for days. Eerily quiet. As you look at your dwindling food supplies, you wonder what is going on outside the palace.<br>
+<br>
+It's late at night when you hear a commotion outside and are relieved to find that Cortes has returned from the coast, though you are dismayed when you realize that he has brought with him a much smaller force than that with which he left. <br>
+<br>
+When you recount the events that transpired during his absence, Cortes is livid.  Now that he is no longer in charge, however, there is little he can do. On the other hand, he is pleased to learn the news that <<print $Aztec_Leader>> is now your hostage. [[You must now use him to your advantage|Aztec Leader Gives a Speech]]. <br>
+<br>
+<</if>>
+
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+You have now spent many moons as a prisoner of the Spanish and you can only imagine what is happening outside the walls of the palace. Things take a turn for the worse when Cortes returns from the coast, though you note that he is accompanied by a much smaller army than he took with him when he left.<br>
+<br>
+This new turn of events makes you nervous and you wonder [[what is in store for you|Aztec Leader Gives a Speech]].<br>
+<br>
+<<else>>
+With the Spaniards barricaded inside the palace, your people have been quietly preparing the city for battle. To your dismay, Cortes returns in the midst of your preparations and forces his way into the city, though you note that he is accompanied by a much smaller army than he took with him when he left.<br>
+<br>
+The people are restless and this new turn of events [[makes you nervous|Aztec Leader Gives a Speech]].<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+Ever since your return home, your spies have been keeping a close watch on events in Tenochtitlán. It seems things have grown increasingly tense in the capital since you left the city with Cortés.<br>
+<br> 
+It all began with a massacre. While you were away at the coast, the remaining Spaniards cut down the Mexica's most powerful warriors in the middle of a religious festival! The residents of the city recovered quickly from their horror and chased down the Spaniards, who retreated from the plaza and barricaded themselves in the palace. They were not alone in the palace, however, for <<print $Aztec_Leader>> had taken shelter there too. In a shocking move, the Spaniards were able to take him prisoner! To think, the all-powerful Mexica emperor is now nothing more than a captive to the invaders!<br>
+<br>
+Just today, you received yet another piece of news: Cortés has returned from the coast! It seems he survived the battle alone, much to your surprise, though his forces have been greatly weakened. The spies claim that he was livid at the events that unfolded in his absence, though you suspect he may benefit greatly from <<print $Aztec_Leader>>'s imprisonment.<br>
+<br>
+Go to the Tlaxcalan discussion board and discuss the events that have unfolded since you left the city. How do they make you feel about the Spaniards? About the Mexica? Does this change anything?<br>
+<br>
+Once you have discussed the present situation, [[you may move forward|Aztec Leader Gives a Speech]].<br>
+<br>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes Waits {"position":"2025,9800","size":"100,100"}
+<<liveblock>>
+You suffer through the journey in the hold of the boat, wondering what awaits you [[back on the island|Cortes Gets Sent to Cuba]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Cortes gets called to the coast {"position":"2300,8925","size":"100,100"}
+<<liveblock>>
+<<switch $role>>
+<<case "Cortes">>
+<<print $Aztec_Leader>> gathers you together and this is what he says:<br>
+<br>
+<i>"I have just this moment received the information that an armament of eighteen vessels, with a great number of soldiers and horses, has arrived in the harbor where you landed. Pictures of the whole armament have been transmitted to me. This, no doubt, is no news to you, and...though I may have felt hurt that you wished to keep all this a secret from me, yet, on the other hand, I am delighted at the arrival of your brothers, with whom you can now return to Spain; which thus removes all difficulties at once.”</i><br>
+<br>
+You try to hide your surprise as this is, indeed, news to you! You express your joy to <<print $Aztec_Leader>>, assuring him how happy you will be to reunite with your countrymen. You know immediately, however, that this cannot be good news. It is undoubtedly Velazquez, out to secure your arrest.<br>
+<br>
+After <<print $Aztec_Leader>> makes his departure, you quietly confer with the others. It is clear that you must go to the coast. Judging from <<print $Aztec_Leader>>'s description, Velazquez has sent a sizable force to secure your return to Cuba. You will take an army of your indigenous allies on a journey to the coast, among them the Tlaxcalan leaders. <br>
+<br>
+You gather your allies and [[prepare for your journey|Cortes takes Tlaxcalans to the coast]].<br>
+<br>
+
+<<case "Alvarado" OR "Aguilar" OR "Olid" OR "Garrido">>
+<<print $Aztec_Leader>> gathers you together and this is what he says:<br>
+<br>
+<i>"I have just this moment received the information that an armament of eighteen vessels, with a great number of soldiers and horses, has arrived in the harbor where you landed. Pictures of the whole armament have been transmitted to me. This, no doubt, is no news to you, and...though I may have felt hurt that you wished to keep all this a secret from me, yet, on the other hand, I am delighted at the arrival of your brothers, with whom you can now return to Spain; which thus removes all difficulties at once.”</i><br>
+<br>
+You listen to Cortes express his joy to <<print $Aztec_Leader>>, assuring him how happy you will all be to reunite with your countrymen. You know immediately, however, that this cannot be good news. It is undoubtedly Velazquez, out to secure Cortes' arrest.<br>
+<br>
+After <<print $Aztec_Leader>> makes his departure, you quietly confer. It is clear that Cortes must go to the coast. Judging from <<print $Aztec_Leader>>'s description, Velazquez has sent a sizable force to secure his return to Cuba. He will take an army of your indigenous allies on a journey to the coast, among them the Tlaxcalan leaders.<br> 
+<br>
+[[You prepare for Cortes' departure|Absent Cortes Leadership Challenge]].<br>
+<br>
+<<case "Marina">>
+<<print $Aztec_Leader>> gathers you together and this is what he says:<br>
+<br>
+<i>"I have just this moment received the information that an armament of eighteen vessels, with a great number of soldiers and horses, has arrived in the harbor where you landed. Pictures of the whole armament have been transmitted to me. This, no doubt, is no news to you, and...though I may have felt hurt that you wished to keep all this a secret from me, yet, on the other hand, I am delighted at the arrival of your brothers, with whom you can now return to Spain; which thus removes all difficulties at once.”</i><br>
+<br>
+You listen to Cortes express his joy to <<print $Aztec_Leader>>, assuring him how happy he and his men will be to reunite with their countrymen. You sense something is not right, however.<br>
+<br>
+After <<print $Aztec_Leader>> makes his departure, Cortes gathers everyone together and expresses his concern. He suspects this army has arrived to arrest him, though it's not clear to you what for. Cortes will go to the coast and he will take an army of indigenous allies on the journey, among them the Tlaxcalan leaders. <br>
+<br>
+[[Everyone prepares for Cortes' departure|Absent Cortes Leadership Challenge]].<br>
+<br>
+<<case "Xicotencatl_Elder" OR "Xicotencatl_Younger" OR "Maxixcatl">>
+A messenger approaches you with a request from Cortes. It seems an army of Spaniards have arrived on the coast and he must go to meet them. Cortes requests your discretion, for the army that awaits him are not his friends as he would have the Aztecs believe. He suspects that they mean him harm and he requests that you accompany him at the head of an allied army. You must prepare to do battle when you arrive.<br>
+<br>
+You wonder at this turn of events, but decide it is in your interest to concede to this request. This is your ticket out of the city and--you hope--home to Tlaxcala.<br>
+<br>
+[[You prepare for your journey|Tlaxcalans go with Cortes to the coast]].<br>
+<</switch>>
+
+<<switch $users[$role]["faction"]>>
+<<case "Aztecs">>
+<<if $role is $Aztec_Leader>>
+Your spies have informed you that another army of foreigners have arrived at the shore and they seek the one who calls himself Cortes. Your spies have determined that these new Spaniards are not friends of your guests, but you suspect it is best to keep that information to yourself. You visit their lodgings and relay the following message:<br>
+<br>
+<i>"I have just this moment received the information that an armament of eighteen vessels, with a great number of soldiers and horses, has arrived in the harbor where you landed. Pictures of the whole armament have been transmitted to me. This, no doubt, is no news to you, and...though I may have felt hurt that you wished to keep all this a secret from me, yet, on the other hand, I am delighted at the arrival of your brothers, with whom you can now return to Spain; which thus removes all difficulties at once.”</i><br>
+<br>
+You watch Cortes' face as he listens to your words. He maintains his composure, but you are sure you detect a flash of concern as he expresses his joy at this most welcome news.<br>
+<br>
+You take your leave, curious at this [[turn of events|Toxcatl]].<br>
+<br>
+<<else>>
+Your spies have informed <<print $Aztec_Leader>> that another army of foreigners have arrived at the shore and they seek the one who calls himself Cortes. The spies have determined that these new Spaniards are not friends of your guests, but <<print $Aztec_Leader>> decides to keep that information to himself. He visits their lodgings and relays the following message:<br>
+<br>
+<i>"I have just this moment received the information that an armament of eighteen vessels, with a great number of soldiers and horses, has arrived in the harbor where you landed. Pictures of the whole armament have been transmitted to me. This, no doubt, is no news to you, and...though I may have felt hurt that you wished to keep all this a secret from me, yet, on the other hand, I am delighted at the arrival of your brothers, with whom you can now return to Spain; which thus removes all difficulties at once.”</i><br>
+<br>
+<<print $Aztec_Leader>> shares this information with his council afterwards. Though the Spaniards expressed joy at the news, <<print $Aztec_Leader>> suspects they are worried about what awaits them on the coast.<br>
+<br>
+You wonder at what is [[about to unfold|Toxcatl]].<br>
+<br>
+<</if>>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes takes Tlaxcalans to the coast {"position":"2425,9175","size":"100,100"}
+<<liveblock>>
+Your journey is long and arduous, but at least it is familiar this time. Along the way, you prepare your allies for what you might encounter. Your Tlaxcalan friends listen closely and you can't help but wonder at their allegiance. As you prepare to face Velazquez' forces, you are completely at the mercy of your native allies. You do everything in your power to win them over, but is it enough?<br>
+<br>
+<<if $Tlax_Alliance is "Veracruz">>
+You pack up camp and, with your allies, prepare for the [[next phase of your journey|Tlaxcalans agree to fight]].<br>
+<br>
+<<elseif $Tlax_Alliance is "Home">>
+You pack up camp and prepare for the [[next phase of your journey|Tlaxcalans announce their departure]].<br>
+<br>
+<<elseif $Tlax_Alliance is "Betray">>
+You pack up camp and prepare for the [[next phase of your journey|Tlaxcalans leave Cortes to fend for himself]].<br>
+<br>
+<<else>>
+You fall into a troubled sleep, wondering what the next morning will bring.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalans to do something.<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes' Contribution {"position":"2300,7550","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Aztecs">>
+Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? <br>
+<br>
+To aid you in this task, go to your game documents and read Bernal Diaz' account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.<br>
+<br>
+
+<<if $Marina_Act is "No">>
+
+<<elseif $Marina_Act is "Yes">>
+Marina's introduction is:  <<print "$Ma_TG">><br>
+<br>
+<i>You have already rated Marina's contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Cortes_Act is "No">>
+Cortes is not active, please <<link "continue without judging him" "Alvarado's Contribution">><</link>>.<br>
+<br> 
+<<elseif $Cortes_Act is "Yes">>
+Cortes' entry is:  <<print "$Co_TG">><br>
+<br>
+Does he <<link "PASS" "Alvarado's Contribution">><<th-set '$users["Cortes"]["stats"]["Wisdom"]' += 2>><</link>> or <<link "FAIL" "Alvarado's Contribution">><<th-set '$users["Cortes"]["stats"]["Wisdom"]' -= 2>><</link>>?<br>
+<br>
+<</if>>
+
+<<case "Spaniards" OR "Tlaxcalans">>
+Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can't be found in Tenochtitlán?  <br>
+<br>
+
+To aid you in this task, you may want to revisit Bernal Diaz' account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.<br>
+<br>
+<<if $Moctezuma_Act is "No">>
+
+<<elseif $Moctezuma_Act is "Yes">>
+Moctezuma's recipe is:  <<print "$Moc_Rec">><br>
+<br>
+<i>You have already rated Moctezuma's contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Tlacaelel_Act is "No">>
+Tlacaelel is not active, please <<link "continue without judging him" "Alvarado's Contribution">><</link>>.<br>
+<br> 
+<<elseif $Tlacaelel_Act is "Yes">>
+Tlacaelel's entry is:  <<print "$Tlc_Rec">><br>
+<br>
+Does he <<link "PASS" "Alvarado's Contribution">><<th-set '$users["Tlacaelel"]["stats"]["Wisdom"]' += 2>><</link>> or <<link "FAIL" "Alvarado's Contribution">><<th-set '$users["Tlacaelel"]["stats"]["Wisdom"]' -= 2>><</link>>?<br>
+<br>
+<</if>>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes must convince his men to accompany him on the journey [Done] {"position":"1525,50","size":"100,100"}
+<<liveblock>>
+<<switch $role>>
+<<case "Cortes">>
+As Cuba disappears behind the horizon, you are faced with a ship full of nervous, uncertain men.  You MUST convince them to move forward. <br>
+<br>
+
+Adjourn to the Spanish discussion board and convince them, persuade them, bully them, do whatever you have to do to move them forward.  <br>
+<br>
+<<case "Olid" OR "Alvarado" OR "Garrido">>
+As Cuba disappears behind the horizon, you find yourself feeling increasingly anxious and uncertain. You must continue on your journey, but why will you continue? <br>
+<br>
+Adjourn to the Spanish discussion board and listen to what Cortes has to say. Decide for yourself how he will persuade you.<br>
+<br>
+<</switch>>
+
+When you have come to an agreement, you may  [[continue on|Cortes has convinced Spaniards to carry on their journey]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Spaniards in Tlaxcala Cortes Alive {"position":"2050,11700","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+<<if $role is "Cortes">>
+<<if $Tlax_Alliance is "Veracruz">>
+You arrive in Tlaxcala and breathe a sigh of relief. There is a sense of safety knowing that you are back among friends…and that those friends have been closely guarding the cannons you won in your battle against Velazquez on the coast.<br>
+<br>
+Your hosts welcome you with open arms and treat you to a hearty meal. As you gratefully fill your belly, you recount the events of the past weeks. However, your friends are already aware of everything that has transpired. It seems they have been keeping tabs through their network of spies. <br>
+<br>
+The time has come to make your case. You inform the Tlaxcalan leaders of your plan: you will regroup, consolidate your forces over the coming months, and prepare to lay siege to Tenochtitlán. [[Will they join you|Tlaxcalans Decide About the Spaniards]]?<br>
+<br>
+<<elseif $Tlax_Alliance is "Home">>
+You arrive in Tlaxcala and breathe a sigh of relief. There is a sense of safety knowing that you are back among friends…but are you? When you asked your allies to fight with you against Velazquez, they made it clear that they would not risk their lives to fight your battles. <br>
+<br>
+Your hosts welcome you with open arms and treat you to a hearty meal. As you gratefully fill your belly, you recount the events of the past weeks. However, your friends are already aware of everything that has transpired. It seems they have been keeping tabs through their network of spies. <br>
+<br>
+The time has come to make your case. You inform the Tlaxcalan leaders of your plan: you will regroup, consolidate your forces over the coming months, and prepare to lay siege to Tenochtitlán. [[Will they join you|Tlaxcalans Decide About the Spaniards]]?<br>
+<br>
+<</if>>
+
+<<else>>
+<<if $Tlax_Alliance is "Veracruz">>
+You arrive in Tlaxcala and breathe a sigh of relief. There is a sense of safety knowing that you are back among friends…and that those friends have been closely guarding the cannons Cortes won in his battle against Velazquez on the coast.<br>
+<br>
+Your hosts welcome you with open arms and treat you to a hearty meal. As you gratefully fill your belly, you recount the events of the past weeks. However, your friends are already aware of everything that has transpired. It seems they have been keeping tabs through their network of spies. <br>
+<br>
+The time has come to make your case. You inform the Tlaxcalan leaders of your plan: you will regroup, consolidate your forces over the coming months, and prepare to lay siege to Tenochtitlán. [[Will they join you|Tlaxcalans Decide About the Spaniards]]?<br>
+<br>
+<<elseif $Tlax_Alliance is "Home">>
+You arrive in Tlaxcala and breathe a sigh of relief. There is a sense of safety knowing that you are back among friends…but are you? When Cortes asked your allies to fight with him against Velazquez, they made it clear that they would not risk their lives to fight your battles.<br>
+<br> 
+Your hosts welcome you with open arms and treat you to a hearty meal. As you gratefully fill your belly, you recount the events of the past weeks. However, your friends are already aware of everything that has transpired. It seems they have been keeping tabs through their network of spies. <br>
+<br>
+The time has come to make your case. You inform the Tlaxcalan leaders of your plan: you will regroup, consolidate your forces over the coming months, and prepare to lay siege to Tenochtitlán. [[Will they join you|Tlaxcalans Decide About the Spaniards]]?<br>
+<br>
+<</if>>
+<</if>>
+
+<<case "Tlaxcalans">>
+<<if $role is $Tlax_Leader>>
+<<if $Tlax_Alliance is "Veracruz">>
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and they settle in to recount their own version of recent events. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+You already fought with Cortes at the coast and your hand is now strengthened by the cannons you won in that battle, but will you put your lives on the line for these strangers again? Is this your opportunity to finally defeat your Mexica enemies once and for all? <br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<th-set '$Tlax_Final_Dec' to "Span">><</link>>.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and <<link "restore order to your world" "Tlaxcala Attacks the Spaniards">><<th-set '$Tlax_Final_Dec' to "AttackSpan">><</link>>.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<th-set '$Tlax_Final_Dec' to "Alone">><</link>>.<br>
+<br>
+
+When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
+<br>
+<<elseif $Tlax_Alliance is "Home">>
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and they settle in to recount their own version of recent events. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<th-set '$Tlax_Final_Dec' to "Span">><</link>>.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and <<link "restore order to your world" "Tlaxcala Attacks the Spaniards">><<th-set '$Tlax_Final_Dec' to "AttackSpan">><</link>>.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<th-set '$Tlax_Final_Dec' to "Alone">><</link>>.<br>
+<br>
+
+When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
+<br>
+<</if>>
+
+<<else>>
+<<if $Tlax_Alliance is "Veracruz">>
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and they settle in to recount their own version of recent events. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+You already fought with Cortes at the coast and your hand is now strengthened by the cannons you won in that battle, but will you put your lives on the line for these strangers again? Is this your opportunity to finally defeat your Mexica enemies once and for all? <br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and restore order to your world.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
+<br>
+
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
+<br>
+<<elseif $Tlax_Alliance is "Home">>
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and they settle in to recount their own version of recent events. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and restore order to your world.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
+<br>
+
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
+<br>
+<</if>>
+<</if>>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Spaniards in Tlaxcala Cortes Dead {"position":"2225,11700","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+You arrive in Tlaxcala tired and wary. The last time you saw your friends, they left with Cortes to confront Velazquez' men on the coast... and never came back. Though you wonder if they are to be trusted, you have few other options at this point and even fewer friends. <br>
+<br>
+Much to your relief, your hosts welcome you with open arms and treat you to a hearty meal. As you gratefully fill your belly, you address the question on everyone's minds: what happened to Cortes? It seems the fate of your former leader will remain a mystery, however. The Tlaxcalan leaders report that they left Cortes and the rest of the contingent as they passed Tlaxcala, taking the opportunity to return home. That was the last they ever saw of him.<br>
+<br>
+You then recount the events of the past weeks, but it seems your friends have kept up with the news out of Tenochtitlán and they already know what transpired in the city. All that remains, then, is to make your case. You inform the Tlaxcalan leaders of your plan: you will regroup, consolidate your forces over the coming months, and prepare to lay siege to Tenochtitlán. [[Will they join you|Tlaxcalans Decide About the Spaniards]]?<br>
+<br>
+
+<<case "Tlaxcalans">>
+<<if $role is $Tlax_Leader>>
+<<if $Tlax_Alliance is "Home">>
+
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? It seems the fate of their former leader will remain a mystery, however. You report that you left Cortes and the rest of the contingent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him.<br>
+<br>
+They go on to recount the events that transpired after you left the city. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<th-set '$Tlax_Final_Dec' to "Span">><</link>>.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and <<link "restore order to your world" "Tlaxcala Attacks the Spaniards">><<th-set '$Tlax_Final_Dec' to "AttackSpan">><</link>>.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<th-set '$Tlax_Final_Dec' to "Alone">><</link>>.<br>
+<br>
+When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
+<br>
+
+<<elseif $Tlax_Alliance is "Betray">>
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? Rather than admit that you abandoned their former leader to his fate, you lie and report that you left Cortes and the rest of the contingent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him. It's best for everyone if they don't know you led him into a trap.<br>
+<br>
+They go on to recount the events that transpired after you left the city. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to <<link "claim victory over your Mexica enemies" "Tlaxcala helps the Spaniards">><<th-set '$Tlax_Final_Dec' to "Span">><</link>>.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and <<link "restore order to your world" "Tlaxcala Attacks the Spaniards">><<th-set '$Tlax_Final_Dec' to "AttackSpan">><</link>>.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out <<link "weaker in the end" "Tlaxcala Does Nothing">><<th-set '$Tlax_Final_Dec' to "Alone">><</link>>.<br>
+<br>
+When you have agreed on the best course of action, input your decision here. You may then move forward to carry out your plan.<br>
+<br>
+<</if>>
+
+<<else>>
+<<if $Tlax_Alliance is "Home">>
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? It seems the fate of their former leader will remain a mystery, however. You report that you left Cortes and the rest of the contingent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him.<br>
+<br>
+They go on to recount the events that transpired after you left the city. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and restore order to your world.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
+<br>
+
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
+<br>
+
+<<elseif $Tlax_Alliance is "Betray">>
+You are not surprised when the Spaniards arrive in Tlaxcala, weary from the events of the past weeks. Your spies alerted you to their presence well in advance. <br>
+<br>
+You treat your guests to a warm meal and as they settle in, they address the question on everyone's minds: what happened to Cortes? Rather than admit that you abandoned their former leader to his fate, you lie and report that you left Cortes and the rest of the contingent as you passed Tlaxcala, taking the opportunity to return home. It seems he never made his way back to Tenochtitlán and that was the last anyone saw of him. It's best for everyone if they don't know you led him into a trap.<br>
+<br>
+They go on to recount the events that transpired after you left the city. When their story is done, they inform you of their plans: they want to regroup, consolidate their forces over the coming months, and prepare to lay siege to Tenochtitlán. And they want your help. <br>
+<br>
+The last time Cortes asked you to put your life on the line, you refused. And yet they now ask again. This is different, however. Last time they faced their own enemies and it was not your fight. This time, you have an opportunity to finally defeat the Mexica once and for all. Will you take it?<br>
+<br>
+Go to the Tlaxcalan discussion board and weigh your options. You have 3 choices:<br>
+<br>
+<b>Option 1:</b> Aid the Spaniards and lay siege to the Aztec capital. These foreigners have proven themselves to be fierce warriors and they have powerful weapons at their disposal. This may be your best chance to claim victory over your Mexica enemies.<br>
+<br>
+<b>Option 2:</b> Attack the Spaniards. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted and you have them in your grasp. Now is your chance to do away with the strangers and restore order to your world.<br>
+<br>
+<b>Option 3:</b> Refuse the request and send the strangers on their way. Though your hatred of the Mexica runs deep, the Spaniards are not to be trusted. If you let the two sides continue their fight, they will both come out weaker in the end.<br>
+<br>
+
+When you have agreed on the best course of action, <<print $Tlax_Leader>> will input your decision. You may then move forward to [[carry out your plan|Tlaxcalans Decide About the Spaniards]].<br>
+<br>
+<</if>>
+<</if>>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Cortes has convinced Spaniards to carry on their journey [Done] {"position":"1525,175","size":"100,100"}
+<<liveblock>>
+Now that you've made a decision, you can move forward. <br>
+<br>
+<<switch $role>>
+<<case "Olid" OR "Alvarado" OR "Garrido">>
+
+But why are you moving forward? <br>
+<br>
+Cortés has <<link "totally inspired you" "Cortes Leadership Check">><<th-set '$users["Cortes"]["stats"]["Loyalty"]' += 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><</link>> with his vision for what lays ahead! <br>
+<br>
+Cortés is clearly <<link "much smarter than Velazquez" "Cortes Leadership Check">><<th-set '$users["Cortes"]["stats"]["Loyalty"]' += 1>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' += 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><</link>> and he knows the path forward is filled with glory and riches! <br>
+<br>
+Cortés has <<link "threatened you" "Cortes Leadership Check">><<th-set '$users["Cortes"]["stats"]["Strength"]' += 1>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' -= 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><</link>> with what he will do to you if you don't follow! <br>
+<br>
+Cortés has not <<link "convinced you" "Cortes Leadership Check">><<th-set '$users["Cortes"]["stats"]["Loyalty"]' -= 1>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' -= 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><</link>>  but now you are stuck on this boat and outnumbered!<br>
+<br>
+
+<<case "Cortes">>
+
+Cortes, you have convinced your men somehow.  As you move to the next page, note that you may have gained or lost points in Wisdom, Strength, or Loyalty. You may [[continue on your adventure|Cortes Leadership Check]], but this experience has marked you, laying the groundwork of your future leadership.<br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans decide whether or not to fight with Cortes {"position":"2200,9175","size":"100,100"}
+<<liveblock>>
+<<if $role is $Tlax_Leader>>
+Select your team's decision from the options below.<br>
+<br>
+<b>Option 1:</b> <<link "You agree to go to battle with Cortes" "Tlaxcalans agree to fight">><<th-set '$Tlax_Alliance' to "Veracruz">><<th-set '$Cortes_Dead' to "No">><</link>>.<br>
+<br>
+<b>Option 2:</b> <<link "You will not go to battle with Cortes and you will tell him this before you reach Tlaxcala, so that you might leave the war party and go home" "Tlaxcalans announce their departure">><<th-set '$Tlax_Alliance' to "Home">><</link>>.<br>
+<br>
+<b>Option 3:</b> <<link "You will not go to battle with Cortes, but you decide not to tell him. When the time comes to fight, you will leave him to his fate" "Tlaxcalans leave Cortes to fend for himself">><<th-set '$Tlax_Alliance' to "Betray">><</link>>.<br>
+<br>
+You prepare for the next phase of your journey.<br>
+<br>
+<<else>>
+<<if $Tlax_Alliance is "Veracruz">>
+<<print $Tlax_Leader>> has finalized your choice. You will agree to support Cortes and go into battle with him.<br>
+<br>
+You prepare for the [[next phase of your journey|Tlaxcalans agree to fight]].<br>
+<br>
+<<elseif $Tlax_Alliance is "Home">>
+<<print $Tlax_Leader>> has finalized your choice. You will take your leave of Cortes and head back to Tlaxcala before you arrive in Veracruz.<br>
+<br>
+You prepare for the [[next phase of your journey|Tlaxcalans announce their departure]].<br>
+<br>
+<<elseif $Tlax_Alliance is "Betray">>
+<<print $Tlax_Leader>> has finalized your choice. You will go to Veracruz, but when the time comes, you will leave Cortes to his fate.<br>
+<br>
+You prepare for the [[next phase of your journey|Tlaxcalans leave Cortes to fend for himself]].<br>
+<br>
+<<else>>
+You wait for <<print $Tlax_Leader>> to finalize your decision.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<</if>>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans go with Cortes to the coast {"position":"2225,9050","size":"100,100"}
+<<liveblock>>
+You travel for many days and many nights. Cortes warns you of the force that you will likely encounter. They will be men like his own, but they will carry even more weapons. He reminds you of the battle you once fought against each other and the giant pipes that made smoke and noise. He calls them cannons and prepares you to face them once again.<br>
+<br>
+As you make your way to the coast, you and your compatriots discuss your options. Will you fight for Cortes, as he has asked? Is it worth it? What might you gain if you do?<br>
+<br>
+Go to the Tlaxcalan board and discuss the following options:<br>
+<br>
+<b>Option 1:</b> You agree to go to battle with Cortes.<br>
+<b>Option 2:</b> You will not go to battle with Cortes and you will tell him this before you reach Tlaxcala, so that you might leave the war party and go home.<br>
+<b>Option 3:</b> You will not go to battle with Cortes, but you decide not to tell him. When the time comes to fight, you will leave him to his fate.<br>
+<br>
+Once your team has decided on the best course of action, [[proceed to the next page|Tlaxcalans decide whether or not to fight with Cortes]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans leave Cortes to fend for himself {"position":"2500,9375","size":"100,100"}
+<<liveblock>>
+<<if $role is "Cortes">>
+You have received word that the enemy camp lies just ahead. The time has come to face the force of Spaniards who have come to secure your arrest.<br>
+<br>
+You confer with your Tlaxcalan allies, who assure you they will fight by your side. You decide that the best course of action is not to confront the enemy head on, but to take them by surprise in a sneak attack. <br>
+<br>
+You wait until midnight to launch your attack, hoping to catch the enemy forces asleep. You give the command to attack and charge the Spanish camp, but you are missing some of your men! As the enemy forces collect themselves and gather their weapons to fight back, you realize that none of your Tlaxcalan allies are with you. Have you been betrayed? <br>
+<br>
+You don't have long to dwell on this fact, for the battle quickly turns against you. You fight for your life, but to no avail. As you feel the strike of the final blow, you fall to your knees and wonder why <<link "God has forsaken you" "The End">><<th-set '$users["Cortes"]["stats"]["Strength"]' to 0>><<th-set '$users["Cortes"]["stats"]["Loyalty"]' to 0>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' to 0>><<th-set '$Cortes_Dead' to "Yes">><</link>><br>
+<br>
+<<else>>
+You have received word that the enemy camp lies just ahead. The time has come to execute your plan.<br>
+<br>
+As you approach the camp, Cortes proposes a plan of his own: rather than meet his enemies head on, he wants to catch them off guard in a surprise attack. You agree that this is the best chance for success and wait patiently for nightfall.<br>
+<br>
+At midnight, Cortes makes the signal to attack, hoping to catch the enemy forces asleep. Rather than spring into action, you make your retreat. This is not your battle to fight and Cortes is not your friend. You make your way towards Tlaxcala with [[the sound of cannon fire ringing in your ears|Tlaxcalans Back In Tlaxcala]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+

@@ -1,0 +1,528 @@
+:: Aguilar overhears Maya gossip [Done] {"position":"1925,50","size":"100,100"}
+<<liveblock>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
+
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
+
+You must wait for enough players to gather to begin.<br>
+<br>
+
+<<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+
+<<else>>
+It's been eight years since you were shipwrecked on the way to Santo Domingo; eight years that you've been living as a slave among the Maya. All this time, you've remained loyal to your vows as a Franciscan Friar, refusing to take a wife and fully embrace the Mayan culture. After all these years, however, you have become fluent in the Yucatec Maya language. <br>
+<br>
+This morning began like any other, but things take a turn when you overhear some rather interesting news. As you sweep the entrance to the temple, you overhear a conversation between two of the most important men in the village. <br>
+<br>
+[[Here is what they said|Aguilar hears Maya gossip]]:<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Aguilar Answers {"position":"2350,250","size":"100,100"}
+<<liveblock>>
+<<switch $role>>
+<<case "Aguilar">>
+<<if $Aguilar_1 is "No" and $Aguilar_2 is "No" and $Aguilar_3 is "No">>
+You have not yet answered any questions correctly.  Please [[return and try again|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]]. <br>
+<br>
+<<elseif $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have been freed from your long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
+You have answered questions correctly.<br>
+<br>
+<</if>>
+
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_1 is "Yes">>
+You have answered question 1 correctly! The Gossip came from the great city of Tulum! Please [[return and answer another question|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_2 is "Yes">>
+You have answered question 2 correctly! The Maya saw a house floating on water filled with men! Please [[return and answer another question|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_3 is "Yes">>
+You have answered question 3 correctly! The strangers fired rocks into the sea and then fled! Please [[return and answer another question|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+
+<<case "Marina">>
+<<if $Aguilar_1 is "No" and $Aguilar_2 is "No" and $Aguilar_3 is "No">>
+You have not yet answered any questions correctly.  Please [[return and try again|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]]. <br>
+<br>
+<<elseif $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have freed Aguilar! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
+You have answered questions correctly.<br>
+<br>
+<</if>>
+
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_1 is "Yes">>
+You have answered question 1 correctly! The Gossip came from the great city of Tulum! Please [[return and answer another question|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_2 is "Yes">>
+You have answered question 2 correctly! The Maya saw a house floating on water filled with men! Please [[return and answer another question|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_3 is "Yes">>
+You have answered question 3 correctly! The strangers fired rocks into the sea and then fled! Please [[return and answer another question|Aguilar Quest]] or [[start over|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+
+<<case "Cortes">>
+<<if $Aguilar_1 is "No" and $Aguilar_2 is "No" and $Aguilar_3 is "No">>
+You have not yet answered any questions correctly.  Please [[return and try again|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]]. <br>
+<br>
+<<elseif $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have freed Aguilar! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
+You have answered questions correctly.<br>
+<br>
+<</if>>
+
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_1 is "Yes">>
+You have answered question 1 correctly! The Gossip came from the great city of Tulum! Please [[return and answer another question|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_2 is "Yes">>
+You have answered question 2 correctly! The Maya saw a house floating on water filled with men! Please [[return and answer another question|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_3 is "Yes">>
+You have answered question 3 correctly! The strangers fired rocks into the sea and then fled! Please [[return and answer another question|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+
+<<case "Alvarado" or "Olid" or "Garrido">>
+<<if $Aguilar_1 is "No" and $Aguilar_2 is "No" and $Aguilar_3 is "No">>
+You have not yet answered any questions correctly.  Please [[return and try again|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]]. <br>
+<br>
+<<elseif $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have freed Aguilar! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
+You have answered questions correctly.<br>
+<br>
+<</if>>
+
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_1 is "Yes">>
+You have answered question 1 correctly! The Gossip came from the great city of Tulum! Please [[return and answer another question|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_2 is "Yes">>
+You have answered question 2 correctly! The Maya saw a house floating on water filled with men! Please [[return and answer another question|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+<br>
+<<elseif $Aguilar_3 is "Yes">>
+You have answered question 3 correctly! The strangers fired rocks into the sea and then fled! Please [[return and answer another question|Aguilar Quest]] or [[start over and talk to Marina|Spaniards Quest Instructions 2]].<br>
+<br>
+<</if>>
+
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Aguilar Quest {"position":"2300,450","size":"100,100"}
+<<liveblock>>
+<<switch $role>>
+<<case "Aguilar">>
+<<if ndef $Aguilar_1 or $Aguilar_1 eq "">>
+You must wait for Cortes to begin the quest.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<elseif $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have been freed from your long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
+<b>Yich'ak-k'ak':</b><i> Jo'oljeak, táan te' k'íiwiko' tu'ux tin k'ajóoltaj u juntúul máak Tulum. Ku beetik jump'éel k'iino'ob, táan paakat le k'áak'náabo' ka tu yilaj jump'éel nuxi' naj chíikpajal ichil le ja'o'. Le najo' Náats' Amal ka'atéen asab yéetel xiibo'obo' le kaajo' múuch'o'ob utia'al in wil le najo'. Ka le najo' Náats' páajchajo'obij wil táan Chuup yéetel wíiniko'ob yéetel yoot'el n wíinkilil yéetel ya'ab tso'otsel. Xiibo'obo' Tulum ma' sabían tu'ux venía le naja', ba'ale' tu yilo'ob toop. Tu beetajo'ob juum ka menta'abij tunicho'ob ti' le k'áak'náabo'. Le najo' sunaj ka lanchajal.</i><br>
+<br>
+<b>Chak-balam:</b><i> Ba'ax ts'o'ok u yilik le najo' ti' uláak' ba'ali'. Yojlo'ob tu'ux tali'.</i><br>
+<br>
+<b>Yich'ak-k'ak':</b><i> lol Jach jela'an. In wa'alike' u K'a'abeta Jach yila'al.</i><br>
+<br>
+<b>Chak-balam:</b><i> K wíiniko'ob yan u bino'ob ja' pa'atik. Wa le najo' k'uchul yóok'ol le ja' ti' leti'ob ko'on jóok'ol.</i><br>
+<br>
+Aguilar, though you have been captive among the Maya for years, recently, you've heard exciting news and now is your chance to escape.  A band of Spaniards have arrived and are going to interview you for information about this news you've heard. If you can answer their questions, they will free you from your captivity, and you can join their expedition.  But beware, every wrong answer you give them will hurt them, while the correct answer will make your team stronger.<br>
+<br>
+<</if>>
+
+<<case "Alvarado" or "Olid" or "Garrido">>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have freed Aguilar from his long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><</link>>.<br>
+<br>
+<<else>>
+To “unlock” Aguilar's character, you must interview him about some gossip he overheard. Interview him to find the answers to the following questions:<br> 
+<br>
+<<if $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
+
+<b>Question 1: Where did the gossip come from?</b><br>
+<br>
+The land of Chuup.<br>
+<br>
+Their friend Náats' Amal.<br>
+<br>
+The great coastal city of Tulum.<br>
+<br>
+The priest in the temple.<br>
+<br>
+
+<<else>>
+<b>You have answered Question 1. The gossip came from the great coastal city of Tulum.</b><br>
+<br>
+<</if>>
+<<if $Aguilar_2 is "No" or $Aguilar_2 eq "" or ndef $Aguilar_2>>
+<b>Question 2: What did the Maya see?</b><br>
+<br>
+A long line of men on horseback.<br>
+<br>
+A House Floating on the Water filled with men.<br>
+<br>
+A rowdy group of strangers in the market.<br>
+<br>
+Messengers from the Aztec Emperor.<br>
+<br>
+
+<<else>>
+<b>You have answered Question 2. The Maya saw a house floating on water filled with men.</b><br>
+<br>
+<</if>>
+<<if $Aguilar_3 is "No" or $Aguilar_3 eq "" or ndef $Aguilar_3>>
+<b>Question 3: How did the interaction between the groups go?</b><br>
+<br>
+The strangers fired rocks into the sea and fled.<br>
+<br>
+The strangers came ashore and asked for food.<br>
+<br>
+The strangers came ashore and attacked.<br>
+<br>
+The strangers were carried away by a giant caiman.<br>
+<br>
+
+<<else>>
+<b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
+<br>
+<</if>>
+
+<<case "Cortes">>
+<<if $Aguilar_1 is "Yes" and $Aguilar_2 is "Yes" and $Aguilar_3 is "Yes">>
+Congratulations! You have freed Aguilar from his long captivity! <<link "You may now continue" "Spaniards Quest Instructions 2">><<set $Aguilar_Free="Yes">><</link>>.<br>
+<br>
+<<else>>
+To “unlock” Aguilar's character, you must interview him about some gossip he overheard. <b> As the leader, note that ONLY YOUR answers will work to unlock the characters.</b><br>
+<br>
+Interview Aguilar to find the answers to the following questions:<br> 
+<br>
+
+<<if $Aguilar_1 is "No" or $Aguilar_1 eq "" or ndef $Aguilar_1>>
+
+<b>Question One: Where did the gossip come from?</b><br>
+<br>
+<<link "The land of Chuup" "Aguilar Quest">><<sendAction "$Aguilar_1" "No">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']-1>><</link>>.<br>
+<br>
+<<link "Their friend Náats' Amal" "Aguilar Quest">><<sendAction "$Aguilar_1" "No">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']-1>><</link>>.<br>
+<br>
+<<link "The great coastal city of Tulum" "Aguilar Quest">><<sendAction "$Aguilar_1" "Yes">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']+1>><</link>>.<br>
+<br>
+<<link "The priest in the temple" "Aguilar Quest">><<sendAction "$Aguilar_1" "No">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']-1>><</link>>.<br>
+<br>
+<<elseif $Aguilar_1 is "Yes">>
+<b>You have answered Question 1. The gossip came from the great coastal city of Tulum.</b><br>
+<br>
+<</if>>
+
+<<if $Aguilar_2 is "No" or $Aguilar_2 eq "" or ndef $Aguilar_2>>
+<b>Question 2: What did the Maya see?</b><br>
+<br>
+<<link "A long line of men on horseback" "Aguilar Quest">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<br>
+<<link "A House Floating on the Water filled with men" "Aguilar Quest">><<set $Aguilar_2="Yes">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><</link>>.<br>
+<br>
+<<link "A rowdy group of strangers in the market" "Aguilar Quest">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<br>
+<<link "Messengers from the Aztec Emperor" "Aguilar Quest">><<set $Aguilar_2="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<br>
+<<else>>
+<b>You have answered Question 2. The Maya saw a house floating on water filled with men.</b><br>
+<br>
+<</if>>
+
+<<if $Aguilar_3 is "No" or $Aguilar_3 eq "" or ndef $Aguilar_3>>
+<b>Question 3: How did the interaction between the groups go?</b><br>
+<br>
+<<link "The strangers fired rocks into the sea and fled" "Aguilar Quest">><<set $factions["Spaniards"]["stats"]["Strength"]+=1>><<set $Aguilar_3="Yes">><</link>>.<br>
+<br>
+<<link "The strangers came ashore and asked for food" "Aguilar Quest">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<br>
+<<link "The strangers came ashore and attacked" "Aguilar Quest">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<br>
+<<link "The strangers were carried away by a giant caiman" "Aguilar Quest">><<set $Aguilar_3="No">><<set $factions["Spaniards"]["stats"]["Strength"]-=1>><</link>>.<br>
+<br>
+<<else>>
+<b>You have answered Question 3. The strangers fired rocks into the sea and fled.</b><br>
+<br>
+<</if>>
+<</if>>
+<</if>>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Aguilar Receives a Letter [Done Breaks] {"position":"1375,575","size":"100,100"}
+<<liveblock>>
+Since hearing the rumor of the strangers on the coast, you have been quietly plotting your escape. Unfortunately, the opportunity to flee has not yet presented itself. <br>
+<br>
+<<if ndef $Letter or $Letter eq "">>
+
+You continue to bide your time and wait for your opening.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Letter is "sent">>
+
+A day after you first hear the rumor, you are approached by the Mayan lord who has been your master these long years. He tells you that a pair of messengers have arrived from the coast, bearing beautiful gifts. A group of strangers have come who desire your release and they have paid him handsomely. Your master informs you that you are free and hands you a letter. It reads: <br>
+<br>
+“Gentlemen and brothers, here in Cozumel I have learnt that you are captives in the hands of a Cacique, and I pray you that you come here to Cozumel at once, and for this purpose I have sent a ship with soldiers, in case you have need of them, and a ransom to be paid to those Indians with whom you are living. The ship will wait eight days for you. Come in all haste, and you will be welcomed and protected. I am here at this Island with five hundred soldiers and eleven ships, in which I go on, please God, to a town called Tabasco or Potonchan.”<br>
+<br>
+You are elated at the message and set out in search of your former companion, Gonzalo Guerrero. Together, you were the sole survivors of the wreck that left you here among the Maya, but unlike you, Guerrero has adopted this new land and forsaken his one true God. Unlike you, Guerrero has not lived out these long years as a slave.<br>
+<br>
+When you find him, you share the letter. Guerrero reads it and, much to your dismay, he refuses to leave. “Brother Aguilar,” he says to you, “I am married and have three children and the Indians look on me as a Cacique and captain in wartime,--You go and God be with you, but I have my face tattooed and my ears pierced, what would the Spaniards say should they see me in this guise?”<br>
+<br>
+You inform Guerrero that God will never forgive him and warn him that he will be punished for his sins. And then you <<link "head for the coast" "Aguilar’s first encounter with the Spaniards">><<set $L_Received="Yes">><</link>>.<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Aguilar's Contribution {"position":"2300,7800","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Aztecs">>
+Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? <br>
+<br>
+To aid you in this task, go to your game documents and read Bernal Diaz' account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.<br>
+<br>
+<<if $Marina_Act is "No">>
+
+<<elseif $Marina_Act is "Yes">>
+Marina's introduction is:  <<print "$Ma_TG">><br>
+<br>
+<i>You have already rated Marina's contribution.</i><br>
+<br>
+<</if>>
+<<if $Cortes_Act is "No">>
+
+<<elseif $Cortes_Act is "Yes">>
+Cortes' entry is:  <<print "$Co_TG">><br>
+<br>
+<i>You have already rated Cortes' contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Alvarado_Act is "No">>
+
+<<elseif $Alvarado_Act is "Yes">>
+Alvarado's entry is:  <<print "$Al_TG">><br>
+<br>
+<i>You have already rated Alvarado's contribution.</i><br>
+<</if>>
+
+<<if $Aguilar_Act is "No">>
+Aguilar is not active, please <<link "continue without judging him" "Olid's Contribution">><</link>>.<br>
+<br> 
+<<elseif $Aguilar_Act is "Yes">>
+Aguilar's entry is:  <<print "$Ag_TG">><br>
+<br>
+Does he <<link "PASS" "Olid's Contribution">><<set $users["Aguilar"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Olid's Contribution">><<set $users["Aguilar"]["stats"]["Wisdom"]-=2>><</link>>?<br>
+<br>
+<</if>>
+
+<<case "Spaniards" OR "Tlaxcalans">>
+Here you will find links to each recipe in the Aztec cookbook. You must read each recipe and judge them for accuracy. Have they properly sourced their ingredients or are there items here that can't be found in Tenochtitlán?  <br>
+<br>
+
+To aid you in this task, you may want to revisit Bernal Diaz' account of Tenochtitlán. You may also want to read his account of the Aztec feast, visit the Codex Mendoza, and review other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.<br>
+<br>
+<<if $Moctezuma_Act is "No">>
+
+<<elseif $Moctezuma_Act is "Yes">>
+Moctezuma's recipe is:  <<print "$Moc_Rec">><br>
+<br>
+<i>You have already rated Moctezuma's contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Tlacaelel_Act is "No">>
+
+<<elseif $Tlacaelel_Act is "Yes">>
+Tlacaelel's entry is:  <<print "$Tlc_Rec">><br>
+<br>
+<i>You have already rated Tlacaelel's contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Cuauhtemoc_Act is "No">>
+
+<<elseif $Cuauhtemoc_Act is "Yes">>
+Cuauhtemoc's entry is:  <<print "$Cu_Rec">><br>
+<br>
+<i>You have already rated Cuauhtemoc's contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Cacamatzin_Act is "No">>
+Cacamatzin is not active, please <<link "continue without judging him" "Olid's Contribution">><</link>>.<br>
+<br> 
+<<elseif $Cacamatzin_Act is "Yes">>
+Cacamatzin's entry is:  <<print "$Ca_Rec">><br>
+<br>
+Does he <<link "PASS" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]+=2>><</link>> or <<link "FAIL" "Olid's Contribution">><<set $users["Cacamatzin"]["stats"]["Wisdom"]-=2>><</link>>?<br>
+<br>
+<</if>>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Aguilar hears Maya gossip [Done] {"position":"1925,175","size":"100,100"}
+<<liveblock>>
+<b>Yich'ak-k'ak':</b> <i>Jo'oljeak, táan te' k'íiwiko' tu'ux tin k'ajóoltaj u juntúul máak Tulum. Ku beetik jump'éel k'iino'ob, táan paakat le k'áak'náabo' ka tu yilaj jump'éel nuxi' naj chíikpajal ichil le ja'o'. Le najo' Náats' Amal ka'atéen asab yéetel xiibo'obo' le kaajo' múuch'o'ob utia'al in wil le najo'. Ka le najo' Náats' páajchajo'obij wil táan Chuup yéetel wíiniko'ob yéetel yoot'el n wíinkilil yéetel ya'ab tso'otsel. Xiibo'obo' Tulum ma' sabían tu'ux venía le naja', ba'ale' tu yilo'ob toop. Tu beetajo'ob juum ka menta'abij tunicho'ob ti' le k'áak'náabo'. Le najo' sunaj ka lanchajal. </i> <br>
+<br>
+<b>Chak-balam:</b> <i>Ba'ax ts'o'ok u yilik le najo' ti' uláak' ba'ali'. Yojlo'ob tu'ux tali'.</i><br>
+<br>
+<b>Yich'ak-k'ak':</b> <i>lol Jach jela'an. In wa'alike' u K'a'abeta Jach yila'al.</i><br>
+<br>
+<b>Chak-balam:</b> <i>K wíiniko'ob yan u bino'ob ja' pa'atik. Wa le najo' k'uchul yóok'ol le ja' ti' leti'ob ko'on jóok'ol.</i><br>
+<br>
+Once you have figured out what they said, [[you may continue|Spaniards Quest Instructions 1]].
+<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Aguilar interprets Maya gossip [Done] {"position":"1150,175","size":"100,100"}
+<<liveblock>>
+You've mulled over what you heard while sweeping the temple steps.  How are you feeling right now? <br>
+<br>
+This exchange <<link "makes you really angry" "Angry">><<set $users["Aguilar"]["stats"]["Wisdom"]-=1>><</link>>!<br>
+<br>
+You can't believe how <<link "happy this makes you" "Happy">><<set $users["Aguilar"]["stats"]["Wisdom"]+=1>><</link>>!<br>
+<br>
+What they said is leaving you feeling <<link "very scared" "Scared">><<set $users["Aguilar"]["stats"]["Wisdom"]-=1>><</link>>!<br>
+<br>
+These rumors <<link "make you sad" "Sad">><<set $users["Aguilar"]["stats"]["Wisdom"]-=1>><</link>>!<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Aguilar's first encounter with the Spaniards [Done Breaks] {"position":"1450,700","size":"100,100"}
+<<liveblock>>
+<<if $role isnot "Aguilar" and ndef $L_Received or $L_Received eq "">>
+
+You continue to bide your time and wait for a response to the letter.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $role isnot "Aguilar" and $Span_Leader isnot $role and $L_Received is "Yes">>
+
+You are hunting along the shore of Cozumel when you see a large canoe approaching. In it sit three Mayan men. You send word to <<print $Span_Leader>>, who sends a delegation to the shore to greet the visitors. <br>
+<br>
+As they disembark, one of the men falls to his knees and cries out “Díos y Santa María de Sevilla!” You can barely believe your eyes, for this man looks no different from the Mayans at his side. He wears only one sandal, a ragged cloak, and a loincloth, but he addresses you in Spanish and he tells you his name: Gerónimo de Aguilar. You embrace this poor man and send someone off in search of <<print $Span_Leader>>.<br>
+<br>
+<<print $Span_Leader>> arrives on the shore and Aguilar shares with him a tattered Bible to prove his identity. After telling you all a harrowing tale of shipwreck and enslavement, Aguilar turns to address the local Cacique in his own language. He advises the Cacique and his people to respect the holy cross, assuring them that it will benefit them greatly. Upon hearing these strange words flow from this Spaniard's tongue, <<print $Span_Leader>> realizes what a valuable asset this Aguilar will be to his expedition. <br>
+<br>
+You leave Cozumel buoyed by your good fortune. Aguilar's arrival can only be seen as a blessing from God.<br>
+<br>
+You now <<link "continue on your journey" "Spaniards Battle the Tabascans">><<set $Spaniards_currentMap=3>><</link>> together.<br>
+<br>
+
+<<elseif $role isnot "Aguilar" and $Span_Leader is $role and $L_Received is "Yes">>
+This morning you received a report that a canoe had arrived on the nearby shore carrying a group of Mayan men.  You sent a delegation out to greet them and one has just returned, excited at a remarkable development. It seems that not all the men in the canoe were Mayan, but one of them was, in fact, a Spaniard! The man gave his name as Gerónimo de Aguilar and claims that he was shipwrecked many years ago and has been living as a slave amongst the Maya.<br>
+<br>
+You make your way to shore where you greet the ragged looking Spaniard, who shows you his tattered Bible to prove his identity. After telling you a harrowing tale of shipwreck and enslavement, Aguilar turns to address the local Cacique in his own language. He advises the Cacique and his people to respect the holy cross, assuring them that it will benefit them greatly. Upon hearing these strange words flow from this Spaniard's tongue, you realize what a valuable asset this Aguilar will be to your expedition. <br>
+<br>
+You leave Cozumel buoyed by your good fortune. Aguilar's arrival can only be seen as a blessing from God.<br>
+<br>
+You now <<link "continue on your journey" "Spaniards Battle the Tabascans">><<set $Spaniards_currentMap=3>><</link>> together.<br>
+<br>
+<<elseif $role is "Aguilar">>
+You arrive at your destination by canoe, accompanied by two Mayan men and are elated to see a group of Spaniards heading towards you.<br>
+<br>
+Overcome with joy and relief, you step out of the canoe and fall to your knees, crying out “Díos y Santa María de Sevilla!” Your countrymen look at you in shock and disbelief. You look down at your tattered clothing, for you wear only one sandal, a ragged cloak, and a loincloth. Your Spanish is rusty from disuse, but you assure them that you are one of their own. The men embrace you and one rushes off to find their leader.<br>
+<br>
+Their leader arrives and tells you his name is <<print $Span_Leader>>. He looks you up and down, in disbelief that you are who you say you are. To prove yourself, you show him your most prized possession: the worn old Bible that you have kept safe all these years. Only then does <<print $Span_Leader>> accept you as one of his own. <br>
+<br>
+You tell them all your harrowing tale of shipwreck and enslavement, and then you turn to address the local Cacique. Speaking in Mayan, you advise him and his people to respect the holy cross, assuring them that it will benefit them greatly. <br>
+<br>
+You leave Cozumel in disbelief that your long nightmare is over. God has tested your faith all these many years and you have finally received your reward.<br>
+<br>
+You now <<link "continue on your journey" "Spaniards Battle the Tabascans">><<set $Spaniards_currentMap=3>><</link>> together.<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+

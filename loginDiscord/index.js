@@ -6,6 +6,7 @@ import '../tweeGaze.js';
 import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 import DiscordBot from '../discordBot.js';
+import { registerSharedRoutes, returnTwine } from '../sharedRoutes.js';
 import { channel } from 'diagnostics_channel';
 // import { RichPresenceAssets } from 'discord.js';
 const require = createRequire(import.meta.url);
@@ -82,21 +83,8 @@ let refreshTokens = {};
 const webstackInstance = new webstack(SERVERCONF);
 const { app } = webstackInstance.get();
 
-//for reading input from twee 
-app.post('/discordbot', urlencodedParser, function (req, res) {
-	res.send({});
-	console.log(req.body.channel)
-	discordBot.sendNotif(req.body.channel, req.body.message)
-})
-
-app.post('/updateGit', async ({ query }, res) => {
-	res.send({});
-	webstackInstance.updateGit(false);
-})
-
-app.get('/dump', async ({ query }, res) => {
-	res.send(webstackInstance.serverStore.getState());
-})
+// Register shared routes (action, updateGit, dump, discordbot)
+registerSharedRoutes(app, webstackInstance, { discordBot });
 // Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
 	const { code, state, test, nick } = query;
@@ -149,7 +137,11 @@ app.get('/', async ({ query }, response) => {
 			});
 			const guildResultJson = await guildResult.json();
 ;
-			return returnTwine({ gameState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } }, response);
+			return returnTwine(
+				{ gameState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } },
+				response,
+				TWINE_PATH
+			);
 
 		} catch (error) {
 			// NOTE: An unauthorized token will not throw an error;
@@ -162,36 +154,7 @@ app.get('/', async ({ query }, response) => {
 	}
 });
 
-/**
- * Loads the actual twine game
- * 
- * @param {*} userData: initial data loaded from github
- * @param {*} response 
- * @returns the twine game html
- */
-function returnTwine(userData, response) {
-	//removes private vars
-	if(userData.gameState.theyrPrivateVars){
-		Object.keys(userData.gameState.theyrPrivateVars).forEach((id)=>{
-			if(userData.authData && id != userData.authData.id){
-				delete userData.gameState.theyrPrivateVars[id];
-			}
-		})
-	}
-
-	if(!userData.gameState.theyrPrivateVars){
-		userData.gameState.theyrPrivateVars = {};
-	}
-
-	let userDataScriptTag = `
-	<script>
-	sessionStorage.clear(); 
-	let userData=${JSON.stringify(userData)} </script>
-	`
-	let file = TWINE_PATH
-	let fileContents = fs.readFileSync(file)
-	return response.send(`${fileContents} ${userDataScriptTag}`);
-}
+// returnTwine is now imported from sharedRoutes.js
 
 /**
  * Loads the discord Auth page
@@ -206,7 +169,7 @@ function loadHome(response, isTest) {
 
 
 	if (isTest) {
-		return returnTwine({ gameState: webstackInstance.serverStore.getState() }, response);
+		return returnTwine({ gameState: webstackInstance.serverStore.getState() }, response, TWINE_PATH);
 	}
 	else {
 		response.send(indexHtml);

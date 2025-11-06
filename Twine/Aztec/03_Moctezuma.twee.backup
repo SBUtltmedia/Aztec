@@ -1,0 +1,400 @@
+:: Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do {"position":"4200,6375","size":"100,100"}
+<<liveblock>>
+Causeway leading into Tenochtitlán, November 8th, 1519
+
+ 
+
+Moctezuma invites the Spaniards and their allies into the city, to stay in the palace as his personal guests. 
+ 
+
+Spaniards, you are intrigued by Moctezuma's offer. Why has he invited you into the city? What are his motives? Do you trust him? Consult among your faction and decide upon one of the following choices:
+ 
+
+Option 1: You refuse the invitation and attack the Aztecs. You ask the Tlaxcalans to join you.
+ 
+
+Option 2: You refuse the invitation and return peacefully to Tlaxcala.
+ 
+
+Option 3: You accept the invitation and enter the city, taking your Tlaxcalan companions with you.
+ 
+
+[[Battle on the Causeway: Spaniards Attack]]
+
+[[Spaniards Return to Tlaxcala]]
+
+[[Into Tenochtitlan]]
+
+
+<</liveblock>>
+
+
+
+:: Act 2, Scene 2: Moctezuma's Arrest {"position":"4300,8975","size":"100,100"}
+<<liveblock>>
+[[Moctezuma's Arrest: Spaniards explain themselves to Tlaxcala]]
+
+[[Moctezuma's Arrest:  The Aztecs React]]
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma speaks on the causeway to Tenochtitlán {"position":"4050,6200","size":"100,100"}
+<<liveblock>>
+Causeway leading into Tenochtitlán, November 8th, 1519
+
+The crowd quiets and it becomes clear that Moctezuma, the huey tlatoani, is about to speak. He delivers an astonishing address, in which he announces the Aztecs' next move. 
+ 
+
+[[Moctezuma invites the Spaniards and their allies into the city, Spaniards decide what to do]]
+
+[[Moctezuma Respectfully Asks the Spaniards and their Allies to Leave]]
+
+[[Aztecs Attack: Battle on the Causeway!]]
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma and Tlacaelel gain secret information {"position":"4050,5775","size":"100,100"}
+<<liveblock>>
+[[Moctezuma and Tlacaelel decide whether to share their information]]
+
+[[Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán]]
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma Confidence Vote [Done] {"position":"2375,3250","size":"100,100"}
+<<liveblock>>
+<<set _Moc_Mut_Vote = setup.getTotalChoices("Moc_Mut_Vote")>>
+<<set _MocMut_Moc = setup.getTotalChoices("MocMut_Moc")>>
+<<set _MocMut_Tla = setup.getTotalChoices ("MocMut_Tla")>>
+<<set _MocMut_Cua = setup.getTotalChoices ("MocMut_Cua")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+Total Votes cast: <<print _Moc_Mut_Vote>><br>
+Votes for Moctezuma: <<print _MocMut_Moc>><br>
+Votes for Tlacaelel: <<print _MocMut_Tla>><br>
+Votes for Cuauhtemoc: <<print _MocMut_Cua>><br>
+Total Players in Game: <<print _Aztec_Tot_Play>><br>
+<br>
+
+<<if _Moc_Mut_Vote < (_Aztec_Tot_Play - 1)>>
+You wait while your fellow counselors cast their vote.<br>
+<br>
+
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Moc is (_Aztec_Tot_Play - 1)>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla is (_Aztec_Tot_Play - 1)>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Cua is (_Aztec_Tot_Play - 1)>>
+The group has made a decision, and your team has shown great unity of purpose.  Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Unanimous">><</link>> and take note of your team strength points!<br>
+<br>
+
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Moc >= _MocMut_Tla and _MocMut_Moc >= _MocMut_Cua>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Moctezuma">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Tla > _MocMut_Moc and _MocMut_Tla >= _MocMut_Cua>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Tlacaelel">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+
+<<elseif _Moc_Mut_Vote is (_Aztec_Tot_Play - 1) and _MocMut_Cua > _MocMut_Moc and _MocMut_Cua > _MocMut_Tla>>
+The group has made a decision. Continue to the next page to find out <<link "who will lead your people" "Moctezuma Confidence Vote 2">><<set $Aztec_Leader="Cuauhtemoc">><<set $Aztec_Mut="Win">><</link>>.<br>
+<br>
+<</if>>
+<</liveblock>>
+
+
+
+:: Moctezuma Confidence Vote 2 {"position":"100,1975","size":"100,100"}
+<b> Your leader is <<print $Aztec_Leader>>.</b><br>
+<br>
+<<switch $role>>
+<<case "Moctezuma">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+
+You enter the chamber, where your council awaits. They have considered your proclamation and all are in agreement with it. <br>
+<br>
+Your people have great faith in you! Not only do you maintain your place as their trusted leader, you also earn 5 loyalty points!<br>
+<br>
+Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+You enter the chamber, where your council awaits. They have considered your proclamation and have voted in favor, though not all are in agreement.<br>
+<br>
+You will continue to lead your people, though you do not have the loyalty of everyone. You have gained 1 loyalty point for every team member who supports you.<br>
+<br>
+
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
+You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it. <br>
+<br>
+You have lost the faith of your people! They have put their trust in <<print $Aztec_Leader>> instead.<br>
+<br>
+Though your people have turned against you, they are united in their decision. In unity, there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
+You enter the chamber, where your council awaits. They have considered your proclamation and have voted against it. <br>
+<br>
+You have lost the faith of your people! They have put their trust in <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
+<br>
+
+<</if>>
+
+<<case "Tlacaelel">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
+<br>
+You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
+<br>
+Moctezuma will continue to lead, though it is possible that some would rather look to you. If so, your loyalty points will reflect this.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! They have put their trust in you instead, and have done so unanimously. You have gained 5 loyalty points.<br>
+<br>
+Though your people have overthrown their emperor, they are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! They have put their trust in you instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! You have put your trust in <<print $Azted_Leader>> instead.<br>
+<br>
+Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! They have put their trust <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
+<br>
+
+<</if>>
+
+<<case "Cuauhtemoc">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
+<br>
+You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
+<br>
+Moctezuma will continue to lead, though it is possible that some would rather look to you. If so, your loyalty points will reflect this.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! They have put their trust in you instead, and have done so unanimously. You have gained 5 loyalty points.<br>
+<br>
+Though your people have overthrown their emperor, they are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif and $Aztec_Leader is "Cuauhtemoc" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! They have put their trust in you instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead. <br>
+<br>
+Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Tlacaelel" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! They have put their trust <<print $Aztec_Leader>> instead, but not all are in agreement. Your loyalty points will indicate where you stand.<br>
+<br>
+
+<</if>>
+
+<<case "Aztec_Priest" or "Cacamatzin" or "Pochteca">>
+<<if $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and all are in agreement with it.<br>
+<br>
+You must have great faith in Moctezuma's leadership! Your faction is clearly united and in unity there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader is "Moctezuma" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted in favor, but not all are in agreement.<br>
+<br>
+Moctezuma will continue to lead, though some of you may wish otherwise.<br>
+<br>
+
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Unanimous">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead.<br>
+<br>
+Though you have overthrown your emperor, you are united in this decision. In unity, there is strength. Your team has gained 5 strength points.<br>
+<br>
+
+<<elseif $Aztec_Leader isnot "Moctezuma" and $Aztec_Mut is "Win">>
+You invite Moctezuma into the chamber, where the council awaits. You have considered his proclamation and have voted against it. <br>
+<br>
+Moctezuma has lost the faith of his people! You have put your trust in <<print $Aztec_Leader>> instead, but not all are in agreement. <<print $Aztec_Leader>> will take power...for now.<br>
+<br>
+<</if>>
+<</switch>>
+With this decided, how will you [[engage with the strangers|Aztec Leader Makes a Choice]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma Makes his Proclamation [Done] {"position":"2375,3125","size":"100,100"}
+<<liveblock>>
+
+<<if ndef $users[$role]["choices"]["MocMut_Moc"]>>
+<<set $users[$role]["choices"]["MocMut_Moc"]=0 >>
+<</if>>
+<<if ndef $users[$role]["choices"]["MocMut_Tla"]>>
+<<set $users[$role]["choices"]["MocMut_Tla"]=0 >>
+<</if>>
+<<if ndef $users[$role]["choices"]["MocMut_Cua"]>>
+<<set $users[$role]["choices"]["MocMut_Cua"]=0 >>
+<</if>>
+<<if ndef $users[$role]["choices"]["Moc_Mut_Vote"]>>
+<<set $users[$role]["choices"]["Moc_Mut_Vote"]=0 >>
+<</if>>
+
+<<switch $role>>
+<<case "Tlacaelel" or "Cuauhtemoc" or "Cacamatzin" or "Aztec_Priest" or "Pochteca">>
+<<if ndef $Moc_Proc or $Moc_Proc eq "">>
+When Moctezuma has come to a decision, you may continue on to read his proclamation.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for Moctezuma to come to a decision.<br>
+<br>
+<<else>>
+
+<b>Moctezuma's Proclamation:</b>  <<print $Moc_Proc>><br>
+<br>
+<br>
+You read Moctezuma's Proclamation, and you gather together in Council, this time without Moctezuma present. <br>
+<br>
+The arrival of the strangers and mysterious omens have left everybody unsettled. How should you proceed? Does Moctezuma's Proclamation inspire confidence, or is it time to choose a new leader? In this strange new world, who will you follow?<br>
+<br>
+
+<<link "Moctezuma" "Moctezuma Confidence Vote">><<set $users[$role]["choices"]["MocMut_Moc"] = $users[$role]["choices"]["MocMut_Moc"] = 1>><<set $users[$role]["choices"]["MocMut_Tla"] = $users[$role]["choices"]["MocMut_Tla"] = 0>><<set $users[$role]["choices"]["MocMut_Cua"] = $users[$role]["choices"]["MocMut_Cua"] = 0>><<set $users[$role]["choices"]["Moc_Mut_Vote"] = $users[$role]["choices"]["Moc_Mut_Vote "] = 1>><<set $Moc_Mut_Vote = $Moc_Mut_Vote + 1>><<set $users["Moctezuma"]["stats"]["Loyalty"]+=1>><</link>> retains your loyalty, you trust his leadership. <br>
+<br>
+<<link "Tlacaelel" "Moctezuma Confidence Vote">><<set $users[$role]["choices"]["MocMut_Moc"] = $users[$role]["choices"]["MocMut_Moc"] = 0>><<set $users[$role]["choices"]["MocMut_Tla"] = $users[$role]["choices"]["MocMut_Tla"] = 1>><<set $users[$role]["choices"]["MocMut_Cua"] = $users[$role]["choices"]["MocMut_Cua"] = 0>><<set $users[$role]["choices"]["Moc_Mut_Vote"] = $users[$role]["choices"]["Moc_Mut_Vote "] = 1>><<set $users["Tlacaelel"]["stats"]["Loyalty"]+=1>><</link>> has shown great leadership. You vote for him. <br>
+<br>
+<<link "Cuauhtemoc" "Moctezuma Confidence Vote">><<set $users[$role]["choices"]["MocMut_Moc"] = $users[$role]["choices"]["MocMut_Moc"] = 0>><<set $users[$role]["choices"]["MocMut_Tla"] = $users[$role]["choices"]["MocMut_Tla"] = 0>><<set $users[$role]["choices"]["MocMut_Cua"] = $users[$role]["choices"]["MocMut_Cua"] = 1>><<set $users[$role]["choices"]["Moc_Mut_Vote"] = $users[$role]["choices"]["Moc_Mut_Vote "] = 1>><<set $users["Cuauhtemoc"]["stats"]["Loyalty"]+=1>><</link>> is clearly the one to lead you through these strange times. 
+<</if>>
+<<case "Moctezuma">>
+
+You wait, on edge, wondering what the reception of your proclamation will be. You know that your counselors are meeting without you, but about what?<br>
+
+After meeting without you, your counselors call you [[into the chamber|Moctezuma Confidence Vote]].
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma Respectfully Asks the Spaniards and their Allies to Leave {"position":"4050,6375","size":"100,100"}
+<<liveblock>>
+Causeway leading into Tenochtitlán, November 8th, 1519
+
+ 
+
+The Emperor Moctezuma has respectfully greeted his visitors, presenting them with lavish gifts. As the end of their meeting approaches, he asks the Spaniards to kindly leave his city and take their Tlaxcalan friends with them. 
+ 
+
+Spaniards, you must decide how to respond and post your decision to the Go to the main discussion board. You have 2 choices:
+ 
+
+Option 1: Attack the Aztecs and ask your Tlaxcalan allies to join you.
+ 
+
+Option 2: Return to Tlaxcala.
+
+[[Battle on the Causeway: Spaniards Attack]] 
+
+[[Spaniards Return to Tlaxcala]]
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma's Arrest:  The Aztecs React {"position":"4400,9125","size":"100,100"}
+<<liveblock>>
+[[The Festival of Toxcatl]]
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma's Arrest: Spaniards explain themselves to Tlaxcala {"position":"4200,9125","size":"100,100"}
+<<liveblock>>
+[[The Festival of Toxcatl]]
+
+
+<</liveblock>>
+
+
+
+:: Moctezuma and Tlacaelel decide whether to share their information {"position":"4175,5925","size":"100,100"}
+<<liveblock>>
+Moctezuma and Tlacaelel the Younger, the Spaniards are approaching your city.  As the rulers of the Empire, it is up to you to decide how to treat the strangers.  In the next scene, you and the rest of your faction will have the opportunity to get to these strangers in your city. However, at the end of the day, DAY 10, after everybody has had a chance to get to know each other, you should be prepared to advance to the next scene with a decision you have secretly made together.  Assess the situation in the next discussion board conversation, and then decide how you want to behave towards the Spaniards and their allies. 
+ 
+
+You may choose to consult the rest of your faction about your options, or you may decide between yourselves. 
+ 
+
+Option 1: Invite the Spaniards to be your personal guests and offer them shelter in the palace. 
+ 
+
+Option 2: Declare war and attack the Spaniards
+ 
+
+Option 3: Order the Spaniards to leave the city.
+ 
+
+Click through to the page titled "Moctezuma Speaks", follow the link to the Go to the main discussion board, and post your decision for all to read by the beginning of DAY 11.
+
+[[Aztecs meet Spaniards and Tlaxcalans on the causeway to Tenochtitlán]]
+
+
+<</liveblock>>
+
+

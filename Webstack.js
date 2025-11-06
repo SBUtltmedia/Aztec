@@ -1,12 +1,11 @@
 import express from 'express';
 import gitApiIO from './gitApiIO.js';
-import Redux from 'redux'
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const _ = require("lodash"); 
+const _ = require("lodash");
 const initVars = require("./initVars.json");
 var base64 = require('js-base64');
 
@@ -24,17 +23,15 @@ class Webstack {
 		app.use("/Twine", express.static('./Twine/'));
 		app.use("/audio", express.static('./static/audio'));
 
-		//serverStore stores the current game state and is backed up via gitApiIO because Heroku is ephemeral 
-		this.serverStore = Redux.createStore(this.reducer);
+		//serverStore stores the current game state and is backed up via gitApiIO because Heroku is ephemeral
+		this.serverStore = this.createSimpleStore();
+		this.io = io; // Expose io for shared routes
 		this.initIO();
 
 		this.gitApi = new gitApiIO(serverConf, this.isTest)
 		this.gitApi.retrieveFileAPI().then((gameData) => {
 			let state = JSON.parse(gameData)
-			this.serverStore.dispatch({
-				type: 'UPDATE',
-				payload: state
-			})
+			this.serverStore.replaceState(state);
 	
 			http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
 		}
@@ -62,59 +59,48 @@ class Webstack {
 		}
 	}
 
-	// shutdown(signal) {
-	// 	return (err) => {
-	// 	 console.log('doing stuff')
-	// 	  this.saveJSON = new gitApiIO({content: base64.encode(JSON.stringify(this.serverStore.getState())), 
-	// 		fileName: `aztec-${this.appIndex}.json`,
-	// 	...this.config})
-	// 	  this.saveJSON.uploadFileApi().then(
-	// 		() => {
-	// 			process.exit(err ? 1 : 0);
-	// 		})
-	// 	 }
-	// 	};
+	/**
+	 * Creates a simple state store to replace Redux
+	 * Provides getState(), setState(), and replaceState() methods
+	 */
+	createSimpleStore() {
+		let state = {};
 
-		shutdown(signal) {
+		return {
+			getState() {
+				return state;
+			},
+			setState(updates) {
+				// Merge updates into existing state
+				state = _.merge(state, updates);
+			},
+			replaceState(newState) {
+				// Completely replace the state
+				console.log("replacing everything with:", newState);
+				state = newState;
+			}
+		};
+	}
+
+	shutdown(signal) {
 		return (err) => {
 			console.log('shutting down', signal)
 
-		
-		
-		this.updateGit(this.isTest).then(
-			() => {
-				console.log(err)
-				process.exit(err ? 1 : 0);
-			}).catch(err=>{
-				console.log(err)
-				process.exit()
-			})
-			}
+			this.updateGit(this.isTest).then(
+				() => {
+					console.log(err)
+					process.exit(err ? 1 : 0);
+				}).catch(err=>{
+					console.log(err)
+					process.exit()
+				})
 		}
+	}
 
-		updateGit(isTest, ){
-			let content = {...this.serverStore.getState()};
-			console.log("is Test:", this.isTest)
-			return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)),this.isTest)
-
-		}
-	  
-	//Controller for serverStore
-	reducer(state, action) {
-		// console.log({state})
-		// console.log(JSON.stringify({action}));
-		switch (action.type) {
-			case 'UPDATE':
-				let temp = _.merge(state, action.payload);
-				// console.log("temp:", JSON.stringify(temp.users))
-				return temp;
-
-			case 'REPLACE':
-				console.log("replacing everything with:", action.payload)
-				return action.payload;
-			default:
-				return state
-		}
+	updateGit(isTest) {
+		let content = {...this.serverStore.getState()};
+		console.log("is Test:", this.isTest)
+		return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)), this.isTest)
 	}
 	
 	initIO() {
@@ -144,10 +130,7 @@ class Webstack {
 			// When a client detects a variable being changed they send the difference signal which is
 			// caught here and sent to other clients
 			socket.on('difference', (diff) => {
-				this.serverStore.dispatch({
-					type: 'UPDATE',
-					payload: diff
-				})
+				this.serverStore.setState(diff);
 				//sends message to all other clients unless inside theyrPrivateVars
 				if(!Object.keys(diff).includes("theyrPrivateVars")){
 					socket.broadcast.emit('difference', diff)
@@ -157,10 +140,7 @@ class Webstack {
 
 			socket.on('fullReset', ()=>{
 				console.log("reset start 2")
-				this.serverStore.dispatch({
-					type: 'REPLACE',
-					payload: Object.assign({}, initVars)
-				})
+				this.serverStore.replaceState(Object.assign({}, initVars));
 				app.post('/updateGit',(req, res) => {
 					res.send({})
 				  })

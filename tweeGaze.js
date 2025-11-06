@@ -10,7 +10,7 @@ let tweeBinary = tweegoBinaries[process.platform] || tweegoBinaries["linux"];
 let coolDown = 0;
 
 // Watch all .js files/dirs in process.cwd() 
-gaze('Twine/*.*', function (err, watcher) {
+gaze('Twine/**/*.*', function (err, watcher) {
 
     // Get all watched files 
     var watched = this.watched();
@@ -18,6 +18,20 @@ gaze('Twine/*.*', function (err, watcher) {
     
     // On file changed 
     this.on('changed', function (filepath) {
+        if (filepath.includes('Aztec')) {
+            console.log('Change in Aztec story detected, rebuilding...');
+            const command = `${tweeBinary}/tweego`;
+            const args = ["-f", "sugarcube-2", "Twine/Aztec", "-o", "Twine/Aztec.html"];
+            execFile(command, args, (err, stdout, stderr) => {
+                if (err) {
+                    console.error(`execFile error: ${err}`);
+                    return;
+                }
+                console.log(`stdout: ${stdout}`);
+                console.error(`stderr: ${stderr}`);
+            });
+            return;
+        }
         // Execute command
         const mtime = fs.statSync(filepath).mtime;
         if (mtime - coolDown > 1000) {

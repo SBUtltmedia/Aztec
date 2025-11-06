@@ -1,0 +1,354 @@
+:: Attack On a Beach in Veracruz [Done Breaks] {"position":"2775,1700","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+Though you have been expecting a visit from the notorious Mexica, you were not prepared for them to launch a surprise attack. Fortunately, you are prepared when a band of warriors bears down upon you at the beach. You have your weapons and your dogs at your side. They have clearly underestimated your strength.<br>
+<br>
+After a short and ferocious battle, you force the attackers to retreat but it has cost you. You had the greater numbers this time and they were clearly unprepared for your weapons, but you might not be so lucky when you meet again.<br>
+<br>
+<<if $TL_Attacks is "No">>
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+<<elseif $TL_Attacks is "Aztecs">>
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+<<elseif $TL_Attacks is "Spanish">>
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
+
+You watch the Aztecs flee into the mountains. Turning to face the rest of your companions, you wonder how this attack [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
+You watch the Aztecs flee into the mountains, and you stand awkwardly on the beach, wondering what lies ahead.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalan team to make a decision.<br>
+<br>
+<</if>>
+
+<<case "Aztecs">>
+For many moons now, you have heard stories of the strange men traveling along the coast. You have heard that they are powerful warriors who rode upon giant deer to defeat an army at Tlaxcala. Now you will finally meet them face to face. You disagree with Moctezuma's strategy and have decided that the best way to deal with these unwanted strangers is to carry out a surprise attack. You are mighty Aztec warriors and this small band of foreigners doesn't stand a chance! <br>
+<br>
+As you launch your attack, however, you quickly discover the strength of the foreigners' weapons. They shoot fire into the air and the noise is so powerful that many of you are unable to hear. They have strange beasts under their control, who chase down your men and tear at your flesh. <br>
+<br>
+You were not prepared to confront such a powerful force, who have you outnumbered and succeed in fighting off your attack. <br>
+<br>
+<<if $TL_Attacks is "No">>
+
+You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>> and wonder how you will explain this to Moctezuma.<br>
+<br>
+<<elseif $TL_Attacks is "Aztecs">>
+
+You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Tlaxcalans decide to attack the Aztecs on their way back from the coast">><<set $Aztecs_currentMap=1>><</link>>.
+
+<<elseif $TL_Attacks is "Spanish">>
+
+You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>> and wonder how you will explain this to Moctezuma.
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
+
+You are forced to retreat, hanging your heads in shame and strategizing for your next encounter. You <<link "flee back towards the mountains" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>> and wonder how you will explain this to Moctezuma.<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
+
+As a group, you pull back briefly, wondering what choices you have.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalan team to make a decision.<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+Your spies have been busy keeping watch over events along the coast and they have many stories to tell. It seems a delegation of Mexica went in search of the strangers who arrived by sea and fell upon them in a surprise attack. The strangers made a formidable enemy, however, and wielded weapons like your men had never seen. They shot fire into the air that made a noise so powerful that your men were left unable to hear. They had strange beasts under their control, who tore at the flesh of the Mexica enemy.<br>
+<br>
+After the skirmish was done and the Mexica retreated back to Tenochtitlán, the strangers asked many more questions of the local people. Your spies believe they are determined to head inland towards the capital.<br>
+<br>
+[[You will continue to observe these developments closely|Tlaxcalans observe the Spanish ships being destroyed]] as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Mutiny in Veracruz [Done Breaks] {"position":"1525,1675","size":"100,100"}
+<<liveblock>>
+<<if ndef $Mutiny>>
+<<set $Mutiny=0 >>
+<</if>>
+<<if ndef $users[$role]["choices"]["Mutiny_Voted"]>>
+<<set $users[$role]["choices"]["Mutiny_Voted"]=0 >>
+<</if>>
+<<switch $role>>
+<<case "Olid">>
+
+Olid, you've talked to the men, and you've done your best to convince them to mutiny.  But how do you feel about it?  Are you going to go through with your plans?<br>
+<br>
+<<link "Yes" "Burning the Ships">><<set $users[$role]["choices"]["Mutiny_Voted"] = $users[$role]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
+<br>
+<<link "No" "Burning the Ships">><<set $Mutiny = $Mutiny + -10>><<set $users[$role]["choices"]["Mutiny_Voted"] = $users[$role]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
+<br>
+<<case "Marina" or "Alvarado" or "Aguilar" or "Garrido">>
+Olid has tried to convince you to mutiny, but it is a risky path. Will you join him in his bid for power and control?<br>
+<br>
+<<link "Yes" "Burning the Ships">><<set $Mutiny = $Mutiny + 1>><<set $users[$role]["choices"]["Mutiny_Voted"] = $users[$role]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
+<br>
+<<link "No" "Burning the Ships">><<set $users[$role]["choices"]["Mutiny_Voted"] = $users[$role]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
+<br>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: On The Way to Veracruz {"position":"2100,1125","size":"100,100"}
+<<liveblock>>
+<<switch $role>>
+<<case "Aguilar">>
+It is clear to your compatriots that your language skills are quite valuable, especially with the discovery of the slave woman, Marina. As you make your way up the coast, the Maya language gives way to Nahuatl and thus begins your three-way translation: Marina translates the Nahuatl into Mayan and you, in turn, translate the Mayan into Spanish.<br>
+<br>
+You reach the end or your journey up the coast, landing at a site that you decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Spaniards hear rumors about a delegation approaching the coast]]. <br>
+<br>
+
+<<case "Marina">>
+It is clear to your new masters that your language skills are quite valuable, especially with the addition of the strange foreigner who speaks the Mayan tongue. As you make your way up the coast, the Maya language gives way to Nahuatl. Being surrounded by your own mother tongue brings you a strange comfort, but you remain on your guard, engaging in a three-way translation: you translate the Nahuatl into Mayan and Aguilar the priest, in turn, translates the Mayan into the foreigner's tongue: a language they call Castilian, or Spanish.<br>
+<br>
+You reach the end or your journey up the coast, landing at a site that your companions decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Spaniards hear rumors about a delegation approaching the coast]]. <br>
+<br>
+
+<<case "Cortes" or "Alvarado" or "Garrido" or "Olid">>
+It is clear that the new members of your expedition possess an invaluable skill: language. As you make your way up the coast, the language that has only begun to sound familiar gives way to something entirely new. Aguilar informs you that you have left Maya territory and are now surrounded by a language called Nahuatl. Thus begins a three-way process of translation: Marina translates the Nahuatl into Mayan and the priest Aguilar, in turn, translates the Mayan into Spanish. <br>
+<br>
+You reach the end or your journey up the coast, landing at a site that you decide to name Villa Rica de Vera Cruz—[[the Rich Village of the True Cross|Spaniards hear rumors about a delegation approaching the coast]]. <br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: On a Beach in Veracruz: Gifts [Done Breaks] {"position":"2475,1525","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+Your curiosity about these frightful Mexica is finally satisfied when a delegation arrives at the village. They tell you that they come in the name of the great Emperor, Moctezuma, and each man bows to kiss the earth. After welcoming you to their territory, they present you with a bounty of gifts: mountains of beautiful cotton cloth, plumes of feathers more brilliant and colorful than any you've seen before...and gold. Countless trinkets of gold glisten before you in the sunlight.<br>
+<br>
+
+After presenting their gifts, the men deliver a message on behalf of their prince, Moctezuma. Their leader, they claim, “was pleased that such valiant men, as he had heard they were, should come to his country,” for Moctezuma had heard reports of your battle in Tabasco. However, the men assure you that there is no need for a meeting between your two sides. In fact, they tell you the journey to Mexico is treacherous and you would best head back the way you came.<br>
+<br>
+
+<<print $Span_Leader>> responds to the men. He tells them that you've traveled many miles to meet their great and powerful prince and you have no fear of the journey that lies ahead. He gives the men gifts of beads and linen shirts to take back and asks that they convey his request for a meeting.<br>
+<br>
+
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the Go to the main discussion board, you may want to talk and strategize within your faction.<br>
+<br>
+
+<<if $TL_Attacks is "No">>
+
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+
+<<elseif $TL_Attacks is "Spanish">>
+
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
+
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
+
+You stand awkwardly on the beach, wondering what lies ahead.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalans to make a decision.<br>
+<br>
+<</if>>
+
+<<case "Aztecs">>
+For many moons now, you have heard stories of the strange men traveling along the coast. You have heard that they are powerful warriors who rode upon giant deer to defeat an army at Tlaxcala. Now you will finally meet them face to face. <br>
+<br>
+You first lay eyes upon the strangers at the beach, and they are precisely as you have heard: they are dirty and hair grows from their faces. At sea behind them is the biggest canoe you have ever seen. They speak to each other in a strange language, but their message is given to you by a woman who speaks your own tongue. They ask who you are and from whence you came. You tell the strangers that you come from Mexico and you have been sent by the great Moctezuma. You come bearing gifts. <br>
+<br>
+The strangers watch in fascination as you lay the gifts at their feet: bolts of cloth, a head fan made of the finest quetzal feathers, and countless trinkets of yellow metal. It is these last items that seem to draw the strangers' attention. You then deliver Moctezuma's message, advising the strangers not to make the journey inland. It is known that they want to meet your leader in person, but such a meeting is not necessary, you tell them. The road is long and dangerous. The strangers refuse your warning, however, and ask you to deliver their request to Moctezuma. They present you with gifts of beads and fine cloth to take back upon your return. <br>
+<br>
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the Go to the main discussion board, you may want to talk and strategize within your faction.<br>
+<br>
+<<if $TL_Attacks is "No">>
+
+Once you've completed your meeting, you gather your delegation together and <<link "head home" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>>.<br>
+<br>
+
+<<elseif $TL_Attacks is "Aztecs">>
+
+Once you've completed your meeting, you gather your delegateion together and [[head home|Tlaxcalans decide to attack the Aztecs on their way back from the coast]].<br>
+<br>
+<<elseif $TL_Attacks is "Spanish">>
+
+Once you've completed your meeting, you gather your delegation together and <<link "head home" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>>.<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
+
+Once you've completed your meeting, you gather your delegation together and <<link "head home" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>>.<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
+You stand awkwardly on the beach, wondering what lies ahead.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalan team to make a decision.<br>
+<br>
+
+<</if>>
+
+<<case "Tlaxcalans">>
+Your spies have been busy keeping watch over events along the coast and they have many stories to tell. It seems a delegation of Mexica went in search of the strangers who arrived by sea and warned them not to make the journey to Tennochtitlán. The Mexica plied the strange men with gifts, laying at their feet a small mountain of treasures, from coveted cotton cloth to the finest quetzal plumes. The foreigners appeared very impressed, but paid little heed to the Mexica's warnings. They have requested a meeting with the Emperor Moctezuma. The local people have informed your spies that the leader of the foreigners seems determined to make the journey inland.<br>
+<br>
+You will continue to observe these developments closely as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
+<br>
+[[Tlaxcalans observe the Spanish ships being destroyed]]<br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: On a Beach in Veracruz: No Gifts [Done Breaks] {"position":"2025,1425","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+
+Your curiosity about these frightful Mexica is finally satisfied when a delegation arrives at the village. They tell you that they come in the name of the great Emperor, Moctezuma, and each man bows to kiss the earth. After welcoming you to their territory, the men deliver a message on behalf of their prince, Moctezuma. Their leader, they claim, “was pleased that such valiant men, as he had heard they were, should come to his country,” for Moctezuma has heard reports of your battle in Tabasco. However, they assure you that there is no need for a meeting between your two sides. In fact, they tell you the journey to Mexico is treacherous and you would best head back the way you came.<br>
+<br>
+<<print $Span_Leader>> responds to the men. He tells them that you've traveled many miles to meet their great and powerful prince and you have no fear of the journey that lies ahead. He gives the men gifts of beads and linen shirts to take back and asks that they convey his request for a meeting.<br>
+<br>
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.<br>
+<br>
+<<if $TL_Attacks is "No">>
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+<<elseif $TL_Attacks is "Aztecs">>
+
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+<<elseif $TL_Attacks is "Spanish">>
+
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
+
+Once you've completed your meeting, you watch the Aztecs head home. Turning to face the rest of your companions, you wonder how this meeting [[will impact their enthusiasm for this trip|One of the crew tries to start a mutiny]].<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
+
+You stand awkwardly on the beach, wondering what lies ahead.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalan team to make a decision.<br>
+<br>
+
+<</if>>
+
+<<case "Aztecs">>
+For many moons now, you have heard stories of the strange men traveling along the coast. You have heard that they are powerful warriors who rode upon giant deer to defeat an army at Tlaxcala. Now you will finally meet them face to face. <br>
+<br>
+You first lay eyes upon the strangers at the beach, and they are precisely as you have heard: they are dirty and hair grows from their faces. At sea behind them is the biggest canoe you have ever seen. They speak to each other in a strange language, but their message is given to you by a woman who speaks your own tongue. They ask who you are and from whence you came. You tell the strangers that you come from Mexico and you have been sent by the great Moctezuma. <br>
+<br>
+Having decided not to deliver Moctezuma's gifts, you simply deliver his message, advising the strangers not to make the journey inland. It is known that they want to meet your leader in person, but such a meeting is not necessary, you tell them. The road is long and dangerous. The strangers refuse your warning, however, and ask you to deliver their request to Moctezuma. They present you with gifts of beads and fine cloth to take back upon your return. <br>
+<br>
+Go to the main discussion board and get to know these strange men. What might you want to ask them, given how much you've heard about them? In addition to getting to know each other on the main discussion board, you may want to talk and strategize within your faction.<br>
+<br>
+<<if $TL_Attacks is "No">>
+
+Once you've completed your meeting, you gather your delegation together and <<link "head home" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>>.<br>
+<br>
+<<elseif $TL_Attacks is "Aztecs">>
+
+Once you've completed your meeting, you gather your delegateion together and [[head home|Tlaxcalans decide to attack the Aztecs on their way back from the coast]].<br>
+<br>
+<<elseif $TL_Attacks is "Spanish">>
+
+Once you've completed your meeting, you gather your delegation together and <<link "head home" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>>.<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "" and $Tl_Omens is "Nothing">>
+
+Once you've completed your meeting, you gather your delegation together and <<link "head home" "Aztecs Return to Tenochtitlan to report">><<set $Aztecs_currentMap=1>><</link>>.<br>
+<br>
+
+<<elseif ndef $TL_Attacks or $TL_Attacks eq "">>
+
+You stand awkwardly on the beach, wondering what lies ahead.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Tlaxcalan team to make a decision.<br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+Your spies have been busy keeping watch over events along the coast and they have many stories to tell. It seems a delegation of Mexica went in search of the strangers who arrived by sea and warned them not to make the journey to Tennochtitlán. The foreigners paid little heed to the Mexica's warnings and have requested a meeting with the Emperor Moctezuma. The local people have informed your spies that the leader of the foreigners seems determined to make the journey inland.<br>
+<br>
+You will [[continue to observe these developments closely|Tlaxcalans observe the Spanish ships being destroyed]] as you consider your next move. Given all that you have learned so far, what do you make of these events? What might the arrival of these strangers mean for your people?<br>
+<br>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcala sends spies to Veracruz [Done Breaks] {"position":"2850,1325","size":"100,100"}
+<<liveblock>>
+You disguise yourselves as Huastec traders, and you head to the coast of Veracruz.  There, you observe the meeting of the Mexica and the bearded strangers from afar.<br>
+<br>
+<<if $gifts is "Attack">>
+[[You watch your enemies the Mexica attack|Attack On a Beach in Veracruz]] the strangers.<br>
+<br>
+<<elseif $gifts is "No">>
+
+[[You watch an awkward and uncomfortable meeting|On a Beach in Veracruz: No Gifts]] between your enemies and the strangers.<br>
+<br>
+<<elseif $gifts is "Yes">>
+
+[[You watch a friendly meeting|On a Beach in Veracruz: Gifts]] between your enemies and the strangers.<br>
+<br>
+<<elseif $gifts is "Talk">>
+
+All is quiet on the coast.  But keep watch, you sense something will happen.<br>
+<br>
+<<elseif $gifts eq "" or ndef $gifts>>
+
+All is quiet on the coast.  But keep watch, you sense something will happen.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for the Aztecs to make a move.<br>
+<br>
+
+<</if>>
+
+
+<</liveblock>>
+
+

@@ -1,0 +1,260 @@
+Unity Editor version:    6000.0.23f1 (1c4764c07fb4)
+Branch:                  6000.0/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 15.7.1 (Build 24G231)
+Darwin version:          24.6.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        32768 MB
+Using pre-set license
+Pro License: YES
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker4
+-projectPath
+/Users/pstdenis/Desktop/Aztec/unity
+-logFile
+Logs/AssetImportWorker4.log
+-srvPort
+51112
+-job-worker-count
+7
+-background-job-worker-count
+8
+-asset-garbage-collectors
+1
+Successfully changed project path to: /Users/pstdenis/Desktop/Aztec/unity
+/Users/pstdenis/Desktop/Aztec/unity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [140704468201472]  Target information:
+
+Player connection [140704468201472]  * "[IP] 129.49.17.178 [Port] 0 [Flags] 2 [Guid] 790672093 [EditorId] 790672093 [Version] 1048832 [Id] OSXEditor(0,huey-tll) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [140704468201472] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [140704468201472] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 0.58 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.23f1 (1c4764c07fb4)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/pstdenis/Desktop/Aztec/unity/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+iMac preferred device: AMD Radeon Pro Vega 56 (high power)
+Metal devices available: 1
+0: AMD Radeon Pro Vega 56 (high power)
+Using device AMD Radeon Pro Vega 56 (high power)
+Initializing Metal device caps: AMD Radeon Pro Vega 56
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56345
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.005198 seconds.
+- Loaded All Assemblies, in  0.780 seconds
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.803 seconds
+Domain Reload Profiling: 1582ms
+	BeginReloadAssembly (227ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (92ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (95ms)
+	LoadAllAssembliesAndSetupDomain (342ms)
+		LoadAssemblies (229ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (334ms)
+			TypeCache.Refresh (329ms)
+				TypeCache.ScanAssembly (302ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (803ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (736ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (84ms)
+			SetLoadedEditorAssemblies (8ms)
+			BeforeProcessingInitializeOnLoad (13ms)
+			ProcessInitializeOnLoadAttributes (460ms)
+			ProcessInitializeOnLoadMethodAttributes (166ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.966 seconds
+Refreshing native plugins compatible for Editor in 0.17 ms, found 0 plugins.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.905 seconds
+Domain Reload Profiling: 1872ms
+	BeginReloadAssembly (821ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (94ms)
+	RebuildCommonClasses (65ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (30ms)
+		LoadAssemblies (119ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (18ms)
+			TypeCache.Refresh (13ms)
+				TypeCache.ScanAssembly (6ms)
+			BuildScriptInfoCaches (2ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (906ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (541ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (7ms)
+			BeforeProcessingInitializeOnLoad (21ms)
+			ProcessInitializeOnLoadAttributes (417ms)
+			ProcessInitializeOnLoadMethodAttributes (80ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Launching external process: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.12 seconds
+Refreshing native plugins compatible for Editor in 0.09 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 72 unused Assets / (67.6 KB). Loaded Objects now: 684.
+Memory consumption went from 84.4 MB to 84.3 MB.
+Total: 6.684792 ms (FindLiveObjects: 0.057029 ms CreateObjectMapping: 0.008290 ms MarkObjects: 6.490585 ms  DeleteObjects: 0.127493 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 91565.355280 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Fight the Aztecs Alone Aztec Victory.asset
+  artifactKey: Guid(6d88403ba1b464e3ca4eedd368cd8b01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Fight the Aztecs Alone Aztec Victory.asset using Guid(6d88403ba1b464e3ca4eedd368cd8b01) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9354cd0c2bc2552534790df727e1c241') in 0.042524667 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Return to Tlaxcala.asset
+  artifactKey: Guid(3ebb63411cdab493eb64d46a396afcf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Return to Tlaxcala.asset using Guid(3ebb63411cdab493eb64d46a396afcf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a9f1cac9b672afab762c9534edc238d0') in 0.001673861 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000134 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards set sail from Cuba.asset
+  artifactKey: Guid(fdf98bdb03b5d40d4a4540eef6c7e9e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards set sail from Cuba.asset using Guid(fdf98bdb03b5d40d4a4540eef6c7e9e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'edca78ba32e7770d8d2c7b7955279901') in 0.002187909 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000119 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards learn their leader beached the ships.asset
+  artifactKey: Guid(b4dde33383ce64670925b2712ed73876) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards learn their leader beached the ships.asset using Guid(b4dde33383ce64670925b2712ed73876) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0a7958b8f0a36ef4f5c1a1993143d080') in 0.001581889 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000133 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Kill Aztec Leader Riot.asset
+  artifactKey: Guid(9f7d4c780c3354aaeb681526e9769b07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Kill Aztec Leader Riot.asset using Guid(9f7d4c780c3354aaeb681526e9769b07) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dea6cbafd934c96dcd2ef482cb7dca46') in 0.001497307 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Plot their Departure.asset
+  artifactKey: Guid(937418cef504e4c9f964836a0a42edcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Plot their Departure.asset using Guid(937418cef504e4c9f964836a0a42edcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1df0fa82b5d8f4d8f00b114a9beaba26') in 0.00133192 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000116 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Send a Letter.asset
+  artifactKey: Guid(db192ed9e19d947f9b8515a0cd14f4b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Send a Letter.asset using Guid(db192ed9e19d947f9b8515a0cd14f4b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b4e5def6ab8428629cd426442055e195') in 0.001483211 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000447 seconds.
+  path: Assets/Narrative/PassageAssets/Spaniards Retreat to Tlaxcala.asset
+  artifactKey: Guid(72291d2fe80f64f5c94a770fb0b13e0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Narrative/PassageAssets/Spaniards Retreat to Tlaxcala.asset using Guid(72291d2fe80f64f5c94a770fb0b13e0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7dd4d712ca03ece592219bbb99f7611d') in 0.001202533 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting

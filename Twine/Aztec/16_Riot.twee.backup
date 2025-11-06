@@ -1,0 +1,101 @@
+:: After the Riot Leader {"position":"2450,10875","size":"100,100"}
+<<liveblock>>
+Your new leader is <<print $New_Aztec_Leader>>.<br>
+<br>
+<<if ndef $Az_Ld_Dead or $Az_Ld_Dead eq "">>
+You are waiting for <<print $Span_Leader to make a decision>>
+
+<<elseif $Az_Ld_Dead is "No">>
+
+Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish Leader Alive]].<br>
+<br>
+
+<<elseif $Az_Ld_Dead is "Yes">>
+Now that your leader has been chosen, it's time to confront [[the bigger question at hand|Aztecs Plot Against the Spanish Leader Dead]].<br>
+<br>
+<</if>>
+
+<</liveblock>>
+
+
+
+:: After the Riot Vote {"position":"2450,10750","size":"100,100"}
+<<liveblock>>
+
+<<set _Moc_Riot_Vote = setup.getTotalChoices("Moc_Riot_Vote")>>
+<<set _MocRiot_Moc = setup.getTotalChoices("MocRiot_Moc")>>
+<<set _MocRiot_Tla = setup.getTotalChoices("MocRiot_Tla")>>
+<<set _MocRiot_Cua = setup.getTotalChoices("MocRiot_Cua")>>
+<<set _MocRiot_Cac = setup.getTotalChoices("MocRiot_Cac")>>
+<<set _MocRiot_AzP = setup.getTotalChoices("MocRiot_AzP")>>
+<<set _MocRiot_Poc = setup.getTotalChoices("MocRiot_Poc")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+Total Votes cast: <<print _Moc_Riot_Vote>><br>
+<br>
+Total Players in Game: <<print _Aztec_Tot_Play>><br>
+<br>
+
+
+<<if _Moc_Riot_Vote < (_Aztec_Tot_Play - 1)>>
+You have cast your vote, but others are less decisive. You wait for the rest of the council to make their choice.<br>
+<br>
+<img src="Twine/images/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<print _Moc_Riot_Vote>> votes have been cast.<br>
+<br>
+<<else>>
+
+<<if _MocRiot_Moc >=_MocRiot_Tla and _MocRiot_Moc >=_MocRiot_Cua and _MocRiot_Moc >=_MocRiot_Cac and _MocRiot_Moc >=_MocRiot_AzP and _MocRiot_Moc >=_MocRiot_Poc>>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Moctezuma">><</link>> and take note of your team strength points!<br>
+<br>
+<<else>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Moctezuma">><</link>>.<br>
+<br>
+<</if>>
+<<elseif _MocRiot_Tla >=_MocRiot_Moc and _MocRiot_Tla >=_MocRiot_Cua and _MocRiot_Tla >=_MocRiot_Cac and _MocRiot_Tla >=_MocRiot_AzP and _MocRiot_Tla >=_MocRiot_Poc>><<set _New_Aztec_Leader="Tlacaelel">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Tlacaelel">><</link>> and take note of your team strength points!<br>
+<br>
+<<else>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Tlacaelel">><</link>>.<br>
+<br>
+<</if>>
+<<elseif _MocRiot_Cua >=_MocRiot_Moc and _MocRiot_Cua >=_MocRiot_Tla and _MocRiot_Cua >=_MocRiot_Cac and _MocRiot_Cua >=_MocRiot_AzP and _MocRiot_Cua >=_MocRiot_Poc>><<set $New_Aztec_Leader="Cuauhtemoc">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Cuauhtemoc">><</link>> and take note of your team strength points!<br>
+<br>
+<<else>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Cuauhtemoc">><</link>>.<br>
+<br>
+<</if>>
+<<elseif _MocRiot_Cac >=_MocRiot_Moc and _MocRiot_Cac >=_MocRiot_Tla and _MocRiot_Cac >=_MocRiot_Cua and _MocRiot_Cac >=_MocRiot_AzP and _MocRiot_Cac >=_MocRiot_Poc>><<set _New_Aztec_Leader="Cacamatzin">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
+ The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Cacamatzin">><</link>> and take note of your team strength points!<br>
+<br>
+<<else>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Cacamatzin">><</link>>.<br>
+<br>
+<</if>>
+<<elseif _MocRiot_AzP >=_MocRiot_Moc and _MocRiot_AzP >=_MocRiot_Tla and _MocRiot_AzP >=_MocRiot_Cua and _MocRiot_AzP >=_MocRiot_Cac and _MocRiot_AzP >=_MocRiot_Poc>><<set $New_Aztec_Leader="Aztec_Priest">>
+<<if _MocRiot_Moc is 5 or _MocRiot_Tla is 5 or _MocRiot_Cua is 5 or _MocRiot_Cac is 5 or _MocRiot_AzP is 5 or _MocRiot_Poc is 5>>
+ The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Aztec_Priest">><</link>> and take note of your team strength points!<br>
+<br>
+<<else>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Aztec Priest">><</link>>.<br>
+<br>
+<</if>>
+<<elseif $MocRiot_Poc >=$MocRiot_Moc and $MocRiot_Poc >=$MocRiot_Tla and $MocRiot_Poc >=$MocRiot_Cua and $MocRiot_Poc >=$MocRiot_Cac and $MocRiot_Poc >=$MocRiot_AzP>><<set $New_Aztec_Leader="Pochteca">>
+<<if $MocRiot_Moc is 5 or $MocRiot_Tla is 5 or $MocRiot_Cua is 5 or $MocRiot_Cac is 5 or $MocRiot_AzP is 5 or $MocRiot_Poc is 5>>
+ The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $factions["Aztecs"]["stats"]["Strength"]+=1>><<set $New_Aztec_Leader="Pochteca">><</link>> and take note of your team strength points!<br>
+<br>
+<<else>>
+The votes have been cast, click through to find out who your <<link "next leader is" "After the Riot Leader">><<set $New_Aztec_Leader="Pochteca">><</link>>.<br>
+<br>
+<</if>>
+<</if>>
+<</if>>
+
+
+<</liveblock>>
+
+
