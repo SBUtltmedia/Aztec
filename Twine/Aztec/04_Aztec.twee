@@ -1905,7 +1905,7 @@ You must wait until all Aztec Players have joined.<br><br>
 <<if $role is $New_Aztec_Leader>>
 <b>Aztec Final score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<th-set '$Aztec_Game' to $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<sendAction "$Aztec_Game" $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
 Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<th-set '$Aztec_End' to 0>><<th-set '$Aztec_Game' to 0>><</link>><br>
 <<else>>
@@ -1919,7 +1919,7 @@ You must wait until all Aztec Players have joined.<br><br>
 <<if $role is $New_Aztec_Leader>>
 <b>Aztec Final score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<th-set '$Aztec_Game' to $Aztec_End / _Aztec_Tot_Play>><</link>><br>
+Calculate <<link "Final Score" "Battle Outcome Aztecs Versus Spaniards 3b">><<sendAction "$Aztec_Game" $Aztec_End / _Aztec_Tot_Play>><</link>><br>
 <br>
 Reset <<link "Aztec Points for Testing" "Battle Outcome Aztecs Versus Spaniards 3">><<th-set '$Aztec_End' to 0>><<th-set '$Aztec_Game' to 0>><</link>><br>
 <<else>>

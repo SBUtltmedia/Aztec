@@ -110,7 +110,15 @@ function showMap() {
         }))
     }
 
-    let user = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.role]
+    let roleVar = Window.SugarCubeState.variables.role
+    let users = Window.SugarCubeState.variables['users']
+
+    // Check if role exists and user is defined
+    if (!roleVar || !users || !users[roleVar]) {
+        return; // Exit silently if user not found (e.g., GOD user)
+    }
+
+    let user = users[roleVar]
     let role = user.role
     let faction = user.faction
     var currentMapIndex = parseInt(user.currentMap)
@@ -143,7 +151,16 @@ function showStats() {
     var displayStats = $('<div/>', {
         "id": "displayStats",
     })
-    let user = Window.SugarCubeState.variables['users'][Window.SugarCubeState.variables.role];
+
+    let roleVar = Window.SugarCubeState.variables.role
+    let users = Window.SugarCubeState.variables['users']
+
+    // Check if role exists and user is defined
+    if (!roleVar || !users || !users[roleVar]) {
+        return; // Exit silently if user not found (e.g., GOD user)
+    }
+
+    let user = users[roleVar];
     let twineStats = user.stats;
     let faction = user["faction"];
 

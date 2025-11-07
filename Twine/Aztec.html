@@ -370,7 +370,7 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
@@ -3808,7 +3808,7 @@ You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
 &lt;b&gt;Aztec Final score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game&#39; to $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;sendAction &quot;$Aztec_Game&quot; $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;th-set &#39;$Aztec_End&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game&#39; to 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
@@ -3822,7 +3822,7 @@ You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;if $role is $New_Aztec_Leader&gt;&gt;
 &lt;b&gt;Aztec Final score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game&#39; to $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3b&quot;&gt;&gt;&lt;&lt;sendAction &quot;$Aztec_Game&quot; $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 Reset &lt;&lt;link &quot;Aztec Points for Testing&quot; &quot;Battle Outcome Aztecs Versus Spaniards 3&quot;&gt;&gt;&lt;&lt;th-set &#39;$Aztec_End&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game&#39; to 0&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;&lt;else&gt;&gt;
@@ -9035,7 +9035,7 @@ and you immediately drift &lt;&lt;link &quot;into a deep slumber&quot; &quot;Fin
 	&lt;&lt;button &quot;send&quot;&gt;&gt;
 
 		&lt;&lt;th-set &#39;$users[_role][&quot;sidePassageReturn&quot;]&#39; to $users[_role][&quot;passage&quot;]&gt;&gt;
-		&lt;&lt;th-set &#39;$users[_role][&quot;passage&quot;]&#39; to _newSidePassage&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[_role][&quot;passage&quot;]&quot; _newSidePassage&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt; */
 
@@ -9071,7 +9071,7 @@ Leader:
 			&lt;&lt;optionsfrom _leaders&gt;&gt;
 		&lt;&lt;/listbox&gt;&gt;
 		&lt;&lt;button Set&gt;&gt;
-			&lt;&lt;th-set &#39;$Aztec_Leader&#39; to _currLeader&gt;&gt;
+			&lt;&lt;sendAction &quot;$Aztec_Leader&quot; _currLeader&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;&lt;case &quot;Tlaxcalans&quot;&gt;&gt;
 		&lt;&lt;set _currLeader = $tlax_Leader&gt;&gt;
@@ -9079,7 +9079,7 @@ Leader:
 			&lt;&lt;optionsfrom _leaders&gt;&gt;
 		&lt;&lt;/listbox&gt;&gt;
 		&lt;&lt;button Set&gt;&gt;
-			&lt;&lt;th-set &#39;$tlax_Leader&#39; to _currLeader&gt;&gt;
+			&lt;&lt;sendAction &quot;$tlax_Leader&quot; _currLeader&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 		&lt;&lt;set _currLeader = $Span_Leader&gt;&gt;
@@ -9087,7 +9087,7 @@ Leader:
 			&lt;&lt;optionsfrom _leaders&gt;&gt;
 		&lt;&lt;/listbox&gt;&gt;
 		&lt;&lt;button Set&gt;&gt;
-			&lt;&lt;th-set &#39;$Span_Leader&#39; to _currLeader&gt;&gt;
+			&lt;&lt;sendAction &quot;$Span_Leader&quot; _currLeader&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 	&lt;br&gt;
@@ -9105,7 +9105,7 @@ Leader:
 		&lt;&lt;for _id,_data range $users&gt;&gt;
 			&lt;&lt;if _data[&quot;faction&quot;] == $godParam&gt;&gt;
 				&lt;&lt;set _confirm = 1&gt;&gt;
-				&lt;&lt;th-set &#39;$users[_id][&quot;passage&quot;]&#39; to _newSidePassage&gt;&gt;
+				&lt;&lt;sendAction &quot;$users[_id][&quot;passage&quot;]&quot; _newSidePassage&gt;&gt;
 			&lt;&lt;/if&gt;&gt;
 		&lt;&lt;/for&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
@@ -9113,7 +9113,7 @@ Leader:
 	&lt;&lt;if _confirm == 1&gt;&gt;
 		&lt;&lt;button SendEveryone&gt;&gt;
 			&lt;&lt;set _confirm = 2&gt;&gt;
-			&lt;&lt;th-set &#39;$users[$role][&quot;lastSeen&quot;]&#39; to _currentTime.getTime()&gt;&gt;  
+			&lt;&lt;sendAction &quot;$users[$role][&quot;lastSeen&quot;]&quot; _currentTime.getTime()&gt;&gt;  
 		&lt;&lt;/button&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;/div&gt;
@@ -9143,7 +9143,7 @@ Leader:
 			&lt;&lt;optionsfrom _sidePassages&gt;&gt;
 		&lt;&lt;/listbox&gt;&gt;
 		&lt;&lt;print `&lt;&lt;button send&gt;&gt;
-			&lt;&lt;th-set &#39;$users[`+_role+`][&quot;passage&quot;]&#39; to _passage&gt;&gt;
+			&lt;&lt;sendAction &quot;$users[`+_role+`][&quot;passage&quot;]&quot; _passage&gt;&gt;
 		&lt;&lt;/button&gt;&gt;`&gt;&gt;
 
 
@@ -9234,7 +9234,7 @@ Only modify stats and passages if you are 100% sure what you are doing
 		Spoof User: 
 		&lt;&lt;set _selectedRole = _currRole&gt;&gt;
 		&lt;&lt;button &quot;spoof&quot; &gt;&gt;
-			&lt;&lt;th-set &#39;$role&#39; to _currRole&gt;&gt;
+			&lt;&lt;sendAction &quot;$role&quot; _currRole&gt;&gt;
 			&lt;&lt;print $role&gt;&gt;
 			&lt;&lt;goto $users[_selectedRole][&quot;passage&quot;]&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
@@ -9313,7 +9313,7 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 	&lt;&lt;if _confirm == 1&gt;&gt;
 		&lt;&lt;button Reset&gt;&gt;
 			&lt;&lt;set _confirm = 2&gt;&gt;
-			&lt;&lt;th-set &#39;$users[$role][&quot;lastSeen&quot;]&#39; to _currentTime.getTime() + 1&gt;&gt;  
+			&lt;&lt;sendAction &quot;$users[$role][&quot;lastSeen&quot;]&quot; _currentTime.getTime() + 1&gt;&gt;  
 		&lt;&lt;/button&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;/div&gt;
@@ -12344,16 +12344,18 @@ Updates git backup */
 &lt;!-- &lt;&lt;masteraudio mute&gt;&gt; --&gt;
 &lt;&lt;masteraudio unmute&gt;&gt;
 &lt;&lt;if !tags().includes(&quot;Home&quot;) &amp;&amp; !tags().includes(&quot;Control&quot;)&gt;&gt;
- 	&lt;&lt;run showStats()&gt;&gt;
-	/*_currentMap=([^&gt;]*) */
+	&lt;&lt;if $role &amp;&amp; $users &amp;&amp; $users[$role]&gt;&gt;
+ 		&lt;&lt;run showStats()&gt;&gt;
+		/*_currentMap=([^&gt;]*) */
 
-	&lt;&lt;if ndef $users[$role][&quot;currentMap&quot;] &gt;&gt;
-		&lt;&lt;th-set &#39;$users[$role][&quot;currentMap&quot;]&#39; to 0&gt;&gt;
+		&lt;&lt;if ndef $users[$role][&quot;currentMap&quot;] &gt;&gt;
+			&lt;&lt;th-set &#39;$users[$role][&quot;currentMap&quot;]&#39; to 0&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+
+		&lt;&lt;liveblock&gt;&gt;
+		&lt;&lt;run showMap()&gt;&gt;
+		&lt;&lt;/liveblock&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-	
-	&lt;&lt;liveblock&gt;&gt;
-	&lt;&lt;run showMap()&gt;&gt;
-	&lt;&lt;/liveblock&gt;&gt;
 
 	&lt;&lt;script&gt;&gt;
 		let homeButton= $(&#39;&lt;img/&gt;&#39;,{id:&quot;homeButton&quot;,src:&quot;Twine/images/Home/HomeButton.png&quot;}).on(&quot;click&quot;, ()=&gt; { Engine.play(&quot;Home&quot;)});	
@@ -12365,27 +12367,47 @@ Updates git backup */
 &lt;&lt;/if&gt;&gt;
 
 /* updates user&#39;s current passage */
-&lt;&lt;if !tags().includes(&quot;Control&quot;) &amp;&amp; !tags().includes(&quot;Home&quot;)  &amp;&amp; $users[$role][&quot;passage&quot;] != passage()&gt;&gt;
-	&lt;&lt;th-set &#39;$users[$role][&quot;passage&quot;]&#39; to passage()&gt;&gt; 
+&lt;&lt;if !tags().includes(&quot;Control&quot;) &amp;&amp; !tags().includes(&quot;Home&quot;) &amp;&amp; $role &amp;&amp; $users &amp;&amp; $users[$role] &amp;&amp; $users[$role][&quot;passage&quot;] != passage()&gt;&gt;
+	&lt;&lt;set _currentPassage = passage()&gt;&gt;
+	&lt;&lt;sendAction &quot;$users[$role][\&quot;passage\&quot;]&quot; _currentPassage&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 /* adds background image to screen */
 &lt;&lt;script&gt;&gt;
+	try {
+		console.log(&quot;Background script starting...&quot;);
+		var imageURL = &quot;Home&quot;;
+		var role = State.getVar(&quot;$role&quot;);
+		var users = State.getVar(&quot;$users&quot;);
 
-	let imageURL = State.getVar(&quot;$users[$role][&#39;faction&#39;]&quot;);
+		console.log(&quot;Role: &quot; + role + &quot;, Users defined: &quot; + (!!users));
 
-	if(tags().includes(&quot;Control&quot;) || tags().includes(&quot;Home&quot;)){
-		 $(&#39;.passage&#39;).addClass(&#39;passage-home&#39;);
-		$(&quot;#story&quot;).addClass(&quot;playerList&quot;);
-		imageURL = &quot;Home&quot;;
-	}else{
-		$(&quot;#story&quot;).removeClass(&quot;playerList&quot;);
+		if(tags().includes(&quot;Control&quot;) || tags().includes(&quot;Home&quot;)){
+			$(&#39;.passage&#39;).addClass(&#39;passage-home&#39;);
+			$(&quot;#story&quot;).addClass(&quot;playerList&quot;);
+			imageURL = &quot;Home&quot;;
+		} else {
+			$(&quot;#story&quot;).removeClass(&quot;playerList&quot;);
+
+			if (role === &quot;God&quot; || role === &quot;GOD&quot;) {
+				imageURL = &quot;Control&quot;;
+			}
+			else if (role &amp;&amp; users &amp;&amp; users[role] &amp;&amp; users[role][&#39;faction&#39;]) {
+				imageURL = users[role][&#39;faction&#39;];
+			}
+			else {
+				imageURL = &quot;undefined&quot;;
+			}
+		}
+
+		console.log(&quot;Setting background for role: &quot; + role + &quot;, imageURL: &quot; + imageURL);
+		$(&#39;#story&#39;).css({
+			&#39;backgroundImage&#39;: &#39;url(Twine/images/Borders/&#39; + imageURL + &#39;.jpg)&#39;
+		});
+		console.log(&quot;Background set successfully&quot;);
+	} catch (e) {
+		console.error(&quot;Error setting background:&quot;, e);
 	}
-
-	$(&#39;#story&#39;).css({
-		&#39;backgroundImage&#39;: `url(Twine/images/Borders/${imageURL}.jpg)`
-	}
-	)
 &lt;&lt;/script&gt;&gt;
 &lt;&lt;if tags().includes(&quot;Home&quot;)&gt;&gt;
 /* Creates the chat */
@@ -12449,7 +12471,7 @@ Updates git backup */
 			&lt;&lt;set _tempArr = $chatlog[$users[$role].currentChat].slice(-4)&gt;&gt;
 			&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
 			&lt;&lt;if _chattext != &quot;&quot;&gt;&gt;
-				&lt;&lt;th-set &#39;$chatlog[$users[$role].currentChat]&#39; to _tempArr&gt;&gt;
+				&lt;&lt;sendAction &quot;$chatlog[$users[$role].currentChat]&quot; _tempArr&gt;&gt;
 			&lt;&lt;/if&gt;&gt;
 			&lt;&lt;script&gt;&gt;
 				$(&quot;#chattextbox input&quot;).val(&quot;&quot;);
@@ -12511,8 +12533,12 @@ Updates git backup */
 	&lt;/div&gt;
 	&lt;div id=&quot;rolePanelDetails&quot;&gt;
 		&lt;ul id=&quot;rolePanelDetailsText&quot;&gt;
-			&lt;&lt;print &quot;&lt;li id=&#39;rolePanelLastSeen&#39;&gt;Last Active: &quot; + moment(new Date(parseInt($users[$role][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
-			
+			&lt;&lt;if $users[$role] &amp;&amp; $users[$role][&quot;lastSeen&quot;]&gt;&gt;
+				&lt;&lt;print &quot;&lt;li id=&#39;rolePanelLastSeen&#39;&gt;Last Active: &quot; + moment(new Date(parseInt($users[$role][&quot;lastSeen&quot;]))).fromNow()+&quot;&lt;/li&gt;&quot;&gt;&gt;
+			&lt;&lt;else&gt;&gt;
+				&lt;li id=&#39;rolePanelLastSeen&#39;&gt;Last Active: Never&lt;/li&gt;
+			&lt;&lt;/if&gt;&gt;
+
 		&lt;/ul&gt;
 	&lt;/div&gt;
 	&lt;div id=&quot;rolePanelNotesLabel&quot;&gt;Notes&lt;/div&gt;
@@ -12756,13 +12782,19 @@ Updates git backup */
 
 				let lastSeen = $(&quot;#rolePanelLastSeen&quot;);
 				let lastSeenText = &quot;Last Active: &quot;;
-				let milli = State.getVar(`$users[&quot;${user}&quot;][&quot;lastSeen&quot;]`);
-				let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
-				let dateObject = new Date();
-				if (Math.abs(dateObject.getTime() - milli) &lt; 120000) {
-					lastSeenTime = &quot;Right now&quot;
+				let milli = State.getVar(&quot;$users[\&quot;&quot; + user + &quot;\&quot;][\&quot;lastSeen\&quot;]&quot;);
+
+				// Check if lastSeen exists and is valid
+				if (milli &amp;&amp; !isNaN(parseInt(milli))) {
+					let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
+					let dateObject = new Date();
+					if (Math.abs(dateObject.getTime() - milli) &lt; 120000) {
+						lastSeenTime = &quot;Right now&quot;
+					}
+					lastSeenText += lastSeenTime;
+				} else {
+					lastSeenText += &quot;Never&quot;;
 				}
-				lastSeenText += lastSeenTime;
 				lastSeen.text(lastSeenText);
 			})
 		}, 1500);
@@ -12777,24 +12809,29 @@ Updates git backup */
 			&lt;&lt;set _ajaxData = {user: $userId,
 							   passageName: _currPassage,
 							   passageData: _passageData}&gt;&gt;
-			&lt;&lt;th-set &#39;$passageHistory[_currPassage]&#39; to _passageData&gt;&gt;
+			&lt;&lt;set _varPath = &quot;$passageHistory[\&quot;&quot; + _currPassage + &quot;\&quot;]&quot;&gt;&gt;
+			&lt;&lt;sendAction _varPath _passageData&gt;&gt;
 			&lt;&lt;script&gt;&gt;
 				$.post(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar(&quot;$userId&quot;)}`,State.getVar(&quot;_ajaxData&quot;))
 			&lt;&lt;/script&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-	
-&lt;&lt;for _i, _passageEnd range Story.lookup(&quot;tags&quot;,&quot;sidePassageEnd&quot;)&gt;&gt;
-	&lt;&lt;if _passageEnd.title == passage()&gt;&gt;
-	&lt;&lt;link &quot;Back to main passage&quot; $users[$role][&quot;sidePassageReturn&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/for&gt;&gt;
+
+&lt;&lt;if $role &amp;&amp; $users &amp;&amp; $users[$role]&gt;&gt;
+	&lt;&lt;for _i, _passageEnd range Story.lookup(&quot;tags&quot;,&quot;sidePassageEnd&quot;)&gt;&gt;
+		&lt;&lt;if _passageEnd.title == passage()&gt;&gt;
+		&lt;&lt;link &quot;Back to main passage&quot; $users[$role][&quot;sidePassageReturn&quot;]&gt;&gt;&lt;&lt;/link&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 &lt;br&gt;
 
 /* updates time when user was last online */
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;set _currentTime=new Date()&gt;&gt;
-&lt;&lt;if _currentTime.getTime() - $users[$role][&quot;lastSeen&quot;] &gt; 10000&gt;&gt;
-	&lt;&lt;th-set &#39;$users[$role][&quot;lastSeen&quot;]&#39; to _currentTime.getTime()&gt;&gt;  
+&lt;&lt;if $role &amp;&amp; $users &amp;&amp; $users[$role]&gt;&gt;
+	&lt;&lt;set _currentTime=new Date()&gt;&gt;
+	&lt;&lt;if _currentTime.getTime() - $users[$role][&quot;lastSeen&quot;] &gt; 10000&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[$role][&quot;lastSeen&quot;]&quot; _currentTime.getTime()&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="307" name="Rumors of Mutiny" tags="Done Breaks" position="1375,1675" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;print $Span_Leader&gt;&gt;, you have heard rumors and rumblings amongst your faction that they are planning a mutiny. You don&#39;t know whether or not this is true, but you are fearful for your life and must not let them rob you of the glory that lies ahead. As you move to the group discussion board on the next screen, you must ensure that the entire faction is ready to follow you inland in pursuit of your dreams.&lt;br&gt;
 &lt;br&gt;
@@ -13262,9 +13299,9 @@ List of valid roles and their info */
 	&lt;&lt;for _user, _data  range _roles&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user]&#39; to {}&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;choices&quot;]&#39; to {}&gt;&gt;
-		&lt;&lt;th-set &#39;$users[_user][&quot;faction&quot;]&#39; to _roles[_user]?.faction || &quot;undefined&quot;&gt;&gt;
-		&lt;&lt;th-set &#39;$users[_user][&quot;character&quot;]&#39; to _roles[_user]?.Character || &quot;undefined&quot;&gt;&gt;
-		&lt;&lt;th-set &#39;$users[_user][&quot;isLeader&quot;]&#39; to _roles[_user]?.isLeader || &quot;undefined&quot;&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[_user][&quot;faction&quot;]&quot; _roles[_user]?.faction || &quot;undefined&quot;&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[_user][&quot;character&quot;]&quot; _roles[_user]?.Character || &quot;undefined&quot;&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[_user][&quot;isLeader&quot;]&quot; _roles[_user]?.isLeader || &quot;undefined&quot;&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;passage&quot;]&#39; to Config.passages.start&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;active&quot;]&#39; to false&gt;&gt;
 
@@ -13279,8 +13316,8 @@ List of valid roles and their info */
 /* change this conditional */
 &lt;&lt;if (Object.keys(_roles).includes($role)) &gt;&gt;
 	&lt;&lt;th-set &#39;$users[$role][&quot;userId&quot;]&#39; to $userId&gt;&gt;
-	&lt;&lt;th-set &#39;$users[$role][&quot;username&quot;]&#39; to _username&gt;&gt;
-	&lt;&lt;th-set &#39;$users[$role][&quot;discriminator&quot;]&#39; to _discriminator&gt;&gt;
+	&lt;&lt;sendAction &quot;$users[$role][&quot;username&quot;]&quot; _username&gt;&gt;
+	&lt;&lt;sendAction &quot;$users[$role][&quot;discriminator&quot;]&quot; _discriminator&gt;&gt;
 	&lt;&lt;th-set &#39;$users[$role][&quot;active&quot;]&#39; to true&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -14361,7 +14398,7 @@ You must wait until all active Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;if $Aztec_Game_Over is &quot;No&quot;&gt;&gt;
 &lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game&#39; to $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;sendAction &quot;$Aztec_Game&quot; $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Aztec_Game_Over is &quot;Yes&quot;&gt;&gt;
 &lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
@@ -14390,7 +14427,7 @@ You must wait until all Aztec Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;if $Aztec_Game_Over is &quot;No&quot;&gt;&gt;
 &lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game&#39; to $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;sendAction &quot;$Aztec_Game&quot; $Aztec_End / _Aztec_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Aztec_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Aztec_Game_Over is &quot;Yes&quot;&gt;&gt;
 &lt;b&gt;Aztec Final Score: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
@@ -14457,7 +14494,7 @@ You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;if $Span_Game_Over is &quot;No&quot;&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;th-set &#39;$Span_Game&#39; to $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Span_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;sendAction &quot;$Span_Game&quot; $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Span_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Span_Game_Over is &quot;Yes&quot;&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
@@ -14486,7 +14523,7 @@ You must wait until all Spanish Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;if $Span_Game_Over is &quot;No&quot;&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;th-set &#39;$Span_Game&#39; to $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Span_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;sendAction &quot;$Span_Game&quot; $Span_End / _Span_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Span_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Span_Game_Over is &quot;Yes&quot;&gt;&gt;
 &lt;b&gt;Spaniards&#39; Final Score: &lt;&lt;print $Span_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
@@ -14538,7 +14575,7 @@ You must wait until all Tlaxcalan Players have joined.&lt;br&gt;&lt;br&gt;
 &lt;&lt;if $Tlax_Game_Over is &quot;No&quot;&gt;&gt;
 &lt;b&gt;Tlaxcalan&#39;s Final Score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;
 
-Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;th-set &#39;$Tlax_Game&#39; to $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Tlax_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
+Calculate &lt;&lt;link &quot;Final Score&quot; &quot;Final Battle 3&quot;&gt;&gt;&lt;&lt;sendAction &quot;$Tlax_Game&quot; $Tlax_End / _Tlax_Tot_Play&gt;&gt;&lt;&lt;th-set &#39;$Tlax_Game_Over&#39; to &quot;Yes&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;elseif $Tlax_Game_Over is &quot;Yes&quot;&gt;&gt;
 &lt;b&gt;Tlaxcalan&#39;s Final Score: &lt;&lt;print $Tlax_Game&gt;&gt;&lt;/b&gt;&lt;br&gt;

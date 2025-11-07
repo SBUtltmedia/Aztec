@@ -2220,16 +2220,18 @@ Updates git backup */
 <!-- <<masteraudio mute>> -->
 <<masteraudio unmute>>
 <<if !tags().includes("Home") && !tags().includes("Control")>>
- 	<<run showStats()>>
-	/*_currentMap=([^>]*) */
+	<<if $role && $users && $users[$role]>>
+ 		<<run showStats()>>
+		/*_currentMap=([^>]*) */
 
-	<<if ndef $users[$role]["currentMap"] >>
-		<<th-set '$users[$role]["currentMap"]' to 0>>
+		<<if ndef $users[$role]["currentMap"] >>
+			<<th-set '$users[$role]["currentMap"]' to 0>>
+		<</if>>
+
+		<<liveblock>>
+		<<run showMap()>>
+		<</liveblock>>
 	<</if>>
-	
-	<<liveblock>>
-	<<run showMap()>>
-	<</liveblock>>
 
 	<<script>>
 		let homeButton= $('<img/>',{id:"homeButton",src:"Twine/images/Home/HomeButton.png"}).on("click", ()=> { Engine.play("Home")});	
@@ -2241,27 +2243,47 @@ Updates git backup */
 <</if>>
 
 /* updates user's current passage */
-<<if !tags().includes("Control") && !tags().includes("Home")  && $users[$role]["passage"] != passage()>>
-	<<th-set '$users[$role]["passage"]' to passage()>> 
+<<if !tags().includes("Control") && !tags().includes("Home") && $role && $users && $users[$role] && $users[$role]["passage"] != passage()>>
+	<<set _currentPassage = passage()>>
+	<<sendAction "$users[$role][\"passage\"]" _currentPassage>>
 <</if>>
 
 /* adds background image to screen */
 <<script>>
+	try {
+		console.log("Background script starting...");
+		var imageURL = "Home";
+		var role = State.getVar("$role");
+		var users = State.getVar("$users");
 
-	let imageURL = State.getVar("$users[$role]['faction']");
+		console.log("Role: " + role + ", Users defined: " + (!!users));
 
-	if(tags().includes("Control") || tags().includes("Home")){
-		 $('.passage').addClass('passage-home');
-		$("#story").addClass("playerList");
-		imageURL = "Home";
-	}else{
-		$("#story").removeClass("playerList");
+		if(tags().includes("Control") || tags().includes("Home")){
+			$('.passage').addClass('passage-home');
+			$("#story").addClass("playerList");
+			imageURL = "Home";
+		} else {
+			$("#story").removeClass("playerList");
+
+			if (role === "God" || role === "GOD") {
+				imageURL = "Control";
+			}
+			else if (role && users && users[role] && users[role]['faction']) {
+				imageURL = users[role]['faction'];
+			}
+			else {
+				imageURL = "undefined";
+			}
+		}
+
+		console.log("Setting background for role: " + role + ", imageURL: " + imageURL);
+		$('#story').css({
+			'backgroundImage': 'url(Twine/images/Borders/' + imageURL + '.jpg)'
+		});
+		console.log("Background set successfully");
+	} catch (e) {
+		console.error("Error setting background:", e);
 	}
-
-	$('#story').css({
-		'backgroundImage': `url(Twine/images/Borders/${imageURL}.jpg)`
-	}
-	)
 <</script>>
 <<if tags().includes("Home")>>
 /* Creates the chat */
@@ -2325,7 +2347,7 @@ Updates git backup */
 			<<set _tempArr = $chatlog[$users[$role].currentChat].slice(-4)>>
 			<<set _tempArr[_tempArr.length] = _msg>>
 			<<if _chattext != "">>
-				<<th-set '$chatlog[$users[$role].currentChat]' to _tempArr>>
+				<<sendAction "$chatlog[$users[$role].currentChat]" _tempArr>>
 			<</if>>
 			<<script>>
 				$("#chattextbox input").val("");
@@ -2387,8 +2409,12 @@ Updates git backup */
 	</div>
 	<div id="rolePanelDetails">
 		<ul id="rolePanelDetailsText">
-			<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$role]["lastSeen"]))).fromNow()+"</li>">>
-			
+			<<if $users[$role] && $users[$role]["lastSeen"]>>
+				<<print "<li id='rolePanelLastSeen'>Last Active: " + moment(new Date(parseInt($users[$role]["lastSeen"]))).fromNow()+"</li>">>
+			<<else>>
+				<li id='rolePanelLastSeen'>Last Active: Never</li>
+			<</if>>
+
 		</ul>
 	</div>
 	<div id="rolePanelNotesLabel">Notes</div>
@@ -2632,13 +2658,19 @@ Updates git backup */
 
 				let lastSeen = $("#rolePanelLastSeen");
 				let lastSeenText = "Last Active: ";
-				let milli = State.getVar(`$users["${user}"]["lastSeen"]`);
-				let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
-				let dateObject = new Date();
-				if (Math.abs(dateObject.getTime() - milli) < 120000) {
-					lastSeenTime = "Right now"
+				let milli = State.getVar("$users[\"" + user + "\"][\"lastSeen\"]");
+
+				// Check if lastSeen exists and is valid
+				if (milli && !isNaN(parseInt(milli))) {
+					let lastSeenTime = moment(new Date(parseInt(milli))).fromNow();
+					let dateObject = new Date();
+					if (Math.abs(dateObject.getTime() - milli) < 120000) {
+						lastSeenTime = "Right now"
+					}
+					lastSeenText += lastSeenTime;
+				} else {
+					lastSeenText += "Never";
 				}
-				lastSeenText += lastSeenTime;
 				lastSeen.text(lastSeenText);
 			})
 		}, 1500);
@@ -2658,24 +2690,29 @@ Updates git backup */
 			<<set _ajaxData = {user: $userId,
 							   passageName: _currPassage,
 							   passageData: _passageData}>>
-			<<th-set '$passageHistory[_currPassage]' to _passageData>>
+			<<set _varPath = "$passageHistory[\"" + _currPassage + "\"]">>
+			<<sendAction _varPath _passageData>>
 			<<script>>
 				$.post(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,State.getVar("_ajaxData"))
 			<</script>>
 	<</if>>
-	
-<<for _i, _passageEnd range Story.lookup("tags","sidePassageEnd")>>
-	<<if _passageEnd.title == passage()>>
-	<<link "Back to main passage" $users[$role]["sidePassageReturn"]>><</link>>
-	<</if>>
-<</for>>
+
+<<if $role && $users && $users[$role]>>
+	<<for _i, _passageEnd range Story.lookup("tags","sidePassageEnd")>>
+		<<if _passageEnd.title == passage()>>
+		<<link "Back to main passage" $users[$role]["sidePassageReturn"]>><</link>>
+		<</if>>
+	<</for>>
+<</if>>
 <br>
 
 /* updates time when user was last online */
 <</if>>
-<<set _currentTime=new Date()>>
-<<if _currentTime.getTime() - $users[$role]["lastSeen"] > 10000>>
-	<<th-set '$users[$role]["lastSeen"]' to _currentTime.getTime()>>  
+<<if $role && $users && $users[$role]>>
+	<<set _currentTime=new Date()>>
+	<<if _currentTime.getTime() - $users[$role]["lastSeen"] > 10000>>
+		<<sendAction "$users[$role]["lastSeen"]" _currentTime.getTime()>>
+	<</if>>
 <</if>>
 
 
@@ -3183,9 +3220,9 @@ List of valid roles and their info */
 	<<for _user, _data  range _roles>>
 		<<th-set '$users[_user]' to {}>>
 		<<th-set '$users[_user]["choices"]' to {}>>
-		<<th-set '$users[_user]["faction"]' to _roles[_user]?.faction || "undefined">>
-		<<th-set '$users[_user]["character"]' to _roles[_user]?.Character || "undefined">>
-		<<th-set '$users[_user]["isLeader"]' to _roles[_user]?.isLeader || "undefined">>
+		<<sendAction "$users[_user]["faction"]" _roles[_user]?.faction || "undefined">>
+		<<sendAction "$users[_user]["character"]" _roles[_user]?.Character || "undefined">>
+		<<sendAction "$users[_user]["isLeader"]" _roles[_user]?.isLeader || "undefined">>
 		<<th-set '$users[_user]["passage"]' to Config.passages.start>>
 		<<th-set '$users[_user]["active"]' to false>>
 
@@ -3200,8 +3237,8 @@ List of valid roles and their info */
 /* change this conditional */
 <<if (Object.keys(_roles).includes($role)) >>
 	<<th-set '$users[$role]["userId"]' to $userId>>
-	<<th-set '$users[$role]["username"]' to _username>>
-	<<th-set '$users[$role]["discriminator"]' to _discriminator>>
+	<<sendAction "$users[$role]["username"]" _username>>
+	<<sendAction "$users[$role]["discriminator"]" _discriminator>>
 	<<th-set '$users[$role]["active"]' to true>>
 <</if>>
 
@@ -4372,7 +4409,7 @@ You must wait until all active Aztec Players have joined.<br><br>
 <<if $Aztec_Game_Over is "No">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<th-set '$Aztec_Game' to $Aztec_End / _Aztec_Tot_Play>><<th-set '$Aztec_Game_Over' to "Yes">><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<sendAction "$Aztec_Game" $Aztec_End / _Aztec_Tot_Play>><<th-set '$Aztec_Game_Over' to "Yes">><</link>><br>
 <br>
 <<elseif $Aztec_Game_Over is "Yes">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
@@ -4401,7 +4438,7 @@ You must wait until all Aztec Players have joined.<br><br>
 <<if $Aztec_Game_Over is "No">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<th-set '$Aztec_Game' to $Aztec_End / _Aztec_Tot_Play>><<th-set '$Aztec_Game_Over' to "Yes">><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<sendAction "$Aztec_Game" $Aztec_End / _Aztec_Tot_Play>><<th-set '$Aztec_Game_Over' to "Yes">><</link>><br>
 <br>
 <<elseif $Aztec_Game_Over is "Yes">>
 <b>Aztec Final Score: <<print $Aztec_Game>></b><br>
@@ -4468,7 +4505,7 @@ You must wait until all Spanish Players have joined.<br><br>
 <<if $Span_Game_Over is "No">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<th-set '$Span_Game' to $Span_End / _Span_Tot_Play>><<th-set '$Span_Game_Over' to "Yes">><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<sendAction "$Span_Game" $Span_End / _Span_Tot_Play>><<th-set '$Span_Game_Over' to "Yes">><</link>><br>
 <br>
 <<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
@@ -4497,7 +4534,7 @@ You must wait until all Spanish Players have joined.<br><br>
 <<if $Span_Game_Over is "No">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<th-set '$Span_Game' to $Span_End / _Span_Tot_Play>><<th-set '$Span_Game_Over' to "Yes">><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<sendAction "$Span_Game" $Span_End / _Span_Tot_Play>><<th-set '$Span_Game_Over' to "Yes">><</link>><br>
 <br>
 <<elseif $Span_Game_Over is "Yes">>
 <b>Spaniards' Final Score: <<print $Span_Game>></b><br>
@@ -4549,7 +4586,7 @@ You must wait until all Tlaxcalan Players have joined.<br><br>
 <<if $Tlax_Game_Over is "No">>
 <b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>
 
-Calculate <<link "Final Score" "Final Battle 3">><<th-set '$Tlax_Game' to $Tlax_End / _Tlax_Tot_Play>><<th-set '$Tlax_Game_Over' to "Yes">><</link>><br>
+Calculate <<link "Final Score" "Final Battle 3">><<sendAction "$Tlax_Game" $Tlax_End / _Tlax_Tot_Play>><<th-set '$Tlax_Game_Over' to "Yes">><</link>><br>
 <br>
 <<elseif $Tlax_Game_Over is "Yes">>
 <b>Tlaxcalan's Final Score: <<print $Tlax_Game>></b><br>

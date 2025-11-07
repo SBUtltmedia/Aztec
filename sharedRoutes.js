@@ -32,15 +32,22 @@ export function registerSharedRoutes(app, webstackInstance, options = {}) {
             parsedValue = value;
         }
 
-        // Create a diff object with the updated value
-        const diff = {};
-        _.set(diff, path, parsedValue);
+        // Check if the value actually changed before broadcasting
+        const currentState = webstackInstance.serverStore.getState();
+        const currentValue = _.get(currentState, path);
 
-        // Update the server state
-        webstackInstance.serverStore.setState(diff);
+        // Only update and broadcast if the value is different
+        if (!_.isEqual(currentValue, parsedValue)) {
+            // Create a diff object with the updated value
+            const diff = {};
+            _.set(diff, path, parsedValue);
 
-        // Broadcast the diff to all clients using existing 'difference' event
-        webstackInstance.io.emit('difference', diff);
+            // Update the server state
+            webstackInstance.serverStore.setState(diff);
+
+            // Broadcast the diff to all clients using existing 'difference' event
+            webstackInstance.io.emit('difference', diff);
+        }
 
         res.send({ status: 'ok' });
     });

@@ -46,7 +46,7 @@
 	<<button "send">>
 
 		<<th-set '$users[_role]["sidePassageReturn"]' to $users[_role]["passage"]>>
-		<<th-set '$users[_role]["passage"]' to _newSidePassage>>
+		<<sendAction "$users[_role]["passage"]" _newSidePassage>>
 	<</button>>
 <</liveblock>> */
 
@@ -87,7 +87,7 @@ Leader:
 			<<optionsfrom _leaders>>
 		<</listbox>>
 		<<button Set>>
-			<<th-set '$Aztec_Leader' to _currLeader>>
+			<<sendAction "$Aztec_Leader" _currLeader>>
 		<</button>>
 	<<case "Tlaxcalans">>
 		<<set _currLeader = $tlax_Leader>>
@@ -95,7 +95,7 @@ Leader:
 			<<optionsfrom _leaders>>
 		<</listbox>>
 		<<button Set>>
-			<<th-set '$tlax_Leader' to _currLeader>>
+			<<sendAction "$tlax_Leader" _currLeader>>
 		<</button>>
 	<<case "Spaniards">>
 		<<set _currLeader = $Span_Leader>>
@@ -103,7 +103,7 @@ Leader:
 			<<optionsfrom _leaders>>
 		<</listbox>>
 		<<button Set>>
-			<<th-set '$Span_Leader' to _currLeader>>
+			<<sendAction "$Span_Leader" _currLeader>>
 		<</button>>
 <</switch>>
 	<br>
@@ -121,7 +121,7 @@ Leader:
 		<<for _id,_data range $users>>
 			<<if _data["faction"] == $godParam>>
 				<<set _confirm = 1>>
-				<<th-set '$users[_id]["passage"]' to _newSidePassage>>
+				<<sendAction "$users[_id]["passage"]" _newSidePassage>>
 			<</if>>
 		<</for>>
 	<</button>>
@@ -129,7 +129,7 @@ Leader:
 	<<if _confirm == 1>>
 		<<button SendEveryone>>
 			<<set _confirm = 2>>
-			<<th-set '$users[$role]["lastSeen"]' to _currentTime.getTime()>>  
+			<<sendAction "$users[$role]["lastSeen"]" _currentTime.getTime()>>  
 		<</button>>
 	<</if>>
 	</div>
@@ -159,7 +159,7 @@ Leader:
 			<<optionsfrom _sidePassages>>
 		<</listbox>>
 		<<print `<<button send>>
-			<<th-set '$users[`+_role+`]["passage"]' to _passage>>
+			<<sendAction "$users[`+_role+`]["passage"]" _passage>>
 		<</button>>`>>
 
 
@@ -255,7 +255,7 @@ Only modify stats and passages if you are 100% sure what you are doing
 		Spoof User: 
 		<<set _selectedRole = _currRole>>
 		<<button "spoof" >>
-			<<th-set '$role' to _currRole>>
+			<<sendAction "$role" _currRole>>
 			<<print $role>>
 			<<goto $users[_selectedRole]["passage"]>>
 		<</button>>
@@ -344,7 +344,7 @@ WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE
 	<<if _confirm == 1>>
 		<<button Reset>>
 			<<set _confirm = 2>>
-			<<th-set '$users[$role]["lastSeen"]' to _currentTime.getTime() + 1>>  
+			<<sendAction "$users[$role]["lastSeen"]" _currentTime.getTime() + 1>>  
 		<</button>>
 	<</if>>
 	</div>
