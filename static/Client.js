@@ -7,13 +7,16 @@ var lastStats = [];
 var buffer = [];
 
 window.addEventListener('message', function (event) {
-    // It's crucial to verify the origin of the message for security
-    // In a real application, replace '*' with the expected origin of the iframe content
-    // if (event.origin !== 'http://your-iframe-origin.com') return;
+    // Verify the origin of the message for security
+    // Allow messages from same origin or configured origins
+    const allowedOrigins = [window.location.origin];
+    if (!allowedOrigins.includes(event.origin)) {
+        console.warn('Blocked message from unauthorized origin:', event.origin);
+        return;
+    }
 
     if (event.data && event.data.type === 'statsUpdate') {
         const { strength, wisdom, loyalty } = event.data;
-        console.log('Received updated stats from iframe:', { sc: Window.SugarCubeState, strength, wisdom, loyalty });
         let users = Window.SugarCubeState.getVar("$users")
         // let userId=Window.SugarCubeState.getVar("$userId")
         var userId = Window.SugarCubeState.getVar("$role");
@@ -21,13 +24,10 @@ window.addEventListener('message', function (event) {
         user["stats"]["Strength"] += strength
         user["stats"]["Wisdom"] += wisdom
         user["stats"]["Loyalty"] += loyalty
-        console.log(user["stats"])
         // Object.keys(users).array.forEach(element => {
         //     console.log(element)
         // });
-showStats() 
-
-        console.log(users)
+showStats()
         //  Window.SugarCubeState.setVar("$strength")
         // You can then use these values in your parent application
     }
@@ -36,7 +36,6 @@ showStats()
 function init() {
     // $('#passages').html($('#passages').html().replace(/<br><br>/gm, ""));
 
-    console.log(Window.SugarCubeState.passage);
     $("body").addClass("blur")
     $("body").one("click", () => {
         $("body").removeClass("blur")
@@ -94,7 +93,6 @@ $(document).on(':passagestart', (ev) => {
 })
 
 $(document).ready(() => {
-    console.log("readey")
     //fade($("#passages"), 1);
 })
 
@@ -272,28 +270,21 @@ function changeStats(rolePlay, newStats) {
     if (currentUserId == undefined) {
         currentUserId = "NotSeen"
     }
-    console.log("user:", currentUserId)
     let currentUser = usersObj[currentUserId]
     let roleStats = currentUser.stats
-    console.log("stats:", roleStats)
     Object.keys(roleStats).forEach((stat, idx) => {
-        console.log("stat:", stat);
-        console.log(roleStats[stat])
         roleStats[stat] = parseInt(newStats[stat]) + parseInt(roleStats[stat])
-        console.log(newStats[stat])
     });
     Window.SugarCubeState.variables.users[currentUserId]["stats"] = roleStats;
 
     //renaming rolestats to stats so a diff object can be created
     let stats = roleStats
     let diff = { users: { [currentUserId]: { stats } } };
-    console.log("stat change diff:", diff);
 
     socket.emit('difference', diff);
 }
 
 function fullReset() {
-    console.log("reset start")
     socket.emit('fullReset', '');
 }
 
@@ -366,7 +357,6 @@ function diffSet(pathArr, value) {
         prevKey = currKey;
     }
 
-    console.log("diff:", currKey);
     socket.emit('difference', currKey)
     $(document).trigger(":liveupdate");
 
@@ -380,13 +370,11 @@ function initTheyr(lockInfo) {
     // Receive state from server upon connecting, then update all other clients that you've connected
     socket.on('connect', () => {
         socket.emit('new user', socket.id);
-        console.log(lockInfo)
         lockInfo.callback(lockInfo.lockId)
     })
 
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
-        console.log("Connecting state:", state)
         // console.log("Current State:", Window.SugarCubeState.variables)
         let combinedState = Object.assign({}, Window.SugarCubeState.variables, state)
         // console.log("Combined State", combinedState)
@@ -397,14 +385,12 @@ function initTheyr(lockInfo) {
 
     // Incoming difference, update your state and store
     socket.on('difference', (diff) => {
-        console.log("updating sugarcube", diff);
         updateSugarCubeState(diff)
         _.merge(buffer, diff)
         $(document).trigger(":liveupdate");
     })
 
     socket.on('reset', (diff) => {
-        console.log("reseting sugarcube", diff);
         resetSugarCubeState(diff)
 
         $(document).trigger(":liveupdate");
@@ -423,7 +409,6 @@ function updateSugarCubeState(new_state) {
 // Updates client's SugarCube State when state changes are received from the server
 function resetSugarCubeState(new_state) {
     for (var member in Window.SugarCubeState.variables) delete Window.SugarCubeState.variables[member];
-    console.log(new_state, Window.SugarCubeState.variables)
     location.reload()
     $(document).trigger(":liveupdate");
 }
@@ -431,6 +416,5 @@ function resetSugarCubeState(new_state) {
 //Exceptions are global variables that shouldn't be shared between users
 function addTheyrException(varName) {
     varName = varName.replace('State.variables.', '')
-    console.log(varName)
     exceptions.push(varName);
 }

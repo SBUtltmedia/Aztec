@@ -23,8 +23,6 @@ class gitApiIO{
         this.serverConf = serverConf
         this.serverConf.fileName = `${this.serverConf.fileName}-${this.serverConf.appIndex}.json`
         this.test = isTest;
-        console.log("config is", serverConf)
-        console.log("isTest", isTest)
 	}
 
     /** 
@@ -33,10 +31,8 @@ class gitApiIO{
     * @param {object} content: The last saved Sugarcube.State.variables taken from serverstore
     **/
     async uploadFileApi(content, isTest=this.test) {
-        console.log("IN UPLOAD")
         return new Promise((res,rej)=> {
             if(isTest){
-                console.log("resolved")
                 fs.writeFileSync(testFile, base64.decode(content))
                 res()
             }else{
@@ -55,7 +51,6 @@ class gitApiIO{
                 .then(function (response) {
                     // console.log(response.data.sha);
                     sha = response.data.sha
-                    console.log("sha:", sha);
                     var data = JSON.stringify({
                         "message": "txt file",
                         "content": `${content}`,
@@ -74,18 +69,14 @@ class gitApiIO{
                     };
                     axios(configPutFile)
                         .then(function (response) {
-                            console.log("ffinished")
-                            // console.log(response);
                             res()
                         })
                         .catch(function (error) {
-                            console.log(error)
                             rej(error)
 
                         });
                     })
                 .catch(function (error) {
-                    console.log(error)
                     rej(error)
                 });
             }})
@@ -97,7 +88,6 @@ class gitApiIO{
      * into SugarCubeState.variables
      */
     async retrieveFileAPI() {
-        console.log("is test1",this.test)
         return new Promise((res,rej)=> {
         if(this.test){
             if(!fs.existsSync(testFile)){
@@ -128,10 +118,8 @@ class gitApiIO{
 
     //for creating new json files
     async setupFileAPI(content){
-        console.log(content);
         return new Promise((res,rej)=> {
             if(this.test){
-                console.log("resolved")
                 fs.writeFileSync(testFile, base64.decode(content))
                 res()
             }else{
@@ -154,12 +142,9 @@ class gitApiIO{
             };
             axios(configPutFile)
                 .then(function (response) {
-                    console.log("ffinished")
-                    // console.log(response);
                     res()
                 })
                 .catch(function (error) {
-                    console.log(error)
                     rej(error)
 
                 });

@@ -11,6 +11,7 @@
 This report identifies cleanup opportunities in the Aztec multiplayer Twine project. Issues are categorized by priority and effort level to help plan cleanup activities.
 
 **Key Findings:**
+
 - 15 backup `.twee` files ready for deletion
 - 150+ debug console.log statements
 - 80+ files with commented-out code
@@ -46,11 +47,13 @@ Twine/Aztec/99_Uncategorized.twee.backup
 ```
 
 **Additional backup files:**
+
 ```
 Twine/Aztec.twee.bak
 ```
 
 **Action:**
+
 ```bash
 # After verification, delete with:
 rm Twine/Aztec/*.backup
@@ -70,51 +73,75 @@ rm Twine/Aztec.twee.bak
 Debug console.log statements should be removed from production code or replaced with a proper logging framework.
 
 #### gitApiIO.js (13 instances)
+
 ```javascript
-Lines: 26, 27, 36, 39, 58, 77, 82, 88, 100, 131, 134, 157, 162
+Lines: (26, 27, 36, 39, 58, 77, 82, 88, 100, 131, 134, 157, 162);
 ```
 
 #### static/Client.js (25+ instances)
+
 ```javascript
-Lines: 16, 24, 30, 39, 97, 275, 278, 280-283, 290, 296, 369, 383, 389-390, 400, 407, 426, 434
+Lines: (16,
+  24,
+  30,
+  39,
+  97,
+  275,
+  278,
+  280 - 283,
+  290,
+  296,
+  369,
+  383,
+  389 - 390,
+  400,
+  407,
+  426,
+  434);
 ```
 
 **Example:**
+
 ```javascript
 // Line 16
-console.log(event)
+console.log(event);
 
 // Line 24
-console.log(users)
+console.log(users);
 
 // Line 97
-console.log(difference)
+console.log(difference);
 ```
 
 #### Webstack.js (12 instances)
+
 ```javascript
-Lines: 36, 39, 41, 47, 79, 87, 91, 94, 102, 108, 115, 142
+Lines: (36, 39, 41, 47, 79, 87, 91, 94, 102, 108, 115, 142);
 ```
 
 **Example:**
+
 ```javascript
 // Line 102
-console.log("is Test:", this.isTest)
+console.log("is Test:", this.isTest);
 
 // Line 115
-console.log("SERVER RECEIVES NEW USER:", id)
+console.log("SERVER RECEIVES NEW USER:", id);
 ```
 
 #### loginDiscord/index.js (6 instances)
+
 ```javascript
-Lines: 63, 65, 70, 115, 122, 149
+Lines: (63, 65, 70, 115, 122, 149);
 ```
 
 #### Twine Files
+
 - `99_Uncategorized.twee`: Lines 2136, 2254, 2259, 2279, 2283, 2285, 2957, 3188, 3193
 - `00_Setup.twee`: Lines 214, 242, 290
 
 **Recommendation:**
+
 1. Remove debug console.logs
 2. Keep only critical error logging
 3. Consider using a logging library (winston, bunyan, pino)
@@ -132,24 +159,30 @@ Lines: 63, 65, 70, 115, 122, 149
 #### static/Client.js
 
 **Lines 11-12:** Security check (CRITICAL)
+
 ```javascript
 // if (event.origin !== 'http://your-iframe-origin.com') return;
 ```
+
 **Action:** UNCOMMENT and configure properly for security
 
 **Lines 25-27:** Dead iteration code
+
 ```javascript
 // Object.keys(users).array.forEach(element => {
 //     console.log(element)
 // });
 ```
+
 **Action:** DELETE
 
 **Lines 223, 228:** Debug logs
+
 ```javascript
 //console.log({value, rawValue});
 // console.log(maskStyle)
 ```
+
 **Action:** DELETE
 
 #### regex.py
@@ -157,6 +190,7 @@ Lines: 63, 65, 70, 115, 122, 149
 Almost the entire file is commented out. Purpose unclear.
 
 **Lines 1-50+:** Multiple commented functions
+
 ```python
 # def convert_th_set_to_set(content):
 #     pattern = r'<<th-set\s+(["\']?)(\$[^"\'>\s]+)\1\s+to\s+(.+?)>>'
@@ -180,6 +214,7 @@ Multiple commented sections related to old Redux implementation and database cod
 ### TODO/FIXME Comments
 
 #### static/Client.js:245
+
 ```javascript
 //TODO: try to only send stats of user
 ```
@@ -196,6 +231,7 @@ Multiple commented sections related to old Redux implementation and database cod
 ### High Priority - Can Likely Be Deleted
 
 #### Legacy PHP Files
+
 ```
 Twine/images/tmp.php              # Temporary file copying script
 Twine/images/PHP_errors.log       # Old error log from 2021
@@ -206,6 +242,7 @@ Twine/images/PHP_errors.log       # Old error log from 2021
 **Effort:** Low (verify not used, then delete)
 
 #### Old Format File
+
 ```
 storyformats/sugarcube-2/format_old.js    # 478KB old version
 ```
@@ -221,6 +258,7 @@ storyformats/sugarcube-2/format_old.js    # 478KB old version
 #### Python Conversion Scripts
 
 These scripts may have been used for the th-set conversion:
+
 ```
 convert_to_thset.py
 fix_local_var_thset.py
@@ -230,6 +268,7 @@ regex.py
 ```
 
 **Action:**
+
 - If conversion is complete, archive or delete
 - If needed for future conversions, move to `/scripts` directory and document
 
@@ -237,6 +276,7 @@ regex.py
 **Effort:** Low (5 minutes per file)
 
 #### Test Files
+
 ```
 Twine/test.twee
 regex_output.twee
@@ -246,6 +286,7 @@ loginDiscord/testVars.json        # Modified per git status
 ```
 
 **Action:**
+
 - Delete or move to `/tests` directory
 - Add `testVars.json` to .gitignore if it's generated
 
@@ -253,6 +294,7 @@ loginDiscord/testVars.json        # Modified per git status
 **Effort:** Low
 
 #### Demo Files
+
 ```
 Twine/demo_style.css
 ```
@@ -268,11 +310,13 @@ Twine/demo_style.css
 ### .gitignore Improvements
 
 **Current Issues:**
+
 - Backup files are not ignored
 - Test files are being tracked
 - Build artifacts may not be ignored
 
 **Recommended additions to .gitignore:**
+
 ```gitignore
 # Backup files
 *.backup
@@ -318,9 +362,11 @@ Thumbs.db
 ### Variable Declaration Style
 
 **Issue:** Mix of `var`, `let`, and `const` throughout codebase
+
 - Found 729 instances of `var` declarations
 
 **Example locations:**
+
 - Client.js
 - Webstack.js
 - gitApiIO.js
@@ -338,6 +384,7 @@ Thumbs.db
 **Issue:** Scattered twee files in multiple locations
 
 **Current structure:**
+
 ```
 Twine/Aztec/          # Modular twee files (organized)
 Twine/Aztec.twee.bak  # Old backup
@@ -346,6 +393,7 @@ Twine/test.twee       # Test file
 ```
 
 **Recommendation:**
+
 - Keep only `Twine/Aztec/` for twee source files
 - Move test files to dedicated test directory
 - Delete output files
@@ -360,6 +408,7 @@ Twine/test.twee       # Test file
 ### Empty/Minimal Documentation
 
 #### structure.md
+
 ```markdown
 This is a sugarcube twine project which is meant to allow for multiplayer games
 ```
@@ -374,14 +423,17 @@ This is a sugarcube twine project which is meant to allow for multiplayer games
 ### Markdown Linting Issues
 
 #### console.md (80+ warnings)
+
 - Hard tabs instead of spaces
 - Inline HTML without blank lines
 - Heading formatting issues
 
 #### CLAUDE.md (40+ warnings)
+
 - Similar formatting issues
 
 **Action:** Run markdown formatter/linter
+
 ```bash
 # Using markdownlint or prettier
 npx prettier --write "*.md"
@@ -395,13 +447,14 @@ npx prettier --write "*.md"
 ### Outdated Comments
 
 #### static/Client.js:11-12
+
 ```javascript
 // In a real application, replace '*' with the expected origin
 ```
 
 **Issue:** Generic placeholder comment still in production code
 
-**Action:** Update with actual origin or document why '*' is acceptable
+**Action:** Update with actual origin or document why '\*' is acceptable
 
 **Priority:** MEDIUM
 **Effort:** Low
@@ -413,6 +466,7 @@ npx prettier --write "*.md"
 ### Twine/style.css (1248 lines)
 
 #### Vendor Prefix Issues (Lines 23-29)
+
 ```css
 -webkit-transform-origin: 0% 0%;
 -webkit-transform: scale(1);
@@ -421,6 +475,7 @@ npx prettier --write "*.md"
 **Issue:** Missing standard properties after vendor prefixes
 
 **Fix:**
+
 ```css
 -webkit-transform-origin: 0% 0%;
 transform-origin: 0% 0%;
@@ -432,8 +487,9 @@ transform: scale(1);
 **Effort:** Low (10 minutes)
 
 #### Invalid CSS (Line 455)
+
 ```css
-display: inline-block;  /* Ignored due to float */
+display: inline-block; /* Ignored due to float */
 ```
 
 **Action:** Either remove `float` or remove `display: inline-block`
@@ -442,9 +498,10 @@ display: inline-block;  /* Ignored due to float */
 **Effort:** Low
 
 #### Empty Ruleset (Line 1237)
+
 ```css
 .someClass {
-    /* empty */
+  /* empty */
 }
 ```
 
@@ -470,6 +527,7 @@ display: inline-block;  /* Ignored due to float */
 **Risk:** Allows messages from any origin
 
 **Action:** UNCOMMENT and configure with proper origin
+
 ```javascript
 if (event.origin !== window.location.origin) return;
 ```
@@ -504,6 +562,7 @@ response.write(err.message, 'utf8', () => {
 **Good News:** All dependencies appear to be actively used
 
 **Used Dependencies:**
+
 - `express` - Core server (login/index.js, loginDiscord/index.js)
 - `socket.io` - Multiplayer (Webstack.js, Client.js)
 - `axios` - API calls (gitApiIO.js)
@@ -526,18 +585,21 @@ response.write(err.message, 'utf8', () => {
 ### Phase 1: Immediate (High Priority, Low Effort) - 2-3 hours
 
 1. **Enable CORS Security** (CRITICAL)
+
    ```bash
    # Edit static/Client.js:12
    # Uncomment and configure origin check
    ```
 
 2. **Delete Backup Files**
+
    ```bash
    rm Twine/Aztec/*.backup
    rm Twine/Aztec.twee.bak
    ```
 
 3. **Delete Legacy Files**
+
    ```bash
    rm Twine/images/tmp.php
    rm Twine/images/PHP_errors.log
@@ -545,6 +607,7 @@ response.write(err.message, 'utf8', () => {
    ```
 
 4. **Update .gitignore**
+
    ```bash
    # Add backup files, test files, logs
    ```
@@ -598,6 +661,7 @@ response.write(err.message, 'utf8', () => {
    - Delete if obsolete
 
 4. **Fix Markdown Linting**
+
    ```bash
    npx prettier --write "*.md"
    ```
@@ -629,12 +693,12 @@ response.write(err.message, 'utf8', () => {
 
 ## Estimated Time Summary
 
-| Phase | Priority | Effort | Time |
-|-------|----------|--------|------|
-| Phase 1 | High | Low | 2-3 hours |
-| Phase 2 | High | Medium | 8-12 hours |
-| Phase 3 | Medium | Medium | 8-16 hours |
-| Phase 4 | Low | High | 40+ hours |
+| Phase   | Priority | Effort | Time       |
+| ------- | -------- | ------ | ---------- |
+| Phase 1 | High     | Low    | 2-3 hours  |
+| Phase 2 | High     | Medium | 8-12 hours |
+| Phase 3 | Medium   | Medium | 8-16 hours |
+| Phase 4 | Low      | High   | 40+ hours  |
 
 **Total for High/Medium Priority:** ~20-30 hours
 
@@ -643,6 +707,7 @@ response.write(err.message, 'utf8', () => {
 ## Quick Start Commands
 
 ### Immediate Cleanup (30 minutes)
+
 ```bash
 # 1. Delete backup files
 find Twine/Aztec -name "*.backup" -delete
@@ -673,6 +738,7 @@ git commit -m "Clean up backup files and update .gitignore"
 ```
 
 ### Medium Cleanup (2-3 hours)
+
 ```bash
 # 1. Fix markdown
 npx prettier --write "*.md"

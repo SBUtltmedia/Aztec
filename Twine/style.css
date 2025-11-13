@@ -28,6 +28,8 @@ font-weight: 400;
         -o-transform-origin: 0 0;
         -webkit-transform: scale(1);
         -webkit-transform-origin: 50% 50%;
+        transform: scale(1);
+        transform-origin: 50% 50%;
     }
 .blur{
 /* animation-duration: .2s;

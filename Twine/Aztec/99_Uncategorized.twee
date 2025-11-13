@@ -2133,7 +2133,6 @@ Updates git backup */
 <<if $gitUpdate + 300000 < new Date().getTime()>>
 	<<script>>
 		$.get("/updateGit", {});
-		console.log("updating git");
 	<</script>>
 	<<th-set '$gitUpdate' to new Date().getTime()>>
 <</if>>
@@ -2251,12 +2250,9 @@ Updates git backup */
 /* adds background image to screen */
 <<script>>
 	try {
-		console.log("Background script starting...");
 		var imageURL = "Home";
 		var role = State.getVar("$role");
 		var users = State.getVar("$users");
-
-		console.log("Role: " + role + ", Users defined: " + (!!users));
 
 		if(tags().includes("Control") || tags().includes("Home")){
 			$('.passage').addClass('passage-home');
@@ -2276,11 +2272,9 @@ Updates git backup */
 			}
 		}
 
-		console.log("Setting background for role: " + role + ", imageURL: " + imageURL);
 		$('#story').css({
 			'backgroundImage': 'url(Twine/images/Borders/' + imageURL + '.jpg)'
 		});
-		console.log("Background set successfully");
 	} catch (e) {
 		console.error("Error setting background:", e);
 	}
@@ -3039,7 +3033,6 @@ When your contribution to the cookbook is ready, you may continue <<link "on to 
 	State.setVar("$role", searchParams.get('nick') || userData.authData.nick || userData.authData.global_name)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick || userData.authData.global_name)
 	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
-	console.log(searchParams.get('nick') || userData.authData.nick || userData.authData.global_name)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString('en-US', {
 			timeZone: 'America/New_York',
@@ -3270,12 +3263,10 @@ List of valid roles and their info */
 
 	if((passage)){
 		setTimeout(() => {
-			console.log("playing passage", passage)
 			Engine.play(passage)
 		}, 100);
 
 	}else{
-		console.log("no passage")
 		Engine.show();
 	}
 	$("body").css({opacity:1})

@@ -32,20 +32,16 @@ class Webstack {
 		this.gitApi.retrieveFileAPI().then((gameData) => {
 			let state = JSON.parse(gameData)
 			this.serverStore.replaceState(state);
-	
-			http.listen(this.port, () => console.log(`App listening at http://localhost:${this.port}`));
+
+			http.listen(this.port, () => {});
 		}
 		).catch(err => {
-			console.log(err.message);
-			response.write(err.message, 'utf8', () => {
-				console.log(err.message);
-			})
+			console.error('Error starting server:', err.message);
 		})
 
 
-	
-			console.log("port exists")
-			process
+
+		process
 				.on('SIGTERM', this.shutdown('SIGTERM'))
 				.on('SIGINT', this.shutdown('SIGINT'))
 				.on('uncaughtException', this.shutdown('uncaughtException'));
@@ -76,7 +72,6 @@ class Webstack {
 			},
 			replaceState(newState) {
 				// Completely replace the state
-				console.log("replacing everything with:", newState);
 				state = newState;
 			}
 		};
@@ -84,14 +79,10 @@ class Webstack {
 
 	shutdown(signal) {
 		return (err) => {
-			console.log('shutting down', signal)
-
 			this.updateGit(this.isTest).then(
 				() => {
-					console.log(err)
 					process.exit(err ? 1 : 0);
 				}).catch(err=>{
-					console.log(err)
 					process.exit()
 				})
 		}
@@ -99,20 +90,17 @@ class Webstack {
 
 	updateGit(isTest) {
 		let content = {...this.serverStore.getState()};
-		console.log("is Test:", this.isTest)
 		return this.gitApi.uploadFileApi(base64.encode(JSON.stringify(content)), this.isTest)
 	}
 	
 	initIO() {
 		io.on("connect_error", (err) => {
-			console.log(`connect_error due to ${err.message}`);
 		  });
 		io.on('connection', (socket) => {
 			let gstate = this.serverStore.getState();
 
-			// User connects 
+			// User connects
 			socket.once('new user', (id) => {
-				console.log("SERVER RECEIVES NEW USER:", id);
 
 			
 				if (typeof gstate !== 'undefined') {
@@ -139,7 +127,6 @@ class Webstack {
 
 
 			socket.on('fullReset', ()=>{
-				console.log("reset start 2")
 				this.serverStore.replaceState(Object.assign({}, initVars));
 				app.post('/updateGit',(req, res) => {
 					res.send({})

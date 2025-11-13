@@ -1,6 +1,29 @@
-
-
+# Dependencies
 node_modules
+
+# Configuration
 config.json
 /loginDiscord/testVars.json
 /loginDiscord/index.html
+
+# Backup files
+*.backup
+*.bak
+*.old
+*.tmp
+
+# Test files
+test.json
+regex_output.twee
+**/testVars.json
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

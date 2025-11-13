@@ -1,1 +1,1 @@
-This is a sugarcube twine project which is meant to allow for multiplayer games, the @Twine/Aztec folder is meant to be a full conversion to the "th-set" macro, but I am unsure of how comprehensive it is. Please take a look, ignore @unity for now 
+This is a sugarcube twine project which is meant to allow for multiplayer games, the @Twine/Aztec folder is meant to be a full conversion to the "th-set" macro, but I am unsure of how comprehensive it is. Please take a look, ignore @unity for now

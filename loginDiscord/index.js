@@ -60,14 +60,11 @@ const PORT = process.env.PORT || port;
 const appID = process.env.appIndex || localAppIndex;
 const FILENAME = process.env.fileName || fileName;
 let HEROKU_URL;
-console.log(process.env.PORT)
 if (process.env.PORT) {
-	console.log("PROCESS ENV", process.env)
 	HEROKU_URL = `https://${FILENAME}-${appID}.herokuapp.com`
 	// HEROKU_URL = `https://aztec-${process.env.appIndex}.herokuapp.com`
 }
 else {
-	console.log("Running local")
 	HEROKU_URL = `http://localhost:${PORT}`;
 }
 const GUILD_ID = process.env.guildId || guildId;
@@ -112,14 +109,12 @@ app.get('/', async ({ query }, response) => {
 			});
 
 			const oauthData = await oauthResult.json();
-			console.log(oauthData)
 			if (oauthData.refresh_token) {
 				refreshTokens[state] = oauthData;
 
 			}
 
 			if (oauthData.error) {
-				console.log({ oauthData });
 				return loadHome(response, test);
 			}
 
@@ -146,7 +141,6 @@ app.get('/', async ({ query }, response) => {
 		} catch (error) {
 			// NOTE: An unauthorized token will not throw an error;
 			// it will return a 401 Unauthorized response in the try block above
-			console.error(error);
 		}
 	}
 	else {
