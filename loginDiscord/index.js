@@ -11,6 +11,8 @@ import { channel } from 'diagnostics_channel';
 // import { RichPresenceAssets } from 'discord.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const hex = require('string-hex')
 let localAppIndex
 
@@ -80,11 +82,30 @@ let refreshTokens = {};
 const webstackInstance = new webstack(SERVERCONF);
 const { app } = webstackInstance.get();
 
+// Configure session middleware
+app.use(cookieParser());
+app.use(session({
+	secret: process.env.SESSION_SECRET || 'aztec-game-secret-' + Math.random().toString(36),
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+		httpOnly: true,
+		maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+	}
+}));
+
 // Register shared routes (action, updateGit, dump, discordbot)
 registerSharedRoutes(app, webstackInstance, { discordBot });
 // Listen for requests to the homepage
-app.get('/', async ({ query }, response) => {
-	const { code, state, test, nick } = query;
+app.get('/', async (request, response) => {
+	const { code, state, test, nick } = request.query;
+
+	// Check if user already has a valid session
+	if (request.session && request.session.userData && !code) {
+		// User has existing session, return Twine with saved data
+		return returnTwine(request.session.userData, response, TWINE_PATH);
+	}
 
 	if (code) {
 		let payload = {
@@ -131,12 +152,15 @@ app.get('/', async ({ query }, response) => {
 				},
 			});
 			const guildResultJson = await guildResult.json();
-;
-			return returnTwine(
-				{ gameState: webstackInstance.serverStore.getState(), authData: { ...guildResultJson, ...userResultJson } },
-				response,
-				TWINE_PATH
-			);
+
+			// Store user data in session for persistence across page refreshes
+			const userData = {
+				gameState: webstackInstance.serverStore.getState(),
+				authData: { ...guildResultJson, ...userResultJson }
+			};
+			request.session.userData = userData;
+
+			return returnTwine(userData, response, TWINE_PATH);
 
 		} catch (error) {
 			// NOTE: An unauthorized token will not throw an error;
@@ -148,13 +172,24 @@ app.get('/', async ({ query }, response) => {
 	}
 });
 
+// Logout endpoint to clear session
+app.get('/logout', (request, response) => {
+	request.session.destroy((err) => {
+		if (err) {
+			console.error('Error destroying session:', err);
+		}
+		response.clearCookie('connect.sid'); // Clear the session cookie
+		response.redirect('/');
+	});
+});
+
 // returnTwine is now imported from sharedRoutes.js
 
 /**
  * Loads the discord Auth page
- * 
- * @param {*} response 
- * @param {boolean} isTest: true if testing page is being used, 
+ *
+ * @param {*} response
+ * @param {boolean} isTest: true if testing page is being used,
  * @returns discord auth page or if isTest is true: the twine page
  */
 function loadHome(response, isTest) {

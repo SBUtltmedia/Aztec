@@ -97,7 +97,7 @@ export function returnTwine(userData, response, twinePath) {
 
     let userDataScriptTag = `
     <script>
-    sessionStorage.clear();
+    // Session is now managed by server-side cookies, no need to clear
     let userData=${JSON.stringify(userData)} </script>
     `;
 
