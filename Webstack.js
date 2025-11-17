@@ -32,11 +32,14 @@ class Webstack {
 		this.gitApi.retrieveFileAPI().then((gameData) => {
 			let state = JSON.parse(gameData)
 			this.serverStore.replaceState(state);
-
-			http.listen(this.port, () => {});
-		}
-		).catch(err => {
-			console.error('Error starting server:', err.message);
+		}).catch(err => {
+			console.error('Error retrieving game state from GitHub:', err.message);
+			console.warn('Starting server with empty state');
+		}).finally(() => {
+			// Always start the HTTP server, even if Git retrieval fails
+			http.listen(this.port, () => {
+				console.log(`Server listening on port ${this.port}`);
+			});
 		})
 
 
