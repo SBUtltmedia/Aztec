@@ -30,10 +30,13 @@ class Webstack {
 
 		this.gitApi = new gitApiIO(serverConf, this.isTest)
 		this.gitApi.retrieveFileAPI().then((gameData) => {
+			console.log('Successfully retrieved game state from GitHub');
 			let state = JSON.parse(gameData)
 			this.serverStore.replaceState(state);
+			console.log('Game state loaded successfully');
 		}).catch(err => {
 			console.error('Error retrieving game state from GitHub:', err.message);
+			console.error('Full error:', err);
 			console.warn('Starting server with empty state');
 		}).finally(() => {
 			// Always start the HTTP server, even if Git retrieval fails
@@ -47,7 +50,14 @@ class Webstack {
 		process
 				.on('SIGTERM', this.shutdown('SIGTERM'))
 				.on('SIGINT', this.shutdown('SIGINT'))
-				.on('uncaughtException', this.shutdown('uncaughtException'));
+				.on('uncaughtException', (err) => {
+					console.error('Uncaught Exception:', err);
+					this.shutdown('uncaughtException')(err);
+				})
+				.on('unhandledRejection', (reason, promise) => {
+					console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+					this.shutdown('unhandledRejection')(reason);
+				});
 
 	}
 
