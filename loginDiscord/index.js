@@ -155,7 +155,7 @@ app.get('/', async (request, response) => {
 			}
 
 			if (oauthData.error) {
-				return loadHome(response, test);
+				return loadHome(response, test, nick);
 			}
 
 			const userResult = await fetch('https://discord.com/api/users/@me', {
@@ -187,7 +187,7 @@ app.get('/', async (request, response) => {
 		}
 	}
 	else {
-		loadHome(response, test);
+		loadHome(response, test, nick);
 	}
 });
 
@@ -211,13 +211,23 @@ app.get('/logout', (request, response) => {
  * @param {boolean} isTest: true if testing page is being used,
  * @returns discord auth page or if isTest is true: the twine page
  */
-function loadHome(response, isTest) {
+function loadHome(response, isTest, nick) {
 	let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
 	let indexHtml = htmlContents.replace("%redirectURL%", REDIRECTURL)
 
 
 	if (isTest) {
-		return returnTwine({ gameState: webstackInstance.serverStore.getState() }, response, TWINE_PATH);
+		// Create mock user data for testing
+		const mockUserData = {
+			gameState: webstackInstance.serverStore.getState(),
+			authData: {
+				id: nick || 'test-user',
+				username: nick || 'TestUser',
+				discriminator: '0000',
+				avatar: null
+			}
+		};
+		return returnTwine(mockUserData, response, TWINE_PATH);
 	}
 	else {
 		response.send(indexHtml);
