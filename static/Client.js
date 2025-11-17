@@ -402,6 +402,14 @@ function initTheyr(lockInfo) {
 
 // Updates client's SugarCube State when state changes are received from the server
 function updateSugarCubeState(new_state) {
+    // Check if SugarCube is initialized
+    if (!window.SugarCubeState || !window.SugarCubeState.variables) {
+        console.warn('SugarCube not initialized yet, deferring state update');
+        // Retry after a short delay
+        setTimeout(() => updateSugarCubeState(new_state), 100);
+        return;
+    }
+
     _.merge(window.SugarCubeState.variables, new_state);
 
     $(document).trigger(":liveupdate");
@@ -409,6 +417,13 @@ function updateSugarCubeState(new_state) {
 
 // Updates client's SugarCube State when state changes are received from the server
 function resetSugarCubeState(new_state) {
+    // Check if SugarCube is initialized
+    if (!window.SugarCubeState || !window.SugarCubeState.variables) {
+        console.warn('SugarCube not initialized yet, deferring state reset');
+        setTimeout(() => resetSugarCubeState(new_state), 100);
+        return;
+    }
+
     for (var member in window.SugarCubeState.variables) delete window.SugarCubeState.variables[member];
     location.reload()
     $(document).trigger(":liveupdate");

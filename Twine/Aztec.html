@@ -104,8 +104,8 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
 @import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
-@import url(".initVars.json");
-@import url("Twine/style.css");</style><script role="script" id="twine-user-script" type="text/twine-javascript">Save.clear()
+@import url("Twine/style.css");</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "Story JavaScript" */
+Save.clear()
 Config.passages.nobr = true;
 
 Window.SugarCubeState = State;
@@ -370,7 +370,27 @@ importScripts([
 			}
 		}
 	});
-})();</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
+})();
+/* twine-user-script #2: "Chat System" */
+/*
+ * Chat System for Aztec Multiplayer Game
+ * Supports global chat and faction-specific channels
+ * Server-authoritative with real-time synchronization
+ */
+
+<<script>>
+	// Chat timestamp formatter
+	setup.formatChatTime = function(timestamp) {
+		// Format timestamp for chat display: MM/DD HH:MM
+		if (!timestamp) return "";
+		return new Date(timestamp).toLocaleDateString('en-US', {
+			month: '2-digit',
+			day: '2-digit',
+			hour: '2-digit',
+			minute: '2-digit'
+		}).replace(",", "");
+	}
+<</script>></script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
@@ -10333,12 +10353,98 @@ The votes have been cast, click through to find out who your &lt;&lt;link &quot;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="264" name="After the Feast" tags="" position="2300,8300" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="264" name="PassageReady" tags="" position="475,3350" size="100,100">/* Chat Display - Renders on Home tagged passages */
+&lt;&lt;if tags().includes(&quot;Home&quot;)&gt;&gt;
+/* Creates the chat */
+&lt;div id=&quot;chat&quot;&gt;
+    /* Instantiate a chatlog if it doesnt already exist*/
+	&lt;&lt;if ndef $chatlog &gt;&gt;
+		&lt;&lt;th-set &#39;$chatlog&#39; to {}&gt;&gt;
+		&lt;&lt;for _i,_faction range [&quot;Aztecs&quot;, &quot;Spaniards&quot;,&quot;Tlaxcalans&quot;, &quot;chat&quot;]&gt;&gt;
+			&lt;&lt;th-set &#39;$chatlog[_faction]&#39; to []&gt;&gt;
+		&lt;&lt;/for&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	&lt;&lt;if ndef $users[$role].currentChat &gt;&gt;
+		&lt;&lt;th-set &#39;$users[$role].currentChat&#39; to &quot;chat&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	/* Create a scope switch for Global and Faction */
+	&lt;div id=&quot;chat-switch&quot;&gt;
+		&lt;&lt;button &quot;Global&quot;&gt;&gt;
+			&lt;&lt;th-set &#39;$users[$role].currentChat&#39; to &quot;chat&quot;&gt;&gt;
+		&lt;&lt;/button&gt;&gt;
+		&lt;&lt;button $users[$role].faction &gt;&gt;
+			&lt;&lt;th-set &#39;$users[$role].currentChat&#39; to $users[$role].faction&gt;&gt;
+		&lt;&lt;/button&gt;&gt;
+	&lt;/div&gt;
+
+
+	/* Fill #chatmessages with $chatlog */
+	&lt;&lt;liveblock&gt;&gt;
+	&lt;div id=&quot;chatmessages&quot;&gt;
+		&lt;&lt;for _id, _msg range $chatlog[$users[$role].currentChat]&gt;&gt;
+		&lt;&lt;print `
+			&lt;div class=&quot;playerMessage&quot;&gt;
+				&lt;div class=&quot;playerMessageLeft&quot;&gt;
+					&lt;img class=&quot;playerMessageIconImg&quot; src=&quot;`+setup.getUserSvgPicture(_msg[&#39;user&#39;])+`&quot;&gt;
+					&lt;div class=&quot;playerMessageLeftText&quot;&gt;
+						&lt;div class=&quot;playerMessageUsername&quot;&gt;_msg[&quot;user&quot;]&lt;/div&gt;
+						&lt;div class=&quot;playerMessageTimeStamp&quot;&gt;`+setup.formatChatTime(_msg[&#39;timestamp&#39;] || _msg[&#39;time&#39;])+`&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;playerMessageText&quot;&gt;_msg[&quot;message&quot;]&lt;/div&gt;
+			&lt;/div&gt;
+		`&gt;&gt;
+		&lt;&lt;/for&gt;&gt;
+		&lt;&lt;run setup.scrollToBottom(&quot;chatmessages&quot;) &gt;&gt;
+		&lt;div id=&quot;chatmessagesanchor&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;&lt;/liveblock&gt;&gt;
+
+	/* Create the area for users to send messsages to */
+	&lt;div id=&quot;chattextarea&quot;&gt;
+		/* Type messages here */
+		&lt;div id=&quot;chattextbox&quot;&gt;
+			&lt;&lt;textbox &quot;_chattext&quot; &quot;&quot; autofocus&gt;&gt;
+		&lt;/div&gt;
+
+		/* Hit send here */
+		&lt;&lt;button &quot;Enter&quot;&gt;&gt;
+			&lt;&lt;set _arrayLength = $chatlog[$users[$role].currentChat].length&gt;&gt;
+			&lt;&lt;set _msg = {user: $role, message:_chattext, timestamp: Date.now()}&gt;&gt;
+			&lt;&lt;set _tempArr = $chatlog[$users[$role].currentChat].slice(-50)&gt;&gt;
+			&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
+			&lt;&lt;if _chattext != &quot;&quot;&gt;&gt;
+				&lt;&lt;sendAction &quot;$chatlog[$users[$role].currentChat]&quot; _tempArr&gt;&gt;
+			&lt;&lt;/if&gt;&gt;
+			&lt;&lt;script&gt;&gt;
+				$(&quot;#chattextbox input&quot;).val(&quot;&quot;);
+			&lt;&lt;/script&gt;&gt;
+		&lt;&lt;/button&gt;&gt;
+	&lt;/div&gt;
+
+	&lt;&lt;script&gt;&gt;
+	$(document).on(&quot;keydown&quot;, function (evt) {
+		if (evt.which === 13) {
+
+			requestAnimationFrame(()=&gt;{
+				$(&quot;#chattextarea .macro-button&quot;).trigger(&quot;click&quot;);
+			})
+
+		}
+		var inputElement = $(&quot;#chattextbox #textbox--chattext&quot;);
+		var maxLength = 50;
+		inputElement.val(inputElement.val()?.substring(0, maxLength));
+	});
+	&lt;&lt;/script&gt;&gt;
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="265" name="After the Feast" tags="" position="2300,8300" size="100,100">&lt;&lt;liveblock&gt;&gt;
 After an eventful evening full of food, pulque and heated debate about your documents, you go back to your quarters and fall into the kind of deep sleep that only comes from over-indulging [[in so many delicious things|Waking up in the Library on a Full Belly]]. &lt;br&gt;
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="265" name="Alvarado&#39;s Contribution" tags="" position="2300,7675" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="266" name="Alvarado&#39;s Contribution" tags="" position="2300,7675" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? &lt;br&gt;
@@ -10409,11 +10515,11 @@ Does he &lt;&lt;link &quot;PASS&quot; &quot;Aguilar&#39;s Contribution&quot;&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="266" name="Assignments Summary" tags="" position="4500,400" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="267" name="Assignments Summary" tags="" position="4500,400" size="100,100">&lt;&lt;liveblock&gt;&gt;
 [[Check Player and Team Status and Location|Control: Player Status]]&lt;br&gt;
 [[Check the Status of Holds and Votes|Control: Votes]]&lt;br&gt;
 [[Return to the Dashboard|Dashboard]]&lt;br&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="267" name="Azcapotzalco" tags="Done Breaks" position="2525,550" size="100,100">The many things you gather in preparation for your journey will undoubtedly be a great weight to carry. In the place of the ants you will find a way to lessen your burden.&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="268" name="Azcapotzalco" tags="Done Breaks" position="2525,550" size="100,100">The many things you gather in preparation for your journey will undoubtedly be a great weight to carry. In the place of the ants you will find a way to lessen your burden.&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
@@ -10438,7 +10544,7 @@ This city is &lt;&lt;textbox &quot;$Azcapotzalco_Ans_T&quot; &quot;&quot;&gt;&gt
 &lt;&lt;print $Quest_Leader_T&gt;&gt; must answer this question. Please work on the discussion board to help him solve the riddle.  When he has input the answer, [[see if you&#39;ve solved the puzzle|Azcapotzalco 2]] &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="268" name="Azcapotzalco 2" tags="Done Breaks" position="2675,550" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="269" name="Azcapotzalco 2" tags="Done Breaks" position="2675,550" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;print $Azcapotzalco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -10479,7 +10585,7 @@ You have found the correct answer. You now have slaves to carry your burden for 
 Your answer is incorrect.  You may [[try again|Azcapotzalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="269" name="Burning the Ships" tags="Done Breaks" position="1450,1800" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="270" name="Burning the Ships" tags="Done Breaks" position="1450,1800" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _Mutiny_Voted = setup.getTotalChoices(&quot;Mutiny_Voted&quot;)&gt;&gt;
 &lt;&lt;if _Mutiny_Voted isnot 5&gt;&gt;
 
@@ -10502,7 +10608,7 @@ The rabblerouser [[chickened out|Burning the Ships: Failed Mutiny]]!&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="270" name="Burning the Ships: Failed Mutiny" tags="Done Breaks" position="1575,1950" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="271" name="Burning the Ships: Failed Mutiny" tags="Done Breaks" position="1575,1950" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $Span_Leader isnot $role&gt;&gt;
 After the first encounter with the fabled Mexica, the group has questioned the wisdom of moving forward. Not only would such an expedition be illegal, it&#39;s clear that great danger lies ahead with little promise of reward. Nonetheless, the coup has failed and it is clear that you will continue your perilous journey inward.&lt;br&gt;
 &lt;br&gt;
@@ -10521,7 +10627,7 @@ All of this turmoil surrounding the mutiny has caused shifts in loyalty.  Has &l
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="271" name="Burning the Ships: Mutiny" tags="Done Breaks" position="1325,1950" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="272" name="Burning the Ships: Mutiny" tags="Done Breaks" position="1325,1950" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $Span_Leader isnot $role&gt;&gt;
 After the first encounter with the fabled Mexica, the group has questioned the wisdom of moving forward. Not only would such an expedition be illegal, it&#39;s clear that great danger lies ahead with little promise of reward.&lt;br&gt;
 &lt;br&gt;
@@ -10540,7 +10646,7 @@ All of this turmoil surrounding the mutiny has caused shifts in loyalty.  Has &l
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="272" name="Burning the Ships: No Mutiny" tags="Done Breaks" position="1450,1950" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="273" name="Burning the Ships: No Mutiny" tags="Done Breaks" position="1450,1950" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $Span_Leader isnot $role&gt;&gt;
 After the first encounter with the fabled Mexica, the group is wary of the journey that lies ahead, but the potential for glory is too great to resist. &lt;br&gt;
 &lt;br&gt;
@@ -10560,7 +10666,7 @@ All of this turmoil surrounding the mutiny has caused shifts in loyalty.  Have y
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="273" name="Chapultepec" tags="Done Breaks" position="2525,675" size="100,100">The preparations for your journey have left you tired, and you stop to rest beside a spring. Out of the corner of your eye, you spy a tasty treat hopping through the grass beside you. You reach for your stash of tortillas!&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="274" name="Chapultepec" tags="Done Breaks" position="2525,675" size="100,100">The preparations for your journey have left you tired, and you stop to rest beside a spring. Out of the corner of your eye, you spy a tasty treat hopping through the grass beside you. You reach for your stash of tortillas!&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
@@ -10598,7 +10704,7 @@ This city is &lt;&lt;textbox &quot;$Chapultepec_Ans_T&quot; &quot;&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="274" name="Chapultepec 2" tags="Done Breaks" position="2675,675" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="275" name="Chapultepec 2" tags="Done Breaks" position="2675,675" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;print $Chapultepec_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -10647,7 +10753,7 @@ Your answer is incorrect.  You may [[try again|Chapultepec]], or you may return 
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="275" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;if ndef $Start&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="276" name="Character assignment and points selection" tags="Done" position="4025,1200" size="100,100">&lt;&lt;if ndef $Start&gt;&gt;
 &lt;&lt;th-set &#39;$Start&#39; to 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -10886,7 +10992,7 @@ Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set
 &lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="276" name="Passage Teleport" tags="Control Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="277" name="Passage Teleport" tags="Control Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;div id=&quot;info&quot;&gt;
 	Click on a passage name to teleport there:
 	&lt;br&gt;
@@ -10921,7 +11027,7 @@ Are you ready to &lt;&lt;link &quot;begin your journey&quot; &quot;Spaniards set
 		&lt;br&gt;
 	&lt;&lt;/for&gt;&gt;
 	&lt;/div&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="277" name="Cuauhnahuac" tags="Done Breaks" position="2525,425" size="100,100">You descend the mountains into the place near the trees, in search of something tropical and sweet. This place is lush and green. No wonder it&#39;s been so coveted by Mexica leaders!&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="278" name="Cuauhnahuac" tags="Done Breaks" position="2525,425" size="100,100">You descend the mountains into the place near the trees, in search of something tropical and sweet. This place is lush and green. No wonder it&#39;s been so coveted by Mexica leaders!&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
@@ -10946,7 +11052,7 @@ This city is &lt;&lt;textbox &quot;$Cuauhnahuac_Ans_T&quot; &quot;&quot;&gt;&gt;
 &lt;&lt;print $Quest_Leader_T&gt;&gt; must answer this question. Please work on the discussion board to help him solve the riddle.  When he has input the answer, [[see if you&#39;ve solved the puzzle|Cuauhnahuac 2]] &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="278" name="Cuauhnahuac 2" tags="Done Breaks" position="2675,425" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="279" name="Cuauhnahuac 2" tags="Done Breaks" position="2675,425" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;print $Cuauhnahuac_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -10987,7 +11093,7 @@ Congratulations! You have found the correct answer! You load up the two sacks of
 Your answer is incorrect.  You may [[try again|Cuauhnahuac]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="279" name="Debating the Omens" tags="" position="2000,5900" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="280" name="Debating the Omens" tags="" position="2000,5900" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
 Explain your interpretation and hear what your people have to say. Do they agree with you?&lt;br&gt;
@@ -11009,7 +11115,7 @@ When you have heard what they have to say, share your own thoughts. Do you agree
 When you have come to an understanding, you may [[decide how to deal with the strangers|Aztec Leader will make an invitation]]. &lt;br&gt;&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="280" name="Discuss these options with your men" tags="Done Breaks" position="2450,1150" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="281" name="Discuss these options with your men" tags="Done Breaks" position="2450,1150" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
@@ -11054,7 +11160,7 @@ Tlacaelel has not yet entered your decision.&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="281" name="Discussing the Omens" tags="" position="2150,5900" size="100,100">You wake to find yourself exactly where you hoped: back in Tenochtitlán! An army of over 10,000 men is headed towards your city, led by your Tlaxcalan enemies and their foreign friends.&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="282" name="Discussing the Omens" tags="" position="2150,5900" size="100,100">You wake to find yourself exactly where you hoped: back in Tenochtitlán! An army of over 10,000 men is headed towards your city, led by your Tlaxcalan enemies and their foreign friends.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
@@ -11074,7 +11180,7 @@ Once you have shared with the rest of your team, you may [[gather with Moctezuma
 &lt;&lt;case &quot;Tlacaelel&quot; OR &quot;Cuauhtemoc&quot; OR &quot;Cacamatzin&quot; OR &quot;Pochteca&quot;&gt;&gt;
 Your nerves are frayed, wondering what lies ahead, but Moctezuma has informed you that he has important news! [[He gathers a group of his closest advisors|Debating the Omens]] to the Templo Mayor.&lt;br&gt;&lt;br&gt;
 
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="282" name="End of Quest" tags="Done Breaks" position="2925,675" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="283" name="End of Quest" tags="Done Breaks" position="2925,675" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 Now that your quest is complete, &lt;&lt;link &quot;you return home exhausted&quot; &quot;Aztecs hear rumors of strange men on the coast and send a delegation&quot;&gt;&gt;&lt;&lt;th-set &#39;$Aztecs_currentMap&#39; to 1&gt;&gt;&lt;&lt;/link&gt;&gt;. After all that excitement, you hope to get some rest in the coming days.&lt;br&gt;
@@ -11087,7 +11193,7 @@ Now that your quest is complete, &lt;&lt;link &quot;you return home exhausted&qu
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="283" name="Everyone Gathers for a Feast" tags="" position="2300,7300" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="284" name="Everyone Gathers for a Feast" tags="" position="2300,7300" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;set _AllPlayers = (setup.getTotalChoices(&quot;Span_Tot_Play&quot;)+(setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;))+(setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)))&gt;&gt;
 &lt;&lt;set _Feast = setup.getTotalChoices(&quot;Feast&quot;)&gt;&gt;
@@ -11138,7 +11244,7 @@ Your Aztec hosts agree and, in exchange, offer you a copy of a cookbook. It seem
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="284" name="Introduction to your assigned faction" tags="Coding-Problem" position="3875,1125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="285" name="Introduction to your assigned faction" tags="Coding-Problem" position="3875,1125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Welcome to the Spanish Aztec War! 
 &lt;&lt;th-set &#39;$charCreated&#39; to &quot;true&quot;&gt;&gt;
 You are part of the &lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt;
@@ -11183,13 +11289,13 @@ Your faction&#39;s starting strength is: &lt;&lt;print $factions[&quot;Tlaxcalan
 Now let&#39;s [[learn about your role|The Library]]!
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="285" name="Game Setup" tags="" position="3725,725" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="286" name="Game Setup" tags="" position="3725,725" size="100,100">&lt;&lt;liveblock&gt;&gt;
 [[Check Player and Team Status and Location|Control: Player Status]]&lt;br&gt;
 [[Check the Status of Holds and Votes|Control: Votes]]&lt;br&gt;
 [[Return to the Dashboard|Dashboard]]&lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="286" name="Garrido&#39;s Contribution" tags="" position="2300,8050" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="287" name="Garrido&#39;s Contribution" tags="" position="2300,8050" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? &lt;br&gt;
@@ -11253,7 +11359,7 @@ Does he &lt;&lt;link &quot;PASS&quot; &quot;Tlaxcalan&#39;s Contribution&quot;&g
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="287" name="Happy" tags="Done" position="1075,300" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="288" name="Happy" tags="Done" position="1075,300" size="100,100">&lt;&lt;liveblock&gt;&gt;
 You&#39;ve gained a wisdom point! Your wisdom is now &lt;&lt;print $users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 A ship full of bearded men has been seen off the coast of Tulum. &lt;br&gt;
@@ -11273,7 +11379,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="288" name="Into the City" tags="" position="2300,6525" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="289" name="Into the City" tags="" position="2300,6525" size="100,100">&lt;&lt;liveblock&gt;&gt;
 Together you make your way down the long causeway and enter the city of Tenochtitlán. As you look at the faces of the strangers in your midst you cannot help but wonder what this visit has in store for you.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
@@ -11305,7 +11411,7 @@ Your lodgings are sparse, but you have what you need. The pochteca allows you ti
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="289" name="Into the Mountain Pass" tags="Done" position="2300,5425" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="290" name="Into the Mountain Pass" tags="Done" position="2300,5425" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 With the events of Cholula behind you, you now enter the mountain pass at the foot of a great volcano. Your guides tell you the name of this fiery mountain, Popocatépetl, and warn you of its danger. You watch smoke billow overhead as you make your way through the treacherous pass, at the head of any army 10,000 men strong. You will soon reach your destination and lay eyes on the great city of which you have heard so much.&lt;br&gt;
@@ -11340,7 +11446,7 @@ When you are ready, you bed down for the night. Your enemies are close and &lt;&
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="290" name="Judging the Feast Documents" tags="" position="2300,7425" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="291" name="Judging the Feast Documents" tags="" position="2300,7425" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? &lt;br&gt;
@@ -11378,11 +11484,11 @@ Does he &lt;&lt;link &quot;PASS&quot; &quot;Cortes&#39; Contribution&quot;&gt;&g
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="291" name="La Noche Triste" tags="" position="4300,9550" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="292" name="La Noche Triste" tags="" position="4300,9550" size="100,100">&lt;&lt;liveblock&gt;&gt;
 [[Tlaxcalans Respond to La Noche Triste]]
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="292" name="Leadership After the Mutiny" tags="Done Breaks" position="1475,2125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="293" name="Leadership After the Mutiny" tags="Done Breaks" position="1475,2125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;=$users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&gt;&gt;&lt;&lt;th-set &#39;$Span_Leader&#39; to &quot;Cortes&quot;&gt;&gt;
 
 &lt;&lt;elseif $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Marina&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&gt;&gt;&lt;&lt;th-set &#39;$Span_Leader&#39; to &quot;Alvarado&quot;&gt;&gt;
@@ -11425,7 +11531,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="293" name="Malinalco" tags="Done Breaks" position="2525,300" size="100,100">To seek approval from the Gods, you must enter the mouth of the serpent. There, under the watchful eye of the eagles, you shall let your own blood in sacrifice.&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="294" name="Malinalco" tags="Done Breaks" position="2525,300" size="100,100">To seek approval from the Gods, you must enter the mouth of the serpent. There, under the watchful eye of the eagles, you shall let your own blood in sacrifice.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
@@ -11449,7 +11555,7 @@ This city is &lt;&lt;textbox &quot;$Malinalco_Ans_T&quot; &quot;&quot;&gt;&gt;&l
 &lt;&lt;print $Quest_Leader_T&gt;&gt; must answer this question. Please work on the discussion board to help him solve the riddle.  When he has input the answer, [[see if you&#39;ve solved the puzzle|Malinalco 2]] &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="294" name="Malinalco 2" tags="Done Breaks" position="2675,300" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="295" name="Malinalco 2" tags="Done Breaks" position="2675,300" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;print $Malinalco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -11490,7 +11596,7 @@ Congratulations! You have found the correct answer! The Gods have given their bl
 Your answer is incorrect.  You may [[try again|Malinalco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="295" name="Malinche Answers" tags="" position="1800,275" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="296" name="Malinche Answers" tags="" position="1800,275" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Aguilar&quot;&gt;&gt;
 &lt;&lt;if $Malinche_1 is &quot;No&quot; and $Malinche_2 is &quot;No&quot; and $Malinche_3 is &quot;No&quot;&gt;&gt;
@@ -11611,7 +11717,7 @@ You have answered question 3 correctly! Tlaxcala might prove a valuable ally in 
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="296" name="Malinche Quest" tags="" position="1800,475" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="297" name="Malinche Quest" tags="" position="1800,475" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Aguilar&quot;&gt;&gt;
 &lt;&lt;if ndef $Malinche_1 or $Malinche_1 eq &quot;&quot;&gt;&gt;
@@ -11813,7 +11919,7 @@ Neither&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="297" name="Mutiny Outcome" tags="" position="1925,1875" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="298" name="Mutiny Outcome" tags="" position="1925,1875" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;set _Mutiny_Voted = setup.getTotalChoices(&quot;Mutiny_Voted&quot;)&gt;&gt;
 &lt;&lt;set _Mut_Cor = setup.getTotalChoices(&quot;Mut_Cor&quot;)&gt;&gt;
@@ -11884,7 +11990,7 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="298" name="Name Not Recognized" tags="" position="4450,1200" size="100,100">/* &lt;&lt;for _i, _name range $users&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="299" name="Name Not Recognized" tags="" position="4450,1200" size="100,100">/* &lt;&lt;for _i, _name range $users&gt;&gt;
 	&lt;&lt;if  _name.role==&quot;Cuauhtemoc&quot;&gt;&gt;
 	&lt;&lt;set _CuauhtemocId=_i&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_CuauhtemocId][&quot;stats&quot;][&quot;strength&quot;]&#39; += 2&gt;&gt;
@@ -11911,7 +12017,7 @@ Xicotencatl_Elder &lt;br&gt;
 Xicotencatl_Younger &lt;br&gt;
 Maxixcatl
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="299" name="New Leader" tags="Done Breaks" position="1625,425" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="300" name="New Leader" tags="Done Breaks" position="1625,425" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&gt;&gt;&lt;&lt;th-set &#39;$Span_Leader&#39; to &quot;Alvarado&quot;&gt;&gt;&lt;&lt;th-set &#39;$Spaniards_currentMap&#39; to 2&gt;&gt;
 
 &lt;&lt;elseif $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Alvarado&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] and $users[&quot;Olid&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] &gt;= $users[&quot;Garrido&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&gt;&gt;&lt;&lt;th-set &#39;$Span_Leader&#39; to &quot;Olid&quot;&gt;&gt;&lt;&lt;th-set &#39;$Spaniards_currentMap&#39; to 2&gt;&gt;
@@ -11941,7 +12047,7 @@ Together, under his leadership, you may [[now continue|Spaniards Send a Letter]]
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="300" name="Noche Triste" tags="" position="2450,11125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="301" name="Noche Triste" tags="" position="2450,11125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $NT_Fight&gt;&gt;
 &lt;&lt;th-set &#39;$NT_Fight&#39; to 0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -11981,7 +12087,7 @@ You wonder if they will [[eventually make their way back to Tlaxcala|Spaniards D
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="301" name="Offer to Bargain or Not" tags="" position="2950,10925" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="302" name="Offer to Bargain or Not" tags="" position="2950,10925" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Hostage or $Hostage eq &quot;&quot;&gt;&gt;
 It seems &lt;&lt;print $Span_Leader&gt;&gt; has not yet made his decision. Wait here until the choice has been made.&lt;br&gt;
 &lt;br&gt;
@@ -12025,7 +12131,7 @@ You&#39;ve just received a shocking report from Tenochtitlán: &lt;&lt;print $Az
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="302" name="Olid&#39;s Contribution" tags="" position="2300,7925" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="303" name="Olid&#39;s Contribution" tags="" position="2300,7925" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
@@ -12140,7 +12246,7 @@ Does he &lt;&lt;link &quot;PASS&quot; &quot;After the Feast&quot;&gt;&gt;&lt;&lt
 
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="303" name="On the Causeway" tags="" position="2300,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="304" name="On the Causeway" tags="" position="2300,6375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _AllPlayers = (setup.getTotalChoices(&quot;Span_Tot_Play&quot;)+(setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;))+(setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)))&gt;&gt;
 &lt;&lt;set _Causeway = setup.getTotalChoices(&quot;Causeway&quot;)&gt;&gt;
 
@@ -12228,7 +12334,7 @@ As you join the Spaniards and [[head towards the city|Into the City]], you take 
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="304" name="On the way to Puebla" tags="Done" position="1975,3325" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="305" name="On the way to Puebla" tags="Done" position="1975,3325" size="100,100">&lt;&lt;liveblock&gt;&gt;
 You&#39;ve been on the road for weeks now and can hardly believe the things you&#39;ve seen. You marched for three days through desert, where all the water you found was salt and you feared you might die of thirst. You&#39;ve survived a sandstorm and bitter cold. All the men remarked on how long it had been since they felt such cold as this. Many of the Indian porters fell ill. You have climbed mountains and discovered villages, everywhere hearing tales about the Mexica capital, a place of untold treasure and bloody sacrifice. &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if ndef $Tl_Attacks_Pu or $Tl_Attacks_Pu eq &quot;&quot;&gt;&gt;
@@ -12248,7 +12354,7 @@ Along your journey, you have met many people. Some have been willing allies of t
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="305" name="PassageHeader" tags="" position="138,11" size="100,100">/* 
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="306" name="PassageHeader" tags="" position="138,11" size="100,100">/* 
 Updates git backup */
 
 &lt;&lt;if ndef $gitUpdate&gt;&gt;
@@ -12257,7 +12363,6 @@ Updates git backup */
 &lt;&lt;if $gitUpdate + 300000 &lt; new Date().getTime()&gt;&gt;
 	&lt;&lt;script&gt;&gt;
 		$.get(&quot;/updateGit&quot;, {});
-		console.log(&quot;updating git&quot;);
 	&lt;&lt;/script&gt;&gt;
 	&lt;&lt;th-set &#39;$gitUpdate&#39; to new Date().getTime()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -12375,12 +12480,9 @@ Updates git backup */
 /* adds background image to screen */
 &lt;&lt;script&gt;&gt;
 	try {
-		console.log(&quot;Background script starting...&quot;);
 		var imageURL = &quot;Home&quot;;
 		var role = State.getVar(&quot;$role&quot;);
 		var users = State.getVar(&quot;$users&quot;);
-
-		console.log(&quot;Role: &quot; + role + &quot;, Users defined: &quot; + (!!users));
 
 		if(tags().includes(&quot;Control&quot;) || tags().includes(&quot;Home&quot;)){
 			$(&#39;.passage&#39;).addClass(&#39;passage-home&#39;);
@@ -12400,11 +12502,9 @@ Updates git backup */
 			}
 		}
 
-		console.log(&quot;Setting background for role: &quot; + role + &quot;, imageURL: &quot; + imageURL);
 		$(&#39;#story&#39;).css({
 			&#39;backgroundImage&#39;: &#39;url(Twine/images/Borders/&#39; + imageURL + &#39;.jpg)&#39;
 		});
-		console.log(&quot;Background set successfully&quot;);
 	} catch (e) {
 		console.error(&quot;Error setting background:&quot;, e);
 	}
@@ -12800,7 +12900,7 @@ Updates git backup */
 		}, 1500);
 
 	&lt;&lt;/script&gt;&gt;
-	&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="306" name="PassageDone" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
+	&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="307" name="PassageDone" tags="Done Breaks" position="338,1151" size="100,100">/* if user is on a new passage, update their current passage and add a recap of the last */
 &lt;&lt;if !tags().includes(&quot;Home&quot;) &amp;&amp; !tags().includes(&quot;Control&quot;)&gt;&gt;
 	&lt;&lt;if $passageHistory &amp;&amp; !Object.keys($passageHistory).includes(passage())&gt;&gt;
 		&lt;&lt;set _currPassage = passage()&gt;&gt;
@@ -12832,7 +12932,7 @@ Updates git backup */
 	&lt;&lt;if _currentTime.getTime() - $users[$role][&quot;lastSeen&quot;] &gt; 10000&gt;&gt;
 		&lt;&lt;sendAction &quot;$users[$role][&quot;lastSeen&quot;]&quot; _currentTime.getTime()&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="307" name="Rumors of Mutiny" tags="Done Breaks" position="1375,1675" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="308" name="Rumors of Mutiny" tags="Done Breaks" position="1375,1675" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;print $Span_Leader&gt;&gt;, you have heard rumors and rumblings amongst your faction that they are planning a mutiny. You don&#39;t know whether or not this is true, but you are fearful for your life and must not let them rob you of the glory that lies ahead. As you move to the group discussion board on the next screen, you must ensure that the entire faction is ready to follow you inland in pursuit of your dreams.&lt;br&gt;
 &lt;br&gt;
 You weigh your options and decide that the best course of action is the boldest: retreat cannot be an option! You will beach the ships so that your crew has no choice but to forge onward. Though not destroyed, fixing the ships would require many weeks of repair, assuming they could even find the necessary materials. &lt;br&gt;
@@ -12841,7 +12941,7 @@ Proceed to the next page, where you will learn [[if there is mutiny|Burning the 
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="308" name="Sad" tags="Done" position="1350,300" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="309" name="Sad" tags="Done" position="1350,300" size="100,100">&lt;&lt;liveblock&gt;&gt;
 You&#39;ve lost a wisdom point! Your wisdom is now &lt;&lt;print $users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;.&lt;br&gt;
 &lt;br&gt;
 A ship full of bearded men has been seen off the coast of Tulum. &lt;br&gt;
@@ -12861,7 +12961,7 @@ Now it is time to [[head to the coast|Aguilar Receives a Letter]]. You pack up a
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="309" name="Scared" tags="Done" position="1225,300" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="310" name="Scared" tags="Done" position="1225,300" size="100,100">&lt;&lt;liveblock&gt;&gt;
 You&#39;ve lost a wisdom point! Your wisdom is now &lt;&lt;print $users[&quot;Aguilar&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&gt;&gt;. &lt;br&gt;
 &lt;br&gt;
 A ship full of bearded men has been seen off the coast of Tulum. &lt;br&gt;
@@ -12881,7 +12981,7 @@ Now it is time to [[head to the coast |Aguilar Receives a Letter]]. You pack up 
 &lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="310" name="Scavenger Hunt Hub" tags="Done Breaks" position="2925,400" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="311" name="Scavenger Hunt Hub" tags="Done Breaks" position="2925,400" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Quest_Points_A &gt;&gt;
 &lt;&lt;set$Quest_Points_A=0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -13013,7 +13113,7 @@ You cannot yet travel to Cholula, continue your quest to gather all the items ne
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="311" name="Scripts" tags="" position="4175,1200" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="312" name="Scripts" tags="" position="4175,1200" size="100,100">&lt;&lt;liveblock&gt;&gt;
 /* &lt;&lt;audio &quot;Library&quot; play&gt;&gt; */
 &lt;&lt;script&gt;&gt;
 $(output).append(vote(&quot;vote1&quot;,&quot;for&quot;,&quot;against&quot;))
@@ -13028,7 +13128,7 @@ Vote is 2
 &lt;&lt;link &quot;you&#39;re startled by a loud noise&quot; &quot;Character assignment and points selection&quot; &gt;&gt;&lt;&lt;th-set &#39;$counter1&#39; to $counter1 + -1&gt;&gt;&lt;&lt;/link&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="312" name="Set up for the Feast" tags="" position="2450,7175" size="100,100">&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Feast&quot;]&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="313" name="Set up for the Feast" tags="" position="2450,7175" size="100,100">&lt;&lt;if ndef $users[$role][&quot;choices&quot;][&quot;Feast&quot;]&gt;&gt;
 &lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Feast&quot;]&#39; to 0 &gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -13089,13 +13189,13 @@ Your recipe is:  &lt;&lt;textbox &quot;$AP_Rec&quot; &quot;&quot;&gt;&gt;&lt;br&
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-When your contribution to the cookbook is ready, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Feast&quot;]&#39; to 1&gt;&gt;&lt;&lt;/link&gt;&gt;!</tw-passagedata><tw-passagedata pid="313" name="Status of the Quest" tags="" position="4275,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
+When your contribution to the cookbook is ready, you may continue &lt;&lt;link &quot;on to the feast&quot; &quot;Everyone Gathers for a Feast&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Feast&quot;]&#39; to 1&gt;&gt;&lt;&lt;/link&gt;&gt;!</tw-passagedata><tw-passagedata pid="314" name="Status of the Quest" tags="" position="4275,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
 [[Check Player and Team Status and Location|Control: Player Status]]&lt;br&gt;
 [[Check the Status of Holds and Votes|Control: Votes]]&lt;br&gt;
 [[Return to the Dashboard|Dashboard]]&lt;br&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="314" name="StoryInit" tags="" position="4600,1200" size="100,100">/* \$lookup\[(&quot;[^\[\]]*\&quot;)&quot;] */
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="315" name="StoryInit" tags="" position="4600,1200" size="100,100">/* \$lookup\[(&quot;[^\[\]]*\&quot;)&quot;] */
 &lt;&lt;cacheaudio &quot;Gulls_and_waves__5min_&quot; &quot;audio/Gulls_and_waves__5min_.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;Library&quot; &quot;audio/Library.mp3&quot;&gt;&gt;
 
@@ -13118,7 +13218,6 @@ When your contribution to the cookbook is ready, you may continue &lt;&lt;link &
 	State.setVar(&quot;$role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
-	console.log(searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString(&#39;en-US&#39;, {
 			timeZone: &#39;America/New_York&#39;,
@@ -13349,16 +13448,14 @@ List of valid roles and their info */
 
 	if((passage)){
 		setTimeout(() =&gt; {
-			console.log(&quot;playing passage&quot;, passage)
 			Engine.play(passage)
 		}, 100);
 
 	}else{
-		console.log(&quot;no passage&quot;)
 		Engine.show();
 	}
 	$(&quot;body&quot;).css({opacity:1})
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="315" name="The End" tags="" position="3725,13375" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="316" name="The End" tags="" position="3725,13375" size="100,100">&lt;&lt;liveblock&gt;&gt;
 As the smell of blood and smoke fills your nostrils, you wake with a start. You jolt upright, open your eyes, and let out a scream. You are back in the library, but this time you&#39;re not alone. The room is lit with a soft, red glow and looming over you is the most terrifying figure you&#39;ve ever seen. &lt;br&gt;
 &lt;br&gt;
 A walking skeleton stands eight feet tall. Feathers sticky with blood cling to his bones and he bears the stench of death. You thought this whole adventure was just a dream, but the god of the Aztec underworld now stands before you. You briefly wonder if you are still dreaming, but when a drop of blood falls on your hand, the feeling is all too real. You know you are awake.&lt;br&gt;
@@ -13381,7 +13478,7 @@ Spanish and Tlaxcalan Alliance: &lt;&lt;print $TlaxSpan_End&gt;&gt; &lt;br&gt;
 &lt;&lt;elseif $Tlax_Final_Dec eq &quot;Aztecs&quot;&gt;&gt;
 Aztec and Tlaxcalan Alliance:  &lt;&lt;print $TlaxAz_End&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="316" name="The Festival of Toxcatl" tags="" position="4300,9250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="317" name="The Festival of Toxcatl" tags="" position="4300,9250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 [[The Festival of Toxcatl: The Spaniards]]
 
 [[The Festival of Toxcatl: The Aztecs]]
@@ -13389,7 +13486,7 @@ Aztec and Tlaxcalan Alliance:  &lt;&lt;print $TlaxAz_End&gt;&gt;&lt;br&gt;
 [[The Festival of Toxcatl: The Tlaxcalans]]
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="317" name="The Land of the Olmeca Xicalanca" tags="Done Breaks" position="2475,975" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="318" name="The Land of the Olmeca Xicalanca" tags="Done Breaks" position="2475,975" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Tlacaelel&quot;&gt;&gt;
 Tlacaelel, you lead the delegation on a long and dangerous journey to the coast. If the rumors are true, there you will find a band of foreign intruders. Moctezuma has sent you with instructions to gather information and prevent the strangers from moving further into Aztec territory. He has given you gifts of gold and feathers that you may use to gain their trust.&lt;br&gt;
@@ -13448,7 +13545,7 @@ You are waiting for Tlacaelel to input his decision.&lt;br&gt;
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="318" name="Tlatelolco" tags="Done Breaks" position="2525,175" size="100,100">This place has you buzzing with energy. Your senses are nearly overwhelmed! You can barely hear over the din of voices, and you find yourself drawn towards the scent of fresh tortillas, epazote, and copal smoke.&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="319" name="Tlatelolco" tags="Done Breaks" position="2525,175" size="100,100">This place has you buzzing with energy. Your senses are nearly overwhelmed! You can barely hear over the din of voices, and you find yourself drawn towards the scent of fresh tortillas, epazote, and copal smoke.&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
@@ -13473,7 +13570,7 @@ This city is &lt;&lt;textbox &quot;$Tlatelolco_Ans_T&quot; &quot;&quot;&gt;&gt;&
 &lt;&lt;print $Quest_Leader_T&gt;&gt; must answer this question. Please work on the discussion board to help him solve the riddle.  When he has input the answer, [[see if you&#39;ve solved the puzzle|Tlatelolco 2]] &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="319" name="Tlatelolco 2" tags="Done Breaks" position="2675,175" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="320" name="Tlatelolco 2" tags="Done Breaks" position="2675,175" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;print $Tlatelolco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -13514,7 +13611,7 @@ Congratulations! You have found the correct answer! You load up the two sacks of
 Your answer is incorrect.  You may [[try again|Tlatelolco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="320" name="Tlaxcala Attacks in Puebla" tags="Done" position="1875,3475" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="321" name="Tlaxcala Attacks in Puebla" tags="Done" position="1875,3475" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 You sent a pair of indigenous messengers out ahead to announce your arrival and declare your good intentions, but they failed to return. Though you would prefer to have assurances that you will be met peacefully, you have no choice but to forge on.&lt;br&gt;
@@ -13533,7 +13630,7 @@ The foreigners surround you, however, almost as though they knew what to expect!
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="321" name="Tlaxcala Decides What To Do" tags="" position="2850,12325" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="322" name="Tlaxcala Decides What To Do" tags="" position="2850,12325" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if $Final_Aztec_Points eq &quot;&quot; or ndef $Final_Aztec_Points or $Final_Spanish_Points eq &quot;&quot; or ndef $Final_Spanish_Points&gt;&gt;
 You wait for your options to become clear.&lt;br&gt;
 &lt;br&gt;
@@ -13625,7 +13722,7 @@ When you have agreed on the best course of action, &lt;&lt;print $Tlax_Leader&gt
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="322" name="Tlaxcala Does Nothing" tags="" position="3200,11825" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="Tlaxcala Does Nothing" tags="" position="3200,11825" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 You have made your case to the Tlaxcalans. You have handed them a golden opportunity to take down their long-time enemies, but will they take it? You saw the Tlaxcalan leaders&#39; eyes light up at the possibility and yet they have been debating amongst themselves for many days. Perhaps their decision is not as easy as you had hoped. &lt;br&gt;
@@ -13644,7 +13741,7 @@ You inform your guests that they must fight their battles alone and [[send them 
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="323" name="Tlaxcala Doesn&#39;t Attack in Puebla" tags="Done" position="2050,3475" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="324" name="Tlaxcala Doesn&#39;t Attack in Puebla" tags="Done" position="2050,3475" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 You sent a pair of indigenous messengers out ahead to announce your arrival and declare your good intentions, but they failed to return. You take their disappearance as a bad sign and wonder if they met their fate at the hands of the Tlaxcalans. You have no choice but to forge on.&lt;br&gt;
@@ -13663,7 +13760,7 @@ A bloody battle ensues. It lasts many days and you kill many of their men, but t
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="324" name="One of the crew tries to start a mutiny" tags="Done Breaks" position="1925,1600" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="325" name="One of the crew tries to start a mutiny" tags="Done Breaks" position="1925,1600" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
@@ -13698,7 +13795,7 @@ Once you have decided where your loyalty lies, [[continue to the next screen|Spa
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="325" name="Toxcatl" tags="" position="2650,9425" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Toxcatl" tags="" position="2650,9425" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Spaniards&quot;&gt;&gt;
 &lt;&lt;if $role is &quot;Marina&quot;&gt;&gt;
@@ -13743,7 +13840,7 @@ As the dust settles, people flood into the plaza. You join the mob in an attempt
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="326" name="Waking up 6 months later" tags="" position="2300,8800" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Waking up 6 months later" tags="" position="2300,8800" size="100,100">&lt;&lt;liveblock&gt;&gt;
 You wake to the smell of fresh tortillas and the chatter of Nahuatl outside your door. Just as you hoped, you are back in Tenochtitlán. And just like every time before, you wake with a clear awareness of your situation. &lt;br&gt;
 &lt;br&gt;
 
@@ -13779,7 +13876,7 @@ As you begin to prepare for your day, you hear word that the Spaniards have rece
 &lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="327" name="Xochimilco" tags="Done Breaks" position="2525,50" size="100,100">If you are to survive your journey, you will need to stop first at the place of flowers. Be careful as you seek what you came for, as you could easily get stuck in the mud.&lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="328" name="Xochimilco" tags="Done Breaks" position="2525,50" size="100,100">If you are to survive your journey, you will need to stop first at the place of flowers. Be careful as you seek what you came for, as you could easily get stuck in the mud.&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
@@ -13804,7 +13901,7 @@ This city is &lt;&lt;textbox &quot;$Xochimilco_Ans_T&quot; &quot;&quot;&gt;&gt;&
 &lt;&lt;print $Quest_Leader_T&gt;&gt; must answer this question. Please work on the discussion board to help him solve the riddle.  When he has input the answer, [[see if you&#39;ve solved the puzzle|Xochimilco 2]] &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="328" name="Xochimilco 2" tags="Done Breaks" position="2675,50" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="329" name="Xochimilco 2" tags="Done Breaks" position="2675,50" size="100,100">&lt;&lt;switch $users[$role][&quot;faction&quot;]&gt;&gt;
 &lt;&lt;case &quot;Aztecs&quot;&gt;&gt;
 &lt;&lt;print $Xochimilco_Ans_A&gt;&gt;&lt;br&gt;
 &lt;br&gt;
@@ -13846,7 +13943,7 @@ Congratulations! You have found the correct answer! You load up the two sacks of
 Your answer is incorrect. You may [[try again|Xochimilco]], or you may return to the palace and [[try another quest|Scavenger Hunt Hub]].&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="329" name="the Omens" tags="Done" position="2825,925" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/switch&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="the Omens" tags="Done" position="2825,925" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;switch $role&gt;&gt;
 &lt;&lt;case &quot;Aztec_Priest&quot;&gt;&gt;
 Upon hearing the news, you reflect upon a series of omens that have occurred in recent years. &lt;br&gt;
@@ -13932,7 +14029,7 @@ You are waiting for the Tlaxcalan team to make a decision.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="330" name="Final Battle 1" tags="" position="3200,12125" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle 1" tags="" position="3200,12125" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;if ndef $Moctezuma_Final&gt;&gt;
 &lt;&lt;th-set &#39;$Moctezuma_Final&#39; to 0&gt;&gt;
@@ -14074,7 +14171,7 @@ The noise of battle &lt;&lt;link &quot;surrounds you&quot; &quot;Final Battle 2&
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="331" name="Final Battle 2" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="332" name="Final Battle 2" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 
 &lt;&lt;set _Span_Final = setup.getTotalChoices (&quot;Span_Final&quot;)&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
@@ -14322,7 +14419,7 @@ Total Tlaxcalan Players in Game: &lt;&lt;print _Tlax_Tot_Play&gt;&gt;&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="332" name="Final Battle 3" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="333" name="Final Battle 3" tags="" position="3200,12250" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztec_Game&gt;&gt;
 &lt;&lt;th-set &#39;$Aztec_Game&#39; to 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -14595,7 +14692,7 @@ You now have your final score.  You may [[continue on to decide what to do about
 
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="333" name="After the Final Battle" tags="" position="1225,4100" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="334" name="After the Final Battle" tags="" position="1225,4100" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztec_Decision&gt;&gt;
 &lt;&lt;th-set &#39;$Aztec_Decision&#39; to &quot;No&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -14780,7 +14877,7 @@ You may now [[continue on|Final Battle Decision]].
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="334" name="Final Battle Decision" tags="" position="100,4225" size="100,100">The dust has settled, and the results are in. Below, you will see the final score for each faction. &lt;br&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="335" name="Final Battle Decision" tags="" position="100,4225" size="100,100">The dust has settled, and the results are in. Below, you will see the final score for each faction. &lt;br&gt;
 &lt;br&gt;
 Aztecs: &lt;&lt;print $Aztec_Game&gt;&gt;&lt;br&gt;
 Spaniards: &lt;&lt;print $Span_Game&gt;&gt;&lt;br&gt;
@@ -14889,7 +14986,7 @@ You lost.
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="335" name="Final Battle Purgatory" tags="" position="225,4225" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="336" name="Final Battle Purgatory" tags="" position="225,4225" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;if ndef $Aztec_Decision&gt;&gt;
 &lt;&lt;th-set &#39;$Aztec_Decision&#39; to &quot;No&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -14931,7 +15028,7 @@ You finally manage to [[fall back asleep|The End]]&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="336" name="Final Battle Outcome" tags="" position="350,4225" size="100,100"></tw-passagedata><tw-passagedata pid="337" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="337" name="Final Battle Outcome" tags="" position="350,4225" size="100,100"></tw-passagedata><tw-passagedata pid="338" name="Home: Stats" tags="Control Done Breaks Home" position="338,1151" size="100,100">&lt;div id=&quot;info-stats&quot;&gt;
 	&lt;div id=&quot;info-stats-faction-strength&quot;&gt;
 		&lt;img class=&quot;info_img&quot; src=&quot;Twine/images/Home/info.svg&quot; alt=&quot;info-icon&quot;&gt;
 		&lt;span&gt;&lt;&lt;print $users[$role][&quot;faction&quot;]&gt;&gt; Strength: &lt;&lt;print $factions[$users[$role][&quot;faction&quot;]][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/span&gt;
@@ -14986,7 +15083,7 @@ You finally manage to [[fall back asleep|The End]]&lt;br&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="338" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="339" name="Home" tags="Home Done Breaks" position="338,1151" size="100,100">/* Creates some bookmarks to switch between pages */
 
 
 &lt;&lt;script&gt;&gt;
@@ -15078,16 +15175,16 @@ You finally manage to [[fall back asleep|The End]]&lt;br&gt;
 
 
 
-/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="339" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+/* Use this as a template to make side passages */</tw-passagedata><tw-passagedata pid="340" name="Side Passage Example" tags="sidePassage Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 1
 	/* Put link to next passage  */
 	 &lt;&lt;link &quot;Next passage (2)&quot; &quot;Side Passage Example 2&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 	 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="340" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="341" name="Side Passage Example 2" tags="Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example 2
 	/* Put link to next passage  */
 	&lt;&lt;link &quot;Next passage (final)&quot; &quot;Side Passage Example Final&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="341" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="342" name="Side Passage Example Final" tags="sidePassageEnd Done Breaks" position="338,1151" size="100,100">&lt;&lt;liveblock&gt;&gt;
 	Side passage example Final
 	&lt;&lt;print $users[$role][&quot;sidePassageReturn&quot;]&gt;&gt;
 	
@@ -15096,7 +15193,7 @@ You finally manage to [[fall back asleep|The End]]&lt;br&gt;
 &lt;&lt;/liveblock&gt;&gt;
 
 
-/* Use this to send users to side passages */</tw-passagedata><tw-passagedata pid="342" name="0 Emergency Controls" tags="" position="475,4225" size="100,100">&lt;b&gt;Spaniard&#39;s Strength: &lt;&lt;print $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/b&gt;&lt;br&gt;
+/* Use this to send users to side passages */</tw-passagedata><tw-passagedata pid="343" name="0 Emergency Controls" tags="" position="475,4225" size="100,100">&lt;b&gt;Spaniard&#39;s Strength: &lt;&lt;print $factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&gt;&gt;&lt;/b&gt;&lt;br&gt;
 Add One Point to Spanish Strength:  &lt;&lt;link &quot;plus one point&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;th-set &#39;$factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&#39; += 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 Subtract One Point from Spanish Strength:  &lt;&lt;link &quot;minus one point&quot; &quot;0 Emergency Controls&quot;&gt;&gt;&lt;&lt;th-set &#39;$factions[&quot;Spaniards&quot;][&quot;stats&quot;][&quot;Strength&quot;]&#39; -= 1&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;br&gt;
 &lt;br&gt;
