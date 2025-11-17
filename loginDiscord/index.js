@@ -5,10 +5,9 @@ import webstack from '../Webstack.js';
 import '../tweeGaze.js';
 import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
+import crypto from 'crypto';
 import DiscordBot from '../discordBot.js';
 import { registerSharedRoutes, returnTwine } from '../sharedRoutes.js';
-import { channel } from 'diagnostics_channel';
-// import { RichPresenceAssets } from 'discord.js';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -82,10 +81,30 @@ let refreshTokens = {};
 const webstackInstance = new webstack(SERVERCONF);
 const { app } = webstackInstance.get();
 
+/**
+ * Get or generate a cryptographically secure session secret
+ * @returns {string} Session secret
+ */
+function getSessionSecret() {
+	if (process.env.SESSION_SECRET) {
+		return process.env.SESSION_SECRET;
+	}
+
+	if (process.env.NODE_ENV === 'production') {
+		throw new Error('SESSION_SECRET environment variable must be set in production');
+	}
+
+	// Development only: generate secure random secret
+	const secret = crypto.randomBytes(32).toString('hex');
+	console.warn('⚠️  Using auto-generated session secret in development');
+	console.warn('⚠️  Set SESSION_SECRET env var for production deployment');
+	return secret;
+}
+
 // Configure session middleware
 app.use(cookieParser());
 app.use(session({
-	secret: process.env.SESSION_SECRET || 'aztec-game-secret-' + Math.random().toString(36),
+	secret: getSessionSecret(),
 	resave: false,
 	saveUninitialized: false,
 	cookie: {

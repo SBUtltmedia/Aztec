@@ -128,9 +128,8 @@ class Webstack {
 
 			socket.on('fullReset', ()=>{
 				this.serverStore.replaceState(Object.assign({}, initVars));
-				app.post('/updateGit',(req, res) => {
-					res.send({})
-				  })
+				// Note: /updateGit route is registered in sharedRoutes.js
+				// Removed duplicate route registration that was causing memory leak
 				socket.emit('reset',{})
 				socket.broadcast.emit('reset', {})
 			})

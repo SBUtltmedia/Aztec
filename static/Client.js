@@ -17,10 +17,10 @@ window.addEventListener('message', function (event) {
 
     if (event.data && event.data.type === 'statsUpdate') {
         const { strength, wisdom, loyalty } = event.data;
-        let users = Window.SugarCubeState.getVar("$users")
-        // let userId=Window.SugarCubeState.getVar("$userId")
-        var userId = Window.SugarCubeState.getVar("$role");
-        var user = Window.SugarCubeState.getVar("$users")[userId];
+        let users = window.SugarCubeState.getVar("$users")
+        // let userId=window.SugarCubeState.getVar("$userId")
+        var userId = window.SugarCubeState.getVar("$role");
+        var user = window.SugarCubeState.getVar("$users")[userId];
         user["stats"]["Strength"] += strength
         user["stats"]["Wisdom"] += wisdom
         user["stats"]["Loyalty"] += loyalty
@@ -28,7 +28,7 @@ window.addEventListener('message', function (event) {
         //     console.log(element)
         // });
 showStats()
-        //  Window.SugarCubeState.setVar("$strength")
+        //  window.SugarCubeState.setVar("$strength")
         // You can then use these values in your parent application
     }
 }, false);
@@ -108,8 +108,8 @@ function showMap() {
         }))
     }
 
-    let roleVar = Window.SugarCubeState.variables.role
-    let users = Window.SugarCubeState.variables['users']
+    let roleVar = window.SugarCubeState.variables.role
+    let users = window.SugarCubeState.variables['users']
 
     // Check if role exists and user is defined
     if (!roleVar || !users || !users[roleVar]) {
@@ -123,7 +123,7 @@ function showMap() {
     let currentMap
 
     if (!currentMapIndex) {
-        let currentMapIndex = Window.SugarCubeState.getVar(`$${faction}_currentMap`) || 0;
+        let currentMapIndex = window.SugarCubeState.getVar(`$${faction}_currentMap`) || 0;
         currentMap = `${faction}_${currentMapIndex}.png`
     } else {
         currentMap = `${role}_${currentMapIndex}.png`
@@ -150,8 +150,8 @@ function showStats() {
         "id": "displayStats",
     })
 
-    let roleVar = Window.SugarCubeState.variables.role
-    let users = Window.SugarCubeState.variables['users']
+    let roleVar = window.SugarCubeState.variables.role
+    let users = window.SugarCubeState.variables['users']
 
     // Check if role exists and user is defined
     if (!roleVar || !users || !users[roleVar]) {
@@ -186,7 +186,7 @@ function showStats() {
         }
     }
 
-    let factions = Window.SugarCubeState.variables['factions']
+    let factions = window.SugarCubeState.variables['factions']
     let twineVar = factions[faction]['stats']['Strength'];
 
     if (twineVar != null) {
@@ -234,14 +234,14 @@ function setFactionStrength(rawValue) {
  * @param {object} statsIn: a player's default stats
  */
 function makeRoleStats(statsIn) {
-    let role = Window.SugarCubeState.variables.role;
-    let user = Window.SugarCubeState.variables.users[role]
+    let role = window.SugarCubeState.variables.role;
+    let user = window.SugarCubeState.variables.users[role]
     var output = "";
 
     user["stats"] = statsIn;
 
     //TODO: try to only send stats of user
-    socket.emit('difference', Window.SugarCubeState.variables)
+    socket.emit('difference', window.SugarCubeState.variables)
     Object.keys(statsIn).forEach((stat) => {
         val = parseInt(statsIn[stat]);
         // SugarCube.State.variables[`${role}_${stat}`] = val;
@@ -265,8 +265,8 @@ function getRandomInt(max) {
  * @param {object} newStats: the new stat values
  */
 function changeStats(rolePlay, newStats) {
-    let usersObj = Window.SugarCubeState.variables.users;
-    let currentUserId = Window.SugarCubeState.variables.role
+    let usersObj = window.SugarCubeState.variables.users;
+    let currentUserId = window.SugarCubeState.variables.role
     if (currentUserId == undefined) {
         currentUserId = "NotSeen"
     }
@@ -275,7 +275,7 @@ function changeStats(rolePlay, newStats) {
     Object.keys(roleStats).forEach((stat, idx) => {
         roleStats[stat] = parseInt(newStats[stat]) + parseInt(roleStats[stat])
     });
-    Window.SugarCubeState.variables.users[currentUserId]["stats"] = roleStats;
+    window.SugarCubeState.variables.users[currentUserId]["stats"] = roleStats;
 
     //renaming rolestats to stats so a diff object can be created
     let stats = roleStats
@@ -289,7 +289,8 @@ function fullReset() {
 }
 
 function DOMTest() {
-    setTimeout({})
+    // Note: This function appears to be for testing purposes
+    // If async behavior is needed, this should return a Promise
     return $("#passages").children()[0].innerHTML
 }
 
@@ -302,8 +303,8 @@ function DOMTest() {
 
 // Returns the role of the current player
 function getUser() {
-    let userId = Window.SugarCubeState.getVar("$role");
-    let user = Window.SugarCubeState.getVar("$users")[userId];
+    let userId = window.SugarCubeState.getVar("$role");
+    let user = window.SugarCubeState.getVar("$users")[userId];
     return user;
 }
 
@@ -375,8 +376,8 @@ function initTheyr(lockInfo) {
 
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
-        // console.log("Current State:", Window.SugarCubeState.variables)
-        let combinedState = Object.assign({}, Window.SugarCubeState.variables, state)
+        // console.log("Current State:", window.SugarCubeState.variables)
+        let combinedState = Object.assign({}, window.SugarCubeState.variables, state)
         // console.log("Combined State", combinedState)
         // If the server's state is empty, set with this client's state
         //    updateSugarCubeState(combinedState);
@@ -401,14 +402,14 @@ function initTheyr(lockInfo) {
 
 // Updates client's SugarCube State when state changes are received from the server
 function updateSugarCubeState(new_state) {
-    _.merge(Window.SugarCubeState.variables, new_state);
+    _.merge(window.SugarCubeState.variables, new_state);
 
     $(document).trigger(":liveupdate");
 }
 
 // Updates client's SugarCube State when state changes are received from the server
 function resetSugarCubeState(new_state) {
-    for (var member in Window.SugarCubeState.variables) delete Window.SugarCubeState.variables[member];
+    for (var member in window.SugarCubeState.variables) delete window.SugarCubeState.variables[member];
     location.reload()
     $(document).trigger(":liveupdate");
 }
