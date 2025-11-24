@@ -265,13 +265,13 @@ Interview Aguilar to find the answers to the following questions:<br>
 
 <b>Question One: Where did the gossip come from?</b><br>
 <br>
-<<link "The land of Chuup" "Aguilar Quest">><<sendAction "$Aguilar_1" "No">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']-1>><</link>>.<br>
+<<link "The land of Chuup" "Aguilar Quest">><<th-set '$Aguilar_1' to "No">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' -= 1>><</link>>.<br>
 <br>
-<<link "Their friend Náats' Amal" "Aguilar Quest">><<sendAction "$Aguilar_1" "No">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']-1>><</link>>.<br>
+<<link "Their friend Náats' Amal" "Aguilar Quest">><<th-set '$Aguilar_1' to "No">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' -= 1>><</link>>.<br>
 <br>
-<<link "The great coastal city of Tulum" "Aguilar Quest">><<sendAction "$Aguilar_1" "Yes">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']+1>><</link>>.<br>
+<<link "The great coastal city of Tulum" "Aguilar Quest">><<th-set '$Aguilar_1' to "Yes">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' += 1>><</link>>.<br>
 <br>
-<<link "The priest in the temple" "Aguilar Quest">><<sendAction "$Aguilar_1" "No">><<sendAction "$factions['Spaniards']['stats']['Strength']" $factions['Spaniards']['stats']['Strength']-1>><</link>>.<br>
+<<link "The priest in the temple" "Aguilar Quest">><<th-set '$Aguilar_1' to "No">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' -= 1>><</link>>.<br>
 <br>
 <<elseif $Aguilar_1 is "Yes">>
 <b>You have answered Question 1. The gossip came from the great coastal city of Tulum.</b><br>

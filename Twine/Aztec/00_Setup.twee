@@ -3,7 +3,7 @@
 	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "The Library",
+	"start": "Comprehensive Test Suite",
 	"tag-colors": {
 		"Breaks": "blue",
 		"Change-Title": "yellow",
@@ -58,6 +58,34 @@ importScripts([
 
 	}
 );
+
+// Initialize or extend the global setup object early (before macros are defined).
+// This ensures setup functions are available when passages and macros render.
+window.setup = window.setup || {};
+
+window.setup.printTime = function (date) {
+	return new Date(date).toLocaleString('en-US', {
+		timeZone: 'America/New_York',
+	});
+};
+
+window.setup.getUserSvgPicture = function(role) {
+	return `Twine/images/characters/${role}.svg`;
+};
+
+setup.scrollToBottom = function(elementId) {
+	requestAnimationFrame(() => {
+		var element = document.getElementById(elementId);
+		if(element){
+			element.scrollTop = element.scrollHeight;
+		}
+	});
+};
+
+setup.getTotalChoices = function(choice){
+	var users = State.getVar("$users");
+	return Object.keys(users).map((b)=>users[b]?.["choices"]?.[choice] || 0).reduce((accumulator, currentValue)=>accumulator+(currentValue||0),0);
+};
 
 (function () {
 	"use strict";
@@ -186,21 +214,54 @@ importScripts([
 				expression = toMatch[2].trim();
 			}
 
+			// Pre-process expression to handle template functions like passage()
+			expression = expression.replace(/passage\(\)/g, JSON.stringify(passage));
+
+			// Filter out temporary variables (starting with _) and exception variables
+			// Temporary variables are local to the current passage and should not be synced
+			// Exception variables (like $userId, $role) are client-specific and should not be synced
+			const cleanVarPath = varPath.replace(/^\$/, ''); // Remove $ prefix
+			const isTemporary = cleanVarPath.startsWith('_');
+			const isException = typeof exceptions !== 'undefined' && exceptions.includes(cleanVarPath);
+
+			if (isTemporary || isException) {
+				console.log('Skipping variable from server sync:', varPath, isTemporary ? '(temporary)' : '(exception)');
+				// Still evaluate and set locally using regular <<set>> behavior
+				try {
+					const processedExpression = expression.replace(/\$(\w+)/g, '$1');
+					const evalFunc = new Function('State', 'passage', 'tags', 'visited', `
+						with (State.variables) {
+							with (State.temporary) {
+								return ${processedExpression};
+							}
+						}
+					`);
+					const value = evalFunc(State, passage, tags, visited);
+					State.setVar(varPath, value);
+				} catch (e) {
+					return this.error('Failed to evaluate expression "' + expression + '": ' + e.message);
+				}
+				return; // Don't send to server
+			}
+
 			// Evaluate the expression in the proper context
-			// We need to create a function that has access to State.variables
+			// We need to create a function that has access to State.variables and SugarCube functions
 			let value;
 			try {
 				// Strip $ prefix from variable references in the expression
 				// Convert $variableName to variableName for use within with(State.variables)
 				const processedExpression = expression.replace(/\$(\w+)/g, '$1');
 
-				// Create an evaluator function with State.variables in scope
-				const evalFunc = new Function('State', `
+				// Create an evaluator function with State.variables and State.temporary in scope
+				// Also provide access to common SugarCube functions
+				const evalFunc = new Function('State', 'passage', 'tags', 'visited', `
 					with (State.variables) {
-						return ${processedExpression};
+						with (State.temporary) {
+							return ${processedExpression};
+						}
 					}
 				`);
-				value = evalFunc(State);
+				value = evalFunc(State, passage, tags, visited);
 			} catch (e) {
 				return this.error('Failed to evaluate expression "' + expression + '": ' + e.message);
 			}
@@ -217,13 +278,19 @@ importScripts([
 	});
 
 	/*
-	 * <<sendAction>> macro - Low-level server action sender
+	 * <<sendAction>> macro - Server action sender with dynamic paths
 	 *
 	 * Usage:
-	 *   <<sendAction "$variable" value>>
+	 *   <<set _dynamicPath = '$users["' + $role + '"]["score"]'>>
+	 *   <<sendAction _dynamicPath 100>>
 	 *
-	 * This is a simpler macro for direct value assignment.
-	 * Unlike <<th-set>>, this evaluates arguments normally, so you can use dynamic paths.
+	 * This macro evaluates arguments normally (unlike <<th-set>>), allowing you to:
+	 * - Use temporary variables as the variable path
+	 * - Construct variable paths dynamically
+	 * - Pass pre-computed values
+	 *
+	 * For most cases, use <<th-set>> instead. Only use <<sendAction>> when you need
+	 * to build the variable path dynamically using string concatenation.
 	 */
 	Macro.add('sendAction', {
 		handler: function() {
@@ -244,56 +311,6 @@ importScripts([
 		}
 	});
 
-	/*
-	 * <<th-run-set>> macro - Run code locally then sync to server
-	 *
-	 * Usage:
-	 *   <<th-run-set '$variable'>>
-	 *     $variable = someExpression;
-	 *   <</th-run-set>>
-	 *
-	 * This runs arbitrary JavaScript code, then syncs the specified variable to server.
-	 * Useful for complex operations like array modifications or nested object updates.
-	 */
-	Macro.add('th-run-set', {
-		tags: null,
-		handler: function() {
-			if (this.args.length < 1) {
-				return this.error('th-run-set macro needs a variable path argument');
-			}
-
-			const varPath = this.args[0];
-			const code = this.payload[0].contents.trim();
-
-			try {
-				// Execute the code in State.variables context
-				const evalFunc = new Function('State', `
-					with (State.variables) {
-						${code}
-					}
-				`);
-				evalFunc(State);
-
-				// Get the updated value
-				const path = varPath.substring(1); // Remove '$'
-				const parts = path.split(/[\[\]\."]/).filter(p => p);
-				let value = State.variables;
-				for (const part of parts) {
-					value = value[part];
-				}
-
-				// Send to server
-				$.post("/action", {
-					variable: varPath,
-					value: JSON.stringify(value)
-				}).fail(function(err) {
-					console.error('Failed to send action to server:', err);
-				});
-			} catch (e) {
-				return this.error('Failed to execute code: ' + e.message);
-			}
-		}
-	});
 })();
 
 
