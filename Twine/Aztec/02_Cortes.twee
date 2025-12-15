@@ -204,7 +204,7 @@ Cortes, you have lost the confidence of your men. They don't trust your leadersh
 <br>
 Click through to [[find out who your men are placing their trust in|New Leader]].<br>
 <br>
-<<elseif $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] is 1>><<th-set '$Span_Leader' to "Cortes">>">><<th-set '$Spaniards_currentMap' to 2>>
+<<elseif $Cuba_Voted is 3 and $users["Cortes"]["stats"]["Loyalty"] is 1>><<th-set '$Span_Leader' to "Cortes">><<th-set '$Spaniards_currentMap' to 2>>
 
 Your Loyalty remains high enough, but barely, and you will continue to lead. But be careful how you handle your men, if your Loyalty drops to zero, you will face a mutiny! <br>
 <br>
@@ -855,7 +855,7 @@ Cortés is clearly <<link "much smarter than Velazquez" "Cortes Leadership Check
 <br>
 Cortés has <<link "threatened you" "Cortes Leadership Check">><<th-set '$users["Cortes"]["stats"]["Strength"]' += 1>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' -= 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><</link>> with what he will do to you if you don't follow! <br>
 <br>
-Cortés has not <<link "convinced you" "Cortes Leadership Check">><<th-set '$users["Cortes"]["stats"]["Loyalty"]' -= 1>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' -= 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><</link>>  but now you are stuck on this boat and outnumbered!<br>
+Cortés has not <<link "convinced you" "Cortes Leadership Check">><<th-set '$users["Cortes"]["stats"]["Loyalty"]' -= 1>><<th-set '$users["Cortes"]["stats"]["Wisdom"]' -= 1>><<th-set '$Cuba_Voted' to $Cuba_Voted + 1>><</link>>  but now you are stuck on this boat and outnumbered!<br>
 <br>
 
 <<case "Cortes">>

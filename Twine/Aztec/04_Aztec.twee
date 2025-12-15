@@ -1150,8 +1150,8 @@ When you are satisfied you have heard everything <<print $Aztec_Leader>> has to 
 
 
 :: Aztecs Hold a Council Meeting [Done] {"position":"2375,2975","size":"100,100"}
-<<if ndef $Moc_Mut_Vote >>
-<<th-set '$Moc_Mut_Vote' to 0 >>
+<<if ndef $Moc_Mut_Vote>>
+<<th-set '$Moc_Mut_Vote' to 0>>
 <</if>>
 
 <b>Tlacaelel's Statement:</b> <<print $Tlac_Statement>><br>

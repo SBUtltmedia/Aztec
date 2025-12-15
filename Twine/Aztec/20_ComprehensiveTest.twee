@@ -168,51 +168,91 @@ Your Counter: <b><<print $users[$role]["choices"]["playerCounter"]>></b><br>
 :: 4. Chat System Test {"position":"700,100","size":"100,100"}
 <<liveblock>>
 <h2>4. Chat System Test</h2>
-<p>Testing the chat synchronization</p>
+<p>Testing the chat synchronization with full interactive chat</p>
 
-<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
-<h4>Chat Messages</h4>
+/* Initialize chatlog if needed */
 <<if ndef $chatlog>>
 	<<th-set '$chatlog' to {}>>
 	<<th-set '$chatlog["chat"]' to []>>
+	<<th-set '$chatlog["Aztecs"]' to []>>
+	<<th-set '$chatlog["Spaniards"]' to []>>
+	<<th-set '$chatlog["Tlaxcalans"]' to []>>
 <</if>>
 
 <<if ndef $users[$role].currentChat>>
 	<<th-set '$users[$role].currentChat' to "chat">>
 <</if>>
 
-<b>Recent Messages:</b><br>
-<<if $chatlog["chat"] && $chatlog["chat"].length > 0>>
-	<<for _i, _msg range $chatlog["chat"]>>
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Chat Channel Selector</h4>
+Current Channel: <b><<print $users[$role].currentChat>></b><br><br>
+<<button "Global Chat">>
+	<<th-set '$users[$role].currentChat' to "chat">>
+<</button>>
+<<if $users[$role].faction>>
+	<<button $users[$role].faction>>
+		<<th-set '$users[$role].currentChat' to $users[$role].faction>>
+	<</button>>
+<</if>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0; max-height: 300px; overflow-y: auto;" id="testChatMessages">
+<h4>Chat Messages (<<print $users[$role].currentChat>>)</h4>
+<<if $chatlog[$users[$role].currentChat] && $chatlog[$users[$role].currentChat].length > 0>>
+	<<for _i, _msg range $chatlog[$users[$role].currentChat]>>
 		<div style="border-bottom: 1px solid #333; padding: 5px; margin: 3px 0;">
 		<b><<print _msg.user>>:</b> <<print _msg.message>><br>
-		<small><<print _msg.time>></small>
+		<small><<print setup.formatChatTime ? setup.formatChatTime(_msg.timestamp || _msg.time) : (_msg.time || _msg.timestamp)>></small>
 		</div>
 	<</for>>
 <<else>>
-	<i>No messages yet</i>
+	<i>No messages yet in this channel</i>
 <</if>>
 </div>
 
 <div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
-<h4>Send Test Message</h4>
-<<button "Send 'Hello from test!'">>
-	<<set _currentChat = "chat">>
-	<<set _chatArray = $chatlog[_currentChat] || []>>
-	<<set _timestamp = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")>>
-	<<th-set '$chatlog[_currentChat]' to _chatArray.slice(-4).concat([{user: $role, message: "Hello from test!", time: _timestamp}])>>
+<h4>Send Message</h4>
+<<textbox "_testChatMessage" "" autofocus>>
+<<button "Send Message">>
+	<<if _testChatMessage && _testChatMessage.trim() != "">>
+		<<set _currentChannel = $users[$role].currentChat>>
+		<<set _msg = {user: $role, message: _testChatMessage, timestamp: Date.now()}>>
+		<<set _tempArr = $chatlog[_currentChannel].slice(-50)>>
+		<<set _tempArr[_tempArr.length] = _msg>>
+		<<sendAction "$chatlog[$users[$role].currentChat]" _tempArr>>
+		<<set _testChatMessage = "">>
+	<</if>>
 <</button>>
-
+<br><br>
+<b>Quick Test Messages:</b><br>
+<<button "Send 'Hello!'">>
+	<<set _currentChannel = $users[$role].currentChat>>
+	<<set _msg = {user: $role, message: "Hello from " + $role + "!", timestamp: Date.now()}>>
+	<<set _tempArr = $chatlog[_currentChannel].slice(-50)>>
+	<<set _tempArr[_tempArr.length] = _msg>>
+	<<sendAction "$chatlog[$users[$role].currentChat]" _tempArr>>
+<</button>>
 <<button "Send 'Testing sync!'">>
-	<<set _currentChat = "chat">>
-	<<set _chatArray = $chatlog[_currentChat] || []>>
-	<<set _timestamp = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(",", "")>>
-	<<th-set '$chatlog[_currentChat]' to _chatArray.slice(-4).concat([{user: $role, message: "Testing sync!", time: _timestamp}])>>
+	<<set _currentChannel = $users[$role].currentChat>>
+	<<set _msg = {user: $role, message: "Testing synchronization!", timestamp: Date.now()}>>
+	<<set _tempArr = $chatlog[_currentChannel].slice(-50)>>
+	<<set _tempArr[_tempArr.length] = _msg>>
+	<<sendAction "$chatlog[$users[$role].currentChat]" _tempArr>>
 <</button>>
+<<button "Clear Current Channel">>
+	<<sendAction "$chatlog[$users[$role].currentChat]" []>>
+<</button>>
+</div>
 
-<<button "Clear Chat">>
-	<<th-set '$chatlog["chat"]' to []>>
-<</button>>
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test Instructions</h4>
+<ol>
+<li>Open this page in multiple browser windows with different users (e.g., ?nick=Marina&id=test1 and ?nick=Cortes&id=test2)</li>
+<li>Try sending messages from both windows to the Global Chat</li>
+<li>Verify that messages appear in both windows in real-time</li>
+<li>Switch to faction-specific channels and test those as well</li>
+<li>Test that faction channels only show messages for that faction</li>
+</ol>
 </div>
 
 <br>

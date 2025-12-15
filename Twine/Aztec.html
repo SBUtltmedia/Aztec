@@ -201,20 +201,21 @@ setup.getTotalChoices = function(choice){
 		}
 	});
 
-	Macro.add('passageList', {
-		handler: function(){
-			
-			let content = `<<set _passages = Story.lookup()>>
-							<<set _sidePassages = {}>>
-							<<for _i, _p range _passages>>
-								<<set _key = _p.title.slice(0,30)>>
-								<<if _p.title.length > 30>>
-									<<set _key = _key + "...">>
-								<</if>>
-								<<set _sidePassages[_key] = _p.title>>
-							<</for>>`
-		}
-	})
+	// Commented out - unused and has syntax errors
+	// Macro.add('passageList', {
+	// 	handler: function(){
+	//
+	// 		let content = `<<set _passages = Story.lookup()>>
+	// 						<<set _sidePassages = {}>>
+	// 						<<for _i, _p range _passages>>
+	// 							<<set _key = _p.title.slice(0,30)>>
+	// 							<<if _p.title.length > 30>>
+	// 								<<set _key = _key + "...">>
+	// 							<</if>>
+	// 							<<set _sidePassages[_key] = _p.title>>
+	// 						<</for>>`
+	// 	}
+	// })
 	
 
 	/*	Designates a global variable as an exeception, preventing it from being sent to other clients
@@ -248,102 +249,92 @@ setup.getTotalChoices = function(choice){
 	 *   <<th-set '$variable' to value>>
 	 *   <<th-set '$user.score' to $user.score + 1>>
 	 *   <<th-set '$variable' += 5>>      (compound operators)
-	 *   <<th-set '$variable' -= 2>>
-	 *   <<th-set '$variable' *= 0.5>>
-	 *   <<th-set '$variable' /= 3>>
+	 *   <<th-set '$variable' to {key: "value", nested: {obj: true}}>>  (multi-line objects)
 	 *
-	 * This macro evaluates the expression on the client side, then sends
-	 * the result to the server as the authoritative value.
+	 * This macro evaluates expressions like <<set>> but sends the result to the server.
 	 */
 	Macro.add('th-set', {
 		skipArgs: true,
 		handler: function() {
-			// Use this.args.raw to get the unprocessed argument string
-			const rawArgs = this.args.raw.trim();
+			const fullArgs = this.args.full.trim();
 
-			if (!rawArgs) {
-				return this.error('th-set macro requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>>');
+			if (!fullArgs) {
+				return this.error('th-set macro requires an assignment expression');
 			}
 
-			let varPath, expression;
+			// Parse to extract variable path - handle assignment and compound operators
+			// Use multiline/dotall matching to handle multi-line expressions
+			// NOTE: SugarCube converts 'to' syntax to '=' before reaching the handler
+			let varPath = null;
+			let expression = null;
 
-			// Check for compound operators (+=, -=, *=, /=, %=)
-			const compoundMatch = rawArgs.match(/^(.+?)\s*([\+\-\*\/\%])=\s*(.+)$/);
-			if (compoundMatch) {
-				// Compound operator format: $variable += expression
-				varPath = compoundMatch[1].trim().replace(/^["']|["']$/g, '');
-				const operator = compoundMatch[2];
-				const rightSide = compoundMatch[3].trim();
-
-				// Convert compound operator to regular expression
-				// $var += 5  becomes  $var + 5
-				expression = varPath + ' ' + operator + ' ' + rightSide;
+			// Try regular assignment first: '$variable' = expression OR $variable = expression
+			// Use [\s\S] instead of . to match newlines
+			// Handle optional quotes around the variable name
+			const assignMatch = fullArgs.match(/^['"]?(\$[A-Za-z_]\w*(?:\[[^\]]+\])*(?:\.[A-Za-z_]\w*)*)['"]?\s*=\s*([\s\S]+)$/);
+			if (assignMatch) {
+				varPath = assignMatch[1];
+				expression = assignMatch[2].trim();
 			} else {
-				// Regular 'to' format: $variable to expression
-				const toMatch = rawArgs.match(/^(.+?)\s+to\s+(.+)$/);
-				if (!toMatch) {
-					return this.error('th-set macro requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>> (got: ' + rawArgs + ')');
+				// Try compound operator: $variable += expression
+				const compoundMatch = fullArgs.match(/^['"]?(\$[A-Za-z_]\w*(?:\[[^\]]+\])*(?:\.[A-Za-z_]\w*)*)['"]?\s*([+\-*/%])=\s*([\s\S]+)$/);
+				if (compoundMatch) {
+					varPath = compoundMatch[1];
+					const operator = compoundMatch[2];
+					const rightSide = compoundMatch[3].trim();
+					// Convert compound to full expression: $var += 5 becomes $var + 5
+					expression = varPath + ' ' + operator + ' (' + rightSide + ')';
 				}
-
-				// Extract variable path and expression
-				varPath = toMatch[1].trim().replace(/^["']|["']$/g, ''); // Remove quotes if present
-				expression = toMatch[2].trim();
 			}
 
-			// Pre-process expression to handle template functions like passage()
-			expression = expression.replace(/passage\(\)/g, JSON.stringify(passage));
+			if (!varPath || !expression) {
+				return this.error('th-set requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>>');
+			}
 
-			// Filter out temporary variables (starting with _) and exception variables
-			// Temporary variables are local to the current passage and should not be synced
-			// Exception variables (like $userId, $role) are client-specific and should not be synced
-			const cleanVarPath = varPath.replace(/^\$/, ''); // Remove $ prefix
+			// Check if this is a temporary variable or exception variable
+			const cleanVarPath = varPath.replace(/^\$/, '').replace(/\[[^\]]+\].*/g, '').replace(/\..*/g, '');
 			const isTemporary = cleanVarPath.startsWith('_');
 			const isException = typeof exceptions !== 'undefined' && exceptions.includes(cleanVarPath);
 
 			if (isTemporary || isException) {
-				console.log('Skipping variable from server sync:', varPath, isTemporary ? '(temporary)' : '(exception)');
-				// Still evaluate and set locally using regular <<set>> behavior
+				// Local-only variable - just evaluate and return
 				try {
-					const processedExpression = expression.replace(/\$(\w+)/g, '$1');
-					const evalFunc = new Function('State', 'passage', 'tags', 'visited', `
-						with (State.variables) {
-							with (State.temporary) {
-								return ${processedExpression};
-							}
-						}
-					`);
-					const value = evalFunc(State, passage, tags, visited);
+					// Evaluate as JavaScript (handles objects, arrays, etc.)
+					// Wrap object literals in parentheses to avoid ambiguity with code blocks
+					let evalExpression = expression.trim();
+					if (evalExpression.startsWith('{')) {
+						evalExpression = '(' + evalExpression + ')';
+					}
+					const value = Scripting.evalJavaScript(evalExpression);
 					State.setVar(varPath, value);
 				} catch (e) {
-					return this.error('Failed to evaluate expression "' + expression + '": ' + e.message);
+					return this.error('bad evaluation: ' + (typeof e === 'object' ? e.message : e));
 				}
-				return; // Don't send to server
+				return;
 			}
 
-			// Evaluate the expression in the proper context
-			// We need to create a function that has access to State.variables and SugarCube functions
+			// Evaluate the expression to get the value
 			let value;
 			try {
-				// Strip $ prefix from variable references in the expression
-				// Convert $variableName to variableName for use within with(State.variables)
-				const processedExpression = expression.replace(/\$(\w+)/g, '$1');
-
-				// Create an evaluator function with State.variables and State.temporary in scope
-				// Also provide access to common SugarCube functions
-				const evalFunc = new Function('State', 'passage', 'tags', 'visited', `
-					with (State.variables) {
-						with (State.temporary) {
-							return ${processedExpression};
-						}
-					}
-				`);
-				value = evalFunc(State, passage, tags, visited);
+				// evalJavaScript handles full JavaScript expressions including objects
+				// Wrap object literals in parentheses to avoid ambiguity with code blocks
+				let evalExpression = expression.trim();
+				if (evalExpression.startsWith('{')) {
+					evalExpression = '(' + evalExpression + ')';
+				}
+				value = Scripting.evalJavaScript(evalExpression);
 			} catch (e) {
-				return this.error('Failed to evaluate expression "' + expression + '": ' + e.message);
+				return this.error('bad evaluation: ' + (typeof e === 'object' ? e.message : e));
 			}
 
-			// Send the action to the server
-			// Send value as JSON string to preserve type information
+			// Set the variable locally
+			try {
+				State.setVar(varPath, value);
+			} catch (e) {
+				return this.error('failed to set variable: ' + e.message);
+			}
+
+			// Send to server
 			$.post("/action", {
 				variable: varPath,
 				value: JSON.stringify(value)
@@ -395,19 +386,17 @@ setup.getTotalChoices = function(choice){
  * Server-authoritative with real-time synchronization
  */
 
-<<script>>
-	// Chat timestamp formatter
-	setup.formatChatTime = function(timestamp) {
-		// Format timestamp for chat display: MM/DD HH:MM
-		if (!timestamp) return "";
-		return new Date(timestamp).toLocaleDateString('en-US', {
-			month: '2-digit',
-			day: '2-digit',
-			hour: '2-digit',
-			minute: '2-digit'
-		}).replace(",", "");
-	}
-<</script>></script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
+// Chat timestamp formatter
+setup.formatChatTime = function(timestamp) {
+	// Format timestamp for chat display: MM/DD HH:MM
+	if (!timestamp) return "";
+	return new Date(timestamp).toLocaleDateString('en-US', {
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit'
+	}).replace(",", "");
+}</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
@@ -1076,7 +1065,7 @@ Cortes, you have lost the confidence of your men. They don&#39;t trust your lead
 &lt;br&gt;
 Click through to [[find out who your men are placing their trust in|New Leader]].&lt;br&gt;
 &lt;br&gt;
-&lt;&lt;elseif $Cuba_Voted is 3 and $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] is 1&gt;&gt;&lt;&lt;th-set &#39;$Span_Leader&#39; to &quot;Cortes&quot;&gt;&gt;&quot;&gt;&gt;&lt;&lt;th-set &#39;$Spaniards_currentMap&#39; to 2&gt;&gt;
+&lt;&lt;elseif $Cuba_Voted is 3 and $users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;] is 1&gt;&gt;&lt;&lt;th-set &#39;$Span_Leader&#39; to &quot;Cortes&quot;&gt;&gt;&lt;&lt;th-set &#39;$Spaniards_currentMap&#39; to 2&gt;&gt;
 
 Your Loyalty remains high enough, but barely, and you will continue to lead. But be careful how you handle your men, if your Loyalty drops to zero, you will face a mutiny! &lt;br&gt;
 &lt;br&gt;
@@ -1667,7 +1656,7 @@ Cortés is clearly &lt;&lt;link &quot;much smarter than Velazquez&quot; &quot;Co
 &lt;br&gt;
 Cortés has &lt;&lt;link &quot;threatened you&quot; &quot;Cortes Leadership Check&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Strength&quot;]&#39; += 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&#39; -= 1&gt;&gt;&lt;&lt;th-set &#39;$Cuba_Voted&#39; to $Cuba_Voted + 1&gt;&gt;&lt;&lt;/link&gt;&gt; with what he will do to you if you don&#39;t follow! &lt;br&gt;
 &lt;br&gt;
-Cortés has not &lt;&lt;link &quot;convinced you&quot; &quot;Cortes Leadership Check&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; -= 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&#39; -= 1&gt;&gt;&lt;&lt;th-set &#39;$Cuba_Voted&#39; to $Cuba_Voted + 1&gt;&gt;&lt;&lt;th-set &#39;$Cuba_Voted&#39; to $Cuba_Voted + 1&gt;&gt;&lt;&lt;/link&gt;&gt;  but now you are stuck on this boat and outnumbered!&lt;br&gt;
+Cortés has not &lt;&lt;link &quot;convinced you&quot; &quot;Cortes Leadership Check&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; -= 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cortes&quot;][&quot;stats&quot;][&quot;Wisdom&quot;]&#39; -= 1&gt;&gt;&lt;&lt;th-set &#39;$Cuba_Voted&#39; to $Cuba_Voted + 1&gt;&gt;&lt;&lt;/link&gt;&gt;  but now you are stuck on this boat and outnumbered!&lt;br&gt;
 &lt;br&gt;
 
 &lt;&lt;case &quot;Cortes&quot;&gt;&gt;
@@ -2030,11 +2019,11 @@ You read Moctezuma&#39;s Proclamation, and you gather together in Council, this 
 The arrival of the strangers and mysterious omens have left everybody unsettled. How should you proceed? Does Moctezuma&#39;s Proclamation inspire confidence, or is it time to choose a new leader? In this strange new world, who will you follow?&lt;br&gt;
 &lt;br&gt;
 
-&lt;&lt;link &quot;Moctezuma&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]&#39; to $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;th-set &#39;$Moc_Mut_Vote&#39; to $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; += 1&gt;&gt;&lt;&lt;/link&gt;&gt; retains your loyalty, you trust his leadership. &lt;br&gt;
+&lt;&lt;link &quot;Moctezuma&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$Moc_Mut_Vote&#39; to $Moc_Mut_Vote + 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Moctezuma&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; += 1&gt;&gt;&lt;&lt;/link&gt;&gt; retains your loyalty, you trust his leadership. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Tlacaelel&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]&#39; to $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; += 1&gt;&gt;&lt;&lt;/link&gt;&gt; has shown great leadership. You vote for him. &lt;br&gt;
+&lt;&lt;link &quot;Tlacaelel&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Tlacaelel&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; += 1&gt;&gt;&lt;&lt;/link&gt;&gt; has shown great leadership. You vote for him. &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;Cuauhtemoc&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]&#39; to $users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote &quot;] = 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; += 1&gt;&gt;&lt;&lt;/link&gt;&gt; is clearly the one to lead you through these strange times. 
+&lt;&lt;link &quot;Cuauhtemoc&quot; &quot;Moctezuma Confidence Vote&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Moc&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Tla&quot;]&#39; to 0&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;MocMut_Cua&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Moc_Mut_Vote&quot;]&#39; to 1&gt;&gt;&lt;&lt;th-set &#39;$users[&quot;Cuauhtemoc&quot;][&quot;stats&quot;][&quot;Loyalty&quot;]&#39; += 1&gt;&gt;&lt;&lt;/link&gt;&gt; is clearly the one to lead you through these strange times. 
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;case &quot;Moctezuma&quot;&gt;&gt;
 
@@ -3160,8 +3149,8 @@ When you are satisfied you have heard everything &lt;&lt;print $Aztec_Leader&gt;
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Aztecs Hold a Council Meeting" tags="Done" position="2375,2975" size="100,100">&lt;&lt;if ndef $Moc_Mut_Vote &gt;&gt;
-&lt;&lt;th-set &#39;$Moc_Mut_Vote&#39; to 0 &gt;&gt;
+&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Aztecs Hold a Council Meeting" tags="Done" position="2375,2975" size="100,100">&lt;&lt;if ndef $Moc_Mut_Vote&gt;&gt;
+&lt;&lt;th-set &#39;$Moc_Mut_Vote&#39; to 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;b&gt;Tlacaelel&#39;s Statement:&lt;/b&gt; &lt;&lt;print $Tlac_Statement&gt;&gt;&lt;br&gt;
@@ -10042,7 +10031,7 @@ Olid, you&#39;ve talked to the men, and you&#39;ve done your best to convince th
 &lt;br&gt;
 &lt;&lt;link &quot;Yes&quot; &quot;Burning the Ships&quot;&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Mutiny_Voted&quot;]&#39; to $users[$role][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt; &lt;br&gt;
 &lt;br&gt;
-&lt;&lt;link &quot;No&quot; &quot;Burning the Ships&quot;&gt;&gt;&lt;&lt;th-set &#39;$Mutiny&#39; to $Mutiny + -10&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Mutiny_Voted&quot;]&#39; to $users[$role][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt; &lt;br&gt;
+&lt;&lt;link &quot;No&quot; &quot;Burning the Ships&quot;&gt;&gt;&lt;&lt;th-set &#39;$Mutiny&#39; to $Mutiny - 10&gt;&gt;&lt;&lt;th-set &#39;$users[$role][&quot;choices&quot;][&quot;Mutiny_Voted&quot;]&#39; to $users[$role][&quot;choices&quot;][&quot;Mutiny_Voted&quot;] + 1&gt;&gt;&lt;&lt;/link&gt;&gt; &lt;br&gt;
 &lt;br&gt;
 &lt;&lt;case &quot;Marina&quot; or &quot;Alvarado&quot; or &quot;Aguilar&quot; or &quot;Garrido&quot;&gt;&gt;
 Olid has tried to convince you to mutiny, but it is a risky path. Will you join him in his bid for power and control?&lt;br&gt;
@@ -10609,51 +10598,91 @@ Your Counter: &lt;b&gt;&lt;&lt;print $users[$role][&quot;choices&quot;][&quot;pl
 [[Back to Test Suite|Comprehensive Test Suite]]
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="269" name="4. Chat System Test" tags="" position="700,100" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;h2&gt;4. Chat System Test&lt;/h2&gt;
-&lt;p&gt;Testing the chat synchronization&lt;/p&gt;
+&lt;p&gt;Testing the chat synchronization with full interactive chat&lt;/p&gt;
 
-&lt;div style=&quot;border: 1px solid #666; padding: 10px; margin: 10px 0;&quot;&gt;
-&lt;h4&gt;Chat Messages&lt;/h4&gt;
+/* Initialize chatlog if needed */
 &lt;&lt;if ndef $chatlog&gt;&gt;
 	&lt;&lt;th-set &#39;$chatlog&#39; to {}&gt;&gt;
 	&lt;&lt;th-set &#39;$chatlog[&quot;chat&quot;]&#39; to []&gt;&gt;
+	&lt;&lt;th-set &#39;$chatlog[&quot;Aztecs&quot;]&#39; to []&gt;&gt;
+	&lt;&lt;th-set &#39;$chatlog[&quot;Spaniards&quot;]&#39; to []&gt;&gt;
+	&lt;&lt;th-set &#39;$chatlog[&quot;Tlaxcalans&quot;]&#39; to []&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if ndef $users[$role].currentChat&gt;&gt;
 	&lt;&lt;th-set &#39;$users[$role].currentChat&#39; to &quot;chat&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;b&gt;Recent Messages:&lt;/b&gt;&lt;br&gt;
-&lt;&lt;if $chatlog[&quot;chat&quot;] &amp;&amp; $chatlog[&quot;chat&quot;].length &gt; 0&gt;&gt;
-	&lt;&lt;for _i, _msg range $chatlog[&quot;chat&quot;]&gt;&gt;
+&lt;div style=&quot;border: 1px solid #666; padding: 10px; margin: 10px 0;&quot;&gt;
+&lt;h4&gt;Chat Channel Selector&lt;/h4&gt;
+Current Channel: &lt;b&gt;&lt;&lt;print $users[$role].currentChat&gt;&gt;&lt;/b&gt;&lt;br&gt;&lt;br&gt;
+&lt;&lt;button &quot;Global Chat&quot;&gt;&gt;
+	&lt;&lt;th-set &#39;$users[$role].currentChat&#39; to &quot;chat&quot;&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;&lt;if $users[$role].faction&gt;&gt;
+	&lt;&lt;button $users[$role].faction&gt;&gt;
+		&lt;&lt;th-set &#39;$users[$role].currentChat&#39; to $users[$role].faction&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;border: 1px solid #666; padding: 10px; margin: 10px 0; max-height: 300px; overflow-y: auto;&quot; id=&quot;testChatMessages&quot;&gt;
+&lt;h4&gt;Chat Messages (&lt;&lt;print $users[$role].currentChat&gt;&gt;)&lt;/h4&gt;
+&lt;&lt;if $chatlog[$users[$role].currentChat] &amp;&amp; $chatlog[$users[$role].currentChat].length &gt; 0&gt;&gt;
+	&lt;&lt;for _i, _msg range $chatlog[$users[$role].currentChat]&gt;&gt;
 		&lt;div style=&quot;border-bottom: 1px solid #333; padding: 5px; margin: 3px 0;&quot;&gt;
 		&lt;b&gt;&lt;&lt;print _msg.user&gt;&gt;:&lt;/b&gt; &lt;&lt;print _msg.message&gt;&gt;&lt;br&gt;
-		&lt;small&gt;&lt;&lt;print _msg.time&gt;&gt;&lt;/small&gt;
+		&lt;small&gt;&lt;&lt;print setup.formatChatTime ? setup.formatChatTime(_msg.timestamp || _msg.time) : (_msg.time || _msg.timestamp)&gt;&gt;&lt;/small&gt;
 		&lt;/div&gt;
 	&lt;&lt;/for&gt;&gt;
 &lt;&lt;else&gt;&gt;
-	&lt;i&gt;No messages yet&lt;/i&gt;
+	&lt;i&gt;No messages yet in this channel&lt;/i&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;/div&gt;
 
 &lt;div style=&quot;border: 1px solid #666; padding: 10px; margin: 10px 0;&quot;&gt;
-&lt;h4&gt;Send Test Message&lt;/h4&gt;
-&lt;&lt;button &quot;Send &#39;Hello from test!&#39;&quot;&gt;&gt;
-	&lt;&lt;set _currentChat = &quot;chat&quot;&gt;&gt;
-	&lt;&lt;set _chatArray = $chatlog[_currentChat] || []&gt;&gt;
-	&lt;&lt;set _timestamp = new Date().toLocaleDateString(&#39;en-US&#39;, { month: &#39;2-digit&#39;, day: &#39;2-digit&#39;, hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; }).replace(&quot;,&quot;, &quot;&quot;)&gt;&gt;
-	&lt;&lt;th-set &#39;$chatlog[_currentChat]&#39; to _chatArray.slice(-4).concat([{user: $role, message: &quot;Hello from test!&quot;, time: _timestamp}])&gt;&gt;
+&lt;h4&gt;Send Message&lt;/h4&gt;
+&lt;&lt;textbox &quot;_testChatMessage&quot; &quot;&quot; autofocus&gt;&gt;
+&lt;&lt;button &quot;Send Message&quot;&gt;&gt;
+	&lt;&lt;if _testChatMessage &amp;&amp; _testChatMessage.trim() != &quot;&quot;&gt;&gt;
+		&lt;&lt;set _currentChannel = $users[$role].currentChat&gt;&gt;
+		&lt;&lt;set _msg = {user: $role, message: _testChatMessage, timestamp: Date.now()}&gt;&gt;
+		&lt;&lt;set _tempArr = $chatlog[_currentChannel].slice(-50)&gt;&gt;
+		&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
+		&lt;&lt;sendAction &quot;$chatlog[$users[$role].currentChat]&quot; _tempArr&gt;&gt;
+		&lt;&lt;set _testChatMessage = &quot;&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/button&gt;&gt;
-
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Quick Test Messages:&lt;/b&gt;&lt;br&gt;
+&lt;&lt;button &quot;Send &#39;Hello!&#39;&quot;&gt;&gt;
+	&lt;&lt;set _currentChannel = $users[$role].currentChat&gt;&gt;
+	&lt;&lt;set _msg = {user: $role, message: &quot;Hello from &quot; + $role + &quot;!&quot;, timestamp: Date.now()}&gt;&gt;
+	&lt;&lt;set _tempArr = $chatlog[_currentChannel].slice(-50)&gt;&gt;
+	&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
+	&lt;&lt;sendAction &quot;$chatlog[$users[$role].currentChat]&quot; _tempArr&gt;&gt;
+&lt;&lt;/button&gt;&gt;
 &lt;&lt;button &quot;Send &#39;Testing sync!&#39;&quot;&gt;&gt;
-	&lt;&lt;set _currentChat = &quot;chat&quot;&gt;&gt;
-	&lt;&lt;set _chatArray = $chatlog[_currentChat] || []&gt;&gt;
-	&lt;&lt;set _timestamp = new Date().toLocaleDateString(&#39;en-US&#39;, { month: &#39;2-digit&#39;, day: &#39;2-digit&#39;, hour: &#39;2-digit&#39;, minute: &#39;2-digit&#39; }).replace(&quot;,&quot;, &quot;&quot;)&gt;&gt;
-	&lt;&lt;th-set &#39;$chatlog[_currentChat]&#39; to _chatArray.slice(-4).concat([{user: $role, message: &quot;Testing sync!&quot;, time: _timestamp}])&gt;&gt;
+	&lt;&lt;set _currentChannel = $users[$role].currentChat&gt;&gt;
+	&lt;&lt;set _msg = {user: $role, message: &quot;Testing synchronization!&quot;, timestamp: Date.now()}&gt;&gt;
+	&lt;&lt;set _tempArr = $chatlog[_currentChannel].slice(-50)&gt;&gt;
+	&lt;&lt;set _tempArr[_tempArr.length] = _msg&gt;&gt;
+	&lt;&lt;sendAction &quot;$chatlog[$users[$role].currentChat]&quot; _tempArr&gt;&gt;
 &lt;&lt;/button&gt;&gt;
+&lt;&lt;button &quot;Clear Current Channel&quot;&gt;&gt;
+	&lt;&lt;sendAction &quot;$chatlog[$users[$role].currentChat]&quot; []&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/div&gt;
 
-&lt;&lt;button &quot;Clear Chat&quot;&gt;&gt;
-	&lt;&lt;th-set &#39;$chatlog[&quot;chat&quot;]&#39; to []&gt;&gt;
-&lt;&lt;/button&gt;&gt;
+&lt;div style=&quot;border: 1px solid #666; padding: 10px; margin: 10px 0;&quot;&gt;
+&lt;h4&gt;Test Instructions&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Open this page in multiple browser windows with different users (e.g., ?nick=Marina&amp;id=test1 and ?nick=Cortes&amp;id=test2)&lt;/li&gt;
+&lt;li&gt;Try sending messages from both windows to the Global Chat&lt;/li&gt;
+&lt;li&gt;Verify that messages appear in both windows in real-time&lt;/li&gt;
+&lt;li&gt;Switch to faction-specific channels and test those as well&lt;/li&gt;
+&lt;li&gt;Test that faction channels only show messages for that faction&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 
 &lt;br&gt;
@@ -13857,38 +13886,16 @@ List of valid roles and their info */
 /* Intialize faction data */
 &lt;&lt;if ndef $factions&gt;&gt;
 	&lt;&lt;th-set &#39;$factions&#39; to {
-		&quot;Aztecs&quot;: {&quot;stats&quot;: {
-
-			&quot;Strength&quot; : 7,
-
-			}
-
-		},
-
-
-		&quot;Spaniards&quot;: {&quot;stats&quot;: {
-
-			&quot;Strength&quot; : 7,
-
-			}
-
-		},
-
-		&quot;Tlaxcalans&quot;: {&quot;stats&quot;: {
-
-			&quot;Strength&quot; : 7,
-
-			}
-
-		},
+		&quot;Aztecs&quot;: {&quot;stats&quot;: {&quot;Strength&quot;: 7}},
+		&quot;Spaniards&quot;: {&quot;stats&quot;: {&quot;Strength&quot;: 7}},
+		&quot;Tlaxcalans&quot;: {&quot;stats&quot;: {&quot;Strength&quot;: 7}}
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 /* Intialize world data */
 &lt;&lt;if ndef $world&gt;&gt;
 	&lt;&lt;th-set &#39;$world&#39; to {
-		&quot;TotalPlayers&quot;: 0,
-
+		&quot;TotalPlayers&quot;: 0
 	}&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -13898,9 +13905,9 @@ List of valid roles and their info */
 	&lt;&lt;for _user, _data  range _roles&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user]&#39; to {}&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;choices&quot;]&#39; to {}&gt;&gt;
-		&lt;&lt;sendAction &quot;$users[_user][&quot;faction&quot;]&quot; _roles[_user]?.faction || &quot;undefined&quot;&gt;&gt;
-		&lt;&lt;sendAction &quot;$users[_user][&quot;character&quot;]&quot; _roles[_user]?.Character || &quot;undefined&quot;&gt;&gt;
-		&lt;&lt;sendAction &quot;$users[_user][&quot;isLeader&quot;]&quot; _roles[_user]?.isLeader || &quot;undefined&quot;&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[_user][&quot;faction&quot;]&quot; _roles[_user]?.faction || null&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[_user][&quot;character&quot;]&quot; _roles[_user]?.Character || null&gt;&gt;
+		&lt;&lt;sendAction &quot;$users[_user][&quot;isLeader&quot;]&quot; _roles[_user]?.isLeader || null&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;passage&quot;]&#39; to Config.passages.start&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;active&quot;]&#39; to false&gt;&gt;
 

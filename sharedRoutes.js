@@ -51,70 +51,75 @@ export function registerSharedRoutes(app, webstackInstance, options = {}) {
 
     // Server-authoritative action endpoint
     // Handles state updates from client macros (<<th-set>>, <<sendAction>>)
-    app.post('/action', requireAuthOrTest, urlencodedParser, (req, res) => {
-        const { variable, value } = req.body;
-
-        // Validate input
-        if (!variable || typeof variable !== 'string') {
-            return res.status(400).json({ error: 'Invalid variable parameter' });
-        }
-
-        if (value === undefined) {
-            return res.status(400).json({ error: 'Missing value parameter' });
-        }
-
-        // Remove the '$' prefix from variable path
-        const path = variable.substring(1);
-
-        // Validate path to prevent prototype pollution
-        if (!isValidStatePath(path)) {
-            console.warn('Blocked potentially dangerous state path:', path);
-            return res.status(400).json({ error: 'Invalid variable path' });
-        }
-
-        // Parse the value from URL-encoded string to its proper type
-        // URL-encoded POST data converts everything to strings, so we need to parse it
-        let parsedValue;
+    app.post('/action', requireAuthOrTest, urlencodedParser, async (req, res) => {
+        const release = await webstackInstance.writeMutex.acquire();
         try {
-            // Try to parse as JSON first (handles numbers, booleans, objects, arrays, strings)
-            parsedValue = JSON.parse(value);
-        } catch (e) {
-            // If JSON parsing fails, use the raw string value
-            parsedValue = value;
+            const { variable, value } = req.body;
+
+            // Validate input
+            if (!variable || typeof variable !== 'string') {
+                return res.status(400).json({ error: 'Invalid variable parameter' });
+            }
+
+            if (value === undefined) {
+                return res.status(400).json({ error: 'Missing value parameter' });
+            }
+
+            // Remove the '$' prefix from variable path
+            const path = variable.substring(1);
+
+            // Validate path to prevent prototype pollution
+            if (!isValidStatePath(path)) {
+                console.warn('Blocked potentially dangerous state path:', path);
+                return res.status(400).json({ error: 'Invalid variable path' });
+            }
+
+            // Parse the value from URL-encoded string to its proper type
+            // URL-encoded POST data converts everything to strings, so we need to parse it
+            let parsedValue;
+            try {
+                // Try to parse as JSON first (handles numbers, booleans, objects, arrays, strings)
+                parsedValue = JSON.parse(value);
+            } catch (e) {
+                // If JSON parsing fails, use the raw string value
+                parsedValue = value;
+            }
+
+            // Special handling for chat messages: add server-side timestamp
+            if (path.startsWith('chatlog.') && Array.isArray(parsedValue)) {
+                parsedValue = parsedValue.map(msg => {
+                    // If message has client timestamp, replace with server timestamp
+                    if (msg && typeof msg === 'object' && 'timestamp' in msg) {
+                        return {
+                            ...msg,
+                            timestamp: Date.now()  // Server-authoritative timestamp
+                        };
+                    }
+                    return msg;
+                });
+            }
+
+            // Check if the value actually changed before broadcasting
+            const currentState = webstackInstance.serverStore.getState();
+            const currentValue = _.get(currentState, path);
+
+            // Only update and broadcast if the value is different
+            if (!_.isEqual(currentValue, parsedValue)) {
+                // Create a diff object with the updated value
+                const diff = {};
+                _.set(diff, path, parsedValue);
+
+                // Update the server state
+                webstackInstance.serverStore.setState(diff);
+
+                // Broadcast the diff to all clients using existing 'difference' event
+                webstackInstance.io.emit('difference', diff);
+            }
+
+            res.send({ status: 'ok' });
+        } finally {
+            release();
         }
-
-        // Special handling for chat messages: add server-side timestamp
-        if (path.startsWith('chatlog.') && Array.isArray(parsedValue)) {
-            parsedValue = parsedValue.map(msg => {
-                // If message has client timestamp, replace with server timestamp
-                if (msg && typeof msg === 'object' && 'timestamp' in msg) {
-                    return {
-                        ...msg,
-                        timestamp: Date.now()  // Server-authoritative timestamp
-                    };
-                }
-                return msg;
-            });
-        }
-
-        // Check if the value actually changed before broadcasting
-        const currentState = webstackInstance.serverStore.getState();
-        const currentValue = _.get(currentState, path);
-
-        // Only update and broadcast if the value is different
-        if (!_.isEqual(currentValue, parsedValue)) {
-            // Create a diff object with the updated value
-            const diff = {};
-            _.set(diff, path, parsedValue);
-
-            // Update the server state
-            webstackInstance.serverStore.setState(diff);
-
-            // Broadcast the diff to all clients using existing 'difference' event
-            webstackInstance.io.emit('difference', diff);
-        }
-
-        res.send({ status: 'ok' });
     });
 
     // Git update endpoint

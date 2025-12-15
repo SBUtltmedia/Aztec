@@ -125,20 +125,21 @@ setup.getTotalChoices = function(choice){
 		}
 	});
 
-	Macro.add('passageList', {
-		handler: function(){
-			
-			let content = `<<set _passages = Story.lookup()>>
-							<<set _sidePassages = {}>>
-							<<for _i, _p range _passages>>
-								<<set _key = _p.title.slice(0,30)>>
-								<<if _p.title.length > 30>>
-									<<set _key = _key + "...">>
-								<</if>>
-								<<set _sidePassages[_key] = _p.title>>
-							<</for>>`
-		}
-	})
+	// Commented out - unused and has syntax errors
+	// Macro.add('passageList', {
+	// 	handler: function(){
+	//
+	// 		let content = `<<set _passages = Story.lookup()>>
+	// 						<<set _sidePassages = {}>>
+	// 						<<for _i, _p range _passages>>
+	// 							<<set _key = _p.title.slice(0,30)>>
+	// 							<<if _p.title.length > 30>>
+	// 								<<set _key = _key + "...">>
+	// 							<</if>>
+	// 							<<set _sidePassages[_key] = _p.title>>
+	// 						<</for>>`
+	// 	}
+	// })
 	
 
 	/*	Designates a global variable as an exeception, preventing it from being sent to other clients
@@ -172,102 +173,92 @@ setup.getTotalChoices = function(choice){
 	 *   <<th-set '$variable' to value>>
 	 *   <<th-set '$user.score' to $user.score + 1>>
 	 *   <<th-set '$variable' += 5>>      (compound operators)
-	 *   <<th-set '$variable' -= 2>>
-	 *   <<th-set '$variable' *= 0.5>>
-	 *   <<th-set '$variable' /= 3>>
+	 *   <<th-set '$variable' to {key: "value", nested: {obj: true}}>>  (multi-line objects)
 	 *
-	 * This macro evaluates the expression on the client side, then sends
-	 * the result to the server as the authoritative value.
+	 * This macro evaluates expressions like <<set>> but sends the result to the server.
 	 */
 	Macro.add('th-set', {
 		skipArgs: true,
 		handler: function() {
-			// Use this.args.raw to get the unprocessed argument string
-			const rawArgs = this.args.raw.trim();
+			const fullArgs = this.args.full.trim();
 
-			if (!rawArgs) {
-				return this.error('th-set macro requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>>');
+			if (!fullArgs) {
+				return this.error('th-set macro requires an assignment expression');
 			}
 
-			let varPath, expression;
+			// Parse to extract variable path - handle assignment and compound operators
+			// Use multiline/dotall matching to handle multi-line expressions
+			// NOTE: SugarCube converts 'to' syntax to '=' before reaching the handler
+			let varPath = null;
+			let expression = null;
 
-			// Check for compound operators (+=, -=, *=, /=, %=)
-			const compoundMatch = rawArgs.match(/^(.+?)\s*([\+\-\*\/\%])=\s*(.+)$/);
-			if (compoundMatch) {
-				// Compound operator format: $variable += expression
-				varPath = compoundMatch[1].trim().replace(/^["']|["']$/g, '');
-				const operator = compoundMatch[2];
-				const rightSide = compoundMatch[3].trim();
-
-				// Convert compound operator to regular expression
-				// $var += 5  becomes  $var + 5
-				expression = varPath + ' ' + operator + ' ' + rightSide;
+			// Try regular assignment first: '$variable' = expression OR $variable = expression
+			// Use [\s\S] instead of . to match newlines
+			// Handle optional quotes around the variable name
+			const assignMatch = fullArgs.match(/^['"]?(\$[A-Za-z_]\w*(?:\[[^\]]+\])*(?:\.[A-Za-z_]\w*)*)['"]?\s*=\s*([\s\S]+)$/);
+			if (assignMatch) {
+				varPath = assignMatch[1];
+				expression = assignMatch[2].trim();
 			} else {
-				// Regular 'to' format: $variable to expression
-				const toMatch = rawArgs.match(/^(.+?)\s+to\s+(.+)$/);
-				if (!toMatch) {
-					return this.error('th-set macro requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>> (got: ' + rawArgs + ')');
+				// Try compound operator: $variable += expression
+				const compoundMatch = fullArgs.match(/^['"]?(\$[A-Za-z_]\w*(?:\[[^\]]+\])*(?:\.[A-Za-z_]\w*)*)['"]?\s*([+\-*/%])=\s*([\s\S]+)$/);
+				if (compoundMatch) {
+					varPath = compoundMatch[1];
+					const operator = compoundMatch[2];
+					const rightSide = compoundMatch[3].trim();
+					// Convert compound to full expression: $var += 5 becomes $var + 5
+					expression = varPath + ' ' + operator + ' (' + rightSide + ')';
 				}
-
-				// Extract variable path and expression
-				varPath = toMatch[1].trim().replace(/^["']|["']$/g, ''); // Remove quotes if present
-				expression = toMatch[2].trim();
 			}
 
-			// Pre-process expression to handle template functions like passage()
-			expression = expression.replace(/passage\(\)/g, JSON.stringify(passage));
+			if (!varPath || !expression) {
+				return this.error('th-set requires format: <<th-set "$variable" to value>> or <<th-set "$variable" += value>>');
+			}
 
-			// Filter out temporary variables (starting with _) and exception variables
-			// Temporary variables are local to the current passage and should not be synced
-			// Exception variables (like $userId, $role) are client-specific and should not be synced
-			const cleanVarPath = varPath.replace(/^\$/, ''); // Remove $ prefix
+			// Check if this is a temporary variable or exception variable
+			const cleanVarPath = varPath.replace(/^\$/, '').replace(/\[[^\]]+\].*/g, '').replace(/\..*/g, '');
 			const isTemporary = cleanVarPath.startsWith('_');
 			const isException = typeof exceptions !== 'undefined' && exceptions.includes(cleanVarPath);
 
 			if (isTemporary || isException) {
-				console.log('Skipping variable from server sync:', varPath, isTemporary ? '(temporary)' : '(exception)');
-				// Still evaluate and set locally using regular <<set>> behavior
+				// Local-only variable - just evaluate and return
 				try {
-					const processedExpression = expression.replace(/\$(\w+)/g, '$1');
-					const evalFunc = new Function('State', 'passage', 'tags', 'visited', `
-						with (State.variables) {
-							with (State.temporary) {
-								return ${processedExpression};
-							}
-						}
-					`);
-					const value = evalFunc(State, passage, tags, visited);
+					// Evaluate as JavaScript (handles objects, arrays, etc.)
+					// Wrap object literals in parentheses to avoid ambiguity with code blocks
+					let evalExpression = expression.trim();
+					if (evalExpression.startsWith('{')) {
+						evalExpression = '(' + evalExpression + ')';
+					}
+					const value = Scripting.evalJavaScript(evalExpression);
 					State.setVar(varPath, value);
 				} catch (e) {
-					return this.error('Failed to evaluate expression "' + expression + '": ' + e.message);
+					return this.error('bad evaluation: ' + (typeof e === 'object' ? e.message : e));
 				}
-				return; // Don't send to server
+				return;
 			}
 
-			// Evaluate the expression in the proper context
-			// We need to create a function that has access to State.variables and SugarCube functions
+			// Evaluate the expression to get the value
 			let value;
 			try {
-				// Strip $ prefix from variable references in the expression
-				// Convert $variableName to variableName for use within with(State.variables)
-				const processedExpression = expression.replace(/\$(\w+)/g, '$1');
-
-				// Create an evaluator function with State.variables and State.temporary in scope
-				// Also provide access to common SugarCube functions
-				const evalFunc = new Function('State', 'passage', 'tags', 'visited', `
-					with (State.variables) {
-						with (State.temporary) {
-							return ${processedExpression};
-						}
-					}
-				`);
-				value = evalFunc(State, passage, tags, visited);
+				// evalJavaScript handles full JavaScript expressions including objects
+				// Wrap object literals in parentheses to avoid ambiguity with code blocks
+				let evalExpression = expression.trim();
+				if (evalExpression.startsWith('{')) {
+					evalExpression = '(' + evalExpression + ')';
+				}
+				value = Scripting.evalJavaScript(evalExpression);
 			} catch (e) {
-				return this.error('Failed to evaluate expression "' + expression + '": ' + e.message);
+				return this.error('bad evaluation: ' + (typeof e === 'object' ? e.message : e));
 			}
 
-			// Send the action to the server
-			// Send value as JSON string to preserve type information
+			// Set the variable locally
+			try {
+				State.setVar(varPath, value);
+			} catch (e) {
+				return this.error('failed to set variable: ' + e.message);
+			}
+
+			// Send to server
 			$.post("/action", {
 				variable: varPath,
 				value: JSON.stringify(value)

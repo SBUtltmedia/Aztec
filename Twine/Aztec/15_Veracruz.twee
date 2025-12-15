@@ -93,7 +93,7 @@ Olid, you've talked to the men, and you've done your best to convince them to mu
 <br>
 <<link "Yes" "Burning the Ships">><<th-set '$users[$role]["choices"]["Mutiny_Voted"]' to $users[$role]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
 <br>
-<<link "No" "Burning the Ships">><<th-set '$Mutiny' to $Mutiny + -10>><<th-set '$users[$role]["choices"]["Mutiny_Voted"]' to $users[$role]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
+<<link "No" "Burning the Ships">><<th-set '$Mutiny' to $Mutiny - 10>><<th-set '$users[$role]["choices"]["Mutiny_Voted"]' to $users[$role]["choices"]["Mutiny_Voted"] + 1>><</link>> <br>
 <br>
 <<case "Marina" or "Alvarado" or "Aguilar" or "Garrido">>
 Olid has tried to convince you to mutiny, but it is a risky path. Will you join him in his bid for power and control?<br>

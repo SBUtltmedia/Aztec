@@ -3172,38 +3172,16 @@ List of valid roles and their info */
 /* Intialize faction data */
 <<if ndef $factions>>
 	<<th-set '$factions' to {
-		"Aztecs": {"stats": {
-
-			"Strength" : 7,
-
-			}
-
-		},
-
-
-		"Spaniards": {"stats": {
-
-			"Strength" : 7,
-
-			}
-
-		},
-
-		"Tlaxcalans": {"stats": {
-
-			"Strength" : 7,
-
-			}
-
-		},
+		"Aztecs": {"stats": {"Strength": 7}},
+		"Spaniards": {"stats": {"Strength": 7}},
+		"Tlaxcalans": {"stats": {"Strength": 7}}
 	}>>
 <</if>>
 
 /* Intialize world data */
 <<if ndef $world>>
 	<<th-set '$world' to {
-		"TotalPlayers": 0,
-
+		"TotalPlayers": 0
 	}>>
 <</if>>
 
@@ -3213,9 +3191,9 @@ List of valid roles and their info */
 	<<for _user, _data  range _roles>>
 		<<th-set '$users[_user]' to {}>>
 		<<th-set '$users[_user]["choices"]' to {}>>
-		<<sendAction "$users[_user]["faction"]" _roles[_user]?.faction || "undefined">>
-		<<sendAction "$users[_user]["character"]" _roles[_user]?.Character || "undefined">>
-		<<sendAction "$users[_user]["isLeader"]" _roles[_user]?.isLeader || "undefined">>
+		<<sendAction "$users[_user]["faction"]" _roles[_user]?.faction || null>>
+		<<sendAction "$users[_user]["character"]" _roles[_user]?.Character || null>>
+		<<sendAction "$users[_user]["isLeader"]" _roles[_user]?.isLeader || null>>
 		<<th-set '$users[_user]["passage"]' to Config.passages.start>>
 		<<th-set '$users[_user]["active"]' to false>>
 

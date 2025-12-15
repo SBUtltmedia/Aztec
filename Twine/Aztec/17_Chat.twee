@@ -5,19 +5,17 @@
  * Server-authoritative with real-time synchronization
  */
 
-<<script>>
-	// Chat timestamp formatter
-	setup.formatChatTime = function(timestamp) {
-		// Format timestamp for chat display: MM/DD HH:MM
-		if (!timestamp) return "";
-		return new Date(timestamp).toLocaleDateString('en-US', {
-			month: '2-digit',
-			day: '2-digit',
-			hour: '2-digit',
-			minute: '2-digit'
-		}).replace(",", "");
-	}
-<</script>>
+// Chat timestamp formatter
+setup.formatChatTime = function(timestamp) {
+	// Format timestamp for chat display: MM/DD HH:MM
+	if (!timestamp) return "";
+	return new Date(timestamp).toLocaleDateString('en-US', {
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit'
+	}).replace(",", "");
+}
 
 :: PassageReady
 /* Chat Display - Renders on Home tagged passages */

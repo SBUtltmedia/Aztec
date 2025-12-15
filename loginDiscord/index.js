@@ -71,7 +71,7 @@ else {
 const GUILD_ID = process.env.guildId || guildId;
 const scope = "identify guilds.members.read guilds"
 
-const REDIRECTURL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=${encodeURIComponent(scope)}`;
+const BASE_AUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(HEROKU_URL)}&response_type=code&scope=${encodeURIComponent(scope)}`;
 const GITHUBTOKEN = process.env.githubToken || githubToken
 const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
@@ -127,6 +127,14 @@ app.get('/', async (request, response) => {
 	}
 
 	if (code) {
+		// CSRF Protection: Validate state
+		if (!state || state !== request.session.oauthState) {
+			console.error('CSRF Error: State mismatch or missing.');
+			return response.status(403).send('Invalid state parameter. Possible CSRF attack.');
+		}
+		// Clear state after validation to prevent reuse
+		delete request.session.oauthState;
+
 		let payload = {
 			client_id: CLIENT_ID,
 			client_secret: CLIENT_SECRET,
@@ -135,10 +143,7 @@ app.get('/', async (request, response) => {
 			redirect_uri: HEROKU_URL,
 			scope: 'identify',
 		};
-		if (refreshTokens[state]) {
-			payload = { ...payload, ...{ grant_type: 'refresh_token', refresh_token: refreshTokens[state].refresh_token } }
-			delete payload.code
-		}
+
 		try {
 			const oauthResult = await fetch('https://discord.com/api/oauth2/token', {
 				method: 'POST',
@@ -149,13 +154,12 @@ app.get('/', async (request, response) => {
 			});
 
 			const oauthData = await oauthResult.json();
-			if (oauthData.refresh_token) {
-				refreshTokens[state] = oauthData;
-
-			}
 
 			if (oauthData.error) {
-				return loadHome(response, test, nick);
+				// We need to generate a new state for the error page redirect
+				const newState = crypto.randomBytes(16).toString('hex');
+				request.session.oauthState = newState;
+				return loadHome(response, test, nick, newState);
 			}
 
 			const userResult = await fetch('https://discord.com/api/users/@me', {
@@ -182,12 +186,17 @@ app.get('/', async (request, response) => {
 			return returnTwine(userData, response, TWINE_PATH);
 
 		} catch (error) {
+			console.error("OAuth Error:", error);
 			// NOTE: An unauthorized token will not throw an error;
 			// it will return a 401 Unauthorized response in the try block above
+			response.status(500).send("Authentication failed.");
 		}
 	}
 	else {
-		loadHome(response, test, nick);
+		// Generate state for new login
+		const newState = crypto.randomBytes(16).toString('hex');
+		request.session.oauthState = newState;
+		loadHome(response, test, nick, newState);
 	}
 });
 
@@ -209,11 +218,15 @@ app.get('/logout', (request, response) => {
  *
  * @param {*} response
  * @param {boolean} isTest: true if testing page is being used,
+ * @param {string} nick: nickname for test user
+ * @param {string} state: CSRF state token
  * @returns discord auth page or if isTest is true: the twine page
  */
-function loadHome(response, isTest, nick) {
+function loadHome(response, isTest, nick, state) {
 	let htmlContents = fs.readFileSync(htmlTemplate, 'utf8')
-	let indexHtml = htmlContents.replace("%redirectURL%", REDIRECTURL)
+	// Append state to the base URL
+	const redirectUrlWithState = `${BASE_AUTH_URL}&state=${state}`;
+	let indexHtml = htmlContents.replace("%redirectURL%", redirectUrlWithState)
 
 
 	if (isTest) {

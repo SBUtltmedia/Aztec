@@ -132,18 +132,18 @@ class Webstack {
 
 			// When a client detects a variable being changed they send the difference signal which is
 			// caught here and sent to other clients
-			socket.on('difference', async (diff) => {
-				const release = await this.writeMutex.acquire();
-				try {
-					this.serverStore.setState(diff);
-					//sends message to all other clients unless inside theyrPrivateVars
-					if(!Object.keys(diff).includes("theyrPrivateVars")){
-						socket.broadcast.emit('difference', diff)
-					}
-				} finally {
-					release();
-				}
-			})
+			// socket.on('difference', async (diff) => {
+			// 	const release = await this.writeMutex.acquire();
+			// 	try {
+			// 		this.serverStore.setState(diff);
+			// 		//sends message to all other clients unless inside theyrPrivateVars
+			// 		if(!Object.keys(diff).includes("theyrPrivateVars")){
+			// 			socket.broadcast.emit('difference', diff)
+			// 		}
+			// 	} finally {
+			// 		release();
+			// 	}
+			// })
 
 
 			socket.on('fullReset', ()=>{
