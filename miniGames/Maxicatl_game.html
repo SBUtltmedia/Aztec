@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Markets of Tlaxcala – Maxixcatl</title>
+  <style>
+    /* --- LAYOUT ENGINE BODY STYLES (letterbox) --- */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      background-color: #111; /* Letterbox bars */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Main 16:9 container (sized by JS) */
+    #main-container {
+      position: absolute;
+      background: radial-gradient(circle at top, #ffd27f 0%, #c47a2c 40%, #5b3311 100%);
+      box-shadow: 0 0 3rem rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      transition: all 0.2s ease-in-out;
+    }
+
+    /* --- Game layout (all in rem, scalable by root font-size) --- */
+    .screen {
+      width: 100%;
+      height: 100%;
+      padding: 3rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #2b1608;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .intro-bg {
+      background: linear-gradient(to bottom, rgba(255, 220, 150, 0.9), rgba(215, 140, 60, 0.9));
+    }
+
+    .game-bg {
+      background: linear-gradient(to bottom, rgba(255, 245, 220, 0.95), rgba(240, 190, 120, 0.95));
+    }
+
+    .end-bg {
+      background: linear-gradient(to bottom, rgba(255, 230, 190, 0.95), rgba(210, 130, 60, 0.95));
+    }
+
+    .title {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+      max-width: 60rem;
+    }
+
+    .card {
+      max-width: 60rem;
+      width: 100%;
+      background-color: rgba(255, 248, 235, 0.98);
+      border-radius: 1.6rem;
+      padding: 3rem;
+      box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.15);
+      border: 0.2rem solid #8b4a12;
+      box-sizing: border-box;
+    }
+
+    .question-text {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 2.4rem;
+      text-align: left;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 1.2rem;
+      padding: 1.4rem 2.4rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.1s ease;
+      box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+      transform: translateY(0.1rem);
+      box-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+      background-color: #b26218;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #944e12;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #6a3a11;
+      border: 0.2rem solid #6a3a11;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.4rem;
+      margin-top: 0.8rem;
+      color: #5c3415;
+    }
+
+    .trait-text {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.6rem;
+    }
+
+    .trait-note {
+      font-size: 1.4rem;
+      max-width: 50rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-container">
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="screen intro-bg">
+      <div class="card">
+        <div class="title">🪶 Markets of Tlaxcala 🪶</div>
+        <div class="subtitle">
+          You are <strong>Maxixcatl</strong>, leader of the great markets of Tlaxcala. 
+          Hear disputes, calm tempers, and guide trade. Each choice reflects your 
+          <em>strength</em>, <em>wisdom</em>, or <em>charisma</em>—but the traits remain hidden.
+          Play through up to 50 market dilemmas, or end the game whenever you wish.
+        </div>
+        <button id="btn-begin" class="btn btn-primary">Begin</button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen game-bg hidden">
+      <div class="card">
+        <div id="question-text" class="question-text"></div>
+        <div id="options-container" class="options"></div>
+        <div class="footer-row">
+          <div id="question-counter"></div>
+          <button id="btn-end" class="btn btn-outline">End Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Screen -->
+    <div id="end-screen" class="screen end-bg hidden">
+      <div class="card">
+        <div class="title">Your Legacy as Maxixcatl</div>
+        <div id="dominant-trait" class="trait-text"></div>
+        <div class="trait-note">
+          Strength reflects firm authority, wisdom reflects careful judgment, and charisma reflects your gift for inspiring others.
+        </div>
+        <br />
+        <button id="btn-play-again" class="btn btn-primary">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- 1. LAYOUT ENGINE LOGIC ---
+    function resizeLayout() {
+      const mainContainer = document.getElementById('main-container');
+      const htmlElement = document.documentElement;
+      if (!mainContainer) return;
+
+      const ASPECT_RATIO = 16 / 9;
+      let viewportWidth = window.innerWidth;
+      let viewportHeight = window.innerHeight;
+      const viewportRatio = viewportWidth / viewportHeight;
+
+      let containerWidth, containerHeight, top, left;
+
+      if (viewportRatio > ASPECT_RATIO) {
+        containerHeight = viewportHeight;
+        containerWidth = containerHeight * ASPECT_RATIO;
+        top = 0;
+        left = (viewportWidth - containerWidth) / 2;
+      } else {
+        containerWidth = viewportWidth;
+        containerHeight = containerWidth / ASPECT_RATIO;
+        top = (viewportHeight - containerHeight) / 2;
+        left = 0;
+      }
+
+      mainContainer.style.width = containerWidth + 'px';
+      mainContainer.style.height = containerHeight + 'px';
+      mainContainer.style.top = top + 'px';
+      mainContainer.style.left = left + 'px';
+
+      // Root font size drives rem-based scaling.
+      const rootFontSize = containerWidth / 100;
+      htmlElement.style.fontSize = rootFontSize + 'px';
+    }
+
+    window.addEventListener('load', () => {
+      resizeLayout();
+      initGame();
+    });
+    window.addEventListener('resize', resizeLayout);
+
+    // --- 2. GAME DATA (full bank; we slice to 50) ---
+    const ALL_QUESTIONS = [
+      {
+        text: 'Two merchants argue over a stolen basket of cacao beans. How do you resolve it?',
+        options: [
+          { text: 'Impose a holding fine on both until the culprit is found.', category: 'strength' },
+          { text: 'Question witnesses, track footprints, and inspect baskets for marks.', category: 'wisdom' },
+          { text: 'Soothe tempers and propose a temporary shared-loss pact.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A customer claims a potter’s jugs crack too easily.',
+        options: [
+          { text: 'Order the potter to refund and replace immediately.', category: 'strength' },
+          { text: 'Check kiln temperatures and clay mix before ruling.', category: 'wisdom' },
+          { text: 'Guide them to a goodwill discount and future guarantee.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Cholulan traders request five premium stalls near the gate.',
+        options: [
+          { text: 'Limit them to two stalls and add a gate tax.', category: 'strength' },
+          { text: 'Exchange stall access for fixed tariffs and quality checks.', category: 'wisdom' },
+          { text: 'Welcome them publicly to spark buzz and alliances.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'An apprentice drops obsidian blades, ruining a day’s work.',
+        options: [
+          { text: 'Assign restitution through extra labor shifts.', category: 'strength' },
+          { text: 'Create a training period with safer handling rules.', category: 'wisdom' },
+          { text: 'Appease the master artisan and encourage patience.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Two weavers dispute whose loom sits closer to the plaza.',
+        options: [
+          { text: 'Reassign the front spot to the elder weaver.', category: 'strength' },
+          { text: 'Rotate positions each market day by lot.', category: 'wisdom' },
+          { text: 'Turn it into a friendly showcase judged by shoppers.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Drought tightens maize stocks across districts.',
+        options: [
+          { text: 'Seize surplus for rations and punish hoarding.', category: 'strength' },
+          { text: 'Survey granaries and build a tiered ration plan.', category: 'wisdom' },
+          { text: 'Address the crowd with hope and communal vows.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A noblewoman demands to bypass the queue for dyes.',
+        options: [
+          { text: 'Refuse and cite market law: no privilege in line.', category: 'strength' },
+          { text: 'Consult elders for precedent before replying.', category: 'wisdom' },
+          { text: 'Praise her stature while inviting her to lead by example.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Children race through textile rows, toppling spindles.',
+        options: [
+          { text: 'Have guards clear them away at once.', category: 'strength' },
+          { text: 'Designate a supervised play corner beyond the aisles.', category: 'wisdom' },
+          { text: 'Turn the chase into a game and usher them out kindly.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Foreign spices arrive with unproven effects.',
+        options: [
+          { text: 'Tax heavily and restrict sales to one stall.', category: 'strength' },
+          { text: 'Test small batches and gather healer reports.', category: 'wisdom' },
+          { text: 'Host an open tasting with storytellers and music.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A thief is caught with a pouch of cacao nibs.',
+        options: [
+          { text: 'Assign public labor to repay the loss.', category: 'strength' },
+          { text: 'Investigate motive and household need before judging.', category: 'wisdom' },
+          { text: 'Offer a market apprenticeship in lieu of punishment.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Rain floods the lower stalls near the canal.',
+        options: [
+          { text: 'Order stones hauled to raise platforms today.', category: 'strength' },
+          { text: 'Draft a drainage plan and relocate vulnerable stalls.', category: 'wisdom' },
+          { text: 'Rally volunteers for cleanup with warm food stands.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A bard blocks traffic with a noisy performance.',
+        options: [
+          { text: 'Disperse the crowd and move him along.', category: 'strength' },
+          { text: 'Create a performance alcove away from aisles.', category: 'wisdom' },
+          { text: 'Invite one closing song, then guide him to the alcove.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'New trading hours confuse farmers and artisans.',
+        options: [
+          { text: 'Fine latecomers to enforce the rule quickly.', category: 'strength' },
+          { text: 'Hold a forum, adjust hours to seasonal light.', category: 'wisdom' },
+          { text: 'Announce with drums, banners, and cheerful heralds.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A sculptor’s image offends conservative elders.',
+        options: [
+          { text: 'Remove the statue to end unrest.', category: 'strength' },
+          { text: 'Host a dialogue on meaning, then decide placement.', category: 'wisdom' },
+          { text: 'Stage a respectful unveiling with the elders honored.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Farmers protest rising stall fees after poor harvest.',
+        options: [
+          { text: 'Hold fees steady but require extra duty shifts.', category: 'strength' },
+          { text: 'Index fees to yields for the next moon cycle.', category: 'wisdom' },
+          { text: 'Speak with empathy and promise council review.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'An envoy offers gifts expecting prime stall choice.',
+        options: [
+          { text: 'Accept gifts but assign a standard stall anyway.', category: 'strength' },
+          { text: 'Balance reciprocity: mid-tier stall plus treaty terms.', category: 'wisdom' },
+          { text: 'Thank him lavishly while upholding fair placement.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A market guard asks for heavier armor.',
+        options: [
+          { text: 'Grant his request and deduct from fines revenue.', category: 'strength' },
+          { text: 'Study incident records to right-size equipment.', category: 'wisdom' },
+          { text: 'Praise his service and arrange shared gear pool.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A caravan arrives at dusk seeking shelter.',
+        options: [
+          { text: 'Keep them outside the walls for security.', category: 'strength' },
+          { text: 'Open a penned yard with watch rotations.', category: 'wisdom' },
+          { text: 'Welcome them by torchlight with hot atole.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Rumors say the storage caves are haunted.',
+        options: [
+          { text: 'Ban talk of spirits and patrol nightly.', category: 'strength' },
+          { text: 'Invite priests to bless and cleanse the caves.', category: 'wisdom' },
+          { text: 'Tell a heartening tale to dispel fear.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A rival market opens on the lake road.',
+        options: [
+          { text: 'Restrict exports to starve their supply.', category: 'strength' },
+          { text: 'Improve logistics and standard weights here.', category: 'wisdom' },
+          { text: 'Host festivals to draw traders back joyfully.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A healer claims another stole her herbal recipe.',
+        options: [
+          { text: 'Confiscate the disputed salves until trial.', category: 'strength' },
+          { text: 'Compare ingredients and testimonies for authorship.', category: 'wisdom' },
+          { text: 'Broker a co-selling pact with shared credit.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'An ox breaks loose and crushes gourd displays.',
+        options: [
+          { text: 'Fine the owner and force repairs the same day.', category: 'strength' },
+          { text: 'Create animal-handling lanes and tethers.', category: 'wisdom' },
+          { text: 'Calm victims and organize neighbors to help rebuild.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Weavers complain of counterfeit cotton bolts.',
+        options: [
+          { text: 'Seize suspected bolts and name offenders.', category: 'strength' },
+          { text: 'Install seal-marks and random inspections.', category: 'wisdom' },
+          { text: 'Hold a public demo teaching buyers to spot fakes.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A scribe accuses a trader of falsifying weights.',
+        options: [
+          { text: 'Close the stall and post a warning tablet.', category: 'strength' },
+          { text: 'Recalibrate scales and audit past records.', category: 'wisdom' },
+          { text: 'Invite the trader to restore trust with free measures.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Festival drums drown out price haggling.',
+        options: [
+          { text: 'Limit musicians to set intervals.', category: 'strength' },
+          { text: 'Zone music to a plaza and schedule breaks.', category: 'wisdom' },
+          { text: 'Lead a procession that ends at the music zone.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A hunter sells unblessed hides, angering priests.',
+        options: [
+          { text: 'Ban sales until rites are completed.', category: 'strength' },
+          { text: 'Coordinate a swift blessing station at the gate.', category: 'wisdom' },
+          { text: 'Appeal to both sides to respect each other’s roles.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Seed loans are requested after a bad harvest.',
+        options: [
+          { text: 'Issue loans but bind with collateral.', category: 'strength' },
+          { text: 'Create a communal seed bank with staged payback.', category: 'wisdom' },
+          { text: 'Hold a pledge circle where neighbors sponsor each other.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A singer mocks a rival leader in satirical verse.',
+        options: [
+          { text: 'Censor the singer and fine the troupe.', category: 'strength' },
+          { text: 'Permit satire but set boundaries against slander.', category: 'wisdom' },
+          { text: 'Invite a friendly poetic duel to defuse grudges.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Guards report pickpockets near the bean stalls.',
+        options: [
+          { text: 'Increase patrols and cordon off chokepoints.', category: 'strength' },
+          { text: 'Map theft times and deploy decoys.', category: 'wisdom' },
+          { text: 'Address shoppers with tips and goodwill tokens.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A bronze mirror trader claims exclusive rights.',
+        options: [
+          { text: 'Reject the monopoly and open the market.', category: 'strength' },
+          { text: 'Trial exclusivity for a moon with price caps.', category: 'wisdom' },
+          { text: 'Negotiate a showcase while inviting rivals next week.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Salt caravans clog the eastern gate at sunrise.',
+        options: [
+          { text: 'Redirect with strict queue lines and fines.', category: 'strength' },
+          { text: 'Stagger entry by caravan tokens.', category: 'wisdom' },
+          { text: 'Personally greet leaders and coordinate timing.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A boy invents a clever pulley for water jars.',
+        options: [
+          { text: 'Commission him and require market licensing.', category: 'strength' },
+          { text: 'Test durability and write usage standards.', category: 'wisdom' },
+          { text: 'Celebrate him at a demo to inspire youth.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Masons request stone from civic stores for stall bases.',
+        options: [
+          { text: 'Grant stone but require extra levy work.', category: 'strength' },
+          { text: 'Prioritize based on foot traffic and safety data.', category: 'wisdom' },
+          { text: 'Rally donors and craftsmen in a communal build day.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A potter refuses to deal with non-Tlaxcalans.',
+        options: [
+          { text: 'Fine the potter for discrimination.', category: 'strength' },
+          { text: 'Educate on the council’s open-trade edict.', category: 'wisdom' },
+          { text: 'Introduce him to friendly visitors to build rapport.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Storage keepers report weevils in the bean sacks.',
+        options: [
+          { text: 'Burn infested stock to protect the rest.', category: 'strength' },
+          { text: 'Isolate, sun-dry, and rotate sacks systematically.', category: 'wisdom' },
+          { text: 'Explain the plan publicly to keep confidence high.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A sculpted fountain cracks after the first filling.',
+        options: [
+          { text: 'Command immediate repairs at the mason’s cost.', category: 'strength' },
+          { text: 'Assess soil settling; add supports and drainage.', category: 'wisdom' },
+          { text: 'Hold a rededication to relaunch the fountain proudly.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Woodcarvers accuse metalworkers of undercutting prices.',
+        options: [
+          { text: 'Set minimum prices to halt the feud.', category: 'strength' },
+          { text: 'Publish transparent cost sheets for both crafts.', category: 'wisdom' },
+          { text: 'Stage a joint fair where each craft highlights strengths.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A traveler collapses with heat near the dye pits.',
+        options: [
+          { text: 'Clear the area and requisition water at once.', category: 'strength' },
+          { text: 'Create a shaded first-aid tent with healer rota.', category: 'wisdom' },
+          { text: 'Comfort the family and coordinate rest spots.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Counterfeit jade beads spread among stalls.',
+        options: [
+          { text: 'Raid suspect sellers and post their names.', category: 'strength' },
+          { text: 'Implement bead-testing stations with guides.', category: 'wisdom' },
+          { text: 'Run a “Know Your Jade” storytelling session.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A cook’s fire jumps to a reed roof.',
+        options: [
+          { text: 'Bucket lines and cordon; shut kitchens today.', category: 'strength' },
+          { text: 'Mandate clay hearth rings and water jars per stall.', category: 'wisdom' },
+          { text: 'Praise helpers publicly to reinforce vigilance.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Textile dyes stain the canal, angering fishers.',
+        options: [
+          { text: 'Fine dyers and close the outflow channel.', category: 'strength' },
+          { text: 'Build settling basins and set discharge rules.', category: 'wisdom' },
+          { text: 'Host a forum to reconcile dyers and fishers.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A poet wants payment for blessing new stalls.',
+        options: [
+          { text: 'Deny payment and forbid accosting merchants.', category: 'strength' },
+          { text: 'Offer a licensed slot with set rates.', category: 'wisdom' },
+          { text: 'Invite him to compose a market anthem for a stipend.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Elite buyers hoard chili peppers at dawn.',
+        options: [
+          { text: 'Limit early purchases per person.', category: 'strength' },
+          { text: 'Stagger chili deliveries across the morning.', category: 'wisdom' },
+          { text: 'Appeal to prestige: leaders eat last for the people.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A messenger brings word of a new provincial levy.',
+        options: [
+          { text: 'Collect it promptly with posted penalties.', category: 'strength' },
+          { text: 'Verify the seal and negotiate the timetable.', category: 'wisdom' },
+          { text: 'Explain the levy to calm unrest and recruit volunteers.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'An elder requests space for ceremonial goods.',
+        options: [
+          { text: 'Reserve a central stall and evict a newcomer.', category: 'strength' },
+          { text: 'Allocate a rotating sacred corner by lottery.', category: 'wisdom' },
+          { text: 'Hold a small rite inaugurating the shared space.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Musicians ask to parade through the busiest lane.',
+        options: [
+          { text: 'Refuse and keep lanes clear for trade.', category: 'strength' },
+          { text: 'Approve a timed route with halts at plazas.', category: 'wisdom' },
+          { text: 'Lead the procession briefly, then redirect joyfully.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A fisher’s boat blocks the loading wharf.',
+        options: [
+          { text: 'Impound the boat until a fine is paid.', category: 'strength' },
+          { text: 'Establish scheduled docking slots.', category: 'wisdom' },
+          { text: 'Help unload quickly while teaching the new schedule.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A visiting noble praises your order and asks your secret.',
+        options: [
+          { text: 'Point to strict laws and swift penalties.', category: 'strength' },
+          { text: 'Share records, rosters, and the planning codex.', category: 'wisdom' },
+          { text: 'Speak of trust, shared meals, and fair words.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A child is lost near the feather merchants.',
+        options: [
+          { text: 'Lock the gates until family is found.', category: 'strength' },
+          { text: 'Set up a reunion post with runner signals.', category: 'wisdom' },
+          { text: 'Comfort the child and turn search into a cheerful call.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A craftsman collapses from overwork.',
+        options: [
+          { text: 'Force a rest order on his workshop.', category: 'strength' },
+          { text: 'Create shift limits during festival rushes.', category: 'wisdom' },
+          { text: 'Visit with encouraging words and gifts of cacao.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A caravan claims thieves stalk the northern road.',
+        options: [
+          { text: 'Assign a larger armed escort for caravans.', category: 'strength' },
+          { text: 'Map incidents and adjust departure times.', category: 'wisdom' },
+          { text: 'Send letters of assurance and hosters’ welcomes.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Counter sellers shout insults at rival stalls.',
+        options: [
+          { text: 'Impose silence penalties for disorder.', category: 'strength' },
+          { text: 'Set a code of conduct with posted oaths.', category: 'wisdom' },
+          { text: 'Hold a friendly contest judged by shoppers.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A rainstorm ends the drought; stores overflow.',
+        options: [
+          { text: 'Release reserves slowly to stabilize prices.', category: 'strength' },
+          { text: 'Audit stocks and plan fair redistribution.', category: 'wisdom' },
+          { text: 'Celebrate abundance with a gratitude feast.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A jade cutter requests exclusive use of river stones.',
+        options: [
+          { text: 'Deny exclusivity; river goods are common.', category: 'strength' },
+          { text: 'Grant timed access with monitored quotas.', category: 'wisdom' },
+          { text: 'Broker sharing with public demonstrations.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Market curfew needs strict closing.',
+        options: [
+          { text: 'Ring the final horn and fine late sellers.', category: 'strength' },
+          { text: 'Phase-out lights and mark timeposts along rows.', category: 'wisdom' },
+          { text: 'Thank traders for prompt closing with kind words.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A brewer’s pulque is rumored watered down.',
+        options: [
+          { text: 'Shut the stall pending tests and post guards.', category: 'strength' },
+          { text: 'Create taste trials with neutral tasters.', category: 'wisdom' },
+          { text: 'Invite the brewer to win back trust with free cups.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A featherworker wants protection for rare quetzal plumes.',
+        options: [
+          { text: 'Confiscate illegal plumes and punish poachers.', category: 'strength' },
+          { text: 'Set permits and breeding protections.', category: 'wisdom' },
+          { text: 'Launch a pride campaign for ethical feathers.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A teacher asks for space to tutor merchant children.',
+        options: [
+          { text: 'Repurpose an unused stall and charge a fee.', category: 'strength' },
+          { text: 'Pilot morning lessons during slow hours.', category: 'wisdom' },
+          { text: 'Invite families with stories and games to enroll.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A visiting artisan gifts you a mask seeking favor.',
+        options: [
+          { text: 'Accept but declare no special treatment.', category: 'strength' },
+          { text: 'Record the gift and recuse from his disputes.', category: 'wisdom' },
+          { text: 'Praise the gift publicly while affirming fairness.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Night watch asks for more torches on shadowed lanes.',
+        options: [
+          { text: 'Procure torches and assign oil rations.', category: 'strength' },
+          { text: 'Map dark spots and install fixed braziers.', category: 'wisdom' },
+          { text: 'Thank watchmen and recruit volunteer lamp keepers.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'A trader claims the gods favor his stall alone.',
+        options: [
+          { text: 'Forbid exclusive divine claims in trade.', category: 'strength' },
+          { text: 'Allow blessings but bar superiority boasts.', category: 'wisdom' },
+          { text: 'Invite a shared blessing for all merchants.', category: 'charisma' },
+        ],
+      },
+      {
+        text: 'Two cooks fight over prime smoke-free space.',
+        options: [
+          { text: 'Award the spot to the senior cook.', category: 'strength' },
+          { text: 'Rotate spots by wind charts over the week.', category: 'wisdom' },
+          { text: 'Host a tasting and let the crowd decide for today.', category: 'charisma' },
+        ],
+      },
+    ];
+
+    const questions = ALL_QUESTIONS.slice(0, 50);
+
+    // --- 3. GAME STATE ---
+    let currentIndex = 0;
+    let scores = { strength: 0, wisdom: 0, charisma: 0 };
+    let finalStateSent = false;
+
+    // DOM references
+    let introScreen, gameScreen, endScreen;
+    let questionTextEl, optionsContainerEl, questionCounterEl;
+    let dominantTraitEl;
+    let btnBegin, btnEnd, btnPlayAgain;
+
+    function initGame() {
+      introScreen = document.getElementById('intro-screen');
+      gameScreen = document.getElementById('game-screen');
+      endScreen = document.getElementById('end-screen');
+
+      questionTextEl = document.getElementById('question-text');
+      optionsContainerEl = document.getElementById('options-container');
+      questionCounterEl = document.getElementById('question-counter');
+      dominantTraitEl = document.getElementById('dominant-trait');
+
+      btnBegin = document.getElementById('btn-begin');
+      btnEnd = document.getElementById('btn-end');
+      btnPlayAgain = document.getElementById('btn-play-again');
+
+      btnBegin.addEventListener('click', startGame);
+      btnEnd.addEventListener('click', endGame);
+      btnPlayAgain.addEventListener('click', startGame);
+
+      showScreen('intro');
+    }
+
+    function showScreen(name) {
+      introScreen.classList.add('hidden');
+      gameScreen.classList.add('hidden');
+      endScreen.classList.add('hidden');
+
+      if (name === 'intro') introScreen.classList.remove('hidden');
+      else if (name === 'game') gameScreen.classList.remove('hidden');
+      else if (name === 'end') endScreen.classList.remove('hidden');
+    }
+
+    function shuffleArray(array) {
+      const arr = array.slice();
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      questionTextEl.textContent = q.text;
+      questionCounterEl.textContent = 'Question ' + (currentIndex + 1) + ' of ' + questions.length;
+
+      // Clear old options
+      optionsContainerEl.innerHTML = '';
+
+      const shuffledOptions = shuffleArray(q.options);
+      shuffledOptions.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-primary';
+        btn.textContent = opt.text;
+        btn.addEventListener('click', () => handleAnswer(opt.category));
+        optionsContainerEl.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(category) {
+      if (!scores[category]) scores[category] = 0;
+      scores[category] += 1;
+
+      if (currentIndex < questions.length - 1) {
+        currentIndex += 1;
+        renderQuestion();
+      } else {
+        endGame();
+      }
+    }
+
+    function winnerCategory() {
+      let winner = null;
+      let max = -Infinity;
+      for (const key in scores) {
+        if (Object.prototype.hasOwnProperty.call(scores, key)) {
+          if (scores[key] > max) {
+            max = scores[key];
+            winner = key;
+          }
+        }
+      }
+      return winner;
+    }
+
+    // --- 4. PARENT FRAME COMMUNICATION ---
+    function sendDeltaToParent() {
+      if (finalStateSent) return;
+
+      if (window.parent && window.parent !== window) {
+        const winner = winnerCategory();
+        const delta = {
+          strength: 0,
+          wisdom: 0,
+          charisma: 0,
+        };
+        if (winner && delta.hasOwnProperty(winner)) {
+          delta[winner] = 1;
+        }
+
+        window.parent.postMessage({ type: 'statsDeltaUpdate', delta: delta }, '*');
+        finalStateSent = true;
+        console.log('Final stat deltas sent to parent:', delta);
+      } else {
+        console.warn('Not in an iframe. Final state delta cannot be sent.');
+      }
+    }
+
+    function startGame() {
+      finalStateSent = false;
+      currentIndex = 0;
+      scores = { strength: 0, wisdom: 0, charisma: 0 };
+      showScreen('game');
+      renderQuestion();
+    }
+
+    function endGame() {
+      showScreen('end');
+
+      const winner = winnerCategory();
+      if (winner) {
+        const label = winner.charAt(0).toUpperCase() + winner.slice(1);
+        dominantTraitEl.textContent = 'Dominant Trait: ' + label;
+      } else {
+        dominantTraitEl.textContent = 'Dominant Trait: None (no decisions made)';
+      }
+
+      sendDeltaToParent();
+    }
+  </script>
+</body>
+</html>

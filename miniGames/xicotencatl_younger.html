@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Xicoténcatl the Younger – Aztec Mini-Game</title>
+
+  <style>
+    /* --- LAYOUT ENGINE STYLES --- */
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #111; /* Color for the letterbox bars */
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #main-container {
+      position: absolute;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/1/1f/Codex_Tlaxcala.jpg");
+      background-color: #f6e6bf;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      box-shadow: 0 0 3rem rgba(0, 0, 0, 0.5);
+      transition: all 0.2s ease-in-out;
+    }
+
+    /* --- Inner UI (rem-based so it scales) --- */
+    .screen {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    .screen-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: rgba(255, 247, 237, 0.95);
+      border: 0.1rem solid #f1d6a5;
+      border-radius: 1.2rem;
+      box-shadow: 0 0.6rem 2rem rgba(0, 0, 0, 0.15);
+      padding: 2rem;
+      max-width: 60rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .title {
+      font-size: 3rem;
+      line-height: 1.1;
+      color: #7a3a00;
+      margin: 0 0 1rem;
+    }
+
+    .subtitle {
+      color: #6b3f18;
+      font-style: italic;
+      margin: 0 0 1.2rem;
+      font-size: 1.4rem;
+    }
+
+    .body-text {
+      color: #6b3f18;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .small-text {
+      color: #8b5a2b;
+      font-size: 1.2rem;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 2rem;
+      color: #6b3f18;
+      font-size: 1.4rem;
+    }
+
+    .list li + li {
+      margin-top: 0.4rem;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .btn {
+      padding: 1rem 1.6rem;
+      border-radius: 1rem;
+      background: #8b1d1d;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.2);
+      font-size: 1.4rem;
+    }
+
+    .btn:hover {
+      background: #6e1616;
+    }
+
+    .btn-secondary {
+      background: #1f2937;
+    }
+
+    .btn-secondary:hover {
+      background: #111827;
+    }
+
+    .question-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .question-text {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #7a3a00;
+      margin: 0;
+    }
+
+    .meta {
+      color: #6b3f18;
+      font-size: 1.2rem;
+    }
+
+    .answers {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .answer-btn {
+      text-align: left;
+      padding: 1rem 1.2rem;
+      border-radius: 1rem;
+      background: #8b1d1d;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.2);
+      font-size: 1.4rem;
+    }
+
+    .answer-btn:hover {
+      background: #6e1616;
+    }
+
+    .results-main {
+      font-size: 2.4rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- All visible game content MUST be inside #main-container -->
+  <div id="main-container">
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="screen active">
+      <div class="screen-inner">
+        <div class="card">
+          <h1 class="title">Xicoténcatl the Younger</h1>
+          <p class="subtitle">General of Tlaxcala • Pre-Columbian Mexico</p>
+          <p class="body-text">
+            Step into the sandals of Xicoténcatl. Guide training, discipline, resources,
+            and ritual within your standing army. Your choices quietly shape three
+            qualities of leadership.
+          </p>
+          <ul class="list">
+            <li>Each dilemma offers three responses. Choose what feels right.</li>
+            <li>Each choice increases a hidden leadership trait by +1.</li>
+            <li>End the game whenever you wish; the highest trait wins.</li>
+          </ul>
+          <p class="small-text">
+            This experience focuses only on internal matters — no external battles or conflicts.
+          </p>
+          <div class="btn-row">
+            <button id="start-button" class="btn">Begin Leadership</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question Screen -->
+    <div id="question-screen" class="screen">
+      <div class="screen-inner">
+        <div class="card">
+          <div class="question-header">
+            <h2 id="question-text" class="question-text"></h2>
+            <span id="question-progress" class="meta"></span>
+          </div>
+          <div id="answers-container" class="answers"></div>
+          <div class="btn-row">
+            <button id="end-button" class="btn btn-secondary">End Campaign</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <div class="screen-inner">
+        <div class="card" style="text-align: center;">
+          <h2 class="title results-main">Your Leadership Legacy</h2>
+          <p id="results-answered" class="meta"></p>
+          <p id="results-scores" class="meta" style="margin-top: 0.6rem;"></p>
+          <p id="results-dominant" class="meta" style="margin-top: 0.6rem; color: #8b1d1d; font-weight: 700; font-size: 1.6rem;"></p>
+          <div class="btn-row" style="justify-content: center;">
+            <button id="restart-button" class="btn">Restart Game</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ================================
+    //  1. LAYOUT ENGINE LOGIC (16:9)
+    // ================================
+    function resizeLayout() {
+      const mainContainer = document.getElementById("main-container");
+      const htmlElement = document.documentElement;
+      if (!mainContainer) return;
+
+      const ASPECT_RATIO = 16 / 9;
+      let viewportWidth = window.innerWidth;
+      let viewportHeight = window.innerHeight;
+      const viewportRatio = viewportWidth / viewportHeight;
+
+      let containerWidth, containerHeight, top, left;
+
+      if (viewportRatio > ASPECT_RATIO) {
+        // Viewport is wider than 16:9
+        containerHeight = viewportHeight;
+        containerWidth = containerHeight * ASPECT_RATIO;
+        top = 0;
+        left = (viewportWidth - containerWidth) / 2;
+      } else {
+        // Viewport is taller than 16:9
+        containerWidth = viewportWidth;
+        containerHeight = containerWidth / ASPECT_RATIO;
+        top = (viewportHeight - containerHeight) / 2;
+        left = 0;
+      }
+
+      mainContainer.style.width = containerWidth + "px";
+      mainContainer.style.height = containerHeight + "px";
+      mainContainer.style.top = top + "px";
+      mainContainer.style.left = left + "px";
+
+      // Root font size: 100rem = container width
+      const rootFontSize = containerWidth / 100;
+      htmlElement.style.fontSize = rootFontSize + "px";
+    }
+
+    window.addEventListener("load", function () {
+      resizeLayout();
+      initGame();
+    });
+
+    window.addEventListener("resize", resizeLayout);
+
+    // ================================
+    //  2. GAME DATA
+    // ================================
+    const questions = [
+      { text: 'Two captains argue over the distribution of food supplies. What do you do?', options: [
+        { text: 'Have them compete in a physical challenge to earn the right to decide.', category: 'strength' },
+        { text: 'Listen to both sides and divide the supplies fairly.', category: 'wisdom' },
+        { text: 'Calm them with a speech about unity and shared purpose.', category: 'charisma' }
+      ]},
+      { text: 'A group of young recruits is struggling with discipline during training.', options: [
+        { text: 'Lead them in a grueling endurance exercise.', category: 'strength' },
+        { text: 'Assign experienced mentors to guide their development.', category: 'wisdom' },
+        { text: 'Motivate them with stories of honor and glory.', category: 'charisma' }
+      ]},
+      { text: 'An artisan complains that the soldiers mishandle the weapons he crafts.', options: [
+        { text: 'Command stricter handling rules and punish neglect.', category: 'strength' },
+        { text: 'Meet with the artisan to understand how tools can be improved.', category: 'wisdom' },
+        { text: 'Praise the artisan publicly and remind the troops of his importance.', category: 'charisma' }
+      ]},
+      { text: 'Some soldiers have started gambling with their pay.', options: [
+        { text: 'Ban the games and enforce the rule firmly.', category: 'strength' },
+        { text: 'Allow games under supervision to limit excess.', category: 'wisdom' },
+        { text: 'Host a festival game day to lift spirits responsibly.', category: 'charisma' }
+      ]},
+      { text: 'A veteran challenges your decision in front of others.', options: [
+        { text: 'Confront him directly and assert your authority.', category: 'strength' },
+        { text: 'Ask him privately to explain his reasoning.', category: 'wisdom' },
+        { text: 'Defuse tension with humor and reaffirm respect.', category: 'charisma' }
+      ]},
+      { text: 'A supply keeper reports that food stores are running low.', options: [
+        { text: 'Order rationing to ensure fairness.', category: 'strength' },
+        { text: 'Plan better distribution using recorded data.', category: 'wisdom' },
+        { text: 'Reassure the troops and promise swift action.', category: 'charisma' }
+      ]},
+      { text: 'The camp healer requests more helpers for tending the wounded.', options: [
+        { text: 'Assign extra workers immediately.', category: 'strength' },
+        { text: 'Organize a rotation schedule to balance duties.', category: 'wisdom' },
+        { text: 'Encourage volunteers with a speech of gratitude.', category: 'charisma' }
+      ]},
+      { text: 'A singer wishes to perform during training hours.', options: [
+        { text: 'Deny the request to maintain discipline.', category: 'strength' },
+        { text: 'Allow the performance after the day’s duties are done.', category: 'wisdom' },
+        { text: 'Invite the troops to enjoy the song as a morale boost.', category: 'charisma' }
+      ]},
+      { text: 'An elder advisor questions the youth of some new officers.', options: [
+        { text: 'Remind him that merit matters more than age.', category: 'strength' },
+        { text: 'Explain your reasoning behind the promotions.', category: 'wisdom' },
+        { text: 'Smooth tensions by praising both generations.', category: 'charisma' }
+      ]},
+      { text: 'Your warriors have grown restless during a period of peace.', options: [
+        { text: 'Increase training drills to keep them sharp.', category: 'strength' },
+        { text: 'Introduce lessons on history and strategy.', category: 'wisdom' },
+        { text: 'Organize cultural events to keep spirits high.', category: 'charisma' }
+      ]},
+      { text: 'A messenger reports that supplies were lost in a storm.', options: [
+        { text: 'Send a team to recover what can be saved.', category: 'strength' },
+        { text: 'Adjust rations and plan for future shortages.', category: 'wisdom' },
+        { text: 'Reassure everyone that unity will overcome hardship.', category: 'charisma' }
+      ]},
+      { text: 'Some warriors feel their training is too repetitive.', options: [
+        { text: 'Make the drills even tougher to build resilience.', category: 'strength' },
+        { text: 'Rotate the exercises to develop new skills.', category: 'wisdom' },
+        { text: 'Turn training into friendly competitions.', category: 'charisma' }
+      ]},
+      { text: 'A young officer made an error in record keeping.', options: [
+        { text: 'Discipline him to set an example.', category: 'strength' },
+        { text: 'Teach him better organization methods.', category: 'wisdom' },
+        { text: 'Reassure him and stress learning from mistakes.', category: 'charisma' }
+      ]},
+      { text: 'The cooks request better ingredients from the stores.', options: [
+        { text: 'Order them to make do with what they have.', category: 'strength' },
+        { text: 'Find ways to trade surplus goods for better food.', category: 'wisdom' },
+        { text: 'Thank them for their service and promise improvement.', category: 'charisma' }
+      ]},
+      { text: 'A ceremonial drummer falls ill before an important ritual.', options: [
+        { text: 'Find a replacement quickly and proceed.', category: 'strength' },
+        { text: 'Adjust the ritual to honor the missing drummer.', category: 'wisdom' },
+        { text: 'Encourage everyone to dedicate the ritual to his recovery.', category: 'charisma' }
+      ]},
+      { text: 'Two warriors claim credit for the same achievement.', options: [
+        { text: 'Test their skill to determine the true contributor.', category: 'strength' },
+        { text: 'Investigate carefully to learn the truth.', category: 'wisdom' },
+        { text: 'Praise both for teamwork and avoid division.', category: 'charisma' }
+      ]},
+      { text: 'A group of trainees is falling behind in their physical goals.', options: [
+        { text: 'Push them through extra drills.', category: 'strength' },
+        { text: 'Create personalized regimens to help them improve.', category: 'wisdom' },
+        { text: 'Motivate them with collective encouragement.', category: 'charisma' }
+      ]},
+      { text: 'An elder artisan suggests new designs for armor.', options: [
+        { text: 'Stick to the tried and true designs.', category: 'strength' },
+        { text: 'Review his suggestions and test them.', category: 'wisdom' },
+        { text: 'Thank him publicly for his innovation.', category: 'charisma' }
+      ]},
+      { text: 'You hear rumors of jealousy between units.', options: [
+        { text: 'Reassign members to restore balance.', category: 'strength' },
+        { text: 'Hold discussions to air out concerns.', category: 'wisdom' },
+        { text: 'Host a feast to build friendship among units.', category: 'charisma' }
+      ]},
+      { text: 'Your scribe complains that the archives are disorganized.', options: [
+        { text: 'Command everyone to help reorganize immediately.', category: 'strength' },
+        { text: 'Create a long-term record-keeping system.', category: 'wisdom' },
+        { text: 'Praise the scribe and promise him recognition.', category: 'charisma' }
+      ]},
+      { text: 'The night watch grows careless.', options: [
+        { text: 'Double their duties until discipline returns.', category: 'strength' },
+        { text: 'Rotate shifts to avoid exhaustion.', category: 'wisdom' },
+        { text: 'Address them with an inspiring talk about vigilance.', category: 'charisma' }
+      ]},
+      { text: 'A dancer offers to teach rhythm to the troops for morale.', options: [
+        { text: 'Decline, focusing on duty.', category: 'strength' },
+        { text: 'Permit classes after duties as relaxation.', category: 'wisdom' },
+        { text: 'Celebrate the offer and invite participation.', category: 'charisma' }
+      ]},
+      { text: 'A craftsman needs more time to finish uniforms.', options: [
+        { text: 'Demand completion by the deadline.', category: 'strength' },
+        { text: 'Reallocate labor to assist him.', category: 'wisdom' },
+        { text: 'Encourage patience and gratitude among the troops.', category: 'charisma' }
+      ]},
+      { text: "An officer’s family sends word requesting his presence.", options: [
+        { text: 'Deny leave to preserve discipline.', category: 'strength' },
+        { text: 'Allow brief leave under conditions.', category: 'wisdom' },
+        { text: 'Show compassion and send a supportive message.', category: 'charisma' }
+      ]},
+      { text: 'A group of youths wishes to join early.', options: [
+        { text: 'Test their abilities first.', category: 'strength' },
+        { text: 'Advise them to complete preparation before joining.', category: 'wisdom' },
+        { text: 'Encourage their enthusiasm and promise future training.', category: 'charisma' }
+      ]},
+      { text: 'One of your advisors disagrees with your teaching style.', options: [
+        { text: 'Remind him who leads.', category: 'strength' },
+        { text: 'Listen to his counsel and adjust where needed.', category: 'wisdom' },
+        { text: 'Publicly thank him for speaking his mind.', category: 'charisma' }
+      ]},
+      { text: 'Your musicians request better instruments.', options: [
+        { text: 'Require them to improve their sound regardless.', category: 'strength' },
+        { text: 'Plan resources for new instruments.', category: 'wisdom' },
+        { text: 'Praise their passion and inspire them to keep playing.', category: 'charisma' }
+      ]},
+      { text: 'The scribes propose documenting new traditions.', options: [
+        { text: 'Focus on maintaining the old ways.', category: 'strength' },
+        { text: 'Support their idea to preserve wisdom.', category: 'wisdom' },
+        { text: 'Encourage them to share their work publicly.', category: 'charisma' }
+      ]},
+      { text: 'A scout forgets to deliver an important message.', options: [
+        { text: 'Discipline him for negligence.', category: 'strength' },
+        { text: 'Review communication methods.', category: 'wisdom' },
+        { text: 'Help him regain confidence.', category: 'charisma' }
+      ]},
+      { text: 'Several tents have been damaged by rain.', options: [
+        { text: 'Order immediate repairs.', category: 'strength' },
+        { text: 'Organize efficient rebuilding groups.', category: 'wisdom' },
+        { text: 'Thank all who volunteer to help.', category: 'charisma' }
+      ]},
+      { text: 'Some recruits mock an older warrior.', options: [
+        { text: 'Punish them for disrespect.', category: 'strength' },
+        { text: 'Teach a lesson on respect through example.', category: 'wisdom' },
+        { text: 'Have the veteran share his stories.', category: 'charisma' }
+      ]},
+      { text: 'Your counselor falls ill.', options: [
+        { text: 'Appoint a replacement immediately.', category: 'strength' },
+        { text: 'Redistribute tasks to maintain order.', category: 'wisdom' },
+        { text: 'Visit and express concern.', category: 'charisma' }
+      ]},
+      { text: 'The cooks complain about insufficient firewood.', options: [
+        { text: 'Send a crew to gather more.', category: 'strength' },
+        { text: 'Improve storage and usage efficiency.', category: 'wisdom' },
+        { text: 'Organize a cheerful gathering around the hearth.', category: 'charisma' }
+      ]},
+      { text: 'A ritual painter wishes to add symbols of renewal to your banners.', options: [
+        { text: 'Reject changes to tradition.', category: 'strength' },
+        { text: 'Approve after reviewing meaning.', category: 'wisdom' },
+        { text: 'Celebrate the new design publicly.', category: 'charisma' }
+      ]},
+      { text: 'A healer suggests daily breathing exercises for the troops.', options: [
+        { text: 'Enforce it as mandatory training.', category: 'strength' },
+        { text: 'Include it as an optional wellness activity.', category: 'wisdom' },
+        { text: 'Encourage everyone by trying it yourself first.', category: 'charisma' }
+      ]},
+      { text: 'The drummers grow tired during ceremonies.', options: [
+        { text: 'Replace them with younger players.', category: 'strength' },
+        { text: 'Adjust pacing and rest intervals.', category: 'wisdom' },
+        { text: 'Lead applause for their dedication.', category: 'charisma' }
+      ]},
+      { text: 'A scribe misplaces important records.', options: [
+        { text: 'Reprimand him to instill caution.', category: 'strength' },
+        { text: 'Develop a more secure record system.', category: 'wisdom' },
+        { text: 'Encourage him to restore order without shame.', category: 'charisma' }
+      ]},
+      { text: 'Young soldiers complain about food monotony.', options: [
+        { text: 'Remind them food is nourishment, not pleasure.', category: 'strength' },
+        { text: 'Plan varied meals using limited resources.', category: 'wisdom' },
+        { text: 'Let them share family recipes for variety.', category: 'charisma' }
+      ]},
+      { text: 'Your weavers suggest brighter colors for uniforms.', options: [
+        { text: 'Keep the traditional hues.', category: 'strength' },
+        { text: 'Allow brighter colors in moderation.', category: 'wisdom' },
+        { text: 'Approve enthusiastically and praise creativity.', category: 'charisma' }
+      ]},
+      { text: 'The camp animals are restless.', options: [
+        { text: 'Assign stronger handlers.', category: 'strength' },
+        { text: 'Study feeding and rest habits.', category: 'wisdom' },
+        { text: 'Speak calmly and reassure the caretakers.', category: 'charisma' }
+      ]},
+      { text: 'A young drummer wants to lead the rhythm.', options: [
+        { text: 'Have him prove his timing skills.', category: 'strength' },
+        { text: 'Let him assist under supervision.', category: 'wisdom' },
+        { text: 'Applaud his confidence and encourage learning.', category: 'charisma' }
+      ]},
+      { text: 'A healer and cook disagree over the use of herbs.', options: [
+        { text: 'Let the healer decide for health reasons.', category: 'strength' },
+        { text: 'Consult both and decide based on need.', category: 'wisdom' },
+        { text: 'Remind both of their shared goal and praise cooperation.', category: 'charisma' }
+      ]},
+      { text: 'Some warriors forget morning rituals.', options: [
+        { text: 'Enforce penalties for negligence.', category: 'strength' },
+        { text: 'Educate them on ritual meaning.', category: 'wisdom' },
+        { text: 'Lead the ritual yourself to inspire.', category: 'charisma' }
+      ]},
+      { text: 'An artist requests a new mural in your hall.', options: [
+        { text: 'Allow only after duties are done.', category: 'strength' },
+        { text: 'Review design before approval.', category: 'wisdom' },
+        { text: 'Celebrate art as part of leadership.', category: 'charisma' }
+      ]},
+      { text: 'Two apprentices fight over who gets credit for a carving.', options: [
+        { text: 'Have them work together on another piece.', category: 'strength' },
+        { text: 'Investigate who contributed more.', category: 'wisdom' },
+        { text: 'Praise both for teamwork and reconciliation.', category: 'charisma' }
+      ]},
+      { text: 'The camp’s spiritual leader asks for more ceremonial space.', options: [
+        { text: 'Use available open ground.', category: 'strength' },
+        { text: 'Designate and prepare a proper site.', category: 'wisdom' },
+        { text: 'Gather everyone for a cleansing ceremony.', category: 'charisma' }
+      ]},
+      { text: 'Your assistant suggests recording daily reflections.', options: [
+        { text: 'Focus on action over reflection.', category: 'strength' },
+        { text: 'Adopt the idea to learn from experience.', category: 'wisdom' },
+        { text: 'Invite others to share reflections publicly.', category: 'charisma' }
+      ]},
+      { text: 'The potters request more clay for their work.', options: [
+        { text: 'Command faster production with current supply.', category: 'strength' },
+        { text: 'Source new clay from nearby deposits.', category: 'wisdom' },
+        { text: 'Thank them for their artistry and patience.', category: 'charisma' }
+      ]}
+    ];
+
+    // ================================
+    //  3. GAME STATE & DOM
+    // ================================
+    let currentQuestionIndex = 0;
+    let scores = { strength: 0, wisdom: 0, charisma: 0 };
+    let finalStateSent = false;
+
+    let introScreen, questionScreen, resultsScreen;
+    let questionTextEl, questionProgressEl, answersContainer;
+    let resultsAnsweredEl, resultsScoresEl, resultsDominantEl;
+
+    function initGame() {
+      introScreen = document.getElementById("intro-screen");
+      questionScreen = document.getElementById("question-screen");
+      resultsScreen = document.getElementById("results-screen");
+
+      questionTextEl = document.getElementById("question-text");
+      questionProgressEl = document.getElementById("question-progress");
+      answersContainer = document.getElementById("answers-container");
+
+      resultsAnsweredEl = document.getElementById("results-answered");
+      resultsScoresEl = document.getElementById("results-scores");
+      resultsDominantEl = document.getElementById("results-dominant");
+
+      document.getElementById("start-button").addEventListener("click", startGame);
+      document.getElementById("end-button").addEventListener("click", endGame);
+      document.getElementById("restart-button").addEventListener("click", restartGame);
+
+      showScreen("intro");
+    }
+
+    function showScreen(which) {
+      [introScreen, questionScreen, resultsScreen].forEach((el) => {
+        el.classList.remove("active");
+      });
+
+      if (which === "intro") introScreen.classList.add("active");
+      if (which === "question") questionScreen.classList.add("active");
+      if (which === "results") resultsScreen.classList.add("active");
+    }
+
+    function shuffleArray(array) {
+      const arr = array.slice();
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function startGame() {
+      currentQuestionIndex = 0;
+      scores = { strength: 0, wisdom: 0, charisma: 0 };
+      finalStateSent = false;
+      showScreen("question");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = questions[currentQuestionIndex];
+      questionTextEl.textContent = q.text;
+      questionProgressEl.textContent =
+        (currentQuestionIndex + 1) + " / " + questions.length;
+
+      answersContainer.innerHTML = "";
+      const shuffled = shuffleArray(q.options);
+
+      shuffled.forEach((opt) => {
+        const btn = document.createElement("button");
+        btn.className = "answer-btn";
+        btn.textContent = opt.text;
+        btn.dataset.category = opt.category;
+        btn.addEventListener("click", () => handleAnswer(opt.category));
+        answersContainer.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(category) {
+      scores[category] = (scores[category] || 0) + 1;
+
+      if (currentQuestionIndex + 1 < questions.length) {
+        currentQuestionIndex += 1;
+        renderQuestion();
+      } else {
+        endGame(); // natural completion
+      }
+    }
+
+    function totalAnswered() {
+      return scores.strength + scores.wisdom + scores.charisma;
+    }
+
+    function winnerCategory(scoresObj) {
+      const order = ["strength", "wisdom", "charisma"]; // tie-break priority
+      let max = -Infinity;
+      let winner = null;
+      order.forEach((k) => {
+        if (scoresObj[k] > max) {
+          max = scoresObj[k];
+          winner = k;
+        }
+      });
+      return winner;
+    }
+
+    function allWinners(scoresObj) {
+      const values = Object.values(scoresObj);
+      const max = Math.max.apply(null, values);
+      return Object.keys(scoresObj).filter((k) => scoresObj[k] === max);
+    }
+
+    function sendDeltaToParent() {
+      if (finalStateSent) return;
+
+      if (window.parent && window.parent !== window) {
+        const winner = winnerCategory(scores);
+        const delta = { strength: 0, wisdom: 0, charisma: 0 };
+        if (winner) {
+          delta[winner] = 1; // single point to highest scoring attribute
+        }
+
+        window.parent.postMessage(
+          { type: "statsDeltaUpdate", delta: delta },
+          "*"
+        );
+        finalStateSent = true;
+        console.log("Final stat deltas sent to parent:", delta);
+      } else {
+        console.warn("Not in an iframe. Final state delta cannot be sent.");
+      }
+    }
+
+    function endGame() {
+      showScreen("results");
+      const answered = totalAnswered();
+      resultsAnsweredEl.textContent =
+        "Answered: " + answered + " • Out of " + questions.length;
+      resultsScoresEl.textContent = ""; // Clear this line as per request
+
+      const winner = winnerCategory(scores); // Get the single winner based on tie-breaking logic
+      let dominantTraitText = "";
+      if (winner) {
+        dominantTraitText = "You earned a point in: " + winner.toUpperCase();
+      } else {
+        dominantTraitText = "No dominant trait identified."; // Fallback, though ideally won't be hit with answered questions
+      }
+      resultsDominantEl.textContent = dominantTraitText;
+
+      sendDeltaToParent();
+    }
+
+    function restartGame() {
+      // Simply reload to fully reset (layout, scores, intro)
+      window.location.reload();
+    }
+  </script>
+</body>
+</html>

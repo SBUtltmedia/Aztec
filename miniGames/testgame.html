@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Frameset</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="xicotencatl_younger.html"></iframe>
+
+    <script>
+        window.addEventListener('message', function(event) {
+            // For security, you might want to check event.origin
+            // if (event.origin !== 'http://127.0.0.1:5500') return;
+
+            console.log('Message received from iframe:', event.data);
+            alert('Received data from iframe: \n' + JSON.stringify(event.data, null, 2));
+        });
+    </script>
+</body>
+</html>

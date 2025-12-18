@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xicoténcatl the Elder: Ruler of Tlaxcala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --amber-50: #fffbeb;
+      --amber-100: #fef3c7;
+      --amber-200: #fde68a;
+      --amber-700: #b45309;
+      --amber-800: #92400e;
+      --ink: #1f2937;
+      --paper: #fff8e6;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    #totals {
+      display: none;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--amber-100);
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/86/Mexica_codex_style_pattern.svg');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .center {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(900px, 95vw);
+      background: color-mix(in oklab, var(--paper) 92%, white);
+      border: 2px solid var(--amber-700);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+      padding: 24px 22px;
+      backdrop-filter: saturate(1.1) blur(2px);
+    }
+
+    h1,
+    h2 {
+      font-family: 'Cinzel', serif;
+      margin: 0 0 12px
+    }
+
+    h1 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      color: var(--amber-800)
+    }
+
+    h2 {
+      font-size: clamp(20px, 2.4vw, 26px);
+      color: var(--amber-800)
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 0 0 10px
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px
+    }
+
+    .badge {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: .06em;
+      background: var(--amber-700);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px
+    }
+
+    .btn {
+      appearance: none;
+      border: 2px solid var(--amber-700);
+      background: var(--amber-700);
+      color: #fff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: clamp(14px, 1.9vw, 18px);
+      cursor: pointer;
+      transition: transform .04s ease, background .15s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--amber-800)
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .muted {
+      opacity: .8;
+      font-size: 13px
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center
+    }
+
+    .progress {
+      font-family: 'Cinzel', serif;
+      color: var(--amber-800)
+    }
+
+    .totals {
+      font-family: 'Cinzel', serif
+    }
+
+    .hidden {
+      display: none
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="center" id="screen-intro">
+    <div class="card">
+      <div class="title">
+        <span class="badge">Tlaxcala</span>
+        <h1>Xicoténcatl the Elder: Ruler of Tlaxcala</h1>
+      </div>
+      <div class="grid">
+        <p>Step into the sandals of Xicoténcatl the Elder. Hear petitions, settle disputes, and guide festivals across
+          Tlaxcala.</p>
+           <p>You can answer questions as long as you like. You can end the reign at any time after any question to end the game. At the end of the game, you will be awarded with an attribute point.</p>
+        <!-- <p><em>Each decision quietly reflects <strong>Strength</strong>, <strong>Wisdom</strong>, or <strong>Charisma</strong> — but you won’t see which. End your reign anytime; whichever quality scores the highest defines your legacy.</em></p> -->
+        <div class="row">
+          <button class="btn" id="btn-start">Begin Your Reign</button>
+          <button class="btn btn-outline" id="btn-end-intro">End Reign</button>
+        </div>
+        <p class="muted">Tip: You don’t have to answer all 50 questions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="center hidden" id="screen-game">
+    <div class="card">
+      <div class="row">
+        <h2 id="question-title">Question</h2>
+        <div class="progress" id="progress"></div>
+      </div>
+      <p id="question-text"></p>
+      <div class="options" id="options"></div>
+      <div class="footer">
+        <button class="btn btn-outline" id="btn-end">End Reign</button>
+        <span class="muted">Your choices shape your legacy…</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="center hidden" id="screen-outro">
+    <div class="card">
+      <h1>Your Reign Ends</h1>
+      <p id="outro-line"></p>
+      <p class="totals" id="totals"></p>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="btn-restart">Play Again</button>
+        <button class="btn btn-outline" id="btn-outro-end">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function shuffle(arr) { return arr.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).map(v => v[1]); }
+
+    const baseQuestions = [
+      { q: "Two farmers dispute over the ownership of a field. How do you settle it?", options: ["Hold a contest of strength to prove worth.", "Examine old records and witnesses.", "Appeal to both parties for compromise."] },
+      { q: "A festival honoring the god of rain is approaching. What will you emphasize?", options: ["Grand dances to display Tlaxcala’s vigor.", "Offer rituals to ensure good harvest.", "Invite neighboring villages to celebrate unity."] },
+      { q: "A young warrior boasts too loudly in the market. What is your response?", options: ["Challenge him to prove himself in battle.", "Remind him that humility brings wisdom.", "Commend his spirit but urge respect."] },
+      { q: "The artisans ask for more obsidian for their craft. How do you respond?", options: ["Send warriors to secure more stone.", "Reorganize trade routes for efficiency.", "Praise their work and promise support."] },
+      { q: "The priests report an omen in the stars. What is your decision?", options: ["Prepare the warriors for any sign of danger.", "Consult the sages and interpret its meaning.", "Reassure the people with calm words."] },
+      { q: "A neighboring city offers a marriage alliance. How do you react?", options: ["Accept boldly to show confidence.", "Consider the political implications.", "Welcome them warmly and praise their gesture."] },
+      { q: "A storm has damaged the granaries. What do you order?", options: ["Have the warriors rebuild them immediately.", "Develop a better structure for the next season.", "Encourage the people to share food fairly."] },
+      { q: "A merchant from afar brings strange goods. How do you treat him?", options: ["Test the goods’ worth personally.", "Study their origins and uses.", "Host him generously to build relations."] },
+      { q: "A sacred flame goes out unexpectedly. What is your decree?", options: ["Command a public ritual to rekindle it.", "Analyze what led to its extinguishing.", "Calm the people with inspiring words."] },
+      { q: "Children play near the temple steps, disturbing prayers. How do you act?", options: ["Discipline them firmly.", "Teach them the temple’s importance.", "Redirect them kindly to another place."] },
+      { q: "Your warriors request better arms. How do you respond?", options: ["Have blacksmiths work day and night.", "Improve the forging techniques.", "Motivate them with speeches of glory."] },
+      { q: "A poet composes a song about your rule. What do you do?", options: ["Ask him to sing of your victories.", "Advise him to honor the gods’ wisdom.", "Praise him publicly and offer a gift."] },
+      { q: "The crops fail unexpectedly. What is your next move?", options: ["Lead a hunt to bring food.", "Consult the priests for divine insight.", "Reassure your people with hopeful words."] },
+      { q: "A visiting envoy insults Tlaxcala. What is your reaction?", options: ["Demand satisfaction through trial or duel.", "Outwit him with calm, reasoned speech.", "Charm him into retracting his insult."] },
+      { q: "A dispute arises between two noble families. What is your judgment?", options: ["Challenge both to demonstrate their loyalty.", "Weigh the evidence carefully.", "Seek a peaceful accord between them."] },
+      { q: "Your scouts report jaguars near the village. What do you command?", options: ["Send hunters to slay the beasts.", "Study their patterns before acting.", "Inspire courage and calm among the villagers."] },
+      { q: "The temple roof leaks during ceremony. What is your response?", options: ["Have laborers fix it at once.", "Plan a new architectural design.", "Reassure the crowd and continue the rite."] },
+      { q: "An old ally requests warriors for defense. What do you do?", options: ["Send your strongest men.", "Assess the strategic importance first.", "Negotiate mutual benefits kindly."] },
+      { q: "A rare animal is captured in the forest. How do you handle it?", options: ["Use it as tribute to the gods.", "Study its habits for learning.", "Show it to the people with wonder."] },
+      { q: "The marketplace grows unruly. What is your decision?", options: ["Deploy guards to maintain order.", "Institute trade laws.", "Calm the merchants through negotiation."] },
+      { q: "An eclipse darkens the sky. What do you say?", options: ["Encourage bravery among your people.", "Explain the celestial cycle.", "Lead a ceremony to honor the gods."] },
+      { q: "A youth steals from the temple. How do you punish him?", options: ["Order him to labor for repentance.", "Teach him moral lessons.", "Encourage public forgiveness."] },
+      { q: "A Tlaxcalan warrior wins great honor. How do you respond?", options: ["Promote him to a higher rank.", "Record his deeds in history.", "Celebrate him before the people."] },
+      { q: "A foreign trader spreads rumors. What is your approach?", options: ["Confront him openly.", "Investigate the truth.", "Speak to him kindly to end the gossip."] },
+      { q: "A drought begins. What is your first act?", options: ["Rally the people to build irrigation.", "Consult rain priests.", "Unite the people in shared hope."] },
+      { q: "A musician invents a new melody. How do you react?", options: ["Encourage performance for the warriors.", "Analyze its harmony and origin.", "Praise its beauty and spread it."] },
+      { q: "An elder seeks your advice for succession. What do you say?", options: ["Encourage strong leadership.", "Counsel him with patience.", "Comfort him with kind words."] },
+      { q: "The temple dancers tire easily. What do you do?", options: ["Demand endurance through training.", "Adjust rituals for efficiency.", "Encourage them with cheerful support."] },
+      { q: "A messenger is late. How do you react?", options: ["Discipline him strictly.", "Assess possible causes.", "Welcome him calmly regardless."] },
+      { q: "Children refuse to learn the old songs. What is your move?", options: ["Mandate public recitations.", "Teach them the stories’ meaning.", "Make learning joyful with praise."] },
+      { q: "A rival lord sends you gifts. What do you do?", options: ["Display them proudly.", "Study his motives.", "Thank him graciously."] },
+      { q: "A drought ends after many moons. How do you celebrate?", options: ["Host contests of strength.", "Offer thanks to the gods.", "Speak to inspire gratitude."] },
+      { q: "The temple bell cracks. How do you respond?", options: ["Forge a stronger one.", "Study why it broke.", "Commission songs of renewal."] },
+      { q: "A child shows great promise in archery. What is your decree?", options: ["Train him among warriors.", "Ensure he learns strategy.", "Praise him and inspire others."] },
+      { q: "Your advisor disagrees with your decision. What do you do?", options: ["Assert your authority.", "Hear his counsel again.", "Mediate a respectful compromise."] },
+      { q: "The people grow restless for entertainment. How do you appease them?", options: ["Host games and contests.", "Teach them through storytelling.", "Hold festivals to uplift spirits."] },
+      { q: "A flood threatens the fields. What action do you take?", options: ["Build barriers immediately.", "Map the waterways.", "Organize volunteers peacefully."] },
+      { q: "A rare jewel is found. What is your command?", options: ["Keep it for sacred use.", "Study its properties.", "Display it to inspire wonder."] },
+      { q: "A tribe seeks alliance against a mutual foe. How do you respond?", options: ["Prepare your army.", "Plan strategy sessions.", "Negotiate with empathy."] },
+      { q: "A great fire breaks out. What do you do?", options: ["Lead the effort to extinguish it.", "Learn how it began.", "Console the affected."] },
+      { q: "The night sky reveals a comet. What is your decree?", options: ["Ready your warriors.", "Observe its path scientifically.", "Reassure your people with ceremony."] },
+      { q: "An old ally betrays you. How do you respond?", options: ["March against them.", "Understand their reasoning.", "Seek peace to preserve balance."] },
+      { q: "A harvest surplus occurs. What do you decide?", options: ["Store it for war times.", "Study better storage.", "Distribute it to win hearts."] },
+      { q: "A sculptor offends a noble. What is your decision?", options: ["Demand apology and fine.", "Investigate fairness.", "Mediate between them."] },
+      { q: "A healer requests rare herbs. What do you do?", options: ["Send gatherers to find them.", "Research their properties.", "Encourage her compassion."] },
+      { q: "A lost traveler arrives at court. How do you greet him?", options: ["Question his purpose.", "Ask about his homeland.", "Welcome him kindly."] },
+      { q: "A divine dream visits you. How do you interpret it?", options: ["Act decisively.", "Contemplate its meaning.", "Share its message eloquently."] },
+      { q: "A noble hoards wealth. What is your reaction?", options: ["Tax him heavily.", "Assess his impact.", "Persuade him to give charity."] },
+      { q: "An artisan creates a strange sculpture. How do you respond?", options: ["Commission more bold works.", "Analyze its symbolism.", "Show it proudly to guests."] },
+      { q: "A child of prophecy is born. What do you do?", options: ["Train him for greatness.", "Consult oracles.", "Speak to inspire the people."] },
+      { q: "A thief is caught stealing corn. How do you handle it?", options: ["Make him work the fields.", "Find out his reasons.", "Forgive him with a lesson."] }
+    ];
+
+    let displayQuestions = baseQuestions.map(q => ({ q: q.q, options: shuffle([...q.options]) }));
+    let idx = 0;
+    let scores = { strength: 0, wisdom: 0, charisma: 0 };
+    const screens = {
+      intro: document.getElementById('screen-intro'),
+      game: document.getElementById('screen-game'),
+      outro: document.getElementById('screen-outro')
+    };
+
+    const qTitle = document.getElementById('question-title');
+    const qText = document.getElementById('question-text');
+    const optionsEl = document.getElementById('options');
+    const progressEl = document.getElementById('progress');
+    const outroLine = document.getElementById('outro-line');
+    const totals = document.getElementById('totals');
+
+    function show(screenName) {
+      for (const k in screens) { screens[k].classList.add('hidden'); }
+      screens[screenName].classList.remove('hidden');
+    }
+
+    function pickCategoryFromBase(choiceText, qIndex) {
+      const base = baseQuestions[qIndex].options; // [S, W, C]
+      const i = base.indexOf(choiceText);
+      if (i === 0) return 'strength';
+      if (i === 1) return 'wisdom';
+      return 'charisma';
+    }
+
+    function renderQuestion() {
+      const current = displayQuestions[idx];
+      qTitle.textContent = "Petition";
+      qText.textContent = current.q;
+      progressEl.textContent = `Question ${idx + 1} of ${baseQuestions.length}`;
+      optionsEl.innerHTML = '';
+      current.options.forEach((optText) => {
+        const btn = document.createElement('button');
+        btn.className = 'btn';
+        btn.textContent = optText;
+        btn.addEventListener('click', () => {
+          const cat = pickCategoryFromBase(optText, idx);
+          scores[cat] += 1;
+          idx += 1;
+          if (idx < baseQuestions.length) {
+            renderQuestion();
+          } else {
+            endGame();
+          }
+        });
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function winnerCategory() {
+      const entries = Object.entries(scores);
+      entries.sort((a, b) => b[1] - a[1]);
+      const top = entries[0];
+      return top ? top[0] : 'strength';
+    }
+
+    function startGame() {
+      idx = 0;
+      scores = { strength: 0, wisdom: 0, charisma: 0 };
+      displayQuestions = baseQuestions.map(q => ({ q: q.q, options: shuffle([...q.options]) }));
+      show('game');
+      renderQuestion();
+    }
+
+    function endGame() {
+      const winner = winnerCategory();
+      const name = winner.charAt(0).toUpperCase() + winner.slice(1);
+      outroLine.textContent = `Your rule of Tlaxcala is remembered for your ${name}.`;
+      totals.textContent = `Strength: ${scores.strength} | Wisdom: ${scores.wisdom} | Charisma: ${scores.charisma}`;
+      show('outro');
+    }
+
+    document.getElementById('btn-start').addEventListener('click', startGame);
+    document.getElementById('btn-end').addEventListener('click', endGame);
+    document.getElementById('btn-end-intro').addEventListener('click', endGame);
+    document.getElementById('btn-restart').addEventListener('click', startGame);
+    document.getElementById('btn-outro-end').addEventListener('click', () => { show('intro'); });
+
+  </script>
+</body>
+
+</html>

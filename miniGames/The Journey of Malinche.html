@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Journey of Malinche</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- LAYOUT ENGINE STYLES --- */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #111; /* Letter/pillarboxing color */
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #main-container {
+            position: absolute;
+            background-image: url('https://lizterese.github.io/MyCDN/MinigameBack.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* --- GAME STYLES ADAPTED FOR LAYOUT ENGINE --- */
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            width: 100%;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Important for child elements */
+        }
+
+        .choice-button, .feedback-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0.2em 0.4em rgba(0,0,0,0.4);
+        }
+        .choice-button:hover, .feedback-button:hover {
+            transform: translateY(-0.2em);
+            box-shadow: 0 0.4em 0.8em rgba(0,0,0,0.5);
+        }
+
+        /* Use clamp for responsive font sizes inside the content area */
+        .content-area h1 {
+            font-size: clamp(1.5rem, 4cqw, 3.5rem);
+        }
+        .content-area p, .content-area li {
+            font-size: clamp(0.9rem, 2cqw, 1.2rem);
+        }
+        .attribute-display {
+             font-size: clamp(0.8rem, 1.8cqw, 1.1rem);
+        }
+         .attribute-display p:last-child {
+            font-size: clamp(1.5rem, 3cqw, 2.5rem);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-container">
+        <!-- The entire game UI will be rendered here by the script -->
+    </div>
+
+    <script>
+        // --- 1. LAYOUT ENGINE LOGIC ---
+        function resizeLayout() {
+            const mainContainer = document.getElementById('main-container');
+            const htmlElement = document.documentElement;
+            const ASPECT_RATIO = 16 / 9;
+            let viewportWidth = window.innerWidth, viewportHeight = window.innerHeight;
+            const viewportRatio = viewportWidth / viewportHeight;
+            let containerWidth, containerHeight, top, left;
+            if (viewportRatio > ASPECT_RATIO) {
+                containerHeight = viewportHeight;
+                containerWidth = containerHeight * ASPECT_RATIO;
+                top = 0; left = (viewportWidth - containerWidth) / 2;
+            } else {
+                containerWidth = viewportWidth;
+                containerHeight = containerWidth / ASPECT_RATIO;
+                top = (viewportHeight - containerHeight) / 2; left = 0;
+            }
+            mainContainer.style.width = `${containerWidth}px`;
+            mainContainer.style.height = `${containerHeight}px`;
+            mainContainer.style.top = `${top}px`;
+            mainContainer.style.left = `${left}px`;
+            const rootFontSize = containerWidth / 100;
+            htmlElement.style.fontSize = `${rootFontSize}px`;
+        }
+
+        // --- 2. GAME LOGIC ---
+
+        // --- EMBEDDED GAME DATA (from JSON) ---
+        const gameData = {
+          "gameTitle": "The Journey of Malinche",
+          "initialAttributes": {
+            "default": { "strength": 6, "loyalty": 3, "wisdom": 11 },
+            "queryStringEnabled": true
+          },
+          "stages": [
+            {
+              "stage": 0, "title": "The First Choice", "location": "Villa Rica de la Vera Cruz",
+              "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7519.972655519896!2d-96.1557168!3d19.5428619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85db2c0a9e278631%3A0x3c7cf4c173e6396b!2sLa%20Antigua%2C%20Ver.!5e1!3m2!1sen!2sus",
+              "narrative": "You stand on the coast, sand between your toes, the air thick with salt and the unknown. The ships of the Spaniards are symbols of a new, impossible power. You have seen their steel and heard their cannons. You have also seen the splintered factions of your own world, where the Mexica of Tenochtitlan demand tribute and sacrifice. Cortés has recognized your value. You must decide who you are in this story.",
+              "question": "Where does your true loyalty lie?",
+              "choices": [
+                { "text": "For the Spaniards. Their power is the only path to breaking the Mexica and securing a future.", "allegiance": "spaniards" },
+                { "text": "For the Indigenous Peoples. These are your people. You will use your position to protect and guide them.", "allegiance": "indigenous" }
+              ]
+            },
+            {
+              "stage": 1, "title": "Challenge 1: The Test of Strength", "location": "Pass between Pico de Orizaba & Cofre de Perote",
+              "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59943.48316281084!2d-97.23432704179687!3d19.29413689999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c53b1b3a3d3e6d%3A0x23df890b2792ecc8!2sPico%20de%20Orizaba!5e1!3m2!1sen!2sus",
+              "isMiniGame": true,
+              "narrative": "The army leaves the coast, reinforced by Totonac warriors. As you ascend into the mountains, a freezing rain begins. The Totonacs, unused to the cold, begin to falter. A group of Spanish soldiers asks you to guide them on a treacherous shortcut. Your strength will be tested not by a single choice, but by the perilous journey itself.",
+              "question": "You must now navigate the pass. Make your first choice.",
+              "miniGameStages": [
+                { "title": "Stage 1: The Ascent", "narrative": "The path splits at the base of a steep incline. The air is thin and the wind bites at your face.", "choices": [ { "text": "Take the steep, direct climb.", "description": "It's shorter, but grueling.", "effect": -2 }, { "text": "Follow the winding, gentler slope.", "description": "It's longer, but safer.", "effect": 0 }, { "text": "Rest in a small alcove to gather strength.", "description": "You'll lose time, but recover energy.", "effect": 1 } ] },
+                { "title": "Stage 2: The Icy Ledge", "narrative": "Before you is a narrow ledge covered in glistening ice. A misstep could be disastrous.", "choices": [ { "text": "Cross quickly and hope for the best.", "description": "A risky but fast approach.", "effect": -2 }, { "text": "Carve handholds with a dagger.", "description": "Slow, but greatly reduces the risk.", "effect": -1 }, { "text": "Find another way around.", "description": "The safest option, but it will tire you out.", "effect": 0 } ] },
+                { "title": "Stage 3: The Final Ridge", "narrative": "You can see the end of the pass. A final, windswept ridge stands between you and safety.", "choices": [ { "text": "Push through with a final burst of energy.", "description": "A final, exhausting push.", "effect": -1 }, { "text": "Huddle behind rocks to wait for the wind to die down.", "description": "Patience might be the key.", "effect": 0 }, { "text": "Eat the last of your rations for a boost.", "description": "A small comfort and a burst of energy.", "effect": 1 } ] }
+              ]
+            },
+            {
+              "stage": 2, "title": "Challenge 2: The Test of Loyalty", "location": "Cholula, The Great City",
+              "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30291.46788863619!2d-98.3275726217163!3d19.063234900000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc89ff758d4bd%3A0x6003781ad2b8105c!2sGreat%20Pyramid%20of%20Cholula!5e1!3m2!1sen!2sus",
+              "narrative": "You arrive in Cholula, a major city loyal to the Mexica. The welcome is superficially grand, but you feel a tension in the air. That night, an elderly Cholulan woman confirms your fears. She pulls you aside, revealing a plot: the warriors plan to trap and massacre the Spanish in the city's narrow streets. You now hold the fate of the expedition—and the city—in your hands.",
+              "question": "What do you do?",
+              "choicesByAllegiance": {
+                "spaniards": [
+                  { "text": "Inform Cortés with strategic advice.", "effect": { "attribute": "loyalty", "value": 2 }, "feedback": "Cortés follows your counsel. The resulting massacre is brutal, but the Spanish expedition is saved. Your loyalty is absolute, and your position of power is now unquestioned. The blood of Cholula is on your hands." },
+                  { "text": "Risk everything to warn the Cholulans.", "effect": { "attribute": "loyalty", "value": -2 }, "feedback": "Your warning is either not received or not believed. The ambush proceeds and is crushed. Cortés learns of your betrayal. Your life is spared only because you are too valuable, but you are now watched constantly." },
+                  { "text": "Present the information as a rumor.", "effect": { "attribute": null, "value": 0 }, "feedback": "Cortés, ever suspicious, acts on the 'rumor' and strikes first. You have avoided direct responsibility, a wise political move. But in your heart, you know your careful words were a death sentence." }
+                ],
+                "indigenous": [
+                  { "text": "Devise a plan to warn the Cholulan leaders.", "effect": { "attribute": "loyalty", "value": 2 }, "feedback": "The leaders heed your warning. They disperse their warriors and welcome the Spanish, averting disaster. You have successfully used your influence to save thousands." },
+                  { "text": "Sacrifice Cholula for the 'greater good.'", "effect": { "attribute": "loyalty", "value": -2 }, "feedback": "The massacre at Cholula happens as you foresaw. The horror of it sends shockwaves through the land, and many cities rush to ally with the Spanish out of fear. You have played a terrible game, and a piece of your soul is the price." },
+                  { "text": "Use the rumor to test the Spanish.", "effect": { "attribute": null, "value": 0 }, "feedback": "You watch as Cortés unleashes a brutal preemptive strike. You now have your answer: his capacity for violence is boundless. This knowledge is valuable, but it does nothing to change the fate of the city." }
+                ]
+              }
+            },
+            {
+              "stage": 3, "title": "Challenge 3: The Test of Wisdom", "location": "Tlaxcala, City of the Eagle Clan",
+              "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29948.9045588114!2d-98.25895312061766!3d19.3155827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfd0037e21a5c7%3A0x4ab2c53181827435!2sTlaxcala%20City%2C%20Tlaxcala!5e1!3m2!1sen!2sus",
+              "narrative": "After surviving fierce battles with the Tlaxcalans, Cortés has negotiated a tense peace. You now enter their city, a bastion of warriors who have resisted the Mexica for generations. News of the massacre at Cholula has reached them, and they are deeply divided. Cortés brings you before the council of lords, not just to translate, but to speak to them. Your words can forge this crucial alliance or shatter it forever.",
+              "question": "How do you address them?",
+              "choicesByAllegiance": {
+                "spaniards": [
+                  { "text": "Speak of a shared destiny.", "effect": { "attribute": "wisdom", "value": 2 }, "feedback": "Your words resonate with the Tlaxcalan lords. You have given them a grand justification for their pragmatic desires. The alliance is forged in steel and hope, thanks to your wisdom." },
+                  { "text": "Use fear as a weapon.", "effect": { "attribute": "wisdom", "value": -2 }, "feedback": "The Tlaxcalans agree to the alliance, but their eyes are cold. You have secured their arms, but not their hearts. This foundation of fear is a brittle one." },
+                  { "text": "Perform the role of a perfect translator.", "effect": { "attribute": null, "value": 0 }, "feedback": "Cortés, through his own forceful rhetoric, convinces the Tlaxcalans. You have performed your duty perfectly, but have given up an opportunity to shape the future with your own wisdom." }
+                ],
+                "indigenous": [
+                  { "text": "Advise them to use the Spanish as a weapon.", "effect": { "attribute": "wisdom", "value": 2 }, "feedback": "The lords see the wisdom in your cunning. They will not be servants, but puppet masters. The alliance is formed on the basis of mutual exploitation, a far stronger bond than trust." },
+                  { "text": "Plead for them to see the true danger.", "effect": { "attribute": "wisdom", "value": -2 }, "feedback": "Your plea is seen as naive idealism. Their hatred for the Mexica is a fire that has burned for generations, and they will not give up this chance for revenge." },
+                  { "text": "Subtly undermine Cortés through translation.", "effect": { "attribute": null, "value": 0 }, "feedback": "The Tlaxcalans agree to the alliance, but your subtle work has ensured they remain deeply suspicious of Cortés. You have weakened its foundation from the start." }
+                ]
+              }
+            },
+            {
+              "stage": 4, "title": "The Causeway to Tenochtitlan", "location": "Tenochtitlan (Mexico City)",
+              "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.533839352984!2d-99.13539868509335!3d19.4326077868846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f935313a2583%3A0x7e3f360e8e663a0a!2sZ%C3%B3calo!5e1!3m2!1sen!2sus",
+              "narrative": "You have arrived. The great causeway stretches before you, leading to the island metropolis of Tenochtitlan, a jewel in the lake. Your journey has shaped you, and your choices will echo in the history that is about to be written.",
+              "question": "Your journey has concluded. Reflect on your path.",
+              "choices": [ { "text": "Begin a new journey.", "restart": true } ]
+            }
+          ]
+        };
+
+        const gameState = {
+            attributes: { strength: 0, loyalty: 0, wisdom: 0 },
+            initialAttributes: { strength: 0, loyalty: 0, wisdom: 0 },
+            finalStateSent: false,
+            allegiance: null,
+            currentStage: 0,
+            log: [],
+            isFeedbackScreen: false,
+            lastChoiceResult: null,
+            miniGame: {
+                isActive: false,
+                progress: 0,
+                initialStrength: 0
+            }
+        };
+
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function sendDeltaToParent() {
+            if (gameState.finalStateSent) return;
+            if (window.parent && window.parent !== window) {
+                const delta = {
+                    strength: gameState.attributes.strength - gameState.initialAttributes.strength,
+                    loyalty: gameState.attributes.loyalty - gameState.initialAttributes.loyalty,
+                    wisdom: gameState.attributes.wisdom - gameState.initialAttributes.wisdom,
+                };
+                window.parent.postMessage({ type: 'statsDeltaUpdate', delta: delta }, '*');
+                gameState.finalStateSent = true;
+                console.log("Final stat deltas sent to parent:", delta);
+            } else {
+                console.warn("Not in an iframe. Final state delta cannot be sent.");
+            }
+        }
+
+        function init() {
+            gameState.allegiance = null;
+            gameState.currentStage = 0;
+            gameState.log = [];
+            gameState.isFeedbackScreen = false;
+            gameState.lastChoiceResult = null;
+            gameState.miniGame = { isActive: false, progress: 0, initialStrength: 0 };
+            gameState.finalStateSent = false;
+            const urlParams = new URLSearchParams(window.location.search);
+            if (gameData.initialAttributes.queryStringEnabled) {
+                const strength = parseInt(urlParams.get('strength'), 10);
+                const loyalty = parseInt(urlParams.get('loyalty'), 10);
+                const wisdom = parseInt(urlParams.get('wisdom'), 10);
+                if (!isNaN(strength) && !isNaN(loyalty) && !isNaN(wisdom)) {
+                    gameState.attributes = { strength, loyalty, wisdom };
+                } else {
+                    gameState.attributes = { ...gameData.initialAttributes.default };
+                }
+            } else {
+                 gameState.attributes = { ...gameData.initialAttributes.default };
+            }
+            gameState.initialAttributes = { ...gameState.attributes };
+            render();
+        }
+
+        function handleMiniGameChoice(choice, stage) {
+            gameState.attributes.strength += choice.effect;
+            gameState.miniGame.progress++;
+            if (gameState.miniGame.progress >= stage.miniGameStages.length) {
+                const oldStrength = gameState.miniGame.initialStrength;
+                const newStrength = gameState.attributes.strength;
+                const change = newStrength - oldStrength;
+                let feedback = `You navigated the treacherous pass. Your leadership and endurance were tested.`;
+                let pointChangeText = `Your <strong>strength</strong> has changed by ${change >= 0 ? '+' : ''}${change}, from ${oldStrength} to ${newStrength}.`;
+                gameState.lastChoiceResult = { feedback, pointChangeText };
+                gameState.log.push(`Completed the journey through the pass. Strength changed from ${oldStrength} to ${newStrength}.`);
+                gameState.isFeedbackScreen = true;
+                gameState.miniGame.isActive = false; 
+            }
+            render();
+        }
+
+        function handleChoice(choiceData) {
+            if (choiceData.restart) {
+                init();
+                return;
+            }
+            if (gameState.currentStage === 0) {
+                gameState.allegiance = choiceData.allegiance;
+                gameState.log.push(`You chose to align with the ${gameState.allegiance === 'spaniards' ? 'Spaniards' : 'Indigenous Peoples'}.`);
+                proceedToNextStage();
+                return;
+            }
+            const { attribute, value } = choiceData.effect;
+            let pointChangeText = "Your attributes remain unchanged.";
+            if (attribute) {
+                const oldValue = gameState.attributes[attribute];
+                gameState.attributes[attribute] = Math.max(0, oldValue + value);
+                const change = value > 0 ? `increased` : `decreased`;
+                pointChangeText = `Your <strong>${attribute}</strong> has ${change} from ${oldValue} to ${gameState.attributes[attribute]}.`;
+            }
+            gameState.lastChoiceResult = { feedback: choiceData.feedback, pointChangeText: pointChangeText };
+            gameState.log.push(choiceData.feedback);
+            gameState.isFeedbackScreen = true;
+            render();
+        }
+
+        function proceedToNextStage() {
+            gameState.isFeedbackScreen = false;
+            gameState.lastChoiceResult = null;
+            if (gameState.miniGame.isActive) {
+                 gameState.miniGame.isActive = false;
+                 gameState.miniGame.progress = 0;
+            }
+            gameState.currentStage++;
+            render();
+        }
+
+        // --- 3. RENDER FUNCTION (Modified for Layout Engine) ---
+        function render() {
+            const container = document.getElementById('main-container');
+            const stage = gameData.stages[gameState.currentStage];
+
+            if (gameState.isFeedbackScreen) {
+                container.innerHTML = `
+                    <div style="position: absolute; top: 5rem; left: 5rem; right: 5rem; bottom: 5rem; display: flex; align-items: center; justify-content: center;">
+                        <div class="glass-panel p-8 md:p-12 flex flex-col items-center max-w-3xl">
+                            <h2 class="font-cinzel text-3xl md:text-4xl text-amber-200 mb-6">Outcome</h2>
+                            <div class="text-center space-y-6 text-gray-300 flex-grow">
+                                <p class="leading-relaxed text-lg">${gameState.lastChoiceResult.feedback}</p>
+                                <p class="text-xl font-bold text-white bg-black/30 p-4 rounded-lg">${gameState.lastChoiceResult.pointChangeText}</p>
+                            </div>
+                            <button onclick="proceedToNextStage()" class="feedback-button mt-8 w-full max-w-xs p-4 rounded-lg bg-amber-700 hover:bg-amber-600 text-white font-bold tracking-wider text-lg">Continue</button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let attributesHtml = '';
+            if (gameState.currentStage >= 0 && gameState.currentStage < gameData.stages.length) {
+                 attributesHtml = `<div class="w-full flex justify-center gap-4 md:gap-8 mb-6 text-center text-white">
+                        <div class="attribute-display"><p class="font-cinzel tracking-wider">STRENGTH</p><p class="font-bold">${gameState.attributes.strength}</p></div>
+                        <div class="attribute-display"><p class="font-cinzel tracking-wider">LOYALTY</p><p class="font-bold">${gameState.attributes.loyalty}</p></div>
+                        <div class="attribute-display"><p class="font-cinzel tracking-wider">WISDOM</p><p class="font-bold">${gameState.attributes.wisdom}</p></div>
+                    </div>`;
+            }
+
+            let finalSummaryHtml = '';
+            if (stage.stage === 4) { // Epilogue stage
+                finalSummaryHtml = `<div class="mb-6 p-4 border border-gray-600 rounded-lg bg-black/30">
+                        <h3 class="font-cinzel text-xl mb-3 text-center text-amber-300">The Chronicle of Your Journey</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">${gameState.log.map(entry => `<li>${entry}</li>`).join('')}</ul>
+                        <div class="mt-4 text-center font-bold text-lg">
+                            <p>Final Attributes: Strength ${gameState.attributes.strength}, Loyalty ${gameState.attributes.loyalty}, Wisdom ${gameState.attributes.wisdom}</p>
+                            <p>Final Allegiance: ${gameState.allegiance === 'spaniards' ? 'The Spanish Crown' : 'The Indigenous Peoples'}</p>
+                        </div>
+                    </div>`;
+                sendDeltaToParent();
+            }
+            
+            // The new layout structure using absolute positioning with rem units
+            container.innerHTML = `
+                <div id="content-container" style="position: absolute; top: 2rem; left: 2rem; bottom: 2rem; width: 48rem; container-type: inline-size;" class="glass-panel">
+                    <div class="content-area p-6 flex flex-col h-full overflow-y-auto">
+                        <h1 class="font-cinzel font-bold text-amber-200 mb-2">${stage.title}</h1>
+                        ${stage.location ? `<p class="text-sm text-gray-400 mb-4 font-semibold tracking-wide uppercase">${stage.location}</p>` : ''}
+                        ${attributesHtml}
+                        <div class="flex-grow text-gray-300 space-y-4 leading-relaxed">
+                            <p id="narrative-text">${stage.narrative}</p>
+                            ${finalSummaryHtml}
+                            <p id="question-text" class="font-bold text-amber-100 mt-4">${stage.question}</p>
+                        </div>
+                        <div id="choices-container" class="mt-6 space-y-3"></div>
+                    </div>
+                </div>
+                <div id="map-container" style="position: absolute; top: 2rem; right: 2rem; bottom: 2rem; left: 52rem;">
+                     <iframe width="100%" height="100%" style="border:0; border-radius: 1rem;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="${stage.mapUrl}"></iframe>
+                </div>
+            `;
+            
+            const choicesContainer = document.getElementById('choices-container');
+            if (stage.isMiniGame) {
+                if (!gameState.miniGame.isActive) {
+                    gameState.miniGame.isActive = true;
+                    gameState.miniGame.initialStrength = gameState.attributes.strength;
+                }
+                const miniGameStage = stage.miniGameStages[gameState.miniGame.progress];
+                document.getElementById('narrative-text').textContent = miniGameStage.narrative;
+                document.getElementById('question-text').textContent = miniGameStage.title;
+
+                miniGameStage.choices.forEach(choice => {
+                    const button = document.createElement('button');
+                    button.innerHTML = `<span class="font-bold">${choice.text}</span> <span class="text-sm text-gray-300 block">${choice.description}</span>`;
+                    button.className = "choice-button w-full text-left p-4 rounded-lg bg-gray-700 hover:bg-amber-800 text-white font-medium border border-gray-600";
+                    button.onclick = () => handleMiniGameChoice(choice, stage);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                let currentChoices = [];
+                if (stage.stage === 0 || stage.stage === 4) {
+                    currentChoices = stage.choices;
+                } else {
+                    currentChoices = stage.choicesByAllegiance[gameState.allegiance];
+                }
+                const shuffledChoices = shuffleArray([...currentChoices]);
+                shuffledChoices.forEach(choice => {
+                    const button = document.createElement('button');
+                    button.innerHTML = choice.text;
+                    button.className = "choice-button w-full text-left p-4 rounded-lg bg-gray-700 hover:bg-amber-800 text-white font-medium border border-gray-600";
+                    button.onclick = () => handleChoice(choice);
+                    choicesContainer.appendChild(button);
+                });
+            }
+        }
+
+        // --- 4. INITIALIZATION ---
+        window.addEventListener('load', () => {
+            init();
+            resizeLayout();
+        });
+        window.addEventListener('resize', resizeLayout);
+    </script>
+</body>
+</html>
+

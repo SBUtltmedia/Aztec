@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xicoténcatl Game Test Frame</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        iframe {
+            width: 100%;
+            max-width: 1200px; /* Adjust as needed */
+            height: 675px; /* Maintain 16:9 aspect ratio for max-width 1200px (1200 * 9 / 16) */
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        #message-log {
+            width: 100%;
+            max-width: 1200px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            min-height: 100px;
+        }
+        #message-log p {
+            margin: 5px 0;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 5px;
+        }
+        #message-log p:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Xicoténcatl Game Testing Frameset</h1>
+    <iframe id="game-frame" src="xicotencatl_game.html" frameborder="0" allowfullscreen></iframe>
+    <h2>Messages from Game:</h2>
+    <div id="message-log">
+        <p>Awaiting messages from the game...</p>
+    </div>
+
+    <script>
+        const messageLog = document.getElementById('message-log');
+
+        window.addEventListener('message', (event) => {
+            // Check the origin if you want more security, e.g., event.origin === "http://your-domain.com"
+            console.log("Message received from iframe:", event.data);
+
+            if (event.data && event.data.type === 'statsDeltaUpdate') {
+                const delta = event.data.delta;
+                const newMessage = document.createElement('p');
+                const messageText = `Stats Update: Strength ${delta.strength}, Wisdom ${delta.wisdom}, Charisma ${delta.charisma}`;
+                newMessage.textContent = messageText;
+                if (messageLog.firstChild && messageLog.firstChild.textContent === "Awaiting messages from the game...") {
+                    messageLog.innerHTML = ''; // Clear initial message
+                }
+                messageLog.appendChild(newMessage);
+                messageLog.scrollTop = messageLog.scrollHeight; // Scroll to bottom
+                
+                alert(`Message received from game:\n${messageText}`);
+            }
+        });
+    </script>
+</body>
+</html>
