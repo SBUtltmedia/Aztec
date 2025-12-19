@@ -1,0 +1,189 @@
+:: Unquoted Syntax Test {"position":"100,500","size":"100,100"}
+<<liveblock>>
+<h2>🧪 Unquoted th-set Syntax Test</h2>
+<p>Testing if <<th-set>> works WITHOUT quotes (like standard <<set>>)</p>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 1: Simple Variable</h4>
+Current: <b><<print $syntaxTestSimple>></b><br>
+<<button "Unquoted: <<th-set $syntaxTestSimple to 42>>">>
+	<<th-set $syntaxTestSimple to 42>>
+<</button>>
+<<button "Quoted: <<th-set '$syntaxTestSimple' to 99>>">>
+	<<th-set '$syntaxTestSimple' to 99>>
+<</button>>
+<<button "Reset">>
+	<<th-set $syntaxTestSimple to 0>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 2: Object Property Access (dot notation)</h4>
+<<if ndef $syntaxTestObj>><<th-set $syntaxTestObj to {value: 0}>><</if>>
+Current: <b><<print $syntaxTestObj.value>></b><br>
+<<button "Unquoted: <<th-set $syntaxTestObj.value to 100>>">>
+	<<th-set $syntaxTestObj.value to 100>>
+<</button>>
+<<button "Quoted: <<th-set '$syntaxTestObj.value' to 200>>">>
+	<<th-set '$syntaxTestObj.value' to 200>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 3: Object Bracket Notation</h4>
+<<if ndef $syntaxTestObj2>><<th-set $syntaxTestObj2 to {}>><</if>>
+<<if ndef $syntaxTestObj2["testKey"]>><<th-set $syntaxTestObj2["testKey"] to 0>><</if>>
+Current: <b><<print $syntaxTestObj2["testKey"]>></b><br>
+<<button 'Unquoted: <<th-set $syntaxTestObj2["testKey"] to 50>>'>>
+	<<th-set $syntaxTestObj2["testKey"] to 50>>
+<</button>>
+<<button 'Quoted: <<th-set \'$syntaxTestObj2["testKey"]\' to 75>>'>>
+	<<th-set '$syntaxTestObj2["testKey"]' to 75>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 4: Array Access</h4>
+<<if ndef $syntaxTestArray>><<th-set $syntaxTestArray to [10, 20, 30]>><</if>>
+Current: <b>[<<print $syntaxTestArray.join(", ")>>]</b><br>
+<<button "Unquoted: <<th-set $syntaxTestArray[0] to 999>>">>
+	<<th-set $syntaxTestArray[0] to 999>>
+<</button>>
+<<button "Quoted: <<th-set '$syntaxTestArray[1]' to 888>>">>
+	<<th-set '$syntaxTestArray[1]' to 888>>
+<</button>>
+<<button "Reset">>
+	<<th-set $syntaxTestArray to [10, 20, 30]>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 5: Complex Nested Path ($users[$role])</h4>
+<<if ndef $users[$role]>><<th-set $users[$role] to {choices: {}, stats: {}}>><</if>>
+<<if ndef $users[$role]["choices"]["syntaxTest"]>>
+	<<th-set $users[$role]["choices"]["syntaxTest"] to 0>>
+<</if>>
+Current: <b><<print $users[$role]["choices"]["syntaxTest"]>></b><br>
+<<button 'Unquoted: <<th-set $users[$role]["choices"]["syntaxTest"] to 111>>'>>
+	<<th-set $users[$role]["choices"]["syntaxTest"] to 111>>
+<</button>>
+<<button 'Quoted: <<th-set \'$users[$role]["choices"]["syntaxTest"]\' to 222>>'>>
+	<<th-set '$users[$role]["choices"]["syntaxTest"]' to 222>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 6: Compound Operators (+=, -=, *=, /=)</h4>
+<<if ndef $syntaxCompound>><<th-set $syntaxCompound to 10>><</if>>
+Current: <b><<print $syntaxCompound>></b><br>
+<<button "Unquoted: <<th-set $syntaxCompound += 5>>">>
+	<<th-set $syntaxCompound += 5>>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxCompound -= 3>>">>
+	<<th-set $syntaxCompound -= 3>>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxCompound *= 2>>">>
+	<<th-set $syntaxCompound *= 2>>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxCompound /= 2>>">>
+	<<th-set $syntaxCompound /= 2>>
+<</button>>
+<<button "Reset to 10">>
+	<<th-set $syntaxCompound to 10>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 7: Nested Object with Dot and Bracket</h4>
+<<if ndef $users[$role]["stats"]["syntaxStat"]>>
+	<<th-set $users[$role]["stats"]["syntaxStat"] to 5>>
+<</if>>
+Current: <b><<print $users[$role]["stats"]["syntaxStat"]>></b><br>
+<<button 'Unquoted: <<th-set $users[$role]["stats"]["syntaxStat"] += 1>>'>>
+	<<th-set $users[$role]["stats"]["syntaxStat"] += 1>>
+<</button>>
+<<button 'Quoted: <<th-set \'$users[$role]["stats"]["syntaxStat"]\' += 10>>'>>
+	<<th-set '$users[$role]["stats"]["syntaxStat"]' += 10>>
+<</button>>
+<<button "Reset to 5">>
+	<<th-set $users[$role]["stats"]["syntaxStat"] to 5>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 8: String Values with Quotes</h4>
+<<if ndef $syntaxString>><<th-set $syntaxString to "">><</if>>
+Current: "<b><<print $syntaxString>></b>"<br>
+<<button 'Unquoted: <<th-set $syntaxString to "Hello World">>'>>
+	<<th-set $syntaxString to "Hello World">>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxString to 'Single Quotes'>>">>
+	<<th-set $syntaxString to 'Single Quotes'>>
+<</button>>
+<<button 'Complex: <<th-set $syntaxString to "String with \'nested\' quotes">>'>>
+	<<th-set $syntaxString to "String with 'nested' quotes">>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 9: Boolean Values</h4>
+<<if ndef $syntaxBool>><<th-set $syntaxBool to false>><</if>>
+Current: <b><<print $syntaxBool>></b><br>
+<<button "Unquoted: <<th-set $syntaxBool to true>>">>
+	<<th-set $syntaxBool to true>>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxBool to false>>">>
+	<<th-set $syntaxBool to false>>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxBool to !$syntaxBool>>">>
+	<<th-set $syntaxBool to !$syntaxBool>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 10: Complex Expressions</h4>
+<<if ndef $syntaxExpr>><<th-set $syntaxExpr to 0>><</if>>
+Current: <b><<print $syntaxExpr>></b><br>
+<<button "Unquoted: <<th-set $syntaxExpr to (5 + 3) * 2>>">>
+	<<th-set $syntaxExpr to (5 + 3) * 2>>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxExpr to Math.max(10, 20, 30)>>">>
+	<<th-set $syntaxExpr to Math.max(10, 20, 30)>>
+<</button>>
+<<button "Unquoted: <<th-set $syntaxExpr to $syntaxExpr + 100>>">>
+	<<th-set $syntaxExpr to $syntaxExpr + 100>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test 11: Faction Variables</h4>
+<<if ndef $factions>>
+	<<th-set $factions to {"Aztecs": {stats: {Strength: 10}}, "Spaniards": {stats: {Strength: 10}}}>>
+<</if>>
+Aztec Strength: <b><<print $factions["Aztecs"]["stats"]["Strength"]>></b><br>
+<<button 'Unquoted: <<th-set $factions["Aztecs"]["stats"]["Strength"] += 5>>'>>
+	<<th-set $factions["Aztecs"]["stats"]["Strength"] += 5>>
+<</button>>
+<<button 'Quoted: <<th-set \'$factions["Aztecs"]["stats"]["Strength"]\' -= 3>>'>>
+	<<th-set '$factions["Aztecs"]["stats"]["Strength"]' -= 3>>
+<</button>>
+<<button "Reset to 10">>
+	<<th-set $factions["Aztecs"]["stats"]["Strength"] to 10>>
+<</button>>
+</div>
+
+<div style="border: 2px solid green; padding: 10px; margin: 10px 0; background: #002200;">
+<h4>✅ Test Results Summary</h4>
+<p>If all buttons above work without errors, then:</p>
+<ul>
+<li><b>Unquoted syntax works perfectly!</b></li>
+<li>No need to quote variable paths in <<th-set>></li>
+<li>Can use standard <<set>> syntax (just replace <<set>> with <<th-set>>)</li>
+<li>Both quoted and unquoted work identically</li>
+</ul>
+<p><i>Check the browser console (F12) for any errors.</i></p>
+</div>
+
+<br>
+[[Back to Test Suite|Comprehensive Test Suite]]
+<</liveblock>

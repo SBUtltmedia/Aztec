@@ -100,6 +100,12 @@ $(document).ready(() => {
 /* JavaScript code */
 
 function showMap() {
+    // Guard: Check if SugarCube is initialized
+    if (!window.SugarCubeState || !window.SugarCubeState.variables) {
+        console.warn("SugarCube not initialized yet, cannot show map");
+        return;
+    }
+
     var map = $('#map')
     if (!map.length) {
         $('#story').append($('<img/>', {
@@ -140,6 +146,12 @@ function showMap() {
  * Displays player's stats widget
  */
 function showStats() {
+    // Guard: Check if SugarCube is initialized
+    if (!window.SugarCubeState || !window.SugarCubeState.variables) {
+        console.warn("SugarCube not initialized yet, cannot show stats");
+        return;
+    }
+
     var stats = {
         "Strength": 0,
         "Wisdom": 0,
@@ -376,6 +388,14 @@ function initTheyr(lockInfo) {
 
     socket.on('new connection', (state) => {
         // console.log("LOAD #2: RECEIEVE STATE");
+        // Check if SugarCube is initialized before accessing variables
+        if (!window.SugarCubeState || !window.SugarCubeState.variables) {
+            console.warn("SugarCube not initialized yet, deferring 'new connection' handler");
+            setTimeout(() => {
+                socket.emit('new connection', state);
+            }, 100);
+            return;
+        }
         // console.log("Current State:", window.SugarCubeState.variables)
         let combinedState = Object.assign({}, window.SugarCubeState.variables, state)
         // console.log("Combined State", combinedState)

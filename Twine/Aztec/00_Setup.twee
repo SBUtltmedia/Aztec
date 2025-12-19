@@ -32,7 +32,7 @@
 Save.clear()
 Config.passages.nobr = true;
 
-Window.SugarCubeState = State;
+window.SugarCubeState = State;
 
 var urlPrefix="static/";
 let lockId= LoadScreen.lock() 

@@ -179,6 +179,8 @@ Your Counter: <b><<print $users[$role]["choices"]["playerCounter"]>></b><br>
 	<<th-set '$chatlog["Tlaxcalans"]' to []>>
 <</if>>
 
+/* Initialize user object if needed */
+<<if ndef $users[$role]>><<th-set '$users[$role]' to {}>><</if>>
 <<if ndef $users[$role].currentChat>>
 	<<th-set '$users[$role].currentChat' to "chat">>
 <</if>>
@@ -358,13 +360,18 @@ Current Object:<br>
 
 
 :: 7. Compound Operators Test {"position":"400,250","size":"100,100"}
+/* Initialize compound operator variables before liveblock */
+<<if ndef $compoundAdd>><<th-set '$compoundAdd' to 0>><</if>>
+<<if ndef $compoundSubtract>><<th-set '$compoundSubtract' to 100>><</if>>
+<<if ndef $compoundMultiply>><<th-set '$compoundMultiply' to 1>><</if>>
+<<if ndef $compoundDivide>><<th-set '$compoundDivide' to 100>><</if>>
+
 <<liveblock>>
 <h2>7. Compound Operators Test</h2>
 <p>Testing +=, -=, *=, /= operators</p>
 
 <div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
 <h4>Addition (+=)</h4>
-<<if ndef $compoundAdd>><<th-set '$compoundAdd' to 0>><</if>>
 Current: <b><<print $compoundAdd>></b><br>
 <<button "Reset to 0">><<th-set '$compoundAdd' to 0>><</button>>
 <<button "+= 1">><<th-set '$compoundAdd' += 1>><</button>>
@@ -374,7 +381,6 @@ Current: <b><<print $compoundAdd>></b><br>
 
 <div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
 <h4>Subtraction (-=)</h4>
-<<if ndef $compoundSubtract>><<th-set '$compoundSubtract' to 100>><</if>>
 Current: <b><<print $compoundSubtract>></b><br>
 <<button "Reset to 100">><<th-set '$compoundSubtract' to 100>><</button>>
 <<button "-= 1">><<th-set '$compoundSubtract' -= 1>><</button>>
@@ -384,7 +390,6 @@ Current: <b><<print $compoundSubtract>></b><br>
 
 <div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
 <h4>Multiplication (*=)</h4>
-<<if ndef $compoundMultiply>><<th-set '$compoundMultiply' to 1>><</if>>
 Current: <b><<print $compoundMultiply>></b><br>
 <<button "Reset to 1">><<th-set '$compoundMultiply' to 1>><</button>>
 <<button "*= 2">><<th-set '$compoundMultiply' *= 2>><</button>>
@@ -394,7 +399,6 @@ Current: <b><<print $compoundMultiply>></b><br>
 
 <div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
 <h4>Division (/=)</h4>
-<<if ndef $compoundDivide>><<th-set '$compoundDivide' to 100>><</if>>
 Current: <b><<print $compoundDivide>></b><br>
 <<button "Reset to 100">><<th-set '$compoundDivide' to 100>><</button>>
 <<button "/= 2">><<th-set '$compoundDivide' /= 2>><</button>>
@@ -429,11 +433,13 @@ Current Value: <b><<print $users[$role]["choices"]["dynamicTest"]>></b><br>
 <</button>>
 
 <<button "Increment by 1 (using sendAction)">>
-	<<sendAction _dynamicPath ($users[$role]["choices"]["dynamicTest"] + 1)>>
+	<<set _newValue = $users[$role]["choices"]["dynamicTest"] + 1>>
+	<<sendAction _dynamicPath _newValue>>
 <</button>>
 
 <<button "Add 10 (using sendAction)">>
-	<<sendAction _dynamicPath ($users[$role]["choices"]["dynamicTest"] + 10)>>
+	<<set _newValue = $users[$role]["choices"]["dynamicTest"] + 10>>
+	<<sendAction _dynamicPath _newValue>>
 <</button>>
 
 <<button "Reset (using th-set)">>
