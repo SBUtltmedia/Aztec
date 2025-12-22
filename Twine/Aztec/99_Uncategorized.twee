@@ -3025,6 +3025,7 @@ When your contribution to the cookbook is ready, you may continue <<link "on to 
 <<theyrException $godParam>>
 <<theyrException $passageHistory>>
 <<script>>
+	console.log("StoryInit: Starting script execution");
 	const loc = location.search;
 	const searchParams = new URLSearchParams(loc);
 	// State.setVar("$userId", searchParams.get('id') || userData.authData.id)
@@ -3033,6 +3034,8 @@ When your contribution to the cookbook is ready, you may continue <<link "on to 
 	State.setVar("$role", searchParams.get('nick') || userData.authData.nick || userData.authData.global_name)
 	State.setVar("_role", searchParams.get('nick') || userData.authData.nick || userData.authData.global_name)
 	State.setVar("_discriminator", searchParams.get('discriminator') || userData.authData.discriminator)
+	console.log("StoryInit: $role set to:", State.getVar("$role"));
+
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString('en-US', {
 			timeZone: 'America/New_York',
@@ -3188,28 +3191,33 @@ List of valid roles and their info */
 /* inits users table. Maps roles to userid */
 <<if ndef $users>>
 	<<th-set '$users' to {}>>
-	<<for _user, _data  range _roles>>
+<</if>>
+<<for _user, _data  range _roles>>
+	<<if ndef $users[_user]>>
 		<<th-set '$users[_user]' to {}>>
 		<<th-set '$users[_user]["choices"]' to {}>>
-		<<sendAction "$users[_user]["faction"]" _roles[_user]?.faction || null>>
-		<<sendAction "$users[_user]["character"]" _roles[_user]?.Character || null>>
-		<<sendAction "$users[_user]["isLeader"]" _roles[_user]?.isLeader || null>>
+		<<th-set '$users[_user]["faction"]' to _roles[_user]?.faction || null>>
+		<<th-set '$users[_user]["character"]' to _roles[_user]?.Character || null>>
+		<<th-set '$users[_user]["isLeader"]' to _roles[_user]?.isLeader || null>>
 		<<th-set '$users[_user]["passage"]' to Config.passages.start>>
 		<<th-set '$users[_user]["active"]' to false>>
 
 		<<th-set '$users[_user]["username"]' to "notSeen">>
 		<<th-set '$users[_user]["discriminator"]' to "notSeen">>
 		<<th-set '$users[_user]["userId"]' to "notSeen">>
-	<</for>>
-<</if>>
+	<</if>>
+<</for>>
+<<script>>
+	console.log("StoryInit: $users object after initialization:", State.getVar("$users"));
+<</script>>
 
 /* inits userdata in $users */
 
 /* change this conditional */
 <<if (Object.keys(_roles).includes($role)) >>
 	<<th-set '$users[$role]["userId"]' to $userId>>
-	<<sendAction "$users[$role]["username"]" _username>>
-	<<sendAction "$users[$role]["discriminator"]" _discriminator>>
+	<<th-set '$users[$role]["username"]' to _username>>
+	<<th-set '$users[$role]["discriminator"]' to _discriminator>>
 	<<th-set '$users[$role]["active"]' to true>>
 <</if>>
 

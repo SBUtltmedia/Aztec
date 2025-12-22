@@ -1,0 +1,4 @@
+│ The following project is an attempt to modularize and refactor the git branch elizabeth to be be more   │
+│   modular (the twee files are split up, the server is the SOA on state). We want to use MCP Chrome Dev Tools to play the game, 
+ which will involve logging in as all users and following through to the end, the process should be documented to perhaps automate the game via puppeteer.  If errors are encountered it should be assumed that elizebeth branch was functional and compare to that branch for helping solve the problem 
+ Any part that would be easier with (non tedious) help from user would be preferable. We should use "npm run dev" for testing

@@ -151,6 +151,7 @@ function showStats() {
         console.warn("SugarCube not initialized yet, cannot show stats");
         return;
     }
+    console.log("showStats: Fired");
 
     var stats = {
         "Strength": 0,
@@ -164,14 +165,19 @@ function showStats() {
 
     let roleVar = window.SugarCubeState.variables.role
     let users = window.SugarCubeState.variables['users']
+    console.log("showStats: roleVar:", roleVar, "users:", users);
+
 
     // Check if role exists and user is defined
     if (!roleVar || !users || !users[roleVar]) {
+        console.warn("showStats: User or role not found, exiting.", "roleVar:", roleVar, "users:", users);
         return; // Exit silently if user not found (e.g., GOD user)
     }
 
     let user = users[roleVar];
+    console.log("showStats: user object:", user);
     let twineStats = user.stats;
+    console.log("showStats: user.stats:", twineStats);
     let faction = user["faction"];
 
     if (twineStats) {
@@ -199,31 +205,32 @@ function showStats() {
     }
 
     let factions = window.SugarCubeState.variables['factions']
-    let twineVar = factions[faction]['stats']['Strength'];
+    if (factions && factions[faction] && factions[faction]['stats']) {
+        let twineVar = factions[faction]['stats']['Strength'];
 
-    if (twineVar != null) {
-        let statString = `${faction}: ${twineVar} `;
-        if (!$('#factionStrength').length) {
+        if (twineVar != null) {
+            let statString = `${faction}: ${twineVar} `;
+            if (!$('#factionStrength').length) {
 
-            $('#story')
-                .append($('<div/>',
-                    {
-                        "id": "factionStrength",
-                    })
-                    .append(
-                        $('<div/>', {
-                            "id": "factionStrengthBar",
-                            // "html": statString
-                        }))
-                ).append($('<div/>', {
-                    "id": "factionStrengthLabel",
-                    // "html": statString
-                }))
+                $('#story')
+                    .append($('<div/>',
+                        {
+                            "id": "factionStrength",
+                        })
+                        .append(
+                            $('<div/>', {
+                                "id": "factionStrengthBar",
+                                // "html": statString
+                            }))
+                    ).append($('<div/>', {
+                        "id": "factionStrengthLabel",
+                        // "html": statString
+                    }))
+            }
+            $("#factionStrengthLabel").html(statString);
+            setFactionStrength(twineVar)  // set back to twineVar
         }
-        $("#factionStrengthLabel").html(statString);
-        setFactionStrength(twineVar)  // set back to twineVar
     }
-
 }
 
 
@@ -246,11 +253,25 @@ function setFactionStrength(rawValue) {
  * @param {object} statsIn: a player's default stats
  */
 function makeRoleStats(statsIn) {
+    console.log("makeRoleStats: Fired with statsIn:", statsIn);
     let role = window.SugarCubeState.variables.role;
-    let user = window.SugarCubeState.variables.users[role]
+    let users = window.SugarCubeState.variables.users;
+    console.log("makeRoleStats: role:", role, "users:", users);
+    
+    if (!users || !users[role]) {
+        console.error("makeRoleStats: User object not found for role:", role);
+        return;
+    }
+
+    let user = users[role]
     var output = "";
 
+    if(!user["stats"]){
+        user["stats"] = {}
+    }
     user["stats"] = statsIn;
+    console.log("makeRoleStats: Set user.stats to:", user.stats);
+
 
     //TODO: try to only send stats of user
     socket.emit('difference', window.SugarCubeState.variables)
@@ -376,12 +397,18 @@ function diffSet(pathArr, value) {
 }
 
 function initTheyr(lockInfo) {
+    console.log("initTheyr: Fired");
+    console.log("initTheyr: Initial userData.gameState:", userData.gameState);
+    console.log("initTheyr: Initial SugarCube state:", window.SugarCubeState.variables);
 
     updateSugarCubeState(userData.gameState);
+    console.log("initTheyr: SugarCube state after update:", window.SugarCubeState.variables);
+
 
     socket = io();
     // Receive state from server upon connecting, then update all other clients that you've connected
     socket.on('connect', () => {
+        console.log("Socket.io: Connected");
         socket.emit('new user', socket.id);
         lockInfo.callback(lockInfo.lockId)
     })
@@ -406,6 +433,7 @@ function initTheyr(lockInfo) {
 
     // Incoming difference, update your state and store
     socket.on('difference', (diff) => {
+        console.log("Socket.io: Received difference:", diff);
         updateSugarCubeState(diff)
         _.merge(buffer, diff)
         $(document).trigger(":liveupdate");

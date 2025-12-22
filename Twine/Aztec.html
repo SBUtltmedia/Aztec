@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="265" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+	<!-- UUID://5CAF53F2-B97C-45CA-9E53-CBD50086BDA5// --><tw-storydata name="Spanish Aztec War Ver 1.0.1" startnode="227" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="5CAF53F2-B97C-45CA-9E53-CBD50086BDA5" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -396,7 +396,7 @@ setup.formatChatTime = function(timestamp) {
 		hour: '2-digit',
 		minute: '2-digit'
 	}).replace(",", "");
-}</script><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
+}</script><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;
@@ -13932,6 +13932,7 @@ When your contribution to the cookbook is ready, you may continue &lt;&lt;link &
 &lt;&lt;theyrException $godParam&gt;&gt;
 &lt;&lt;theyrException $passageHistory&gt;&gt;
 &lt;&lt;script&gt;&gt;
+	console.log(&quot;StoryInit: Starting script execution&quot;);
 	const loc = location.search;
 	const searchParams = new URLSearchParams(loc);
 	// State.setVar(&quot;$userId&quot;, searchParams.get(&#39;id&#39;) || userData.authData.id)
@@ -13940,6 +13941,8 @@ When your contribution to the cookbook is ready, you may continue &lt;&lt;link &
 	State.setVar(&quot;$role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	State.setVar(&quot;_role&quot;, searchParams.get(&#39;nick&#39;) || userData.authData.nick || userData.authData.global_name)
 	State.setVar(&quot;_discriminator&quot;, searchParams.get(&#39;discriminator&#39;) || userData.authData.discriminator)
+	console.log(&quot;StoryInit: $role set to:&quot;, State.getVar(&quot;$role&quot;));
+
 	setup.printTime = function (date) {
 		return new Date(date).toLocaleString(&#39;en-US&#39;, {
 			timeZone: &#39;America/New_York&#39;,
@@ -14095,28 +14098,33 @@ List of valid roles and their info */
 /* inits users table. Maps roles to userid */
 &lt;&lt;if ndef $users&gt;&gt;
 	&lt;&lt;th-set &#39;$users&#39; to {}&gt;&gt;
-	&lt;&lt;for _user, _data  range _roles&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;for _user, _data  range _roles&gt;&gt;
+	&lt;&lt;if ndef $users[_user]&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user]&#39; to {}&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;choices&quot;]&#39; to {}&gt;&gt;
-		&lt;&lt;sendAction &quot;$users[_user][&quot;faction&quot;]&quot; _roles[_user]?.faction || null&gt;&gt;
-		&lt;&lt;sendAction &quot;$users[_user][&quot;character&quot;]&quot; _roles[_user]?.Character || null&gt;&gt;
-		&lt;&lt;sendAction &quot;$users[_user][&quot;isLeader&quot;]&quot; _roles[_user]?.isLeader || null&gt;&gt;
+		&lt;&lt;th-set &#39;$users[_user][&quot;faction&quot;]&#39; to _roles[_user]?.faction || null&gt;&gt;
+		&lt;&lt;th-set &#39;$users[_user][&quot;character&quot;]&#39; to _roles[_user]?.Character || null&gt;&gt;
+		&lt;&lt;th-set &#39;$users[_user][&quot;isLeader&quot;]&#39; to _roles[_user]?.isLeader || null&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;passage&quot;]&#39; to Config.passages.start&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;active&quot;]&#39; to false&gt;&gt;
 
 		&lt;&lt;th-set &#39;$users[_user][&quot;username&quot;]&#39; to &quot;notSeen&quot;&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;discriminator&quot;]&#39; to &quot;notSeen&quot;&gt;&gt;
 		&lt;&lt;th-set &#39;$users[_user][&quot;userId&quot;]&#39; to &quot;notSeen&quot;&gt;&gt;
-	&lt;&lt;/for&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;&lt;script&gt;&gt;
+	console.log(&quot;StoryInit: $users object after initialization:&quot;, State.getVar(&quot;$users&quot;));
+&lt;&lt;/script&gt;&gt;
 
 /* inits userdata in $users */
 
 /* change this conditional */
 &lt;&lt;if (Object.keys(_roles).includes($role)) &gt;&gt;
 	&lt;&lt;th-set &#39;$users[$role][&quot;userId&quot;]&#39; to $userId&gt;&gt;
-	&lt;&lt;sendAction &quot;$users[$role][&quot;username&quot;]&quot; _username&gt;&gt;
-	&lt;&lt;sendAction &quot;$users[$role][&quot;discriminator&quot;]&quot; _discriminator&gt;&gt;
+	&lt;&lt;th-set &#39;$users[$role][&quot;username&quot;]&#39; to _username&gt;&gt;
+	&lt;&lt;th-set &#39;$users[$role][&quot;discriminator&quot;]&#39; to _discriminator&gt;&gt;
 	&lt;&lt;th-set &#39;$users[$role][&quot;active&quot;]&#39; to true&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 

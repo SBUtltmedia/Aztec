@@ -30,15 +30,19 @@ registerSharedRoutes(app, webstackInstance);
 
 // Listen for requests to the homepage
 app.get('/', async ({ query }, response) => {
-	const { nick, id } = query;
+	const { nick, id, username } = query;
 
 	if (nick && id) {
-        // Construct a user object similar to the discord one
+        // Construct a user object matching the Discord structure
+        // to ensure compatibility with game logic that expects Discord fields
         const authData = {
             id: id,
             nick: nick,
+            username: username || nick,  // Use provided username or fallback to nick
+            global_name: nick,           // Discord global name fallback
+            discriminator: '0000',       // Default discriminator for dev mode
             user: {
-                username: nick
+                username: username || nick
             }
         };
 		// Pass the full game state to the twine file
