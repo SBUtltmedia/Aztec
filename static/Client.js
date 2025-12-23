@@ -432,10 +432,27 @@ function initTheyr(lockInfo) {
     });
 
     // Incoming difference, update your state and store
-    socket.on('difference', (diff) => {
-        console.log("Socket.io: Received difference:", diff);
-        updateSugarCubeState(diff)
-        _.merge(buffer, diff)
+    // Track last received sequence number (Fix #4)
+    let lastReceivedSeq = 0;
+
+    socket.on('difference', (payload) => {
+        // Handle new format with sequence numbers (Fix #4)
+        const diff = payload.diff || payload;
+        const seq = payload.seq || 0;
+        const clientSeq = payload.clientSeq;
+
+        console.log(`Socket.io: Received difference (seq: ${seq}, clientSeq: ${clientSeq}):`, diff);
+
+        // Detect out-of-order updates (Fix #4)
+        if (seq > 0 && seq < lastReceivedSeq) {
+            console.warn(`Out-of-order update detected! seq ${seq} after ${lastReceivedSeq}`);
+            // Still apply it, but log the issue
+        }
+
+        lastReceivedSeq = Math.max(lastReceivedSeq, seq);
+
+        updateSugarCubeState(diff);
+        _.merge(buffer, diff);
         $(document).trigger(":liveupdate");
     })
 
@@ -444,6 +461,77 @@ function initTheyr(lockInfo) {
 
         $(document).trigger(":liveupdate");
     })
+
+    // Periodic state reconciliation (Fix #3)
+    let lastSyncTime = Date.now();
+    const SYNC_INTERVAL = 30000; // 30 seconds
+
+    setInterval(() => {
+        if (Date.now() - lastSyncTime > SYNC_INTERVAL) {
+            requestFullStateSync();
+            lastSyncTime = Date.now();
+        }
+    }, SYNC_INTERVAL);
+
+    function requestFullStateSync() {
+        $.ajax({
+            url: '/state/full',
+            method: 'GET',
+            success: function(serverState) {
+                console.log('Periodic sync: Reconciling state with server');
+                reconcileState(serverState);
+            },
+            error: function(err) {
+                console.warn('Periodic sync failed:', err);
+            }
+        });
+    }
+
+    function reconcileState(serverState) {
+        if (!window.SugarCubeState || !window.SugarCubeState.variables) {
+            console.warn('SugarCube not ready for reconciliation');
+            return;
+        }
+
+        const clientState = window.SugarCubeState.variables;
+        const differences = findStateDifferences(clientState, serverState);
+
+        if (differences.length > 0) {
+            console.warn('State drift detected! Syncing from server:', differences);
+
+            // Merge server state (server wins)
+            _.merge(window.SugarCubeState.variables, serverState);
+            $(document).trigger(":liveupdate");
+        } else {
+            console.log('State sync: No drift detected');
+        }
+    }
+
+    function findStateDifferences(clientState, serverState) {
+        const diffs = [];
+
+        // Check critical paths for differences
+        const criticalPaths = [
+            'users',
+            'Start',
+            'chatlog'
+        ];
+
+        criticalPaths.forEach(path => {
+            const clientVal = _.get(clientState, path);
+            const serverVal = _.get(serverState, path);
+
+            if (!_.isEqual(clientVal, serverVal)) {
+                diffs.push({
+                    path,
+                    client: clientVal,
+                    server: serverVal
+                });
+            }
+        });
+
+        return diffs;
+    }
 }
 
 

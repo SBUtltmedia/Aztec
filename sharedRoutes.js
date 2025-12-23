@@ -49,6 +49,10 @@ function requireAuthOrTest(req, res, next) {
 export function registerSharedRoutes(app, webstackInstance, options = {}) {
     const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+    // Track recent updates to prevent rapid duplicates (Fix #5: Smarter Deduplication)
+    const recentUpdates = new Map(); // path -> { value, timestamp }
+    const DEDUP_WINDOW = 500; // 500ms window
+
     // Server-authoritative action endpoint
     // Handles state updates from client macros (<<th-set>>, <<sendAction>>)
     app.post('/action', requireAuthOrTest, urlencodedParser, async (req, res) => {
@@ -103,24 +107,97 @@ export function registerSharedRoutes(app, webstackInstance, options = {}) {
             const currentState = webstackInstance.serverStore.getState();
             const currentValue = _.get(currentState, path);
 
-            // Only update and broadcast if the value is different
-            if (!_.isEqual(currentValue, parsedValue)) {
-                // Create a diff object with the updated value
+            // Smart deduplication: check both value AND time window (Fix #5)
+            let shouldBroadcast = !_.isEqual(currentValue, parsedValue);
+
+            if (shouldBroadcast) {
+                // Value is different, always broadcast
+            } else {
+                // Value is same - check if this is a rapid duplicate
+                const recentUpdate = recentUpdates.get(path);
+                const now = Date.now();
+
+                if (recentUpdate && (now - recentUpdate.timestamp) < DEDUP_WINDOW) {
+                    // Same value within dedup window - skip broadcast
+                    console.log(`Deduplicating: ${path} (within ${DEDUP_WINDOW}ms)`);
+                    shouldBroadcast = false;
+                } else {
+                    // Same value but outside window - might be intentional re-set
+                    // Allow broadcast to ensure all clients are synced
+                    console.log(`Re-broadcasting unchanged value for sync: ${path}`);
+                    shouldBroadcast = true;
+                }
+            }
+
+            if (shouldBroadcast) {
                 const diff = {};
                 _.set(diff, path, parsedValue);
 
-                // Update the server state
-                webstackInstance.serverStore.setState(diff);
+                // Update state with sequence tracking (Fix #4)
+                const serverSeq = webstackInstance.serverStore.setState(diff, req.body.seq);
+                recentUpdates.set(path, { value: parsedValue, timestamp: Date.now() });
 
-                // Broadcast the diff to all clients using existing 'difference' event
-                webstackInstance.io.emit('difference', diff);
+                // Broadcast with sequence number (Fix #4)
+                webstackInstance.io.emit('difference', {
+                    diff: diff,
+                    seq: serverSeq,
+                    clientSeq: req.body.seq,
+                    timestamp: Date.now()
+                });
             }
 
-            res.send({ status: 'ok' });
+            // Cleanup old entries periodically
+            if (recentUpdates.size > 1000) {
+                const now = Date.now();
+                for (const [path, entry] of recentUpdates.entries()) {
+                    if (now - entry.timestamp > DEDUP_WINDOW * 10) {
+                        recentUpdates.delete(path);
+                    }
+                }
+            }
+
+            res.send({
+                status: 'ok',
+                seq: req.body.seq,  // Echo back sequence number (Fix #2)
+                serverSeq: webstackInstance.serverStore.getSequenceNumber(),
+                broadcast: shouldBroadcast  // Indicate if broadcast occurred
+            });
         } finally {
             release();
         }
     });
+
+    // Full state sync endpoint (Fix #3)
+    // Returns full server state for periodic reconciliation
+    app.get('/state/full', requireAuthOrTest, (req, res) => {
+        const fullState = webstackInstance.serverStore.getState();
+
+        // Filter private vars for this user
+        const userId = req.user?.userId || req.session?.userId;
+        const filteredState = filterPrivateVars(fullState, userId);
+
+        res.json(filteredState);
+    });
+
+    /**
+     * Filter private vars for a specific user (Fix #3 helper)
+     * Removes other users' private data before sending state to client
+     */
+    function filterPrivateVars(state, userId) {
+        // Clone to avoid modifying original
+        const filtered = _.cloneDeep(state);
+
+        // Remove other users' private vars
+        if (filtered.theyrPrivateVars) {
+            Object.keys(filtered.theyrPrivateVars).forEach(uid => {
+                if (uid !== userId) {
+                    delete filtered.theyrPrivateVars[uid];
+                }
+            });
+        }
+
+        return filtered;
+    }
 
     // Git update endpoint
     app.post('/updateGit', async (req, res) => {

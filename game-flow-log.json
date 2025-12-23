@@ -1,0 +1,8298 @@
+[
+  {
+    "step": 1,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 1,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 1,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 1,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 1,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 1,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 1,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 1,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 2,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 3,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 4,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 5,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 6,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 7,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 8,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 9,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 10,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 11,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 12,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 13,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 14,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 15,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 16,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 17,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 18,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 19,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 20,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 21,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 22,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 23,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Moctezuma",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Tlacaelel",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Cuauhtemoc",
+    "faction": "Aztec",
+    "text": "\nYour Team Leader is: Moctezuma\n\nMexica, over the last 200 years, you have vanquished your enemies one by one to become the most powerful city-state in central Mexico. Your first leader, Acamapichtli,",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Cortes",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Alvarado",
+    "faction": "Spanish",
+    "text": "\nYour Team Leader is: Cortes\n\nNovember 18th, 1519. Just off the shore of Cuba.\n\nYou stand on the deck of the ship watching the city of Santiago de Cuba recede towards the horizon. The wind has caught ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "Without risk, there can be no reward",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Marina",
+    "faction": "Spanish",
+    "text": "\nYou have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were ",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "make note of this information, because it could be important later on",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Xicotencatl_Elder",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  },
+  {
+    "step": 24,
+    "character": "Xicotencatl_Younger",
+    "faction": "Tlaxcalan",
+    "text": "\nYour Team Leader is: Xicotencatl_Elder\n\nTlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Th",
+    "links": [
+      {
+        "text": "Saves",
+        "href": ""
+      },
+      {
+        "text": "Restart",
+        "href": ""
+      },
+      {
+        "text": "the blessing that you seek",
+        "href": ""
+      }
+    ],
+    "buttons": [
+      "",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save",
+      "Delete",
+      "Save to Disk…",
+      "Load from Disk…",
+      "Delete All",
+      "",
+      ""
+    ]
+  }
+]

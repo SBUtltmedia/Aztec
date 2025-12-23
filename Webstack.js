@@ -76,18 +76,46 @@ class Webstack {
 	 */
 	createSimpleStore() {
 		let state = {};
+		let sequenceNumber = 0;
+		let updateHistory = []; // Keep last 100 updates
+		const MAX_HISTORY = 100;
 
 		return {
 			getState() {
 				return state;
 			},
-			setState(updates) {
+			setState(updates, clientSeq = null) {
+				sequenceNumber++;
+
+				// Record update in history
+				updateHistory.push({
+					seq: sequenceNumber,
+					clientSeq: clientSeq,
+					timestamp: Date.now(),
+					updates: _.cloneDeep(updates)
+				});
+
+				// Trim history
+				if (updateHistory.length > MAX_HISTORY) {
+					updateHistory.shift();
+				}
+
 				// Merge updates into existing state
 				state = _.merge(state, updates);
+
+				return sequenceNumber;
 			},
 			replaceState(newState) {
 				// Completely replace the state
 				state = newState;
+				sequenceNumber = 0;
+				updateHistory = [];
+			},
+			getSequenceNumber() {
+				return sequenceNumber;
+			},
+			getUpdateHistory() {
+				return updateHistory;
 			}
 		};
 	}

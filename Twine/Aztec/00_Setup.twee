@@ -167,6 +167,125 @@ setup.getTotalChoices = function(choice){
 	});
 
 	/*
+	 * Request queue for th-set synchronization (Fix #1, #2)
+	 * Ensures sequential processing and retry logic
+	 */
+	window.thSetQueue = window.thSetQueue || {
+		queue: [],
+		processing: false,
+		sequenceNumber: 0
+	};
+
+	/*
+	 * Queue processor function (Fix #1, #2)
+	 * Processes th-set requests sequentially with retry logic
+	 */
+	async function processThSetQueue() {
+		const queue = window.thSetQueue;
+		queue.processing = true;
+
+		while (queue.queue.length > 0) {
+			const request = queue.queue[0];
+			const success = await sendThSetRequest(request);
+
+			if (success) {
+				queue.queue.shift(); // Remove completed request
+			} else {
+				// Retry logic (Fix #2)
+				request.retries++;
+				if (request.retries >= 3) {
+					console.error('Failed to send th-set after 3 retries:', request);
+					queue.queue.shift(); // Give up and move on
+				} else {
+					// Wait before retry
+					await new Promise(resolve => setTimeout(resolve, 1000));
+				}
+			}
+		}
+
+		queue.processing = false;
+	}
+
+	/*
+	 * Send th-set request with confirmation (Fix #2)
+	 * Returns a promise that resolves to true on success, false on failure
+	 */
+	function sendThSetRequest(request) {
+		return new Promise((resolve) => {
+			$.ajax({
+				url: '/action',
+				method: 'POST',
+				data: {
+					variable: request.varPath,
+					value: JSON.stringify(request.value),
+					seq: request.seqNum  // Sequence number for tracking
+				},
+				timeout: 5000,
+				success: function(response) {
+					if (response.status === 'ok') {
+						console.log(`th-set confirmed: ${request.varPath} (seq: ${request.seqNum})`);
+						resolve(true);
+					} else {
+						console.warn(`th-set rejected: ${request.varPath}`, response);
+						resolve(false);
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error(`th-set failed: ${request.varPath} (${status})`, error);
+					resolve(false);
+				}
+			});
+		});
+	}
+
+	/*
+	 * Enqueue a th-set request (Fix #1)
+	 * Adds request to queue and starts processing if not already running
+	 */
+	function enqueueThSetRequest(varPath, value) {
+		const queue = window.thSetQueue;
+		const seqNum = ++queue.sequenceNumber;
+
+		queue.queue.push({ varPath, value, seqNum, retries: 0 });
+
+		if (!queue.processing) {
+			processThSetQueue();
+		}
+	}
+
+	/*
+	 * Helper function to evaluate variable references within a path string
+	 * Converts $users[$role]["choices"] to $users["Moctezuma"]["choices"]
+	 */
+	function evaluateVarPath(varPath) {
+		// Match bracket notation with variables: [$varName]
+		const bracketVarPattern = /\[(\$[A-Za-z_]\w*)\]/g;
+
+		let evaluatedPath = varPath;
+		let match;
+
+		// Find all variable references in bracket notation
+		while ((match = bracketVarPattern.exec(varPath)) !== null) {
+			const fullMatch = match[0];  // e.g., "[$role]"
+			const varName = match[1];     // e.g., "$role"
+
+			try {
+				// Evaluate the variable to get its value
+				const varValue = State.getVar(varName);
+
+				// Replace [$role] with ["Moctezuma"]
+				const replacement = '["' + varValue + '"]';
+				evaluatedPath = evaluatedPath.replace(fullMatch, replacement);
+			} catch (e) {
+				console.warn('Could not evaluate variable in path:', varName, e);
+				// Leave it as-is if evaluation fails
+			}
+		}
+
+		return evaluatedPath;
+	}
+
+	/*
 	 * <<th-set>> macro - Server-authoritative state setter
 	 *
 	 * Usage:
@@ -174,6 +293,7 @@ setup.getTotalChoices = function(choice){
 	 *   <<th-set '$user.score' to $user.score + 1>>
 	 *   <<th-set '$variable' += 5>>      (compound operators)
 	 *   <<th-set '$variable' to {key: "value", nested: {obj: true}}>>  (multi-line objects)
+	 *   <<th-set $users[$role]["choices"]["Aztec_Tot_Play"] to 1>>  (evaluates $role)
 	 *
 	 * This macro evaluates expressions like <<set>> but sends the result to the server.
 	 */
@@ -251,20 +371,18 @@ setup.getTotalChoices = function(choice){
 				return this.error('bad evaluation: ' + (typeof e === 'object' ? e.message : e));
 			}
 
-			// Set the variable locally
+			// Set the variable locally (immediate)
 			try {
 				State.setVar(varPath, value);
 			} catch (e) {
 				return this.error('failed to set variable: ' + e.message);
 			}
 
-			// Send to server
-			$.post("/action", {
-				variable: varPath,
-				value: JSON.stringify(value)
-			}).fail(function(err) {
-				console.error('Failed to send action to server:', err);
-			});
+			// Evaluate any variable references in the path before sending to server
+			const evaluatedVarPath = evaluateVarPath(varPath);
+
+			// Queue the server update (async with retry) - Fix #1, #2
+			enqueueThSetRequest(evaluatedVarPath, value);
 		}
 	});
 
