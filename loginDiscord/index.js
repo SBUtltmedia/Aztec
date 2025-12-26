@@ -77,7 +77,7 @@ const GITHUBUSER = process.env.githubUser || githubUser
 const GITHUBREPO = process.env.githubRepo || githubRepo
 const SERVERCONF = { "port": PORT, "twinePath": TWINE_PATH, "githubToken": GITHUBTOKEN, "githubUser": GITHUBUSER, "githubRepo": GITHUBREPO, "fileName": FILENAME, "appIndex": appID }
 
-let refreshTokens = {};
+// Removed global refreshTokens variable (memory leak fix)
 const webstackInstance = new webstack(SERVERCONF);
 const { app } = webstackInstance.get();
 
@@ -161,6 +161,11 @@ app.get('/', async (request, response) => {
 				request.session.oauthState = newState;
 				return loadHome(response, test, nick, newState);
 			}
+
+            // Store refresh token in session (Fix for memory leak)
+            if (oauthData.refresh_token) {
+                request.session.refreshToken = oauthData.refresh_token;
+            }
 
 			const userResult = await fetch('https://discord.com/api/users/@me', {
 				headers: {

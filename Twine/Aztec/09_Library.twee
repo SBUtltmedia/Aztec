@@ -94,6 +94,10 @@ You make your way to the chair and you hear the door swing shut behind you. You 
 :: The Library [Done] {"position":"3875,1275","size":"100,100"}
 <<liveblock>>
 
+<<if !$users[$role] || !$users[$role]["faction"]>>
+	<<goto "Name Not Recognized">>
+<</if>>
+
 It's eight weeks into the semester and you're already drowning in work. You have your first exams this week, you need to get started on some research, and now your history professor has sprung a surprise assignment on you at the last minute--and it's due tomorrow! The only way you're going to get everything done is to pull an all-nighter. There's no way you'll be able to stay awake at home; your bed is there and it's just too tempting. So you head to the library. <br>
 <br>
 It's 7 pm and the library is more crowded than usual. It looks like you're not the only one with a mountain of work to do this week! There's no way you'll be able to focus in the midst of so many people. Maybe the top floor is quieter. You head upstairs towards the study carrels, but they're all taken. It's dead quiet up here, but there's nowhere to work. You begin wandering down unfamiliar hallways, poking your head into all the different rooms, but none of them work. You're beginning to get frustrated when you notice a door you've never seen before. It's tucked into an alcove in the very back corner of the building. You decide to check this one last spot before you give up and join the masses downstairs. <br>

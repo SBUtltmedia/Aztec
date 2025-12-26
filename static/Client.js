@@ -401,6 +401,7 @@ function initTheyr(lockInfo) {
     console.log("initTheyr: Initial userData.gameState:", userData.gameState);
     console.log("initTheyr: Initial SugarCube state:", window.SugarCubeState.variables);
 
+    // Filter exception variables from initial gameState to prevent override of URL params
     updateSugarCubeState(userData.gameState);
     console.log("initTheyr: SugarCube state after update:", window.SugarCubeState.variables);
 
@@ -410,7 +411,7 @@ function initTheyr(lockInfo) {
     socket.on('connect', () => {
         console.log("Socket.io: Connected");
         socket.emit('new user', socket.id);
-        lockInfo.callback(lockInfo.lockId)
+        // lockInfo.callback(lockInfo.lockId) // Moved to 'new connection' to prevent race condition
     })
 
     socket.on('new connection', (state) => {
@@ -429,6 +430,11 @@ function initTheyr(lockInfo) {
         // If the server's state is empty, set with this client's state
         //    updateSugarCubeState(combinedState);
         $(document).trigger(":liveupdate");
+
+        // Unlock the game now that state is loaded
+        if (lockInfo && lockInfo.callback) {
+            lockInfo.callback(lockInfo.lockId);
+        }
     });
 
     // Incoming difference, update your state and store
@@ -546,7 +552,15 @@ function updateSugarCubeState(new_state) {
         return;
     }
 
-    _.merge(window.SugarCubeState.variables, new_state);
+    // Filter out exception variables from server state to prevent override
+    const filteredState = {};
+    for (const key in new_state) {
+        if (!exceptions.includes('$' + key) && !exceptions.includes(key)) {
+            filteredState[key] = new_state[key];
+        }
+    }
+
+    _.merge(window.SugarCubeState.variables, filteredState);
 
     $(document).trigger(":liveupdate");
 }

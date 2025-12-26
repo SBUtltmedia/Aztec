@@ -32,12 +32,14 @@ class Webstack {
 
 		this.gitApi = new gitApiIO(serverConf, this.isTest)
 		this.gitApi.retrieveFileAPI().then((gameData) => {
-			console.log('Successfully retrieved game state from GitHub');
+			const source = this.isTest ? 'local file (loginDiscord/testVars.json)' : 'GitHub';
+			console.log(`Successfully retrieved game state from ${source}`);
 			let state = JSON.parse(gameData)
 			this.serverStore.replaceState(state);
 			console.log('Game state loaded successfully');
 		}).catch(err => {
-			console.error('Error retrieving game state from GitHub:', err.message);
+			const source = this.isTest ? 'local file' : 'GitHub';
+			console.error(`Error retrieving game state from ${source}:`, err.message);
 			console.error('Full error:', err);
 			console.warn('Starting server with empty state');
 		}).finally(() => {
@@ -160,18 +162,6 @@ class Webstack {
 
 			// When a client detects a variable being changed they send the difference signal which is
 			// caught here and sent to other clients
-			// socket.on('difference', async (diff) => {
-			// 	const release = await this.writeMutex.acquire();
-			// 	try {
-			// 		this.serverStore.setState(diff);
-			// 		//sends message to all other clients unless inside theyrPrivateVars
-			// 		if(!Object.keys(diff).includes("theyrPrivateVars")){
-			// 			socket.broadcast.emit('difference', diff)
-			// 		}
-			// 	} finally {
-			// 		release();
-			// 	}
-			// })
 
 
 			socket.on('fullReset', ()=>{

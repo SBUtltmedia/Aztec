@@ -311,6 +311,7 @@ setup.getTotalChoices = function(choice){
 			// NOTE: SugarCube converts 'to' syntax to '=' before reaching the handler
 			let varPath = null;
 			let expression = null;
+			let value; // Declare value here so it's accessible in both compound and regular paths
 
 			// Try regular assignment first: '$variable' = expression OR $variable = expression
 			// Use [\s\S] instead of . to match newlines
@@ -326,8 +327,21 @@ setup.getTotalChoices = function(choice){
 					varPath = compoundMatch[1];
 					const operator = compoundMatch[2];
 					const rightSide = compoundMatch[3].trim();
-					// Convert compound to full expression: $var += 5 becomes $var + 5
-					expression = varPath + ' ' + operator + ' (' + rightSide + ')';
+					// FIX: Get current value and compute directly instead of building expression string
+					// This avoids the issue where evalJavaScript doesn't understand $variable syntax
+					const currentValue = State.getVar(varPath);
+					const rightValue = Scripting.evalJavaScript(rightSide);
+
+					switch(operator) {
+						case '+': value = currentValue + rightValue; break;
+						case '-': value = currentValue - rightValue; break;
+						case '*': value = currentValue * rightValue; break;
+						case '/': value = currentValue / rightValue; break;
+						case '%': value = currentValue % rightValue; break;
+					}
+
+					// Set flag to skip normal expression evaluation
+					expression = '__COMPOUND_OPERATOR_HANDLED__';
 				}
 			}
 
@@ -357,18 +371,19 @@ setup.getTotalChoices = function(choice){
 				return;
 			}
 
-			// Evaluate the expression to get the value
-			let value;
-			try {
-				// evalJavaScript handles full JavaScript expressions including objects
-				// Wrap object literals in parentheses to avoid ambiguity with code blocks
-				let evalExpression = expression.trim();
-				if (evalExpression.startsWith('{')) {
-					evalExpression = '(' + evalExpression + ')';
+			// Evaluate the expression to get the value (unless already handled by compound operator)
+			if (expression !== '__COMPOUND_OPERATOR_HANDLED__') {
+				try {
+					// evalJavaScript handles full JavaScript expressions including objects
+					// Wrap object literals in parentheses to avoid ambiguity with code blocks
+					let evalExpression = expression.trim();
+					if (evalExpression.startsWith('{')) {
+						evalExpression = '(' + evalExpression + ')';
+					}
+					value = Scripting.evalJavaScript(evalExpression);
+				} catch (e) {
+					return this.error('bad evaluation: ' + (typeof e === 'object' ? e.message : e));
 				}
-				value = Scripting.evalJavaScript(evalExpression);
-			} catch (e) {
-				return this.error('bad evaluation: ' + (typeof e === 'object' ? e.message : e));
 			}
 
 			// Set the variable locally (immediate)

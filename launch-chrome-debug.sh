@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Launch Chrome Canary with remote debugging for MCP Chrome DevTools

@@ -30,13 +30,14 @@ class gitApiIO{
     *  since Heroku is ephemeral
     * @param {object} content: The last saved Sugarcube.State.variables taken from serverstore
     **/
-    async uploadFileApi(content, isTest=this.test) {
-        return new Promise((res,rej)=> {
-            if(isTest){
-                fs.writeFileSync(testFile, base64.decode(content))
-                res()
-            }else{
-            let serverConf = this.serverConf
+    async uploadFileApi(content, isTest = this.test) {
+        if (isTest) {
+            fs.writeFileSync(testFile, base64.decode(content))
+            return;
+        }
+
+        try {
+            let serverConf = this.serverConf;
             var configGetFile = {
                 method: 'get',
                 url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
@@ -46,40 +47,30 @@ class gitApiIO{
                 }
             };
 
-            let sha = ""
-            axios(configGetFile)
-                .then(function (response) {
-                    // console.log(response.data.sha);
-                    sha = response.data.sha
-                    var data = JSON.stringify({
-                        "message": "txt file",
-                        "content": `${content}`,
-                        "sha": sha,
-                    });
-                    var configPutFile = {
-                        method: 'put',
-                        url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
-                        headers: {
-                            'Authorization': `Bearer ${serverConf.githubToken}`,
-                            'Content-Type': 'application/json',
+            const response = await axios(configGetFile);
+            const sha = response.data.sha;
+            
+            var data = JSON.stringify({
+                "message": "txt file",
+                "content": `${content}`,
+                "sha": sha,
+            });
+            
+            var configPutFile = {
+                method: 'put',
+                url: `https://api.github.com/repos/${serverConf.githubUser}/${serverConf.githubRepo}/contents/${serverConf.fileName}`,
+                headers: {
+                    'Authorization': `Bearer ${serverConf.githubToken}`,
+                    'Content-Type': 'application/json',
+                },
+                message: "Commit message",
+                data: data,
+            };
 
-                        },
-                        message: "Commit message",
-                        data: data,
-                    };
-                    axios(configPutFile)
-                        .then(function (response) {
-                            res()
-                        })
-                        .catch(function (error) {
-                            rej(error)
-
-                        });
-                    })
-                .catch(function (error) {
-                    rej(error)
-                });
-            }})
+            await axios(configPutFile);
+        } catch (error) {
+            throw error;
+        }
     }
 
     /**Retrieves file specified by serverConf on github via REST api
@@ -88,41 +79,39 @@ class gitApiIO{
      * into SugarCubeState.variables
      */
     async retrieveFileAPI() {
-        return new Promise((res,rej)=> {
-        if(this.test){
-            if(!fs.existsSync(testFile)){
+        if (this.test) {
+            if (!fs.existsSync(testFile)) {
                 fs.writeFileSync(testFile, fs.readFileSync("./initVars.json"))
             }
-            let data = fs.readFileSync(testFile)
-            res(data)
-        }else{
+            return fs.readFileSync(testFile);
+        }
 
-        //to update a file, it's sha must be retrieved first
-        var configGetFile = {
-            method: 'get',
-            url: `https://api.github.com/repos/${this.serverConf.githubUser}/${this.serverConf.githubRepo}/contents/${this.serverConf.fileName}`,
-            headers: {
-                'Authorization': `Bearer ${this.serverConf.githubToken}`,
-                'Content-Type': 'application/json'
-            }
-        };
-        axios(configGetFile)
-            .then(function (response) {
-                res(base64.decode(response.data.content))
-            })
-            .catch(function (error) {
-                rej(error);
-            });
-        }})
+        try {
+            //to update a file, it's sha must be retrieved first
+            var configGetFile = {
+                method: 'get',
+                url: `https://api.github.com/repos/${this.serverConf.githubUser}/${this.serverConf.githubRepo}/contents/${this.serverConf.fileName}`,
+                headers: {
+                    'Authorization': `Bearer ${this.serverConf.githubToken}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            const response = await axios(configGetFile);
+            return base64.decode(response.data.content);
+        } catch (error) {
+            throw error;
+        }
     }
 
     //for creating new json files
     async setupFileAPI(content){
-        return new Promise((res,rej)=> {
-            if(this.test){
-                fs.writeFileSync(testFile, base64.decode(content))
-                res()
-            }else{
+        if(this.test){
+            fs.writeFileSync(testFile, base64.decode(content))
+            return;
+        }
+
+        try {
             let serverConf = this.serverConf
             // console.log(response.data.sha);
             var data = JSON.stringify({
@@ -140,16 +129,11 @@ class gitApiIO{
                 message: "Commit message",
                 data: data,
             };
-            axios(configPutFile)
-                .then(function (response) {
-                    res()
-                })
-                .catch(function (error) {
-                    rej(error)
-
-                });
-
-            }})
+            
+            await axios(configPutFile);
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

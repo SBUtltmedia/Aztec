@@ -234,7 +234,7 @@ export function registerSharedRoutes(app, webstackInstance, options = {}) {
  * @param {Object} response - Express response object
  * @param {String} twinePath - Path to the Twine HTML file
  */
-export function returnTwine(userData, response, twinePath) {
+export async function returnTwine(userData, response, twinePath) {
     const fs = require('fs');
 
     // Remove private vars from other users
@@ -256,6 +256,11 @@ export function returnTwine(userData, response, twinePath) {
     let userData=${JSON.stringify(userData)} </script>
     `;
 
-    let fileContents = fs.readFileSync(twinePath);
-    return response.send(`${fileContents} ${userDataScriptTag}`);
+    try {
+        let fileContents = await fs.promises.readFile(twinePath, 'utf8');
+        return response.send(`${fileContents} ${userDataScriptTag}`);
+    } catch (err) {
+        console.error('Error reading Twine file:', err);
+        return response.status(500).send('Error loading game file');
+    }
 }

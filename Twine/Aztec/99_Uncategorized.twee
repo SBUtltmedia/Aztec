@@ -1734,23 +1734,32 @@ You have voted to mutiny! Cortés is livid at the turn of events, while Olid see
 
 
 <<liveblock>>
-Name not recognized. Make sure the spelling on your character's name matches your role. <br>
+<h2>⚠️ Access Denied</h2>
 
-<u> Roles </u> <br>
-Marina <br>
-Alvarado <br>
-Aguilar <br> 
-Garrido <br>
-Olid <br> 
-Moctezuma <br>
-Tlacaelel <br>
-Cuauhtemoc <br> 
-Aztec_Priest <br>
-Cacamatzin <br>
-Pochteca <br>
-Xicotencatl_Elder <br>
-Xicotencatl_Younger <br>
-Maxixcatl
+<b>Your character name "<<print $role>>" is not recognized.</b><br>
+<br>
+You do not have permission to access this game. This game is restricted to enrolled students who have been assigned a character role.<br>
+<br>
+<b>Please contact your instructor to be assigned a valid character role.</b><br>
+<br>
+<hr>
+<br>
+<u>Valid Character Roles:</u><br>
+Marina<br>
+Alvarado<br>
+Aguilar<br>
+Garrido<br>
+Olid<br>
+Cortes<br>
+Moctezuma<br>
+Tlacaelel<br>
+Cuauhtemoc<br>
+Aztec_Priest<br>
+Cacamatzin<br>
+Pochteca<br>
+Xicotencatl_Elder<br>
+Xicotencatl_Younger<br>
+Maxixcatl<br>
 
 <</liveblock>>
 
