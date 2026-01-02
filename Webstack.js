@@ -32,7 +32,7 @@ class Webstack {
 
 		this.gitApi = new gitApiIO(serverConf, this.isTest)
 		this.gitApi.retrieveFileAPI().then((gameData) => {
-			const source = this.isTest ? 'local file (loginDiscord/testVars.json)' : 'GitHub';
+			const source = this.isTest ? 'local file (login/testVars.json)' : 'GitHub';
 			console.log(`Successfully retrieved game state from ${source}`);
 			let state = JSON.parse(gameData)
 			this.serverStore.replaceState(state);

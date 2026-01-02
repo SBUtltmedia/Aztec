@@ -4,7 +4,7 @@ const require = createRequire(import.meta.url);
 
 var axios = require('axios');
 var fs = require('fs');
-var testFile = "loginDiscord/testVars.json"
+var testFile = "login/testVars.json"
 var base64 = require('js-base64');
 
 /**
