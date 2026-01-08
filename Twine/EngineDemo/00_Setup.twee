@@ -1,0 +1,580 @@
+:: StoryTitle
+Multiplayer Engine Demo
+
+
+:: StoryData
+{
+	"ifid": "D674C58C-DEFA-4F70-B7A2-27742230C0A5",
+	"format": "SugarCube",
+	"format-version": "2.36.1",
+	"start": "Start"
+}
+
+
+:: Story Stylesheet [stylesheet]
+body {
+	background-color: #222;
+	color: #eee;
+	font-family: 'Georgia', serif;
+	font-size: 18px;
+	line-height: 1.6;
+}
+
+.passage {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 2em;
+}
+
+a {
+	color: #6cf;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #9df;
+	text-decoration: underline;
+}
+
+h1, h2, h3 {
+	color: #fff;
+	border-bottom: 2px solid #444;
+	padding-bottom: 0.5em;
+}
+
+.multiplayer-status {
+	background: #333;
+	border: 1px solid #555;
+	padding: 1em;
+	margin: 1em 0;
+	border-radius: 5px;
+}
+
+.user-list {
+	background: #2a2a2a;
+	padding: 0.5em;
+	margin: 0.5em 0;
+	border-left: 3px solid #6cf;
+}
+
+.shared-variable {
+	background: #1a4a1a;
+	padding: 0.3em 0.6em;
+	border-radius: 3px;
+	font-family: monospace;
+}
+
+.local-variable {
+	background: #4a1a1a;
+	padding: 0.3em 0.6em;
+	border-radius: 3px;
+	font-family: monospace;
+}
+
+
+:: Story JavaScript [script]
+/*
+ * Multiplayer Engine Demo - Setup
+ *
+ * This demonstrates the core th-set macro for server-authoritative multiplayer.
+ * The th-set macro syncs variables across all connected clients via Socket.IO.
+ */
+
+// Exception variables - these are local to each client and never sync to server
+window.exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
+
+setup.exceptions = window.exceptions;
+
+
+:: th-set Macro Definition [script]
+/*
+ * th-set: Server-Authoritative Variable Setting Macro
+ *
+ * Usage: <<th-set '$variableName' to value>>
+ *
+ * This macro:
+ * 1. Sets the variable locally in SugarCube
+ * 2. Sends the update to the server via Socket.IO
+ * 3. Server broadcasts to all clients
+ * 4. Handles compound operators (+=, -=, *=, /=, %=)
+ * 5. Respects exception variables (local-only)
+ */
+
+Macro.add('th-set', {
+    tags: null,
+    handler: function() {
+        if (this.args.length === 0) {
+            return this.error('th-set macro requires arguments');
+        }
+
+        const fullExpression = this.args.full;
+
+        // Parse the expression: '$variable' to/= value
+        const setMatch = fullExpression.match(/^\s*(['"])?\$([a-zA-Z_][\w.[\]'"]*)\1?\s+(to|=|\+=|-=|\*=|\/=|%=)\s+(.+)$/);
+
+        if (!setMatch) {
+            return this.error(`Invalid th-set syntax: ${fullExpression}`);
+        }
+
+        const varPath = '$' + setMatch[2];
+        let operator = setMatch[3];
+        const rightSide = setMatch[4];
+
+        // Normalize 'to' to '='
+        if (operator === 'to') {
+            operator = '=';
+        }
+
+        let value;
+        let expression;
+
+        // Handle compound operators
+        if (operator !== '=') {
+            const currentValue = State.getVar(varPath);
+            const rightValue = Scripting.evalJavaScript(rightSide);
+
+            switch(operator) {
+                case '+=': value = currentValue + rightValue; break;
+                case '-=': value = currentValue - rightValue; break;
+                case '*=': value = currentValue * rightValue; break;
+                case '/=': value = currentValue / rightValue; break;
+                case '%=': value = currentValue % rightValue; break;
+            }
+
+            expression = '__COMPOUND_OPERATOR_HANDLED__';
+        } else {
+            expression = rightSide;
+        }
+
+        // Evaluate expression if not already handled
+        if (expression !== '__COMPOUND_OPERATOR_HANDLED__') {
+            try {
+                value = Scripting.evalJavaScript(expression);
+            } catch (e) {
+                return this.error(`Failed to evaluate expression: ${expression}. Error: ${e.message}`);
+            }
+        }
+
+        // Set the variable locally
+        State.setVar(varPath, value);
+
+        // Check if this is an exception variable (local-only)
+        const isException = window.exceptions.some(ex =>
+            varPath === ex || varPath.startsWith(ex.replace('$', '') + '.')
+        );
+
+        // If not an exception, send to server
+        if (!isException && window.socket && window.socket.connected) {
+            const updateData = {
+                variable: varPath,
+                value: value,
+                userId: State.variables.userId || 'unknown'
+            };
+
+            window.socket.emit('stateUpdate', updateData);
+        }
+
+        // Trigger liveupdate for any <<liveblock>> sections
+        $(document).trigger(':liveupdate');
+    }
+});
+
+
+:: Initialize Users [script]
+/*
+ * User Management Functions
+ */
+
+window.initializeUser = function(userId) {
+    if (!State.variables.users) {
+        State.variables.users = {};
+    }
+
+    if (!State.variables.users[userId]) {
+        State.variables.users[userId] = {
+            name: userId,
+            joinedAt: new Date().toISOString(),
+            score: 0,
+            visits: 0,
+            lastAction: ''
+        };
+    }
+
+    // Increment visit count
+    State.variables.users[userId].visits += 1;
+    State.variables.users[userId].lastVisit = new Date().toISOString();
+};
+
+window.getActiveUsers = function() {
+    const users = State.variables.users || {};
+    return Object.keys(users).length;
+};
+
+window.getTotalVisits = function() {
+    const users = State.variables.users || {};
+    return Object.values(users).reduce((sum, user) => sum + (user.visits || 0), 0);
+};
+
+
+:: Start
+<<set $userId to "guest">>
+<<if !$users>>
+    <<th-set '$users' to {}>>
+    <<th-set '$sharedCounter' to 0>>
+    <<th-set '$messageBoard' to []>>
+<</if>>
+
+<h1>🎮 Multiplayer Engine Demo</h1>
+
+Welcome to the multiplayer engine demonstration!
+
+This demo showcases the <span class="shared-variable">th-set</span> macro, which enables server-authoritative state synchronization across multiple clients.
+
+<h3>Key Concepts:</h3>
+
+• <span class="shared-variable">Shared Variables</span> - Synced across all clients via server<br>
+• <span class="local-variable">Local Variables</span> - Client-only, never synced<br>
+• <b>Real-time Updates</b> - Changes broadcast instantly to all connected players<br>
+• <b>Persistent State</b> - Game state persists across sessions<br>
+
+<h3>Quick Setup:</h3>
+
+Before you begin, please enter your user ID (or use the URL parameter <code>?id=yourname</code>):
+
+<<textbox "$userId" $userId>>
+
+<<button "Start Demo">>
+    <<if $userId and $userId !== "guest">>
+        <<goto "Initialize User">>
+    <<else>>
+        <<script>>
+            UI.alert("Please enter a user ID!");
+        <</script>>
+    <</if>>
+<</button>>
+
+---
+
+<small>💡 <b>Tip:</b> Open this game in multiple browser tabs with different user IDs to see real-time multiplayer synchronization!</small>
+
+
+:: Initialize User
+<<run initializeUser($userId)>>
+<<th-set '$users[$userId].lastAction' to "Joined the demo">>
+
+<<goto "Hub">>
+
+
+:: Hub
+<<liveblock>>
+<h1>Multiplayer Hub</h1>
+
+<div class="multiplayer-status">
+<h3>📊 Server Status</h3>
+
+<b>Your User ID:</b> <span class="local-variable">$userId</span> (local)<br>
+<b>Total Unique Users:</b> <span class="shared-variable"><<print getActiveUsers()>></span><br>
+<b>Total Visits:</b> <span class="shared-variable"><<print getTotalVisits()>></span><br>
+<b>Shared Counter:</b> <span class="shared-variable">$sharedCounter</span><br>
+</div>
+
+<h3>🎯 Try These Demos:</h3>
+
+[[Shared Counter Demo]]<br>
+[[Message Board Demo]]<br>
+[[User Registry Demo]]<br>
+[[About the Engine]]
+
+<</liveblock>>
+
+
+:: Shared Counter Demo
+<<liveblock>>
+<h2>🔢 Shared Counter Demo</h2>
+
+<div class="multiplayer-status">
+<h3>Current Counter Value: <span class="shared-variable">$sharedCounter</span></h3>
+
+This counter is synchronized across all connected clients. When you click a button, the value updates on <b>everyone's</b> screen in real-time!
+
+<h4>Actions:</h4>
+
+<<button "Increment (+1)">>
+    <<th-set '$sharedCounter' to $sharedCounter + 1>>
+    <<th-set '$users[$userId].lastAction' to "Incremented counter to " + $sharedCounter>>
+<</button>>
+
+<<button "Decrement (-1)">>
+    <<th-set '$sharedCounter' to $sharedCounter - 1>>
+    <<th-set '$users[$userId].lastAction' to "Decremented counter to " + $sharedCounter>>
+<</button>>
+
+<<button "Add 10 (+=)">>
+    <<th-set '$sharedCounter' += 10>>
+    <<th-set '$users[$userId].lastAction' to "Added 10 to counter">>
+<</button>>
+
+<<button "Reset to 0">>
+    <<th-set '$sharedCounter' to 0>>
+    <<th-set '$users[$userId].lastAction' to "Reset counter to 0">>
+<</button>>
+
+</div>
+
+<h3>📝 How It Works:</h3>
+
+The <code><<th-set '$sharedCounter' to value>></code> macro:
+
+1. Updates the variable locally in your browser<br>
+2. Sends the update to the server via Socket.IO<br>
+3. Server broadcasts the change to all connected clients<br>
+4. All clients update their display automatically with <code><<liveblock>></code><br>
+
+<h3>🔬 Code Example:</h3>
+
+<pre><<button "Increment">>
+    <<th-set '$sharedCounter' to $sharedCounter + 1>>
+<</button>></pre>
+
+Or using compound operators:
+
+<pre><<th-set '$sharedCounter' += 10>></pre>
+
+---
+
+[[Back to Hub|Hub]]
+
+<</liveblock>>
+
+
+:: Message Board Demo
+<<liveblock>>
+<h2>💬 Message Board Demo</h2>
+
+<div class="multiplayer-status">
+<h3>Community Message Board</h3>
+
+Leave a message that all players will see!
+
+<<textbox "_newMessage" "">>
+
+<<button "Post Message">>
+    <<if _newMessage and _newMessage.trim() !== "">>
+        <<run State.variables.messageBoard.push({
+            author: $userId,
+            message: _newMessage.trim(),
+            timestamp: new Date().toISOString()
+        })>>
+        <<th-set '$messageBoard' to $messageBoard>>
+        <<th-set '$users[$userId].lastAction' to "Posted a message">>
+        <<set _newMessage to "">>
+    <</if>>
+<</button>>
+
+<<button "Clear Board (Admin)">>
+    <<th-set '$messageBoard' to []>>
+    <<th-set '$users[$userId].lastAction' to "Cleared message board">>
+<</button>>
+
+</div>
+
+<div class="user-list">
+<h4>📨 Messages (<<print $messageBoard.length>>):</h4>
+
+<<if $messageBoard.length === 0>>
+    <i>No messages yet. Be the first to post!</i>
+<<else>>
+    <<for _i to $messageBoard.length - 1; _i >= 0; _i-->>
+        <<set _msg to $messageBoard[_i]>>
+        <b><<print _msg.author>>:</b> <<print _msg.message>><br>
+        <small><<print new Date(_msg.timestamp).toLocaleString()>></small>
+        <hr>
+    <</for>>
+<</if>>
+
+</div>
+
+<h3>📝 How It Works:</h3>
+
+Messages are stored in the shared <code>$messageBoard</code> array:
+
+<pre><<run $messageBoard.push({
+    author: $userId,
+    message: "Hello world!",
+    timestamp: new Date().toISOString()
+})>>
+<<th-set '$messageBoard' to $messageBoard>></pre>
+
+The <code><<liveblock>></code> wrapper ensures the message list updates automatically when new messages arrive from other players.
+
+---
+
+[[Back to Hub|Hub]]
+
+<</liveblock>>
+
+
+:: User Registry Demo
+<<liveblock>>
+<h2>👥 User Registry Demo</h2>
+
+<div class="multiplayer-status">
+<h3>All Users Who Have Visited:</h3>
+
+<div class="user-list">
+<<if Object.keys($users).length === 0>>
+    <i>No users yet.</i>
+<<else>>
+    <<for _userId, _userData range $users>>
+        <b><<print _userId>></b><br>
+        • Visits: <<print _userData.visits>><br>
+        • Score: <<print _userData.score>><br>
+        • Last Action: <<print _userData.lastAction || "None">><br>
+        • Last Visit: <<print _userData.lastVisit ? new Date(_userData.lastVisit).toLocaleString() : "Unknown">><br>
+        <hr>
+    <</for>>
+<</if>>
+</div>
+
+</div>
+
+<h3>🎮 Update Your Score:</h3>
+
+<<button "Gain 10 Points">>
+    <<th-set '$users[$userId].score' += 10>>
+    <<th-set '$users[$userId].lastAction' to "Gained 10 points">>
+<</button>>
+
+<<button "Lose 5 Points">>
+    <<th-set '$users[$userId].score' -= 5>>
+    <<th-set '$users[$userId].lastAction' to "Lost 5 points">>
+<</button>>
+
+<<button "Set Custom Score">>
+    <<run
+        var newScore = prompt("Enter score:", $users[$userId].score);
+        if (newScore !== null) {
+            State.variables.users[$userId].score = parseInt(newScore) || 0;
+        }
+    >>
+    <<th-set '$users[$userId]' to $users[$userId]>>
+    <<th-set '$users[$userId].lastAction' to "Updated score">>
+<</button>>
+
+<h3>📝 How It Works:</h3>
+
+Users are stored in the shared <code>$users</code> object with nested properties:
+
+<pre>$users = {
+    "alice": {
+        name: "alice",
+        score: 50,
+        visits: 3,
+        lastAction: "Gained 10 points"
+    },
+    "bob": {
+        name: "bob",
+        score: 30,
+        visits: 1,
+        lastAction: "Joined the demo"
+    }
+}</pre>
+
+The th-set macro handles nested paths:
+
+<pre><<th-set '$users[$userId].score' += 10>></pre>
+
+---
+
+[[Back to Hub|Hub]]
+
+<</liveblock>>
+
+
+:: About the Engine
+<h2>⚙️ About the Multiplayer Engine</h2>
+
+<h3>Core Architecture:</h3>
+
+This multiplayer engine uses a <b>server-authoritative</b> architecture:
+
+<div class="multiplayer-status">
+
+<b>1. Client-Side (SugarCube/Twine):</b><br>
+• Custom <code><<th-set>></code> macro for variable updates<br>
+• <code><<liveblock>></code> for real-time display updates<br>
+• Socket.IO client for server communication<br>
+• Exception variables for local-only data<br>
+
+<b>2. Server-Side (Node.js/Express):</b><br>
+• Socket.IO server for WebSocket connections<br>
+• Centralized state store (Server Store)<br>
+• Broadcasts updates to all connected clients<br>
+• Persists state to file/GitHub between sessions<br>
+
+<b>3. State Persistence:</b><br>
+• Local dev: Saves to <code>login/testVars.json</code><br>
+• Production: Saves to GitHub API<br>
+• Server acts as single source of truth<br>
+
+</div>
+
+<h3>Exception Variables (Local-Only):</h3>
+
+Some variables should NEVER be synced to the server:
+
+<ul>
+<li><span class="local-variable">$userId</span> - Each client's unique identifier</li>
+<li><span class="local-variable">$god</span> - Admin/debug mode flag</li>
+<li><span class="local-variable">$godParam</span> - Admin parameters</li>
+<li><span class="local-variable">$passageHistory</span> - Client's navigation history</li>
+</ul>
+
+These are defined in <code>window.exceptions</code> and automatically excluded from server sync.
+
+<h3>Key Features:</h3>
+
+✅ <b>Real-time Synchronization</b> - Changes appear instantly for all players<br>
+✅ <b>Compound Operators</b> - Supports +=, -=, *=, /=, %=<br>
+✅ <b>Nested Properties</b> - Can update deep object paths like $users[$id].score<br>
+✅ <b>Automatic Persistence</b> - State saved between server restarts<br>
+✅ <b>Race Condition Handling</b> - Mutex locks prevent conflicts<br>
+✅ <b>Error Recovery</b> - Request queue with retry logic<br>
+
+<h3>Usage Example:</h3>
+
+<pre>// Regular variable (synced)
+<<th-set '$sharedCounter' to 42>>
+
+// Compound operator (synced)
+<<th-set '$sharedCounter' += 10>>
+
+// Nested property (synced)
+<<th-set '$users[$userId].score' to 100>>
+
+// Local variable (NOT synced)
+<<set $userId to "alice">>
+
+// Display with auto-update
+<<liveblock>>
+Counter: $sharedCounter
+<</liveblock>></pre>
+
+<h3>File Structure:</h3>
+
+<pre>Webstack.js         - Server initialization & HTTP
+Client.js           - Socket.IO client logic
+gitApiIO.js         - State persistence (file/GitHub)
+00_Setup.twee       - th-set macro definition
+{passages}.twee     - Your game content
+</pre>
+
+---
+
+[[Back to Hub|Hub]]
+
+
+:: Story Menu [special]
+<<button "↻ Refresh">>
+    <<run location.reload()>>
+<</button>>

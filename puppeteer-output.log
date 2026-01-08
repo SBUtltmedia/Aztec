@@ -1,0 +1,49 @@
+Launching browser...
+Opening character pages...
+  Opened: Moctezuma
+  Opened: Tlacaelel
+  Opened: Cuauhtemoc
+  Opened: Cortes
+  Opened: Alvarado
+  Opened: Marina
+  Opened: Xicotencatl_Elder
+  Opened: Xicotencatl_Younger
+Setting up all characters...
+  Moctezuma: Clicking intro links...
+    Moctezuma: ✓ Setup complete
+  Tlacaelel: Clicking intro links...
+    Tlacaelel: ✓ Setup complete
+  Cuauhtemoc: Clicking intro links...
+    Cuauhtemoc: ✓ Setup complete
+  Cortes: Clicking intro links...
+    Cortes: ✓ Setup complete
+  Alvarado: Clicking intro links...
+    Alvarado: ✓ Setup complete
+  Marina: Clicking intro links...
+    Marina: ✓ Setup complete
+  Xicotencatl_Elder: Clicking intro links...
+    Xicotencatl_Elder: ✓ Setup complete
+  Xicotencatl_Younger: Clicking intro links...
+    Xicotencatl_Younger: ✓ Setup complete
+Waiting for game to start and pages to render...
+Warning: Main content may not have loaded yet
+
+Game started! Beginning play-through...
+
+
+=== Step 1 ===
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+  [object Object]: Error getting page state - Waiting for selector `main` failed
+
+No more actions available. Game may be complete!
+
+Game log saved to: game-flow-log.json
+Total steps: 1
+
+Browser will remain open for 30 seconds for inspection...
