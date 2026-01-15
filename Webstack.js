@@ -22,6 +22,22 @@ class Webstack {
 		this.port=serverConf.port;
 		app.use("/static", express.static('./static/'));
 		app.use("/Twine", express.static('./Twine/'));
+		app.use("/UnityWebGL", express.static('./UnityWebGL/', {
+			setHeaders: (res, path) => {
+				if (path.endsWith('.br')) {
+					res.setHeader('Content-Encoding', 'br');
+				}
+				if (path.endsWith('.data.br')) {
+					res.setHeader('Content-Type', 'application/octet-stream');
+				}
+				if (path.endsWith('.wasm.br')) {
+					res.setHeader('Content-Type', 'application/wasm');
+				}
+				if (path.endsWith('.js.br')) {
+					res.setHeader('Content-Type', 'application/javascript');
+				}
+			}
+		}));
 		app.use("/audio", express.static('./static/audio'));
 
 		//serverStore stores the current game state and is backed up via gitApiIO because Heroku is ephemeral 
@@ -154,6 +170,71 @@ class Webstack {
 				}
 			})
 
+			// Handle stateUpdate from th-set macro (EngineDemo)
+			socket.on('stateUpdate', (data) => {
+				console.log('[SERVER] Received stateUpdate:', data);
+
+				// Extract variable name without $ prefix for server store
+				const varName = data.variable.startsWith('$') ? data.variable.substring(1) : data.variable;
+
+				// Handle nested paths like users[alice].score
+				const diff = {};
+				_.set(diff, varName, data.value);
+
+				// Update server store
+				this.serverStore.dispatch({
+					type: 'UPDATE',
+					payload: diff
+				})
+
+				// Broadcast to all other clients
+				console.log('[SERVER] Broadcasting stateUpdate to other clients');
+				socket.broadcast.emit('difference', diff);
+			})
+
+			// Handle Atomic Updates (Math on Server) to prevent race conditions
+			socket.on('atomicUpdate', (data) => {
+				// data = { variable: 'sharedCounter', operation: 'add', value: 1 }
+				// console.log('[SERVER] Atomic Update:', data);
+
+				const varName = data.variable.startsWith('$') ? data.variable.substring(1) : data.variable;
+				let currentState = this.serverStore.getState();
+				
+				// Get current value from deep path (e.g. users.alice.score)
+				let currentValue = _.get(currentState, varName);
+
+				// If undefined, assume 0 for math operations
+				if (currentValue === undefined || currentValue === null) currentValue = 0;
+				
+				// Force numeric conversion for safety
+				currentValue = Number(currentValue);
+				let operand = Number(data.value);
+				let newValue = currentValue;
+
+				switch(data.operation) {
+					case 'add': newValue += operand; break;
+					case 'subtract': newValue -= operand; break;
+					case 'multiply': newValue *= operand; break;
+					case 'divide': newValue /= operand; break;
+					case 'modulus': newValue %= operand; break;
+					case 'set': newValue = data.value; break; // Fallback for absolute sets
+					default: return; // Unknown op
+				}
+
+				// Create the diff object to update the store
+				const diff = {};
+				_.set(diff, varName, newValue);
+
+				// Dispatch update
+				this.serverStore.dispatch({
+					type: 'UPDATE',
+					payload: diff
+				})
+
+				// Broadcast to EVERYONE (including sender, so they get the authoritative result)
+				socket.emit('difference', diff);
+				socket.broadcast.emit('difference', diff);
+			});
 
 			socket.on('fullReset', ()=>{
 				console.log("reset start 2")

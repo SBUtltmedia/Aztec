@@ -1,0 +1,413 @@
+Unity Editor version:    6000.0.23f1 (1c4764c07fb4)
+Branch:                  6000.0/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 15.7.3 (Build 24G419)
+Darwin version:          24.6.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        32768 MB
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to the License Client on channel: "LicenseClient-pstdenis" at "2026-01-15T21:44:17.299421Z"
+[Licensing::Client] Error: Code 10 while verifying Licensing Client signature (process Id: 2723, path: "/Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client")
+[Licensing::Module] Error: LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.17.4+4293ba1
+  Session Id:              a4d0f1aacb7d440b9ce086d088b11cc9
+  Correlation Id:          b7b718d72d9b53cd6fe10130cc704bf0
+  External correlation Id: 8041876999416402001
+  Machine Id:              f2T8Z2sCj1lS5zslNL1Sez2Hkds=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-pstdenis" (connect: 0.00s, validation: 0.01s, handshake: 0.54s)
+[Licensing::IpcConnector] Successfully connected to the License Notification on channel: "LicenseClient-pstdenis-notifications" at "2026-01-15T21:44:17.854836Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully updated license
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Serial number assigned to: "2149641-UnityPersXXXX"
+Pro License: NO
+[Licensing::Client] Successfully resolved entitlement details
+Launching external process: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Resources/PackageManager/Server/UnityPackageManager
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MacOS/Unity
+-batchmode
+-nographics
+-quit
+-projectPath
+Unity
+-executeMethod
+SceneGenerator.GenerateAllScenes
+-logFile
+unity_scene_regen.log
+Successfully changed project path to: /Users/pstdenis/Desktop/Aztec/Unity
+/Users/pstdenis/Desktop/Aztec/Unity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [140704441499904]  Target information:
+
+Player connection [140704441499904]  * "[IP] 129.49.17.178 [Port] 55504 [Flags] 2 [Guid] 3751267779 [EditorId] 3751267779 [Version] 1048832 [Id] OSXEditor(0,huey-tll) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [140704441499904]  * "[IP] 192.168.0.154 [Port] 55504 [Flags] 2 [Guid] 3751267779 [EditorId] 3751267779 [Version] 1048832 [Id] OSXEditor(0,huey-tll) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [140704441499904] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [140704441499904] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-77135" after 0.3 seconds.
+Library Redirect Path: Library/
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 56 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.nuget.newtonsoft-json@3.2.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.nuget.newtonsoft-json)
+    com.unity.ai.navigation@2.0.4 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ai.navigation)
+    com.unity.ide.rider@3.0.31 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ide.rider)
+    com.unity.ide.visualstudio@2.0.22 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ide.visualstudio)
+    com.unity.inputsystem@1.11.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.inputsystem)
+    com.unity.test-framework@1.4.5 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.test-framework)
+    com.unity.timeline@1.8.7 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.timeline)
+    com.unity.visualscripting@1.9.4 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.visualscripting)
+    com.unity.ext.nunit@2.0.5 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ext.nunit)
+    com.unity.searcher@4.9.2 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.searcher)
+    com.unity.burst@1.8.18 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.burst)
+    com.unity.mathematics@1.3.2 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.mathematics)
+    com.unity.collections@2.5.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.collections)
+    com.unity.nuget.mono-cecil@1.11.4 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.nuget.mono-cecil)
+    com.unity.test-framework.performance@3.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.test-framework.performance)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.multiplayer.center)
+    com.unity.render-pipelines.universal@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.render-pipelines.universal)
+    com.unity.ugui@2.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ugui)
+    com.unity.modules.accessibility@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.accessibility)
+    com.unity.modules.ai@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vehicles@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.video)
+    com.unity.modules.vr@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.vr)
+    com.unity.modules.wind@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.hierarchycore)
+    com.unity.render-pipelines.core@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.render-pipelines.core)
+    com.unity.shadergraph@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.shadergraph)
+    com.unity.render-pipelines.universal-config@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.render-pipelines.universal-config)
+    com.unity.rendering.light-transport@1.0.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.rendering.light-transport)
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+[Subsystems] No new subsystems found in resolved package list.
+Package Manager log level set to [2]
+[Package Manager] Done registering packages in 0.21 seconds
+Refreshing native plugins compatible for Editor in 3.27 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.23f1 (1c4764c07fb4)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/pstdenis/Desktop/Aztec/Unity/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ProbeVolume/VoxelizeScene is not supported: GPU does not support conservative rasterization
+[Licensing::Client] Successfully resolved entitlement details
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56135
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.004171 seconds.
+- Loaded All Assemblies, in  0.611 seconds
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.567 seconds
+Domain Reload Profiling: 1178ms
+	BeginReloadAssembly (193ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (71ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (72ms)
+	LoadAllAssembliesAndSetupDomain (256ms)
+		LoadAssemblies (193ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (249ms)
+			TypeCache.Refresh (246ms)
+				TypeCache.ScanAssembly (223ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (567ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (520ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (61ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (9ms)
+			ProcessInitializeOnLoadAttributes (295ms)
+			ProcessInitializeOnLoadMethodAttributes (146ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://unix:/tmp/ilpp.sock-1a3cb70ed30ea5a7368874c09804521c
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/pstdenis/Desktop/Aztec/Unity/
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc - - 200 - application/grpc 62.2031ms
+Starting: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/bee_backend --dont-print-to-structured-log --ipc --defer-dag-verification --dagfile="Library/Bee/2000b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: /Users/pstdenis/Desktop/Aztec/Unity
+DisplayProgressbar: Compiling Scripts
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll" in favor of "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll"
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.nuget.mono-cecil/Mono.Cecil.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc - - 200 - application/grpc 34.6999ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll, with 106 defines and 308 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running Unity.Jobs.CodeGen.JobsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Collections, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null with Library/Bee/artifacts/2000b0aE.dag/Unity.Collections.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null with /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.CoreModule.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null with /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil.Rocks, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 493.2189ms
+ExitCode: 0 Duration: 3s556ms
+[545/703    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[699/703    2s] Csc Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets/Editor/BuildCommand.cs(42,9): warning CS0618: 'PlayerSettings.SetManagedStrippingLevel(BuildTargetGroup, ManagedStrippingLevel)' is obsolete: 'Use SetManagedStrippingLevel(NamedBuildTarget buildTarget, ManagedStrippingLevel level) instead'
+Assets/Editor/SceneGenerator.cs(144,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'
+[700/703    0s] ILPostProcess Library/Bee/artifacts/2000b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll, with 106 defines and 308 references
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[701/703    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[702/703    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (3.52 seconds), 5 items updated, 703 evaluated
+Assets/Editor/BuildCommand.cs(42,9): warning CS0618: 'PlayerSettings.SetManagedStrippingLevel(BuildTargetGroup, ManagedStrippingLevel)' is obsolete: 'Use SetManagedStrippingLevel(NamedBuildTarget buildTarget, ManagedStrippingLevel level) instead'
+Assets/Editor/SceneGenerator.cs(144,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'
+AssetDatabase: script compilation time: 4.484481s
+Begin MonoManager ReloadAssembly
+Total cache size 268018571
+Total cache size after purge 268018571, took 00:00:00.6066699
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.669 seconds
+Refreshing native plugins compatible for Editor in 2.50 ms, found 1 plugins.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  4.274 seconds
+Domain Reload Profiling: 5943ms
+	BeginReloadAssembly (745ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (17ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (86ms)
+	RebuildCommonClasses (61ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (797ms)
+		LoadAssemblies (520ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (384ms)
+			TypeCache.Refresh (287ms)
+				TypeCache.ScanAssembly (269ms)
+			BuildScriptInfoCaches (75ms)
+			ResolveRequiredComponents (15ms)
+	FinalizeReload (4275ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (3801ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (24ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (144ms)
+			ProcessInitializeOnLoadAttributes (3455ms)
+			ProcessInitializeOnLoadMethodAttributes (168ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 0.58 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=81be8a716ead84842a077826f7162ff0): Total: 12.646 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=5780 ms
+		Asset DB Callback time: managed=582 ms, native=11 ms
+		Scripting: domain reloads=1, domain reload time=1735 ms, compile time=4486 ms, other=49 ms
+		Project Asset Count: scripts=1123, non-scripts=1791
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 1
+	InvokeCustomDependenciesCallbacks: 0.002ms
+	InvokePackagesCallback: 1.681ms
+	ApplyChangesToAssetFolders: 0.320ms
+	Scan: 1030.715ms
+	OnSourceAssetsModified: 0.966ms
+	CategorizeAssetsWithTransientArtifact: 71.340ms
+	ProcessAssetsWithTransientArtifactChanges: 119.554ms
+	CategorizeAssets: 80.643ms
+	ImportOutOfDateAssets: 4292.851ms (-199.134ms without children)
+		CompileScripts: 4486.206ms
+		ReloadNativeAssets: 0.021ms
+		UnloadImportedAssets: 3.408ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.165ms
+		InitializingProgressBar: 0.001ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.000ms
+		OnDemandSchedulerStart: 1.184ms
+	PostProcessAllAssets: 587.361ms
+	Hotreload: 4.913ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.031ms
+	UnloadStreamsBegin: 1.886ms
+	PersistCurrentRevisions: 0.137ms
+	UnloadStreamsEnd: 0.002ms
+	GenerateScriptTypeHashes: 4.338ms
+	Untracked: 6453.531ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 1.704ms
+Initializing Unity extensions:
+[Licensing::Client] Successfully resolved entitlement details
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-My project (1)
+Unloading 19 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 5608 unused Assets / (1.4 MB). Loaded Objects now: 6415.
+Memory consumption went from 219.0 MB to 217.6 MB.
+Total: 17.490157 ms (FindLiveObjects: 1.065794 ms CreateObjectMapping: 1.375179 ms MarkObjects: 11.406252 ms  DeleteObjects: 3.641558 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets / (124.2 KB). Loaded Objects now: 6424.
+Memory consumption went from 210.6 MB to 210.5 MB.
+Total: 11.252297 ms (FindLiveObjects: 0.504043 ms CreateObjectMapping: 0.391092 ms MarkObjects: 10.313164 ms  DeleteObjects: 0.042321 ms)
+
+ArgumentException: Arial.ttf is no longer a valid built in font. Please use LegacyRuntime.ttf
+  at (wrapper managed-to-native) UnityEngine.Resources.GetBuiltinResource_Injected(System.Type,UnityEngine.Bindings.ManagedSpanWrapper&)
+  at UnityEngine.Resources.GetBuiltinResource (System.Type type, System.String path) [0x00039] in <c84c2eeebc11490f899efc6438eb2c10>:0 
+  at UnityEngine.Resources.GetBuiltinResource[T] (System.String path) [0x00001] in /Users/bokken/build/output/unity/unity/Runtime/Export/Resources/Resources.bindings.cs:205 
+  at SceneGenerator.CreateScene (System.String sceneName) [0x00111] in /Users/pstdenis/Desktop/Aztec/Unity/Assets/Editor/SceneGenerator.cs:129 
+  at SceneGenerator.GenerateAllScenes () [0x00029] in /Users/pstdenis/Desktop/Aztec/Unity/Assets/Editor/SceneGenerator.cs:71 
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 129)
+
+executeMethod method SceneGenerator.GenerateAllScenes threw exception.
+[Package Manager] Server process was shutdown
+AcceleratorClientConnectionCallback - disconnected - :0
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      ALC ILPP context 1 is unloading

@@ -1,0 +1,575 @@
+Unity Editor version:    6000.0.23f1 (1c4764c07fb4)
+Branch:                  6000.0/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 15.7.3 (Build 24G419)
+Darwin version:          24.6.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        32768 MB
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to the License Client on channel: "LicenseClient-pstdenis" at "2026-01-15T21:46:49.253871Z"
+[Licensing::Client] Error: Code 10 while verifying Licensing Client signature (process Id: 2723, path: "/Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client")
+[Licensing::Module] Error: LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.17.4+4293ba1
+  Session Id:              f58674ff93114eb88c64dbad7115ecff
+  Correlation Id:          b7b718d72d9b53cd6fe10130cc704bf0
+  External correlation Id: 8522765787558234454
+  Machine Id:              f2T8Z2sCj1lS5zslNL1Sez2Hkds=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-pstdenis" (connect: 0.00s, validation: 0.01s, handshake: 0.54s)
+[Licensing::IpcConnector] Successfully connected to the License Notification on channel: "LicenseClient-pstdenis-notifications" at "2026-01-15T21:46:49.801185Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully updated license
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Serial number assigned to: "2149641-UnityPersXXXX"
+Pro License: NO
+[Licensing::Client] Successfully resolved entitlement details
+Launching external process: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Resources/PackageManager/Server/UnityPackageManager
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MacOS/Unity
+-batchmode
+-nographics
+-quit
+-projectPath
+Unity
+-executeMethod
+SceneGenerator.GenerateAllScenes
+-logFile
+unity_scene_regen2.log
+Successfully changed project path to: /Users/pstdenis/Desktop/Aztec/Unity
+/Users/pstdenis/Desktop/Aztec/Unity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [140704441499904]  Target information:
+
+Player connection [140704441499904]  * "[IP] 129.49.17.178 [Port] 55504 [Flags] 2 [Guid] 2970238522 [EditorId] 2970238522 [Version] 1048832 [Id] OSXEditor(0,huey-tll) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [140704441499904]  * "[IP] 192.168.0.154 [Port] 55504 [Flags] 2 [Guid] 2970238522 [EditorId] 2970238522 [Version] 1048832 [Id] OSXEditor(0,huey-tll) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [140704441499904] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [140704441499904] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-78566" after 0.2 seconds.
+Library Redirect Path: Library/
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 56 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.nuget.newtonsoft-json@3.2.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.nuget.newtonsoft-json)
+    com.unity.ai.navigation@2.0.4 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ai.navigation)
+    com.unity.ide.rider@3.0.31 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ide.rider)
+    com.unity.ide.visualstudio@2.0.22 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ide.visualstudio)
+    com.unity.inputsystem@1.11.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.inputsystem)
+    com.unity.test-framework@1.4.5 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.test-framework)
+    com.unity.timeline@1.8.7 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.timeline)
+    com.unity.visualscripting@1.9.4 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.visualscripting)
+    com.unity.ext.nunit@2.0.5 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ext.nunit)
+    com.unity.searcher@4.9.2 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.searcher)
+    com.unity.burst@1.8.18 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.burst)
+    com.unity.mathematics@1.3.2 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.mathematics)
+    com.unity.collections@2.5.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.collections)
+    com.unity.nuget.mono-cecil@1.11.4 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.nuget.mono-cecil)
+    com.unity.test-framework.performance@3.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.test-framework.performance)
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.multiplayer.center)
+    com.unity.render-pipelines.universal@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.render-pipelines.universal)
+    com.unity.ugui@2.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.ugui)
+    com.unity.modules.accessibility@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.accessibility)
+    com.unity.modules.ai@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vehicles@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.video)
+    com.unity.modules.vr@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.vr)
+    com.unity.modules.wind@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.modules.hierarchycore)
+    com.unity.render-pipelines.core@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.render-pipelines.core)
+    com.unity.shadergraph@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.shadergraph)
+    com.unity.render-pipelines.universal-config@17.0.3 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.render-pipelines.universal-config)
+    com.unity.rendering.light-transport@1.0.1 (location: /Users/pstdenis/Desktop/Aztec/Unity/Library/PackageCache/com.unity.rendering.light-transport)
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+[Subsystems] No new subsystems found in resolved package list.
+Package Manager log level set to [2]
+[Package Manager] Done registering packages in 0.18 seconds
+Refreshing native plugins compatible for Editor in 0.71 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.23f1 (1c4764c07fb4)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/pstdenis/Desktop/Aztec/Unity/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ProbeVolume/VoxelizeScene is not supported: GPU does not support conservative rasterization
+[Licensing::Client] Successfully resolved entitlement details
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56566
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.001555 seconds.
+- Loaded All Assemblies, in  0.504 seconds
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.561 seconds
+Domain Reload Profiling: 1065ms
+	BeginReloadAssembly (140ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (54ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (61ms)
+	LoadAllAssembliesAndSetupDomain (231ms)
+		LoadAssemblies (126ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (225ms)
+			TypeCache.Refresh (221ms)
+				TypeCache.ScanAssembly (203ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (562ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (515ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (62ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (8ms)
+			ProcessInitializeOnLoadAttributes (284ms)
+			ProcessInitializeOnLoadMethodAttributes (152ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://unix:/tmp/ilpp.sock-1a3cb70ed30ea5a7368874c09804521c
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/pstdenis/Desktop/Aztec/Unity/
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping application/grpc - - 200 - application/grpc 53.8133ms
+Starting: /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/bee_backend --dont-print-to-structured-log --ipc --defer-dag-verification --dagfile="Library/Bee/2000b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: /Users/pstdenis/Desktop/Aztec/Unity
+DisplayProgressbar: Compiling Scripts
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
+[40m[1m[33mwarn[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll" in favor of "/Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll"
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Mono.Cecil, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.nuget.mono-cecil/Mono.Cecil.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/ConfigurePostProcessors'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/ConfigurePostProcessors application/grpc - - 200 - application/grpc 37.5867ms
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc -
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      Processing assembly Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll, with 106 defines and 308 references
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running Unity.Jobs.CodeGen.JobsILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Collections, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null with Library/Bee/artifacts/2000b0aE.dag/Unity.Collections.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null with /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.CoreModule.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null with /Applications/Unity/Hub/Editor/6000.0.23f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingPipeline[0]
+      running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Resolved Unity.Burst.Cecil.Rocks, Version=0.11.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e with Library/PackageCache/com.unity.burst/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/PostProcessAssembly'
+[40m[32minfo[39m[22m[49m: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/PostProcessAssembly application/grpc - - 200 - application/grpc 530.2509ms
+ExitCode: 0 Duration: 2s453ms
+[545/703    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[699/703    1s] Csc Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets/Editor/BuildCommand.cs(42,9): warning CS0618: 'PlayerSettings.SetManagedStrippingLevel(BuildTargetGroup, ManagedStrippingLevel)' is obsolete: 'Use SetManagedStrippingLevel(NamedBuildTarget buildTarget, ManagedStrippingLevel level) instead'
+Assets/Editor/SceneGenerator.cs(144,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'
+[700/703    0s] ILPostProcess Library/Bee/artifacts/2000b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll, with 106 defines and 308 references
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[701/703    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+[702/703    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+*** Tundra build success (2.41 seconds), 5 items updated, 703 evaluated
+Assets/Editor/BuildCommand.cs(42,9): warning CS0618: 'PlayerSettings.SetManagedStrippingLevel(BuildTargetGroup, ManagedStrippingLevel)' is obsolete: 'Use SetManagedStrippingLevel(NamedBuildTarget buildTarget, ManagedStrippingLevel level) instead'
+Assets/Editor/SceneGenerator.cs(144,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'
+AssetDatabase: script compilation time: 3.179219s
+Begin MonoManager ReloadAssembly
+Total cache size 268018571
+Total cache size after purge 268018571, took 00:00:00.2701246
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.308 seconds
+Refreshing native plugins compatible for Editor in 0.55 ms, found 1 plugins.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.50 ms, found 1 plugins.
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  4.067 seconds
+Domain Reload Profiling: 5374ms
+	BeginReloadAssembly (598ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (79ms)
+	RebuildCommonClasses (55ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (603ms)
+		LoadAssemblies (386ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (307ms)
+			TypeCache.Refresh (209ms)
+				TypeCache.ScanAssembly (192ms)
+			BuildScriptInfoCaches (75ms)
+			ResolveRequiredComponents (15ms)
+	FinalizeReload (4067ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (3646ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (23ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (133ms)
+			ProcessInitializeOnLoadAttributes (3340ms)
+			ProcessInitializeOnLoadMethodAttributes (141ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 0.54 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=8c34d672b739a4bdab830170a545267a): Total: 9.967 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=4835 ms
+		Asset DB Callback time: managed=503 ms, native=22 ms
+		Scripting: domain reloads=1, domain reload time=1376 ms, compile time=3181 ms, other=48 ms
+		Project Asset Count: scripts=1123, non-scripts=1791
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 1
+	InvokeCustomDependenciesCallbacks: 0.002ms
+	InvokePackagesCallback: 1.300ms
+	ApplyChangesToAssetFolders: 0.319ms
+	Scan: 397.046ms
+	OnSourceAssetsModified: 1.136ms
+	CategorizeAssetsWithTransientArtifact: 55.262ms
+	ProcessAssetsWithTransientArtifactChanges: 91.023ms
+	CategorizeAssets: 45.130ms
+	ImportOutOfDateAssets: 4078.567ms (893.158ms without children)
+		CompileScripts: 3180.905ms
+		ReloadNativeAssets: 0.023ms
+		UnloadImportedAssets: 2.673ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.970ms
+		InitializingProgressBar: 0.000ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.000ms
+		OnDemandSchedulerStart: 0.837ms
+	PostProcessAllAssets: 504.585ms
+	Hotreload: 20.214ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.007ms
+	UnloadStreamsBegin: 1.939ms
+	PersistCurrentRevisions: 0.149ms
+	UnloadStreamsEnd: 0.001ms
+	GenerateScriptTypeHashes: 3.280ms
+	Untracked: 4770.794ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 1.246ms
+Initializing Unity extensions:
+[Licensing::Client] Successfully resolved entitlement details
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-My project (1)
+Unloading 19 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 5608 unused Assets / (2.2 MB). Loaded Objects now: 6415.
+Memory consumption went from 215.5 MB to 213.3 MB.
+Total: 17.072863 ms (FindLiveObjects: 0.973146 ms CreateObjectMapping: 1.292537 ms MarkObjects: 11.417483 ms  DeleteObjects: 3.388230 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets / (123.6 KB). Loaded Objects now: 6424.
+Memory consumption went from 207.0 MB to 206.9 MB.
+Total: 12.744668 ms (FindLiveObjects: 0.617817 ms CreateObjectMapping: 0.604148 ms MarkObjects: 11.486140 ms  DeleteObjects: 0.034743 ms)
+
+Start importing Assets/Scenes/Start.unity using Guid(c707f44165fcb4ee39e8d0b1ac450fe1) (DefaultImporter) -> (artifact id: '00c11b6479a4570152a226730ecb0177') in 0.017285027 seconds
+Refreshing native plugins compatible for Editor in 0.66 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=5d66f4b88f5f242f2af4e47313879b03): Total: 0.085 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Created scene: Assets/Scenes/Start.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:CreateScene (string) (at Assets/Editor/SceneGenerator.cs:155)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:71)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 155)
+
+Unloading 12 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 18 unused Assets / (35.3 KB). Loaded Objects now: 6427.
+Memory consumption went from 215.5 MB to 215.5 MB.
+Total: 11.085156 ms (FindLiveObjects: 0.376889 ms CreateObjectMapping: 0.297434 ms MarkObjects: 10.291342 ms  DeleteObjects: 0.118347 ms)
+
+Start importing Assets/Scenes/Initialize User.unity using Guid(614c6138ecda04784a7d362c35c1380c) (DefaultImporter) -> (artifact id: '7805080577419b1553ab3b80c2178b9b') in 0.001178845 seconds
+Refreshing native plugins compatible for Editor in 0.47 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=822b734b390f14c81825406b64d84040): Total: 0.036 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Created scene: Assets/Scenes/Initialize User.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:CreateScene (string) (at Assets/Editor/SceneGenerator.cs:155)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:71)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 155)
+
+Unloading 11 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 18 unused Assets / (35.3 KB). Loaded Objects now: 6427.
+Memory consumption went from 224.6 MB to 224.6 MB.
+Total: 10.523751 ms (FindLiveObjects: 0.312264 ms CreateObjectMapping: 0.182580 ms MarkObjects: 9.927172 ms  DeleteObjects: 0.100528 ms)
+
+Start importing Assets/Scenes/Hub.unity using Guid(2dbe4e5a6ea3c446ba880a2347b770c7) (DefaultImporter) -> (artifact id: 'bdab75089313f9a4f931caa96b19cce9') in 0.001289754 seconds
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=e6cdaea494578472e9aa033673ec81bf): Total: 0.036 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Created scene: Assets/Scenes/Hub.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:CreateScene (string) (at Assets/Editor/SceneGenerator.cs:155)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:71)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 155)
+
+Unloading 11 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 18 unused Assets / (35.1 KB). Loaded Objects now: 6427.
+Memory consumption went from 233.4 MB to 233.3 MB.
+Total: 11.101452 ms (FindLiveObjects: 0.446290 ms CreateObjectMapping: 0.345169 ms MarkObjects: 10.205183 ms  DeleteObjects: 0.103754 ms)
+
+Start importing Assets/Scenes/Shared Counter Demo.unity using Guid(91ee3f075e7964fee9a4bc15ece4cfd4) (DefaultImporter) -> (artifact id: 'a4fc738e0fafc5b8e69f782abd697176') in 0.001149421 seconds
+Refreshing native plugins compatible for Editor in 0.45 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=95f873e07280743c4b06f4b357602ef1): Total: 0.039 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Created scene: Assets/Scenes/Shared Counter Demo.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:CreateScene (string) (at Assets/Editor/SceneGenerator.cs:155)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:71)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 155)
+
+Unloading 11 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 18 unused Assets / (33.7 KB). Loaded Objects now: 6427.
+Memory consumption went from 242.4 MB to 242.4 MB.
+Total: 11.479162 ms (FindLiveObjects: 0.338465 ms CreateObjectMapping: 0.206528 ms MarkObjects: 10.827089 ms  DeleteObjects: 0.106200 ms)
+
+Start importing Assets/Scenes/Message Board Demo.unity using Guid(41c5c3edfffd949b499244713d4d8e85) (DefaultImporter) -> (artifact id: '6ef9080fedf3633a95f35118638a1dc8') in 0.001898038 seconds
+Refreshing native plugins compatible for Editor in 0.46 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=dd7f57ad7d2854d3ca72b06eced477cc): Total: 0.043 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Created scene: Assets/Scenes/Message Board Demo.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:CreateScene (string) (at Assets/Editor/SceneGenerator.cs:155)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:71)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 155)
+
+Unloading 11 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 18 unused Assets / (35.2 KB). Loaded Objects now: 6427.
+Memory consumption went from 251.6 MB to 251.6 MB.
+Total: 11.063459 ms (FindLiveObjects: 0.323902 ms CreateObjectMapping: 0.232281 ms MarkObjects: 10.398846 ms  DeleteObjects: 0.107366 ms)
+
+Start importing Assets/Scenes/User Registry Demo.unity using Guid(b8ff345bd9268446daf08da4c1cc9ea1) (DefaultImporter) -> (artifact id: '5bf52d26cd0e914eccf32a85a7259a50') in 0.001277332 seconds
+Refreshing native plugins compatible for Editor in 0.38 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=b50c51acda2f942e4b1eb532a1703507): Total: 0.037 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Created scene: Assets/Scenes/User Registry Demo.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:CreateScene (string) (at Assets/Editor/SceneGenerator.cs:155)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:71)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 155)
+
+Unloading 11 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 18 unused Assets / (35.4 KB). Loaded Objects now: 6427.
+Memory consumption went from 260.3 MB to 260.3 MB.
+Total: 10.570219 ms (FindLiveObjects: 0.361076 ms CreateObjectMapping: 0.280202 ms MarkObjects: 9.836472 ms  DeleteObjects: 0.091653 ms)
+
+Start importing Assets/Scenes/About the Engine.unity using Guid(19e751f0c8fca49e8b0de48fcab429d7) (DefaultImporter) -> (artifact id: '4e9e35979a8e02737317f21d1be41ba4') in 0.001188311 seconds
+Refreshing native plugins compatible for Editor in 0.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=bd50136c64c664b5785afaac9c8b9db4): Total: 0.037 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Created scene: Assets/Scenes/About the Engine.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:CreateScene (string) (at Assets/Editor/SceneGenerator.cs:155)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:71)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 155)
+
+Successfully generated 7 scenes!
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:74)
+
+(Filename: Assets/Editor/SceneGenerator.cs Line: 74)
+
+Cancelling DisplayDialog: Success Generated 7 scenes in Assets/Scenes/
+This should not be called in batch mode.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:37)
+UnityEditor.EditorUtility:DisplayDialogImpl (string,string,string,string)
+UnityEditor.EditorUtility:DisplayDialog (string,string,string,string) (at /Users/bokken/build/output/unity/unity/Editor/Mono/EditorUtility.bindings.cs:51)
+UnityEditor.EditorUtility:DisplayDialog (string,string,string) (at /Users/bokken/build/output/unity/unity/Editor/Mono/EditorUtility.bindings.cs:57)
+SceneGenerator:GenerateAllScenes () (at Assets/Editor/SceneGenerator.cs:75)
+
+[/Users/bokken/build/output/unity/unity/Editor/Mono/EditorUtility.bindings.cs line 51]
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backned.
+[Physics::Module] Id: 0xf2b8ea05
+[Licensing::IpcConnector] License Notification channel disconnected successfully.
+[Licensing::IpcConnector] License Client channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+[40m[32minfo[39m[22m[49m: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+Cleanup mono
+[40m[32minfo[39m[22m[49m: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      ALC ILPP context 1 is unloading
+debugger-agent: Unable to listen on 44
+Exiting batchmode successfully now!
+[Package Manager] Server process was shutdown

@@ -1,0 +1,129 @@
+:: StoryTitle
+Unity Bridge Demo
+
+
+:: StoryData
+{
+	"ifid": "D678768A-1363-4475-8025-131602737674",
+	"format": "SugarCube",
+	"format-version": "2.37.0-alpha.5",
+	"start": "Start",
+	"zoom": 1
+}
+
+
+:: Story Stylesheet [stylesheet]
+body, #story, #passages {
+    background-color: transparent !important;
+}
+/* Ensure text is visible against potentially bright Unity background */
+.passage {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+
+:: Story JavaScript [script]
+importScripts("/static/unityBridge.js")
+    .then(function() {
+        console.log("Unity Bridge Loaded.");
+    })
+    .catch(function(err) {
+        console.error("Failed to load Unity Bridge", err);
+    });
+
+
+:: Initialize User
+<<script>>
+	// Simple redirect to Start - no multiplayer initialization needed for Unity demo
+	Engine.play("Start");
+<</script>>
+
+
+:: Start {"position":"100,100","size":"100,100"}
+<<set $userId = "player1">>
+<<set $user = {}>>
+<<set $user[$userId] = {
+    "name": "Aztec Warrior",
+    "stats": {
+        "strength": 15,
+        "agility": 10
+    }
+}>>
+
+! Unity Bridge Demo - Start Scene
+
+This demonstrates Unity-Twine integration with scene switching.
+
+**User ID:** $userId
+**Strength:** $user[$userId].stats.strength
+
+The Unity WebGL view is loaded in the background showing the scene name.
+
+[[Increase Strength|Start][$user[$userId].stats.strength += 1]]
+[[Go to Hub|Hub]]
+
+
+:: Hub {"position":"225,100","size":"100,100"}
+! Unity Bridge Demo - Hub Scene
+
+Unity should now show "Hub" scene in the background.
+
+**User ID:** $userId
+**Strength:** $user[$userId].stats.strength
+
+Choose a demo:
+
+[[Shared Counter Demo]]
+[[Message Board Demo]]
+[[User Registry Demo]]
+[[About the Engine]]
+[[Back to Start|Start]]
+
+
+:: Shared Counter Demo {"position":"350,50","size":"100,100"}
+! Shared Counter Demo Scene
+
+Unity scene: "Shared Counter Demo"
+
+This would be the multiplayer counter demo, but we're just testing scene switching for now.
+
+[[Back to Hub|Hub]]
+
+
+:: Message Board Demo {"position":"350,150","size":"100,100"}
+! Message Board Demo Scene
+
+Unity scene: "Message Board Demo"
+
+This would be the message board demo.
+
+[[Back to Hub|Hub]]
+
+
+:: User Registry Demo {"position":"350,250","size":"100,100"}
+! User Registry Demo Scene
+
+Unity scene: "User Registry Demo"
+
+This would show the user registry.
+
+[[Back to Hub|Hub]]
+
+
+:: About the Engine {"position":"350,350","size":"100,100"}
+! About the Engine Scene
+
+Unity scene: "About the Engine"
+
+This demonstrates Unity-Twine scene switching.
+
+**How it works:**
+- When you navigate to a new passage, Twine detects the change
+- unityBridge.js sends a SCENE_CHANGE message to Unity
+- Unity loads the matching scene (e.g., "Hub", "About the Engine")
+- Each Unity scene displays its name to confirm it loaded
+
+[[Back to Hub|Hub]]
+
+

@@ -120,7 +120,29 @@ function sendStateUpdate(variable, value) {
     socket.emit('stateUpdate', updateData);
 }
 
+/**
+ * Send atomic math operation to server
+ * Used for +=, -=, *= to prevent race conditions
+ */
+function sendAtomicUpdate(variable, operation, value) {
+    if (!socket || !socket.connected) {
+        console.warn('Socket not connected, cannot send atomic update');
+        return;
+    }
+
+    const updateData = {
+        variable: variable,
+        operation: operation, // 'add', 'subtract', 'multiply', etc.
+        value: value,
+        userId: window.SugarCube.State.variables.userId || 'unknown'
+    };
+
+    // console.log('Sending atomic update:', updateData);
+    socket.emit('atomicUpdate', updateData);
+}
+
 // Export for use in th-set macro
 window.sendStateUpdate = sendStateUpdate;
+window.sendAtomicUpdate = sendAtomicUpdate;
 
 console.log('ClientDemo.js loaded');

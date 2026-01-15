@@ -78,12 +78,34 @@ h1, h2, h3 {
  *
  * This demonstrates the core th-set macro for server-authoritative multiplayer.
  * The th-set macro syncs variables across all connected clients via Socket.IO.
+ *
+ * IMPORTANT: This demo requires Socket.IO and ClientDemo.js to be loaded.
+ * These must be added manually to the HTML after compilation.
  */
 
 // Exception variables - these are local to each client and never sync to server
 window.exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
 
 setup.exceptions = window.exceptions;
+
+// Load Socket.IO and ClientDemo.js dynamically
+(function() {
+    // Load Socket.IO from CDN
+    const socketScript = document.createElement('script');
+    socketScript.src = '/socket.io/socket.io.js';
+    socketScript.onload = function() {
+        console.log('Socket.IO loaded');
+
+        // Then load ClientDemo.js
+        const clientScript = document.createElement('script');
+        clientScript.src = '/static/ClientDemo.js';
+        clientScript.onload = function() {
+            console.log('ClientDemo.js loaded');
+        };
+        document.head.appendChild(clientScript);
+    };
+    document.head.appendChild(socketScript);
+})();
 
 
 :: th-set Macro Definition [script]
@@ -101,81 +123,124 @@ setup.exceptions = window.exceptions;
  */
 
 Macro.add('th-set', {
-    tags: null,
+    skipArgs: true,
     handler: function() {
-        if (this.args.length === 0) {
+        if (this.args.raw.length === 0) {
             return this.error('th-set macro requires arguments');
         }
 
-        const fullExpression = this.args.full;
+        let fullExpression = this.args.raw.trim();
+        // console.log('[th-set] Raw expression:', fullExpression);
 
-        // Parse the expression: '$variable' to/= value
-        const setMatch = fullExpression.match(/^\s*(['"])?\$([a-zA-Z_][\w.[\]'"]*)\1?\s+(to|=|\+=|-=|\*=|\/=|%=)\s+(.+)$/);
+        // Parse assignment: extract variable name (quoted or unquoted) and operator
+        // Handles: $var = expr, '$var' = expr, $users[$id].score += 10, etc.
+        // Regex Breakdown:
+        // 1. (['"]?) -> Optional quote
+        // 2. (\$[a-zA-Z_][\w.\[\]"'$]*) -> Variable path (e.g. $var, $obj.prop, $arr[0])
+        // 3. \1 -> Match the same closing quote if one existed
+        // 4. (\s*) -> Whitespace
+        // 5. (=|\+=|-=|\*=|\/=|%=|to) -> Operator
+        // 6. (\s*) -> Whitespace
+        // 7. (.+) -> The rest (expression)
+        const assignMatch = fullExpression.match(/^(['"]?)(\$[a-zA-Z_][\w.\[\]"'$]*)(\1)(\s*)(=|\+=|-=|\*=|\/=|%=|\bto\b)(\s*)(.+)$/i);
 
-        if (!setMatch) {
+        if (!assignMatch) {
             return this.error(`Invalid th-set syntax: ${fullExpression}`);
         }
 
-        const varPath = '$' + setMatch[2];
-        let operator = setMatch[3];
-        const rightSide = setMatch[4];
+        const varPath = assignMatch[2];  // e.g., $sharedCounter
+        let operator = assignMatch[5].trim().toLowerCase(); // e.g., =, +=, to
+        if (operator === 'to') operator = '='; // Normalize 'to' to '='
+        const rightExpr = assignMatch[7]; // e.g., $sharedCounter + 1
 
-        // Normalize 'to' to '='
-        if (operator === 'to') {
-            operator = '=';
+        // Evaluate the right-hand side expression using TwineScript (handles desugaring)
+        let rightValue;
+        try {
+            rightValue = Scripting.evalTwineScript(rightExpr);
+        } catch (e) {
+            console.error('[th-set] Evaluation error:', e);
+            return this.error(`bad evaluation: ${typeof e === 'object' ? e.message : e}`);
         }
-
-        let value;
-        let expression;
-
-        // Handle compound operators
-        if (operator !== '=') {
-            const currentValue = State.getVar(varPath);
-            const rightValue = Scripting.evalJavaScript(rightSide);
-
-            switch(operator) {
-                case '+=': value = currentValue + rightValue; break;
-                case '-=': value = currentValue - rightValue; break;
-                case '*=': value = currentValue * rightValue; break;
-                case '/=': value = currentValue / rightValue; break;
-                case '%=': value = currentValue % rightValue; break;
-            }
-
-            expression = '__COMPOUND_OPERATOR_HANDLED__';
-        } else {
-            expression = rightSide;
-        }
-
-        // Evaluate expression if not already handled
-        if (expression !== '__COMPOUND_OPERATOR_HANDLED__') {
-            try {
-                value = Scripting.evalJavaScript(expression);
-            } catch (e) {
-                return this.error(`Failed to evaluate expression: ${expression}. Error: ${e.message}`);
-            }
-        }
-
-        // Set the variable locally
-        State.setVar(varPath, value);
 
         // Check if this is an exception variable (local-only)
         const isException = window.exceptions.some(ex =>
             varPath === ex || varPath.startsWith(ex.replace('$', '') + '.')
         );
 
-        // If not an exception, send to server
-        if (!isException && window.socket && window.socket.connected) {
-            const updateData = {
-                variable: varPath,
-                value: value,
-                userId: State.variables.userId || 'unknown'
-            };
+        // -----------------------------------------------------------
+        // BRANCH A: Absolute Assignment (=)
+        // -----------------------------------------------------------
+        if (operator === '=') {
+            // Set locally immediately
+            State.setVar(varPath, rightValue);
+            
+            // Send to server (Last Write Wins)
+            if (!isException && window.socket && window.socket.connected) {
+                window.sendStateUpdate(varPath, rightValue);
+            }
+        } 
+        // -----------------------------------------------------------
+        // BRANCH B: Compound Operators (+=, -=, *=, /=, %=)
+        // -----------------------------------------------------------
+        else {
+            // OPTIMISTIC LOCAL UPDATE (Makes UI feel instant)
+            try {
+                const currentValue = State.getVar(varPath) || 0;
+                let optimisticValue = currentValue;
+                
+                switch(operator) {
+                    case '+=': optimisticValue += rightValue; break;
+                    case '-=': optimisticValue -= rightValue; break;
+                    case '*=': optimisticValue *= rightValue; break;
+                    case '/=': optimisticValue /= rightValue; break;
+                    case '%=': optimisticValue %= rightValue; break;
+                }
+                State.setVar(varPath, optimisticValue);
+            } catch (err) {
+                console.warn("[th-set] Optimistic update failed", err);
+            }
 
-            window.socket.emit('stateUpdate', updateData);
+            // ATOMIC SERVER UPDATE (The Source of Truth)
+            if (!isException && window.socket && window.socket.connected) {
+                let operationName = 'add';
+                if (operator === '-=') operationName = 'subtract';
+                if (operator === '*=') operationName = 'multiply';
+                if (operator === '/=') operationName = 'divide';
+                if (operator === '%=') operationName = 'modulus';
+
+                window.sendAtomicUpdate(varPath, operationName, rightValue);
+            }
         }
 
         // Trigger liveupdate for any <<liveblock>> sections
-        $(document).trigger(':liveupdate');
+        $(document).trigger(':liveupdateinternal');
+    }
+});
+
+/*
+ * liveblock Macro - Enables real-time auto-updating content blocks
+ *
+ * Usage: <<liveblock>> content <</liveblock>>
+ *
+ * Content inside this macro will automatically re-render when state changes occur
+ */
+Macro.add('liveblock', {
+    tags: [],
+    handler: function() {
+        try {
+            if (!this.payload || !this.payload[0]) {
+                return this.error("liveblock macro requires content");
+            }
+            var content = this.payload[0].contents.trim();
+            if (content) {
+                var $el = $("<span></span>").addClass("macro-live macro-live-block").wiki(content).appendTo(this.output);
+                $el.on(":liveupdateinternal", this.createShadowWrapper(function(ev) {
+                    $el.empty().wiki(content);
+                }));
+            }
+        } catch (ex) {
+            return this.error("bad evaluation: " + (typeof ex === 'object' ? ex.message : ex));
+        }
     }
 });
 
@@ -217,12 +282,27 @@ window.getTotalVisits = function() {
 
 
 :: Start
-<<set $userId to "guest">>
-<<if !$users>>
-    <<th-set '$users' to {}>>
-    <<th-set '$sharedCounter' to 0>>
-    <<th-set '$messageBoard' to []>>
-<</if>>
+<<run
+    // Read userId from URL parameter if provided
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlId = urlParams.get('id');
+    State.variables.userId = urlId || "guest";
+>>
+<<run window.thSetIfUndef = function(varName, value) {
+    if (State.variables[varName] === undefined) {
+        State.variables[varName] = value;
+        if (window.socket && window.socket.connected) {
+            window.socket.emit('stateUpdate', {
+                variable: '$' + varName,
+                value: value,
+                userId: State.variables.userId || 'unknown'
+            });
+        }
+    }
+}>>
+<<run thSetIfUndef('users', {})>>
+<<run thSetIfUndef('sharedCounter', 0)>>
+<<run thSetIfUndef('messageBoard', [])>>
 
 <h1>🎮 Multiplayer Engine Demo</h1>
 
@@ -323,22 +403,22 @@ This counter is synchronized across all connected clients. When you click a butt
 
 <h3>📝 How It Works:</h3>
 
-The <code><<th-set '$sharedCounter' to value>></code> macro:
+The <code>&lt;&lt;th-set '$sharedCounter' to value&gt;&gt;</code> macro:
 
 1. Updates the variable locally in your browser<br>
 2. Sends the update to the server via Socket.IO<br>
 3. Server broadcasts the change to all connected clients<br>
-4. All clients update their display automatically with <code><<liveblock>></code><br>
+4. All clients update their display automatically with <code>&lt;&lt;liveblock&gt;&gt;</code><br>
 
 <h3>🔬 Code Example:</h3>
 
-<pre><<button "Increment">>
-    <<th-set '$sharedCounter' to $sharedCounter + 1>>
-<</button>></pre>
+<pre>&lt;&lt;button "Increment"&gt;&gt;
+    &lt;&lt;th-set '$sharedCounter' to $sharedCounter + 1&gt;&gt;
+&lt;&lt;/button&gt;&gt;</pre>
 
 Or using compound operators:
 
-<pre><<th-set '$sharedCounter' += 10>></pre>
+<pre>&lt;&lt;th-set '$sharedCounter' += 10&gt;&gt;</pre>
 
 ---
 
@@ -398,14 +478,14 @@ Leave a message that all players will see!
 
 Messages are stored in the shared <code>$messageBoard</code> array:
 
-<pre><<run $messageBoard.push({
+<pre>&lt;&lt;run $messageBoard.push({
     author: $userId,
     message: "Hello world!",
     timestamp: new Date().toISOString()
-})>>
-<<th-set '$messageBoard' to $messageBoard>></pre>
+})&gt;&gt;
+&lt;&lt;th-set '$messageBoard' to $messageBoard&gt;&gt;</pre>
 
-The <code><<liveblock>></code> wrapper ensures the message list updates automatically when new messages arrive from other players.
+The <code>&lt;&lt;liveblock&gt;&gt;</code> wrapper ensures the message list updates automatically when new messages arrive from other players.
 
 ---
 
@@ -482,7 +562,7 @@ Users are stored in the shared <code>$users</code> object with nested properties
 
 The th-set macro handles nested paths:
 
-<pre><<th-set '$users[$userId].score' += 10>></pre>
+<pre>&lt;&lt;th-set '$users[$userId].score' += 10&gt;&gt;</pre>
 
 ---
 
@@ -501,8 +581,8 @@ This multiplayer engine uses a <b>server-authoritative</b> architecture:
 <div class="multiplayer-status">
 
 <b>1. Client-Side (SugarCube/Twine):</b><br>
-• Custom <code><<th-set>></code> macro for variable updates<br>
-• <code><<liveblock>></code> for real-time display updates<br>
+• Custom <code>&lt;&lt;th-set&gt;&gt;</code> macro for variable updates<br>
+• <code>&lt;&lt;liveblock&gt;&gt;</code> for real-time display updates<br>
 • Socket.IO client for server communication<br>
 • Exception variables for local-only data<br>
 
