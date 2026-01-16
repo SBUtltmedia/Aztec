@@ -1,4 +1,8 @@
 // unityBridge.js - Handles persistent Unity WebGL connection
+//
+// BIDIRECTIONAL COMMUNICATION:
+// - Twine → Unity: Scene changes and state updates via postMessage
+// - Unity → Server: State updates via postMessage → Socket.IO relay
 
 // Configuration
 const UNITY_BUILD_PATH = "/UnityWebGL/index.html"; // Path to your Unity Build
@@ -14,16 +18,19 @@ function initUnityBridge() {
 
     console.log("Unity Bridge: Initializing...");
 
+    // Set up listener for messages FROM Unity (for server sync)
+    initUnityToServerBridge();
+
     // 2. Create the Container
     const container = document.createElement("div");
     container.id = CONTAINER_ID;
     
     // Style: Unity at top, fixed height
     Object.assign(container.style, {
-        position: "fixed",
-        top: "0",
-        left: "0",
-        width: "100%",
+        position: "absolute",
+        top: "10px",
+        left: "180px",
+        width: "95%",
         height: "300px",  // Unity takes top 300px
         zIndex: "1",
         pointerEvents: "none", // Let clicks pass through to Twine
@@ -114,5 +121,134 @@ $(document).on(":passagestart", function (ev) {
     }
 });
 
+// =========================================================================
+// UNITY → SERVER: Listen for state updates from Unity and relay to Socket.IO
+// =========================================================================
+
+function initUnityToServerBridge() {
+    window.addEventListener("message", function(event) {
+        // Handle state updates from Unity (equivalent to <<th-set '$var' to value>>)
+        if (event.data && event.data.type === "UNITY_STATE_UPDATE") {
+            const { variable, value } = event.data.payload;
+            console.log(`Unity Bridge: Received state update from Unity -> ${variable}`, value);
+
+            // Update local SugarCube state
+            if (typeof State !== 'undefined' && State.setVar) {
+                try {
+                    State.setVar(variable, value);
+                } catch (e) {
+                    console.warn("Unity Bridge: Failed to set SugarCube variable", e);
+                }
+            }
+
+            // Send to server via Socket.IO (if available)
+            if (window.socket && window.socket.connected) {
+                if (window.sendStateUpdate) {
+                    window.sendStateUpdate(variable, value);
+                } else {
+                    // Fallback: emit directly
+                    window.socket.emit('stateUpdate', {
+                        variable: variable,
+                        value: value,
+                        userId: (typeof State !== 'undefined' ? State.variables.userId : 'unity') || 'unity'
+                    });
+                }
+                console.log("Unity Bridge: Relayed state update to server");
+            } else {
+                console.warn("Unity Bridge: Socket not connected, state update not sent to server");
+            }
+
+            // Trigger liveupdate for any <<liveblock>> sections
+            $(document).trigger(':liveupdateinternal');
+        }
+
+        // Handle atomic updates from Unity (equivalent to <<th-set '$var' += value>>)
+        if (event.data && event.data.type === "UNITY_ATOMIC_UPDATE") {
+            const { variable, operation, value } = event.data.payload;
+            console.log(`Unity Bridge: Received atomic update from Unity -> ${variable} ${operation} ${value}`);
+
+            // Update local SugarCube state optimistically
+            if (typeof State !== 'undefined' && State.getVar && State.setVar) {
+                try {
+                    const currentValue = State.getVar(variable) || 0;
+                    let newValue = currentValue;
+
+                    switch(operation) {
+                        case 'add': newValue += value; break;
+                        case 'subtract': newValue -= value; break;
+                        case 'multiply': newValue *= value; break;
+                        case 'divide': newValue /= value; break;
+                        case 'modulus': newValue %= value; break;
+                    }
+
+                    State.setVar(variable, newValue);
+                } catch (e) {
+                    console.warn("Unity Bridge: Failed to apply atomic update to SugarCube", e);
+                }
+            }
+
+            // Send to server via Socket.IO (if available)
+            if (window.socket && window.socket.connected) {
+                if (window.sendAtomicUpdate) {
+                    window.sendAtomicUpdate(variable, operation, value);
+                } else {
+                    // Fallback: emit directly
+                    window.socket.emit('atomicUpdate', {
+                        variable: variable,
+                        operation: operation,
+                        value: value,
+                        userId: (typeof State !== 'undefined' ? State.variables.userId : 'unity') || 'unity'
+                    });
+                }
+                console.log("Unity Bridge: Relayed atomic update to server");
+            } else {
+                console.warn("Unity Bridge: Socket not connected, atomic update not sent to server");
+            }
+
+            // Trigger liveupdate for any <<liveblock>> sections
+            $(document).trigger(':liveupdateinternal');
+        }
+    });
+
+    console.log("Unity Bridge: Unity→Server bridge initialized");
+}
+
+// =========================================================================
+// SERVER → UNITY: Forward state updates from server to Unity
+// =========================================================================
+
+// Hook into socket.io 'difference' events to forward to Unity
+function initServerToUnityBridge() {
+    // Wait for socket to be available
+    const checkSocket = setInterval(function() {
+        if (window.socket) {
+            clearInterval(checkSocket);
+
+            // Listen for state updates from server
+            window.socket.on('difference', function(diff) {
+                const unityFrame = document.getElementById(IFRAME_ID);
+                if (unityFrame && unityFrame.contentWindow) {
+                    // Forward the server state update to Unity
+                    unityFrame.contentWindow.postMessage({
+                        type: "STATE_UPDATE",
+                        payload: diff
+                    }, "*");
+                    console.log("Unity Bridge: Forwarded server state update to Unity", diff);
+                }
+            });
+
+            console.log("Unity Bridge: Server→Unity bridge initialized");
+        }
+    }, 100);
+
+    // Timeout after 10 seconds
+    setTimeout(function() {
+        clearInterval(checkSocket);
+    }, 10000);
+}
+
 // Initialize on load
 initUnityBridge();
+
+// Initialize server→unity bridge (needs socket to be ready)
+initServerToUnityBridge();
