@@ -1,0 +1,107 @@
+:: Chat System [script]
+/*
+ * Chat System for Aztec Multiplayer Game
+ * Supports global chat and faction-specific channels
+ * Server-authoritative with real-time synchronization
+ */
+
+// Chat timestamp formatter
+setup.formatChatTime = function(timestamp) {
+	// Format timestamp for chat display: MM/DD HH:MM
+	if (!timestamp) return "";
+	return new Date(timestamp).toLocaleDateString('en-US', {
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit'
+	}).replace(",", "");
+}
+
+:: PassageReady
+/* Chat Display - Renders on Home tagged passages */
+<<if tags().includes("Home")>>
+/* Creates the chat */
+<div id="chat">
+    /* Instantiate a chatlog if it doesnt already exist*/
+	<<if ndef $chatlog >>
+		<<set $chatlog = {}>>
+		<<for _i,_faction range ["Aztecs", "Spaniards","Tlaxcalans", "chat"]>>
+			<<th-set '$chatlog[_faction]' to []>>
+		<</for>>
+	<</if>>
+
+	<<if ndef $users[$role].currentChat >>
+		<<th-set '$users[$role].currentChat' to "chat">>
+	<</if>>
+
+	/* Create a scope switch for Global and Faction */
+	<div id="chat-switch">
+		<<button "Global">>
+			<<th-set '$users[$role].currentChat' to "chat">>
+		<</button>>
+		<<button $users[$role].faction >>
+			<<th-set '$users[$role].currentChat' to $users[$role].faction>>
+		<</button>>
+	</div>
+
+
+	/* Fill #chatmessages with $chatlog */
+	<<liveblock>>
+	<div id="chatmessages">
+		<<for _id, _msg range $chatlog[$users[$role].currentChat]>>
+		<<print `
+			<div class="playerMessage">
+				<div class="playerMessageLeft">
+					<img class="playerMessageIconImg" src="`+setup.getUserSvgPicture(_msg['user'])+`">
+					<div class="playerMessageLeftText">
+						<div class="playerMessageUsername">_msg["user"]</div>
+						<div class="playerMessageTimeStamp">`+setup.formatChatTime(_msg['timestamp'] || _msg['time'])+`</div>
+					</div>
+				</div>
+				<div class="playerMessageText">_msg["message"]</div>
+			</div>
+		`>>
+		<</for>>
+		<<run setup.scrollToBottom("chatmessages") >>
+		<div id="chatmessagesanchor"></div>
+	</div>
+	<</liveblock>>
+
+	/* Create the area for users to send messsages to */
+	<div id="chattextarea">
+		/* Type messages here */
+		<div id="chattextbox">
+			<<textbox "_chattext" "" autofocus>>
+		</div>
+
+		/* Hit send here */
+		<<button "Enter">>
+			<<set _arrayLength = $chatlog[$users[$role].currentChat].length>>
+			<<set _msg = {user: $role, message:_chattext, timestamp: Date.now()}>>
+			<<set _tempArr = $chatlog[$users[$role].currentChat].slice(-50)>>
+			<<set _tempArr[_tempArr.length] = _msg>>
+			<<if _chattext != "">>
+				<<sendAction "$chatlog[$users[$role].currentChat]" _tempArr>>
+			<</if>>
+			<<script>>
+				$("#chattextbox input").val("");
+			<</script>>
+		<</button>>
+	</div>
+
+	<<script>>
+	$(document).on("keydown", function (evt) {
+		if (evt.which === 13) {
+
+			requestAnimationFrame(()=>{
+				$("#chattextarea .macro-button").trigger("click");
+			})
+
+		}
+		var inputElement = $("#chattextbox #textbox--chattext");
+		var maxLength = 50;
+		inputElement.val(inputElement.val()?.substring(0, maxLength));
+	});
+	<</script>>
+</div>
+<</if>>

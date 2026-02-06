@@ -1,0 +1,757 @@
+:: A Tlaxcalan Nap [Done Breaks] {"position":"2975,2325","size":"100,100"}
+<<liveblock>>
+For days now, you've been worried about events outside your control. It's clear the Aztecs are preparing for something, but you have no way to know what this is.<br>
+<br>
+For three nights straight, you haven't slept a wink. You've lain awake worrying and trying to mentally prepare for what might lie ahead. After so many sleepless days, you're exhausted and you lie down upon your reed mat for the night. As soon as you close your eyes, you slip into a deep sleep. <br>
+<br>
+You awake to find yourself in <<link "a vaguely familiar place" "Waking up in the library">><<th-set '$Tlaxcalans_currentMap' to 0>><</link>>.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans hear rumors of strange men on the coast and decide what to do [Done Breaks] {"position":"3000,800","size":"100,100"}
+<<liveblock>>
+You return from your journey to find the village buzzing with news. One of your spies has just returned from the coast, where a band of strangers recently arrived from across the sea. The strangers are pale in skin and covered in hair. They have been giving gifts to people of the coast and winning their affection. These coastal people are allied to the Mexica, but have been brutalized by them. Like so many others in the empire, they harbor deep resentment for their Aztec overlords.<br>
+<br>
+Rumor has it that the strangers have been warned about the Mexica, but show little fear. They have asked many questions about the Aztec capital of Tenochtitlán and how they might reach it.<br>
+<br>
+Go to the Tlaxcalan discussion board and discuss amongst yourselves how you feel about this news.<br>
+<br>
+
+<<if $role is $Tlax_Leader>>
+You may:<br>
+<br>
+1. <<link "Do nothing" "Tlaxcalans wait">><<th-set '$Tl_Omens' to "Nothing">><<th-set '$Tlaxcalans_currentMap' to 1>><</link>>.<br>
+<br>
+2. Venture <<link "into Tenochtitlan" "Tlaxcalans and Aztecs meet">><<th-set '$Tl_Omens' to "Yes">><<th-set '$Tlaxcalans_currentMap' to 5>><</link>> and meet with Moctezuma. Maybe you can come to some sort of truce.<br>
+<br>
+or<br>
+<br>
+3.  <<link "Go to the coast" "Tlaxcala sends spies to Veracruz">><<th-set '$Tl_Omens' to "Spies">><<th-set '$Tlaxcalans_currentMap' to 3>><</link>> and try to learn more as spies.<br>
+<br>
+<<elseif $role isnot $Tlax_Leader and $Tl_Omens is "Nothing">>
+You have decided to [[do nothing|Tlaxcalans wait]].<br>
+<br>
+<<elseif $role isnot $Tlax_Leader and $Tl_Omens is "Yes">>
+You have decided to [[venture into Tenochtitlan|Tlaxcalans and Aztecs meet]].<br>
+<br>
+<<elseif $role isnot $Tlax_Leader and $Tl_Omens is "Spies">>
+You have decided to [[go to the coast|Tlaxcala sends spies to Veracruz]] and spy on the strangers.<br>
+<br>
+<<elseif $role isnot $Tlax_Leader and ndef $Tl_Omens or $Tl_Omens eq "">>
+Your leader has not yet entered your decision.<br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+You are waiting for <<print $Tlax_Leader>>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: The Festival of Toxcatl: The Tlaxcalans {"position":"4300,9400","size":"100,100"}
+<<liveblock>>
+[[La Noche Triste]]
+
+
+<</liveblock>>
+
+
+
+:: The Tlaxcalan Leader Decides [Done] {"position":"2175,3350","size":"100,100"}
+<<liveblock>>
+<<if $Tlax_Leader is $role>>
+Your people have recognized your wisdom, and you will now lead them through the treachourous times ahead, at least for now.  You made your argument to the Council, but will you follow through with it?  You must decide, and your fellow Tlaxcalans must follow.  Will you <<link "attack the Spaniards" "Tlaxcala Attacks in Puebla">><<th-set '$Tl_Attacks_Pu' to "Yes">><</link>>, or <<link "will you approach them as friends" "Tlaxcala Doesn't Attack in Puebla">><<th-set '$Tl_Attacks_Pu' to "No">><</link>>?
+
+<<elseif $Tlax_Leader isnot $role and ndef $Tl_Attacks_Pu or $Tl_Attacks_Pu eq "">>
+Together, the Council has decided that <<print $Tlax_Leader>> has the greatest wisdom.  He will lead your people forward, but where? Will he pursue the path he set out in his arguments, or will he do something unexpected?<br>
+<br>
+You wait for his decision. <br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;">
+<<elseif $Tlax_Leader isnot $role and $Tl_Attacks_Pu is "Yes">>
+Together, the Council has decided that <<print $Tlax_Leader>> has the greatest wisdom.  He will lead your people forward, but where? Will he pursue the path he set out in his arguments, or will he do something unexpected?<br>
+<br>
+He leads you [[into battle with the Spaniards|Tlaxcala Attacks in Puebla]].<br>
+<br>
+<<elseif $Tlax_Leader isnot $role and $Tl_Attacks_Pu is "No">>
+Together, the Council has decided that <<print $Tlax_Leader>> has the greatest wisdom.  He will lead your people forward, but where? Will he pursue the path he set out in his arguments, or will he do something unexpected?<br>
+<br>
+You march across the plains [[in hopes of peace|Tlaxcala Doesn't Attack in Puebla]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Quest intro: The Tlaxcalan Legend of Quetzalcoatl [Done] {"position":"2975,100","size":"100,100"}
+<<liveblock>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
+
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
+
+You must wait for enough players to gather to begin.<br>
+<br>
+
+<<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+<<else>>
+<b> Your Team Leader is: <<print $Tlax_Leader>></b><br>
+<br>
+Tlaxcalans, over the last 200 years, you have watched the Mexica vanquish their enemies one by one to become the most powerful city-state in central Mexico. Their first leader, Acamapichtli, was a son of the Culhua, descended from the Toltecs. This lineage secured his political legitimacy, and with him that of his empire. Religious legitimacy has been harder to come by, however, for it must be granted by the god Quetzalcoatl and the priests who wield his power. <br>
+<br>
+Many moons ago, during the time of the 4th sun, Quetzalcoatl walked the Earth and ruled over the sacred city of Tollan. Jealous of his power, Quetzalcoatl's brother, Tezcatlipoca, disguised himself as a sorcerer and tricked Quetzalcoatl into drunkenly cavorting with his sister, the priestess Quetzalpetlatl. The next day, Quetzalcoatl left Tollan in shame, never to return. Quetzalcoatl died in exile, whereupon he was cremated and his remains mixed with the blood of four sacrificed children to symbolize his heart. The heart was then placed in a wooden box and locked in one of the many temples that dot the landscape of central Mexico. The priests who guard this temple hold great power and only they can grant <<link "the blessing that you seek" "Quest: Tlaxcalan instructions">><<th-set '$Tlaxcalans_currentMap' to 2>><</link>>.<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Quest: Tlaxcalan instructions [Done] {"position":"2975,225","size":"100,100"}
+<<liveblock>>
+<<if $Quest_Leader_T is "None">>
+<<if $role is "Xicotencatl_Elder">>
+Before you can begin your quest, you must choose a teammate to lead your people. <br>
+<br>
+You choose: <br>
+<br>
+<<link "Xicotencatl the Younger">><<th-set '$Quest_Leader_T' to "Xicotencatl_Younger">><</link>>.<br>
+<br>
+<<link "Maxixcatl">><<th-set '$Quest_Leader_T' to "Maxixcatl">><</link>>.<br>
+<br>
+<<else>>
+You must wait for Xicotencatl the Elder to choose a quest leader. <br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<</if>>
+<<else>>
+<<if $role is $Quest_Leader_T>>
+<b><<print $Quest_Leader_T>>, you are quest leader.</b><br>
+<br>
+You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. You have much to prove to Xicotencatl the Elder, and this is your chance. It is up to you to lead your team on this quest!<br>
+<br>
+If you succeed, you will deny legitimacy to the Mexica and maintain the balance of power in central Mexico. The blessing of Quetzalcoatl will surely fuel your warriors and steel you in your struggle against the Mexica. Do not hesitate in this quest, for you are in a race against the most powerful warriors of the Aztec Empire.<br>
+<br>
+When you have read the following instructions and are ready to begin your quest, click the link below to enter the palace. <br>
+<br>
+In the palace you will find 6 place glyphs. Each of these glyphs represents a site of great significance in Central Mexico and in each you will find a vital resource for your journey. In order to collect each resource, you must work with your team to identify the correct name that corresponds with the glyph. Click on each glyph to visit that place and receive a clue to its location. You will need to draw on all your knowledge to solve each puzzle! Once you have figured out where you are, you will enter the name into a text box that is only available on your screen. When you enters the correct response, your entire team will collect the resource located there and you will not be able to return.<br>
+<br>
+When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have further to travel, they must gather 5 goods, while you only require 4.<br>
+<br>
+Enter the palace and <<link "begin your quest" "Scavenger Hunt Hub">><<th-set '$Tlaxcalans_currentMap' to 2>><<th-set '$T_Q_Heart' to "no">><</link>>.<br>
+<br>
+<<else>>
+<b> Your Quest Leader is <<print $Quest_Leader_T>>.</b><br>
+<br>
+You will find the heart of Quetzalcoatl in the city of Cholula. You must travel there to claim the heart and secure his blessing. Your journey will be long and difficult, however, and you will need many resources to sustain you if you are to succeed. Collecting these resources is the key to victory. <<print $Quest_Leader_T>>, and he will lead this quest.<br>
+<br>
+If you succeed, you will deny legitimacy to the Mexica and maintain the balance of power in central Mexico. The blessing of Quetzalcoatl will surely fuel your warriors and steel you in your struggle against the Mexica. Do not hesitate in this quest, for you are in a race against the most powerful warriors of the Aztec Empire.<br>
+<br>
+When you have read the following instructions and are ready to begin your quest, click the link below to enter the palace. <br>
+<br>
+In the palace you will find 6 place glyphs. Each of these glyphs represents a site of great significance in Central Mexico and in each you will find a vital resource for your journey. In order to collect each resource, you must work with your team to identify the correct name that corresponds with the glyph. Click on each glyph to visit that place and receive a clue to its location. You will need to draw on all your knowledge to solve each puzzle! Once you have figured out where you are, Xicotencatl the Younger will enter the name into a text box that is only available on his screen. When he enters the correct response, your entire team will collect the resource located there and you will not be able to return.<br>
+<br>
+When you have obtained enough resources to survive your journey, you will be allowed to travel to Cholula. Because the Aztecs have further to travel, they must gather 5 goods, while you only require 4.<br>
+<br>
+Enter the palace and [[begin your quest|Scavenger Hunt Hub]].<br>
+<br>
+<</if>>
+<</if>>
+
+<</liveblock>>
+
+
+
+:: Tlaxcalan Wisdom Check [Done] {"position":"2175,3200","size":"100,100"}
+<<liveblock>>
+<<if $TL_St_Voted <3>>
+You wait nervously while the others deliberate. <br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print $TL_St_Voted>> players have voted.<br>
+<br>
+
+
+<<elseif $TL_St_Voted is 3 and $users["Xicotencatl_Elder"]["stats"]["Wisdom"] >=$users["Xicotencatl_Younger"]["stats"]["Wisdom"] and $users["Xicotencatl_Elder"]["stats"]["Wisdom"] >=$users["Maxixcatl"]["stats"]["Wisdom"]>><<th-set '$Tlax_Leader' to "Xicotencatl_Elder">>
+You and your fellow council members have weighed each other's arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. <br>
+<br>
+<b>The Tlaxcalan leader is <<print $Tlax_Leader>></b><br>
+<br>
+Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Decides]]?<br>
+<br>
+<<elseif $TL_St_Voted is 3 and $users["Xicotencatl_Younger"]["stats"]["Wisdom"] >=$users["Xicotencatl_Elder"]["stats"]["Wisdom"] and $users["Xicotencatl_Younger"]["stats"]["Wisdom"] >=$users["Maxixcatl"]["stats"]["Wisdom"]>><<th-set '$Tlax_Leader' to "Xicotencatl_Younger">>
+You and your fellow council members have weighed each other's arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. <br>
+<br>
+<b>The Tlaxcalan leader is <<print $Tlax_Leader>></b><br>
+<br>
+Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Decides]]?<br>
+<br>
+<<elseif $TL_St_Voted is 3 and $users["Maxixcatl"]["stats"]["Wisdom"] >=$users["Xicotencatl_Elder"]["stats"]["Wisdom"] and $users["Maxixcatl"]["stats"]["Wisdom"] >=$users["Xicotencatl_Younger"]["stats"]["Wisdom"]>><<th-set '$Tlax_Leader' to "Maxixcatl">>
+You and your fellow council members have weighed each other's arguments carefully. The impact of the faith placed by all of you in the statements you present has been reflected in your wisdom points. Surely now more than ever your people need wisdom. He with the most wisdom points will lead the Tlaxcalan people forward, deciding whether or not you go to war with the Spaniards. <br>
+<br>
+<b>The Tlaxcalan leader is <<print $Tlax_Leader>></b><br>
+<br>
+Now, despite these deliberations, will you [[go to war|The Tlaxcalan Leader Decides]]?<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalan's Contribution {"position":"2300,8175","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Aztecs">>
+Here you will find links to each entry of the Spanish guidebook, along with a special section written by your Tlaxcalan guests. You must read each entry and evaluate their descriptions. Are they accurate in their portrayals? <br>
+<br>
+To aid you in this task, go to your game documents and read Bernal Diaz' account of Tenochtitlán. You may also want to revisit other course materials. When you have read each entry, you must decide whether it is accurate and assign it a grade of pass or fail.<br>
+<br>
+<<if $Marina_Act is "No">>
+
+<<elseif $Marina_Act is "Yes">>
+Marina's introduction is:  <<print "$Ma_TG">><br>
+<br>
+<i>You have already rated Marina's contribution.</i><br>
+<br>
+<</if>>
+<<if $Cortes_Act is "No">>
+
+<<elseif $Cortes_Act is "Yes">>
+Cortes' entry is:  <<print "$Co_TG">><br>
+<br>
+<i>You have already rated Cortes' contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Alvarado_Act is "No">>
+
+<<elseif $Alvarado_Act is "Yes">>
+Alvarado's entry is:  <<print "$Al_TG">><br>
+<br>
+<i>You have already rated Alvarado's contribution.</i><br>
+<</if>>
+
+<<if $Aguilar_Act is "No">>
+
+<<elseif $Aguilar_Act is "Yes">>
+Aguilar's entry is:  <<print "$Ag_TG">><br>
+<br>
+<i>You have already rated Aguilar's contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Olid_Act is "No">>
+
+<<elseif $Olid_Act is "Yes">>
+Olid's entry is:  <<print "$Ol_TG">><br>
+<br>
+<i>You have already rated Olid's contribution.</i><br>
+<br>
+<</if>>
+
+<<if $Garrido_Act is "No">>
+
+<<elseif $Garrido_Act is "Yes">>
+Garrido's entry is:  <<print "$Ga_TG">><br>
+<br>
+<i>You have already rated Garrido's contribution.</i><br>
+<br>
+<</if>>
+
+The Tlaxcalan's Insider's Guide is:  <<print "$Tl_IG">><br>
+<br>
+Do they <<link "PASS" "After the Feast">><<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' += 3>><</link>> or <<link "FAIL" "After the Feast">><<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' -= 3>><</link>>?<br>
+<br>
+<<case "Spaniards">>
+
+<<case "Tlaxcalans">>
+
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans Back In Tlaxcala {"position":"2400,9550","size":"100,100"}
+<<liveblock>>
+<<if $Tlax_Alliance is "Veracruz">>
+You make your way home, weary but encouraged by your most recent victory. Events have been unfolding in your favor and you can't help but feel confident in the choices you have made.<br>
+<br>
+You arrive back in Tlaxcala, dragging the enormous weapons behind you. You will keep them safe in case your Spanish friends need them again. <br>
+<br>
+For now, however, you settle in, [[happy to finally return home|Cortes Returns Victorious]].<br>
+<br> 
+
+<<elseif $Tlax_Alliance is "Home">>
+You make your way home, relieved to have avoided yet another battle. You are confident that you would have won, but this is not your fight and you are not convinced that it would have been worth more Tlaxcalan blood.<br>
+<br>
+Having removed yourself from this strange and unexpected situation, you wonder how events will unfold in your absence. For now, you will just have to wait and see. <br>
+<br>
+You settle in, happy to finally return home.<br>
+<br> 
+<<if ndef $Cortes_Dead or $Cortes_Dead eq "">>
+You wait for news, curious how your decision has impacted the course of history. <br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"> <br>
+<br>
+You are waiting for Cortes to do something. <br>
+<br>
+<<elseif $Cortes_Dead is "No">>
+[[You send spies to Tenochtitlan, eager to hear what will happen next|Cortes Returns Weakened]].<br>
+<br>
+<<elseif  $Cortes_Dead is "Yes">>
+[[You send spies to Tenochtitlan, eager to hear what will happen next|Cortes Doesn't Return]].<br>
+<br>
+<</if>>
+
+<<elseif $Tlax_Alliance is "Betray">>
+You make your way home, knowing that Cortés will never survive the battle alone. You wonder what fate has in store for those he left behind in Tenochtitlán, but this is no longer your fight. The Mexica will most likely crush the invaders and perhaps life will return to normal. <br>
+<br>
+For now, you will just have to wait and see. You settle in, happy to [[finally return home|Cortes Doesn't Return]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans Face a Choice {"position":"2450,5900","size":"100,100"}
+<<liveblock>>
+You wake to find yourself exactly where you hoped: back at camp, on the road to Tenochtitlán! You lead an army of over 10,000 men, with your Spanish allies at your side.<br>
+<br>
+
+You pack up camp and set out for your destination, assuring your Spanish friends that it's just around the corner. You crest a hill and the city appears before you. Your friends can hardly believe their eyes. One of them would later describe it as such:<br>
+<br>
+
+<i>“The next morning we reached the broad high road of Iztapalapan, whence we for the first time beheld the numbers of towns and villages built in the lake, and the still greater number of large townships on the mainland, with the level causeway which ran in a straight line into Mexico. Our astonishment was indeed raised to the highest pitch, and we could not help remarking to each other, that all these buildings resembled the fairy castles we read of in Amadis de Gaul; so high, majestic, and splendid did the temples, towers, and houses of the town, all built of massive stone and lime, rise up out of the midst of the lake. Indeed, many of our men believed what they saw was a mere dream. And the reader must not feel surprised at the manner in which I have expressed myself, for it is impossible to speak coolly of things which we had never seen nor heard of, nor even could have dreamt of, beforehand.” (Lockhart, 219)</i><br>
+<br>
+
+The sight that lies ahead has [[a much different meaning for you|Tlaxcalans consider their options]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans Hold for a Council Meeting [Done] {"position":"2175,2950","size":"100,100"}
+<<liveblock>>
+You gather together with the other two members of your leadership council. All of you have prepared your statements, which you share with the others. <br>
+<br>
+<b>Xicotencatl the Elder's Statement:</b> <<print $XE_Statement>><br>
+<b>Xicotencatl the Younger's Statement:</b> <<print $XY_Statement>><br>
+<b>Maxixcatl's Statement:</b> <<print $Max_Statement>><br>
+<br>
+Once you have composed your statement, you must present it to the rest of the council on the Tlaxcalan discussion board. After all council members have presented their statements, you will vote on the most convincing argument.<br>
+<br>
+[[Click here|Tlaxcalans Vote on Attacking Spaniards]] when you are ready to cast your vote.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans Negotiate Peace [Done] {"position":"1975,3750","size":"100,100"}
+<<liveblock>>
+<<switch $users[$role]["faction"]>>
+<<case "Spaniards">>
+The Tlaxcalans have invited you to negotiate peace. Go to the Spanish-Tlaxcalan discussion board and work out an agreement. <br>
+<br>
+Once you have heard everything they have to say, do you trust them?<br>
+<br>
+
+<<if $users[$role]["faction"] is "Spaniards" and $Tlax_Leader is "Xicotencatl_Elder">>
+<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<th-set '$users["Xicotencatl_Elder"]["stats"]["Wisdom"]' += 1>><<th-set '$Spaniards_currentMap' to 7>><</link>> <br>
+<br>
+<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<th-set '$users["Xicotencatl_Elder"]["stats"]["Wisdom"]' -= 1>><<th-set '$Spaniards_currentMap' to 7>><</link>><br>
+<br>
+<<elseif $users[$role]["faction"] is "Spaniards" and $Tlax_Leader is "Xicotencatl_Younger">>
+<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<th-set '$users["Xicotencatl_Younger"]["stats"]["Wisdom"]' += 1>><<th-set '$Spaniards_currentMap' to 7>><</link>> <br>
+<br>
+<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<th-set '$users["Xicotencatl_Younger"]["stats"]["Wisdom"]' -= 1>><<th-set '$Spaniards_currentMap' to 7>><</link>><br>
+<br>
+<<elseif $users[$role]["faction"] is "Spaniards" and $Tlax_Leader is "Maxixcatl">>
+<<link "Yes." "Spaniards and Tlaxcalans on the way to Cholula">><<th-set '$users["Maxixcatl"]["stats"]["Wisdom"]' += 1>><<th-set '$Spaniards_currentMap' to 7>><</link>> <br>
+<br>
+<<link "No." "Spaniards and Tlaxcalans on the way to Cholula">><<th-set '$users["Maxixcatl"]["stats"]["Wisdom"]' -= 1>><<th-set '$Spaniards_currentMap' to 7>><</link>><br>
+<br>
+<</if>>
+
+<<case "Tlaxcalans">>
+Now that you have made your decision, go to the Spanish-Tlaxcalan discussion board to negotiate peace with the foreigners. Whatever you have decided, you will have to convince them of your loyalty.<br>
+<br>
+<<print $Tlax_Leader>>, keep an eye on your wisdom points, for they will give you a clue to the Spaniards' faith in your alliance as you <<link "move forward" "Spaniards and Tlaxcalans on the way to Cholula">><<th-set '$Tlaxcalans_currentMap' to 4>><</link>>.<br>
+<br>
+<</switch>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans Prepare for a Council Meeting [Done] {"position":"2175,2825","size":"100,100"}
+You wake to the buzz of people talking. You haven't even opened your eyes when you catch the scent of tortillas cooking over an open fire and you know you're back in Tlaxcala!<br>
+<br>
+You get up from your sleeping mat and excitedly make your way outside, where you learn that there is to be a council meeting tonight. Word has reached the village that the strangers are nearing Tlaxcalan territory and they could arrive any day now. The leadership must decide how to respond to the strangers...and that includes you.<br>
+<br>
+In order to prepare for the meeting, you must write a formal statement of your position, which you will present to the rest of the council. In your statement, you must make a clear and logical case for why you believe the Tlaxcalan people should or should not attack the intruders. Weigh your decision carefully, as this is not to be taken lightly.<br>
+<br>
+
+Once your statement is prepared, paste it in the box below to share with your fellow Council Members. <br>
+<br>
+<<switch $role>>
+<<case "Xicotencatl_Elder">>
+<<textbox "$XE_Statement" "">>
+<<case "Xicotencatl_Younger">>
+<<textbox "$XY_Statement" "">>
+<<case "Maxixcatl">>
+<<textbox "$Max_Statement" "">>
+<</switch>>
+<br>
+<br>
+When this is finished [[continue on to the council meeting|Tlaxcalans Hold for a Council Meeting]]<br>
+<br>
+
+
+
+:: Tlaxcalans Respond to La Noche Triste {"position":"4300,9700","size":"100,100"}
+<<liveblock>>
+[[Game Over: Aztecs Win La Noche Triste]]
+
+[[The Tlaxcalans and Spaniards Flee]]
+
+[[The Aztecs Regroup]]
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans Visit Tlatelolco {"position":"2300,7175","size":"100,100"}
+<<if ndef $users[$role]["choices"]["Feast"]>>
+<<th-set '$users[$role]["choices"]["Feast"]' to 0 >>
+<</if>>
+<<if $role is "Pochteca">>
+You set out for the market with your Tlaxcalan guests in tow. They are eager to visit the legendary Tlatelolco Market and, as one of the most important agents of the market, you can't help but take pride in their excitement. You are halfway to your destination when you are approached by a messenger. He has come to assign your guests a task.<br>
+<br>
+The messenger informs you that the Spaniards have decided to create a guide to the city that will provide useful advice to future explorers. Given the importance of Tlatelolco Market, it must occupy a central place in the guide. However, the Spaniards worry that they will be unfamiliar with many of the riches to be found there and that their description may not do it justice. They would like to enlist the help of the Tlaxcalans. As the market expert, you must assist them in their task.  As compensation for this work, however, the Spaniards have decided to include you in their dinner invitation at Moctezuma's Palace tonight, where there will be a spectacular feast!<br>
+<br>
+Your first task is to go to your game documents and read Bernal Diaz' account of Tenochtitlán, where you will find a detailed description of the Tlatelolco Market. When everyone has finished reading, the Tlaxcalans will choose one team member to start a new page on their site titled “Tlatelolco Market: Insider's Guide.” You must work with them to create a special entry for the Spanish guidebook.<br>
+<br>
+LIke any good insider's guide, the entry should include:<br>
+<br>
+An introduction that describes the specific location<br>
+An account of which sights live up to the hype and which ones do not<br>
+The best bargains to be found<br>
+Instructions on where to eat like a local and how to avoid tourist traps<br>
+<br>
+Pay attention to detail, because there are points at stake here!<br>
+<br>
+Once the guidebook entry is complete, your Tlaxcalan guests will share their link with the other players. <br>
+<br>
+<<print $Tlax_Leader>> is responsible for submitting your entry. <br>
+<br>
+<<else>>
+With the pochteca as your guide, you set out across the city. You are eager to visit the legendary Tlatelolco Market and to be the first Tlaxcalans ever to lay eyes upon its fabled riches. You are halfway to your destination when you are approached by a messenger. He has come to assign you a task.<br>
+<br>
+The messenger informs you that the Spaniards have decided to create a guide to the city that will provide useful advice to future explorers. Given the importance of Tlatelolco Market, it must occupy a central place in the guide. However, the Spaniards worry that they will be unfamiliar with many of the riches to be found there and that their description may not do it justice. They would like to enlist your help.<br>
+<br>
+Your first task is to go to your game documents and read Bernal Diaz' account of Tenochtitlán, where you will find a detailed description of the Tlatelolco Market. When you have finished reading, choose one team member to start a new page on their site titled “Tlatelolco Market: Insider's Guide.” You must work together to create a special entry for the Spanish guidebook.<br>
+<br>
+Like any good insider's guide, your entry should include:<br>
+<br>
+An introduction that describes the specific location<br>
+An account of which sights live up to the hype and which ones do not<br>
+The best bargains to be found<br>
+Instructions on where to eat like a local and how to avoid tourist traps<br>
+<br>
+Pay attention to detail, because there are points at stake here!<br>
+<br>
+As compensation for this work, however, the Spaniards have decided to include you in their dinner invitation at Moctezuma's Palace tonight, where there will be a spectacular feast!<br>
+<br>
+But first, you must complete your task. Once your guidebook entry is complete, paste a link here to share with the other players. Make sure you've set it so that everyone with the link can read it. <br>
+<br>
+<<if $Tlax_Leader is $role>>
+Your Insider's Guide is:  <<textbox "$Tl_IG" "">><br>
+<br>
+<<else>>
+<<print $Tlax_Leader>> is responsible for submitting your entry. <br>
+<br>
+<</if>>
+<</if>>
+
+When your work is complete, you may continue <<link "on to the feast" "Everyone Gathers for a Feast">><<th-set '$users[$role]["choices"]["Feast"]' to 1>><</link>>!<br>
+<br>
+
+
+
+:: Tlaxcalans Wait Outside and Send Spies [Done] {"position":"2325,5225","size":"100,100"}
+<<liveblock>>
+You watch your allies enter the city of Cholula where they will consort with your enemy. When they are out of sight, you send out spies to keep watch. It is clearly to your benefit to know exactly what goes on inside the city walls.<br>
+<br>
+You remain at camp, curious to learn what's going on inside the city walls. Your spies have yet to return. You wait anxiously for news.<br>
+<br>
+<<if ndef $Cholula_Attack or $Cholula_Attack eq "" and ndef $Mal_Share or $Mal_Share eq "">>
+
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+Both the Aztecs and Marina need to do something for this block to clear.<br>
+<br>
+
+<<elseif $Cholula_Attack is "Yes" and $Mal_Share is "No">>
+The first day and night pass quietly, with little news from inside. The next morning, however, your spies come running back to camp just as you hear the sound of screaming from inside the city.<br>
+<br>
+The Aztecs have laid a trap and attacked the Spaniards! This will surely be a massacre and an Aztec victory would not be to your benefit. You rush through the city gates and engage your enemies in battle. You fight your way back out of the city with your Spanish allies at your side. They made it out alive, but barely. <br>
+<br>
+You head for the mountains, eager to get [[beyond the reach of the Aztec warriors|Into the Mountain Pass]].<br>
+<br>
+
+<<elseif $Cholula_Attack is "Yes" and $Mal_Span is "No">>
+The first day and night pass quietly, with little news from inside. The next morning, however, your spies come running back to camp just as you hear the sound of screaming from inside the city.<br>
+<br>
+The Aztecs have laid a trap and attacked the Spaniards! This will surely be a massacre and an Aztec victory would not be to your benefit. You rush through the city gates and engage your enemies in battle. You fight your way back out of the city with your Spanish allies at your side. They made it out alive, but barely. <br>
+<br>
+You head for the mountains, eager to get [[beyond the reach of the Aztec warriors|Into the Mountain Pass]].<br>
+<br>
+
+<<elseif $Cholula_Attack is "Yes" and $Span_Cho_Att is "No">>
+The first day and night pass quietly, with little news from inside. The next morning, however, your spies come running back to camp just as you hear the sound of screaming from inside the city.<br>
+<br>
+The Aztecs have laid a trap and attacked the Spaniards! This will surely be a massacre and an Aztec victory would not be to your benefit. You rush through the city gates and engage your enemies in battle. You fight your way back out of the city with your Spanish allies at your side. They made it out alive, but barely. <br>
+<br>
+You head for the mountains, eager to get [[beyond the reach of the Aztec warriors|Into the Mountain Pass]].<br>
+<br>
+
+<<elseif $Span_Cho_Att is "Yes">>
+The first day and night pass quietly, with little news from inside. The next morning, however, your spies come running back to camp just as you hear the sound of screaming from inside the city.<br>
+<br>
+The Spaniards have attacked the Cholulans! It's not clear why, but your spies report that they gathered all the city's nobles and cut them down in front of the main temple. You make your way to the city, eager to raid Cholula's stores of salt and cloth--items that you've been denied by an Aztec embargo.<br>
+<br>
+When you've taken all you can find, you leave the city of Cholula a smoldering mess and [[carry on your journey|Into the Mountain Pass]].<br>
+<br>
+<<elseif $Cholula_Attack is "No" and $Mal_Share is "No">>
+Days pass with little news from inside. It seems your Spanish friends are being treated well, with an ample supply of food and pulque. <br>
+<br>
+How do you feel about these events? Go to the Tlaxcalan discussion board and decide whether the friendly relations between your allies and your foes has any bearing on your relationship.<br>
+<br>
+Meanwhile, you wait impatiently to [[carry on your journey|Into the Mountain Pass]]. 
+
+<<elseif $Cholula_Attack is "No" and $Mal_Span is "No">>
+Days pass with little news from inside. It seems your Spanish friends are being treated well, with an ample supply of food and pulque. <br>
+<br>
+How do you feel about these events? Go to the Tlaxcalan discussion board and decide whether the friendly relations between your allies and your foes has any bearing on your relationship.<br>
+<br>
+Meanwhile, you wait impatiently to [[carry on your journey|Into the Mountain Pass]]. <br>
+<br>
+
+<<elseif $Cholula_Attack is "No" and $Span_Cho_Att is "No">>
+Days pass with little news from inside. It seems your Spanish friends are being treated well, with an ample supply of food and pulque. <br>
+<br>
+How do you feel about these events? Go to the Tlaxcalan discussion board and decide whether the friendly relations between your allies and your foes has any bearing on your relationship.<br>
+<br>
+Meanwhile, you wait impatiently to [[carry on your journey|Into the Mountain Pass]]. 
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans agree to fight {"position":"2300,9375","size":"100,100"}
+<<liveblock>>
+<<if $role is "Cortes">>
+You have received word that the enemy camp lies just ahead. The time has come to face the force of Spaniards who have come to secure your arrest.<br>
+<br>
+You confer with your Tlaxcalan allies, who assure you they will fight by your side. You decide that the best course of action is not to confront the enemy head on, but to take them by surprise in a sneak attack.<br>
+<br>
+You wait until midnight to launch your attack, hoping to catch the enemy forces asleep. After a quick and bloody battle, you succeed in capturing their leader, Pánfilo Narváez, who miraculously survives being stuck in the eye with a pike. You put Narváez in chains, disarm the remainder of his men, and give them a choice: return to Cuba or join you in Tenochtitlán. <br>
+<br>
+Fortunately for you, these men are no fools. They have heard tales of the great Mexica city and the riches found there. Hundreds of them choose to join you. You have just quadrupled your forces. This could not have gone better.<br>
+<br>
+<<link "As you prepare for the journey back to Tenochtitlán" "Cortes Returns Victorious">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' += 5>><</link>>you take possession of Narváez' cannons, and your team's strength increases significantly. Your Tlaxcalan friends are returning home and will take them for safekeeping.<br>
+<br>
+<<else>>
+You have received word that the enemy camp lies just ahead. The time has come to face yet another force of Spaniards in battle.<br>
+<br>
+As you approach the camp, Cortes proposes a plan: rather than meet his enemies head on, he wants to catch them off guard in a surprise attack. You agree that this is the best chance for success and wait patiently for nightfall.<br>
+<br>
+You wait until midnight to launch your attack, hoping to catch the enemy forces asleep. After a quick and bloody battle, you succeed in capturing the leader and disarming his men. When Cortes gives them the choice of going back where they came from or joining you on the return journey, very few choose to turn back. Your force has just grown considerably. You make your way back to Tenochtitlán.<br>
+<br>
+As you depart the scene of the battle, Cortes instructs you to take the large and terrifying weapons that these new Spaniards brought with them. He tells you they are called cannons and asks you to take them to Tlaxcala for safekeeping. [[You prepare to finally return home|Tlaxcalans Back In Tlaxcala]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans announce their departure {"position":"2100,9550","size":"100,100"}
+<<liveblock>>
+<<if $role is "Cortes">>
+Much to your dismay, your fears turn out to be valid. As you near Tlaxcala,  <<print $Tlax_Leader>> informs you that he and his men will not be carrying on the rest of the way. They will remain in Tlaxcala, leaving you to face the enemy with a greatly-diminished force.<br>
+<br>
+This news comes as a terrible blow. The odds are no longer in your favor.<br>
+<br> 
+You spend the night in Tlaxcala and lie awake all night weighing your next move. Will you try to catch Velazquez' men off guard in a sneak attack or is it safer to negotiate an agreement?<br>
+<br>
+Think carefully about this decision. What are the potential repercussions of either choice? Which is the right move? Once you have made your decision, select your choice below.<br>
+<br>
+Option 1: You will <<link "launch a surprise attack" "Cortes Attacks Narvaez">><<th-set '$Cortes_Dead' to "No">><</link>><br>
+<br>
+Option 2: You will <<link "propose a meeting with the Spanish leader" "Cortes Proposes a meeting with Narvaez">><<th-set '$Cortes_Dead' to "Yes">><</link>>, Pánfilo Narváez<br>
+<br>
+You leave Tlaxcala in a much more precarious position than you were in yesterday.<br>
+<br>
+<<else>>
+As you near home, you feel your heart soar. You have been away for many moons, a stranger in a foreign land. It is now time to tell Cortes that you will not be at his side when he meets his enemy at the coast. <br>
+<br>
+Cortes takes the news with a steely glare and it is clear that he is not happy with the news. With the loss of your men, his forces are greatly diminished. But this is not your battle to fight.<br>
+<br>
+You host the troops for the night and see them on their way the next morning, [[content to remain where you are|Tlaxcalans Back In Tlaxcala]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans consider their options {"position":"2450,6025","size":"100,100"}
+<<liveblock>>
+The Aztec capital may be impressive, rising up from the lake, but it's teeming with your enemies. You have battled the Aztecs many times before. Is this time any different? You lead an army of 10,000 allies who share your hatred of the Aztecs. The Spanish force is small, but they carry powerful weapons and they ride their giant deer.<br>
+<br>
+This is your final opportunity to weigh your options before you reach the point of no return. Go to the Tlaxcalan discussion board and decide on your best course of action. <br>
+<br>
+Option 1: This is your best chance to defeat the Aztecs. You've waited years for this opportunity and you're not about to let it slip away from you now! You will carry on to the city.<br>
+<br>
+Option 2: You have serious doubts about the Spaniards in your camp. Recent events have led you to wonder if they might be a more immediate threat than your Aztec enemies. You send a messenger to Tenochtitlán to negotiate an alliance.<br>
+<br>
+Option 3: You have serious doubts about the Spaniards in your camp. You wonder if they're leading you into a losing battle with the hated Aztecs. You decide to cut your losses. You leave the Spaniards to their fate and head for home.<br>
+<br>
+Option 4: You have long doubted the Spaniards in your camp and already made a secret alliance with the Aztecs. After recent events, you are more convinced than ever that this was the right decision. You will honor your alliance with the Aztecs and enter the city as friends.<br>
+<br>
+When you have reached a decision, <<print $Tlax_Leader>> [[must input your choice|Tlaxcalans decide where to go]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans cut their losses {"position":"2450,6375","size":"100,100"}
+<<liveblock>>
+You've packed up camp and are headed for home when you find yourself surrounded by a group of angry warriors. Their weapons trained upon you, the allies that have marched at your side since you began this journey are angry. They remind you that it's not only the Spaniards you have left at the mercy of the Aztecs. They demand that you stay and fight. <br>
+<br>
+They have you surrounded and you find yourselves with little choice. Besides their numerical advantage, you may need these friends in the future. <br>
+<br>
+You turn back [[towards Tenochtitlan|On the Causeway]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans decide where to go {"position":"2450,6250","size":"100,100"}
+<<liveblock>>
+<<if ndef $users[$role]["choices"]["Causeway"]>>
+<<th-set '$users[$role]["choices"]["Causeway"]' to 0 >>
+<</if>>
+
+<<if $Tlax_Leader is $role>>
+Now that you have consulted with your men, it is up to you to decide how to proceed.<br>
+<br>
+You will carry on to the city, allied with the Spaniards, and <<link "hope to defeat the Aztecs once and for all" "On the Causeway">><<th-set '$Tlax_Cause' to "fight">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><</link>>.<br>
+<br>
+You will send a messenger to Tenochtitlán to negotiate an alliance, <<link "you just don't trust the Spaniards" "On the Causeway">><<th-set '$Tlax_Cause' to "neg">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><</link>>. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.<br>
+<br>
+You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<th-set '$Tlax_Cause' to "flee">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' -= 5>><<th-set '$Tlaxcalans_currentMap' to 6>><</link>>.<br>
+<br>
+You will honor an existing but secret alliance with the Aztecs and <<link "enter the city as their friends" "On the Causeway">><<th-set '$Tlax_Cause' to "allies">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><</link>>.<br>
+
+<<else>>
+<<if ndef $Tlax_Cause or $Tlax_Cause eq "">>
+You wait for <<print $Tlax_Leader>> to make your intentions known.<br><br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Tlax_Cause is "fight">>
+You will carry on to the city, allied with the Spaniards, and <<link "hope to defeat the Aztecs once and for all" "On the Causeway">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><<th-set '$Tlaxcalans_currentMap' to 6>><</link>>.<br>
+<br>
+<<elseif $Tlax_Cause is "neg">>
+You will send a messenger to Tenochtitlán to negotiate an alliance, <<link "you just don't trust the Spaniards" "On the Causeway">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><<th-set '$Tlaxcalans_currentMap' to 6>><</link>>. But for now, you continue on with the Spaniards while you negotiations continue behind the scenes.<br>
+<br>
+<<elseif $Tlax_Cause is "flee">>
+You decide to cut your losses. You leave the Spaniards to their fate and <<link "head for home" "Tlaxcalans cut their losses">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><<th-set '$Tlaxcalans_currentMap' to 6>><</link>>.<br>
+<br>
+<<elseif $Tlax_Cause is "allies">>
+You will honor an existing but secret alliance with the Aztecs and <<link "enter the city as their friends" "On the Causeway">><<th-set '$users[$role]["choices"]["Causeway"]' to 1>><<th-set '$Tlaxcalans_currentMap' to 6>><</link>>.<br>
+<</if>>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans keep waiting [Done] {"position":"2975,2200","size":"100,100"}
+<<liveblock>>
+Unfortunately, you have no way of knowing what's going on. If only you had eyes on the coast, you might be better able to prepare.<br>
+<br>
+Head to the Tlaxcalan discussion board to discuss whether there's anything you can do to prepare for the unknown.<br>
+<br>
+When you have made your plan, <<link "click here to continue" "A Tlaxcalan Nap">><<th-set '$TL_Attacks' to "No">><</link>>.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Tlaxcalans wait [Done] {"position":"3050,925","size":"100,100"}
+<<liveblock>>
+<<set _Mutiny_Voted = setup.getTotalChoices("Mutiny_Voted")>>
+<<if _Mutiny_Voted <3>>
+All is quiet in Tlaxcala and you find yourself bored, wondering what could possibly be happening on the coast. Unfortunately, your decision not to send spies means that you've lost track of the foreigners and have no idea what's going on.<br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+<<print _Mutiny_Voted>> players have voted.<br>
+<br>
+<<elseif _Mutiny_Voted >=3 and $Mut_Cor >=2>>
+You wait anxiously for news from the coast. [[Any news at all|Tlaxcalans keep waiting]].<br>
+<br>
+<<elseif _Mutiny_Voted >=3 and $Mut_Olid >2>>
+Your guards have seen Aztec spies running to and from the coast. Clearly [[things are happening|Tlaxcalans keep waiting]]!<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+

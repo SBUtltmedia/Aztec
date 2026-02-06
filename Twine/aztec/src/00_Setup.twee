@@ -1,0 +1,170 @@
+:: StoryData
+{
+	"ifid": "5CAF53F2-B97C-45CA-9E53-CBD50086BDA5",
+	"format": "SugarCube",
+	"format-version": "2.37.0-alpha.5",
+	"start": "The Library",
+	"tag-colors": {
+		"Breaks": "blue",
+		"Change-Title": "yellow",
+		"Coding-Problem": "red",
+		"Done": "green",
+		"New-Passage": "purple",
+		"Text-to-be-updated-by-Ashley": "orange"
+	},
+	"zoom": 1
+}
+
+
+
+:: Story Stylesheet [stylesheet]
+@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url("https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.css");
+@import url("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+
+
+
+:: Story JavaScript [script]
+/*
+ * Theyr Multiplayer Configuration
+ */
+
+// 1. Disable features that break multiplayer sync
+Config.saves.isAllowed = () => false;
+Config.history.controls = false;
+Config.history.maxStates = 1;
+Config.passages.nobr = true;
+
+// 2. Exception variables (local only, never synced)
+window.exceptions = ['$userId', '$passageHistory'];
+setup.exceptions = window.exceptions;
+
+// 3. Load Socket.IO and initialize Theyr multiplayer client
+(function() {
+    const socketScript = document.createElement('script');
+    socketScript.src = '/socket.io/socket.io.js';
+    socketScript.onload = function() {
+        console.log('Socket.IO loaded');
+        if (window.initMultiplayerClient) {
+            window.initMultiplayerClient();
+        } else {
+            console.error("ClientDemo.js not loaded or initMultiplayerClient not defined.");
+        }
+    };
+    document.head.appendChild(socketScript);
+})();
+
+// 4. Load Aztec-specific external libraries
+(function() {
+    var libs = [
+        'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js',
+        'https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js',
+        'https://code.jquery.com/ui/1.12.1/jquery-ui.js'
+    ];
+    libs.forEach(function(src) {
+        var s = document.createElement('script');
+        s.src = src;
+        document.head.appendChild(s);
+    });
+})();
+
+// 5. Aztec-specific setup functions
+window.setup = window.setup || {};
+
+window.SugarCubeState = State;
+
+window.setup.printTime = function (date) {
+	return new Date(date).toLocaleString('en-US', {
+		timeZone: 'America/New_York',
+	});
+};
+
+window.setup.getUserSvgPicture = function(role) {
+	return `Twine/aztec/img/characters/${role}.svg`;
+};
+
+setup.scrollToBottom = function(elementId) {
+	requestAnimationFrame(() => {
+		var element = document.getElementById(elementId);
+		if(element){
+			element.scrollTop = element.scrollHeight;
+		}
+	});
+};
+
+setup.getTotalChoices = function(choice){
+	var users = State.getVar("$users");
+	return Object.keys(users).map((b)=>users[b]?.["choices"]?.[choice] || 0).reduce((accumulator, currentValue)=>accumulator+(currentValue||0),0);
+};
+
+// 6. Aztec-specific macros
+(function () {
+	"use strict";
+
+	Macro.add('userInfo', {
+		handler: function() {
+			let userId = this.args[0];
+			let role = this.args[1];
+			let color = this.args[2];
+			let  image = setup.getUserSvgPicture(role);
+			let character = this.args[3];
+			let discordId = this.args[4];
+			let 	content = `<div id="playerSpaceBetween"></div><div class = "player" id="playerInfo_`+role+`"><img class = "playerImage `+color+`" src = "`+image+`"><div class = "playerText"><div class="printUserRole">`+character+`</div><div class="printUserName"><a href="https://discordapp.com/users/`+userId+`" target="_blank">@`+discordId+`</a></div></div></div><div id="playerSpaceBetween"></div>`
+				$(this.output).wiki(content)
+		}
+	});
+
+	/*	Designates a global variable as an exception, preventing it from being sent to other clients
+	 */
+	Macro.add('theyrException', {
+		handler: function() {
+			if (!window.exceptions) window.exceptions = [];
+			var varName = this.args.full.trim();
+			if (!window.exceptions.includes(varName)) {
+				window.exceptions.push(varName);
+			}
+		}
+	});
+
+	/*
+	 * <<sendAction>> macro - Server action sender with dynamic paths
+	 *
+	 * Usage:
+	 *   <<set _dynamicPath = '$users["' + $role + '"]["score"]'>>
+	 *   <<sendAction _dynamicPath 100>>
+	 */
+	Macro.add('sendAction', {
+		handler: function() {
+			if (this.args.length < 2) {
+				return this.error('sendAction macro needs at least two arguments: variable path and value');
+			}
+			const varPath = this.args[0];
+			const varValue = this.args[1];
+
+			if (window.socket && window.socket.connected) {
+				window.sendStateUpdate(varPath, varValue);
+			}
+		}
+	});
+
+	Macro.add(['discord'], {
+		tags: null,
+		handler: function handler() {
+			try {
+				let message = this.payload[0].contents.trim();
+				let channel = this.payload[0].arguments;
+				$.post("/discordbot", {message, channel}, () => {});
+			} catch (e) {
+				return e;
+			}
+		}
+	});
+
+})();
+
+

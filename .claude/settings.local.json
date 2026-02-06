@@ -3,7 +3,16 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(npm run build:default:*)",
-      "Bash(npm run build:topDown:*)"
+      "Bash(npm run build:topDown:*)",
+      "Bash(npm run build:aztec:*)",
+      "mcp__chrome-devtools__list_pages",
+      "mcp__chrome-devtools__navigate_page",
+      "mcp__chrome-devtools__take_screenshot",
+      "mcp__chrome-devtools__list_console_messages",
+      "mcp__chrome-devtools__take_snapshot",
+      "Bash(git fetch:*)",
+      "Bash(git ls-tree:*)",
+      "mcp__chrome-devtools__list_network_requests"
     ]
   }
 }

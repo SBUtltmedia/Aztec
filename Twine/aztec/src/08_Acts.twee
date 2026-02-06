@@ -1,0 +1,80 @@
+:: Act 4: Tenochtitlan {"position":"4300,8675","size":"100,100"}
+<<liveblock>>
+[[Act 4, Scene 1: The Aztecs Give the visitors a Tour of Tenochtitlan]]
+
+
+<</liveblock>>
+
+
+
+:: 6 Reset for Testing Act 5 {"position":"475,4225","size":"100,100"}
+Add One Point to Spanish Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' += 1>><</link>><br>
+<br>
+Add One Point to Aztec Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<th-set '$factions["Aztecs"]["stats"]["Strength"]' += 1>><</link>><br>
+<br>
+Add One Point to Tlaxcalan Strength:  <<link "plus one point" "6 Reset for Testing Act 5">><<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' += 1>><</link>><br>
+<br>
+
+The Tlaxcalan end of game decision is: <br>
+<br>
+<<if ndef $Tlax_Final_Dec or $Tlax_Final_Dec is "O">>
+There is no record of a Tlaxcalan Decision.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Span">>
+The Tlaxcalans chose to make an alliance with the Spaniards and attack the Aztecs together.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "AttackSpan">>
+The Tlaxcalans chose to attack the Spaniards in Tlaxcala. They will next have to face the Aztecs alone if they win.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Aztecs">>
+The Tlaxcalans chose to ally with the Aztecs and together attack the Spaniards.<br>
+<br>
+<<elseif $Tlax_Final_Dec is "Alone">>
+The Tlaxcalans chose to do nothing and standby to see what happens between Spaniards and Aztecs.<br>
+<br>
+<</if>>
+
+Reset the Tlaxcalan End of Game Decision. <br> 
+Tlaxcalans join the Spanish <<link "against the Aztecs" "6 Reset for Testing Act 5">><<th-set '$Tlax_Final_Dec' to "Span">><</link>>.<br>
+<br>
+Tlaxcalans join the Aztecs  <<link "against the Spanish" "6 Reset for Testing Act 5">><<th-set '$Tlax_Final_Dec' to "Aztecs">><</link>>.<br>
+<br>
+Tlaxcalans <<link "do nothing" "6 Reset for Testing Act 5">><<th-set '$Tlax_Final_Dec' to "Alone">>.<</link>><br>
+<br>
+Tlaxcalans  <<link "attack the Spanish" "6 Reset for Testing Act 5">><<th-set '$Tlax_Final_Dec' to "AttackSpan">><</link>>.<br>
+<br>
+
+
+Reset the Aztecs:  <<link "RESET" "6 Reset for Testing Act 5">><<th-set '$Moctezuma_Final' to 0>><<th-set '$Tlacaelel_Final' to 0>><<th-set '$Cuauhtemoc_Final' to 0>><<th-set '$Cacamatzin_Final' to 0>><<th-set '$Aztec_Priest_Final' to 0>><<th-set '$Pochteca_Final' to 0>><<th-set '$Aztec_Final' to 0>><<th-set '$Aztec_Decision' to "No">><<th-set '$Aztec_End' to 0>><<th-set '$Aztec_Game' to 0>><<th-set '$Aztec_Game_Over' to "No">><<th-set '$Aztec_Decision' to "No">><</link>>.<br>
+<br>
+How Many Aztec Players have struck their final blow:  <<print $Aztec_Final>><br>
+<br>
+Reset the Spaniards: <<link "RESET" "6 Reset for Testing Act 5">><<th-set '$Cortes_Final' to 0>><<th-set '$Alvarado_Final' to 0>><<th-set '$Aguilar_Final' to 0>><<th-set '$Marina_Final' to 0>><<th-set '$Garrido_Final' to 0>><<th-set '$Olid_Final' to 0>><<th-set '$Span_Final' to 0>><<th-set '$Span_Decision' to "No">><<th-set '$Span_End' to 0>><<th-set '$Span_Game' to 0>><<th-set '$Span_Game_Over' to "No">><<th-set '$Span_Decision' to "No">><</link>>.<br>
+<br>
+How Many Spanish Players have struck their final blow:  <<print $Span_Final>><br>
+<br>
+
+Reset the Tlaxcalans:  <<link "RESET" "6 Reset for Testing Act 5">> <<th-set '$Xicotencatl_Elder_Final' to 0>><<th-set '$Xicotencatl_Younger_Final' to 0>><<th-set '$Maxixcatl_Final' to 0>><<th-set '$Tlax_Final' to 0>><<th-set '$Tlax_Decision' to "No">><<th-set '$Tlax_End' to 0>><<th-set '$Tlax_Game' to 0>><<th-set '$Tlax_Game_Over' to "No">><<th-set '$Tlax_Decision' to "No">><<th-set '$TlaxAz_End' to 0>><<th-set '$TlaxSpan_End' to 0>><<th-set '$Tlax_Span_Peace' to 0>><<th-set '$Tlax_Az_Peace' to 0>><</link>>.<br>
+<br>
+How Many Tlaxcalan Players have struck their final blow:  <<print $Tlax_Final>><br>
+<br>
+
+
+Is Cortes dead? <<link "Yes" "6 Reset for Testing Act 5">><<th-set '$Cortes_Dead' to "Yes">><</link>>.  <<link "No" "6 Reset for Testing Act 5">><<th-set '$Cortes_Dead' to "No">><</link>>.<br>
+<br>
+
+Is the Aztec Leader dead? <<link "Yes" "6 Reset for Testing Act 5">><<th-set '$Az_Ld_Dead' to "Yes">><</link>>.  <<link "No" "6 Reset for Testing Act 5">><<th-set '$Az_Ld_Dead' to "No">><</link>>.<br>
+<br>
+
+
+<<link "Turn Characters On" "6 Reset for Testing Act 5">><<th-set '$Cortes_Act' to "Yes">><<th-set '$Aguilar_Act' to "Yes">><<th-set '$Marina_Act' to "Yes">><<th-set '$Olid_Act' to "Yes">><<th-set '$Maxixcatl_Act' to "Yes">><<th-set '$Xicotencatl_Elder_Act' to "Yes">><<th-set '$Xicotencatl_Younger_Act' to "Yes">><<th-set '$Moctezuma_Act' to "Yes">><<th-set '$Tlacaelel_Act' to "Yes">><<th-set '$Cuauhtemoc_Act' to "Yes">><<th-set '$Aztec_Priest_Act' to "Yes">><<th-set '$Pochteca_Act' to "Yes">><</link>><br>
+<br>
+<<link "reset total players" "6 Reset for Testing Act 5">><<th-set '$Span_Tot_Play' to "4">><<th-set '$Aztec_Tot_Play' to "5">><<th-set '$Tlax_Tot_Play' to "3">><</link>><br>
+Spanish: <<print $Span_Tot_Play>><br>
+Aztec:  <<print $Aztec_Tot_Play>><br>
+Tlaxcalan: <<print $Tlax_Tot_Play>><br>
+Spanish Leader:  <<print $Span_Leader>><br>
+Aztec Leader:  <<print $Aztec_Leader>><br>
+Tlaxcalan Leader:  <<print $Tlax_Leader>><br>
+
+

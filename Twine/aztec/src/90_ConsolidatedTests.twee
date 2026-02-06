@@ -1,0 +1,793 @@
+:: Consolidated Test Hub {"position":"100,100","size":"100,100"}
+<<liveblock>>
+<h1>🧪 Aztec Multiplayer - Consolidated Test Suite</h1>
+
+<div style="border: 2px solid #444; padding: 10px; margin: 10px 0; background: #222;">
+<h3>Current Session Info</h3>
+Your Role: <b><<print $role || "Not Set">></b><br>
+Your UserID: <b><<print $userId || "Not Set">></b><br>
+Your Faction: <b><<print $users[$role] ? $users[$role].faction : "Not Set">></b><br>
+</div>
+
+<h3>Test Categories:</h3>
+[[Initialize All Test Variables]]<br>
+[[Test 1: Basic th-set Operations]]<br>
+[[Test 2: Increment Counters (Global & Character)]]<br>
+[[Test 3: Compound Operators]]<br>
+[[Test 4: Nested Paths & Arrays]]<br>
+[[Test 5: Faction Stats & Equations]]<br>
+[[Test 6: Chat System]]<br>
+[[Test 7: Multiplayer Sync]]<br>
+[[Test 8: Exception Variables (Privacy)]]<br>
+[[Test 9: Race Conditions]]<br>
+[[Test 10: Network & Queue Monitor]]<br>
+[[Reset All Test Variables]]<br>
+<br>
+[[Dashboard|Home]]
+<</liveblock>>
+
+
+
+:: Initialize All Test Variables {"position":"250,100","size":"100,100"}
+<<liveblock>>
+<h2>Initializing Test Variables...</h2>
+
+<<if ndef $testInitialized>>
+	<!-- Basic test variables -->
+	<<th-set '$testString' to "">>
+	<<th-set '$testNumber' to 0>>
+	<<th-set '$testBoolean' to false>>
+	<<th-set '$testArray' to [1, 2, 3]>>
+	<<th-set '$testObject' to {name: "Test", value: 100}>>
+
+	<!-- Increment test variables -->
+	<<th-set '$incrementTest' to 0>>
+	<<th-set '$globalCounter' to 0>>
+
+	<!-- Compound operator test variables -->
+	<<th-set '$compoundAdd' to 0>>
+	<<th-set '$compoundSubtract' to 100>>
+	<<th-set '$compoundMultiply' to 1>>
+	<<th-set '$compoundDivide' to 100>>
+
+	<!-- Initialize users structure if needed -->
+	<<if ndef $users>>
+		<<th-set '$users' to {}>>
+	<</if>>
+
+	<!-- Initialize current role's user data -->
+	<<if ndef $users[$role]>>
+		<<th-set '$users[$role]' to {choices: {}, stats: {Strength: 5, Wisdom: 5, Loyalty: 5}, faction: "Not Set"}>>
+	<</if>>
+
+	<<if ndef $users[$role]["choices"]>>
+		<<th-set '$users[$role]["choices"]' to {}>>
+	<</if>>
+
+	<<if ndef $users[$role]["stats"]>>
+		<<th-set '$users[$role]["stats"]' to {Strength: 5, Wisdom: 5, Loyalty: 5}>>
+	<</if>>
+
+	<<if ndef $users[$role]["choices"]["playerCounter"]>>
+		<<th-set '$users[$role]["choices"]["playerCounter"]' to 0>>
+	<</if>>
+
+	<<if ndef $users[$role]["choices"]["incrementTest"]>>
+		<<th-set '$users[$role]["choices"]["incrementTest"]' to 0>>
+	<</if>>
+
+	<!-- Initialize factions -->
+	<<if ndef $factions>>
+		<<set $factions = {
+			"Aztecs": {stats: {Strength: 10}},
+			"Spaniards": {stats: {Strength: 10}},
+			"Tlaxcalans": {stats: {Strength: 10}}
+		}>>
+	<</if>>
+
+	<!-- Initialize chat -->
+	<<if ndef $chatlog>>
+		<<set $chatlog = {
+			"chat": [],
+			"Aztecs": [],
+			"Spaniards": [],
+			"Tlaxcalans": []
+		}>>
+	<</if>>
+
+	<<if ndef $users[$role]["currentChat"]>>
+		<<th-set '$users[$role]["currentChat"]' to "chat">>
+	<</if>>
+
+	<!-- Final totals for equations -->
+	<<if ndef $Final_Aztec_Points>>
+		<<th-set '$Final_Aztec_Points' to 0>>
+	<</if>>
+	<<if ndef $Final_Aztec_Players>>
+		<<th-set '$Final_Aztec_Players' to 0>>
+	<</if>>
+	<<if ndef $Final_Spanish_Points>>
+		<<th-set '$Final_Spanish_Points' to 0>>
+	<</if>>
+	<<if ndef $Final_Spanish_Players>>
+		<<th-set '$Final_Spanish_Players' to 0>>
+	<</if>>
+	<<if ndef $Final_Tlaxcalan_Points>>
+		<<th-set '$Final_Tlaxcalan_Points' to 0>>
+	<</if>>
+	<<if ndef $Final_Tlaxcalan_Players>>
+		<<th-set '$Final_Tlaxcalan_Players' to 0>>
+	<</if>>
+
+	<<th-set '$testInitialized' to true>>
+
+	<p style="color: green;"><b>✅ All test variables initialized successfully!</b></p>
+<<else>>
+	<p style="color: orange;"><b>⚠️ Test variables already initialized.</b></p>
+<</if>>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 1: Basic th-set Operations {"position":"400,100","size":"100,100"}
+<<liveblock>>
+<h2>Test 1: Basic th-set Operations</h2>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>String Variables</h4>
+Current: "<b><<print $testString>></b>"<br>
+<<button "Set to 'Hello World'">><<th-set '$testString' to "Hello World">><</button>>
+<<button "Set to 'Tenochtitlan'">><<th-set '$testString' to "Tenochtitlan">><</button>>
+<<button "Clear">><<th-set '$testString' to "">><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Number Variables</h4>
+Current: <b><<print $testNumber>></b><br>
+<<button "Set to 42">><<th-set '$testNumber' to 42>><</button>>
+<<button "Set to 100">><<th-set '$testNumber' to 100>><</button>>
+<<button "Set to -50">><<th-set '$testNumber' to -50>><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Boolean Variables</h4>
+Current: <b><<print $testBoolean>></b><br>
+<<button "Set to true">><<th-set '$testBoolean' to true>><</button>>
+<<button "Set to false">><<th-set '$testBoolean' to false>><</button>>
+<<button "Toggle">><<th-set '$testBoolean' to !$testBoolean>><</button>>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 2: Increment Counters (Global & Character) {"position":"550,100","size":"100,100"}
+<<liveblock>>
+<h2>Test 2: Increment Counters</h2>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Global Counter (Shared by All Players)</h4>
+Current Value: <b><<print $globalCounter>></b><br>
+<<button "Increment (+1)">><<th-set '$globalCounter' to $globalCounter + 1>><</button>>
+<<button "Decrement (-1)">><<th-set '$globalCounter' to $globalCounter - 1>><</button>>
+<<button "Reset to 0">><<th-set '$globalCounter' to 0>><</button>>
+<br><br>
+<i>🔄 This should update for ALL players simultaneously!</i>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Your Personal Counter</h4>
+Your Counter: <b><<print $users[$role]["choices"]["playerCounter"]>></b><br>
+<<button "Increment Your Counter">>
+	<<th-set '$users[$role]["choices"]["playerCounter"]' to $users[$role]["choices"]["playerCounter"] + 1>>
+<</button>>
+<<button "Reset Your Counter">>
+	<<th-set '$users[$role]["choices"]["playerCounter"]' to 0>>
+<</button>>
+<br><br>
+<i>👤 This is YOUR personal counter!</i>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>All Players' Counters</h4>
+<<set _total = 0>>
+<<for _playerId, _player range $users>>
+	<<if _player.choices && def _player.choices.playerCounter>>
+		<b><<print _playerId>>:</b> <<print _player.choices.playerCounter>><br>
+		<<set _total += _player.choices.playerCounter>>
+	<</if>>
+<</for>>
+<br>
+<b>Total from all players:</b> <<print _total>>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 3: Compound Operators {"position":"700,100","size":"100,100"}
+<<liveblock>>
+<h2>Test 3: Compound Operators (+=, -=, *=, /=)</h2>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Addition (+=)</h4>
+Current: <b><<print $compoundAdd>></b><br>
+<<button "Reset to 0">><<th-set '$compoundAdd' to 0>><</button>>
+<<button "+= 1">><<th-set '$compoundAdd' += 1>><</button>>
+<<button "+= 5">><<th-set '$compoundAdd' += 5>><</button>>
+<<button "+= 10">><<th-set '$compoundAdd' += 10>><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Subtraction (-=)</h4>
+Current: <b><<print $compoundSubtract>></b><br>
+<<button "Reset to 100">><<th-set '$compoundSubtract' to 100>><</button>>
+<<button "-= 1">><<th-set '$compoundSubtract' -= 1>><</button>>
+<<button "-= 5">><<th-set '$compoundSubtract' -= 5>><</button>>
+<<button "-= 10">><<th-set '$compoundSubtract' -= 10>><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Multiplication (*=)</h4>
+Current: <b><<print $compoundMultiply>></b><br>
+<<button "Reset to 1">><<th-set '$compoundMultiply' to 1>><</button>>
+<<button "*= 2">><<th-set '$compoundMultiply' *= 2>><</button>>
+<<button "*= 3">><<th-set '$compoundMultiply' *= 3>><</button>>
+<<button "*= 0.5">><<th-set '$compoundMultiply' *= 0.5>><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Division (/=)</h4>
+Current: <b><<print $compoundDivide>></b><br>
+<<button "Reset to 100">><<th-set '$compoundDivide' to 100>><</button>>
+<<button "/= 2">><<th-set '$compoundDivide' /= 2>><</button>>
+<<button "/= 3">><<th-set '$compoundDivide' /= 3>><</button>>
+<<button "/= 10">><<th-set '$compoundDivide' /= 10>><</button>>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 4: Nested Paths & Arrays {"position":"100,250","size":"100,100"}
+<<liveblock>>
+<h2>Test 4: Nested Paths & Arrays</h2>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Array Operations</h4>
+Current Array: <b>[<<print $testArray.join(", ")>>]</b><br>
+Length: <b><<print $testArray.length>></b><br>
+<br>
+<<button "Initialize [1, 2, 3]">><<th-set '$testArray' to [1, 2, 3]>><</button>>
+<<button "Add 99 to end">><<th-set '$testArray' to $testArray.concat([99])>><</button>>
+<<button "Remove last">><<th-set '$testArray' to $testArray.slice(0, -1)>><</button>>
+<<button "Double all values">><<th-set '$testArray' to $testArray.map(x => x * 2)>><</button>>
+<<button "Clear">><<th-set '$testArray' to []>><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Nested Object Paths</h4>
+Current $role: <b><<print $role>></b><br>
+Your Strength: <b><<print $users[$role]["stats"]["Strength"]>></b><br>
+<br>
+<<button "Strength +1">><<th-set '$users[$role]["stats"]["Strength"]' += 1>><</button>>
+<<button "Strength -1">><<th-set '$users[$role]["stats"]["Strength"]' -= 1>><</button>>
+<<button "Reset to 5">><<th-set '$users[$role]["stats"]["Strength"]' to 5>><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Using sendAction for Dynamic Paths</h4>
+<<set _dynamicPath = '$users["' + $role + '"]["stats"]["Wisdom"]'>>
+Your Wisdom: <b><<print $users[$role]["stats"]["Wisdom"]>></b><br>
+<br>
+<<button "Set to 10 (via sendAction)">>
+	<<sendAction _dynamicPath 10>>
+<</button>>
+<<button "Increment by 1 (via sendAction)">>
+	<<set _newValue = $users[$role]["stats"]["Wisdom"] + 1>>
+	<<sendAction _dynamicPath _newValue>>
+<</button>>
+<br><br>
+<i>Dynamic Path: <<print _dynamicPath>></i>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 5: Faction Stats & Equations {"position":"250,250","size":"100,100"}
+<<liveblock>>
+<h2>Test 5: Faction Stats & Equations</h2>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Faction Strength</h4>
+<b>Aztecs:</b> <<print $factions["Aztecs"]["stats"]["Strength"]>>
+<<button "+1">><<th-set '$factions["Aztecs"]["stats"]["Strength"]' += 1>><</button>>
+<<button "-1">><<th-set '$factions["Aztecs"]["stats"]["Strength"]' -= 1>><</button>>
+<<button "Halve (*= 0.5)">><<th-set '$factions["Aztecs"]["stats"]["Strength"]' *= 0.5>><</button>>
+<br>
+
+<b>Spaniards:</b> <<print $factions["Spaniards"]["stats"]["Strength"]>>
+<<button "+1">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' += 1>><</button>>
+<<button "-1">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' -= 1>><</button>>
+<br>
+
+<b>Tlaxcalans:</b> <<print $factions["Tlaxcalans"]["stats"]["Strength"]>>
+<<button "+1">><<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' += 1>><</button>>
+<<button "-1">><<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' -= 1>><</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Simple Equations Test</h4>
+<b>Final Aztec Points:</b> <<print $Final_Aztec_Points>><br>
+<b>Final Spanish Points:</b> <<print $Final_Spanish_Points>><br>
+<b>Final Tlaxcalan Points:</b> <<print $Final_Tlaxcalan_Points>><br>
+<br>
+<<button "Set Aztec Points to 100">><<th-set '$Final_Aztec_Points' to 100>><</button>>
+<<button "Reset All Points to 0">>
+	<<th-set '$Final_Aztec_Points' to 0>>
+	<<th-set '$Final_Spanish_Points' to 0>>
+	<<th-set '$Final_Tlaxcalan_Points' to 0>>
+<</button>>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 6: Chat System {"position":"400,250","size":"100,100"}
+<<liveblock>>
+<h2>Test 6: Chat System</h2>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Chat Channel Selector</h4>
+Current Channel: <b><<print $users[$role]["currentChat"]>></b><br><br>
+<<button "Global Chat">>
+	<<th-set '$users[$role]["currentChat"]' to "chat">>
+<</button>>
+<<button "Aztecs Channel">>
+	<<th-set '$users[$role]["currentChat"]' to "Aztecs">>
+<</button>>
+<<button "Spaniards Channel">>
+	<<th-set '$users[$role]["currentChat"]' to "Spaniards">>
+<</button>>
+<<button "Tlaxcalans Channel">>
+	<<th-set '$users[$role]["currentChat"]' to "Tlaxcalans">>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0; max-height: 300px; overflow-y: auto;">
+<h4>Chat Messages (<<print $users[$role]["currentChat"]>>)</h4>
+<<if $chatlog[$users[$role]["currentChat"]] && $chatlog[$users[$role]["currentChat"]].length > 0>>
+	<<for _i, _msg range $chatlog[$users[$role]["currentChat"]]>>
+		<div style="border-bottom: 1px solid #333; padding: 5px; margin: 3px 0;">
+		<b><<print _msg.user>>:</b> <<print _msg.message>><br>
+		<small><<print new Date(_msg.timestamp || _msg.time).toLocaleTimeString()>></small>
+		</div>
+	<</for>>
+<<else>>
+	<i>No messages yet in this channel</i>
+<</if>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Send Quick Test Messages</h4>
+<<button "Send 'Hello!'">>
+	<<set _currentChannel = $users[$role]["currentChat"]>>
+	<<set _msg = {user: $role, message: "Hello from " + $role + "!", timestamp: Date.now()}>>
+	<<set _tempArr = $chatlog[_currentChannel].slice(-50)>>
+	<<set _tempArr[_tempArr.length] = _msg>>
+	<<sendAction "$chatlog[$users[$role]['currentChat']]" _tempArr>>
+<</button>>
+<<button "Send 'Testing sync!'">>
+	<<set _currentChannel = $users[$role]["currentChat"]>>
+	<<set _msg = {user: $role, message: "Testing synchronization!", timestamp: Date.now()}>>
+	<<set _tempArr = $chatlog[_currentChannel].slice(-50)>>
+	<<set _tempArr[_tempArr.length] = _msg>>
+	<<sendAction "$chatlog[$users[$role]['currentChat']]" _tempArr>>
+<</button>>
+<<button "Clear Current Channel">>
+	<<sendAction "$chatlog[$users[$role]['currentChat']]" []>>
+<</button>>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 7: Multiplayer Sync {"position":"550,250","size":"100,100"}
+<<liveblock>>
+<h2>Test 7: Multiplayer Sync Test</h2>
+
+<div style="border: 2px solid #4CAF50; padding: 10px; margin: 10px 0; background: #1a3a1a;">
+<h4>Instructions for Multiplayer Testing</h4>
+<ol>
+<li>Open this page in multiple browser windows</li>
+<li>Use different roles in each window:
+	<ul>
+	<li>Window 1: <code>?nick=Marina&id=test001</code></li>
+	<li>Window 2: <code>?nick=Cortes&id=test002</code></li>
+	<li>Window 3: <code>?nick=Moctezuma&id=test003</code></li>
+	</ul>
+</li>
+<li>In each window, navigate to: <code>Consolidated Test Hub</code></li>
+<li>Click "Initialize All Test Variables" in ONE window</li>
+<li>Test the following in different windows:</li>
+</ol>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Global Variable Sync Test</h4>
+<p>Change the global counter in one window and watch it update in others:</p>
+<b>Global Counter:</b> <<print $globalCounter>><br>
+<<button "Increment Global">><<th-set '$globalCounter' to $globalCounter + 1>><</button>>
+<br><br>
+<i>✅ If all windows show the same value, global sync is working!</i>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Per-Player Variable Test</h4>
+<p>Each player's counter should be independent:</p>
+<b>Your Counter (<<print $role>>):</b> <<print $users[$role]["choices"]["playerCounter"]>><br>
+<<button "Increment Your Counter">>
+	<<th-set '$users[$role]["choices"]["playerCounter"]' to $users[$role]["choices"]["playerCounter"] + 1>>
+<</button>>
+<br><br>
+
+<h4>All Players' Counters:</h4>
+<<for _playerId, _player range $users>>
+	<<if _player.choices && def _player.choices.playerCounter>>
+		<b><<print _playerId>>:</b> <<print _player.choices.playerCounter>><br>
+	<</if>>
+<</for>>
+<br>
+<i>✅ Each player should see their own counter and everyone else's!</i>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Reset All Test Variables {"position":"700,250","size":"100,100"}
+<<liveblock>>
+<h2>Reset All Test Variables</h2>
+
+<div style="border: 2px solid red; padding: 10px; margin: 10px 0;">
+<h4>⚠️ Warning: This will reset ALL test variables</h4>
+
+<<button "Reset All Test Variables">>
+	<<th-set '$testString' to "">>
+	<<th-set '$testNumber' to 0>>
+	<<th-set '$testBoolean' to false>>
+	<<th-set '$testArray' to [1, 2, 3]>>
+	<<th-set '$testObject' to {name: "Test", value: 100}>>
+	<<th-set '$incrementTest' to 0>>
+	<<th-set '$globalCounter' to 0>>
+	<<th-set '$compoundAdd' to 0>>
+	<<th-set '$compoundSubtract' to 100>>
+	<<th-set '$compoundMultiply' to 1>>
+	<<th-set '$compoundDivide' to 100>>
+	<<th-set '$Final_Aztec_Points' to 0>>
+	<<th-set '$Final_Spanish_Points' to 0>>
+	<<th-set '$Final_Tlaxcalan_Points' to 0>>
+	<<th-set '$testInitialized' to false>>
+<</button>>
+<br><br>
+
+<<button "Reset Chat">>
+	<<th-set '$chatlog["chat"]' to []>>
+	<<th-set '$chatlog["Aztecs"]' to []>>
+	<<th-set '$chatlog["Spaniards"]' to []>>
+	<<th-set '$chatlog["Tlaxcalans"]' to []>>
+<</button>>
+<br><br>
+
+<<button "Reset Your Player Data">>
+	<<if def $users[$role]>>
+		<<th-set '$users[$role]["choices"]["playerCounter"]' to 0>>
+		<<th-set '$users[$role]["stats"]["Strength"]' to 5>>
+		<<th-set '$users[$role]["stats"]["Wisdom"]' to 5>>
+		<<th-set '$users[$role]["stats"]["Loyalty"]' to 5>>
+	<</if>>
+<</button>>
+<br><br>
+
+<<button "Reset Faction Stats">>
+	<<th-set '$factions["Aztecs"]["stats"]["Strength"]' to 10>>
+	<<th-set '$factions["Spaniards"]["stats"]["Strength"]' to 10>>
+	<<th-set '$factions["Tlaxcalans"]["stats"]["Strength"]' to 10>>
+<</button>>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 8: Exception Variables (Privacy) {"position":"100,400","size":"100,100"}
+<<liveblock>>
+<h2>Test 8: Exception Variables (Privacy)</h2>
+<p>Testing that certain variables stay LOCAL and don't sync to other players</p>
+
+<div style="border: 2px solid #ff6b6b; padding: 10px; margin: 10px 0; background: #2a1a1a;">
+<h4>⚠️ CRITICAL: Privacy & Security Test</h4>
+<p>These variables MUST stay local (not sync to other players):</p>
+<ul>
+<li><b>$userId</b> - Connection ID (each player has their own)</li>
+<li><b>$role</b> - Player name (used for admin spoofing)</li>
+<li><b>$god</b> - Admin privileges (security!)</li>
+<li><b>_tempVars</b> - Any variable starting with underscore</li>
+</ul>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Current Exception Variables</h4>
+<b>Your $userId:</b> <<print $userId>><br>
+<b>Your $role:</b> <<print $role>><br>
+<b>Your $god:</b> <<print $god>><br>
+<br>
+<<set _localTemp = "This is LOCAL">>
+<b>_localTemp:</b> <<print _localTemp>><br>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test: Try to "Sync" Exception Variables</h4>
+<p><b>⚠️ These should FAIL or stay local:</b></p>
+
+<<button "Try: th-set $userId">>
+	<<th-set '$userId' to "HACKED_ID">>
+<</button>>
+<i>← Should stay local, not sync to others</i><br><br>
+
+<<button "Try: th-set $role">>
+	<<th-set '$role' to "HACKED_ROLE">>
+<</button>>
+<i>← Should stay local (used for admin spoofing)</i><br><br>
+
+<<button "Try: th-set _tempVar">>
+	<<th-set '$_tempTest' to "TEMP_VALUE">>
+<</button>>
+<b>$_tempTest:</b> <<print $_tempTest>><br>
+<i>← Temp variables should stay local</i><br>
+</div>
+
+<div style="border: 2px solid #4CAF50; padding: 10px; margin: 10px 0; background: #1a3a1a;">
+<h4>✅ Test Instructions (Multi-Window)</h4>
+<ol>
+<li>Open this page in TWO browser windows with different roles</li>
+<li>Window 1: <code>?nick=Marina&id=test001</code></li>
+<li>Window 2: <code>?nick=Cortes&id=test002</code></li>
+<li>In Window 1, click "Try: th-set $role"</li>
+<li>In Window 2, check if $role changed</li>
+<li><b>Expected</b>: Window 2 should still show "Cortes", NOT "HACKED_ROLE"</li>
+<li>If Window 2's $role changed = ❌ PRIVACY BUG!</li>
+<li>If Window 2's $role stayed same = ✅ Working correctly</li>
+</ol>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>All Players' Roles (For Comparison)</h4>
+<<for _playerId, _player range $users>>
+	<b>Player Key:</b> <<print _playerId>><br>
+<</for>>
+<br>
+<i>Note: You should see player keys but NOT be able to see other players' $role or $userId exception vars</i>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 9: Race Conditions {"position":"250,400","size":"100,100"}
+<<liveblock>>
+<h2>Test 9: Race Conditions</h2>
+<p>Testing simultaneous updates from multiple players</p>
+
+<<if ndef $raceTestCounter>>
+	<<th-set '$raceTestCounter' to 0>>
+<</if>>
+
+<div style="border: 2px solid #ffa500; padding: 10px; margin: 10px 0; background: #2a2000;">
+<h4>⚠️ Race Condition Test</h4>
+<p>What happens when TWO players click increment at the EXACT same time?</p>
+<ul>
+<li>Ideal: Counter increases by 2 (both updates processed)</li>
+<li>Bug: Counter increases by 1 (one update lost)</li>
+<li>Bug: Counter behaves erratically</li>
+</ul>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Shared Race Test Counter</h4>
+<b>Current Value:</b> <<print $raceTestCounter>><br>
+<br>
+<<button "Increment (+1)">>
+	<<th-set '$raceTestCounter' to $raceTestCounter + 1>>
+<</button>>
+<<button "Increment by 5">>
+	<<th-set '$raceTestCounter' to $raceTestCounter + 5>>
+<</button>>
+<<button "Reset to 0">>
+	<<th-set '$raceTestCounter' to 0>>
+<</button>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Rapid Fire Test (Stress Test)</h4>
+<p>Click this button RAPIDLY many times:</p>
+<<button "Rapid +1 (Click Fast!)">>
+	<<th-set '$raceTestCounter' to $raceTestCounter + 1>>
+<</button>>
+<br><br>
+<i>Expected: Each click adds 1, no clicks lost</i><br>
+<i>Check: Does the counter match your click count?</i>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Compound Operator Race Test</h4>
+<<if ndef $raceCompound>>
+	<<th-set '$raceCompound' to 100>>
+<</if>>
+<b>Current Value:</b> <<print $raceCompound>><br>
+<br>
+<<button "Subtract 1 (Compound)">>
+	<<th-set '$raceCompound' -= 1>>
+<</button>>
+<<button "Multiply by 2 (Compound)">>
+	<<th-set '$raceCompound' *= 2>>
+<</button>>
+<<button "Reset to 100">>
+	<<th-set '$raceCompound' to 100>>
+<</button>>
+<br><br>
+<i>Test: Have two players click different operations simultaneously</i>
+</div>
+
+<div style="border: 2px solid #4CAF50; padding: 10px; margin: 10px 0; background: #1a3a1a;">
+<h4>✅ Race Condition Test Instructions</h4>
+<ol>
+<li>Open this page in TWO browser windows</li>
+<li>Window 1: <code>?nick=Marina&id=test001</code></li>
+<li>Window 2: <code>?nick=Cortes&id=test002</code></li>
+<li>Reset counter to 0 in one window</li>
+<li>Have BOTH windows click "Increment (+1)" at EXACTLY the same time</li>
+<li><b>Expected Result:</b> Counter should be 2</li>
+<li><b>Bug if:</b> Counter is only 1 (one update lost)</li>
+<li>Try the "Rapid Fire" test - click as fast as possible in one window</li>
+<li>Count your clicks and verify counter matches</li>
+</ol>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Queue Status (Advanced)</h4>
+<<set _queueLength = window.thSetQueue ? window.thSetQueue.queue.length : 0>>
+<<set _processing = window.thSetQueue ? window.thSetQueue.processing : false>>
+<b>Queue Length:</b> <<print _queueLength>><br>
+<b>Processing:</b> <<print _processing>><br>
+<br>
+<i>If queue length > 0 while idle, requests might be stuck!</i>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>
+
+
+
+:: Test 10: Network & Queue Monitor {"position":"400,400","size":"100,100"}
+<<liveblock>>
+<h2>Test 10: Network & Queue Monitor</h2>
+<p>Real-time monitoring of th-set queue and network activity</p>
+
+<div style="border: 2px solid #3498db; padding: 10px; margin: 10px 0; background: #0a1a2a;">
+<h4>📡 Network Activity Monitor</h4>
+<p>This shows the behind-the-scenes activity of th-set macro</p>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>th-set Queue Status</h4>
+<<set _queue = window.thSetQueue || {queue: [], processing: false, sequenceNumber: 0}>>
+<b>Queue Length:</b> <<print _queue.queue.length>><br>
+<b>Currently Processing:</b> <<print _queue.processing ? "Yes" : "No">><br>
+<b>Sequence Number:</b> <<print _queue.sequenceNumber>><br>
+<br>
+<<if _queue.queue.length > 0>>
+	<h5>Pending Requests:</h5>
+	<<for _i, _req range _queue.queue>>
+		Request #<<print _req.seqNum>>: <<print _req.varPath>> = <<print JSON.stringify(_req.value).substring(0, 50)>><br>
+		Retries: <<print _req.retries>><br>
+	<</for>>
+<<else>>
+	<i>✅ Queue is empty (all requests processed)</i>
+<</if>>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Test Queue with Actions</h4>
+<<if ndef $queueTestVar>>
+	<<th-set '$queueTestVar' to 0>>
+<</if>>
+<b>Test Variable:</b> <<print $queueTestVar>><br>
+<br>
+<<button "Send Single Update">>
+	<<th-set '$queueTestVar' to $queueTestVar + 1>>
+<</button>>
+<<button "Send 10 Updates Rapidly">>
+	<<for _i = 0; _i < 10; _i++>>
+		<<th-set '$queueTestVar' to $queueTestVar + 1>>
+	<</for>>
+<</button>>
+<br><br>
+<i>Watch the queue length above when you click "10 Updates"</i>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Browser Console Logs</h4>
+<p>Open browser console (F12) to see detailed logs:</p>
+<ul>
+<li><code>th-set confirmed</code> - Successful server update</li>
+<li><code>th-set rejected</code> - Server rejected update</li>
+<li><code>th-set failed</code> - Network error</li>
+<li><code>Failed to send th-set after 3 retries</code> - Gave up retrying</li>
+</ul>
+<<button "Trigger Test Log">>
+	<<th-set '$queueTestVar' to $queueTestVar + 1>>
+<</button>>
+<br><br>
+<i>Check console after clicking - you should see "th-set confirmed" message</i>
+</div>
+
+<div style="border: 1px solid #666; padding: 10px; margin: 10px 0;">
+<h4>Performance Metrics</h4>
+<<set _startSeq = _queue.sequenceNumber>>
+<<button "Start Performance Test">>
+	<<set _perfStart = Date.now()>>
+	<<for _i = 0; _i < 5; _i++>>
+		<<th-set '$queueTestVar' to $queueTestVar + 1>>
+	<</for>>
+	<<set _perfEnd = Date.now()>>
+	<<set _perfDuration = _perfEnd - _perfStart>>
+<</button>>
+<br><br>
+<<if def _perfDuration>>
+	<b>Last test duration:</b> <<print _perfDuration>>ms for 5 updates<br>
+	<b>Average:</b> <<print (_perfDuration / 5).toFixed(2)>>ms per update<br>
+<</if>>
+</div>
+
+<div style="border: 2px solid #4CAF50; padding: 10px; margin: 10px 0; background: #1a3a1a;">
+<h4>✅ What to Look For</h4>
+<ul>
+<li><b>Queue drains to 0:</b> All requests processed ✅</li>
+<li><b>Queue stays full:</b> Network problem or server down ❌</li>
+<li><b>Sequence numbers increase:</b> Requests being sent ✅</li>
+<li><b>Console shows "confirmed":</b> Server acknowledging ✅</li>
+<li><b>Console shows "failed":</b> Network issues ❌</li>
+<li><b>Retries > 0:</b> Temporary network problems (OK if resolves)</li>
+<li><b>Retries = 3 then error:</b> Persistent network problem ❌</li>
+</ul>
+</div>
+
+<br>
+[[Back to Test Hub|Consolidated Test Hub]]
+<</liveblock>>

@@ -1,1 +1,21 @@
-{}
+{
+    "factions": {
+        "Aztecs": { "stats": { "Strength": 7 } },
+        "Spaniards": { "stats": { "Strength": 7 } },
+        "Tlaxcalans": { "stats": { "Strength": 7 } }
+    },
+    "world": {
+        "TotalPlayers": 0
+    },
+    "users": {},
+    "chatlog": {
+        "Aztecs": [],
+        "Spaniards": [],
+        "Tlaxcalans": [],
+        "chat": []
+    },
+    "aztecsMissing": 0,
+    "spaniardsMissing": 0,
+    "tlaxMissing": 0,
+    "totalMissing": 0
+}

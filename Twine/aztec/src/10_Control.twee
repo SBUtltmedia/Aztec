@@ -1,0 +1,429 @@
+:: Control: Variables [Control Done Breaks] {"position":"338,1151","size":"100,100"}
+<<set _initVars = State.variables>>
+	<<for _tempKey, _tempVal range _initVars>>
+		<<if typeof _tempVal != "object">>
+
+			<<set _twineKey = `$${ _tempKey}`>>
+			<br>
+			<<print _tempKey>>
+			<<set _keyType = (typeof _tempVal)>>
+					<<switch (_keyType)>>
+						<<case "number">>
+							<<numberbox _twineKey _tempVal >>
+						<<case "string">>
+							<<textbox _twineKey _tempVal >>
+						<<case "boolean">>
+							<<checkbox _twineKey _tempVal !_tempVal>>
+						<<default>>
+					<</switch>>
+			<br>
+		<</if>>
+	<</for>>
+/* allows admin to update lookup. This allows roles to be played by different users */
+/* For side passages, in development */
+
+/* :: Control: Side Passage [Control Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+	<<set _role = "Aztec_Priest">>
+	<<set _newSidePassage = "Side Passage Control">>
+
+	/* Add the starting passage of every side passge to this  */
+	<<set _passages = Story.lookup("tags","sidePassage")>>
+	<<set _sidePassages = []>>
+	<<for _i, _p range _passages>>
+		<<set _sidePassages.push(_p.title)>>
+	<</for>>
+
+	<<listbox "_role" autoselect>>
+		<<optionsfrom Object.keys($users)>>
+	
+	<</listbox>>
+	<<listbox "_newSidePassage" autoselect>>
+		<<optionsfrom _sidePassages>>
+		
+	<</listbox>>
+
+	<<button "send">>
+
+		<<th-set '$users[_role]["sidePassageReturn"]' to $users[_role]["passage"]>>
+		<<sendAction "$users[_role]["passage"]" _newSidePassage>>
+	<</button>>
+<</liveblock>> */
+
+/* control panel for users stats */
+
+
+
+:: Control: Variables (Users) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+<div id="control">
+<div id="control-page">
+<<set _passages = Story.lookup()>>
+<<set _sidePassages = {}>>
+<<for _i, _p range _passages>>
+	<<set _key = _p.title.slice(0,30)>>
+	<<if _p.title.length > 30>>
+		<<set _key = _key + "...">>
+	<</if>>
+	<<set _sidePassages[_key] = _p.title>>
+<</for>>
+
+<<link "Back" "Control: Variables (Factions)">> <</link>>
+
+<br>
+Only modify stats and passages if you are 100% sure what you are doing
+<br>
+<br>	
+Leader:
+<<set _leaders = {}>>
+<<for _id, _data range $users>>
+	<<set _leaders[_id] = _id>>
+<</for>>
+
+<<switch ($godParam)>>
+	<<case "Aztecs">>
+		<<set _currLeader = $Aztec_Leader>>
+		<<listbox "_currLeader" autoselect>>
+			<<optionsfrom _leaders>>
+		<</listbox>>
+		<<button Set>>
+			<<sendAction "$Aztec_Leader" _currLeader>>
+		<</button>>
+	<<case "Tlaxcalans">>
+		<<set _currLeader = $tlax_Leader>>
+		<<listbox "_currLeader" autoselect>>
+			<<optionsfrom _leaders>>
+		<</listbox>>
+		<<button Set>>
+			<<sendAction "$tlax_Leader" _currLeader>>
+		<</button>>
+	<<case "Spaniards">>
+		<<set _currLeader = $Span_Leader>>
+		<<listbox "_currLeader" autoselect>>
+			<<optionsfrom _leaders>>
+		<</listbox>>
+		<<button Set>>
+			<<sendAction "$Span_Leader" _currLeader>>
+		<</button>>
+<</switch>>
+	<br>
+	<br>
+
+	<div id="send-everyone">
+	<<listbox "_newSidePassage" autoselect>>
+		<<optionsfrom _sidePassages>>
+	<</listbox>>
+	<<if ndef _confirm>>
+		<<set _confirm = 1>>
+	<</if>>
+	<<if _confirm == 2>>
+	<<button confirm>>
+		<<for _id,_data range $users>>
+			<<if _data["faction"] == $godParam>>
+				<<set _confirm = 1>>
+				<<sendAction "$users[_id]["passage"]" _newSidePassage>>
+			<</if>>
+		<</for>>
+	<</button>>
+	<</if>>
+	<<if _confirm == 1>>
+		<<button SendEveryone>>
+			<<set _confirm = 2>>
+			<<sendAction "$users[$role]["lastSeen"]" _currentTime.getTime()>>  
+		<</button>>
+	<</if>>
+	</div>
+	<br>	
+	</div>
+	<div id ="control-users">
+	<<for _role, _data range $users>> 
+		/* Goes through list of all Variables */
+		<<if $users[_role]["faction"] == $godParam>>
+		<<set _userData = $users[_role]>>
+		<<set _userId = _userData["userId"]>>
+		<<set _userName = $users[_role]["character"]>>
+		<br>
+
+		<<set _twineKey = `"${ _role}"`>>
+		<<print `<<link _userName "Control: Variables (UserId)">> <<th-set '$godParam' to "`+_role+`">><</link>>`>>
+		<br>
+		<<print `${_role}'s id#: ${_userId}`>>
+		
+		<br>		
+		<<if _userId == "notSeen">>
+			''_role is not assigned to a real player''
+			<br>
+		<</if>>
+		<<set _passage = $users[_role]["passage"]>>
+		<<listbox "_passage">>
+			<<optionsfrom _sidePassages>>
+		<</listbox>>
+		<<print `<<button send>>
+			<<sendAction "$users[`+_role+`]["passage"]" _passage>>
+		<</button>>`>>
+
+
+		<br>
+
+		LastSeen: <<print new Date(parseInt($users[_role]["lastSeen"]))>>
+		<br>
+		<</if>>
+	<</for>>
+	</div>
+</div>
+<</liveblock>>
+
+
+
+:: Control: Variables (UserId) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+<div id="control">
+<div id ="control-userId">
+<<link "Back to Factions" "Control: Variables (Factions)">> <</link>>
+&nbsp;
+...
+&nbsp;
+<<print `<<link "Back to Users" "Control: Variables (Users)">> <<th-set '$godParam' to "`+$users[$godParam]["faction"]+`">><</link>>`>>
+<br>
+Only modify stats and passages if you are 100% sure what you are doing
+<br>
+
+	<<set _userId = $godParam>>
+	<<set _currRole = $godParam>>
+	/* Goes through list of all Variables */
+	<<set _userData = $users[_userId]>>
+	<<set _userName = $users[_userId]["username"]>>
+	<br>
+
+	<<set _twineKey = `$${ _currRole}`>>
+	<<print `${_currRole}'s id#`>>
+	<<if _username>>
+		''_currRole is not assigned to a real player''
+	<<else>>
+		<<print _userName>>
+	<</if>>
+	<br>
+	<<textbox _twineKey _userId "Control: Variables (Users)" >>
+	<br>
+	<<if $users[_userId]["stats"]>>
+		<<for _varKey, _varVal range _userData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					/* Same as _statKey but with $ in front */
+					<<set _twineKey = `$users['${_userId}']["stats"]['${ _statKey}']`>>
+					<<print `${_userName}'s ${_statKey}`>>
+					<br>
+					<<set _keyType = (typeof _statVal)>>
+
+					<<switch (_keyType)>>
+						<<case "number">>
+							<<numberbox _twineKey _statVal >>
+						<<case "string">>
+							<<textbox _twineKey _statVal >>
+						<<case "boolean">>
+							<<checkbox _twineKey _statVal !_statVal>>
+						<<default>>
+					<</switch>>
+					<br>
+
+
+				<</for>>
+			<<else>>
+				/* Goes through all user variables (besides stats) */
+				<<set _twineKey = `$users['${_userId}']['${ _varKey}']`>>
+				<<print`${_userName}'s ${_varKey}`>>
+				<br>
+				<<set _keyType = (typeof _varVal)>>
+					<<switch (_keyType)>>
+						<<case "number">>
+							<<numberbox _twineKey _varVal >>
+						<<case "string">>
+							<<textbox _twineKey _varVal >>
+						<<case "boolean">>
+							<<checkbox _twineKey _varVal !_varVal>>
+						<<default>>
+					<</switch>>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
+		<br>
+		<</if>>
+		<br>
+		Spoof User: 
+		<<set _selectedRole = _currRole>>
+		<<button "spoof" >>
+			<<sendAction "$role" _currRole>>
+			<<print $role>>
+			<<goto $users[_selectedRole]["passage"]>>
+		<</button>>
+		</div>
+</div>
+<</liveblock>>
+
+/* control panel for faction stats */
+
+
+
+:: Control: Variables (Factions) [Control Done Breaks] {"position":"338,1151","size":"100,100"}
+<<liveblock>>
+<div id="control">
+<div>
+Only modify stats and passages if you aren't 100% sure what you are doing
+<br>
+<br>
+<<link "Control: Full Reset" "Control: Full Reset">><</link>>
+<br>
+<<link "Control: Passage Teleport" "Passage Teleport">><</link>>
+<br>
+<<button "unspoof" >>
+	<<goto "Control: Variables (Factions)">>
+	<<th-set '$role' to "God">>
+<</button>>
+<br>
+</div>
+	/* Goes through list of all factions */
+	<<for _factionId, _factionData range $factions>> 
+		/* Goes through list of all Variables */
+		<span id="control-factions">
+		<<set _factionName = _factionId>>
+		<<set _factionLink = `Control: ${_factionName}`>>
+		<<print `<<link _factionName "Control: Variables (Users)">> <<th-set '$godParam' to "`+_factionId+`">><</link>>`>>
+		<br>
+
+
+		<<for _varKey, _varVal range _factionData>>
+			<<if  _varKey == "stats">>
+				/* Goes through list of all stats */
+				<<for _statKey, _statVal range _varVal>>
+					<<set _twineKey = `$factions["stats"]["${ _statKey}"]`>>
+					<<print `${_factionName}'s ${_statKey}`>>
+					<br>
+					<<numberbox _twineKey _statVal "Control: Variables (Factions)" >>
+					<br>
+				<</for>>
+			<<else>>
+				/* Goes through all faction variables (besides stats) */
+				<<set _twineKey = `$factions["${ _varKey}"]`>>
+				<<print`${_factionName}'s ${_varKey}`>>
+				<br>
+				<<textbox _twineKey _varVal "Control: Variables (Factions)" >>
+				<br>
+
+			<</if>>
+		<</for>>
+		<br>
+		<br>
+		</span>
+	<</for>>
+</div>
+<</liveblock>>
+
+
+
+:: Control: Full Reset [Control] {"position":"4275,375","size":"100,100"}
+<<liveblock>>
+<div id="control">
+<div>
+WARNING: THIS BUTTON WILL COMPLETELY RESET THE GAME, DO NOT PRESS UNLESS YOU ARE 100% Sure
+<br>
+<<if ndef _confirm>>
+	<<set _confirm = 1>>
+	<</if>>
+	<<if _confirm == 2>>
+	<<button confirm>>
+		<<script>>
+		fullReset();
+		$.ajax(`https://apps.tlt.stonybrook.edu/AztecHistory/?user=${State.getVar("$userId")}`,{type : 'DELETE'})
+		<</script>>
+		<<set $passageHistory = {}>>
+	<</button>>
+	<</if>>
+	<<if _confirm == 1>>
+		<<button Reset>>
+			<<set _confirm = 2>>
+			<<sendAction "$users[$role]["lastSeen"]" _currentTime.getTime() + 1>>  
+		<</button>>
+	<</if>>
+	</div>
+</div>
+<</liveblock>>
+
+
+/* :: Control: Player Status {"position":"4275,375","size":"100,100"}
+<<liveblock>>
+<b>CURRENT STATUS OF TEAMS AND PLAYERS</b><br>
+<br>
+<b>Current Team Leader and Strength</b><br>
+Spaniards<br>
+Leader <<print $Span_Leader>>   Strength <<print $factions["Spaniards"]["stats"]["Strength"]>> <br>
+Aztecs<br>  
+Leader <<print $Aztec_Leader>>   Strength <<print $factions["Aztecs"]["stats"]["Strength"]>> <br>
+Tlaxcalans<br>
+Leader <<print $Tlax_Leader>>   Strength <<print $factions["Tlaxcalans"]["stats"]["Strength"]>> <br>
+<br>
+<b>Player Location and Stats </b><br>
+<br>
+<b>Spaniards</b><br>
+Cortes<br>
+Location: <<print $users["Cortes"]['passage']>><br>
+Strength: <<print $users["Cortes"]["stats"]["Strength"]>>   Wisdom: <<print $users["Cortes"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Cortes"]["stats"]["Loyalty"]>><br>
+Alvarado<br>
+Location: <<print $users['Alvarado']['passage']>><br>
+Strength: <<print $users["Alvarado"]["stats"]["Strength"]>>   Wisdom: <<print $users["Alvarado"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Alvarado"]["stats"]["Loyalty"]>><br>
+Garrido<br>
+Location: <<print $users['Garrido']['passage']>><br>
+Strength: <<print $users["Garrido"]["stats"]["Strength"]>>   Wisdom: <<print $users["Garrido"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Garrido"]["stats"]["Loyalty"]>><br>
+Olid<br>
+Location: <<print $users['Olid']['passage']>><br>
+Strength: <<print $users["Olid"]["stats"]["Strength"]>>   Wisdom: <<print $users["Olid"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Olid"]["stats"]["Loyalty"]>><br>
+Aguilar<br>
+Location: <<print $users['Aguilar']['passage']>><br>
+Strength: <<print $users["Aguilar"]["stats"]["Strength"]>>   Wisdom: <<print $users["Aguilar"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Aguilar"]["stats"]["Loyalty"]>><br>
+Marina<br>
+Location: <<print $users['Marina']['passage']>><br>
+Strength: <<print $users["Marina"]["stats"]["Strength"]>>   Wisdom: <<print $users["Marina"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Marina"]["stats"]["Loyalty"]>><br>
+Marina's Boyfriend: <<print $Mal_Boy>>
+<br>
+<b>Aztecs</b><br>
+Moctezuma<br>
+Location: <<print $users['Moctezuma']['passage']>><br>
+Strength: <<print $users["Moctezuma"]["stats"]["Strength"]>>   Wisdom: <<print $users["Moctezuma"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Moctezuma"]["stats"]["Loyalty"]>><br>
+Tlacaelel<br>
+Location: <<print $users['Tlacaelel']['passage']>><br>
+Strength: <<print $users["Tlacaelel"]["stats"]["Strength"]>>   Wisdom: <<print $users["Tlacaelel"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Tlacaelel"]["stats"]["Loyalty"]>><br>
+Cuauhtemoc<br>
+Location: <<print $users['Cuauhtemoc']['passage']>><br>
+Strength: <<print $users["Cuauhtemoc"]["stats"]["Strength"]>>   Wisdom: <<print $users["Cuauhtemoc"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Cuauhtemoc"]["stats"]["Loyalty"]>><br>
+Cacamatzin<br>
+Location: <<print $users['Cacamatzin']['passage']>><br>
+Strength: <<print $users["Cacamatzin"]["stats"]["Strength"]>>   Wisdom: <<print $users["Cacamatzin"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Cacamatzin"]["stats"]["Loyalty"]>><br>
+Aztec_Priest<br>
+Location: <<print $users['Aztec_Priest']['passage']>><br>
+Strength: <<print $users["Aztec_Priest"]["stats"]["Strength"]>>   Wisdom: <<print $users["Aztec_Priest"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Aztec_Priest"]["stats"]["Loyalty"]>><br>
+Pochteca<br>
+Location: <<print $users['Pochteca']['passage']>><br>
+Strength: <<print $users["Pochteca"]["stats"]["Strength"]>>   Wisdom: <<print $users["Pochteca"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Pochteca"]["stats"]["Loyalty"]>><br>
+<br>
+<b>Tlaxcalans</b><br>
+Xicotencatl_Elder<br>
+Location: <<print $users['Xicotencatl_Elder']['passage']>><br>
+Strength: <<print $users["Xicotencatl_Elder"]["stats"]["Strength"]>>   Wisdom: <<print $users["Xicotencatl_Elder"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Xicotencatl_Elder"]["stats"]["Loyalty"]>><br>
+Xicotencatl_Younger<br>
+Location: <<print $users['Xicotencatl_Younger']['passage']>><br>
+Strength: <<print $users["Xicotencatl_Younger"]["stats"]["Strength"]>>   Wisdom: <<print $users["Xicotencatl_Younger"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Xicotencatl_Younger"]["stats"]["Loyalty"]>><br>
+Maxixcatl<br>
+Location: <<print $users['Maxixcatl']['passage']>><br>
+Strength: <<print $users["Maxixcatl"]["stats"]["Strength"]>>   Wisdom: <<print $users["Maxixcatl"]["stats"]["Wisdom"]>>   Loyalty: <<print $users["Maxixcatl"]["stats"]["Loyalty"]>><br>
+<br>
+<br>
+[[Check the Status of Holds and Votes|Control: Votes]]<br>
+[[Change Player Location|Control: Change Passage]]<br>
+[[Return to the Dashboard|Dashboard]]<br>
+
+
+<</liveblock>> */
+
+

@@ -1,0 +1,272 @@
+:: Marina Hears a Real Rumor [Done] {"position":"1900,4300","size":"100,100"}
+<<liveblock>>
+You follow the wizened old woman around the corner, into a cramped alleyway. <b>She informs you--and you alone--that the Spaniards have walked into a trap.</b> The leaders of the city are planning an ambush and there is an Aztec army hidden nearby. <br>
+<br>
+Do you believe this woman or not? What will you do with the information? <br>
+<br>
+You have two choices, <<link "you can share the information" "Marina responds to the attack">><<th-set '$Mal_Share' to "Yes">><</link>> with your Spanish friends or you <<link "can remain quiet" "Marina responds to the attack">><<th-set '$Mal_Share' to "No">><</link>>, leaving their fate in the hands of the Cholulans.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Marina Hears a Rumor [Done] {"position":"2025,4300","size":"100,100"}
+<<liveblock>>
+You follow the wizened old woman around the corner, into a cramped alleyway. She informs you--and you alone--that the Spaniards have walked into a trap. The leaders of the city are planning an ambush and there is an Aztec army hidden nearby. <br>
+<br>
+Do you believe this woman or not? What will you do with the information? <br>
+<br>
+You have two choices, <<link "you can share the information" "Marina responds to the rumor">><<th-set '$Mal_Share' to "Yes">><</link>> with your Spanish friends or you <<link "can remain quiet" "Marina responds to the rumor">><<th-set '$Mal_Share' to "No">><</link>>, leaving their fate in the hands of the Cholulans.<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Marina Tells Her Story [Done Breaks] {"position":"1375,975","size":"100,100"}
+The village is in a state of chaos and you hear that the Chontal elders have been trying to decide what they should do about these powerful foreigners. It is clear to everyone that they cannot risk losing hundreds more men in battle and there is little doubt that, even if the strange men leave, they will return again in the future. Not only would the Chontal people be vulnerable to the strangers, but the devastating losses would also weaken them in the face of their traditional enemies. The chiefs send a messenger to offer peace. <br>
+<br>
+Marina, you've been writing your story and this is your chance to make yourself heard. Now that your story is assembled, you may enter the link for it here.  It will be shared with those you will meet in the coming days, so be sure it is complete, and be sure you've represented yourself well.<br>
+<br>
+Put the link to your story here: <br>
+<br>
+<<textbox "$Mal_Story" "">><br>
+<br>
+You only have one chance to tell your story. If you click through without completing your task, there will be a price to pay.<br>
+<br>
+Now that you've augmented the historical record, [[you can move forward|Spaniards Meet Marina]].<br>
+<br>
+
+
+
+:: Marina Warns of No Attack [Done] {"position":"2150,4625","size":"100,100"}
+<<liveblock>>
+<<if $Mal_Span is "Yes" and $role is $Span_Leader>>
+A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen to believe the rumor. You are now trapped within the city walls at the mercy of your hosts, and your allies wait outside. What is your best course of action?<br>
+<br>
+Go to the Spanish discussion board and decide what you will do next. You have two options:<br>
+<br>
+Do you remain quiet,<<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Don't Attack">><<th-set '$Span_Cho_Att' to "No">><</link>>?<br>
+<br>
+Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<th-set '$Span_Cho_Att' to "Yes">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' += 5>><</link>>?<br>
+<br>
+
+<<elseif $Mal_Span is "Yes" and $role isnot $Span_Leader>>
+A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen to believe the rumor. You are now trapped within the city walls at the mercy of your hosts, and your allies wait outside. What is your best course of action?<br>
+<br>
+Go to the Spanish discussion board and decide what you will do next. You have two options, and you must convince <<print $Span_Leader>> to do what you think is best.<br>
+<br>
+Do you remain quiet concealing this knowledge from your hosts and waiting to see what unfolds?<br>
+<br>
+Or do you launch a preemptive attack, laying siege to the Cholulans who laid the trap?<br>
+<br>
+<<if $Span_Cho_Att eq "" or ndef $Span_Cho_Att>>
+You must wait for <<print $Span_Leader>> to announce his decision.<br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Span_Cho_Att is "Yes">>
+<<print $Span_Leader>> has decided that you will [[go on the offensive|Spaniards Attack]].<br>
+<br>
+<<elseif $Span_Cho_Att is "No">>
+<<print $Span_Leader>> has decided that you will [[wait and see what happens|Cholulans Don't Attack]].<br>
+<br>
+<</if>>
+
+<<elseif $Mal_Span is "No">>
+A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen not to believe the rumor. <br>
+<br>
+You go to bed hopeful that you have [[read the situation correctly|Cholulans Don't Attack]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Marina Warns of the Attack [Done] {"position":"1675,4650","size":"100,100"}
+<<liveblock>>
+<<if $Mal_Span is "Yes" and $role is $Span_Leader>>
+A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen to believe the rumor. You are now trapped within the city walls at the mercy of your hosts, and your allies wait outside. What is your best course of action?<br>
+<br>
+Go to the Spanish discussion board and decide what you will do next. You have two options:<br>
+<br>
+Do you remain quiet, <<link "concealing this knowledge from your hosts and waiting to see what unfolds" "Cholulans Attack">><<th-set '$Span_Cho_Att' to "No">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' -= 5>><</link>>?<br>
+<br>
+Or do you launch a preemptive attack, <<link "laying siege to the Cholulans who laid the trap" "Spaniards Attack">><<th-set '$Span_Cho_Att' to "Yes">><<th-set '$factions["Spaniards"]["stats"]["Strength"]' += 5>><</link>>?<br>
+<br>
+
+<<elseif $Mal_Span is "Yes" and $role isnot $Span_Leader>>
+A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen to believe the rumor. You are now trapped within the city walls at the mercy of your hosts, and your allies wait outside. What is your best course of action?<br>
+<br>
+Go to the Spanish discussion board and decide what you will do next. You have two options, and you must convince <<print $Span_Leader>> to do what you think is best.<br>
+<br>
+Do you remain quiet concealing this knowledge from your hosts and waiting to see what unfolds?<br>
+<br>
+Or do you launch a preemptive attack, laying siege to the Cholulans who laid the trap?<br>
+<br>
+<<if $Span_Cho_Att eq "" or ndef $Span_Cho_Att>>
+You must wait for <<print $Span_Leader>> to announce his decision.<br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;">
+
+<<elseif $Span_Cho_Att is "Yes">>
+<<print $Span_Leader>> has decided that you will [[go on the offensive|Spaniards Attack]].<br>
+<br>
+<<elseif $Span_Cho_Att is "No">>
+<<print $Span_Leader>> has decided that you will [[wait and see what happens|Cholulans Attack]].<br>
+<br>
+<</if>>
+
+<<elseif $Mal_Span is "No">>
+A mysterious woman has informed you that the Aztecs have laid a trap in Cholula. Given everything you know about them, you have all chosen not to believe the rumor. <br>
+<br>
+You go to bed hopeful that you have [[read the situation correctly|Cholulans Attack]].<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Marina hears gossip in the market [Done] {"position":"2350,50","size":"100,100"}
+<<liveblock>>
+<<set _Span_Tot_Play = setup.getTotalChoices("Span_Tot_Play")>>
+<<set _Aztec_Tot_Play = setup.getTotalChoices("Aztec_Tot_Play")>>
+<<set _Tlax_Tot_Play = setup.getTotalChoices("Tlax_Tot_Play")>>
+
+<<if _Span_Tot_Play <=2 or _Aztec_Tot_Play <=2 or _Tlax_Tot_Play <=1>>
+
+You must wait for enough players to gather to begin.<br>
+<br>
+<<print "_Span_Tot_Play">> Spanish players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Aztec_Tot_Play">> Aztec players have joined the game. You must have at least 3 active players.<br>
+<br>
+<<print "_Tlax_Tot_Play">> Tlaxcalan players have joined the game. You must have at least 2 active players.<br>
+<br>
+<img src="Twine/aztec/img/Stop_1.png" style="width:60%; margin:auto; display:block;"><br>
+<br>
+
+
+<<else>>
+
+You have been living as a slave among the Chontal Maya for many years now, but you have never forgotten your past life. Born into a noble Nahua family, you were taught many valuable lessons and were respected in your community for your wit and intelligence even at a young age. Among the many things you have acquired in your years as a slave is a facility with the Mayan language, so different from the Nahuatl with which you were raised.<br>
+<br>
+Today, like every other day, you rose before the sun to begin your chores. As you set to work grinding your corn, however, you find a crack in your metate and set off for the market to purchase a new one. While you were in the market, you overheard a conversation between a local merchant and a trader from Yucatan. Here is what they said:<br>
+<br>
+<b>Trader:</b><i> Yaan ba'atelil lu'um le witso'obo'. U páajtalil táan u k'éexel yéetel ku beta'al túumben bix u bisikuba'ob.</i><br>
+<br>
+<b>Merchant:</b><i> Máakalmáak u jaajil le ba'atelil</i><br>
+<br>
+<b>Trader:</b><i> U kaajil Cholula, otrora etail Tlaxcala, Bejla'e' u jach etail le mexicas.Tlaxcala chokoj Ba'ale' xan ti' teme ti' u páajtalil mexica.</i><br>
+<br>
+<b>Merchant:</b><i> Le mexicas ku ku k'a'ankach yéetel Amal ujo'. Séeb Tlaxcala yaan k'áate' kaajo' paach le kaambalil yo'osal azteca.Le asab u yetailo'ob Cholulan le ku xu'ulsik.</i><br>
+<br>
+<b>Trader:</b><i> Le mexicas ken tijik u k'aab Amal ka'atéen asab lu'um. Séeb u comerán le lu'umo' yéetel in lu'um xan. K'a'abet wáaj k je'ela'.</i><br>
+<br>
+Once you have figured out what they said, you may continue. But [[make note of this information, because it could be important later on|Spaniards Quest Instructions 1]].<br>
+<br>
+
+
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Marina responds to the attack [Done] {"position":"1850,4400","size":"100,100"}
+<<liveblock>>
+<<if $Mal_Share is "No">>
+You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "A Trap in Cholula">><<th-set '$users["Marina"]["stats"]["Wisdom"]' -= 3>><<th-set '$users["Marina"]["stats"]["Loyalty"]' -= 3>><</link>>.<br>
+<br>
+<<elseif $Mal_Share is "Yes">>
+You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters <<link "and quietly rouse them" "A Trap in Cholula">><<th-set '$users["Marina"]["stats"]["Wisdom"]' += 3>><<th-set '$users["Marina"]["stats"]["Loyalty"]' += 3>><</link>>, careful not to wake your Cholulan hosts.<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Marina responds to the rumor [Done] {"position":"2050,4400","size":"100,100"}
+<<liveblock>>
+<<if $Mal_Share is "No">>
+You have decided to keep this information to yourself. You go to bed, wondering <<link "what the Gods have in store for you" "No Trap in Cholula">><<th-set '$users["Marina"]["stats"]["Wisdom"]' += 3>><<th-set '$users["Marina"]["stats"]["Loyalty"]' -= 3>><</link>>.<br>
+<br>
+<<elseif $Mal_Share is "Yes">>
+You have decided to share the rumor with your Spanish friends. You make your way to their sleeping quarters <<link "and quietly rouse them" "No Trap in Cholula">><<th-set '$users["Marina"]["stats"]["Wisdom"]' -= 3>><<th-set '$users["Marina"]["stats"]["Loyalty"]' += 3>><</link>>,  careful not to wake your Cholulan hosts.<br>
+<br>
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Marina the Independent Woman [Done] {"position":"1975,2950","size":"100,100"}
+<<liveblock>>
+You would rather go it alone than subject yourself to the whims and desires of such brutish men. You worry about what might come next, but you are confident that your wits have gotten you this far.<br>
+<br>
+You rise from your sleeping mat to build a fire. Soon, the rest of camp begins to stir.  You help the other women pack up so that you can [[continue your journey|On the way to Puebla]].<br>
+<br>
+
+
+<</liveblock>>
+
+
+
+:: Marina's Boyfriend [Done] {"position":"1750,2950","size":"100,100"}
+<<liveblock>>
+<<if $role is "Marina">>
+Having made your decision, you quietly make your way to <<print $Mal_Boy>>. He wakes with a start, but calms when he realizes it's you.<br>
+<br>
+You make your way back to your own bed just before the sun rises. You hope you've made the right choice. You help the other women pack up camp and prepare to [[continue your journey|On the way to Puebla]].<br>
+<br>
+<<else>>
+Are you back in the library? No, you hear the snoring of the other men nearby.  You shift, wondering what woke you.  You experience a moment of brief panic, and then you realize that it is Marina, lying next to you.<br>
+<br>
+You can't believe your luck!<br>
+<br>
+Morning comes too soon, and you reluctantly pack up camp to [[continue your journey|On the way to Puebla]].<br>
+<br>
+
+<</if>>
+
+
+<</liveblock>>
+
+
+
+:: Marina's Choice [Done] {"position":"1975,2825","size":"100,100"}
+<<liveblock>>
+You wake to the sound of snoring and open your eyes to find you are back at camp. You feel the hard ground beneath you and look up at the stars. You've never seen a night so clear. The horses rest nearby and the men sleep in the open, scattered around the site. As you lay in the dark, you reflect upon the events that have brought you here and you ponder your situation...Marina's that is.<br>
+<br>
+So far, you've made smart decisions. Your language skills have made you invaluable to these foreigners and you are already starting to understand their strange tongue. Once you can communicate with them directly, your worth will only increase. Not only have they made it clear how important you are to the team, they have each indicated their...personal appreciation of you...some more aggressively than others. Though their affections are worrisome, and even outright frightening, you wonder if this might work to your advantage. Would it be to your benefit to form a relationship with one of these men? If so, which one? Or are you better off fending for yourself? <br>
+<br>
+You lie awake for hours, weighing this question carefully. Shortly before the sun rises, you make your choice:<br>
+<br>
+<<link "Cortes" "Marina's Boyfriend">><<th-set '$Mal_Boy' to "Cortes">><</link>><br>
+<br>
+<<link "Alvarado" "Marina's Boyfriend">><<th-set '$Mal_Boy' to "Alvarado">><</link>><br>
+<br>
+<<link "Aguilar" "Marina's Boyfriend">><<th-set '$Mal_Boy' to "Aguilar">><</link>><br>
+<br>
+<<link "Garrido" "Marina's Boyfriend">><<th-set '$Mal_Boy' to "Garrido">><</link>><br>
+<br>
+<<link "Olid" "Marina's Boyfriend">><<th-set '$Mal_Boy' to "Olid">><</link>><br>
+<br>
+<<link "You are going to go it alone" "Marina the Independent Woman">><<th-set '$Mal_Boy' to "alone">><</link>>.<br>
+<br>
+
+
+<</liveblock>>
+
+
