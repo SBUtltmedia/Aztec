@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/About the Engine.unity
     guid: 19e751f0c8fca49e8b0de48fcab429d7
+  - enabled: 1
+    path: Assets/Scenes/DraftingPattern.unity
+    guid: 4ce36c7132be546889f8fa25535c3fd6
+  - enabled: 1
+    path: Assets/Scenes/UnityBridge.unity
+    guid: 4fffa2968bb0045dc88d447febe2daa5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

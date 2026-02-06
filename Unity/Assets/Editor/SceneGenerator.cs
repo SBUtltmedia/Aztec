@@ -15,6 +15,8 @@ public class SceneGenerator : EditorWindow
     {
         "Start",
         "Initialize User",
+        "DraftingPattern",
+        "UnityBridge",
         "Hub",
         "Shared Counter Demo",
         "Message Board Demo",

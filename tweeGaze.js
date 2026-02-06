@@ -1,81 +1,47 @@
 import gaze from 'gaze'
-import fs, { existsSync } from 'fs'
-import { exec, execFile } from 'child_process';
-import Extwee, { HTMLWriter, StoryFormat, StoryFormatParser, TweeWriter } from 'extwee'
+import fs from 'fs'
+import { exec } from 'child_process';
 
 let tweegoBinaries = {"win32":"binaries/tweego-2.1.1-windows-x64", "linux":"binaries/tweego-2.1.1-macos-x64", "darwin":"binaries/tweego-2.1.1-macos-x64"};
 let tweeBinary = tweegoBinaries[process.platform] || tweegoBinaries["linux"];
 
-
 let coolDown = 0;
 
-// Watch all .js files/dirs in process.cwd() 
-gaze('Twine/*.*', function (err, watcher) {
-
-    // Get all watched files 
-    var watched = this.watched();
-    // console.log(watched)
-    
-    // On file changed 
+// Watch all files in Twine recursively
+gaze('Twine/**/*.*', function (err, watcher) {
     this.on('changed', function (filepath) {
-        // Execute command
         const mtime = fs.statSync(filepath).mtime;
         if (mtime - coolDown > 1000) {
             coolDown = mtime
 
-            let [suffix, ...prefix] = filepath.split(".").reverse();
-            prefix = prefix.reverse().join(".");
-            let command, args;
+            let [suffix, ...prefixParts] = filepath.split(".").reverse();
+            let prefix = prefixParts.reverse().join(".");
+            
+            let command;
             if (suffix == "html") {
-                let outFile = `${prefix}.tw`
-                fs.truncate(outFile, 0, ((err) => {}))
-
-                // command = `node ./node_modules/twine-utils/bin/entwee.js "${prefix}.${suffix}" > "${outFile}"`
-                command = `${tweeBinary}/tweego`;
-                args = ["-f", "sugarcube-2", "-d", "-o", `${prefix}.twee`, `${prefix}.html`];
+                command = `${tweeBinary}/tweego -f sugarcube-2 -d -o "${prefix}.twee" "${prefix}.html"`;
             } 
-            else if (suffix == "twee" || suffix == "tw") {
-                // let file = new Extwee.FileReader(`${prefix}.${suffix}`);
-                // let tpstory = new Extwee.TweeParser(file.contents).story;
-                // console.log(tpstory.passages[0]);
-                // let start = tpstory.metadata?.start || tpstory.passages[tpstory.metadata.startnode-1].name;
-                // command = `node ./node_modules/twine-utils/bin/entwine.js "${prefix}.${suffix}" -f "storyformats/sugarcube-2/format.js" > "${prefix}.html" -s "${start}"`
-                // command = `tweego -f sugarcube-2  "${prefix}".twee -o "${prefix}".html`
-                command = `${tweeBinary}/tweego`
+            else if (suffix == "twee" || suffix == "tw" || suffix == "js" || suffix == "css") {
+                let targetTwee = `${prefix}.${suffix}`;
+                let outputHtml = `${prefix}.html`;
 
-                let modulePath = '--module=Twine/modules/'
-                let modules = [
-                    `${modulePath}socket.io.js`,
-                    `${modulePath}redux.min.js`,
-                    `${modulePath}Client.js`,
-                    `${modulePath}lodash.min.js`,
-                    // `${modulePath}resize.js`,
-                    // `${modulePath}picker.js`,
-                ]
+                // Default to UnityDemo if a module or css changed
+                if (suffix === 'js' || suffix === 'css') {
+                    targetTwee = 'Twine/UnityDemo.twee';
+                    outputHtml = 'Twine/UnityDemo.html';
+                }
 
-                args = ["-f", "sugarcube-2", `${prefix}.${suffix}`, "-o", `${prefix}.html`];
-                // for (const module of modules) {
-                //     args.push(module);
-                // }
+                command = `${tweeBinary}/tweego -f sugarcube-2 "${targetTwee}" Twine/modules/ Twine/demo_style.css -o "${outputHtml}"`;
             } 
             else {
-                console.log(prefix, suffix)
-                return
+                return;
             }
 
-            // Executes shell command 
-            execFile(command, args, (err, stdout, stderr) => { 
-                if (err) {
-                    console.error(err)
-                }
+            console.log(`[BUILD] Rebuilding: ${command}`);
+            exec(command, (err, stdout, stderr) => { 
+                if (err) console.error(err);
+                else console.log(`${filepath} was processed successfully`);
             });
-
-            // console.log(existsSync());
-            // console.log(existsSync(`${prefix}.${suffix}`))
-            console.log(filepath + ' was changed');
         }
     });
-
-    // Get watched files with relative paths 
-    var files = this.relative();
 });

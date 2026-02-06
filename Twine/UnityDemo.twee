@@ -1,5 +1,5 @@
 :: StoryTitle
-Unity Bridge Demo
+Theyr Unity Multiplayer Tutorial
 
 
 :: StoryData
@@ -7,123 +7,527 @@ Unity Bridge Demo
 	"ifid": "D678768A-1363-4475-8025-131602737674",
 	"format": "SugarCube",
 	"format-version": "2.37.0-alpha.5",
-	"start": "Start",
+	"start": "Initialize User",
 	"zoom": 1
 }
 
 
 :: Story Stylesheet [stylesheet]
+/* twine-user-stylesheet #1: "Story Stylesheet" */
 body, #story, #passages {
     background-color: transparent !important;
 }
-/* Ensure text is visible against potentially bright Unity background */
+
 .passage {
     color: white;
-    text-shadow: 2px 2px 2px black;
+    text-shadow: 2px 2px 4px black;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #444;
+}
+
+.tutorial-box {
+    border-left: 4px solid #55bd90;
+    padding-left: 15px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #ccc;
+}
+
+code {
+    color: #ff79c6;
+    background: #282a36;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+/* twine-user-stylesheet #2: "demo_style.css" */
+.maincontainer {
+    /* width: 80rem; */
+    width: 100%;
+    height:1000px;
+    padding-top:50px;
+    padding-bottom:100px;
+}
+
+.leftchild {
+    width: 50%;
+    float: left;
+}
+
+.rightchild {
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+    width: 42%;
+    float: right;
+}
+
+.resultsbox {
+    width: 100%;
+    height: 50rem;
+    padding: 10px;
+    margin-left: 15px;
+
+    background-color: #222;
+    float:left;
+}
+
+textarea {
+    width: 100%;
+    height: 15rem;
+    background-color: #222;
+    box-sizing: border-box;
+
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+code {
+    color: lightcoral;
 }
 
 
 :: Story JavaScript [script]
+/* twine-user-script #1: "Story JavaScript" */
+/**
+ * Theyr Engine Initialization
+ * Core engine modules are bundled from Twine/modules/ automatically.
+ */
+
+// 1. Load the Unity Bridge
 importScripts("/static/unityBridge.js")
-    .then(function() {
-        console.log("Unity Bridge Loaded.");
-    })
-    .catch(function(err) {
-        console.error("Failed to load Unity Bridge", err);
+    .then(function() { console.log("[THEYR] Unity Bridge Active."); })
+    .catch(function(err) { console.error("[THEYR] Bridge Error", err); });
+
+// 2. Load Socket.IO and Initialize Multiplayer Client
+(function() {
+    const socketScript = document.createElement('script');
+    socketScript.src = '/socket.io/socket.io.js';
+    socketScript.onload = function() {
+        console.log('[THEYR] Socket.IO loaded');
+        if (window.initMultiplayerClient) {
+            window.initMultiplayerClient();
+        } else {
+            console.error("[THEYR] initMultiplayerClient not found. Check Twine/modules/ClientDemo.js");
+        }
+    };
+    document.head.appendChild(socketScript);
+})();
+
+// 3. Exception Variables (Local Only)
+window.exceptions = ['$userId', '$passageHistory'];
+/* twine-user-script #2: "ClientDemo.js" */
+/**
+ * Multiplayer Engine Demo - Client
+ *
+ * Simplified client for the multiplayer engine demonstration.
+ * Handles Socket.IO communication and state synchronization.
+ */
+
+var socket;
+var exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
+var stateReceived = false;
+var gameVars;
+
+/**
+ * Initialize client manually after Socket.IO is loaded
+ */
+window.initMultiplayerClient = function() {
+    console.log("Multiplayer Engine Client Initializing...");
+    if (typeof io === 'undefined') {
+        console.error("Socket.IO not found. Ensure socket.io.js is loaded before initializing.");
+        return;
+    }
+    initSocket();
+    initFromURL();
+};
+
+
+/**
+ * Initialize user from URL parameters
+ */
+function initFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('id');
+
+    if (userId) {
+        console.log(`Initializing user from URL: ${userId}`);
+        if (window.SugarCube && window.SugarCube.State) {
+            window.SugarCube.State.variables.userId = userId;
+        }
+    }
+}
+
+/**
+ * Initialize Socket.IO connection
+ */
+function initSocket() {
+    socket = io();
+    window.socket = socket;
+
+    socket.on('connect', () => {
+        console.log('✓ Connected to multiplayer server');
+        console.log('Socket ID:', socket.id);
     });
 
+    socket.on('disconnect', () => {
+        console.log('✗ Disconnected from server');
+    });
 
-:: Initialize User
-<<script>>
-	// Simple redirect to Start - no multiplayer initialization needed for Unity demo
-	Engine.play("Start");
-<</script>>
+    socket.on('difference', (difference) => {
+        console.log('Received state update from server:', difference);
+        updateSugarCubeState(difference);
+    });
+
+    socket.on('fullState', (state) => {
+        console.log('Received full state from server');
+        updateSugarCubeState(state);
+        stateReceived = true;
+    });
+
+    // Handle 'new connection' from server (initial state)
+    socket.on('new connection', (state) => {
+        console.log('Received initial state from server (new connection)');
+        updateSugarCubeState(state);
+        stateReceived = true;
+    });
+
+    socket.on('error', (error) => {
+        console.error('Socket error:', error);
+    });
+
+    // Request initial state by announcing new user
+    setTimeout(() => {
+        // socket.emit('getState');
+        socket.emit('new user', window.SugarCube.State.variables.userId || 'unknown');
+    }, 100);
+}
+
+/**
+ * Update SugarCube state with data from server
+ * Filters out exception variables to prevent override
+ */
+function updateSugarCubeState(new_state) {
+    // Check if SugarCube is initialized
+    if (!window.SugarCube || !window.SugarCube.State || !window.SugarCube.State.variables) {
+        console.warn('SugarCube not initialized yet, deferring state update');
+        setTimeout(() => updateSugarCubeState(new_state), 100);
+        return;
+    }
+
+    // Filter out exception variables from server state to prevent override
+    const filteredState = {};
+    for (const key in new_state) {
+        // Check if this key is an exception variable (without $ prefix)
+        const varName = '$' + key;
+        if (!exceptions.includes(varName) && !exceptions.includes('$' + key)) {
+            filteredState[key] = new_state[key];
+        }
+    }
+
+    // Merge filtered state into SugarCube
+    // Use jQuery's deep extend to replicate lodash's merge without the dependency
+    $.extend(true, window.SugarCube.State.variables, filteredState);
+
+    // Trigger liveupdate for any <<liveblock>> sections
+    $(document).trigger(":liveupdate");
+    $(document).trigger(":liveupdateinternal");
+}
+
+/**
+ * Send state update to server
+ * Called by the th-set macro
+ */
+function sendStateUpdate(variable, value) {
+    if (!socket || !socket.connected) {
+        console.warn('Socket not connected, cannot send update');
+        return;
+    }
+
+    const updateData = {
+        variable: variable,
+        value: value,
+        userId: window.SugarCube.State.variables.userId || 'unknown'
+    };
+
+    console.log('Sending state update:', updateData);
+    socket.emit('stateUpdate', updateData);
+}
+
+/**
+ * Send atomic math operation to server
+ * Used for +=, -=, *= to prevent race conditions
+ */
+function sendAtomicUpdate(variable, operation, value) {
+    if (!socket || !socket.connected) {
+        console.warn('Socket not connected, cannot send atomic update');
+        return;
+    }
+
+    const updateData = {
+        variable: variable,
+        operation: operation, // 'add', 'subtract', 'multiply', etc.
+        value: value,
+        userId: window.SugarCube.State.variables.userId || 'unknown'
+    };
+
+    // console.log('Sending atomic update:', updateData);
+    socket.emit('atomicUpdate', updateData);
+}
+
+// Export for use in th-set macro
+window.sendStateUpdate = sendStateUpdate;
+window.sendAtomicUpdate = sendAtomicUpdate;
+
+console.log('ClientDemo.js loaded');
+/* twine-user-script #3: "live-update.js" */
+(function () {
+	"use strict";
+
+	$(document).on(":liveupdate", function () {
+		$(".macro-live").trigger(":liveupdateinternal");
+	});
+
+	Macro.add(['update', 'upd'], {
+		handler: function handler() {
+			$(document).trigger(":liveupdate");
+		}
+	});
+
+	Macro.add(['live', 'l', 'lh'], {
+		skipArgs: true,
+		handler: function handler() {
+			if (this.args.full.length === 0) {
+				return this.error('no expression specified');
+			}
+			try {
+				var statement = this.args.full;
+				var result = toStringOrDefault(Scripting.evalJavaScript(statement), null);
+				if (result !== null) {
+					var lh = this.name === "lh";
+					var $el = $("<span></span>").addClass("macro-live").wiki(lh ? Util.escape(result) : result).appendTo(this.output);
+					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
+						var out = toStringOrDefault(Scripting.evalJavaScript(statement), null);
+						$el.empty().wiki(lh ? Util.escape(out) : out);
+					}));
+				}
+			} catch (ex) {
+				return this.error("bad evaluation: " + (typeof(ex) === 'object' ? ex.message : ex));
+			}
+		}
+	});
+
+	Macro.add(['liveblock', 'lb'], {
+		tags: null,
+		handler: function handler() {
+			try {
+				var content = this.payload[0].contents.trim();
+				if (content) {
+					var $el = $("<span></span>").addClass("macro-live macro-live-block").wiki(content).appendTo(this.output);
+					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
+						$el.empty().wiki(content);
+					}));
+				}
+			} catch (ex) {
+				return this.error("bad evaluation: " + (typeof(ex) === 'object' ? ex.message : ex));
+			}
+		}
+	});
+})();
+/* twine-user-script #4: "th-set.js" */
+(function() {
+    "use strict";
+
+    Macro.add('th-set', {
+        skipArgs: true,
+        handler: function() {
+            if (this.args.raw.length === 0) {
+                return this.error('th-set macro requires arguments');
+            }
+
+            let fullExpression = this.args.raw.trim();
+            const assignMatch = fullExpression.match(/^(['"]?)(\$[a-zA-Z_][\w.\[\]"'$]*)(\1)(\s*)(=|\+=|-=|\*=|\/=|%=|\bto\b)(\s*)(.+)$/i);
+
+            if (!assignMatch) {
+                return this.error(`Invalid th-set syntax: ${fullExpression}`);
+            }
+
+            const varPath = assignMatch[2];
+            let operator = assignMatch[5].trim().toLowerCase();
+            if (operator === 'to') operator = '=';
+            const rightExpr = assignMatch[7];
+
+            let rightValue;
+            try {
+                rightValue = Scripting.evalTwineScript(rightExpr);
+            } catch (e) {
+                return this.error(`bad evaluation: ${typeof e === 'object' ? e.message : e}`);
+            }
+
+            const isException = window.exceptions && window.exceptions.some(ex =>
+                varPath === ex || varPath.startsWith(ex.replace('$', '') + '.')
+            );
+
+            if (operator === '=') {
+                State.setVar(varPath, rightValue);
+                if (!isException && window.socket && window.socket.connected) {
+                    window.sendStateUpdate(varPath, rightValue);
+                }
+            } 
+            else {
+                try {
+                    const currentValue = State.getVar(varPath) || 0;
+                    let optimisticValue = currentValue;
+                    
+                    switch(operator) {
+                        case '+=': optimisticValue += rightValue; break;
+                        case '-=': optimisticValue -= rightValue; break;
+                        case '*=': optimisticValue *= rightValue; break;
+                        case '/=': optimisticValue /= rightValue; break;
+                        case '%=': optimisticValue %= rightValue; break;
+                    }
+                    State.setVar(varPath, optimisticValue);
+                } catch (err) {
+                    console.warn("[th-set] Optimistic update failed", err);
+                }
+
+                if (!isException && window.socket && window.socket.connected) {
+                    let operationName = 'add';
+                    if (operator === '-=') operationName = 'subtract';
+                    if (operator === '*=') operationName = 'multiply';
+                    if (operator === '/=') operationName = 'divide';
+                    if (operator === '%=') operationName = 'modulus';
+
+                    window.sendAtomicUpdate(varPath, operationName, rightValue);
+                }
+            }
+            $(document).trigger(':liveupdate');
+        }
+    });
+})();
+
+
+:: Initialize User {"position":"100,100","size":"100,100"}
+<<run
+    // Identify User
+    if (window.userData && window.userData.authData) {
+        State.variables.userId = window.userData.authData.username;
+    } else {
+        const urlParams = new URLSearchParams(window.location.search);
+        State.variables.userId = urlParams.get('nick') || "DevUser";
+    }
+>>
+
+<<liveblock>>
+    /* Initialize Shared Objects */
+    <<run
+        if (!State.variables.users) {
+            State.setVar("$users", {});
+        }
+        if (State.variables.users && State.variables.userId && !State.variables.users[State.variables.userId]) {
+            State.setVar("$users['" + State.variables.userId + "']", { name: State.variables.userId, score: 0 });
+        }
+    >>
+    <<if !def $globalCounter>>
+        <<th-set $globalCounter to 0>>
+    <</if>>
+    <<if !def $chatMessages>>
+        <<th-set $chatMessages to []>>
+    <</if>>
+
+    <div style="text-align: center;">
+        <h1>Welcome to Theyr</h1>
+        <p>Initializing your session as <b>$userId</b>...</p>
+        
+        <<if def $users && def $users[$userId]>>
+            [[Enter Tutorial|Start]]
+        <<else>>
+            <p><i>Waiting for sync...</i></p>
+        <</if>>
+    </div>
+<</liveblock>>
 
 
 :: Start {"position":"100,100","size":"100,100"}
-<<set $userId = "player1">>
-<<set $user = {}>>
-<<set $user[$userId] = {
-    "name": "Aztec Warrior",
-    "stats": {
-        "strength": 15,
-        "agility": 10
-    }
-}>>
+! 🎓 Step 1: Shared Variables
 
-! Unity Bridge Demo - Start Scene
+In a Theyr game, variables starting with `$` are shared with **everyone**. 
 
-This demonstrates Unity-Twine integration with scene switching.
+<div class="tutorial-box">
+    <b>Try it:</b> Open this page in a second tab. When you click the button here, the counter will update in both windows instantly!
+</div>
 
-**User ID:** $userId
-**Strength:** $user[$userId].stats.strength
+<<liveblock>>
+    ### Shared Counter: <span style="color: #55bd90; font-size: 1.5em;"><<print $globalCounter>></span>
+    
+    <<button "Increment for Everyone">>
+        <<th-set $globalCounter += 1>>
+    <</button>>
+<</liveblock>>
 
-The Unity WebGL view is loaded in the background showing the scene name.
+<br>
+**The Code:**
+`<<th-set $globalCounter += 1>>`
 
-[[Increase Strength|Start][$user[$userId].stats.strength += 1]]
-[[Go to Hub|Hub]]
+Using `+=` is the "Golden Rule" for counters. It tells the server to add 1 to the current total, preventing Alice and Bob from accidentally overwriting each other if they click at the same time.
 
-
-:: Hub {"position":"225,100","size":"100,100"}
-! Unity Bridge Demo - Hub Scene
-
-Unity should now show "Hub" scene in the background.
-
-**User ID:** $userId
-**Strength:** $user[$userId].stats.strength
-
-Choose a demo:
-
-[[Shared Counter Demo]]
-[[Message Board Demo]]
-[[User Registry Demo]]
-[[About the Engine]]
-[[Back to Start|Start]]
+[[Next: The Drafting Pattern|DraftingPattern]]
 
 
-:: Shared Counter Demo {"position":"350,50","size":"100,100"}
-! Shared Counter Demo Scene
+:: DraftingPattern {"position":"225,100","size":"100,100"}
+! 🎓 Step 2: The Drafting Pattern
 
-Unity scene: "Shared Counter Demo"
+Sometimes you want to type something privately before sharing it. Standard macros like `<<textbox>>` only change variables on **your** screen.
 
-This would be the multiplayer counter demo, but we're just testing scene switching for now.
+<div class="tutorial-box">
+    <b>The Pattern:</b> Use a temporary variable (starting with `_`) for the input, then use a "Confirm" button with `<<th-set>>` to publish it to your profile.
+</div>
 
-[[Back to Hub|Hub]]
+<<liveblock>>
+    <<if def $users && def $users[$userId]>>
+        ### Your Public Name: <span style="color: cyan;"><<print $users[$userId].name>></span>
+
+        <div style="margin: 15px 0;">
+            Change Name: <<textbox "_draftName" $users[$userId].name>> 
+            <<button "Confirm & Sync">>
+                <<th-set $users[$userId].name to _draftName>>
+            <</button>>
+        </div>
+    <<else>>
+        <p>Loading profile...</p>
+    <</if>>
+<</liveblock>>
+
+**Why this matters:**
+This protects security and reduces network lag. Other players only see your name once you've finished typing and clicked "Confirm."
+
+[[Next: Unity Integration|UnityBridge]]
 
 
-:: Message Board Demo {"position":"350,150","size":"100,100"}
-! Message Board Demo Scene
+:: UnityBridge {"position":"350,100","size":"100,100"}
+! 🎓 Step 3: The Unity Bridge
 
-Unity scene: "Message Board Demo"
+Theyr keeps Unity in sync with your Twine story automatically. 
 
-This would be the message board demo.
+<div class="tutorial-box">
+    <b>How it works:</b> When you moved to this passage (named "UnityBridge"), Theyr sent a message to Unity. Unity is now loading a matching scene in the background!
+</div>
 
-[[Back to Hub|Hub]]
+**Current Scene:** <<print passage()>>
 
+**For Developers:**
+1. In Unity, create a scene named exactly `UnityBridge`.
+2. Ensure your `StateBridge` component is in the scene.
+3. Unity will now switch scenes every time you click a link in Twine.
 
-:: User Registry Demo {"position":"350,250","size":"100,100"}
-! User Registry Demo Scene
-
-Unity scene: "User Registry Demo"
-
-This would show the user registry.
-
-[[Back to Hub|Hub]]
-
-
-:: About the Engine {"position":"350,350","size":"100,100"}
-! About the Engine Scene
-
-Unity scene: "About the Engine"
-
-This demonstrates Unity-Twine scene switching.
-
-**How it works:**
-- When you navigate to a new passage, Twine detects the change
-- unityBridge.js sends a SCENE_CHANGE message to Unity
-- Unity loads the matching scene (e.g., "Hub", "About the Engine")
-- Each Unity scene displays its name to confirm it loaded
-
-[[Back to Hub|Hub]]
+[[Return to Start|Start]]
 
 

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "advanced-unity-mcp": {
+      "command": "bash",
+      "args": [
+        "/Users/pstdenis/Library/Application Support/CodeMaestro/UnityMcpRelay/launch.sh"
+      ]
+    }
+  }
+}
