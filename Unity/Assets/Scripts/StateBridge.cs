@@ -51,11 +51,32 @@ public class StateBridge : MonoBehaviour
 
     /// <summary>
     /// Called automatically by the JavaScript bridge when the Twine passage changes.
+    /// Silently skips if no matching scene is in Build Settings (e.g. utility passages).
     /// </summary>
     public void ReceiveSceneChange(string sceneName)
     {
-        Debug.Log($"[StateBridge] Loading scene: {sceneName}");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        // Check if scene exists in Build Settings before attempting to load
+        bool sceneExists = false;
+        for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string path = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i);
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+            if (name == sceneName)
+            {
+                sceneExists = true;
+                break;
+            }
+        }
+
+        if (sceneExists)
+        {
+            Debug.Log($"[StateBridge] Loading scene: {sceneName}");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.LogWarning($"[StateBridge] Scene '{sceneName}' not in Build Settings — skipping.");
+        }
     }
 
     // =========================================================================

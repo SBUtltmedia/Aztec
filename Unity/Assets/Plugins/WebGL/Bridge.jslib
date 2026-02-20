@@ -1,6 +1,10 @@
 mergeInto(LibraryManager.library, {
 
   InitMessageListener: function () {
+    // Guard: only register once across all scene loads
+    if (window._unityBridgeListenerActive) return;
+    window._unityBridgeListenerActive = true;
+
     var eventListener = function(event) {
       // Check for security if needed (event.origin)
       if (event.data && event.data.type === "STATE_UPDATE") {

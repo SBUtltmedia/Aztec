@@ -14,13 +14,16 @@ public class GameStateSO : ScriptableObject
     public event Action OnStateUpdated;
 
     /// <summary>
-    /// Update the entire state from a JSON string.
+    /// Merge an incoming JSON object into the state (safe for both full state and partial diffs).
+    /// Full state on passage navigation: all keys are overwritten.
+    /// Partial diff from server: only changed keys are updated; rest preserved.
     /// </summary>
     public void UpdateFromJSON(string json)
     {
-        try 
+        try
         {
-            _rawState = JObject.Parse(json);
+            var incoming = JObject.Parse(json);
+            _rawState.Merge(incoming);
             OnStateUpdated?.Invoke();
         }
         catch (Exception e)

@@ -99,6 +99,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
 	<!-- UUID://D678768A-1363-4475-8025-131602737674// --><tw-storydata name="Theyr Unity Multiplayer Tutorial" startnode="1" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="D678768A-1363-4475-8025-131602737674" zoom="1" format="SugarCube" format-version="2.37.0-alpha.5" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "Story Stylesheet" */
+/* twine-user-stylesheet #1: "Story Stylesheet" */
 body, #story, #passages {
     background-color: transparent !important;
 }
@@ -125,6 +126,63 @@ code {
     background: #282a36;
     padding: 2px 5px;
     border-radius: 3px;
+}
+
+.maincontainer {
+    width: 100%;
+    height: 1000px;
+}
+/* twine-user-stylesheet #2: "demo_style.css" */
+.maincontainer {
+    /* width: 80rem; */
+    width: 100%;
+    height:1000px;
+    padding-top:50px;
+    padding-bottom:100px;
+}
+
+.leftchild {
+    width: 50%;
+    float: left;
+}
+
+.rightchild {
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+    width: 42%;
+    float: right;
+}
+
+.resultsbox {
+    width: 100%;
+    height: 50rem;
+    padding: 10px;
+    margin-left: 15px;
+
+    background-color: #222;
+    float:left;
+}
+
+textarea {
+    width: 100%;
+    height: 15rem;
+    background-color: #222;
+    box-sizing: border-box;
+
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+code {
+    color: lightcoral;
 }
 /* twine-user-stylesheet #2: "demo_style.css" */
 .maincontainer {
@@ -178,9 +236,10 @@ textarea {
 code {
     color: lightcoral;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "Story JavaScript" */
+/* twine-user-script #1: "Story JavaScript" */
 /**
  * Theyr Engine Initialization
- * Core engine modules are bundled from Twine/modules/ automatically.
+ * Core engine modules are loaded from Twine/modules/ via Tweego.
  */
 
 // 1. Load the Unity Bridge
@@ -190,21 +249,20 @@ importScripts("/static/unityBridge.js")
 
 // 2. Load Socket.IO and Initialize Multiplayer Client
 (function() {
+    if (window.io) return; // Prevent double load
     const socketScript = document.createElement('script');
     socketScript.src = '/socket.io/socket.io.js';
     socketScript.onload = function() {
         console.log('[THEYR] Socket.IO loaded');
         if (window.initMultiplayerClient) {
             window.initMultiplayerClient();
-        } else {
-            console.error("[THEYR] initMultiplayerClient not found. Check Twine/modules/ClientDemo.js");
         }
     };
     document.head.appendChild(socketScript);
 })();
 
 // 3. Exception Variables (Local Only)
-window.exceptions = ['$userId', '$passageHistory'];
+window.exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
 /* twine-user-script #2: "ClientDemo.js" */
 /**
  * Multiplayer Engine Demo - Client
@@ -319,8 +377,12 @@ function updateSugarCubeState(new_state) {
     $.extend(true, window.SugarCube.State.variables, filteredState);
 
     // Trigger liveupdate for any <<liveblock>> sections
-    $(document).trigger(":liveupdate");
-    $(document).trigger(":liveupdateinternal");
+    // Use thLiveUpdate to prevent infinite recursion if th-set is called during render
+    if (window.thLiveUpdate) {
+        window.thLiveUpdate();
+    } else {
+        $(document).trigger(":liveupdate");
+    }
 }
 
 /**
@@ -333,8 +395,11 @@ function sendStateUpdate(variable, value) {
         return;
     }
 
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
     const updateData = {
-        variable: variable,
+        variable: serverVar,
         value: value,
         userId: window.SugarCube.State.variables.userId || 'unknown'
     };
@@ -353,8 +418,11 @@ function sendAtomicUpdate(variable, operation, value) {
         return;
     }
 
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
     const updateData = {
-        variable: variable,
+        variable: serverVar,
         operation: operation, // 'add', 'subtract', 'multiply', etc.
         value: value,
         userId: window.SugarCube.State.variables.userId || 'unknown'
@@ -377,9 +445,18 @@ console.log('ClientDemo.js loaded');
 		$(".macro-live").trigger(":liveupdateinternal");
 	});
 
+	// Debounced trigger to prevent infinite loops and improve performance
+	window.thLiveUpdate = function() {
+		if (window._thLiveUpdateTimeout) return;
+		window._thLiveUpdateTimeout = setTimeout(() => {
+			$(document).trigger(":liveupdate");
+			window._thLiveUpdateTimeout = null;
+		}, 20);
+	};
+
 	Macro.add(['update', 'upd'], {
 		handler: function handler() {
-			$(document).trigger(":liveupdate");
+			window.thLiveUpdate();
 		}
 	});
 
@@ -490,45 +567,369 @@ console.log('ClientDemo.js loaded');
                     window.sendAtomicUpdate(varPath, operationName, rightValue);
                 }
             }
-            $(document).trigger(':liveupdate');
+            if(window.thLiveUpdate) window.thLiveUpdate(); else $(document).trigger(':liveupdate');
+        }
+    });
+})();
+/* twine-user-script #2: "ClientDemo.js" */
+/**
+ * Multiplayer Engine Demo - Client
+ *
+ * Simplified client for the multiplayer engine demonstration.
+ * Handles Socket.IO communication and state synchronization.
+ */
+
+var socket;
+var exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
+var stateReceived = false;
+var gameVars;
+
+/**
+ * Initialize client manually after Socket.IO is loaded
+ */
+window.initMultiplayerClient = function() {
+    console.log("Multiplayer Engine Client Initializing...");
+    if (typeof io === 'undefined') {
+        console.error("Socket.IO not found. Ensure socket.io.js is loaded before initializing.");
+        return;
+    }
+    initSocket();
+    initFromURL();
+};
+
+
+/**
+ * Initialize user from URL parameters
+ */
+function initFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('id');
+
+    if (userId) {
+        console.log(`Initializing user from URL: ${userId}`);
+        if (window.SugarCube && window.SugarCube.State) {
+            window.SugarCube.State.variables.userId = userId;
+        }
+    }
+}
+
+/**
+ * Initialize Socket.IO connection
+ */
+function initSocket() {
+    socket = io();
+    window.socket = socket;
+
+    socket.on('connect', () => {
+        console.log('✓ Connected to multiplayer server');
+        console.log('Socket ID:', socket.id);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('✗ Disconnected from server');
+    });
+
+    socket.on('difference', (difference) => {
+        console.log('Received state update from server:', difference);
+        updateSugarCubeState(difference);
+    });
+
+    socket.on('fullState', (state) => {
+        console.log('Received full state from server');
+        updateSugarCubeState(state);
+        stateReceived = true;
+        window._twineStateReceived = true;
+    });
+
+    // Handle 'new connection' from server (initial state)
+    socket.on('new connection', (state) => {
+        console.log('Received initial state from server (new connection)');
+        updateSugarCubeState(state);
+        stateReceived = true;
+        window._twineStateReceived = true;
+    });
+
+    socket.on('error', (error) => {
+        console.error('Socket error:', error);
+    });
+
+    // Request initial state by announcing new user
+    setTimeout(() => {
+        // socket.emit('getState');
+        socket.emit('new user', window.SugarCube.State.variables.userId || 'unknown');
+    }, 100);
+}
+
+/**
+ * Update SugarCube state with data from server
+ * Filters out exception variables to prevent override
+ */
+function updateSugarCubeState(new_state) {
+    // Check if SugarCube is initialized
+    if (!window.SugarCube || !window.SugarCube.State || !window.SugarCube.State.variables) {
+        console.warn('SugarCube not initialized yet, deferring state update');
+        setTimeout(() => updateSugarCubeState(new_state), 100);
+        return;
+    }
+
+    // Filter out exception variables from server state to prevent override
+    const filteredState = {};
+    for (const key in new_state) {
+        // Check if this key is an exception variable (without $ prefix)
+        const varName = '$' + key;
+        if (!exceptions.includes(varName) && !exceptions.includes('$' + key)) {
+            filteredState[key] = new_state[key];
+        }
+    }
+
+    // Merge filtered state into SugarCube
+    // Use jQuery's deep extend to replicate lodash's merge without the dependency
+    $.extend(true, window.SugarCube.State.variables, filteredState);
+
+    // Trigger liveupdate for any <<liveblock>> sections
+    // Use thLiveUpdate to prevent infinite recursion if th-set is called during render
+    if (window.thLiveUpdate) {
+        window.thLiveUpdate();
+    } else {
+        $(document).trigger(":liveupdate");
+    }
+}
+
+/**
+ * Send state update to server
+ * Called by the th-set macro
+ */
+function sendStateUpdate(variable, value) {
+    if (!socket || !socket.connected) {
+        console.warn('Socket not connected, cannot send update');
+        return;
+    }
+
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
+    const updateData = {
+        variable: serverVar,
+        value: value,
+        userId: window.SugarCube.State.variables.userId || 'unknown'
+    };
+
+    console.log('Sending state update:', updateData);
+    socket.emit('stateUpdate', updateData);
+}
+
+/**
+ * Send atomic math operation to server
+ * Used for +=, -=, *= to prevent race conditions
+ */
+function sendAtomicUpdate(variable, operation, value) {
+    if (!socket || !socket.connected) {
+        console.warn('Socket not connected, cannot send atomic update');
+        return;
+    }
+
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
+    const updateData = {
+        variable: serverVar,
+        operation: operation, // 'add', 'subtract', 'multiply', etc.
+        value: value,
+        userId: window.SugarCube.State.variables.userId || 'unknown'
+    };
+
+    // console.log('Sending atomic update:', updateData);
+    socket.emit('atomicUpdate', updateData);
+}
+
+// Export for use in th-set macro
+window.sendStateUpdate = sendStateUpdate;
+window.sendAtomicUpdate = sendAtomicUpdate;
+
+console.log('ClientDemo.js loaded');
+/* twine-user-script #3: "live-update.js" */
+(function () {
+	"use strict";
+
+	$(document).on(":liveupdate", function () {
+		$(".macro-live").trigger(":liveupdateinternal");
+	});
+
+	// Debounced trigger to prevent infinite loops and improve performance
+	window.thLiveUpdate = function() {
+		if (window._thLiveUpdateTimeout) return;
+		window._thLiveUpdateTimeout = setTimeout(() => {
+			$(document).trigger(":liveupdate");
+			window._thLiveUpdateTimeout = null;
+		}, 20);
+	};
+
+	Macro.add(['update', 'upd'], {
+		handler: function handler() {
+			window.thLiveUpdate();
+		}
+	});
+
+	Macro.add(['live', 'l', 'lh'], {
+		skipArgs: true,
+		handler: function handler() {
+			if (this.args.full.length === 0) {
+				return this.error('no expression specified');
+			}
+			try {
+				var statement = this.args.full;
+				var result = toStringOrDefault(Scripting.evalJavaScript(statement), null);
+				if (result !== null) {
+					var lh = this.name === "lh";
+					var $el = $("<span></span>").addClass("macro-live").wiki(lh ? Util.escape(result) : result).appendTo(this.output);
+					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
+						var out = toStringOrDefault(Scripting.evalJavaScript(statement), null);
+						$el.empty().wiki(lh ? Util.escape(out) : out);
+					}));
+				}
+			} catch (ex) {
+				return this.error("bad evaluation: " + (typeof(ex) === 'object' ? ex.message : ex));
+			}
+		}
+	});
+
+	Macro.add(['liveblock', 'lb'], {
+		tags: null,
+		handler: function handler() {
+			try {
+				var content = this.payload[0].contents.trim();
+				if (content) {
+					var $el = $("<span></span>").addClass("macro-live macro-live-block").wiki(content).appendTo(this.output);
+					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
+						$el.empty().wiki(content);
+					}));
+				}
+			} catch (ex) {
+				return this.error("bad evaluation: " + (typeof(ex) === 'object' ? ex.message : ex));
+			}
+		}
+	});
+})();
+/* twine-user-script #4: "th-set.js" */
+(function() {
+    "use strict";
+
+    Macro.add('th-set', {
+        skipArgs: true,
+        handler: function() {
+            if (this.args.raw.length === 0) {
+                return this.error('th-set macro requires arguments');
+            }
+
+            // ── LOCAL UPDATE ────────────────────────────────────────────────
+            // Delegate to evalJavaScript(this.args.full) exactly like <<set>>.
+            //
+            // With skipArgs:true, SugarCube provides this.args.full with all
+            // TwineScript already desugared to plain JS:
+            //   $var  → State.variables.var
+            //   _var  → State.temporary.var
+            //   to    → =
+            //   eq    → ==, neq → !=, is → ===, etc.
+            //
+            // So  <<th-set $users[$userId].name to _draft>>
+            // becomes  State.variables.users[State.variables.userId].name = State.temporary.draft
+            // and evalJavaScript handles it identically to <<set>>.
+            try {
+                Scripting.evalJavaScript(this.args.full);
+            } catch (ex) {
+                return this.error(`bad evaluation: ${typeof ex === 'object' ? ex.message : ex}`);
+            }
+
+            // ── SERVER SYNC ─────────────────────────────────────────────────
+            // Parse this.args.raw (unprocessed Twine) to extract the variable
+            // path, operator, and RHS expression for the server.
+            const assignMatch = this.args.raw.trim().match(
+                /^(['"]?)(\$[a-zA-Z_][\w.\[\]"'$]*)(\1)(\s*)(=|\+=|-=|\*=|\/=|%=|\bto\b)(\s*)(.+)$/i
+            );
+
+            if (assignMatch) {
+                const varPath  = assignMatch[2];
+                let operator   = assignMatch[5].trim().toLowerCase();
+                if (operator === 'to') operator = '=';
+                const rightExpr = assignMatch[7];
+
+                // Resolve runtime variable names inside brackets:
+                //   $users[$userId] → $users["alice"]
+                const resolvedVarPath = varPath.replace(/\[\s*(\$[a-zA-Z_]\w*)\s*\]/g, (m, v) => {
+                    try { return "[" + JSON.stringify(State.getVar(v)) + "]"; }
+                    catch (e) { return m; }
+                });
+
+                const isException = window.exceptions && window.exceptions.some(ex =>
+                    varPath === ex || varPath.startsWith(ex.replace('$', '') + '.')
+                );
+
+                if (!isException && window.socket && window.socket.connected) {
+                    try {
+                        const rightValue = Scripting.evalTwineScript(rightExpr);
+
+                        if (operator === '=') {
+                            window.sendStateUpdate(resolvedVarPath, rightValue);
+                        } else {
+                            const opNames = {
+                                '+=': 'add', '-=': 'subtract',
+                                '*=': 'multiply', '/=': 'divide', '%=': 'modulus'
+                            };
+                            window.sendAtomicUpdate(resolvedVarPath, opNames[operator], rightValue);
+                        }
+                    } catch (e) {
+                        console.warn('[th-set] Server sync failed:', e);
+                    }
+                }
+            }
+
+            if (window.thLiveUpdate) window.thLiveUpdate(); else $(document).trigger(':liveupdate');
         }
     });
 })();
 </script><tw-passagedata pid="1" name="Initialize User" tags="" position="100,100" size="100,100">&lt;&lt;run
-    // Identify User
-    if (window.userData &amp;&amp; window.userData.authData) {
-        State.variables.userId = window.userData.authData.username;
-    } else {
-        const urlParams = new URLSearchParams(window.location.search);
-        State.variables.userId = urlParams.get(&#39;nick&#39;) || &quot;DevUser&quot;;
+    // 1. Resolve User ID
+    if (!State.variables.userId) {
+        if (window.userData &amp;&amp; window.userData.authData) {
+            State.variables.userId = window.userData.authData.username;
+        } else {
+            const urlParams = new URLSearchParams(window.location.search);
+            State.variables.userId = urlParams.get(&#39;nick&#39;) || &quot;DevUser&quot;;
+        }
+    }
+
+    // 2. Set Local Defaults (Will be updated by server if exists)
+    if (ndef $users) {
+        State.variables.users = {};
+    }
+    if (ndef $globalCounter) {
+        State.variables.globalCounter = 0;
     }
 &gt;&gt;
 
 &lt;&lt;liveblock&gt;&gt;
-    /* Initialize Shared Objects */
-    &lt;&lt;run
-        if (!State.variables.users) {
-            State.setVar(&quot;$users&quot;, {});
-        }
-        if (State.variables.users &amp;&amp; State.variables.userId &amp;&amp; !State.variables.users[State.variables.userId]) {
-            State.setVar(&quot;$users[&#39;&quot; + State.variables.userId + &quot;&#39;]&quot;, { name: State.variables.userId, score: 0 });
-        }
-    &gt;&gt;
-    &lt;&lt;if !def $globalCounter&gt;&gt;
-        &lt;&lt;th-set $globalCounter to 0&gt;&gt;
-    &lt;&lt;/if&gt;&gt;
-    &lt;&lt;if !def $chatMessages&gt;&gt;
-        &lt;&lt;th-set $chatMessages to []&gt;&gt;
-    &lt;&lt;/if&gt;&gt;
-
     &lt;div style=&quot;text-align: center;&quot;&gt;
         &lt;h1&gt;Welcome to Theyr&lt;/h1&gt;
         &lt;p&gt;Initializing your session as &lt;b&gt;$userId&lt;/b&gt;...&lt;/p&gt;
         
-        &lt;&lt;if def $users &amp;&amp; def $users[$userId]&gt;&gt;
-            [[Enter Tutorial|Start]]
+        &lt;&lt;if ndef $users[$userId]&gt;&gt;
+            /* Wait for server sync or register if first time */
+            &lt;&lt;run
+                // Register user profile on server
+                if (window.sendStateUpdate) {
+                    const profile = { name: State.variables.userId, score: 0 };
+                    window.sendStateUpdate(&quot;$users[&#39;&quot; + State.variables.userId + &quot;&#39;]&quot;, profile);
+                    
+                    // Optimistically set locally to break the loop
+                    State.setVar(&quot;$users[&#39;&quot; + State.variables.userId + &quot;&#39;]&quot;, profile);
+                }
+            &gt;&gt;
+            &lt;p&gt;&lt;i&gt;Registering profile...&lt;/i&gt;&lt;/p&gt;
+            &lt;&lt;timed 2s&gt;&gt;&lt;&lt;update&gt;&gt;&lt;&lt;/timed&gt;&gt;
         &lt;&lt;else&gt;&gt;
-            &lt;p&gt;&lt;i&gt;Waiting for sync...&lt;/i&gt;&lt;/p&gt;
+            &lt;p&gt;Profile Loaded! Connected to Multiplayer Hub.&lt;/p&gt;
+            &lt;br&gt;
+            [[Enter Tutorial|Start]]
         &lt;&lt;/if&gt;&gt;
     &lt;/div&gt;
 &lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="100,100" size="100,100">! 🎓 Step 1: Shared Variables
@@ -551,14 +952,12 @@ In a Theyr game, variables starting with `$` are shared with **everyone**.
 **The Code:**
 `&lt;&lt;th-set $globalCounter += 1&gt;&gt;`
 
-Using `+=` is the &quot;Golden Rule&quot; for counters. It tells the server to add 1 to the current total, preventing Alice and Bob from accidentally overwriting each other if they click at the same time.
-
 [[Next: The Drafting Pattern|DraftingPattern]]</tw-passagedata><tw-passagedata pid="3" name="DraftingPattern" tags="" position="225,100" size="100,100">! 🎓 Step 2: The Drafting Pattern
 
-Sometimes you want to type something privately before sharing it. Standard macros like `&lt;&lt;textbox&gt;&gt;` only change variables on **your** screen.
+Sometimes you want to type something privately before sharing it. Standard macros like `\&lt;&lt;textbox&gt;&gt;` only change variables on **your** screen.
 
 &lt;div class=&quot;tutorial-box&quot;&gt;
-    &lt;b&gt;The Pattern:&lt;/b&gt; Use a temporary variable (starting with `_`) for the input, then use a &quot;Confirm&quot; button with `&lt;&lt;th-set&gt;&gt;` to publish it to your profile.
+    &lt;b&gt;The Pattern:&lt;/b&gt; Use a temporary variable (starting with `_`) for the input, then use a &quot;Confirm&quot; button with `\&lt;&lt;th-set&gt;&gt;` to publish it to your profile.
 &lt;/div&gt;
 
 &lt;&lt;liveblock&gt;&gt;
@@ -576,9 +975,6 @@ Sometimes you want to type something privately before sharing it. Standard macro
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;
 
-**Why this matters:**
-This protects security and reduces network lag. Other players only see your name once you&#39;ve finished typing and clicked &quot;Confirm.&quot;
-
 [[Next: Unity Integration|UnityBridge]]</tw-passagedata><tw-passagedata pid="4" name="UnityBridge" tags="" position="350,100" size="100,100">! 🎓 Step 3: The Unity Bridge
 
 Theyr keeps Unity in sync with your Twine story automatically. 
@@ -588,11 +984,6 @@ Theyr keeps Unity in sync with your Twine story automatically.
 &lt;/div&gt;
 
 **Current Scene:** &lt;&lt;print passage()&gt;&gt;
-
-**For Developers:**
-1. In Unity, create a scene named exactly `UnityBridge`.
-2. Ensure your `StateBridge` component is in the scene.
-3. Unity will now switch scenes every time you click a link in Twine.
 
 [[Return to Start|Start]]</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">

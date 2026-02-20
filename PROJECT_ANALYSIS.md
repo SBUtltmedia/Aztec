@@ -208,6 +208,11 @@ Output: `../UnityWebGL/Build/`
 - Multiplayer state sharing via Socket.IO
 - Custom `<<th-set>>` and `<<liveblock>>` macros
 - Fast WebGL builds
+- **Playwright test suite** — 12/12 passing (`npm run test:bridge`)
+
+### Key Technical Gotcha
+
+Scripts loaded via `importScripts()` run in global scope where `window.State` is **undefined** — only `window.SugarCube.State` is accessible. All variable reads/writes in `unityBridge.js` use `window.SugarCube?.State?.variables` directly.
 
 ### Git Status
 - **Branch:** `unity`

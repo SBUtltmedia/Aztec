@@ -103,20 +103,32 @@ $(document).on(":passagestart", function (ev) {
             payload: passageName
         }, "*");
 
-        // Send SugarCube State
-        if (typeof State !== 'undefined' && State.variables) {
+        // Send SugarCube State — always use window.SugarCube.State.variables (public API)
+        // so this works whether or not 'State' is in the current closure scope.
+        const scVars = window.SugarCube?.State?.variables;
+        if (scVars !== undefined) {
+            let stateCopy;
             try {
-                const stateCopy = JSON.parse(JSON.stringify(State.variables));
-                console.log("Unity Bridge: Sending State variables.");
-                unityFrame.contentWindow.postMessage({
-                    type: "STATE_UPDATE",
-                    payload: stateCopy
-                }, "*");
+                stateCopy = JSON.parse(JSON.stringify(scVars));
             } catch (e) {
-                console.error("Unity Bridge: Failed to serialize State variables", e);
+                console.warn("Unity Bridge: Full state serialization failed, trying per-key fallback:", e.message);
+                // Fallback: serialize each variable individually, skipping non-serializable ones
+                stateCopy = {};
+                for (const key of Object.keys(scVars)) {
+                    try {
+                        stateCopy[key] = JSON.parse(JSON.stringify(scVars[key]));
+                    } catch (_) {
+                        console.warn(`Unity Bridge: Skipping non-serializable variable: ${key}`);
+                    }
+                }
             }
+            console.log("Unity Bridge: Sending State variables.");
+            unityFrame.contentWindow.postMessage({
+                type: "STATE_UPDATE",
+                payload: stateCopy
+            }, "*");
         } else {
-            console.warn("Unity Bridge: 'State' object not available yet.");
+            console.warn("Unity Bridge: SugarCube State not available yet.");
         }
     }
 });
@@ -132,10 +144,12 @@ function initUnityToServerBridge() {
             const { variable, value } = event.data.payload;
             console.log(`Unity Bridge: Received state update from Unity -> ${variable}`, value);
 
-            // Update local SugarCube state
-            if (typeof State !== 'undefined' && State.setVar) {
+            // Update local SugarCube state via public API (window.SugarCube.State.variables)
+            const scVarsState = window.SugarCube?.State?.variables;
+            if (scVarsState !== undefined) {
                 try {
-                    State.setVar(variable, value);
+                    const varName = variable.startsWith('$') ? variable.slice(1) : variable;
+                    scVarsState[varName] = value;
                 } catch (e) {
                     console.warn("Unity Bridge: Failed to set SugarCube variable", e);
                 }
@@ -150,7 +164,7 @@ function initUnityToServerBridge() {
                     window.socket.emit('stateUpdate', {
                         variable: variable,
                         value: value,
-                        userId: (typeof State !== 'undefined' ? State.variables.userId : 'unity') || 'unity'
+                        userId: window.SugarCube?.State?.variables?.userId || 'unity'
                     });
                 }
                 console.log("Unity Bridge: Relayed state update to server");
@@ -159,7 +173,7 @@ function initUnityToServerBridge() {
             }
 
             // Trigger liveupdate for any <<liveblock>> sections
-            $(document).trigger(':liveupdateinternal');
+            if(window.thLiveUpdate) window.thLiveUpdate(); else $(document).trigger(':liveupdate');
         }
 
         // Handle atomic updates from Unity (equivalent to <<th-set '$var' += value>>)
@@ -167,10 +181,12 @@ function initUnityToServerBridge() {
             const { variable, operation, value } = event.data.payload;
             console.log(`Unity Bridge: Received atomic update from Unity -> ${variable} ${operation} ${value}`);
 
-            // Update local SugarCube state optimistically
-            if (typeof State !== 'undefined' && State.getVar && State.setVar) {
+            // Update local SugarCube state optimistically via public API
+            const scVarsAtomic = window.SugarCube?.State?.variables;
+            if (scVarsAtomic !== undefined) {
                 try {
-                    const currentValue = State.getVar(variable) || 0;
+                    const varName = variable.startsWith('$') ? variable.slice(1) : variable;
+                    const currentValue = Number(scVarsAtomic[varName] || 0);
                     let newValue = currentValue;
 
                     switch(operation) {
@@ -181,7 +197,7 @@ function initUnityToServerBridge() {
                         case 'modulus': newValue %= value; break;
                     }
 
-                    State.setVar(variable, newValue);
+                    scVarsAtomic[varName] = newValue;
                 } catch (e) {
                     console.warn("Unity Bridge: Failed to apply atomic update to SugarCube", e);
                 }
@@ -197,7 +213,7 @@ function initUnityToServerBridge() {
                         variable: variable,
                         operation: operation,
                         value: value,
-                        userId: (typeof State !== 'undefined' ? State.variables.userId : 'unity') || 'unity'
+                        userId: window.SugarCube?.State?.variables?.userId || 'unity'
                     });
                 }
                 console.log("Unity Bridge: Relayed atomic update to server");
@@ -206,7 +222,7 @@ function initUnityToServerBridge() {
             }
 
             // Trigger liveupdate for any <<liveblock>> sections
-            $(document).trigger(':liveupdateinternal');
+            if(window.thLiveUpdate) window.thLiveUpdate(); else $(document).trigger(':liveupdate');
         }
     });
 

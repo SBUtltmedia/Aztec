@@ -64,6 +64,7 @@ function initSocket() {
         console.log('Received full state from server');
         updateSugarCubeState(state);
         stateReceived = true;
+        window._twineStateReceived = true;
     });
 
     // Handle 'new connection' from server (initial state)
@@ -71,6 +72,7 @@ function initSocket() {
         console.log('Received initial state from server (new connection)');
         updateSugarCubeState(state);
         stateReceived = true;
+        window._twineStateReceived = true;
     });
 
     socket.on('error', (error) => {
@@ -111,8 +113,12 @@ function updateSugarCubeState(new_state) {
     $.extend(true, window.SugarCube.State.variables, filteredState);
 
     // Trigger liveupdate for any <<liveblock>> sections
-    $(document).trigger(":liveupdate");
-    $(document).trigger(":liveupdateinternal");
+    // Use thLiveUpdate to prevent infinite recursion if th-set is called during render
+    if (window.thLiveUpdate) {
+        window.thLiveUpdate();
+    } else {
+        $(document).trigger(":liveupdate");
+    }
 }
 
 /**
@@ -125,8 +131,11 @@ function sendStateUpdate(variable, value) {
         return;
     }
 
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
     const updateData = {
-        variable: variable,
+        variable: serverVar,
         value: value,
         userId: window.SugarCube.State.variables.userId || 'unknown'
     };
@@ -145,8 +154,11 @@ function sendAtomicUpdate(variable, operation, value) {
         return;
     }
 
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
     const updateData = {
-        variable: variable,
+        variable: serverVar,
         operation: operation, // 'add', 'subtract', 'multiply', etc.
         value: value,
         userId: window.SugarCube.State.variables.userId || 'unknown'

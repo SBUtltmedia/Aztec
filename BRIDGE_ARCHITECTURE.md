@@ -23,6 +23,7 @@ This means each scene (Start, Hub, Shared Counter Demo, etc.) has its own Bridge
 ### 1. Scene Structure
 
 Each generated Unity scene contains:
+
 - **Main Camera** (renders the scene)
 - **Canvas** (UI layer)
   - **Text** (shows scene name)
@@ -32,7 +33,7 @@ Each generated Unity scene contains:
 
 ### 2. Message Flow
 
-```
+```text
 Twine Passage Change
     ↓
 unityBridge.js detects change
@@ -58,11 +59,13 @@ New scene's Bridge is ready to receive messages
 When Unity loads a new scene, **all GameObjects from the previous scene are destroyed** (unless marked `DontDestroyOnLoad`).
 
 If only SampleScene had the Bridge:
+
 1. ❌ Load Hub scene → SampleScene destroyed → Bridge destroyed
 2. ❌ Twine sends message → No Bridge to receive it → Communication broken
 3. ❌ Scene stuck, can't switch anymore
 
 With Bridge in every scene:
+
 1. ✅ Load Hub scene → Hub's Bridge is active
 2. ✅ Twine sends message → Hub's Bridge receives it
 3. ✅ Load next scene → New scene's Bridge is active
@@ -105,3 +108,24 @@ After building, you can verify each scene has a Bridge:
 - ✅ Clean architecture - each scene knows how to receive state
 
 This is the correct approach for Unity scene-based architecture.
+
+## Testing
+
+The bridge is covered by a Playwright test suite (12/12 passing):
+
+```bash
+npm run test:bridge
+```
+
+Tests verify both directions of communication without requiring Unity to be running (Unity→Twine messages are simulated via `window.dispatchEvent`).
+
+## Important: SugarCube Scope in `unityBridge.js`
+
+`unityBridge.js` is loaded via `importScripts()` which injects it as a `<script>` tag in the browser global scope. In this scope, `window.State` is **undefined** — SugarCube does not expose its internal `State` object as a global. The only reliable API is:
+
+```javascript
+window.SugarCube?.State?.variables   // read/write story variables
+window.SugarCube?.State?.passage     // current passage name
+```
+
+Any `typeof State !== 'undefined'` guard will always be `false` in this context.

@@ -41,6 +41,11 @@ code {
     padding: 2px 5px;
     border-radius: 3px;
 }
+
+.maincontainer {
+    width: 100%;
+    height: 1000px;
+}
 /* twine-user-stylesheet #2: "demo_style.css" */
 .maincontainer {
     /* width: 80rem; */
@@ -99,7 +104,7 @@ code {
 /* twine-user-script #1: "Story JavaScript" */
 /**
  * Theyr Engine Initialization
- * Core engine modules are bundled from Twine/modules/ automatically.
+ * Core engine modules are loaded from Twine/modules/ via Tweego.
  */
 
 // 1. Load the Unity Bridge
@@ -109,21 +114,20 @@ importScripts("/static/unityBridge.js")
 
 // 2. Load Socket.IO and Initialize Multiplayer Client
 (function() {
+    if (window.io) return; // Prevent double load
     const socketScript = document.createElement('script');
     socketScript.src = '/socket.io/socket.io.js';
     socketScript.onload = function() {
         console.log('[THEYR] Socket.IO loaded');
         if (window.initMultiplayerClient) {
             window.initMultiplayerClient();
-        } else {
-            console.error("[THEYR] initMultiplayerClient not found. Check Twine/modules/ClientDemo.js");
         }
     };
     document.head.appendChild(socketScript);
 })();
 
 // 3. Exception Variables (Local Only)
-window.exceptions = ['$userId', '$passageHistory'];
+window.exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
 /* twine-user-script #2: "ClientDemo.js" */
 /**
  * Multiplayer Engine Demo - Client
@@ -238,8 +242,12 @@ function updateSugarCubeState(new_state) {
     $.extend(true, window.SugarCube.State.variables, filteredState);
 
     // Trigger liveupdate for any <<liveblock>> sections
-    $(document).trigger(":liveupdate");
-    $(document).trigger(":liveupdateinternal");
+    // Use thLiveUpdate to prevent infinite recursion if th-set is called during render
+    if (window.thLiveUpdate) {
+        window.thLiveUpdate();
+    } else {
+        $(document).trigger(":liveupdate");
+    }
 }
 
 /**
@@ -252,8 +260,11 @@ function sendStateUpdate(variable, value) {
         return;
     }
 
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
     const updateData = {
-        variable: variable,
+        variable: serverVar,
         value: value,
         userId: window.SugarCube.State.variables.userId || 'unknown'
     };
@@ -272,8 +283,11 @@ function sendAtomicUpdate(variable, operation, value) {
         return;
     }
 
+    // Strip leading $ if present for server compatibility
+    const serverVar = variable.startsWith('$') ? variable.substring(1) : variable;
+
     const updateData = {
-        variable: variable,
+        variable: serverVar,
         operation: operation, // 'add', 'subtract', 'multiply', etc.
         value: value,
         userId: window.SugarCube.State.variables.userId || 'unknown'
@@ -296,9 +310,18 @@ console.log('ClientDemo.js loaded');
 		$(".macro-live").trigger(":liveupdateinternal");
 	});
 
+	// Debounced trigger to prevent infinite loops and improve performance
+	window.thLiveUpdate = function() {
+		if (window._thLiveUpdateTimeout) return;
+		window._thLiveUpdateTimeout = setTimeout(() => {
+			$(document).trigger(":liveupdate");
+			window._thLiveUpdateTimeout = null;
+		}, 20);
+	};
+
 	Macro.add(['update', 'upd'], {
 		handler: function handler() {
-			$(document).trigger(":liveupdate");
+			window.thLiveUpdate();
 		}
 	});
 
@@ -409,7 +432,7 @@ console.log('ClientDemo.js loaded');
                     window.sendAtomicUpdate(varPath, operationName, rightValue);
                 }
             }
-            $(document).trigger(':liveupdate');
+            if(window.thLiveUpdate) window.thLiveUpdate(); else $(document).trigger(':liveupdate');
         }
     });
 })();
@@ -417,40 +440,48 @@ console.log('ClientDemo.js loaded');
 
 :: Initialize User {"position":"100,100","size":"100,100"}
 <<run
-    // Identify User
-    if (window.userData && window.userData.authData) {
-        State.variables.userId = window.userData.authData.username;
-    } else {
-        const urlParams = new URLSearchParams(window.location.search);
-        State.variables.userId = urlParams.get('nick') || "DevUser";
+    // 1. Resolve User ID
+    if (!State.variables.userId) {
+        if (window.userData && window.userData.authData) {
+            State.variables.userId = window.userData.authData.username;
+        } else {
+            const urlParams = new URLSearchParams(window.location.search);
+            State.variables.userId = urlParams.get('nick') || "DevUser";
+        }
+    }
+
+    // 2. Set Local Defaults (Will be updated by server if exists)
+    if (ndef $users) {
+        State.variables.users = {};
+    }
+    if (ndef $globalCounter) {
+        State.variables.globalCounter = 0;
     }
 >>
 
 <<liveblock>>
-    /* Initialize Shared Objects */
-    <<run
-        if (!State.variables.users) {
-            State.setVar("$users", {});
-        }
-        if (State.variables.users && State.variables.userId && !State.variables.users[State.variables.userId]) {
-            State.setVar("$users['" + State.variables.userId + "']", { name: State.variables.userId, score: 0 });
-        }
-    >>
-    <<if !def $globalCounter>>
-        <<th-set $globalCounter to 0>>
-    <</if>>
-    <<if !def $chatMessages>>
-        <<th-set $chatMessages to []>>
-    <</if>>
-
     <div style="text-align: center;">
         <h1>Welcome to Theyr</h1>
         <p>Initializing your session as <b>$userId</b>...</p>
         
-        <<if def $users && def $users[$userId]>>
-            [[Enter Tutorial|Start]]
+        <<if ndef $users[$userId]>>
+            /* Wait for server sync or register if first time */
+            <<run
+                // Register user profile on server
+                if (window.sendStateUpdate) {
+                    const profile = { name: State.variables.userId, score: 0 };
+                    window.sendStateUpdate("$users['" + State.variables.userId + "']", profile);
+                    
+                    // Optimistically set locally to break the loop
+                    State.setVar("$users['" + State.variables.userId + "']", profile);
+                }
+            >>
+            <p><i>Registering profile...</i></p>
+            <<timed 2s>><<update>><</timed>>
         <<else>>
-            <p><i>Waiting for sync...</i></p>
+            <p>Profile Loaded! Connected to Multiplayer Hub.</p>
+            <br>
+            [[Enter Tutorial|Start]]
         <</if>>
     </div>
 <</liveblock>>
@@ -477,18 +508,16 @@ In a Theyr game, variables starting with `$` are shared with **everyone**.
 **The Code:**
 `<<th-set $globalCounter += 1>>`
 
-Using `+=` is the "Golden Rule" for counters. It tells the server to add 1 to the current total, preventing Alice and Bob from accidentally overwriting each other if they click at the same time.
-
 [[Next: The Drafting Pattern|DraftingPattern]]
 
 
 :: DraftingPattern {"position":"225,100","size":"100,100"}
 ! 🎓 Step 2: The Drafting Pattern
 
-Sometimes you want to type something privately before sharing it. Standard macros like `<<textbox>>` only change variables on **your** screen.
+Sometimes you want to type something privately before sharing it. Standard macros like `\<<textbox>>` only change variables on **your** screen.
 
 <div class="tutorial-box">
-    <b>The Pattern:</b> Use a temporary variable (starting with `_`) for the input, then use a "Confirm" button with `<<th-set>>` to publish it to your profile.
+    <b>The Pattern:</b> Use a temporary variable (starting with `_`) for the input, then use a "Confirm" button with `\<<th-set>>` to publish it to your profile.
 </div>
 
 <<liveblock>>
@@ -506,9 +535,6 @@ Sometimes you want to type something privately before sharing it. Standard macro
     <</if>>
 <</liveblock>>
 
-**Why this matters:**
-This protects security and reduces network lag. Other players only see your name once you've finished typing and clicked "Confirm."
-
 [[Next: Unity Integration|UnityBridge]]
 
 
@@ -522,11 +548,6 @@ Theyr keeps Unity in sync with your Twine story automatically.
 </div>
 
 **Current Scene:** <<print passage()>>
-
-**For Developers:**
-1. In Unity, create a scene named exactly `UnityBridge`.
-2. Ensure your `StateBridge` component is in the scene.
-3. Unity will now switch scenes every time you click a link in Twine.
 
 [[Return to Start|Start]]
 

@@ -8,63 +8,69 @@
                 return this.error('th-set macro requires arguments');
             }
 
-            let fullExpression = this.args.raw.trim();
-            const assignMatch = fullExpression.match(/^(['"]?)(\$[a-zA-Z_][\w.\[\]"'$]*)(\1)(\s*)(=|\+=|-=|\*=|\/=|%=|\bto\b)(\s*)(.+)$/i);
-
-            if (!assignMatch) {
-                return this.error(`Invalid th-set syntax: ${fullExpression}`);
-            }
-
-            const varPath = assignMatch[2];
-            let operator = assignMatch[5].trim().toLowerCase();
-            if (operator === 'to') operator = '=';
-            const rightExpr = assignMatch[7];
-
-            let rightValue;
+            // ── LOCAL UPDATE ────────────────────────────────────────────────
+            // Delegate to evalJavaScript(this.args.full) exactly like <<set>>.
+            //
+            // With skipArgs:true, SugarCube provides this.args.full with all
+            // TwineScript already desugared to plain JS:
+            //   $var  → State.variables.var
+            //   _var  → State.temporary.var
+            //   to    → =
+            //   eq    → ==, neq → !=, is → ===, etc.
+            //
+            // So  <<th-set $users[$userId].name to _draft>>
+            // becomes  State.variables.users[State.variables.userId].name = State.temporary.draft
+            // and evalJavaScript handles it identically to <<set>>.
             try {
-                rightValue = Scripting.evalTwineScript(rightExpr);
-            } catch (e) {
-                return this.error(`bad evaluation: ${typeof e === 'object' ? e.message : e}`);
+                Scripting.evalJavaScript(this.args.full);
+            } catch (ex) {
+                return this.error(`bad evaluation: ${typeof ex === 'object' ? ex.message : ex}`);
             }
 
-            const isException = window.exceptions && window.exceptions.some(ex =>
-                varPath === ex || varPath.startsWith(ex.replace('$', '') + '.')
+            // ── SERVER SYNC ─────────────────────────────────────────────────
+            // Parse this.args.raw (unprocessed Twine) to extract the variable
+            // path, operator, and RHS expression for the server.
+            const assignMatch = this.args.raw.trim().match(
+                /^(['"]?)(\$[a-zA-Z_][\w.\[\]"'$]*)(\1)(\s*)(=|\+=|-=|\*=|\/=|%=|\bto\b)(\s*)(.+)$/i
             );
 
-            if (operator === '=') {
-                State.setVar(varPath, rightValue);
+            if (assignMatch) {
+                const varPath  = assignMatch[2];
+                let operator   = assignMatch[5].trim().toLowerCase();
+                if (operator === 'to') operator = '=';
+                const rightExpr = assignMatch[7];
+
+                // Resolve runtime variable names inside brackets:
+                //   $users[$userId] → $users["alice"]
+                const resolvedVarPath = varPath.replace(/\[\s*(\$[a-zA-Z_]\w*)\s*\]/g, (m, v) => {
+                    try { return "[" + JSON.stringify(State.getVar(v)) + "]"; }
+                    catch (e) { return m; }
+                });
+
+                const isException = window.exceptions && window.exceptions.some(ex =>
+                    varPath === ex || varPath.startsWith(ex.replace('$', '') + '.')
+                );
+
                 if (!isException && window.socket && window.socket.connected) {
-                    window.sendStateUpdate(varPath, rightValue);
-                }
-            } 
-            else {
-                try {
-                    const currentValue = State.getVar(varPath) || 0;
-                    let optimisticValue = currentValue;
-                    
-                    switch(operator) {
-                        case '+=': optimisticValue += rightValue; break;
-                        case '-=': optimisticValue -= rightValue; break;
-                        case '*=': optimisticValue *= rightValue; break;
-                        case '/=': optimisticValue /= rightValue; break;
-                        case '%=': optimisticValue %= rightValue; break;
+                    try {
+                        const rightValue = Scripting.evalTwineScript(rightExpr);
+
+                        if (operator === '=') {
+                            window.sendStateUpdate(resolvedVarPath, rightValue);
+                        } else {
+                            const opNames = {
+                                '+=': 'add', '-=': 'subtract',
+                                '*=': 'multiply', '/=': 'divide', '%=': 'modulus'
+                            };
+                            window.sendAtomicUpdate(resolvedVarPath, opNames[operator], rightValue);
+                        }
+                    } catch (e) {
+                        console.warn('[th-set] Server sync failed:', e);
                     }
-                    State.setVar(varPath, optimisticValue);
-                } catch (err) {
-                    console.warn("[th-set] Optimistic update failed", err);
-                }
-
-                if (!isException && window.socket && window.socket.connected) {
-                    let operationName = 'add';
-                    if (operator === '-=') operationName = 'subtract';
-                    if (operator === '*=') operationName = 'multiply';
-                    if (operator === '/=') operationName = 'divide';
-                    if (operator === '%=') operationName = 'modulus';
-
-                    window.sendAtomicUpdate(varPath, operationName, rightValue);
                 }
             }
-            $(document).trigger(':liveupdate');
+
+            if (window.thLiveUpdate) window.thLiveUpdate(); else $(document).trigger(':liveupdate');
         }
     });
 })();

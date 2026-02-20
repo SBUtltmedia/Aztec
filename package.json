@@ -5,7 +5,13 @@
   "scripts": {
     "start": "npx nodemon loginDiscord/",
     "dev": "npx nodemon login/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:bridge": "playwright test tests/unity-bridge.spec.js",
+    "test:load": "playwright test tests/unity-load.spec.js",
+    "test:multi": "playwright test tests/multiplayer-sync.spec.js",
+    "test:demo": "playwright test --project=demo",
+    "test:report": "playwright show-report"
   },
   "keywords": [
     "node",
@@ -36,6 +42,7 @@
     "xhr2": "^0.2.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "dotenv": "^16.0.3",
     "nodemon": "^2.0.15"
   }

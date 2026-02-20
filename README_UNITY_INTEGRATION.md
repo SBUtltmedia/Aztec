@@ -254,14 +254,42 @@ This is a **legitimate Unity build** - just optimized for iteration speed. To ad
 - ✅ Scene switching implemented
 - ✅ Multiplayer synchronization working
 - ✅ Fast builds configured
-- 🔄 Unity build in progress (compiling WebAssembly)
-- ⏳ Testing pending (after build completes)
+- ✅ Unity WebGL build complete
+- ✅ Playwright test suite — 12/12 passing
 
-## Next Steps
+## Testing
 
-After Unity build completes:
+A Playwright test suite covers the full bidirectional bridge:
 
-1. Test Unity-Twine scene switching
-2. Test multiplayer synchronization
-3. Commit all changes to git
-4. Show to your team!
+```bash
+# Server must be running first
+npm start
+
+# Run bridge tests
+npm run test:bridge
+# or
+npx playwright test tests/unity-bridge.spec.js --project=chromium
+```
+
+Tests cover:
+
+- Unity iframe injection
+- `SCENE_CHANGE` sent on every passage navigation
+- `STATE_UPDATE` sent with correct SugarCube variables
+- `UNITY_STATE_UPDATE` — Unity updates local SugarCube state
+- `UNITY_ATOMIC_UPDATE` — atomic add/subtract operations
+- Socket.IO relay for both update types
+- `<<liveblock>>` re-render after Unity state changes
+- Exception variable filtering
+
+### Important: SugarCube API in External Scripts
+
+Scripts loaded via SugarCube's `importScripts()` (including `unityBridge.js`) run in the browser's global scope where `window.State` is **undefined**. Always use the public API path:
+
+```javascript
+// WRONG — window.State is undefined outside SugarCube's eval scope
+typeof State !== 'undefined' && State.setVar('$x', value);
+
+// CORRECT — always accessible
+window.SugarCube?.State?.variables?.x = value;
+```

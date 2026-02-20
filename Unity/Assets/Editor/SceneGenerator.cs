@@ -4,24 +4,25 @@ using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Automatically generates Unity scenes that match Twine passage names.
+/// Passage names are discovered by parsing a .twee source file — no hardcoded list needed.
 /// Each scene includes a Bridge GameObject and visual feedback showing the scene name.
 /// </summary>
 public class SceneGenerator : EditorWindow
 {
-    private static readonly string[] SCENE_NAMES = new string[]
+    private string _tweePath = "";
+    private List<string> _discoveredPassages = new List<string>();
+
+    // Passages that should never become scenes (utility/metadata passages)
+    private static readonly HashSet<string> EXCLUDED_PASSAGES = new HashSet<string>
     {
-        "Start",
-        "Initialize User",
-        "DraftingPattern",
-        "UnityBridge",
-        "Hub",
-        "Shared Counter Demo",
-        "Message Board Demo",
-        "User Registry Demo",
-        "About the Engine"
+        "StoryTitle", "StoryData", "Story Stylesheet", "Story JavaScript",
+        "StoryInit", "StoryMenu", "StoryCaption", "StoryBanner", "StoryShare",
+        "StorySettings", "PassageDone", "PassageHeader", "PassageFooter"
     };
 
     [MenuItem("Tools/Generate Twine Passage Scenes")]
@@ -35,114 +36,139 @@ public class SceneGenerator : EditorWindow
         GUILayout.Label("Twine Passage Scene Generator", EditorStyles.boldLabel);
         GUILayout.Space(10);
 
-        GUILayout.Label("This will create the following scenes:");
-        foreach (string sceneName in SCENE_NAMES)
+        // .twee file picker
+        GUILayout.Label("Step 1: Select your .twee source file", EditorStyles.boldLabel);
+        GUILayout.BeginHorizontal();
+        _tweePath = GUILayout.TextField(_tweePath);
+        if (GUILayout.Button("Browse", GUILayout.Width(70)))
         {
-            GUILayout.Label("  • " + sceneName);
+            string path = EditorUtility.OpenFilePanel("Select .twee file", "Assets", "twee");
+            if (!string.IsNullOrEmpty(path))
+            {
+                _tweePath = path;
+                _discoveredPassages = ParsePassageNames(_tweePath);
+            }
+        }
+        GUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Refresh Passages from File"))
+        {
+            if (!string.IsNullOrEmpty(_tweePath) && File.Exists(_tweePath))
+                _discoveredPassages = ParsePassageNames(_tweePath);
+            else
+                EditorUtility.DisplayDialog("Error", "Please select a valid .twee file first.", "OK");
         }
 
         GUILayout.Space(10);
-        GUILayout.Label("Each scene will include:");
-        GUILayout.Label("  • Canvas with scene name text");
-        GUILayout.Label("  • Bridge GameObject with StateBridge component");
-        GUILayout.Space(20);
 
-        if (GUILayout.Button("Generate All Scenes", GUILayout.Height(40)))
+        // Show discovered passages
+        if (_discoveredPassages.Count > 0)
         {
-            GenerateAllScenes();
+            GUILayout.Label($"Step 2: Found {_discoveredPassages.Count} passages to generate:", EditorStyles.boldLabel);
+            foreach (string name in _discoveredPassages)
+                GUILayout.Label("  • " + name);
+
+            GUILayout.Space(10);
+            GUILayout.Label("Each scene will include:");
+            GUILayout.Label("  • Canvas with scene name text");
+            GUILayout.Label("  • Bridge GameObject with StateBridge component");
+            GUILayout.Space(10);
+
+            if (GUILayout.Button("Generate All Scenes", GUILayout.Height(40)))
+                GenerateAllScenes(_discoveredPassages);
+
+            GUILayout.Space(5);
+            if (GUILayout.Button("Add All Scenes to Build Settings", GUILayout.Height(30)))
+                AddScenesToBuildSettings(_discoveredPassages);
         }
-
-        GUILayout.Space(10);
-
-        if (GUILayout.Button("Add All Scenes to Build Settings", GUILayout.Height(30)))
+        else
         {
-            AddScenesToBuildSettings();
+            EditorGUILayout.HelpBox("Select a .twee file and click Refresh to discover passages.", MessageType.Info);
         }
     }
 
-    static void GenerateAllScenes()
+    /// <summary>
+    /// Parse a .twee file and return all passage names, excluding SugarCube metadata passages.
+    /// Passage lines follow the format: :: PassageName [optional tags] { optional json }
+    /// </summary>
+    static List<string> ParsePassageNames(string tweePath)
     {
-        // Ensure Scenes directory exists
+        var names = new List<string>();
+        var passageHeader = new Regex(@"^::\s+(.+?)(?:\s+\[.*?\])?(?:\s+\{.*?\})?\s*$");
+
+        foreach (string line in File.ReadLines(tweePath))
+        {
+            var match = passageHeader.Match(line);
+            if (match.Success)
+            {
+                string name = match.Groups[1].Value.Trim();
+                if (!EXCLUDED_PASSAGES.Contains(name))
+                    names.Add(name);
+            }
+        }
+
+        return names;
+    }
+
+    static void GenerateAllScenes(List<string> sceneNames)
+    {
         if (!AssetDatabase.IsValidFolder("Assets/Scenes"))
-        {
             AssetDatabase.CreateFolder("Assets", "Scenes");
-        }
 
-        foreach (string sceneName in SCENE_NAMES)
+        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            AssetDatabase.CreateFolder("Assets", "Resources");
+
+        string gameStatePath = "Assets/Resources/GameState.asset";
+        GameStateSO gameState = AssetDatabase.LoadAssetAtPath<GameStateSO>(gameStatePath);
+        if (gameState == null)
         {
-            CreateScene(sceneName);
+            gameState = ScriptableObject.CreateInstance<GameStateSO>();
+            AssetDatabase.CreateAsset(gameState, gameStatePath);
+            AssetDatabase.SaveAssets();
+            Debug.Log("Created new GameState asset in Assets/Resources/");
         }
 
-        Debug.Log($"Successfully generated {SCENE_NAMES.Length} scenes!");
-        EditorUtility.DisplayDialog("Success", $"Generated {SCENE_NAMES.Length} scenes in Assets/Scenes/", "OK");
+        foreach (string sceneName in sceneNames)
+            CreateScene(sceneName, gameState);
+
+        Debug.Log($"Successfully generated {sceneNames.Count} scenes!");
+        EditorUtility.DisplayDialog("Success", $"Generated {sceneNames.Count} scenes in Assets/Scenes/", "OK");
     }
 
-    static void CreateScene(string sceneName)
+    static void CreateScene(string sceneName, GameStateSO gameState)
     {
-        // Create new scene - EMPTY, not DefaultGameObjects (faster, smaller)
         Scene newScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
-        // Add minimal camera
         GameObject cameraGO = new GameObject("Main Camera");
         Camera camera = cameraGO.AddComponent<Camera>();
         camera.clearFlags = CameraClearFlags.SolidColor;
         camera.backgroundColor = Color.black;
         cameraGO.tag = "MainCamera";
 
-        // Create Canvas
         GameObject canvasGO = new GameObject("Canvas");
         Canvas canvas = canvasGO.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvasGO.AddComponent<UnityEngine.UI.CanvasScaler>();
         canvasGO.AddComponent<UnityEngine.UI.GraphicRaycaster>();
 
-        // Create Text element for scene name
         GameObject textGO = new GameObject("SceneNameText");
         textGO.transform.SetParent(canvasGO.transform);
+        UnityEngine.UI.Text text = textGO.AddComponent<UnityEngine.UI.Text>();
+        text.text = sceneName;
+        text.fontSize = 60;
+        text.color = Color.white;
+        text.alignment = TextAnchor.MiddleCenter;
+        text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        RectTransform rectTransform = textGO.GetComponent<RectTransform>();
+        rectTransform.anchorMin = new Vector2(0, 0);
+        rectTransform.anchorMax = new Vector2(1, 1);
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.zero;
 
-        // Use legacy Text instead of TextMeshPro to avoid font asset issues
-        // TMP requires font assets which aren't included in minimal builds
-        bool useTMP = false; // Disabled - use legacy Text with built-in Arial font
-
-        if (useTMP)
-        {
-            // Use TextMeshPro
-            TextMeshProUGUI tmpText = textGO.AddComponent<TextMeshProUGUI>();
-            tmpText.text = sceneName;
-            tmpText.fontSize = 60;
-            tmpText.color = Color.white;
-            tmpText.alignment = TextAlignmentOptions.Center;
-
-            // Set RectTransform to fill screen
-            RectTransform rectTransform = textGO.GetComponent<RectTransform>();
-            rectTransform.anchorMin = new Vector2(0, 0);
-            rectTransform.anchorMax = new Vector2(1, 1);
-            rectTransform.offsetMin = Vector2.zero;
-            rectTransform.offsetMax = Vector2.zero;
-        }
-        else
-        {
-            // Use legacy Text
-            UnityEngine.UI.Text text = textGO.AddComponent<UnityEngine.UI.Text>();
-            text.text = sceneName;
-            text.fontSize = 60;
-            text.color = Color.white;
-            text.alignment = TextAnchor.MiddleCenter;
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-
-            // Set RectTransform to fill screen
-            RectTransform rectTransform = textGO.GetComponent<RectTransform>();
-            rectTransform.anchorMin = new Vector2(0, 0);
-            rectTransform.anchorMax = new Vector2(1, 1);
-            rectTransform.offsetMin = Vector2.zero;
-            rectTransform.offsetMax = Vector2.zero;
-        }
-
-        // Create Bridge GameObject
         GameObject bridgeGO = new GameObject("Bridge");
-        bridgeGO.AddComponent<StateBridge>();
+        StateBridge bridge = bridgeGO.AddComponent<StateBridge>();
+        bridge.gameState = gameState;
 
-        // Add EventSystem if it doesn't exist
         if (GameObject.FindObjectOfType<UnityEngine.EventSystems.EventSystem>() == null)
         {
             GameObject eventSystemGO = new GameObject("EventSystem");
@@ -150,45 +176,30 @@ public class SceneGenerator : EditorWindow
             eventSystemGO.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
         }
 
-        // Save scene
         string scenePath = $"Assets/Scenes/{sceneName}.unity";
         EditorSceneManager.SaveScene(newScene, scenePath);
-
         Debug.Log($"Created scene: {scenePath}");
     }
 
-    static void AddScenesToBuildSettings()
+    static void AddScenesToBuildSettings(List<string> sceneNames)
     {
-        List<EditorBuildSettingsScene> editorBuildSettingsScenes = new List<EditorBuildSettingsScene>();
+        var editorBuildSettingsScenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
 
-        // Add existing scenes
-        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
-        {
-            editorBuildSettingsScenes.Add(scene);
-        }
-
-        // Add new scenes
         int addedCount = 0;
-        foreach (string sceneName in SCENE_NAMES)
+        foreach (string sceneName in sceneNames)
         {
             string scenePath = $"Assets/Scenes/{sceneName}.unity";
 
-            // Check if scene exists
-            if (!System.IO.File.Exists(scenePath))
+            if (!File.Exists(scenePath))
             {
                 Debug.LogWarning($"Scene not found: {scenePath}. Run 'Generate All Scenes' first.");
                 continue;
             }
 
-            // Check if already in build settings
             bool alreadyAdded = false;
             foreach (EditorBuildSettingsScene existing in editorBuildSettingsScenes)
             {
-                if (existing.path == scenePath)
-                {
-                    alreadyAdded = true;
-                    break;
-                }
+                if (existing.path == scenePath) { alreadyAdded = true; break; }
             }
 
             if (!alreadyAdded)
@@ -199,7 +210,6 @@ public class SceneGenerator : EditorWindow
             }
         }
 
-        // Update build settings
         EditorBuildSettings.scenes = editorBuildSettingsScenes.ToArray();
 
         if (addedCount > 0)

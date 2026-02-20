@@ -5,9 +5,18 @@
 		$(".macro-live").trigger(":liveupdateinternal");
 	});
 
+	// Debounced trigger to prevent infinite loops and improve performance
+	window.thLiveUpdate = function() {
+		if (window._thLiveUpdateTimeout) return;
+		window._thLiveUpdateTimeout = setTimeout(() => {
+			$(document).trigger(":liveupdate");
+			window._thLiveUpdateTimeout = null;
+		}, 20);
+	};
+
 	Macro.add(['update', 'upd'], {
 		handler: function handler() {
-			$(document).trigger(":liveupdate");
+			window.thLiveUpdate();
 		}
 	});
 

@@ -124,7 +124,7 @@ class Webstack {
 			socket.once('new user', (id) => {
 				console.log("SERVER RECEIVES NEW USER:", id);
 				let gstate = this.serverStore.getState();
-				io.to(id).emit('new connection', gstate || {})
+				socket.emit('new connection', gstate || {})
 			})
 
 			// Handle difference
