@@ -29,12 +29,12 @@ if (process.platform === 'win32' && !fs.existsSync(binPath)) {
     }
 }
 
-// Build args: story src + shared modules + story css -> story index.html
+// Build args: story src + story css -> story index.html
+// Modules are loaded at runtime via importScripts() in Story JavaScript
 const cssPath = `${storyPath}/css/style.css`;
 const args = [
     '-f sugarcube-2',
     `"${storyPath}/src/"`,
-    '"Twine/modules/"',
     fs.existsSync(cssPath) ? `"${cssPath}"` : '',
     `-o "${storyPath}/index.html"`
 ].filter(Boolean).join(' ');

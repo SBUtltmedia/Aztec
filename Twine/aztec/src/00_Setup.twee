@@ -39,39 +39,33 @@ Config.history.maxStates = 1;
 Config.passages.nobr = true;
 
 // 2. Exception variables (local only, never synced)
-window.exceptions = ['$userId', '$passageHistory'];
+window.exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
 setup.exceptions = window.exceptions;
 
-// 3. Load Socket.IO and initialize Theyr multiplayer client
-(function() {
-    const socketScript = document.createElement('script');
-    socketScript.src = '/socket.io/socket.io.js';
-    socketScript.onload = function() {
-        console.log('Socket.IO loaded');
-        if (window.initMultiplayerClient) {
-            window.initMultiplayerClient();
-        } else {
-            console.error("ClientDemo.js not loaded or initMultiplayerClient not defined.");
-        }
-    };
-    document.head.appendChild(socketScript);
-})();
-
-// 4. Load Aztec-specific external libraries
-(function() {
-    var libs = [
-        'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js',
-        'https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js',
-        'https://code.jquery.com/ui/1.12.1/jquery-ui.js'
-    ];
-    libs.forEach(function(src) {
-        var s = document.createElement('script');
-        s.src = src;
-        document.head.appendChild(s);
-    });
-})();
+// 3. Load all scripts before story renders (lock loading screen until ready)
+var _lockId = LoadScreen.lock();
+importScripts([
+    // Multiplayer modules (served from /Twine/modules/)
+    '/Twine/modules/live-update.js',
+    '/Twine/modules/th-set.js',
+    '/Twine/modules/ClientDemo.js',
+    // Socket.IO (served by the Node server)
+    '/socket.io/socket.io.js',
+    // Aztec-specific external libraries
+    'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js',
+    'https://unpkg.com/jquery.nice-number@2.1.0/dist/jquery.nice-number.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js',
+    'https://code.jquery.com/ui/1.12.1/jquery-ui.js'
+]).then(function() {
+    console.log('[Aztec] All scripts loaded — connecting to multiplayer server...');
+    if (window.initMultiplayerClient) {
+        window.initMultiplayerClient();
+    } else {
+        console.error('[Aztec] initMultiplayerClient not found — ClientDemo.js may have failed to load.');
+    }
+    LoadScreen.unlock(_lockId);
+});
 
 // 5. Aztec-specific setup functions
 window.setup = window.setup || {};
