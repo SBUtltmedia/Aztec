@@ -42,13 +42,11 @@ Config.passages.nobr = true;
 window.exceptions = ['$userId', '$god', '$godParam', '$passageHistory'];
 setup.exceptions = window.exceptions;
 
-// 3. Load all scripts before story renders (lock loading screen until ready)
+// 3. Load external scripts before story renders (lock loading screen until ready)
+// NOTE: live-update.js, th-set.js, and ClientDemo.js are compiled inline by tweego
+// from Twine/modules/ — do NOT load them here or Macro will be undefined at load time.
 var _lockId = LoadScreen.lock();
 importScripts([
-    // Multiplayer modules (served from /Twine/modules/)
-    '/Twine/modules/live-update.js',
-    '/Twine/modules/th-set.js',
-    '/Twine/modules/ClientDemo.js',
     // Socket.IO (served by the Node server)
     '/socket.io/socket.io.js',
     // Aztec-specific external libraries

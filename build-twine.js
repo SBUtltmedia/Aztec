@@ -29,12 +29,15 @@ if (process.platform === 'win32' && !fs.existsSync(binPath)) {
     }
 }
 
-// Build args: story src + story css -> story index.html
-// Modules are loaded at runtime via importScripts() in Story JavaScript
+// Build args: story src + shared modules + story css -> story index.html
+// Modules (live-update.js, th-set.js, ClientDemo.js) must be compiled inline by tweego.
+// They use Macro.add() which requires SugarCube's runtime context — loading them via
+// importScripts() as external files causes "Macro is not defined" errors.
 const cssPath = `${storyPath}/css/style.css`;
 const args = [
     '-f sugarcube-2',
     `"${storyPath}/src/"`,
+    '"Twine/modules/"',
     fs.existsSync(cssPath) ? `"${cssPath}"` : '',
     `-o "${storyPath}/index.html"`
 ].filter(Boolean).join(' ');
