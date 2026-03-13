@@ -23,6 +23,9 @@
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
     "test:visual": "playwright test tests/multiplayer-visual.spec.js --headed --project=demo --reporter=list",
+    "test:aztec": "cross-env STORY=aztec playwright test --project=aztec --reporter=list",
+    "test:aztec:headed": "cross-env STORY=aztec playwright test --project=aztec --headed --reporter=list",
+    "test:aztec:one": "cross-env STORY=aztec playwright test --project=aztec --grep",
     "report": "playwright show-report"
   },
   "keywords": [
