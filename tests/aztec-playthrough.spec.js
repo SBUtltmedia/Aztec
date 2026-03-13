@@ -209,6 +209,10 @@ async function playCharacter(page, role, log) {
 // Tests
 // ---------------------------------------------------------------------------
 
+// Run all tests in this file serially — characters share server state so
+// parallel execution causes race conditions.
+test.describe.configure({ mode: 'serial' });
+
 test.describe('Aztec Game — Full Character Playthrough', () => {
 
   /**
@@ -265,11 +269,17 @@ test.describe('Aztec Game — Full Character Playthrough', () => {
   });
 
   /**
-   * Per-character individual tests — useful for running a single role in
-   * isolation during development:  npx playwright test --grep "Cortes"
+   * Per-character individual tests.
+   * Skipped in the default run (would duplicate the full playthrough above).
+   * Use --grep to run one in isolation, e.g.:
+   *   npm run test:aztec:one Cortes
    */
   for (const role of CHARACTERS) {
     test(`${role} reaches the end`, async ({ page }) => {
+      test.skip(
+        !process.env.AZTEC_ROLE || process.env.AZTEC_ROLE !== role,
+        `Single-role mode: set AZTEC_ROLE=${role} or use --grep "${role}" with AZTEC_ROLE set`
+      );
       const log = (msg) => console.log(msg);
       const result = await playCharacter(page, role, log);
       expect(result.success, result.reason).toBe(true);

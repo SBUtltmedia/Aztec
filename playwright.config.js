@@ -8,15 +8,15 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: `http://localhost:${process.env.PORT || 53134}`,
     trace: 'on-first-retry',
   },
 
-  /* Run your local dev server before starting the tests */
+  /* Start a dev server if one isn't already running */
   webServer: {
-    command: `STORY=${process.env.STORY || 'demo'} npm start`,
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    command: `STORY=${process.env.STORY || 'aztec'} npm start`,
+    url: `http://localhost:${process.env.PORT || 53134}`,
+    reuseExistingServer: true,   // always reuse — don't fight the running dev server
     timeout: 120 * 1000,
   },
 
@@ -29,24 +29,22 @@ export default defineConfig({
       name: 'demo',
       use: {
         ...devices['Desktop Chrome'],
-        launchOptions: {
-          slowMo: 1000,
-        }
+        launchOptions: { slowMo: 1000 },
       },
       timeout: 60 * 1000,
     },
     {
-      // Run with: npx playwright test --project=aztec
-      // Or a single role: npx playwright test --project=aztec --grep "Cortes"
+      // Run with: npm run test:aztec
+      // Single role: AZTEC_ROLE=Cortes npm run test:aztec:one Cortes
       name: 'aztec',
       testMatch: '**/aztec-playthrough.spec.js',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: 'http://localhost:3000',
-        // Slow enough to observe in headed mode; remove slowMo for CI
-        launchOptions: { slowMo: 200 },
+        launchOptions: { slowMo: 100 },
       },
-      timeout: 5 * 60 * 1000, // 5 min per character max
+      // Each individual character test gets 15 min; the full-suite test gets
+      // 30 min (15 characters × ~2 min each worst case).
+      timeout: 30 * 60 * 1000,
     },
   ],
 });
