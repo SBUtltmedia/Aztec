@@ -180,19 +180,14 @@ display: none;
 }
 
 #story {
-margin-left: 0;
-position: absolute;
-background-position: 30% 70%,0 0;
-background-size: 100% 100%;
-
-/* background-position: 30% 70%,0 0; */
-background-size: 100%;
-background-repeat: no-repeat;
-/* border-radius:10%;
- border-color:#999999;
- border-width:3rem;
-  border-style: solid; */
 margin: 0 !important;
+position: absolute;
+top: 0;
+left: 0;
+background-position: center center;
+background-size: cover;
+background-repeat: no-repeat;
+overflow: hidden;
 }
 
 textarea {

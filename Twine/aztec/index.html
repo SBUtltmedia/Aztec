@@ -290,19 +290,14 @@ display: none;
 }
 
 #story {
-margin-left: 0;
-position: absolute;
-background-position: 30% 70%,0 0;
-background-size: 100% 100%;
-
-/* background-position: 30% 70%,0 0; */
-background-size: 100%;
-background-repeat: no-repeat;
-/* border-radius:10%;
- border-color:#999999;
- border-width:3rem;
-  border-style: solid; */
 margin: 0 !important;
+position: absolute;
+top: 0;
+left: 0;
+background-position: center center;
+background-size: cover;
+background-repeat: no-repeat;
+overflow: hidden;
 }
 
 textarea {
@@ -1395,6 +1390,41 @@ importScripts([
     LoadScreen.unlock(_lockId);
 });
 
+// 4. Responsive 16:9 scaling — keeps #story and all rem-based text fitted to viewport
+(function() {
+    var aspectW = 16, aspectH = 9;
+
+    function resizeWindow() {
+        var w = $(window).width();
+        var h = $(window).height();
+        var stageWidth, stageHeight, stageLeft, stageTop;
+
+        if ((w / h) >= (aspectW / aspectH)) {
+            stageHeight = h;
+            stageWidth  = (aspectW / aspectH) * h;
+            stageLeft   = (w - stageWidth) / 2;
+            stageTop    = 0;
+        } else {
+            stageWidth  = w;
+            stageHeight = (aspectH / aspectW) * w;
+            stageLeft   = 0;
+            stageTop    = 0;
+        }
+
+        $('#story').css({
+            width:  stageWidth  + 'px',
+            height: stageHeight + 'px',
+            left:   stageLeft   + 'px',
+            top:    stageTop    + 'px'
+        });
+
+        $('html').css('font-size', (stageHeight / 80) + 'px');
+    }
+
+    $(window).on('resize', resizeWindow);
+    $(resizeWindow);
+})();
+
 // 5. Aztec-specific setup functions
 window.setup = window.setup || {};
 
@@ -1851,7 +1881,7 @@ console.log('ClientDemo.js loaded');
         }
     });
 })();
-</script><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
+</script><tw-tag name="Breaks" color="blue"></tw-tag><tw-tag name="Change-Title" color="yellow"></tw-tag><tw-tag name="Coding-Problem" color="red"></tw-tag><tw-tag name="Done" color="green"></tw-tag><tw-tag name="New-Passage" color="purple"></tw-tag><tw-tag name="Text-to-be-updated-by-Ashley" color="orange"></tw-tag><tw-passagedata pid="1" name="Aguilar overhears Maya gossip" tags="Done" position="1925,50" size="100,100">&lt;&lt;liveblock&gt;&gt;
 &lt;&lt;set _Span_Tot_Play = setup.getTotalChoices(&quot;Span_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Aztec_Tot_Play = setup.getTotalChoices(&quot;Aztec_Tot_Play&quot;)&gt;&gt;
 &lt;&lt;set _Tlax_Tot_Play = setup.getTotalChoices(&quot;Tlax_Tot_Play&quot;)&gt;&gt;

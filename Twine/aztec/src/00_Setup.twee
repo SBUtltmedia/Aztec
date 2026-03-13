@@ -65,6 +65,41 @@ importScripts([
     LoadScreen.unlock(_lockId);
 });
 
+// 4. Responsive 16:9 scaling — keeps #story and all rem-based text fitted to viewport
+(function() {
+    var aspectW = 16, aspectH = 9;
+
+    function resizeWindow() {
+        var w = $(window).width();
+        var h = $(window).height();
+        var stageWidth, stageHeight, stageLeft, stageTop;
+
+        if ((w / h) >= (aspectW / aspectH)) {
+            stageHeight = h;
+            stageWidth  = (aspectW / aspectH) * h;
+            stageLeft   = (w - stageWidth) / 2;
+            stageTop    = 0;
+        } else {
+            stageWidth  = w;
+            stageHeight = (aspectH / aspectW) * w;
+            stageLeft   = 0;
+            stageTop    = 0;
+        }
+
+        $('#story').css({
+            width:  stageWidth  + 'px',
+            height: stageHeight + 'px',
+            left:   stageLeft   + 'px',
+            top:    stageTop    + 'px'
+        });
+
+        $('html').css('font-size', (stageHeight / 80) + 'px');
+    }
+
+    $(window).on('resize', resizeWindow);
+    $(resizeWindow);
+})();
+
 // 5. Aztec-specific setup functions
 window.setup = window.setup || {};
 
